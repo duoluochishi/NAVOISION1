@@ -1,0 +1,119 @@
+{
+    "Config": {
+        "ReportAllowType": "All",
+        "SkipPhantomValidate": false
+    },
+    "Phantom": {
+        "PhantomLocation": -1000,
+        "Water30Distance": 100,
+        "Water20Distance": 200,
+        "PhysicalDistance": 300,
+        "AirDistance": 400
+    },
+    "Items": [
+        {
+            "Name": "{Config_QT_Phantom}",
+            "QTType": "IntegrationPhantom",
+            "UCType": "NV.CT.Service.QualityTest.Views.QTUC.IntegrationPhantomUC",
+            "IsPhantom": true
+        },
+        {
+            "Name": "{Config_QT_SliceThickness_Axial}",
+            "QTType": "SliceThicknessAxial",
+            "UCType": "NV.CT.Service.QualityTest.Views.QTUC.SliceThicknessAxialUC"
+        },
+        {
+            "Name": "{Config_QT_SliceThickness_Helical}",
+            "QTType": "SliceThicknessHelical",
+            "UCType": "NV.CT.Service.QualityTest.Views.QTUC.SliceThicknessHelicalUC"
+        },
+        {
+            "Name": "{Config_QT_Homogeneity}",
+            "QTType": "Homogeneity",
+            "UCType": "NV.CT.Service.QualityTest.Views.QTUC.HomogeneityUC"
+        },
+        {
+            "Name": "{Config_QT_CTWater}",
+            "QTType": "CTOfWater",
+            "UCType": "NV.CT.Service.QualityTest.Views.QTUC.CTOfWaterUC"
+        },
+        {
+            "Name": "{Config_QT_NoiseWater}",
+            "QTType": "NoiseOfWater",
+            "UCType": "NV.CT.Service.QualityTest.Views.QTUC.NoiseOfWaterUC"
+        },
+        {
+            "Name": "{Config_QT_ContrastScale}",
+            "QTType": "ContrastScale",
+            "UCType": "NV.CT.Service.QualityTest.Views.QTUC.ContrastScaleUC"
+        },
+        {
+            "Name": "{Config_QT_MTF_XY}",
+            "QTType": "MTF_XY",
+            "UCType": "NV.CT.Service.QualityTest.Views.QTUC.HighContrastResolutionXYUC"
+        },
+        {
+            "Name": "{Config_QT_MTF_Z}",
+            "QTType": "MTF_Z",
+            "UCType": "NV.CT.Service.QualityTest.Views.QTUC.HighContrastResolutionZUC"
+        }
+    ],
+    "ParamDisplay": [
+        {
+            "Header": "kV",
+            "BindingPath": "Param.ScanParam.Voltage[0]"
+        },
+        {
+            "Header": "mA",
+            "BindingPath": "Param.ScanParam.Current[0]"
+        },
+        {
+            "Header": "ExposureTime",
+            "BindingPath": "Param.ScanParam.ExposureTime"
+        },
+        {
+            "Header": "ScanBinning",
+            "BindingPath": "Param.ScanParam.ScanBinning"
+        },
+        {
+            "Header": "Gain",
+            "BindingPath": "Param.ScanParam.Gain"
+        },
+        {
+            "Header": "ExposureMode",
+            "BindingPath": "Param.ScanParam.ExposureMode"
+        },
+        {
+            "Header": "ScanOption",
+            "BindingPath": "Param.ScanParam.ScanOption"
+        },
+        {
+            "Header": "FramesPerCycle",
+            "BindingPath": "Param.ScanParam.FramesPerCycle"
+        },
+        {
+            "Header": "Pitch",
+            "BindingPath": "Param.ScanParam.Pitch"
+        },
+        {
+            "Header": "ImageMatrixHor",
+            "BindingPath": "Param.OfflineReconParam.ImageMatrixHor"
+        },
+        {
+            "Header": "ImageMatrixVert",
+            "BindingPath": "Param.OfflineReconParam.ImageMatrixVert"
+        },
+        {
+            "Header": "SliceThickness",
+            "BindingPath": "Param.OfflineReconParam.SliceThickness"
+        },
+        {
+            "Header": "FilterType",
+            "BindingPath": "Param.OfflineReconParam.FilterType"
+        },
+        {
+            "Header": "ReconType",
+            "BindingPath": "Param.OfflineReconParam.ReconType"
+        }
+    ]
+}

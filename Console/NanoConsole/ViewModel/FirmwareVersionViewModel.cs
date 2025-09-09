@@ -1,0 +1,89 @@
+﻿using NV.CT.FacadeProxy.Common.Enums.SelfCheck;
+using NV.CT.FacadeProxy.Models.ComponentStatus;
+
+namespace NV.CT.NanoConsole.ViewModel;
+
+public class FirmwareVersionViewModel : BaseViewModel
+{
+	private readonly ILogger<FirmwareVersionViewModel> _logger;
+	private readonly IComponentStatusProxyService _componentStatusProxyService;
+	public FirmwareVersionViewModel(ILogger<FirmwareVersionViewModel> logger, IComponentStatusProxyService componentStatusProxyService)
+	{
+		_logger = logger;
+		_componentStatusProxyService = componentStatusProxyService;
+
+		GetFirmwareVersion();
+	}
+
+	private void GetFirmwareVersion()
+	{
+		Task.Run(() =>
+		{
+			try
+			{
+
+				//TODO : 去掉   ExtBoard和SecondaryComponents的显示 因为这个两个暂时在界面上没有
+				var list = _componentStatusProxyService.GetAllComponentVersion();
+				//debug only
+				//var list = JsonConvert.DeserializeObject<List<ComponentFirmwareInfo>>(GetFakeTest());
+				_logger.LogInformation($"[GetFirmwareVersion] get firmware version {list.ToJson()}");
+
+				var releaseList = UserConfig.FirmwareVersionConfig.FirmwareVersions;
+				_logger.LogInformation($"[GetFirmwareVersion] get release firmware version {releaseList.ToJson()}");
+
+				var resultList = new List<FirmwareInfo>();
+				foreach (var firmware in list)
+				{
+					var releaseItem = releaseList.FirstOrDefault(n =>
+						string.Equals(n.Type, firmware.TypeName, StringComparison.OrdinalIgnoreCase) && n.Index==firmware.Index);
+
+					if (releaseItem is null)
+					{
+						_logger.LogInformation($"[GetFirmwareVersion] can not find release firmware version :{firmware.Type.ToString()}");
+					}
+
+					var tmp = new FirmwareInfo
+					{
+						Index = (int)firmware.Index,
+						TypeName = firmware.TypeName,
+						Type = firmware.Type.ToString(),
+						CurrentVersion = firmware.FirmwareVersion,
+						ReleaseVersion = releaseItem?.Version??string.Empty,
+					};
+					tmp.Status = tmp.CurrentVersion == tmp.ReleaseVersion ? SelfCheckStatus.Success : SelfCheckStatus.Error;
+					resultList.Add(tmp);
+				}
+
+				Application.Current?.Dispatcher?.Invoke(() =>
+				{
+					VersionList.Clear();
+					var tmp1=resultList.Where(n => n.Status == SelfCheckStatus.Error).ToList();
+					var tmp2 = resultList.Where(n => n.Status == SelfCheckStatus.Success).ToList();
+					VersionList =(tmp1.Concat(tmp2)).ToList().ToObservableCollection();
+				});
+
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError($"[GetFirmwareVersion] error {ex.Message}", ex);
+			}
+		});
+	}
+
+	private ObservableCollection<FirmwareInfo> _versionList = new();
+	public ObservableCollection<FirmwareInfo> VersionList
+	{
+		get => _versionList;
+		set => SetProperty(ref _versionList, value);
+	}
+
+	public bool IsValidationOk()
+	{
+		return VersionList.All(n => n.Status == SelfCheckStatus.Success);
+	}
+
+	public string GetFakeTest()
+	{
+		return @"[{""Index"":0,""Type"":15,""TypeName"":""AcqCard"",""FirmwareVersion"":""0.0.0.0003""},{""Index"":1,""Type"":15,""TypeName"":""AcqCard"",""FirmwareVersion"":""0.0.0.0003""},{""Index"":0,""Type"":16,""TypeName"":""TransmitBoard"",""FirmwareVersion"":""1.0.23.0006""},{""Index"":1,""Type"":16,""TypeName"":""TransmitBoard"",""FirmwareVersion"":""1.0.23.0006""},{""Index"":2,""Type"":16,""TypeName"":""TransmitBoard"",""FirmwareVersion"":""1.0.23.0006""},{""Index"":3,""Type"":16,""TypeName"":""TransmitBoard"",""FirmwareVersion"":""1.0.23.0006""},{""Index"":4,""Type"":16,""TypeName"":""TransmitBoard"",""FirmwareVersion"":""1.0.23.0006""},{""Index"":5,""Type"":16,""TypeName"":""TransmitBoard"",""FirmwareVersion"":""1.0.23.0006""},{""Index"":6,""Type"":16,""TypeName"":""TransmitBoard"",""FirmwareVersion"":""1.0.23.0006""},{""Index"":7,""Type"":16,""TypeName"":""TransmitBoard"",""FirmwareVersion"":""1.0.23.0006""},{""Index"":8,""Type"":16,""TypeName"":""TransmitBoard"",""FirmwareVersion"":""1.0.23.0006""},{""Index"":9,""Type"":16,""TypeName"":""TransmitBoard"",""FirmwareVersion"":""1.0.23.0006""},{""Index"":10,""Type"":16,""TypeName"":""TransmitBoard"",""FirmwareVersion"":""1.0.23.0006""},{""Index"":11,""Type"":16,""TypeName"":""TransmitBoard"",""FirmwareVersion"":""1.0.23.0006""},{""Index"":12,""Type"":16,""TypeName"":""TransmitBoard"",""FirmwareVersion"":""1.0.23.0006""},{""Index"":13,""Type"":16,""TypeName"":""TransmitBoard"",""FirmwareVersion"":""1.0.23.0006""},{""Index"":14,""Type"":16,""TypeName"":""TransmitBoard"",""FirmwareVersion"":""1.0.23.0006""},{""Index"":15,""Type"":16,""TypeName"":""TransmitBoard"",""FirmwareVersion"":""1.0.23.0006""},{""Index"":0,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":1,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":2,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":3,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":4,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":5,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":6,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":7,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":8,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":9,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":10,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":11,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":12,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":13,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":14,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":15,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":16,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":17,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":18,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":19,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":20,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":21,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":22,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":23,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":24,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":25,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":26,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":27,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":28,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":29,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":30,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":31,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":32,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":33,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":34,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":35,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":36,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":37,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":38,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":39,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":40,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":41,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":42,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":43,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":44,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":45,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":46,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":47,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":48,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":49,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":50,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":51,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":52,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":53,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":54,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":55,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":56,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":57,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":58,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":59,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":60,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":61,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":62,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":63,""Type"":17,""TypeName"":""ProcessBoard"",""FirmwareVersion"":""1.0.8.0000""},{""Index"":0,""Type"":18,""TypeName"":""TemperatureControlBoard"",""FirmwareVersion"":""1.0.10.0000""},{""Index"":1,""Type"":18,""TypeName"":""TemperatureControlBoard"",""FirmwareVersion"":""1.0.10.0000""},{""Index"":2,""Type"":18,""TypeName"":""TemperatureControlBoard"",""FirmwareVersion"":""1.0.10.0000""},{""Index"":3,""Type"":18,""TypeName"":""TemperatureControlBoard"",""FirmwareVersion"":""1.0.10.0000""},{""Index"":4,""Type"":18,""TypeName"":""TemperatureControlBoard"",""FirmwareVersion"":""1.0.10.0000""},{""Index"":5,""Type"":18,""TypeName"":""TemperatureControlBoard"",""FirmwareVersion"":""1.0.10.0000""},{""Index"":6,""Type"":18,""TypeName"":""TemperatureControlBoard"",""FirmwareVersion"":""1.0.10.0000""},{""Index"":7,""Type"":18,""TypeName"":""TemperatureControlBoard"",""FirmwareVersion"":""1.0.10.0000""},{""Index"":8,""Type"":18,""TypeName"":""TemperatureControlBoard"",""FirmwareVersion"":""1.0.10.0000""},{""Index"":9,""Type"":18,""TypeName"":""TemperatureControlBoard"",""FirmwareVersion"":""1.0.10.0000""},{""Index"":10,""Type"":18,""TypeName"":""TemperatureControlBoard"",""FirmwareVersion"":""1.0.10.0000""},{""Index"":11,""Type"":18,""TypeName"":""TemperatureControlBoard"",""FirmwareVersion"":""1.0.10.0000""},{""Index"":12,""Type"":18,""TypeName"":""TemperatureControlBoard"",""FirmwareVersion"":""1.0.10.0000""},{""Index"":13,""Type"":18,""TypeName"":""TemperatureControlBoard"",""FirmwareVersion"":""1.0.10.0000""},{""Index"":14,""Type"":18,""TypeName"":""TemperatureControlBoard"",""FirmwareVersion"":""1.0.10.0000""},{""Index"":15,""Type"":18,""TypeName"":""TemperatureControlBoard"",""FirmwareVersion"":""1.0.10.0000""},{""Index"":0,""Type"":0,""TypeName"":""CTBox"",""FirmwareVersion"":""1.0.48.0004""},{""Index"":0,""Type"":1,""TypeName"":""IFBox"",""FirmwareVersion"":""1.0.47.0008""},{""Index"":0,""Type"":2,""TypeName"":""PDU"",""FirmwareVersion"":""1.0.22.0002""},{""Index"":0,""Type"":3,""TypeName"":""Gantry"",""FirmwareVersion"":""1.0.11.0005""},{""Index"":0,""Type"":3,""TypeName"":""GantryPanel"",""FirmwareVersion"":""1.0.31.0005""},{""Index"":0,""Type"":4,""TypeName"":""Table"",""FirmwareVersion"":""1.0.21.0005""},{""Index"":0,""Type"":5,""TypeName"":""TubeInterface"",""FirmwareVersion"":""1.0.52.0001""},{""Index"":1,""Type"":5,""TypeName"":""TubeInterface"",""FirmwareVersion"":""1.0.52.0001""},{""Index"":2,""Type"":5,""TypeName"":""TubeInterface"",""FirmwareVersion"":""1.0.52.0001""},{""Index"":3,""Type"":5,""TypeName"":""TubeInterface"",""FirmwareVersion"":""1.0.52.0001""},{""Index"":4,""Type"":5,""TypeName"":""TubeInterface"",""FirmwareVersion"":""1.0.52.0001""},{""Index"":5,""Type"":5,""TypeName"":""TubeInterface"",""FirmwareVersion"":""1.0.52.0001""},{""Index"":0,""Type"":6,""TypeName"":""AuxBoard"",""FirmwareVersion"":""1.0.9.0004""},{""Index"":0,""Type"":7,""TypeName"":""ExtBoard"",""FirmwareVersion"":""0.0.0.0000""},{""Index"":0,""Type"":8,""TypeName"":""ControlBox"",""FirmwareVersion"":""1.0.2.0005""},{""Index"":0,""Type"":10,""TypeName"":""WirelessPanel"",""FirmwareVersion"":""0.0.0.0000""},{""Index"":0,""Type"":12,""TypeName"":""BreathPanel"",""FirmwareVersion"":""0.0.0.0000""},{""Index"":0,""Type"":13,""TypeName"":""XRaySource"",""FirmwareVersion"":""1.0.6.0000""},{""Index"":1,""Type"":13,""TypeName"":""XRaySource"",""FirmwareVersion"":""1.0.6.0000""},{""Index"":2,""Type"":13,""TypeName"":""XRaySource"",""FirmwareVersion"":""1.0.6.0000""},{""Index"":3,""Type"":13,""TypeName"":""XRaySource"",""FirmwareVersion"":""1.0.6.0000""},{""Index"":4,""Type"":13,""TypeName"":""XRaySource"",""FirmwareVersion"":""1.0.6.0000""},{""Index"":5,""Type"":13,""TypeName"":""XRaySource"",""FirmwareVersion"":""1.0.6.0000""},{""Index"":6,""Type"":13,""TypeName"":""XRaySource"",""FirmwareVersion"":""1.0.6.0000""},{""Index"":7,""Type"":13,""TypeName"":""XRaySource"",""FirmwareVersion"":""1.0.6.0000""},{""Index"":8,""Type"":13,""TypeName"":""XRaySource"",""FirmwareVersion"":""2.0.9.0000""},{""Index"":9,""Type"":13,""TypeName"":""XRaySource"",""FirmwareVersion"":""1.0.6.0000""},{""Index"":10,""Type"":13,""TypeName"":""XRaySource"",""FirmwareVersion"":""1.0.6.0000""},{""Index"":11,""Type"":13,""TypeName"":""XRaySource"",""FirmwareVersion"":""1.0.6.0000""},{""Index"":12,""Type"":13,""TypeName"":""XRaySource"",""FirmwareVersion"":""1.0.6.0000""},{""Index"":13,""Type"":13,""TypeName"":""XRaySource"",""FirmwareVersion"":""1.0.6.0000""},{""Index"":14,""Type"":13,""TypeName"":""XRaySource"",""FirmwareVersion"":""1.0.6.0000""},{""Index"":15,""Type"":13,""TypeName"":""XRaySource"",""FirmwareVersion"":""1.0.6.0000""},{""Index"":16,""Type"":13,""TypeName"":""XRaySource"",""FirmwareVersion"":""1.0.6.0000""},{""Index"":17,""Type"":13,""TypeName"":""XRaySource"",""FirmwareVersion"":""1.0.6.0000""},{""Index"":18,""Type"":13,""TypeName"":""XRaySource"",""FirmwareVersion"":""2.0.9.0000""},{""Index"":19,""Type"":13,""TypeName"":""XRaySource"",""FirmwareVersion"":""2.0.9.0000""},{""Index"":20,""Type"":13,""TypeName"":""XRaySource"",""FirmwareVersion"":""1.0.6.0000""},{""Index"":21,""Type"":13,""TypeName"":""XRaySource"",""FirmwareVersion"":""1.0.6.0000""},{""Index"":22,""Type"":13,""TypeName"":""XRaySource"",""FirmwareVersion"":""1.2.0.0000""},{""Index"":23,""Type"":13,""TypeName"":""XRaySource"",""FirmwareVersion"":""1.0.6.0000""},{""Index"":0,""Type"":14,""TypeName"":""Collimator"",""FirmwareVersion"":""1.0.59.0000""},{""Index"":1,""Type"":14,""TypeName"":""Collimator"",""FirmwareVersion"":""1.0.59.0000""},{""Index"":2,""Type"":14,""TypeName"":""Collimator"",""FirmwareVersion"":""1.0.59.0000""},{""Index"":3,""Type"":14,""TypeName"":""Collimator"",""FirmwareVersion"":""1.0.59.0000""},{""Index"":4,""Type"":14,""TypeName"":""Collimator"",""FirmwareVersion"":""1.0.59.0000""},{""Index"":5,""Type"":14,""TypeName"":""Collimator"",""FirmwareVersion"":""1.0.59.0000""},{""Index"":6,""Type"":14,""TypeName"":""Collimator"",""FirmwareVersion"":""1.0.59.0000""},{""Index"":7,""Type"":14,""TypeName"":""Collimator"",""FirmwareVersion"":""1.0.59.0000""},{""Index"":8,""Type"":14,""TypeName"":""Collimator"",""FirmwareVersion"":""1.0.59.0000""},{""Index"":9,""Type"":14,""TypeName"":""Collimator"",""FirmwareVersion"":""1.0.59.0000""},{""Index"":10,""Type"":14,""TypeName"":""Collimator"",""FirmwareVersion"":""1.0.59.0000""},{""Index"":11,""Type"":14,""TypeName"":""Collimator"",""FirmwareVersion"":""1.0.59.0000""},{""Index"":12,""Type"":14,""TypeName"":""Collimator"",""FirmwareVersion"":""1.0.59.0000""},{""Index"":13,""Type"":14,""TypeName"":""Collimator"",""FirmwareVersion"":""1.0.59.0000""},{""Index"":14,""Type"":14,""TypeName"":""Collimator"",""FirmwareVersion"":""1.0.59.0000""},{""Index"":15,""Type"":14,""TypeName"":""Collimator"",""FirmwareVersion"":""1.0.59.0000""},{""Index"":16,""Type"":14,""TypeName"":""Collimator"",""FirmwareVersion"":""1.0.59.0000""},{""Index"":17,""Type"":14,""TypeName"":""Collimator"",""FirmwareVersion"":""1.0.59.0000""},{""Index"":18,""Type"":14,""TypeName"":""Collimator"",""FirmwareVersion"":""1.0.59.0000""},{""Index"":19,""Type"":14,""TypeName"":""Collimator"",""FirmwareVersion"":""1.0.59.0000""},{""Index"":20,""Type"":14,""TypeName"":""Collimator"",""FirmwareVersion"":""1.0.59.0000""},{""Index"":21,""Type"":14,""TypeName"":""Collimator"",""FirmwareVersion"":""1.0.59.0000""},{""Index"":22,""Type"":14,""TypeName"":""Collimator"",""FirmwareVersion"":""1.0.59.0000""},{""Index"":23,""Type"":14,""TypeName"":""Collimator"",""FirmwareVersion"":""1.0.52.0000""}]";
+	}
+}

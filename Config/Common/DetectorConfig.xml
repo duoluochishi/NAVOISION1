@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DetectorConfig>
+	<Detector>
+		<Width Value="47520" Default="47520" />
+		<PhysicalWidth Value="75500" Default="75500" />
+		<ScanFOV Ranges="253440 337920 506880" />
+		<SID Value="1143000" Default="0" />
+		<SOD Value="709000" Default="0" />
+		<Resolution Value="265" Default="265" />
+		<SlantedAngle Value="0" Default="0" />
+		<XModuleCount Value="16" Default="16" />
+		<ZModuleCount Value="1" Default="0" />
+		<XOffset Value="0" Default="0" />
+		<ZOffset Value="100000" Default="0" />
+		<XChannelCount Value="10240" Default="10240" />
+		<ZChannelCount Value="288" Default="288" />
+		<XCutChannelCount Value="3072" Default="3072" />
+		<ZCutChannelCount Value="288" Default="288" />
+		<XSingleModuleChannelCount Value="640" Default="640" />
+		<ZSingleModuleChannelCount Value="288" Default="288" />
+		<XSingleModuleChipCount Value="4" Default="4" />
+		<ZSingleModuleChipCount Value="2" Default="2" />
+	</Detector>
+	<Param>
+
+		<!--0代表FastRead , 1代表DoubleRead-->
+		<DoubleRead Value="1" Default="1" />
+
+		<!--0代表FreeMode , 1代表FallingEdgeTriggering , 2代表RisingEdgeTriggering , 3代表LowLevelTriggering , 4代表HighLevelTriggering-->
+		<AcqMode Value="4" Default="4" />
+
+		<!--0代表SelfTest , 1代表NormalDataAcquisition , 2代表NormalImageAcquisition , 3代表ADCTest , 4代表FPGADigitalTest , 5代表PDRegisterReadWriteMode , 6代表PowerSavingMode-->
+		<ImageMode Value="1" Default="1" />
+		
+		<!--心跳间隔-->
+		<HeartBeatTimeInterval Value="100" Default="100" />
+		
+		<!--Print使能-->
+		<PrintfEnable Value="0" Default="0" />
+		
+		<!--散射板增益设置-->
+		<ScateringPlateGain Value="15" Default="15" />
+
+		<!--快门模式，0代表Global，1代表Rolling-->
+		<Shutter Value="0" Default="0" />
+		
+		<!--目标温度,单位 0.1°-->
+		<TargetTemperature Value="260" Default="260" />
+		
+		<!--0 原始编码, 1标志Flag编码 , 2 LOG2编码-->
+		<EncodeMode Value="0" Default="0" />
+		
+		<!--探测器PreOffset开始有效帧数-->
+		<PreOffsetStartVaildFrame Value="5" Default="5" />
+
+	</Param>
+</DetectorConfig>

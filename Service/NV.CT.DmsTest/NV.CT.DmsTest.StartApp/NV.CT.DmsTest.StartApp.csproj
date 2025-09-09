@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>$(TargetFramework)-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+	  <OutDir>..\..\..\Bin</OutDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NV.CT.DmsTest\NV.CT.DmsTest.csproj" />
+  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" />
+		<PackageReference Include="OxyPlot.Wpf" />
+	</ItemGroup>
+	<ItemGroup>
+		<Reference Include="NV.CT.ServiceFramework">
+			<HintPath>..\..\..\Bin\NV.CT.ServiceFramework.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.CT.Service.Common">
+			<HintPath>..\..\..\Bin\NV.CT.Service.Common.dll</HintPath>
+		</Reference>
+		<Reference Include="MaterialDesignColors">
+			<HintPath>..\..\..\Bin\MaterialDesignColors.dll</HintPath>
+		</Reference>
+		<Reference Include="MaterialDesignThemes.Wpf">
+			<HintPath>..\..\..\Bin\MaterialDesignThemes.Wpf.dll</HintPath>
+		</Reference>
+		<Reference Include="Microsoft.Extensions.Logging.Abstractions">
+			<HintPath>..\..\..\Bin\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.CT.FacadeProxy">
+			<HintPath>..\..\..\Bin\NV.CT.FacadeProxy.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+</Project>

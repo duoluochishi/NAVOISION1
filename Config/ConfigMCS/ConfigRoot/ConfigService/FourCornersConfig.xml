@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ViewTypes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ScanTopo FontSize="12" FontColorR="245" FontColorG="222" FontColorB="179">
+    <ViewSetting Name="ManufacturersModelName" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="1090" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="Manufacturer" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="0070" TextPrefix="" TextSuffix="" Visibility="true" Row="1" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="StudyID" TextSource="DicomTag" DicomTagGroup="0020" DicomTagId="0010" TextPrefix="" TextSuffix="" Visibility="true" Row="2" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="SeriesNumber" TextSource="DicomTag" DicomTagGroup="0020" DicomTagId="0011" TextPrefix="Seriesnumber: " TextSuffix="" Visibility="true" Row="3" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="SFOV" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="0090" TextPrefix="sFOV: " TextSuffix="" Visibility="true" Row="4" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="ConvolutionKernel" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1210" TextPrefix="" TextSuffix="" Visibility="true" Row="5" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="ImageType" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="0008" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="Institutionname" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="0080" TextPrefix="" TextSuffix="" Visibility="true" Row="1" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="Patientsname" TextSource="DicomTag" DicomTagGroup="0010" DicomTagId="0010" TextPrefix="" TextSuffix="" Visibility="true" Row="2" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="Patientage" TextSource="DicomTag" DicomTagGroup="0010" DicomTagId="1010" TextPrefix="" TextSuffix="" Visibility="true" Row="3" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="Patientsex" TextSource="DicomTag" DicomTagGroup="0010" DicomTagId="0040" TextPrefix="" TextSuffix="" Visibility="true" Row="4" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="SeriesDescription" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="103E" TextPrefix="" TextSuffix="" Visibility="true" Row="5" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="kV" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="0060" TextPrefix="" TextSuffix="kV " Visibility="true" Row="4" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="mA" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1151" TextPrefix="" TextSuffix="mA" Visibility="true" Row="5" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="Pitch" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="9311" TextPrefix="" TextSuffix="" Visibility="false" Row="2" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="WL" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="WL:" TextSuffix="" Visibility="true" Row="3" Column="1" Location="LeftBottom" GroupName="WindowType" />
+    <ViewSetting Name="WW/WL" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="WW:" TextSuffix="" Visibility="true" Row="3" Column="0" Location="LeftBottom" GroupName="WindowType" />
+    <ViewSetting Name="SliceNumber" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="Images: " TextSuffix="" Visibility="true" Row="2" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="SliceLocation" TextSource="DicomTag" DicomTagGroup="0020" DicomTagId="0032" TextPrefix="Slice pos: " TextSuffix="mm" Visibility="true" Row="1" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="SliceThickness" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="0050" TextPrefix="Slice thickness: " TextSuffix="mm" Visibility="false" Row="7" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="ZoomRatio" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="false" Row="6" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="AcquisitionDateTime" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="002A" TextPrefix="" TextSuffix="" Visibility="true" Row="5" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="OrientationCharTop" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="CenterTop" GroupName="" />
+    <ViewSetting Name="OrientationCharRight" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="RightCenter" GroupName="" />
+    <ViewSetting Name="OrientationCharBottom" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="CenterBottom" GroupName="" />
+    <ViewSetting Name="OrientationCharLeft" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="LeftCenter" GroupName="" />
+    <ViewSetting Name="ReconstructionAlgorithm" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="9315" TextPrefix="" TextSuffix="" Visibility="false" Row="4" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="StationName" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="1010" TextPrefix="" TextSuffix="" Visibility="false" Row="3" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="ImageComments" TextSource="DicomTag" DicomTagGroup="0020" DicomTagId="4000" TextPrefix="" TextSuffix="" Visibility="false" Row="2" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="PETPixelBodyPos" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="false" Row="1" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="PETPixelValue" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="V: " TextSuffix="" Visibility="false" Row="0" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="InstitutionalDepartName" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="1040" TextPrefix="" TextSuffix="" Visibility="false" Row="10" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="CTDI" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="9345" TextPrefix="" TextSuffix="" Visibility="false" Row="9" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="ReconstructionDiameter" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1100" TextPrefix="" TextSuffix="" Visibility="false" Row="8" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="TableHeight" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1030" TextPrefix="" TextSuffix="" Visibility="false" Row="0" Column="7" Location="RightBottom" GroupName="" />
+  </ScanTopo>
+  <ScanTomo FontSize="12" FontColorR="245" FontColorG="222" FontColorB="179">
+    <ViewSetting Name="ManufacturersModelName" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="1090" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="Manufacturer" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="0070" TextPrefix="" TextSuffix="" Visibility="true" Row="1" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="StudyID" TextSource="DicomTag" DicomTagGroup="0020" DicomTagId="0010" TextPrefix="" TextSuffix="" Visibility="true" Row="2" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="SeriesNumber" TextSource="DicomTag" DicomTagGroup="0020" DicomTagId="0011" TextPrefix="Seriesnumber: " TextSuffix="" Visibility="true" Row="3" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="DFOV" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1100" TextPrefix="FOV: " TextSuffix="" Visibility="true" Row="4" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="ConvolutionKernel" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1210" TextPrefix="" TextSuffix="" Visibility="true" Row="5" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="ImageType" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="0008" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="Institutionname" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="0080" TextPrefix="" TextSuffix="" Visibility="true" Row="1" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="Patientsname" TextSource="DicomTag" DicomTagGroup="0010" DicomTagId="0010" TextPrefix="" TextSuffix="" Visibility="true" Row="2" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="Patientage" TextSource="DicomTag" DicomTagGroup="0010" DicomTagId="1010" TextPrefix="" TextSuffix="" Visibility="true" Row="3" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="Patientsex" TextSource="DicomTag" DicomTagGroup="0010" DicomTagId="0040" TextPrefix="" TextSuffix="" Visibility="true" Row="4" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="SeriesDescription" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="103E" TextPrefix="" TextSuffix="" Visibility="true" Row="5" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="kV" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="0060" TextPrefix="" TextSuffix="kV " Visibility="true" Row="4" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="mA" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1151" TextPrefix="" TextSuffix="mA" Visibility="true" Row="5" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="Pitch" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="9311" TextPrefix="" TextSuffix="" Visibility="true" Row="3" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="WL" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="WL:" TextSuffix="" Visibility="true" Row="2" Column="1" Location="LeftBottom" GroupName="WindowType" />
+    <ViewSetting Name="WW/WL" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="WW:" TextSuffix="" Visibility="true" Row="2" Column="0" Location="LeftBottom" GroupName="WindowType" />
+    <ViewSetting Name="SliceNumber" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="Images: " TextSuffix="" Visibility="true" Row="1" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="SliceLocation" TextSource="DicomTag" DicomTagGroup="0020" DicomTagId="0032" TextPrefix="Slice pos: " TextSuffix="mm" Visibility="true" Row="0" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="SliceThickness" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="0050" TextPrefix="Slice thickness: " TextSuffix="mm" Visibility="false" Row="7" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="ZoomRatio" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="false" Row="6" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="AcquisitionDateTime" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="002A" TextPrefix="" TextSuffix="" Visibility="true" Row="5" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="OrientationCharTop" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="CenterTop" GroupName="" />
+    <ViewSetting Name="OrientationCharRight" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="RightCenter" GroupName="" />
+    <ViewSetting Name="OrientationCharBottom" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="CenterBottom" GroupName="" />
+    <ViewSetting Name="OrientationCharLeft" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="LeftCenter" GroupName="" />
+    <ViewSetting Name="ReconstructionAlgorithm" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="9315" TextPrefix="" TextSuffix="" Visibility="true" Row="4" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="StationName" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="1010" TextPrefix="" TextSuffix="" Visibility="false" Row="3" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="ImageComments" TextSource="DicomTag" DicomTagGroup="0020" DicomTagId="4000" TextPrefix="" TextSuffix="" Visibility="true" Row="2" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="PETPixelBodyPos" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="1" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="PETPixelValue" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="V: " TextSuffix="" Visibility="true" Row="0" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="InstitutionalDepartName" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="1040" TextPrefix="" TextSuffix="" Visibility="false" Row="10" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="CTDI" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="9345" TextPrefix="" TextSuffix="" Visibility="false" Row="9" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="ReconstructionDiameter" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1100" TextPrefix="" TextSuffix="" Visibility="false" Row="8" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="TableHeight" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1030" TextPrefix="" TextSuffix="" Visibility="false" Row="0" Column="7" Location="RightBottom" GroupName="" />
+  </ScanTomo>
+  <View FontSize="12" FontColorR="245" FontColorG="222" FontColorB="179">
+    <ViewSetting Name="ManufacturersModelName" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="1090" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="Manufacturer" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="0070" TextPrefix="" TextSuffix="" Visibility="true" Row="1" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="StudyID" TextSource="DicomTag" DicomTagGroup="0020" DicomTagId="0010" TextPrefix="" TextSuffix="" Visibility="true" Row="2" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="SeriesNumber" TextSource="DicomTag" DicomTagGroup="0020" DicomTagId="0011" TextPrefix="Seriesnumber: " TextSuffix="" Visibility="true" Row="3" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="DFOV" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1100" TextPrefix="FOV: " TextSuffix="" Visibility="true" Row="4" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="ConvolutionKernel" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1210" TextPrefix="" TextSuffix="" Visibility="true" Row="5" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="ImageType" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="0008" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="Institutionname" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="0080" TextPrefix="" TextSuffix="" Visibility="true" Row="1" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="Patientsname" TextSource="DicomTag" DicomTagGroup="0010" DicomTagId="0010" TextPrefix="" TextSuffix="" Visibility="true" Row="2" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="Patientage" TextSource="DicomTag" DicomTagGroup="0010" DicomTagId="1010" TextPrefix="" TextSuffix="" Visibility="true" Row="3" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="Patientsex" TextSource="DicomTag" DicomTagGroup="0010" DicomTagId="0040" TextPrefix="" TextSuffix="" Visibility="true" Row="4" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="SeriesDescription" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="103E" TextPrefix="" TextSuffix="" Visibility="true" Row="5" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="kV" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="0060" TextPrefix="" TextSuffix="kV " Visibility="true" Row="4" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="mA" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1151" TextPrefix="" TextSuffix="mA" Visibility="true" Row="5" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="Pitch" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="9311" TextPrefix="" TextSuffix="" Visibility="true" Row="3" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="WL" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="WL:" TextSuffix="" Visibility="true" Row="2" Column="1" Location="LeftBottom" GroupName="WindowType" />
+    <ViewSetting Name="WW/WL" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="WW:" TextSuffix="" Visibility="true" Row="2" Column="0" Location="LeftBottom" GroupName="WindowType" />
+    <ViewSetting Name="SliceNumber" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="Images: " TextSuffix="" Visibility="true" Row="1" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="SliceLocation" TextSource="DicomTag" DicomTagGroup="0020" DicomTagId="0032" TextPrefix="Slice pos: " TextSuffix="mm" Visibility="true" Row="0" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="SliceThickness" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="0050" TextPrefix="Slice thickness: " TextSuffix="mm" Visibility="false" Row="7" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="ZoomRatio" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="false" Row="6" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="AcquisitionDateTime" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="002A" TextPrefix="" TextSuffix="" Visibility="true" Row="5" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="OrientationCharTop" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="CenterTop" GroupName="" />
+    <ViewSetting Name="OrientationCharRight" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="RightCenter" GroupName="" />
+    <ViewSetting Name="OrientationCharBottom" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="CenterBottom" GroupName="" />
+    <ViewSetting Name="OrientationCharLeft" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="LeftCenter" GroupName="" />
+    <ViewSetting Name="ReconstructionAlgorithm" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="9315" TextPrefix="" TextSuffix="" Visibility="true" Row="4" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="StationName" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="1010" TextPrefix="" TextSuffix="" Visibility="false" Row="3" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="ImageComments" TextSource="DicomTag" DicomTagGroup="0020" DicomTagId="4000" TextPrefix="" TextSuffix="" Visibility="true" Row="2" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="PETPixelBodyPos" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="1" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="PETPixelValue" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="V: " TextSuffix="" Visibility="true" Row="0" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="InstitutionalDepartName" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="1040" TextPrefix="" TextSuffix="" Visibility="false" Row="10" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="CTDI" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="9345" TextPrefix="" TextSuffix="" Visibility="false" Row="9" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="ReconstructionDiameter" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1100" TextPrefix="" TextSuffix="" Visibility="false" Row="8" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="TableHeight" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1030" TextPrefix="" TextSuffix="" Visibility="false" Row="0" Column="7" Location="RightBottom" GroupName="" />
+  </View>
+  <Print FontSize="12" FontColorR="245" FontColorG="222" FontColorB="179">
+    <ViewSetting Name="ManufacturersModelName" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="1090" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="Manufacturer" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="0070" TextPrefix="" TextSuffix="" Visibility="true" Row="1" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="StudyID" TextSource="DicomTag" DicomTagGroup="0020" DicomTagId="0010" TextPrefix="" TextSuffix="" Visibility="true" Row="2" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="SeriesNumber" TextSource="DicomTag" DicomTagGroup="0020" DicomTagId="0011" TextPrefix="Seriesnumber: " TextSuffix="" Visibility="true" Row="3" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="DFOV" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1100" TextPrefix="FOV: " TextSuffix="" Visibility="true" Row="4" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="ConvolutionKernel" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1210" TextPrefix="" TextSuffix="" Visibility="true" Row="5" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="ImageType" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="0008" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="Institutionname" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="0080" TextPrefix="" TextSuffix="" Visibility="true" Row="1" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="Patientsname" TextSource="DicomTag" DicomTagGroup="0010" DicomTagId="0010" TextPrefix="" TextSuffix="" Visibility="true" Row="2" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="Patientage" TextSource="DicomTag" DicomTagGroup="0010" DicomTagId="1010" TextPrefix="" TextSuffix="" Visibility="true" Row="3" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="Patientsex" TextSource="DicomTag" DicomTagGroup="0010" DicomTagId="0040" TextPrefix="" TextSuffix="" Visibility="true" Row="4" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="SeriesDescription" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="103E" TextPrefix="" TextSuffix="" Visibility="true" Row="5" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="kV" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="0060" TextPrefix="" TextSuffix="kV " Visibility="true" Row="4" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="mA" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1151" TextPrefix="" TextSuffix="mA" Visibility="true" Row="5" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="Pitch" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="9311" TextPrefix="" TextSuffix="" Visibility="true" Row="3" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="WL" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="WL:" TextSuffix="" Visibility="true" Row="2" Column="1" Location="LeftBottom" GroupName="WindowType" />
+    <ViewSetting Name="WW/WL" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="WW:" TextSuffix="" Visibility="true" Row="2" Column="0" Location="LeftBottom" GroupName="WindowType" />
+    <ViewSetting Name="SliceNumber" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="Images: " TextSuffix="" Visibility="true" Row="1" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="SliceLocation" TextSource="DicomTag" DicomTagGroup="0020" DicomTagId="0032" TextPrefix="Slice pos: " TextSuffix="mm" Visibility="true" Row="0" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="SliceThickness" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="0050" TextPrefix="Slice thickness: " TextSuffix="mm" Visibility="false" Row="7" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="ZoomRatio" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="false" Row="6" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="AcquisitionDateTime" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="002A" TextPrefix="" TextSuffix="" Visibility="true" Row="5" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="OrientationCharTop" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="CenterTop" GroupName="" />
+    <ViewSetting Name="OrientationCharRight" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="RightCenter" GroupName="" />
+    <ViewSetting Name="OrientationCharBottom" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="CenterBottom" GroupName="" />
+    <ViewSetting Name="OrientationCharLeft" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="LeftCenter" GroupName="" />
+    <ViewSetting Name="ReconstructionAlgorithm" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="9315" TextPrefix="" TextSuffix="" Visibility="true" Row="4" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="StationName" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="1010" TextPrefix="" TextSuffix="" Visibility="false" Row="3" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="ImageComments" TextSource="DicomTag" DicomTagGroup="0020" DicomTagId="4000" TextPrefix="" TextSuffix="" Visibility="true" Row="2" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="PETPixelBodyPos" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="1" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="PETPixelValue" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="V: " TextSuffix="" Visibility="true" Row="0" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="InstitutionalDepartName" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="1040" TextPrefix="" TextSuffix="" Visibility="false" Row="10" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="CTDI" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="9345" TextPrefix="" TextSuffix="" Visibility="false" Row="9" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="ReconstructionDiameter" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1100" TextPrefix="" TextSuffix="" Visibility="false" Row="8" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="TableHeight" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1030" TextPrefix="" TextSuffix="" Visibility="false" Row="0" Column="7" Location="RightBottom" GroupName="" />
+  </Print>
+  <MPR FontSize="12" FontColorR="245" FontColorG="222" FontColorB="179">
+    <ViewSetting Name="ManufacturersModelName" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="1090" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="Manufacturer" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="0070" TextPrefix="" TextSuffix="" Visibility="true" Row="1" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="StudyID" TextSource="DicomTag" DicomTagGroup="0020" DicomTagId="0010" TextPrefix="" TextSuffix="" Visibility="true" Row="2" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="SeriesNumber" TextSource="DicomTag" DicomTagGroup="0020" DicomTagId="0011" TextPrefix="Seriesnumber: " TextSuffix="" Visibility="true" Row="3" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="DFOV" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1100" TextPrefix="FOV: " TextSuffix="" Visibility="true" Row="4" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="ConvolutionKernel" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1210" TextPrefix="" TextSuffix="" Visibility="true" Row="5" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="ImageType" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="0008" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="Institutionname" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="0080" TextPrefix="" TextSuffix="" Visibility="true" Row="1" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="Patientsname" TextSource="DicomTag" DicomTagGroup="0010" DicomTagId="0010" TextPrefix="" TextSuffix="" Visibility="true" Row="2" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="Patientage" TextSource="DicomTag" DicomTagGroup="0010" DicomTagId="1010" TextPrefix="" TextSuffix="" Visibility="true" Row="3" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="Patientsex" TextSource="DicomTag" DicomTagGroup="0010" DicomTagId="0040" TextPrefix="" TextSuffix="" Visibility="true" Row="4" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="SeriesDescription" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="103E" TextPrefix="" TextSuffix="" Visibility="true" Row="5" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="kV" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="0060" TextPrefix="" TextSuffix="kV " Visibility="true" Row="4" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="mA" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1151" TextPrefix="" TextSuffix="mA" Visibility="true" Row="5" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="Pitch" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="9311" TextPrefix="" TextSuffix="" Visibility="true" Row="3" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="WL" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="WL:" TextSuffix="" Visibility="true" Row="2" Column="1" Location="LeftBottom" GroupName="WindowType" />
+    <ViewSetting Name="WW/WL" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="WW:" TextSuffix="" Visibility="true" Row="2" Column="0" Location="LeftBottom" GroupName="WindowType" />
+    <ViewSetting Name="SliceNumber" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="Images: " TextSuffix="" Visibility="true" Row="1" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="SliceLocation" TextSource="DicomTag" DicomTagGroup="0020" DicomTagId="0032" TextPrefix="Slice pos: " TextSuffix="mm" Visibility="true" Row="0" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="SliceThickness" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="0050" TextPrefix="Slice thickness: " TextSuffix="mm" Visibility="false" Row="7" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="ZoomRatio" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="false" Row="6" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="AcquisitionDateTime" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="002A" TextPrefix="" TextSuffix="" Visibility="true" Row="5" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="OrientationCharTop" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="CenterTop" GroupName="" />
+    <ViewSetting Name="OrientationCharRight" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="RightCenter" GroupName="" />
+    <ViewSetting Name="OrientationCharBottom" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="CenterBottom" GroupName="" />
+    <ViewSetting Name="OrientationCharLeft" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="LeftCenter" GroupName="" />
+    <ViewSetting Name="ReconstructionAlgorithm" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="9315" TextPrefix="" TextSuffix="" Visibility="true" Row="4" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="StationName" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="1010" TextPrefix="" TextSuffix="" Visibility="false" Row="3" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="ImageComments" TextSource="DicomTag" DicomTagGroup="0020" DicomTagId="4000" TextPrefix="" TextSuffix="" Visibility="true" Row="2" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="PETPixelBodyPos" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="1" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="PETPixelValue" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="V: " TextSuffix="" Visibility="true" Row="0" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="InstitutionalDepartName" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="1040" TextPrefix="" TextSuffix="" Visibility="false" Row="10" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="CTDI" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="9345" TextPrefix="" TextSuffix="" Visibility="false" Row="9" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="ReconstructionDiameter" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1100" TextPrefix="" TextSuffix="" Visibility="false" Row="8" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="TableHeight" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1030" TextPrefix="" TextSuffix="" Visibility="false" Row="0" Column="7" Location="RightBottom" GroupName="" />
+  </MPR>
+  <VR FontSize="12" FontColorR="245" FontColorG="222" FontColorB="179">
+    <ViewSetting Name="ManufacturersModelName" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="1090" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="Manufacturer" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="0070" TextPrefix="" TextSuffix="" Visibility="true" Row="1" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="StudyID" TextSource="DicomTag" DicomTagGroup="0020" DicomTagId="0010" TextPrefix="" TextSuffix="" Visibility="true" Row="2" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="SeriesNumber" TextSource="DicomTag" DicomTagGroup="0020" DicomTagId="0011" TextPrefix="Seriesnumber: " TextSuffix="" Visibility="true" Row="3" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="DFOV" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1100" TextPrefix="FOV: " TextSuffix="" Visibility="true" Row="4" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="ConvolutionKernel" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1210" TextPrefix="" TextSuffix="" Visibility="true" Row="5" Column="0" Location="LeftTop" GroupName="" />
+    <ViewSetting Name="ImageType" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="0008" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="Institutionname" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="0080" TextPrefix="" TextSuffix="" Visibility="true" Row="1" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="Patientsname" TextSource="DicomTag" DicomTagGroup="0010" DicomTagId="0010" TextPrefix="" TextSuffix="" Visibility="true" Row="2" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="Patientage" TextSource="DicomTag" DicomTagGroup="0010" DicomTagId="1010" TextPrefix="" TextSuffix="" Visibility="true" Row="3" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="Patientsex" TextSource="DicomTag" DicomTagGroup="0010" DicomTagId="0040" TextPrefix="" TextSuffix="" Visibility="true" Row="4" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="SeriesDescription" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="103E" TextPrefix="" TextSuffix="" Visibility="true" Row="5" Column="0" Location="RightTop" GroupName="" />
+    <ViewSetting Name="kV" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="0060" TextPrefix="" TextSuffix="kV " Visibility="true" Row="4" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="mA" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1151" TextPrefix="" TextSuffix="mA" Visibility="true" Row="5" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="Pitch" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="9311" TextPrefix="" TextSuffix="" Visibility="true" Row="3" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="WL" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="WL:" TextSuffix="" Visibility="true" Row="2" Column="1" Location="LeftBottom" GroupName="WindowType" />
+    <ViewSetting Name="WW/WL" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="WW:" TextSuffix="" Visibility="true" Row="2" Column="0" Location="LeftBottom" GroupName="WindowType" />
+    <ViewSetting Name="SliceNumber" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="Images: " TextSuffix="" Visibility="true" Row="1" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="SliceLocation" TextSource="DicomTag" DicomTagGroup="0020" DicomTagId="0032" TextPrefix="Slice pos: " TextSuffix="mm" Visibility="true" Row="0" Column="0" Location="LeftBottom" GroupName="" />
+    <ViewSetting Name="SliceThickness" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="0050" TextPrefix="Slice thickness: " TextSuffix="mm" Visibility="false" Row="7" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="ZoomRatio" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="false" Row="6" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="AcquisitionDateTime" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="002A" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="OrientationCharTop" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="CenterTop" GroupName="" />
+    <ViewSetting Name="OrientationCharRight" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="RightCenter" GroupName="" />
+    <ViewSetting Name="OrientationCharBottom" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="CenterBottom" GroupName="" />
+    <ViewSetting Name="OrientationCharLeft" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="0" Column="0" Location="LeftCenter" GroupName="" />
+    <ViewSetting Name="ReconstructionAlgorithm" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="9315" TextPrefix="" TextSuffix="" Visibility="true" Row="2" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="StationName" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="1010" TextPrefix="" TextSuffix="" Visibility="false" Row="3" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="ImageComments" TextSource="DicomTag" DicomTagGroup="0020" DicomTagId="4000" TextPrefix="" TextSuffix="" Visibility="true" Row="2" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="PETPixelBodyPos" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="" TextSuffix="" Visibility="true" Row="1" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="PETPixelValue" TextSource="UserDefined" DicomTagGroup="" DicomTagId="" TextPrefix="V: " TextSuffix="" Visibility="true" Row="0" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="InstitutionalDepartName" TextSource="DicomTag" DicomTagGroup="0008" DicomTagId="1040" TextPrefix="" TextSuffix="" Visibility="false" Row="10" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="CTDI" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="9345" TextPrefix="" TextSuffix="" Visibility="false" Row="9" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="ReconstructionDiameter" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1100" TextPrefix="" TextSuffix="" Visibility="false" Row="8" Column="0" Location="RightBottom" GroupName="" />
+    <ViewSetting Name="TableHeight" TextSource="DicomTag" DicomTagGroup="0018" DicomTagId="1030" TextPrefix="" TextSuffix="" Visibility="false" Row="0" Column="7" Location="RightBottom" GroupName="" />
+  </VR>
+</ViewTypes>

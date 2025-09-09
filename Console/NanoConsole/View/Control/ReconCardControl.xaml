@@ -1,0 +1,123 @@
+﻿<UserControl
+	x:Class="NV.CT.NanoConsole.View.Control.ReconCardControl"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:converter="clr-namespace:NV.CT.UI.Controls.Converter;assembly=NV.CT.UI.Controls"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:NV.CT.NanoConsole.View.Control"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	Width="160"
+	Height="40"
+	Margin="5,0,0,0"
+	HorizontalAlignment="Left"
+	d:DesignHeight="40"
+	d:DesignWidth="180"
+	mc:Ignorable="d">
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<SolidColorBrush
+				x:Key="BaseBackgroundColor"
+				Opacity="0.3"
+				Color="#5a5a89" />
+			<SolidColorBrush x:Key="BaseForegroundColor">#FFFFFF</SolidColorBrush>
+
+		</ResourceDictionary>
+	</UserControl.Resources>
+	<UserControl.InputBindings>
+		<MouseBinding
+			Command="{Binding Commands[OpenReconCommandOnHead]}"
+			CommandParameter="{Binding ReconParameters}"
+			MouseAction="LeftClick" />
+		<MouseBinding
+			Command="{Binding Commands[CloseReconCommandOnHead]}"
+			CommandParameter="{Binding ReconParameters}"
+			MouseAction="RightClick" />
+	</UserControl.InputBindings>
+	<Grid
+		Background="{StaticResource BaseBackgroundColor}"
+		Cursor="Hand">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="40" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<VisualStateManager.VisualStateGroups />
+		<Grid Grid.Column="1">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="45" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="5*" />
+					<RowDefinition Height="4*" />
+				</Grid.RowDefinitions>
+				<TextBlock
+					Grid.Row="0"
+					Grid.Column="0"
+					HorizontalAlignment="Left"
+					VerticalAlignment="Center"
+					FontFamily="Microsoft YaHei"
+					FontSize="10"
+					Foreground="White"
+					Opacity="0.8"
+					Text="{Binding Path=PatientName, UpdateSourceTrigger=PropertyChanged}"
+					TextTrimming="CharacterEllipsis"
+					ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
+				<StackPanel
+					Grid.Row="0"
+					Grid.Column="1"
+					Margin="5,0,5,0"
+					HorizontalAlignment="Right"
+					VerticalAlignment="Stretch"
+					Orientation="Horizontal">
+					<TextBlock
+						Margin="0,0,3,0"
+						HorizontalAlignment="Stretch"
+						VerticalAlignment="Center"
+						FontFamily="Microsoft YaHei"
+						FontSize="8"
+						Foreground="White"
+						Opacity="0.8"
+						Text="{Binding Age, UpdateSourceTrigger=PropertyChanged}" />
+					<TextBlock
+						HorizontalAlignment="Stretch"
+						VerticalAlignment="Center"
+						FontFamily="Microsoft YaHei"
+						FontSize="8"
+						Foreground="White"
+						Opacity="0.8"
+						Text="{Binding AgeType, UpdateSourceTrigger=PropertyChanged}" />
+				</StackPanel>
+				<TextBlock
+					Grid.Row="1"
+					Grid.Column="0"
+					Grid.ColumnSpan="2"
+					HorizontalAlignment="Left"
+					VerticalAlignment="Center"
+					FontFamily="Microsoft YaHei"
+					FontSize="8"
+					Foreground="White"
+					Opacity="0.8"
+					Text="{Binding Path=PatientId, UpdateSourceTrigger=PropertyChanged}"
+					TextTrimming="CharacterEllipsis"
+					ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
+			</Grid>
+		</Grid> 
+		<!--  Style="{StaticResource BaseNButton}" {StaticResource BaseBackgroundColor}  -->
+		<Button
+			Margin="5,0,5,0"
+			HorizontalAlignment="Center"
+			VerticalAlignment="Center"
+			Background="Transparent"
+			BorderThickness="0"
+			Foreground="{StaticResource BaseForegroundColor}">
+			<!--  MouseOverStyle="NoColor"  -->
+			<Path
+				Width="20"
+				Height="20"
+				Data="M47.2857143,0.999927422 C50.0558518,0.990250527 52.4134157,1.96274203 54.368229,3.91754819 C56.3230424,5.87235435 57.2857143,8.22990952 57.2857143,11.0000368 C57.2857143,13.7701642 56.3132192,16.1277193 54.368229,18.0825255 C52.4134157,20.0373316 50.0558518,21 47.2857143,21 C44.5155768,21 42.1580129,20.0275085 40.2031996,18.0825255 C38.2483862,16.1277193 37.2857143,13.7701642 37.2857143,11.0000368 C37.2857143,8.22990952 38.2582094,5.87235435 40.2031996,3.91754819 C42.1580129,1.96274203 44.5155768,0.999927422 47.2857143,0.999927422 Z M49.6851643,8 L44.8835142,8 C44.4407504,8 44.0667387,8.12030075 43.7532289,8.36519871 C43.4789078,8.57948443 43.3267078,8.82995435 43.292944,9.12092592 L43.2857143,9.2481203 L43.2857143,12.9967777 C43.2857143,13.1664876 43.3654668,13.3147154 43.5222217,13.4371643 C43.6498257,13.5351235 43.7967903,13.5945865 43.9602994,13.6144533 L44.0859893,13.6219119 L44.8862643,13.6219119 L44.8862643,17.3748657 C44.8862643,17.546724 44.9660168,17.6928034 45.1227717,17.8152524 C45.2503757,17.9132116 45.3973403,17.9726745 45.5608494,17.9925414 L45.6865393,18 L48.8848893,18 C49.102146,18 49.291902,17.9398496 49.4486569,17.8152524 C49.5740608,17.7155747 49.6501832,17.6007734 49.675616,17.4730483 L49.6851643,17.3748657 L49.6851643,13.6240602 L50.4854393,13.6240602 C50.7026961,13.6240602 50.892452,13.5617615 51.0492069,13.4393126 C51.1746108,13.3396348 51.2507332,13.2248335 51.276166,13.0971085 L51.2857143,12.9989259 L51.2857143,9.2481203 C51.2857143,8.90225564 51.1317095,8.61009667 50.8154496,8.36519871 C50.5467269,8.15528617 50.2335539,8.03691444 49.8707349,8.00737788 L49.6851643,8 Z M47.2857143,2.99998548 C46.7316868,2.99998548 46.260174,3.19254841 45.8692113,3.58350964 C45.4802133,3.97447087 45.2857143,4.4459819 45.2857143,5 C45.2857143,5.55403283 45.4782487,6.02554386 45.8692113,6.4165051 C46.260174,6.8055017 46.7316868,7 47.2857143,7 C47.8397418,7 48.3112546,6.80746633 48.7022172,6.4165051 C49.0912153,6.02554386 49.2857143,5.55403283 49.2857143,5 C49.2857143,4.4459819 49.0931799,3.97447087 48.7022172,3.58350964 C48.3112546,3.19254841 47.8397418,2.99805011 47.2857143,2.99998548 Z"
+				Fill="White"
+				Stretch="Fill" />
+		</Button>
+	</Grid>
+</UserControl>

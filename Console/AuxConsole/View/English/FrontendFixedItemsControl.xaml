@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="NV.CT.AuxConsole.View.English.FrontendFixedItemsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NV.CT.AuxConsole.View.English"
+             xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="180">
+    <Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+            <Button ToolTip="{x:Static res:LanguageResource.ToolTip_PatientManagement}" Command="{Binding Commands[OpenCommand]}" CommandParameter="PatientManagement"
+                        Margin="0,0,0,0" Padding="5,0,5,0" Background="Transparent" 
+                        BorderBrush="Transparent" Foreground="White" Opacity="1">
+                <Path Stretch="Fill"  Width="20" Height="20" Data="{StaticResource PatientManagementIcon}">
+                    <Path.Style>
+                        <Style TargetType="Path">
+                            <Setter Property="Fill" Value="{StaticResource IconNormalColor}" />
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Fill" Value="{StaticResource IconActiveColor}" />
+                                </Trigger>
+                                <DataTrigger
+                                    Binding="{Binding PatientManagementActive}"
+                                    Value="true">
+                                    <Setter Property="Fill" Value="{StaticResource IconActiveColor}" />
+                                </DataTrigger>
+                                <DataTrigger
+                                    Binding="{Binding PatientManagementActive}"
+                                    Value="false">
+                                    <Setter Property="Fill" Value="{StaticResource IconNormalColor}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Path.Style>
+                </Path>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,74 @@
+﻿<ContentControl x:Class="NV.CT.Service.AutoCali.UI.ProcessStatusControl"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                xmlns:system="clr-namespace:System;assembly=System.Runtime"
+                xmlns:logic="clr-namespace:NV.CT.Service.AutoCali.UI.Logic"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+    <ContentControl.Resources>
+        <Style x:Key="baseStatusStyle" TargetType="Path">
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Stretch" Value="Uniform"/>
+        </Style>
+
+        <Style x:Key="runningStatusStyle" TargetType="Path" BasedOn="{StaticResource baseStatusStyle}">
+            <Setter Property="Stroke" Value="Gray"/>
+            <Setter Property="Data" Value="M12 19C13.1 19 14 19.9 14 21S13.1 23 12 23 10 22.1 10 21 10.9 19 12 19M12 1C13.1 1 14 1.9 14 3S13.1 5 12 5 10 4.1 10 3 10.9 1 12 1M6 16C7.1 16 8 16.9 8 18S7.1 20 6 20 4 19.1 4 18 4.9 16 6 16M3 10C4.1 10 5 10.9 5 12S4.1 14 3 14 1 13.1 1 12 1.9 10 3 10M6 4C7.1 4 8 4.9 8 6S7.1 8 6 8 4 7.1 4 6 4.9 4 6 4M18 16C19.1 16 20 16.9 20 18S19.1 20 18 20 16 19.1 16 18 16.9 16 18 16M21 10C22.1 10 23 10.9 23 12S22.1 14 21 14 19 13.1 19 12 19.9 10 21 10M18 4C19.1 4 20 4.9 20 6S19.1 8 18 8 16 7.1 16 6 16.9 4 18 4Z" />
+        </Style>
+
+        <Style x:Key="successStatusStyle" TargetType="Path" BasedOn="{StaticResource baseStatusStyle}">
+            <Setter Property="Stroke" Value="LightGreen"/>
+            <Setter Property="Data" Value="M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" />
+        </Style>
+
+        <Style x:Key="errorStatusStyle" TargetType="Path" BasedOn="{StaticResource baseStatusStyle}">
+            <Setter Property="Stroke" Value="Red"/>
+            <Setter Property="Data" Value="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
+        </Style>
+
+        <Style x:Key="canceledStatusStyle" TargetType="Path" BasedOn="{StaticResource baseStatusStyle}">
+            <Setter Property="Stroke" Value="White"/>
+            <Setter Property="Data" Value="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
+        </Style>
+    </ContentControl.Resources>
+
+    <i:Interaction.Triggers>
+        <i:DataTrigger Binding="{Binding CaliTaskState}" Value="{x:Static logic:CaliTaskState.Created}">
+            <i:ChangePropertyAction PropertyName="Content">
+                <i:ChangePropertyAction.Value>
+                    <!--<TextBlock Text="{x:Static system:String.Empty}" />-->
+                    <Path Style="{StaticResource baseStatusStyle}"/>
+                </i:ChangePropertyAction.Value>
+            </i:ChangePropertyAction>
+        </i:DataTrigger>
+        <i:DataTrigger Binding="{Binding CaliTaskState}" Value="{x:Static logic:CaliTaskState.Running}">
+            <i:ChangePropertyAction PropertyName="Content">
+                <i:ChangePropertyAction.Value>
+                    <Path Style="{StaticResource runningStatusStyle}"/>
+                </i:ChangePropertyAction.Value>
+            </i:ChangePropertyAction>
+        </i:DataTrigger>
+        <i:DataTrigger Binding="{Binding CaliTaskState}" Value="{x:Static logic:CaliTaskState.Success}">
+            <i:ChangePropertyAction PropertyName="Content">
+                <i:ChangePropertyAction.Value>
+                    <Path Style="{StaticResource successStatusStyle}"/>
+                </i:ChangePropertyAction.Value>
+            </i:ChangePropertyAction>
+        </i:DataTrigger>
+        <i:DataTrigger Binding="{Binding CaliTaskState}" Value="{x:Static logic:CaliTaskState.Error}">
+            <i:ChangePropertyAction PropertyName="Content">
+                <i:ChangePropertyAction.Value>
+                    <Path Style="{StaticResource errorStatusStyle}"/>
+                </i:ChangePropertyAction.Value>
+            </i:ChangePropertyAction>
+        </i:DataTrigger>
+
+        <i:DataTrigger Binding="{Binding CaliTaskState}" Value="{x:Static logic:CaliTaskState.Canceled}">
+            <i:ChangePropertyAction PropertyName="Content">
+                <i:ChangePropertyAction.Value>
+                    <Path Style="{StaticResource canceledStatusStyle}"/>
+                </i:ChangePropertyAction.Value>
+            </i:ChangePropertyAction>
+        </i:DataTrigger>
+    </i:Interaction.Triggers>
+</ContentControl>

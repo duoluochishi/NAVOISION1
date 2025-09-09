@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DeletionLengthConfig>
+	<DeletionLength Name="Small" BodyPart="" ObjectFOV="0" CollimatorZ="242" Length="8000" />
+	<DeletionLength Name="Large" BodyPart="" ObjectFOV="0" CollimatorZ="242" Length="12000" />
+</DeletionLengthConfig>

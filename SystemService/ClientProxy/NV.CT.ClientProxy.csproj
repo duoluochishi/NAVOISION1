@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;8603</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;8603</NoWarn>
+  </PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Google.Protobuf" />
+		<PackageReference Include="Grpc" />
+		<PackageReference Include="Grpc.Tools" PrivateAssets="All" />
+		<PackageReference Include="Grpc.Net.Client" />
+	</ItemGroup>
+
+	<ItemGroup>
+    <ProjectReference Include="..\..\SystemInterface\MCSRuntime.Contract\NV.CT.SystemInterface.MCSRuntime.Contract.csproj" />
+    <ProjectReference Include="..\..\SystemInterface\MCSRuntime.Impl\NV.CT.SystemInterface.MCSRuntime.Impl.csproj" />
+    <ProjectReference Include="..\AppService.Contract\NV.CT.AppService.Contract.csproj" />
+    <ProjectReference Include="..\ConfigService.Contract\NV.CT.ConfigService.Contract.csproj" />
+    <ProjectReference Include="..\DatabaseService.Contract\NV.CT.DatabaseService.Contract.csproj" />
+    <ProjectReference Include="..\JobService.Contract\NV.CT.JobService.Contract.csproj" />
+    <ProjectReference Include="..\MessageService.Contract\NV.CT.MessageService.Contract.csproj" />
+    <ProjectReference Include="..\ProtocolService.Contract\NV.CT.ProtocolService.Contract.csproj" />
+    <ProjectReference Include="..\SyncService.Contract\NV.CT.SyncService.Contract.csproj" />
+    <ProjectReference Include="..\WorkflowService.Contract\NV.CT.WorkflowService.Contract.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <Reference Include="NV.MPS.Communication">
+		  <HintPath>..\..\bin\NV.MPS.Communication.dll</HintPath>
+	  </Reference>
+	  <Reference Include="NV.MPS.Environment">
+      <HintPath>..\..\bin\NV.MPS.Environment.dll</HintPath>
+    </Reference>
+	  <Reference Include="NV.CT.FacadeProxy.Common">
+		  <HintPath>..\..\bin\NV.CT.FacadeProxy.Common.dll</HintPath>
+	  </Reference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "NV.MPS.UI.Generic/1.0.0": {
+        "dependencies": {
+          "NV.MPS.UI.Config": "1.0.0"
+        },
+        "runtime": {
+          "NV.MPS.UI.Generic.dll": {}
+        }
+      },
+      "NV.MPS.UI.Config/1.0.0": {
+        "runtime": {
+          "NV.MPS.UI.Config.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "2.0.3.11004"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "NV.MPS.UI.Generic/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NV.MPS.UI.Config/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

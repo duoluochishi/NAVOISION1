@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FilterConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <StudyDateRange DateRangeType="All" BeginDate="" EndDate="" />
+  <SortedColumn ColumnName="CreateTime" IsAscending="false" />
+  <StudyStatus IsInProgressChecked="true" IsFinishedChecked="true" IsAbnormalChecked="true" />
+  <PrintStatus IsNotyetChecked="true" IsFinishedChecked="true" IsFailedChecked="true" />
+  <ArchiveStatus IsNotyetChecked="true" IsFinishedChecked="true" IsPartlyFinishedChecked="true" IsFailedChecked="true" />
+  <CorrectionStatus IsCorrected="true" IsUncorrected="true" />
+  <LockStatus IsLockedChecked="true" IsUnlockedChecked="true" />
+  <Sex IsMaleChecked="true" IsFemaleChecked="true" IsOtherChecked="true" />
+  <PatientType IsLocalChecked="true" IsPreRegChecked="true" IsEmergencyChecked="true" />
+  <BirthdayDateRange BeginDate="" EndDate="" />
+</FilterConfig>

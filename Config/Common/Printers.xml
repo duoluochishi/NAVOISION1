@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Printers>
+	<Printer Id="13912345678" Name="ZM0002" AECaller="ZM7" AETitle="HQDY" IP="172.31.6.178" Port="105" Resolution="254" IsUsing="true" IsDefault="true" Remark="5号机房测试打印机配置" Creator="" CreateTime="2024-08-29" Layout="4x4" PaperSize="14INX17IN"/>
+	<Printer Id="57912345615" Name="003" AECaller="P03" AETitle="P003" IP="172.31.1.64" Port="65535" Resolution="254" IsUsing="true" IsDefault="false" Remark="" Creator="" CreateTime="2024-08-29" Layout="4x5" PaperSize="14INX17IN"/>
+</Printers>

@@ -1,0 +1,104 @@
+﻿<UserControl
+    x:Class="NV.CT.UI.Exam.DynamicParameters.Templates.AdvancedScanParameterDetailControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"   
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:NV.CT.UI.Exam.DynamicParameters.Parameters.Scan"   
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"   
+    xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"    
+    d:DesignHeight="700" d:DesignWidth="1000" Background="Transparent" FontSize="14" mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="ConfigPathStyle" BasedOn="{StaticResource Config}" TargetType="{x:Type Path}">
+            <Setter Property="Width" Value="20" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Fill" Value="{StaticResource TextBoxBrush}" />
+            <Setter Property="Stretch" Value="Fill" />
+        </Style>
+        <Style x:Key="WImagePathStyle" BasedOn="{StaticResource WImage}" TargetType="{x:Type Path}">
+            <Setter Property="Width" Value="20" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Fill" Value="{StaticResource TextBoxBrush}" />
+            <Setter Property="Stretch" Value="Fill" />
+        </Style>
+        <Style x:Key="DoseConfigPathStyle" BasedOn="{StaticResource DoseConfig}" TargetType="{x:Type Path}">
+            <Setter Property="Width" Value="20" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Fill" Value="{StaticResource TextBoxBrush}" />
+            <Setter Property="Stretch" Value="Fill" />
+        </Style>
+        <Style x:Key="SEnhancePathStyle" BasedOn="{StaticResource SEnhance}" TargetType="{x:Type Path}">
+            <Setter Property="Width" Value="20" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Fill" Value="{StaticResource TextBoxBrush}" />
+            <Setter Property="Stretch" Value="Fill" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5" />
+            <RowDefinition Height="46*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+
+        <!--  General  -->
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="1"
+            Orientation="Vertical">
+            <Grid VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="32" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Path Style="{StaticResource ConfigPathStyle}" />
+                <Label
+                    Grid.Column="1"
+                    Content="{x:Static res:LanguageResource.Content_AdvancedTitle}"
+                    Style="{StaticResource BoldLabelStyle}" />
+                <Rectangle
+                    Grid.ColumnSpan="2"
+                    Width="105"
+                    Style="{StaticResource StressLineStyle}" />
+            </Grid>
+            <local:ScanOption Margin="0,5"/>
+            <local:XRayFocusType Margin="0,5" />
+            <local:ExposureTime Margin="0,5" />
+            <local:FrameTime Margin="0,5" />
+            <local:FramesPerCycle Margin="0,5" />
+            <local:ExposureMode Margin="0,5" />
+        </StackPanel>
+
+        <!--  Dose  -->
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="3"
+            Orientation="Vertical">
+            <Grid VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="32" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Path Style="{StaticResource DoseConfigPathStyle}" />
+                <Label
+                    Grid.Column="1"
+                    Content="{x:Static res:LanguageResource.Content_OtherTitle}"
+                    Style="{StaticResource BoldLabelStyle}" />
+                <Rectangle
+                    Grid.ColumnSpan="2"
+                    Width="73"
+                    Style="{StaticResource StressLineStyle}" />
+            </Grid>
+            <local:IsBowtieEnable Margin="0,5" />
+            <local:Gain Margin="0,5" />
+            <local:CollimatorSliceWidth Margin="0,5" />
+            <local:ObjectFOV Margin="0,5" />
+            <local:PostDeleteLength Margin="0,5" />
+        </StackPanel>
+    </Grid>
+</UserControl>

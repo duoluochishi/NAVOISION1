@@ -1,0 +1,1295 @@
+[
+  {
+    "DisplayName": "{Config_CTBox}",
+    "UpgradeName": "CTBox",
+    "FirmwareType": "CTBox"
+  },
+  {
+    "DisplayName": "{Config_IFBox}",
+    "UpgradeName": "IFBox",
+    "FirmwareType": "IFBox"
+  },
+  {
+    "DisplayName": "{Config_MtCtrlBox}",
+    "UpgradeName": "MtCtrl",
+    "FirmwareType": "MtCtrl"
+  },
+  {
+    "DisplayName": "{Config_AuxBox}",
+    "UpgradeName": "AuxBoard",
+    "FirmwareType": "AuxBoard"
+  },
+  {
+    "DisplayName": "{Config_COB}",
+    "UpgradeName": "CtrlBox",
+    "FirmwareType": "CtrlBox"
+  },
+  {
+    "DisplayName": "{Config_BNV}",
+    "UpgradeName": "BreathNavigation",
+    "FirmwareType": "BNV"
+  },
+  {
+    "DisplayName": "{Config_GCP}",
+    "UpgradeName": "GantryCtrlPanel",
+    "FirmwareType": "GCP"
+  },
+  {
+    "DisplayName": "{Config_TableBox}",
+    "UpgradeName": "Table",
+    "FirmwareType": "Table"
+  },
+  {
+    "DisplayName": "{Config_PduBox}",
+    "UpgradeName": "Pdu",
+    "FirmwareType": "Pdu"
+  },
+  {
+    "DisplayName": "{Config_TubeintfBox}",
+    "Children": [
+      {
+        "Num": 0,
+        "DisplayName": "{Config_TubeintfBox}1",
+        "UpgradeName": "Tubeintf",
+        "FirmwareType": "Tubeintf"
+      },
+      {
+        "Num": 1,
+        "DisplayName": "{Config_TubeintfBox}2",
+        "UpgradeName": "Tubeintf",
+        "FirmwareType": "Tubeintf"
+      },
+      {
+        "Num": 2,
+        "DisplayName": "{Config_TubeintfBox}3",
+        "UpgradeName": "Tubeintf",
+        "FirmwareType": "Tubeintf"
+      },
+      {
+        "Num": 3,
+        "DisplayName": "{Config_TubeintfBox}4",
+        "UpgradeName": "Tubeintf",
+        "FirmwareType": "Tubeintf"
+      },
+      {
+        "Num": 4,
+        "DisplayName": "{Config_TubeintfBox}5",
+        "UpgradeName": "Tubeintf",
+        "FirmwareType": "Tubeintf"
+      },
+      {
+        "Num": 5,
+        "DisplayName": "{Config_TubeintfBox}6",
+        "UpgradeName": "Tubeintf",
+        "FirmwareType": "Tubeintf"
+      }
+    ]
+  },
+  {
+    "DisplayName": "{Config_GantryServo}",
+    "UpgradeName": "GantryServo",
+    "FirmwareType": "GantryServo"
+  },
+  {
+    "DisplayName": "{Config_TableServoX}",
+    "UpgradeName": "TableServoX",
+    "FirmwareType": "TableServoX"
+  },
+  {
+    "DisplayName": "{Config_TableServoY}",
+    "UpgradeName": "TableServoY",
+    "FirmwareType": "TableServoY"
+  },
+  {
+    "DisplayName": "{Config_TableServoZ}",
+    "UpgradeName": "TableServoZ",
+    "FirmwareType": "TableServoZ"
+  },
+  {
+    "DisplayName": "{Config_XRay}",
+    "Children": [
+      {
+        "DisplayName": "{Config_TubeintfBox}1",
+        "Children": [
+          {
+            "Num": 0,
+            "DisplayName": "{Config_XRay}1",
+            "UpgradeName": "XRay",
+            "FirmwareType": "XRay"
+          },
+          {
+            "Num": 1,
+            "DisplayName": "{Config_XRay}2",
+            "UpgradeName": "XRay",
+            "FirmwareType": "XRay"
+          },
+          {
+            "Num": 2,
+            "DisplayName": "{Config_XRay}3",
+            "UpgradeName": "XRay",
+            "FirmwareType": "XRay"
+          },
+          {
+            "Num": 3,
+            "DisplayName": "{Config_XRay}4",
+            "UpgradeName": "XRay",
+            "FirmwareType": "XRay"
+          }
+        ]
+      },
+      {
+        "DisplayName": "{Config_TubeintfBox}2",
+        "Children": [
+          {
+            "Num": 4,
+            "DisplayName": "{Config_XRay}1",
+            "UpgradeName": "XRay",
+            "FirmwareType": "XRay"
+          },
+          {
+            "Num": 5,
+            "DisplayName": "{Config_XRay}2",
+            "UpgradeName": "XRay",
+            "FirmwareType": "XRay"
+          },
+          {
+            "Num": 6,
+            "DisplayName": "{Config_XRay}3",
+            "UpgradeName": "XRay",
+            "FirmwareType": "XRay"
+          },
+          {
+            "Num": 7,
+            "DisplayName": "{Config_XRay}4",
+            "UpgradeName": "XRay",
+            "FirmwareType": "XRay"
+          }
+        ]
+      },
+      {
+        "DisplayName": "{Config_TubeintfBox}3",
+        "Children": [
+          {
+            "Num": 8,
+            "DisplayName": "{Config_XRay}1",
+            "UpgradeName": "XRay",
+            "FirmwareType": "XRay"
+          },
+          {
+            "Num": 9,
+            "DisplayName": "{Config_XRay}2",
+            "UpgradeName": "XRay",
+            "FirmwareType": "XRay"
+          },
+          {
+            "Num": 10,
+            "DisplayName": "{Config_XRay}3",
+            "UpgradeName": "XRay",
+            "FirmwareType": "XRay"
+          },
+          {
+            "Num": 11,
+            "DisplayName": "{Config_XRay}4",
+            "UpgradeName": "XRay",
+            "FirmwareType": "XRay"
+          }
+        ]
+      },
+      {
+        "DisplayName": "{Config_TubeintfBox}4",
+        "Children": [
+          {
+            "Num": 12,
+            "DisplayName": "{Config_XRay}1",
+            "UpgradeName": "XRay",
+            "FirmwareType": "XRay"
+          },
+          {
+            "Num": 13,
+            "DisplayName": "{Config_XRay}2",
+            "UpgradeName": "XRay",
+            "FirmwareType": "XRay"
+          },
+          {
+            "Num": 14,
+            "DisplayName": "{Config_XRay}3",
+            "UpgradeName": "XRay",
+            "FirmwareType": "XRay"
+          },
+          {
+            "Num": 15,
+            "DisplayName": "{Config_XRay}4",
+            "UpgradeName": "XRay",
+            "FirmwareType": "XRay"
+          }
+        ]
+      },
+      {
+        "DisplayName": "{Config_TubeintfBox}5",
+        "Children": [
+          {
+            "Num": 16,
+            "DisplayName": "{Config_XRay}1",
+            "UpgradeName": "XRay",
+            "FirmwareType": "XRay"
+          },
+          {
+            "Num": 17,
+            "DisplayName": "{Config_XRay}2",
+            "UpgradeName": "XRay",
+            "FirmwareType": "XRay"
+          },
+          {
+            "Num": 18,
+            "DisplayName": "{Config_XRay}3",
+            "UpgradeName": "XRay",
+            "FirmwareType": "XRay"
+          },
+          {
+            "Num": 19,
+            "DisplayName": "{Config_XRay}4",
+            "UpgradeName": "XRay",
+            "FirmwareType": "XRay"
+          }
+        ]
+      },
+      {
+        "DisplayName": "{Config_TubeintfBox}6",
+        "Children": [
+          {
+            "Num": 20,
+            "DisplayName": "{Config_XRay}1",
+            "UpgradeName": "XRay",
+            "FirmwareType": "XRay"
+          },
+          {
+            "Num": 21,
+            "DisplayName": "{Config_XRay}2",
+            "UpgradeName": "XRay",
+            "FirmwareType": "XRay"
+          },
+          {
+            "Num": 22,
+            "DisplayName": "{Config_XRay}3",
+            "UpgradeName": "XRay",
+            "FirmwareType": "XRay"
+          },
+          {
+            "Num": 23,
+            "DisplayName": "{Config_XRay}4",
+            "UpgradeName": "XRay",
+            "FirmwareType": "XRay"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "DisplayName": "{Config_ADU}",
+    "Children": [
+      {
+        "DisplayName": "{Config_TubeintfBox}1",
+        "Children": [
+          {
+            "Num": 0,
+            "DisplayName": "{Config_ADU}1",
+            "UpgradeName": "ADU",
+            "FirmwareType": "ADU"
+          },
+          {
+            "Num": 1,
+            "DisplayName": "{Config_ADU}2",
+            "UpgradeName": "ADU",
+            "FirmwareType": "ADU"
+          },
+          {
+            "Num": 2,
+            "DisplayName": "{Config_ADU}3",
+            "UpgradeName": "ADU",
+            "FirmwareType": "ADU"
+          },
+          {
+            "Num": 3,
+            "DisplayName": "{Config_ADU}4",
+            "UpgradeName": "ADU",
+            "FirmwareType": "ADU"
+          }
+        ]
+      },
+      {
+        "DisplayName": "{Config_TubeintfBox}2",
+        "Children": [
+          {
+            "Num": 4,
+            "DisplayName": "{Config_ADU}1",
+            "UpgradeName": "ADU",
+            "FirmwareType": "ADU"
+          },
+          {
+            "Num": 5,
+            "DisplayName": "{Config_ADU}2",
+            "UpgradeName": "ADU",
+            "FirmwareType": "ADU"
+          },
+          {
+            "Num": 6,
+            "DisplayName": "{Config_ADU}3",
+            "UpgradeName": "ADU",
+            "FirmwareType": "ADU"
+          },
+          {
+            "Num": 7,
+            "DisplayName": "{Config_ADU}4",
+            "UpgradeName": "ADU",
+            "FirmwareType": "ADU"
+          }
+        ]
+      },
+      {
+        "DisplayName": "{Config_TubeintfBox}3",
+        "Children": [
+          {
+            "Num": 8,
+            "DisplayName": "{Config_ADU}1",
+            "UpgradeName": "ADU",
+            "FirmwareType": "ADU"
+          },
+          {
+            "Num": 9,
+            "DisplayName": "{Config_ADU}2",
+            "UpgradeName": "ADU",
+            "FirmwareType": "ADU"
+          },
+          {
+            "Num": 10,
+            "DisplayName": "{Config_ADU}3",
+            "UpgradeName": "ADU",
+            "FirmwareType": "ADU"
+          },
+          {
+            "Num": 11,
+            "DisplayName": "{Config_ADU}4",
+            "UpgradeName": "ADU",
+            "FirmwareType": "ADU"
+          }
+        ]
+      },
+      {
+        "DisplayName": "{Config_TubeintfBox}4",
+        "Children": [
+          {
+            "Num": 12,
+            "DisplayName": "{Config_ADU}1",
+            "UpgradeName": "ADU",
+            "FirmwareType": "ADU"
+          },
+          {
+            "Num": 13,
+            "DisplayName": "{Config_ADU}2",
+            "UpgradeName": "ADU",
+            "FirmwareType": "ADU"
+          },
+          {
+            "Num": 14,
+            "DisplayName": "{Config_ADU}3",
+            "UpgradeName": "ADU",
+            "FirmwareType": "ADU"
+          },
+          {
+            "Num": 15,
+            "DisplayName": "{Config_ADU}4",
+            "UpgradeName": "ADU",
+            "FirmwareType": "ADU"
+          }
+        ]
+      },
+      {
+        "DisplayName": "{Config_TubeintfBox}5",
+        "Children": [
+          {
+            "Num": 16,
+            "DisplayName": "{Config_ADU}1",
+            "UpgradeName": "ADU",
+            "FirmwareType": "ADU"
+          },
+          {
+            "Num": 17,
+            "DisplayName": "{Config_ADU}2",
+            "UpgradeName": "ADU",
+            "FirmwareType": "ADU"
+          },
+          {
+            "Num": 18,
+            "DisplayName": "{Config_ADU}3",
+            "UpgradeName": "ADU",
+            "FirmwareType": "ADU"
+          },
+          {
+            "Num": 19,
+            "DisplayName": "{Config_ADU}4",
+            "UpgradeName": "ADU",
+            "FirmwareType": "ADU"
+          }
+        ]
+      },
+      {
+        "DisplayName": "{Config_TubeintfBox}6",
+        "Children": [
+          {
+            "Num": 20,
+            "DisplayName": "{Config_ADU}1",
+            "UpgradeName": "ADU",
+            "FirmwareType": "ADU"
+          },
+          {
+            "Num": 21,
+            "DisplayName": "{Config_ADU}2",
+            "UpgradeName": "ADU",
+            "FirmwareType": "ADU"
+          },
+          {
+            "Num": 22,
+            "DisplayName": "{Config_ADU}3",
+            "UpgradeName": "ADU",
+            "FirmwareType": "ADU"
+          },
+          {
+            "Num": 23,
+            "DisplayName": "{Config_ADU}4",
+            "UpgradeName": "ADU",
+            "FirmwareType": "ADU"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "DisplayName": "{Config_Coll}",
+    "Children": [
+      {
+        "Num": 0,
+        "DisplayName": "{Config_Coll}1",
+        "UpgradeName": "Coll",
+        "FirmwareType": "Coll"
+      },
+      {
+        "Num": 1,
+        "DisplayName": "{Config_Coll}2",
+        "UpgradeName": "Coll",
+        "FirmwareType": "Coll"
+      },
+      {
+        "Num": 2,
+        "DisplayName": "{Config_Coll}3",
+        "UpgradeName": "Coll",
+        "FirmwareType": "Coll"
+      },
+      {
+        "Num": 3,
+        "DisplayName": "{Config_Coll}4",
+        "UpgradeName": "Coll",
+        "FirmwareType": "Coll"
+      },
+      {
+        "Num": 4,
+        "DisplayName": "{Config_Coll}5",
+        "UpgradeName": "Coll",
+        "FirmwareType": "Coll"
+      },
+      {
+        "Num": 5,
+        "DisplayName": "{Config_Coll}6",
+        "UpgradeName": "Coll",
+        "FirmwareType": "Coll"
+      },
+      {
+        "Num": 6,
+        "DisplayName": "{Config_Coll}7",
+        "UpgradeName": "Coll",
+        "FirmwareType": "Coll"
+      },
+      {
+        "Num": 7,
+        "DisplayName": "{Config_Coll}8",
+        "UpgradeName": "Coll",
+        "FirmwareType": "Coll"
+      },
+      {
+        "Num": 8,
+        "DisplayName": "{Config_Coll}9",
+        "UpgradeName": "Coll",
+        "FirmwareType": "Coll"
+      },
+      {
+        "Num": 9,
+        "DisplayName": "{Config_Coll}10",
+        "UpgradeName": "Coll",
+        "FirmwareType": "Coll"
+      },
+      {
+        "Num": 10,
+        "DisplayName": "{Config_Coll}11",
+        "UpgradeName": "Coll",
+        "FirmwareType": "Coll"
+      },
+      {
+        "Num": 11,
+        "DisplayName": "{Config_Coll}12",
+        "UpgradeName": "Coll",
+        "FirmwareType": "Coll"
+      },
+      {
+        "Num": 12,
+        "DisplayName": "{Config_Coll}13",
+        "UpgradeName": "Coll",
+        "FirmwareType": "Coll"
+      },
+      {
+        "Num": 13,
+        "DisplayName": "{Config_Coll}14",
+        "UpgradeName": "Coll",
+        "FirmwareType": "Coll"
+      },
+      {
+        "Num": 14,
+        "DisplayName": "{Config_Coll}15",
+        "UpgradeName": "Coll",
+        "FirmwareType": "Coll"
+      },
+      {
+        "Num": 15,
+        "DisplayName": "{Config_Coll}16",
+        "UpgradeName": "Coll",
+        "FirmwareType": "Coll"
+      },
+      {
+        "Num": 16,
+        "DisplayName": "{Config_Coll}17",
+        "UpgradeName": "Coll",
+        "FirmwareType": "Coll"
+      },
+      {
+        "Num": 17,
+        "DisplayName": "{Config_Coll}18",
+        "UpgradeName": "Coll",
+        "FirmwareType": "Coll"
+      },
+      {
+        "Num": 18,
+        "DisplayName": "{Config_Coll}19",
+        "UpgradeName": "Coll",
+        "FirmwareType": "Coll"
+      },
+      {
+        "Num": 19,
+        "DisplayName": "{Config_Coll}20",
+        "UpgradeName": "Coll",
+        "FirmwareType": "Coll"
+      },
+      {
+        "Num": 20,
+        "DisplayName": "{Config_Coll}21",
+        "UpgradeName": "Coll",
+        "FirmwareType": "Coll"
+      },
+      {
+        "Num": 21,
+        "DisplayName": "{Config_Coll}22",
+        "UpgradeName": "Coll",
+        "FirmwareType": "Coll"
+      },
+      {
+        "Num": 22,
+        "DisplayName": "{Config_Coll}23",
+        "UpgradeName": "Coll",
+        "FirmwareType": "Coll"
+      },
+      {
+        "Num": 23,
+        "DisplayName": "{Config_Coll}24",
+        "UpgradeName": "Coll",
+        "FirmwareType": "Coll"
+      }
+    ]
+  },
+  /*
+  {
+    "DisplayName": "{Config_ACQBox}",
+    "Children": [
+      {
+        "Num": 0,
+        "DisplayName": "{Config_ACQBox}1",
+        "UpgradeName": "ACQ",
+        "FirmwareType": "ACQ"
+      },
+      {
+        "Num": 1,
+        "DisplayName": "{Config_ACQBox}2",
+        "UpgradeName": "ACQ",
+        "FirmwareType": "ACQ"
+      }
+    ]
+  },
+  */
+  {
+    "DisplayName": "{Config_DetectorModule}",
+    "Children": [
+      {
+        "DisplayName": "{Config_DetectorModule}1",
+        "Children": [
+          {
+            "Num": 0,
+            "DisplayName": "{Config_TransmitBox}",
+            "UpgradeName": "TransmitBox",
+            "FirmwareType": "TransmitBox"
+          },
+          {
+            "Num": 0,
+            "DisplayName": "{Config_ProcessBox}1",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 1,
+            "DisplayName": "{Config_ProcessBox}2",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 2,
+            "DisplayName": "{Config_ProcessBox}3",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 3,
+            "DisplayName": "{Config_ProcessBox}4",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 0,
+            "DisplayName": "{Config_TempBox}",
+            "UpgradeName": "TempBox",
+            "FirmwareType": "TempBox"
+          }
+        ]
+      },
+      {
+        "DisplayName": "{Config_DetectorModule}2",
+        "Children": [
+          {
+            "Num": 1,
+            "DisplayName": "{Config_TransmitBox}",
+            "UpgradeName": "TransmitBox",
+            "FirmwareType": "TransmitBox"
+          },
+          {
+            "Num": 4,
+            "DisplayName": "{Config_ProcessBox}1",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 5,
+            "DisplayName": "{Config_ProcessBox}2",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 6,
+            "DisplayName": "{Config_ProcessBox}3",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 7,
+            "DisplayName": "{Config_ProcessBox}4",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 1,
+            "DisplayName": "{Config_TempBox}",
+            "UpgradeName": "TempBox",
+            "FirmwareType": "TempBox"
+          }
+        ]
+      },
+      {
+        "DisplayName": "{Config_DetectorModule}3",
+        "Children": [
+          {
+            "Num": 2,
+            "DisplayName": "{Config_TransmitBox}",
+            "UpgradeName": "TransmitBox",
+            "FirmwareType": "TransmitBox"
+          },
+          {
+            "Num": 8,
+            "DisplayName": "{Config_ProcessBox}1",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 9,
+            "DisplayName": "{Config_ProcessBox}2",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 10,
+            "DisplayName": "{Config_ProcessBox}3",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 11,
+            "DisplayName": "{Config_ProcessBox}4",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 2,
+            "DisplayName": "{Config_TempBox}",
+            "UpgradeName": "TempBox",
+            "FirmwareType": "TempBox"
+          }
+        ]
+      },
+      {
+        "DisplayName": "{Config_DetectorModule}4",
+        "Children": [
+          {
+            "Num": 3,
+            "DisplayName": "{Config_TransmitBox}",
+            "UpgradeName": "TransmitBox",
+            "FirmwareType": "TransmitBox"
+          },
+          {
+            "Num": 12,
+            "DisplayName": "{Config_ProcessBox}1",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 13,
+            "DisplayName": "{Config_ProcessBox}2",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 14,
+            "DisplayName": "{Config_ProcessBox}3",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 15,
+            "DisplayName": "{Config_ProcessBox}4",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 3,
+            "DisplayName": "{Config_TempBox}",
+            "UpgradeName": "TempBox",
+            "FirmwareType": "TempBox"
+          }
+        ]
+      },
+      {
+        "DisplayName": "{Config_DetectorModule}5",
+        "Children": [
+          {
+            "Num": 4,
+            "DisplayName": "{Config_TransmitBox}",
+            "UpgradeName": "TransmitBox",
+            "FirmwareType": "TransmitBox"
+          },
+          {
+            "Num": 16,
+            "DisplayName": "{Config_ProcessBox}1",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 17,
+            "DisplayName": "{Config_ProcessBox}2",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 18,
+            "DisplayName": "{Config_ProcessBox}3",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 19,
+            "DisplayName": "{Config_ProcessBox}4",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 4,
+            "DisplayName": "{Config_TempBox}",
+            "UpgradeName": "TempBox",
+            "FirmwareType": "TempBox"
+          }
+        ]
+      },
+      {
+        "DisplayName": "{Config_DetectorModule}6",
+        "Children": [
+          {
+            "Num": 5,
+            "DisplayName": "{Config_TransmitBox}",
+            "UpgradeName": "TransmitBox",
+            "FirmwareType": "TransmitBox"
+          },
+          {
+            "Num": 20,
+            "DisplayName": "{Config_ProcessBox}1",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 21,
+            "DisplayName": "{Config_ProcessBox}2",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 22,
+            "DisplayName": "{Config_ProcessBox}3",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 23,
+            "DisplayName": "{Config_ProcessBox}4",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 5,
+            "DisplayName": "{Config_TempBox}",
+            "UpgradeName": "TempBox",
+            "FirmwareType": "TempBox"
+          }
+        ]
+      },
+      {
+        "DisplayName": "{Config_DetectorModule}7",
+        "Children": [
+          {
+            "Num": 6,
+            "DisplayName": "{Config_TransmitBox}",
+            "UpgradeName": "TransmitBox",
+            "FirmwareType": "TransmitBox"
+          },
+          {
+            "Num": 24,
+            "DisplayName": "{Config_ProcessBox}1",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 25,
+            "DisplayName": "{Config_ProcessBox}2",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 26,
+            "DisplayName": "{Config_ProcessBox}3",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 27,
+            "DisplayName": "{Config_ProcessBox}4",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 6,
+            "DisplayName": "{Config_TempBox}",
+            "UpgradeName": "TempBox",
+            "FirmwareType": "TempBox"
+          }
+        ]
+      },
+      {
+        "DisplayName": "{Config_DetectorModule}8",
+        "Children": [
+          {
+            "Num": 7,
+            "DisplayName": "{Config_TransmitBox}",
+            "UpgradeName": "TransmitBox",
+            "FirmwareType": "TransmitBox"
+          },
+          {
+            "Num": 28,
+            "DisplayName": "{Config_ProcessBox}1",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 29,
+            "DisplayName": "{Config_ProcessBox}2",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 30,
+            "DisplayName": "{Config_ProcessBox}3",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 31,
+            "DisplayName": "{Config_ProcessBox}4",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 7,
+            "DisplayName": "{Config_TempBox}",
+            "UpgradeName": "TempBox",
+            "FirmwareType": "TempBox"
+          }
+        ]
+      },
+      {
+        "DisplayName": "{Config_DetectorModule}9",
+        "Children": [
+          {
+            "Num": 8,
+            "DisplayName": "{Config_TransmitBox}",
+            "UpgradeName": "TransmitBox",
+            "FirmwareType": "TransmitBox"
+          },
+          {
+            "Num": 32,
+            "DisplayName": "{Config_ProcessBox}1",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 33,
+            "DisplayName": "{Config_ProcessBox}2",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 34,
+            "DisplayName": "{Config_ProcessBox}3",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 35,
+            "DisplayName": "{Config_ProcessBox}4",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 8,
+            "DisplayName": "{Config_TempBox}",
+            "UpgradeName": "TempBox",
+            "FirmwareType": "TempBox"
+          }
+        ]
+      },
+      {
+        "DisplayName": "{Config_DetectorModule}10",
+        "Children": [
+          {
+            "Num": 9,
+            "DisplayName": "{Config_TransmitBox}",
+            "UpgradeName": "TransmitBox",
+            "FirmwareType": "TransmitBox"
+          },
+          {
+            "Num": 36,
+            "DisplayName": "{Config_ProcessBox}1",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 37,
+            "DisplayName": "{Config_ProcessBox}2",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 38,
+            "DisplayName": "{Config_ProcessBox}3",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 39,
+            "DisplayName": "{Config_ProcessBox}4",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 9,
+            "DisplayName": "{Config_TempBox}",
+            "UpgradeName": "TempBox",
+            "FirmwareType": "TempBox"
+          }
+        ]
+      },
+      {
+        "DisplayName": "{Config_DetectorModule}11",
+        "Children": [
+          {
+            "Num": 10,
+            "DisplayName": "{Config_TransmitBox}",
+            "UpgradeName": "TransmitBox",
+            "FirmwareType": "TransmitBox"
+          },
+          {
+            "Num": 40,
+            "DisplayName": "{Config_ProcessBox}1",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 41,
+            "DisplayName": "{Config_ProcessBox}2",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 42,
+            "DisplayName": "{Config_ProcessBox}3",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 43,
+            "DisplayName": "{Config_ProcessBox}4",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 10,
+            "DisplayName": "{Config_TempBox}",
+            "UpgradeName": "TempBox",
+            "FirmwareType": "TempBox"
+          }
+        ]
+      },
+      {
+        "DisplayName": "{Config_DetectorModule}12",
+        "Children": [
+          {
+            "Num": 11,
+            "DisplayName": "{Config_TransmitBox}",
+            "UpgradeName": "TransmitBox",
+            "FirmwareType": "TransmitBox"
+          },
+          {
+            "Num": 44,
+            "DisplayName": "{Config_ProcessBox}1",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 45,
+            "DisplayName": "{Config_ProcessBox}2",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 46,
+            "DisplayName": "{Config_ProcessBox}3",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 47,
+            "DisplayName": "{Config_ProcessBox}4",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 11,
+            "DisplayName": "{Config_TempBox}",
+            "UpgradeName": "TempBox",
+            "FirmwareType": "TempBox"
+          }
+        ]
+      },
+      {
+        "DisplayName": "{Config_DetectorModule}13",
+        "Children": [
+          {
+            "Num": 12,
+            "DisplayName": "{Config_TransmitBox}",
+            "UpgradeName": "TransmitBox",
+            "FirmwareType": "TransmitBox"
+          },
+          {
+            "Num": 48,
+            "DisplayName": "{Config_ProcessBox}1",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 49,
+            "DisplayName": "{Config_ProcessBox}2",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 50,
+            "DisplayName": "{Config_ProcessBox}3",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 51,
+            "DisplayName": "{Config_ProcessBox}4",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 12,
+            "DisplayName": "{Config_TempBox}",
+            "UpgradeName": "TempBox",
+            "FirmwareType": "TempBox"
+          }
+        ]
+      },
+      {
+        "DisplayName": "{Config_DetectorModule}14",
+        "Children": [
+          {
+            "Num": 13,
+            "DisplayName": "{Config_TransmitBox}",
+            "UpgradeName": "TransmitBox",
+            "FirmwareType": "TransmitBox"
+          },
+          {
+            "Num": 52,
+            "DisplayName": "{Config_ProcessBox}1",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 53,
+            "DisplayName": "{Config_ProcessBox}2",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 54,
+            "DisplayName": "{Config_ProcessBox}3",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 55,
+            "DisplayName": "{Config_ProcessBox}4",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 13,
+            "DisplayName": "{Config_TempBox}",
+            "UpgradeName": "TempBox",
+            "FirmwareType": "TempBox"
+          }
+        ]
+      },
+      {
+        "DisplayName": "{Config_DetectorModule}15",
+        "Children": [
+          {
+            "Num": 14,
+            "DisplayName": "{Config_TransmitBox}",
+            "UpgradeName": "TransmitBox",
+            "FirmwareType": "TransmitBox"
+          },
+          {
+            "Num": 56,
+            "DisplayName": "{Config_ProcessBox}1",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 57,
+            "DisplayName": "{Config_ProcessBox}2",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 58,
+            "DisplayName": "{Config_ProcessBox}3",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 59,
+            "DisplayName": "{Config_ProcessBox}4",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 14,
+            "DisplayName": "{Config_TempBox}",
+            "UpgradeName": "TempBox",
+            "FirmwareType": "TempBox"
+          }
+        ]
+      },
+      {
+        "DisplayName": "{Config_DetectorModule}16",
+        "Children": [
+          {
+            "Num": 15,
+            "DisplayName": "{Config_TransmitBox}",
+            "UpgradeName": "TransmitBox",
+            "FirmwareType": "TransmitBox"
+          },
+          {
+            "Num": 60,
+            "DisplayName": "{Config_ProcessBox}1",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 61,
+            "DisplayName": "{Config_ProcessBox}2",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 62,
+            "DisplayName": "{Config_ProcessBox}3",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 63,
+            "DisplayName": "{Config_ProcessBox}4",
+            "UpgradeName": "ProcessBox",
+            "FirmwareType": "ProcessBox"
+          },
+          {
+            "Num": 15,
+            "DisplayName": "{Config_TempBox}",
+            "UpgradeName": "TempBox",
+            "FirmwareType": "TempBox"
+          }
+        ]
+      }
+    ]
+  }
+]

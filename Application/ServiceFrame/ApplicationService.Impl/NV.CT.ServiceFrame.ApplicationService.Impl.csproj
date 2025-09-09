@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" />
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="Prism.Core" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\SystemService\AppService.Contract\NV.CT.AppService.Contract.csproj" />
+    <ProjectReference Include="..\ApplicationService.Contract\NV.CT.ServiceFrame.ApplicationService.Contract.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <Reference Include="NV.MPS.Environment">
+		  <HintPath>..\..\..\bin\NV.MPS.Environment.dll</HintPath>
+	  </Reference>
+	  <Reference Include="NV.CT.ServiceFrameWork">
+      <HintPath>..\..\..\bin\NV.CT.ServiceFrameWork.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,226 @@
+﻿<Window x:Class="NV.CT.PatientManagement.View.English.DataExportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+        xmlns:domain="clr-namespace:NV.CT.PatientManagement.Models" 
+        xmlns:converter="clr-namespace:NV.CT.UI.Controls.Converter;assembly=NV.CT.UI.Controls"
+        Title="DataExportWindow"
+        Width="800"
+        Height="560"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        mc:Ignorable="d">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converter:DiskSourceStyleConverter x:Key="diskSourceStyleConverter"/>
+        <converter:FolderStyleConverter x:Key="folderStyleConverter"/>
+    </Window.Resources>
+    <Border CornerRadius="10" Style="{StaticResource WindowsBorder}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="20" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="510" />
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border Grid.ColumnSpan="5" Background="#5A5A89" CornerRadius="10,10,0,0" Opacity="0.3" />
+            <Grid Grid.ColumnSpan="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button Margin="10,5,0,4" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" Cursor="Hand" Opacity="0.7">
+                    <Path Width="15" Height="15" Fill="{StaticResource TextBoxBrush}" Stretch="Fill" Style="{StaticResource Export}"/>
+                </Button>
+                <TextBlock Name="txtCaption" Grid.Column="1" Grid.ColumnSpan="2" Width="430" HorizontalAlignment="Left" VerticalAlignment="Center"
+                           Text="{x:Static res:LanguageResource.Content_Export}" />
+                <Button Grid.Column="3" Style="{StaticResource TileCloseButtonStyle}" ToolTip="{x:Static res:LanguageResource.Content_Close}"
+                        Command="{Binding  Commands[CloseCommand]}" 
+                        CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                    <Path Style="{StaticResource TileClosePathStyle}" />
+                </Button>
+            </Grid>
+            <Grid Grid.Row="1" Grid.ColumnSpan="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10" />     <!-- 0 Space -->
+                    <RowDefinition Height="28" />     <!-- 1 Target Area -->
+                    <RowDefinition Height="276" />    <!-- 2 TreeView -->
+                    <RowDefinition Height="28"/>      <!-- 3 Type -->
+                    <RowDefinition Height="80"/>      <!-- 4 Rdo controls -->
+                    <RowDefinition Height="40"/>      <!-- 5 Chosen path -->
+                    <RowDefinition Height="40"/>      <!-- 6 buttons -->
+                    <RowDefinition Height="0"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <!-- Target Area -->
+                    <TextBlock x:Name="lblTargetArea" Text="{x:Static res:LanguageResource.Content_TargetArea}" Style="{StaticResource SectionTitleTextBlock}"
+                               Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="15"/>
+                    <Rectangle Width="{Binding ElementName=lblTargetArea,Path=ActualWidth}"
+                               Style="{StaticResource SectionTitleUnderlineRectangle}" Margin="10,0,0,0"/>
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" Margin="0,0,0,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TreeView x:Name="treeDriver" MinWidth="620" Height="276" ItemsSource="{Binding DriverTypes, Mode=TwoWay}" SelectedValuePath="VituralPath" VerticalAlignment="Top"
+                              BorderThickness="1,1,1,1">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectedItemChanged">
+                                <i:InvokeCommandAction Command="{Binding Commands[SelectedTreeItemChangedCommand]}"
+                                                       CommandParameter="{Binding ElementName=treeDriver, Path=SelectedItem}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>                        
+                        <TreeView.Resources>
+                            <Style TargetType="TreeViewItem" BasedOn="{StaticResource MaterialDesignTreeViewItem}">
+                                <Setter Property="materialDesign:TreeViewAssist.ShowSelection" Value="True" />
+                            </Style>
+                            <HierarchicalDataTemplate DataType="{x:Type domain:DriverType}" ItemsSource="{Binding Folders}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Path Style="{Binding Path=DirectoryTreeItemType, Converter={StaticResource diskSourceStyleConverter}}" Fill="White" Stretch="Fill" Width="15" Height="15" Margin="0,0,4,0"/>
+                                    <TextBlock Margin="2,2,0,2" Text="{Binding Name}" Tag="{Binding FullPath}"/>
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+                            <HierarchicalDataTemplate DataType="{x:Type domain:Folder}" ItemsSource="{Binding SubFolders}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Path Style="{Binding IsLogicalDisk, Converter={StaticResource folderStyleConverter}}" Fill="White" Stretch="Fill" Width="15" Height="15" Margin="0,0,4,0"/>
+                                    <TextBlock Margin="0,2" Text="{Binding Name}" Tag="{Binding FullPath}"/>
+                                </StackPanel>                                
+                            </HierarchicalDataTemplate>
+                        </TreeView.Resources>
+                        <TreeView.ItemContainerStyle>
+                            <Style TargetType="TreeViewItem" BasedOn="{StaticResource MaterialDesignTreeViewItem}">
+                                <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}"/>
+                                <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}"/>
+                            </Style>
+                        </TreeView.ItemContainerStyle>
+                        <TreeView.ContextMenu>
+                            <ContextMenu Placement="MousePoint" Style="{StaticResource PatientManagementExportContextMenu}">
+                                <MenuItem x:Name="menuItem_AddSubfolder" Height="50" Padding="10,5"
+                                           IsEnabled="{Binding IsMenuAddEnabled}"
+                                     Command="{Binding Commands[AddSubfolderCommand]}"  Header="{x:Static res:LanguageResource.Content_AddSubfolder}">
+                                    <MenuItem.Icon>
+                                        <Path Fill="{StaticResource TextBoxBrush}"
+                                            Stretch="Fill"
+                                            Style="{StaticResource AddGeometry}" />
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                                <MenuItem x:Name="menuItem_EditFolderName" Height="50" Padding="10,5"
+                                          IsEnabled="{Binding IsMenuEditEnabled}"
+                                     Command="{Binding Commands[EditFolderNameCommand]}"  Header="{x:Static res:LanguageResource.Content_RenameFolder}">
+                                    <MenuItem.Icon>
+                                        <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/Custom.png" Stretch="Fill">
+                                        </Image>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                                <MenuItem x:Name="menuItem_DeleteFolder" Height="50" Padding="10,5"
+                                          IsEnabled="{Binding IsMenuEditEnabled}"
+                                          Command="{Binding Commands[DeleteFolderCommand]}"  Header="{x:Static res:LanguageResource.Content_DeleteFolder}">
+                                    <MenuItem.Icon>
+                                       <Path
+                                            Fill="{StaticResource TextBoxBrush}"
+                                            Stretch="Fill"
+                                            Style="{StaticResource Delete}" />
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </ContextMenu>
+                        </TreeView.ContextMenu>
+                    </TreeView>
+                </Grid>
+                <!-- Type -->
+                <Grid Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <TextBlock x:Name="lblType" Margin="10,0,0,0" Text="{x:Static res:LanguageResource.Content_Type}" Style="{StaticResource SectionTitleTextBlock}"
+                           HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="15" />
+                    <Rectangle Width="{Binding ElementName=lblType,Path=ActualWidth}"
+                               Style="{StaticResource SectionTitleUnderlineRectangle}" Margin="10,0,0,0"/>
+                </Grid>
+                <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" Margin="0,0,10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="0" HorizontalAlignment="Left" Orientation="Horizontal" Margin="42,0,0,0">
+                        <RadioButton Name="rdoDicom" GroupName="Type" IsChecked="{Binding IsDicomChecked}" Content="DICOM" />
+                        <CheckBox Name="chkAddViewer" IsChecked="{Binding IsAddViewerChecked}" Content="{x:Static res:LanguageResource.Content_AddViewer}" 
+                                  Visibility="{Binding ShowAddWiewer, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="66,0,0,0" Width="110" >
+                        </CheckBox>
+                        <RadioButton Name="rdoImage" GroupName="Type" Content="{x:Static res:LanguageResource.Content_Image}" IsChecked="{Binding IsImageChecked}" 
+                                     Visibility="{Binding ShowImage, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="66,0,0,0">                            
+                        </RadioButton>
+                        <ComboBox Name="cbbImage" Margin="6,0,0,0" Width="100" Visibility="{Binding ShowImage, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  DisplayMemberPath="Text"
+                                  ItemsSource="{Binding ImageFormats}"
+                                  SelectedItem="{Binding SelectedImageFormat}"
+                                  SelectedValuePath="Value"
+                                  IsEnabled="{Binding IsImageChecked}"/>
+                        <CheckBox Name="chkPatientinfo" HorizontalAlignment="Left" Margin="60,0,0,0" Width="140"
+                              Content="{x:Static res:LanguageResource.Content_Anonymous}"
+                              IsChecked="{Binding IsAnonymouseChecked}" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" HorizontalAlignment="Left" Orientation="Horizontal" Margin="42,0,0,0"
+                                Visibility="{Binding ShowTransferSyntax, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <TextBlock Text="{x:Static res:LanguageResource.Content_TransferSyntax}" Style="{StaticResource InputLabelTextBlock}" />
+                        <ComboBox Width="200" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignOutlinedComboBox}" Margin="6,0,0,0"
+                                  ItemsSource="{Binding DicomTransferSyntaxTypes}"  
+                                  SelectedValue="{Binding SelectedDicomTransferSyntax}" />
+                    </StackPanel>
+                </Grid>
+                <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="5" 
+                        HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,10,10,10"
+                        Text="{Binding OmittedChosenPath}" ToolTip="{Binding ElementName=treeDriver, Path=SelectedValue}" FontSize="12" Foreground="#FFA63F"/>
+                <!-- 底部 导出和关闭 按钮 Begin -->
+                <TextBlock Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Width="420"
+                           HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"
+                           Text="{Binding MessageContent}" FontSize="12" Foreground="#FFA63F"/>
+                <StackPanel Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="2" 
+                            HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,40,0">
+                    <Button x:Name="btnExport" Content="{x:Static res:LanguageResource.Content_Export}" IsEnabled="{Binding IsExportButtonEnabled}"
+                            Width="150" Height="40" Margin="0,0,20,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <i:InvokeCommandAction Command="{Binding Commands[ExportCommand]}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                    <Button x:Name="btnClose" Content="{x:Static res:LanguageResource.Content_Cancel}"
+                            Width="150" Height="40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <i:InvokeCommandAction
+                                        Command="{Binding Commands[CloseCommand]}"
+                                        CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                </StackPanel>
+                <!--  底部 导出和关闭 按钮 End -->
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

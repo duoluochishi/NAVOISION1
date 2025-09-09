@@ -1,0 +1,450 @@
+﻿<UserControl
+	x:Class="NV.CT.Recon.View.PlanningBaseControl"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:extensions="clr-namespace:NV.CT.Recon.Extensions"
+	xmlns:local="clr-namespace:NV.CT.Recon.View"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+	xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
+	x:Name="RTDPanelContainer"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	mc:Ignorable="d">
+	<UserControl.Resources>
+		<Style
+			x:Key="BaseLiftMargin"
+			TargetType="{x:Type Control}">
+			<Setter Property="Margin" Value="5,0,0,0" />
+		</Style>
+		<Style
+			x:Key="PanelTitle"
+			BasedOn="{StaticResource MaterialDesignLabel}"
+			TargetType="{x:Type Label}">
+			<Setter Property="FontWeight" Value="Bold" />
+			<Setter Property="Margin" Value="19,8,0,2" />
+			<Setter Property="FontSize" Value="15" />
+			<Setter Property="Foreground" Value="#FFC6C6EC" />
+		</Style>
+		<Style
+			x:Key="HighlightRectangle"
+			TargetType="{x:Type Rectangle}">
+			<Setter Property="VerticalAlignment" Value="Bottom" />
+			<Setter Property="Stroke" Value="#3044D9" />
+			<Setter Property="Height" Value="3" />
+			<Setter Property="StrokeThickness" Value="3" />
+			<Setter Property="Width" Value="100" />
+			<Setter Property="HorizontalAlignment" Value="Left" />
+			<Setter Property="Margin" Value="19,0,0,10" />
+			<Setter Property="SnapsToDevicePixels" Value="True" />
+		</Style>
+		<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+		<Style
+			x:Key="ScanControlsStyle"
+			BasedOn="{StaticResource MaterialDesignRaisedButton}"
+			TargetType="{x:Type Button}">
+			<Setter Property="FontSize" Value="15px" />
+			<Setter Property="Foreground" Value="{StaticResource BaseForegroundColor}" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+			<Setter Property="Background" Value="{StaticResource ButtonMainBackground}" />
+			<Setter Property="Height" Value="42" />
+			<Style.Triggers>
+				<Trigger Property="IsEnabled" Value="False">
+					<Setter Property="Background" Value="#5a5a89" />
+				</Trigger>
+				<Trigger Property="IsEnabled" Value="True">
+					<Setter Property="Background" Value="#1665D8" />
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+		<SolidColorBrush
+			x:Key="LineColor"
+			Color="#5a5a89" />
+		<SolidColorBrush
+			x:Key="BaseCoverBrush"
+			Opacity="0.8"
+			Color="#FFFFFF" />
+		<SolidColorBrush
+			x:Key="SelectedBrush"
+			Opacity="0.8"
+			Color="#FFA63F" />
+		<DrawingBrush
+			x:Key="BorderBrushNormal"
+			TileMode="Tile"
+			Viewport="0 0 8 8"
+			ViewportUnits="Absolute">
+			<DrawingBrush.Drawing>
+				<DrawingGroup>
+					<GeometryDrawing Brush="{StaticResource BaseCoverBrush}">
+						<GeometryDrawing.Geometry>
+							<GeometryGroup>
+								<RectangleGeometry Rect="0 0 60 60" />
+								<RectangleGeometry Rect="60 60 60 60" />
+							</GeometryGroup>
+						</GeometryDrawing.Geometry>
+					</GeometryDrawing>
+				</DrawingGroup>
+			</DrawingBrush.Drawing>
+		</DrawingBrush>
+		<DrawingBrush
+			x:Key="BorderBrushSelected"
+			TileMode="Tile"
+			Viewport="0 0 8 8"
+			ViewportUnits="Absolute">
+			<DrawingBrush.Drawing>
+				<DrawingGroup>
+					<GeometryDrawing Brush="#FFA63F">
+						<GeometryDrawing.Geometry>
+							<GeometryGroup>
+								<RectangleGeometry Rect="0 0 60 60" />
+								<RectangleGeometry Rect="60 60 60 60" />
+							</GeometryGroup>
+						</GeometryDrawing.Geometry>
+					</GeometryDrawing>
+				</DrawingGroup>
+			</DrawingBrush.Drawing>
+		</DrawingBrush>
+		<Style
+			x:Key="BorderStyle"
+			TargetType="Border">
+			<Setter Property="SnapsToDevicePixels" Value="true" />
+			<Setter Property="BorderThickness" Value="0" />
+			<Setter Property="Background" Value="Transparent" />
+			<Setter Property="VerticalAlignment" Value="Stretch" />
+			<Setter Property="HorizontalAlignment" Value="Stretch" />
+			<Setter Property="Width" Value="56" />
+			<Setter Property="Height" Value="56" />
+			<Setter Property="Margin" Value="0" />
+			<Setter Property="Padding" Value="1" />
+		</Style>
+		<Style
+			x:Key="RDTMaterialDesignListBoxItem"
+			TargetType="{x:Type ListViewItem}">
+			<Setter Property="Background" Value="Transparent" />
+			<Setter Property="BorderThickness" Value="0" />
+			<Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+			<Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+			<Setter Property="Padding" Value="0" />
+			<Setter Property="SnapsToDevicePixels" Value="True" />
+			<Setter Property="wpf:ListBoxItemAssist.ShowSelection" Value="{Binding Path=(wpf:ListBoxItemAssist.ShowSelection), RelativeSource={RelativeSource AncestorType=ListBox}}" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type ListBoxItem}">
+						<Border
+							Margin="{TemplateBinding Margin}"
+							Background="{TemplateBinding Background}"
+							BorderBrush="{TemplateBinding BorderBrush}"
+							BorderThickness="{TemplateBinding BorderThickness}"
+							ClipToBounds="{TemplateBinding ClipToBounds}">
+							<Grid>
+								<Border
+									x:Name="BorderStyle"
+									BorderBrush="{StaticResource BorderBrushNormal}"
+									BorderThickness="0"
+									Style="{StaticResource BorderStyle}" />
+								<Border
+									x:Name="MouseOverBorder"
+									Background="Transparent"
+									Opacity="0" />
+								<Border
+									x:Name="SelectedBorder"
+									Background="Transparent"
+									Opacity="0" />
+								<wpf:Ripple
+									x:Name="Ripple"
+									Padding="{TemplateBinding Padding}"
+									HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+									VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+									Content="{TemplateBinding Content}"
+									ContentTemplate="{TemplateBinding ContentTemplate}"
+									ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+									Focusable="False"
+									SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+							</Grid>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsEnabled" Value="False">
+								<Setter Property="Opacity" Value=".56" />
+							</Trigger>
+							<Trigger Property="IsSelected" Value="True">
+								<Setter TargetName="BorderStyle" Property="BorderBrush" Value="{StaticResource SelectedBrush}" />
+							</Trigger>
+							<Trigger Property="IsSelected" Value="False">
+								<Setter TargetName="BorderStyle" Property="BorderBrush" Value="{StaticResource BorderBrushNormal}" />
+							</Trigger>
+							<DataTrigger
+								Binding="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ListBoxItemAssist.ShowSelection)}"
+								Value="False">
+								<Setter TargetName="MouseOverBorder" Property="Visibility" Value="Collapsed" />
+								<Setter TargetName="SelectedBorder" Property="Visibility" Value="Collapsed" />
+							</DataTrigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style
+			x:Key="TaskListBoxItemStyle"
+			BasedOn="{StaticResource RDTMaterialDesignListBoxItem}"
+			TargetType="{x:Type ListViewItem}">
+			<Setter Property="Margin" Value="2,2,0,2" />
+			<Setter Property="HorizontalContentAlignment" Value="Center" />
+			<Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}" />
+			<Setter Property="BorderThickness" Value="0" />
+			<Setter Property="BorderBrush" Value="Transparent" />
+		</Style>
+		<Style
+			x:Key="ListBoxStyle"
+			BasedOn="{StaticResource MaterialDesignListView}"
+			TargetType="{x:Type ListView}">
+			<Setter Property="Background" Value="Transparent" />
+			<Setter Property="SelectionMode" Value="Single" />
+			<Setter Property="ItemContainerStyle" Value="{StaticResource TaskListBoxItemStyle}" />
+		</Style>
+
+		<Style
+			x:Key="ImageStyle"
+			TargetType="Image">
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="HorizontalAlignment" Value="Right" />
+			<Setter Property="Width" Value="46" />
+			<Setter Property="Height" Value="46" />
+		</Style>
+
+		<Style
+			x:Key="ContextMenuStyle"
+			BasedOn="{StaticResource MaterialDesignMenuItem}"
+			TargetType="MenuItem">
+			<Setter Property="VerticalAlignment" Value="Stretch" />
+			<Setter Property="HorizontalContentAlignment" Value="Center" />
+		</Style>
+
+		<extensions:ScanIdToNameConverter x:Key="ScanIdToNameConverter" />
+
+		<CollectionViewSource
+			x:Key="pbList"
+			Source="{Binding PlanningBaseList}">
+			<CollectionViewSource.GroupDescriptions>
+				<PropertyGroupDescription PropertyName="GroupName" />
+			</CollectionViewSource.GroupDescriptions>
+		</CollectionViewSource>
+
+		<Style TargetType="RadioButton">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type RadioButton}">
+						<Grid>
+							<ContentPresenter />
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+
+		<!--  Planning Base 每个 Recon Item的重建项模板  -->
+		<DataTemplate
+			x:Key="PlanningBaseReconItemTemplate"
+			DataType="{x:Type ListBoxItem}">
+			<WrapPanel
+				Margin="2,1,2,1"
+				Orientation="Vertical">
+				<RadioButton
+					x:Name="PBGroup"
+					GroupName="pbGroup"
+					IsChecked="{Binding IsSelected, Mode=TwoWay}">
+					<RadioButton.ContextMenu>
+						<ContextMenu
+							Height="70"
+							Placement="RelativePoint">
+							<MenuItem
+								Header="Show Parameter"
+								Command="{Binding Commands[ShowParameterCommand]}" 
+								Style="{StaticResource ContextMenuStyle}">
+								<MenuItem.Icon>
+									<Path
+										Fill="{StaticResource TextBoxBrush}"
+										Stretch="Fill"
+										Style="{StaticResource RScan}" />
+								</MenuItem.Icon>
+							</MenuItem>
+							<MenuItem
+								Command="{Binding Commands[ReconRepeatCommand]}"
+								Header="Repeat"
+								Style="{StaticResource ContextMenuStyle}">
+								<MenuItem.Icon>
+									<Path
+										Fill="{StaticResource TextBoxBrush}"
+										Stretch="Fill"
+										Style="{StaticResource IconPaste}" />
+								</MenuItem.Icon>
+							</MenuItem>
+
+						</ContextMenu>
+					</RadioButton.ContextMenu>
+					<Border
+						x:Name="pbReconBoxBorder"
+						Background="Black"
+						BorderBrush="{StaticResource BorderBrushNormal}"
+						BorderThickness="2" Padding="1">
+						<Image
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							Source="{Binding Path=Image, Mode=TwoWay}"
+							Style="{StaticResource ImageStyle}" />
+					</Border>
+				</RadioButton>
+				<TextBlock
+					HorizontalAlignment="Center"
+					Text="{Binding Content}" />
+			</WrapPanel>
+			<DataTemplate.Triggers>
+				<Trigger SourceName="PBGroup" Property="IsChecked" Value="True">
+					<Setter TargetName="pbReconBoxBorder" Property="BorderBrush" Value="{StaticResource BorderBrushSelected}" />
+				</Trigger>
+				<Trigger SourceName="PBGroup" Property="IsChecked" Value="False">
+					<Setter TargetName="pbReconBoxBorder" Property="BorderBrush" Value="{StaticResource BorderBrushNormal}" />
+				</Trigger>
+			</DataTemplate.Triggers>
+		</DataTemplate>
+
+		<!--  每一个分组容器的样式  -->
+		<Style
+			x:Key="GroupedScanContainerStyle"
+			TargetType="{x:Type GroupItem}">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type GroupItem}">
+						<Border
+							Background="Transparent"
+							BorderBrush="{StaticResource LineColor}"
+							BorderThickness="0,0,0,0">
+							<StackPanel
+								Margin="10,0,5,0"
+								Orientation="Vertical">
+								<TextBlock
+									Margin="10,2,0,0"
+									Opacity="0.5"
+									Text="{Binding Path=Name, Converter={StaticResource ScanIdToNameConverter}}" />
+								<Grid>
+									<Grid.RowDefinitions>
+										<RowDefinition />
+										<RowDefinition />
+									</Grid.RowDefinitions>
+									<ItemsPresenter Grid.Row="0" />
+								</Grid>
+							</StackPanel>
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+	</UserControl.Resources>
+	<Grid>
+		<StackPanel Orientation="Vertical">
+
+			<Label
+				Name="lblPlanningBase"
+				Margin="10,0,0,0"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Bottom"
+				Content="{x:Static res:LanguageResource.Content_PlanningBase}"
+				Style="{StaticResource PanelTitle}" />
+			<Rectangle
+				Width="{Binding ElementName=lblPlanningBase, Path=ActualWidth}"
+				Margin="10,0,0,0"
+				Style="{StaticResource HighlightRectangle}" />
+
+			<!--  计划基准区控件  -->
+			<Border
+				Background="Transparent"
+				BorderBrush="{StaticResource LineColor}"
+				BorderThickness="0,0,0,2">
+				<ScrollViewer
+					x:Name="ScrollViewer2"
+					Height="456" Padding="0 0 0 0"
+					PreviewMouseWheel="ScrollViewer2_OnPreviewMouseWheel"
+					VerticalScrollBarVisibility="Auto">
+					<ListView
+						IsSynchronizedWithCurrentItem="True"
+						ItemsSource="{Binding Source={StaticResource pbList}}"
+						ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+						ScrollViewer.VerticalScrollBarVisibility="Disabled"
+						SelectedItem="{Binding SelectedPlanningBaseModel, Mode=TwoWay}"
+						Style="{StaticResource ListBoxStyle}">
+						<ListView.ItemsPanel>
+							<ItemsPanelTemplate>
+								<WrapPanel Orientation="Horizontal" />
+							</ItemsPanelTemplate>
+						</ListView.ItemsPanel>
+						<ListView.ItemTemplate>
+							<DataTemplate>
+								<ListView
+									x:Name="pbListview"
+									BorderBrush="Transparent"
+									BorderThickness="0"
+									ItemTemplate="{StaticResource PlanningBaseReconItemTemplate}"
+									ItemsSource="{Binding Recons}"
+									ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+									SelectedItem="{Binding SelectedReconModel, Mode=TwoWay}"
+									Style="{StaticResource ListBoxStyle}">
+									<ListView.ItemsPanel>
+										<ItemsPanelTemplate>
+											<WrapPanel Orientation="Horizontal" />
+										</ItemsPanelTemplate>
+									</ListView.ItemsPanel>
+									<!--<ListView.ContextMenu>
+										<ContextMenu
+											Height="70"
+											Placement="RelativePoint">
+											--><!--  --><!--
+											<MenuItem
+												Header="Show Parameter"
+												 Command="{Binding DataContext.Commands[ShowParameterCommand]}" 
+												Style="{StaticResource ContextMenuStyle}">
+												<MenuItem.Icon>
+													<Path
+														Fill="{StaticResource TextBoxBrush}"
+														Stretch="Fill"
+														Style="{StaticResource RScan}" />
+												</MenuItem.Icon>
+												<b:Interaction.Triggers>
+													<b:EventTrigger EventName="MouseUp">
+														<b:InvokeCommandAction Command="{Binding DataContext.Commands[ShowParameterCommand], ElementName=RTDPanelContainer}" />
+													</b:EventTrigger>
+												</b:Interaction.Triggers>
+											</MenuItem>
+
+											<MenuItem
+												Command="{Binding Commands[ReconRepeatCommand]}"
+												Header="Repeat"
+												Style="{StaticResource ContextMenuStyle}">
+												<MenuItem.Icon>
+													<Path
+														Fill="{StaticResource TextBoxBrush}"
+														Stretch="Fill"
+														Style="{StaticResource IconPaste}" />
+												</MenuItem.Icon>
+											</MenuItem>
+
+										</ContextMenu>
+									</ListView.ContextMenu>-->
+								</ListView>
+							</DataTemplate>
+
+						</ListView.ItemTemplate>
+
+						<ListView.GroupStyle>
+							<GroupStyle ContainerStyle="{StaticResource GroupedScanContainerStyle}" />
+						</ListView.GroupStyle>
+					</ListView>
+				</ScrollViewer>
+			</Border>
+
+		</StackPanel>
+	</Grid>
+</UserControl>

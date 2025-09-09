@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Upgrade_Info_CountInfo" xml:space="preserve">
+    <value>{0} can select, {1} select, {2} success, {3} failed</value>
+    <comment>总共可选{0}项，勾选升级{1}项，成功{2}项，失败{3}项</comment>
+  </data>
+  <data name="Upgrade_Info_CurrentVersion" xml:space="preserve">
+    <value>Current Version</value>
+    <comment>当前版本</comment>
+  </data>
+  <data name="Upgrade_Info_NotWhenSameVer" xml:space="preserve">
+    <value>No upgrade when the version is the same</value>
+    <comment>版本相同时不升级</comment>
+  </data>
+  <data name="Upgrade_Info_Path" xml:space="preserve">
+    <value>Upgrade Patch Path</value>
+    <comment>升级包路径</comment>
+  </data>
+  <data name="Upgrade_Info_Progress" xml:space="preserve">
+    <value>Progress</value>
+    <comment>进度</comment>
+  </data>
+  <data name="Upgrade_Info_SuperiorName" xml:space="preserve">
+    <value>Superior Name</value>
+    <comment>上级名称</comment>
+  </data>
+  <data name="Upgrade_Info_UpgradableStatus" xml:space="preserve">
+    <value>Upgradable Status</value>
+    <comment>是否可升级状态</comment>
+  </data>
+  <data name="Upgrade_Info_Upgrade" xml:space="preserve">
+    <value>Upgrade</value>
+    <comment>升级</comment>
+  </data>
+  <data name="Upgrade_Info_UpgradeStatus" xml:space="preserve">
+    <value>Upgrade Status</value>
+    <comment>升级状态</comment>
+  </data>
+  <data name="Upgrade_Info_UpgradeVersion" xml:space="preserve">
+    <value>Upgrade Version</value>
+    <comment>升级版本</comment>
+  </data>
+  <data name="Upgrade_Info_VersionNotMatch" xml:space="preserve">
+    <value>The current version does not match the upgrade version</value>
+    <comment>当前版本与升级版本不匹配</comment>
+  </data>
+  <data name="Upgrade_Leave_Confirm" xml:space="preserve">
+    <value>There are unsuccessful firmware after the upgrade, please confirm before leaving!</value>
+    <comment>升级后存在有问题的固件，请确认后再离开！</comment>
+  </data>
+  <data name="Upgrade_Leave_InUpgrading" xml:space="preserve">
+    <value>Upgrading in progress, please do not leave!</value>
+    <comment>正在升级中，请勿离开！</comment>
+  </data>
+  <data name="Upgrade_StepInfo_Completed" xml:space="preserve">
+    <value>The upgrade is completed</value>
+    <comment>升级完成</comment>
+  </data>
+  <data name="Upgrade_StepInfo_GetVersionAfterSelfCheck" xml:space="preserve">
+    <value>Get version after self check</value>
+    <comment>获取自检结果后，等待重新获取版本号</comment>
+  </data>
+  <data name="Upgrade_StepInfo_InUpgrading" xml:space="preserve">
+    <value>Upgrading in progress, unable to upgrade again</value>
+    <comment>正在升级中，无法再次升级</comment>
+  </data>
+  <data name="Upgrade_StepInfo_NoCanUpgrade" xml:space="preserve">
+    <value>There is no upgradable firmware</value>
+    <comment>没有可升级的固件</comment>
+  </data>
+  <data name="Upgrade_StepInfo_PrepareCommandError" xml:space="preserve">
+    <value>Hardware upgrade prepare command error</value>
+    <comment>发送升级前准备命令返回失败</comment>
+  </data>
+  <data name="Upgrade_StepInfo_SendPowerRestartCommand" xml:space="preserve">
+    <value>Send power restart command</value>
+    <comment>发送电源重上电命令</comment>
+  </data>
+  <data name="Upgrade_StepInfo_SendUpgradePrepareCommand" xml:space="preserve">
+    <value>Send hardware upgrade prepare command</value>
+    <comment>发送硬件升级准备命令</comment>
+  </data>
+  <data name="Upgrade_StepInfo_SetUpgradingStatus" xml:space="preserve">
+    <value>Set ctbox to upgrading status</value>
+    <comment>通知ctbox设置为升级中状态</comment>
+  </data>
+  <data name="Upgrade_StepInfo_Upgrading" xml:space="preserve">
+    <value>Upgrading...</value>
+    <comment>升级中...</comment>
+  </data>
+  <data name="Upgrade_StepInfo_WaitPowerRestartAndSelfCheckResult" xml:space="preserve">
+    <value>Wait power restart and hardware self check result</value>
+    <comment>等待电源重上电和硬件自检的结果</comment>
+  </data>
+  <data name="Upgrade_StepInfo_WaitPrepareResult" xml:space="preserve">
+    <value>Hardware is preparing for upgrade, wait...</value>
+    <comment>等待硬件升级准备的结果</comment>
+  </data>
+  <data name="Upgrade_Upgrade_Completed" xml:space="preserve">
+    <value>The upgrade is completed.</value>
+    <comment>升级完成</comment>
+  </data>
+  <data name="Upgrade_Upgrade_DialogMsg_FailedBeforeUpgrade" xml:space="preserve">
+    <value>{0}: {1}
+Power restart automatically, please wait for restart to complete.</value>
+    <comment>升级的弹窗信息：xxx失败，已自动重启，请等待重启完成</comment>
+  </data>
+  <data name="Upgrade_Upgrade_DialogMsg_FailedBeforeUpgradeAndREstartPowerError" xml:space="preserve">
+    <value>{0}: {1}
+Power restart automatically failed: {2}
+Please restart the power manually and wait for restart to complete.</value>
+    <comment>升级的弹窗信息：xxx失败，自动重启失败，请人工重启电源并等待重启完成</comment>
+  </data>
+  <data name="Upgrade_Upgrade_DialogMsg_InUpgrading" xml:space="preserve">
+    <value>Upgrading in progress, unable to upgrade again</value>
+    <comment>升级的弹窗信息：正在升级中，无法再次升级</comment>
+  </data>
+  <data name="Upgrade_Upgrade_DialogMsg_NoCanUpgrade" xml:space="preserve">
+    <value>There is no upgradable firmware.</value>
+    <comment>升级的弹窗信息：没有可升级的固件</comment>
+  </data>
+  <data name="Upgrade_Upgrade_DialogMsg_Part_PrepareCommandError" xml:space="preserve">
+    <value>Hardware upgrade prepare command error</value>
+    <comment>升级的弹窗信息片段：发送升级前准备命令返回失败</comment>
+  </data>
+  <data name="Upgrade_Upgrade_DialogMsg_Part_PrepareResultError" xml:space="preserve">
+    <value>Hardware upgrade prepare failed</value>
+    <comment>升级的弹窗信息片段：硬件升级准备失败</comment>
+  </data>
+  <data name="Upgrade_Upgrade_DialogMsg_Part_SetUpgradingStatusError" xml:space="preserve">
+    <value>Set ctbox to upgrading status failed</value>
+    <comment>升级的弹窗信息片段：将ctbox设置为升级中状态失败</comment>
+  </data>
+  <data name="Upgrade_Upgrade_DialogMsg_RestartPowerCommandError" xml:space="preserve">
+    <value>The upgrade is completed, but power restart automatically failed: {0}
+Please restart the power manually and wait for restart to complete.</value>
+    <comment>升级的弹窗信息：升级已完成，自动重上电失败，请手动重上电</comment>
+  </data>
+  <data name="Upgrade_Upgrade_DialogMsg_RestartPowreManually" xml:space="preserve">
+    <value>The upgrade is completed, please restart the power manually and wait for restart to complete.</value>
+    <comment>升级的弹窗信息：升级已完成，请手动重上电</comment>
+  </data>
+  <data name="Upgrade_Upgrade_FailedItems" xml:space="preserve">
+    <value>The following firmwares upgrade failed: 
+{0}</value>
+    <comment>下述固件升级失败：{0}</comment>
+  </data>
+  <data name="Upgrade_Upgrade_Fail_GetVerError" xml:space="preserve">
+    <value>Failed to get version after restart power.</value>
+    <comment>升级失败，重上电后获取版本号失败</comment>
+  </data>
+  <data name="Upgrade_Upgrade_Fail_VerNotMatch" xml:space="preserve">
+    <value>The version after restart power does not match the upgrade verision.</value>
+    <comment>升级失败，重上电后获取到的版本号与升级的版本号不匹配</comment>
+  </data>
+</root>

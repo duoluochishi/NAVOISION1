@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TubeSettingConfig>
+	<TinyArcingSlope Min="5" Max="500"  DefaultMax="999" DefaultMin="1"/>
+	<LargeArcingSlope Min="85" Max="500"  DefaultMax="999" DefaultMin="1"/>
+</TubeSettingConfig>

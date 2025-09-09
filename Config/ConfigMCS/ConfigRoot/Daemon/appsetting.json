@@ -1,0 +1,68 @@
+{
+  "Processes": [
+    {
+      "Path": "D:\\NV\\MRS\\Bin",
+      "Name": "NV.CT.App.ScanReconEngine.exe",
+      "IsLaunch": false,
+      "IsMonitor": false,
+      "IsRestart": false,
+	  "IsShowWindow": false
+    },
+    {
+      "Path": "D:\\NV\\MRS\\Bin",
+      "Name": "NV.CT.App.DeviceDaemon.exe",
+      "IsLaunch": false,
+      "IsMonitor": false,
+      "IsRestart": false,
+	  "IsShowWindow": false
+    },
+    {
+      "IsRelative": true,
+      "Name": "NV.CT.LoggingServer.exe",
+      "IsLaunch": true,
+      "IsMonitor": false,
+      "IsRestart": false,
+	  "IsShowWindow": false
+    },
+    {
+      "IsRelative": true,
+      "Name": "NV.CT.MCS.Services.exe",
+      "IsLaunch": true,
+      "IsMonitor": false,
+      "IsRestart": false,
+	  "IsShowWindow": false
+    },
+    {
+      "IsRelative": true,
+      "Name": "NV.CT.JobService.exe",
+      "IsLaunch": true,
+      "IsMonitor": false,
+      "IsRestart": false,
+	  "IsShowWindow": false
+    },
+    {
+      "IsRelative": true,
+      "Name": "NV.CT.SyncService.exe",
+      "IsLaunch": true,
+      "IsMonitor": false,
+      "IsRestart": false,
+	  "IsShowWindow": false
+    },
+    {
+      "IsRelative": true,
+      "Name": "NV.CT.NanoConsole.exe",
+      "IsLaunch": true,
+      "IsMonitor": false,
+      "IsRestart": false,
+	  "IsShowWindow": true
+    },
+    {
+      "IsRelative": true,
+      "Name": "NV.CT.AuxConsole.exe",
+      "IsLaunch": true,
+      "IsMonitor": false,
+      "IsRestart": false,
+	  "IsShowWindow": true
+    }
+  ]
+}

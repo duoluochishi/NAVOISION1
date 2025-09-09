@@ -1,0 +1,1689 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:combo="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableComboBox"
+    xmlns:control="clr-namespace:MaterialDesignThemes.Wpf.Controls"
+    xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters"
+    xmlns:markableTextBox="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableTextBox"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf"
+    xmlns:wpft="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <!--  重写框架主体色  -->
+    <SolidColorBrush x:Key="MaterialDesignBackground" Color="#05050F" />
+    <SolidColorBrush x:Key="MaterialDesignPaper" Color="#14142B" />
+    <SolidColorBrush x:Key="MaterialDesignBody" Color="#FFC6C6EC" />
+    <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#3B3B5F" />
+    <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="#3B3B5F" />
+    <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#3B3B5F" />
+    <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="#3B3B5F" />
+    <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="#14142B" />
+    <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="#3B3B5F" />
+    <SolidColorBrush x:Key="TextBoxBrush" Color="#FFC6C6EC" />
+    <SolidColorBrush x:Key="ButtonBackground" Color="#1665D8" />
+    <SolidColorBrush x:Key="ButtonMainBackground" Color="#2A2A47" />
+    <SolidColorBrush x:Key="HeaderBackground" Color="#0A48D3" />
+    <SolidColorBrush x:Key="FocusBorderBrush" Color="#EBCECE" />
+    <SolidColorBrush
+        x:Key="BaseBackgroundColor"
+        Opacity="0.3"
+        Color="#5a5a89" />
+    <SolidColorBrush
+        x:Key="BaseTabBackBrush"
+        Opacity="1"
+        Color="#5a5a89" />
+    <SolidColorBrush x:Key="BaseForegroundColor" Color="White" />
+    <SolidColorBrush
+        x:Key="DataGridLinesBrush"
+        Opacity="0.1"
+        Color="#979797" />
+    <SolidColorBrush
+        x:Key="DataGridHeaderBackColor"
+        Opacity="0.05"
+        Color="#5A5A89" />
+    <SolidColorBrush x:Key="PauseIconFillBrush">#FFA640</SolidColorBrush>
+    <!--  深紫 大部分按钮ICON默认填充色  -->
+    <SolidColorBrush x:Key="PatOrderIconFillBrush">#5A5A89</SolidColorBrush>
+    <!--  红色  -->
+    <SolidColorBrush x:Key="SAlertIconFillBrush">#FF2501</SolidColorBrush>
+    <!--  深蓝  -->
+    <SolidColorBrush x:Key="SWarningIconFillBrush">#21264A</SolidColorBrush>
+    <!--  橙色  -->
+    <SolidColorBrush x:Key="SExposuresIconFillBrush">#FFA63F</SolidColorBrush>
+    <SolidColorBrush
+        x:Key="RoundedButtonBrush"
+        Opacity="1"
+        Color="#1665D8" />
+    <SolidColorBrush
+        x:Key="RoundedButtonMoveBrush"
+        Opacity="0.9"
+        Color="#1665D8" />
+    <SolidColorBrush
+        x:Key="BaseRoundButtonBrush"
+        Opacity="0.2"
+        Color="#FFFFFF" />
+    <FontFamily x:Key="FontFamily">Microsoft YaHei</FontFamily>
+    <system:Double x:Key="FontSize">14</system:Double>
+    <system:Double x:Key="DisableOpacity">0.5</system:Double>
+    <system:Double x:Key="ReadonlyOpacity">0.88</system:Double>
+    <system:Double x:Key="WatermarkOpacity">0.4</system:Double>
+    <system:Boolean x:Key="TrueValue">True</system:Boolean>
+    <system:Boolean x:Key="FalseValue">False</system:Boolean>
+
+    <!--  Icon正常颜色和高亮颜色  -->
+    <SolidColorBrush x:Key="IconActiveColor" Color="White" />
+    <SolidColorBrush x:Key="IconNormalColor" Color="#5A5A89" />
+
+    <SolidColorBrush x:Key="TableIsoNormalColor" Color="White" />
+    <SolidColorBrush x:Key="TableIsoErrorColor" Color="Red" />
+
+    <!--  debug color  -->
+    <SolidColorBrush x:Key="DebugColor" Color="#49da49" />
+
+    <!--  输入组件  -->
+    <SolidColorBrush x:Key="TextForeground" Color="White" />
+    <SolidColorBrush x:Key="TextBackground" Color="#0D234B" />
+    <SolidColorBrush x:Key="TextSelectionBrush" Color="#8F8787" />
+    <SolidColorBrush x:Key="ControlBorderBrush" Color="#999C9F" />
+    <SolidColorBrush x:Key="MouseOverBorderBrush" Color="#F6D1D1" />
+    <SolidColorBrush x:Key="FocusBackground" Color="#365080" />
+    <SolidColorBrush
+        x:Key="Markable.Default.Border"
+        Opacity="1"
+        Color="Transparent" />
+    <SolidColorBrush
+        x:Key="Markable.Modified.Border"
+        Opacity="1"
+        Color="LawnGreen" />
+    <SolidColorBrush
+        x:Key="Markable.Error.Border"
+        Opacity="1"
+        Color="OrangeRed" />
+    <!--  Error Template  -->
+    <SolidColorBrush
+        x:Key="ErrorTemplate.Border"
+        Opacity="1.0"
+        Color="#00F0F0" />
+    <SolidColorBrush
+        x:Key="ErrorTemplate.Background"
+        Opacity="1.0"
+        Color="#20003050" />
+    <SolidColorBrush
+        x:Key="ErrorTemplate.Foreground"
+        Opacity="1.0"
+        Color="OrangeRed" />
+    <SolidColorBrush x:Key="ItemSelectedBackground" Color="#16162B" />
+    <SolidColorBrush
+        x:Key="ItemMouseOverBackground"
+        Opacity="0.3"
+        Color="#5a5a89" />
+    <SolidColorBrush x:Key="CheckedForeground" Color="White" />
+    <SolidColorBrush x:Key="MouseOverForeground" Color="White" />
+    <SolidColorBrush x:Key="PressedForeground" Color="White" />
+
+
+    <converters:TrueToFalseConverter x:Key="TrueToFalseConverter" />
+
+    <!--  重写控件的默认字号  -->
+    <Style
+        x:Key="NanoLabelStyle"
+        BasedOn="{StaticResource MaterialDesignLabel}"
+        TargetType="{x:Type Label}">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontFamily" Value="Microsoft YaHei" />
+        <Setter Property="Margin" Value="0,0,0,0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="{DynamicResource BaseForegroundColor}" />
+    </Style>
+    <Style BasedOn="{StaticResource NanoLabelStyle}" TargetType="{x:Type Label}" />
+    <Style
+        x:Key="NanoTextBoxStyle"
+        BasedOn="{StaticResource MaterialDesignOutlinedTextBox}"
+        TargetType="{x:Type TextBox}">
+        <Setter Property="FontSize" Value="14px" />
+        <Setter Property="Foreground" Value="{StaticResource BaseForegroundColor}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Validation.ErrorTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <DockPanel>
+                        <TextBlock
+                            DockPanel.Dock="Bottom"
+                            FontSize="10"
+                            Foreground="#FFA63F"
+                            Text="{Binding ElementName=adornedElement, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}" />
+                        <Border
+                            BorderBrush="#FFA63F"
+                            BorderThickness="1"
+                            CornerRadius="3">
+                            <AdornedElementPlaceholder Name="adornedElement" />
+                        </Border>
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.4" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style BasedOn="{StaticResource NanoTextBoxStyle}" TargetType="{x:Type TextBox}" />
+
+    <!--#region MarkableTextBox-->
+    <Style x:Key="MarkableTextBox" TargetType="{x:Type markableTextBox:MarkableTextBox}">
+        <Setter Property="wpf:ControlAttachProperty.CornerRadius" Value="4" />
+        <Setter Property="Height" Value="34" />
+        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ErrorTemplateDownSide}" />
+        <Setter Property="ContextMenu" Value="{DynamicResource TextBoxContextMenu}" />
+        <Setter Property="SelectionBrush" Value="{StaticResource TextSelectionBrush}" />
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize}" />
+        <Setter Property="BorderThickness" Value="0.8" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Background" Value="{StaticResource BaseBackgroundColor}" />
+        <Setter Property="Foreground" Value="{StaticResource TextForeground}" />
+        <Setter Property="Padding" Value="6,4,6,4" />
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
+        <Setter Property="wpf:ControlAttachProperty.FocusBorderBrush" Value="{StaticResource FocusBorderBrush}" />
+        <Setter Property="wpf:ControlAttachProperty.MouseOverBorderBrush" Value="{StaticResource MouseOverBorderBrush}" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <!--  change SnapsToDevicePixels to True to view a better border and validation error  -->
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <!--  英 ['kærət]  美 ['kærət]  插入符号  -->
+        <Setter Property="CaretBrush" Value="{StaticResource TextForeground}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type markableTextBox:MarkableTextBox}">
+                    <Grid x:Name="PART_Root">
+                        <Border
+                            x:Name="Bg"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding wpf:ControlAttachProperty.CornerRadius}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        <Grid x:Name="PART_InnerGrid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <!--  Label区域  -->
+                            <ContentControl
+                                x:Name="Label"
+                                Margin="1"
+                                Content="{TemplateBinding wpf:ControlAttachProperty.Label}"
+                                Template="{TemplateBinding wpf:ControlAttachProperty.LabelTemplate}" />
+                            <!--  内容区域  -->
+                            <ScrollViewer
+                                x:Name="PART_ContentHost"
+                                Grid.Column="1"
+                                Margin="{TemplateBinding Padding}"
+                                Padding="{TemplateBinding Padding}"
+                                VerticalAlignment="Stretch"
+                                VerticalContentAlignment="Center"
+                                Background="{x:Null}"
+                                BorderThickness="0"
+                                IsTabStop="False" />
+                            <!--  水印  -->
+                            <TextBlock
+                                x:Name="Message"
+                                Grid.Column="1"
+                                Margin="5,2,5,2"
+                                Padding="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Foreground="{TemplateBinding Foreground}"
+                                IsHitTestVisible="False"
+                                Opacity="{StaticResource WatermarkOpacity}"
+                                Text="{TemplateBinding wpf:ControlAttachProperty.Watermark}"
+                                Visibility="Collapsed" />
+                            <!--  附加内容区域  -->
+                            <Border
+                                x:Name="PART_AttachContent"
+                                Grid.Column="2"
+                                Margin="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                                <ContentControl
+                                    VerticalAlignment="Top"
+                                    VerticalContentAlignment="Top"
+                                    Template="{TemplateBinding wpf:ControlAttachProperty.AttachContent}" />
+                            </Border>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <!--  显示水印  -->
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value="">
+                            <Setter TargetName="Message" Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="{Binding Path=(wpf:ControlAttachProperty.MouseOverBorderBrush), RelativeSource={RelativeSource Self}}" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{Binding Path=(wpf:ControlAttachProperty.FocusBorderBrush), RelativeSource={RelativeSource Self}}" />
+                        </Trigger>
+                        <!--  不可用  -->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="PART_Root" Property="Opacity" Value="{StaticResource DisableOpacity}" />
+                        </Trigger>
+                        <!--  只读时，禁用PART_AttachContent  -->
+                        <Trigger Property="IsReadOnly" Value="True">
+                            <Setter TargetName="PART_AttachContent" Property="IsEnabled" Value="False" />
+                            <Setter TargetName="Bg" Property="Opacity" Value="{StaticResource ReadonlyOpacity}" />
+                            <Setter TargetName="PART_ContentHost" Property="Opacity" Value="{StaticResource ReadonlyOpacity}" />
+                            <Setter TargetName="Label" Property="Opacity" Value="{StaticResource ReadonlyOpacity}" />
+                        </Trigger>
+                        <Trigger Property="MarkStatus" Value="Default">
+                            <Setter Property="BorderBrush" Value="{StaticResource Markable.Default.Border}" />
+                        </Trigger>
+                        <Trigger Property="MarkStatus" Value="Modified">
+                            <Setter Property="BorderBrush" Value="{StaticResource Markable.Modified.Border}" />
+                        </Trigger>
+                        <Trigger Property="MarkStatus" Value="Error">
+                            <Setter Property="BorderBrush" Value="{StaticResource Markable.Error.Border}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style BasedOn="{StaticResource MarkableTextBox}" TargetType="{x:Type markableTextBox:MarkableTextBox}" />
+
+    <!--  normal textbox 没有 mark status状态  -->
+    <Style x:Key="NormalTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="wpf:ControlAttachProperty.CornerRadius" Value="4" />
+        <Setter Property="Height" Value="34" />
+        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ErrorTemplateDownSide}" />
+        <Setter Property="ContextMenu" Value="{DynamicResource TextBoxContextMenu}" />
+        <Setter Property="SelectionBrush" Value="{StaticResource TextSelectionBrush}" />
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize}" />
+        <Setter Property="BorderThickness" Value="0.8" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Background" Value="{StaticResource BaseBackgroundColor}" />
+        <Setter Property="Foreground" Value="{StaticResource TextForeground}" />
+        <Setter Property="Padding" Value="6,4,6,4" />
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
+        <Setter Property="wpf:ControlAttachProperty.FocusBorderBrush" Value="{StaticResource FocusBorderBrush}" />
+        <Setter Property="wpf:ControlAttachProperty.MouseOverBorderBrush" Value="{StaticResource MouseOverBorderBrush}" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <!--  change SnapsToDevicePixels to True to view a better border and validation error  -->
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <!--  英 ['kærət]  美 ['kærət]  插入符号  -->
+        <Setter Property="CaretBrush" Value="{StaticResource TextForeground}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Grid x:Name="PART_Root">
+                        <Border
+                            x:Name="Bg"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding wpf:ControlAttachProperty.CornerRadius}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        <Grid x:Name="PART_InnerGrid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <!--  Label区域  -->
+                            <ContentControl
+                                x:Name="Label"
+                                Margin="1"
+                                Content="{TemplateBinding wpf:ControlAttachProperty.Label}"
+                                Template="{TemplateBinding wpf:ControlAttachProperty.LabelTemplate}" />
+                            <!--  内容区域  -->
+                            <ScrollViewer
+                                x:Name="PART_ContentHost"
+                                Grid.Column="1"
+                                Margin="{TemplateBinding Padding}"
+                                Padding="{TemplateBinding Padding}"
+                                VerticalAlignment="Stretch"
+                                VerticalContentAlignment="Center"
+                                Background="{x:Null}"
+                                BorderThickness="0"
+                                IsTabStop="False" />
+                            <!--  水印  -->
+                            <TextBlock
+                                x:Name="Message"
+                                Grid.Column="1"
+                                Margin="5,2,5,2"
+                                Padding="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Foreground="{TemplateBinding Foreground}"
+                                IsHitTestVisible="False"
+                                Opacity="{StaticResource WatermarkOpacity}"
+                                Text="{TemplateBinding wpf:ControlAttachProperty.Watermark}"
+                                Visibility="Collapsed" />
+                            <!--  附加内容区域  -->
+                            <Border
+                                x:Name="PART_AttachContent"
+                                Grid.Column="2"
+                                Margin="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                                <ContentControl
+                                    VerticalAlignment="Top"
+                                    VerticalContentAlignment="Top"
+                                    Template="{TemplateBinding wpf:ControlAttachProperty.AttachContent}" />
+                            </Border>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <!--  显示水印  -->
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value="">
+                            <Setter TargetName="Message" Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="{Binding Path=(wpf:ControlAttachProperty.MouseOverBorderBrush), RelativeSource={RelativeSource Self}}" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{Binding Path=(wpf:ControlAttachProperty.FocusBorderBrush), RelativeSource={RelativeSource Self}}" />
+                        </Trigger>
+                        <!--  不可用  -->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="PART_Root" Property="Opacity" Value="{StaticResource DisableOpacity}" />
+                        </Trigger>
+                        <!--  只读时，禁用PART_AttachContent  -->
+                        <Trigger Property="IsReadOnly" Value="True">
+                            <Setter TargetName="PART_AttachContent" Property="IsEnabled" Value="False" />
+                            <Setter TargetName="Bg" Property="Opacity" Value="{StaticResource ReadonlyOpacity}" />
+                            <Setter TargetName="PART_ContentHost" Property="Opacity" Value="{StaticResource ReadonlyOpacity}" />
+                            <Setter TargetName="Label" Property="Opacity" Value="{StaticResource ReadonlyOpacity}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="WithValidationMarkableTextBox"
+        BasedOn="{StaticResource MarkableTextBox}"
+        TargetType="{x:Type markableTextBox:MarkableTextBox}">
+        <Setter Property="FontSize" Value="14px" />
+        <Setter Property="Foreground" Value="{StaticResource BaseForegroundColor}" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Validation.ErrorTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <DockPanel>
+                        <TextBlock
+                            DockPanel.Dock="Bottom"
+                            FontSize="10"
+                            Foreground="#FFA63F"
+                            Text="{Binding ElementName=adornedElement, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}" />
+                        <Border
+                            BorderBrush="#FFA63F"
+                            BorderThickness="1"
+                            CornerRadius="3">
+                            <AdornedElementPlaceholder Name="adornedElement" />
+                        </Border>
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+    <!--#region MarkableComboBox-->
+
+    <Style x:Key="ComboBoxItemStyle" TargetType="ComboBoxItem">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Padding" Value="10,4,10,4" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBoxItem">
+                    <Grid Margin="0,0.5" Background="{TemplateBinding Background}">
+                        <Border
+                            x:Name="ItemBackground"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="1"
+                            IsHitTestVisible="False"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        <ContentPresenter
+                            x:Name="contentPresenter"
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="ItemBackground" Property="Background" Value="{StaticResource ItemSelectedBackground}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ItemBackground" Property="Background" Value="{StaticResource ItemMouseOverBackground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style BasedOn="{StaticResource ComboBoxItemStyle}" TargetType="{x:Type ComboBoxItem}" />
+
+    <Style x:Key="FIcon" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="/MaterialDesignThemes.Wpf;component/Themes/Fonts/#SF2015" />
+        <Setter Property="Foreground" Value="{StaticResource TextForeground}" />
+        <Setter Property="TextAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="20" />
+    </Style>
+
+    <!--  ComboBox的下拉 三角形图标  -->
+    <Style x:Key="ComboToggleButton" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="wpf:ControlAttachProperty.FIconSize" Value="16" />
+        <Setter Property="wpf:ControlAttachProperty.FIconMargin" Value="0,1,14,1" />
+        <Setter Property="wpf:ControlAttachProperty.FIcon" Value="&#xe64b;" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Grid x:Name="Grid">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Border
+                            x:Name="Bg"
+                            Grid.ColumnSpan="2"
+                            Margin="0,1,1,1"
+                            Background="{TemplateBinding Background}"
+                            Opacity="0.3"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        <TextBlock
+                            x:Name="FIcon"
+                            Grid.Column="1"
+                            Margin="{TemplateBinding wpf:ControlAttachProperty.FIconMargin}"
+                            wpf:ControlAttachProperty.AllowsAnimation="{TemplateBinding IsChecked}"
+                            FontSize="{Binding Path=(wpf:ControlAttachProperty.FIconSize), RelativeSource={RelativeSource TemplatedParent}}"
+                            Foreground="{TemplateBinding Foreground}"
+                            Style="{StaticResource FIcon}"
+                            Text="{TemplateBinding wpf:ControlAttachProperty.FIcon}" />
+                    </Grid>
+                    <!--  触发器  -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="{StaticResource MouseOverForeground}" />
+                            <Setter TargetName="Bg" Property="Opacity" Value="0.55" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Foreground" Value="{StaticResource PressedForeground}" />
+                            <Setter TargetName="Bg" Property="Opacity" Value="0.6" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Foreground" Value="{StaticResource PressedForeground}" />
+                            <Setter TargetName="Bg" Property="Opacity" Value="0.6" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="Grid" Property="Opacity" Value="{StaticResource DisableOpacity}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--  编辑状态文本框样式  -->
+    <Style x:Key="EditableTextBoxStyle" TargetType="{x:Type TextBox}">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="MaxLength" Value="2048" />
+        <Setter Property="Foreground" Value="{StaticResource TextForeground}" />
+        <Setter Property="ContextMenu" Value="{DynamicResource TextBoxContextMenu}" />
+        <Setter Property="SelectionBrush" Value="{StaticResource TextSelectionBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily}" />
+        <Setter Property="Focusable" Value="True" />
+        <Setter Property="CaretBrush" Value="{StaticResource TextForeground}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Style.Triggers>
+            <Trigger Property="IsReadOnly" Value="True">
+                <Setter Property="Opacity" Value="{StaticResource ReadonlyOpacity}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="{StaticResource DisableOpacity}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="MarkableComboBox" TargetType="{x:Type combo:MarkableComboBox}">
+        <Setter Property="Height" Value="34" />
+        <Setter Property="Validation.ErrorTemplate" Value="{x:Null}" />
+        <Setter Property="Foreground" Value="{StaticResource TextForeground}" />
+        <Setter Property="Background" Value="{StaticResource BaseBackgroundColor}" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="BorderThickness" Value="0.8" />
+        <Setter Property="wpf:ControlAttachProperty.FocusBackground" Value="{StaticResource BaseBackgroundColor}" />
+        <Setter Property="wpf:ControlAttachProperty.FocusBorderBrush" Value="{StaticResource FocusBorderBrush}" />
+        <Setter Property="wpf:ControlAttachProperty.MouseOverBorderBrush" Value="{StaticResource MouseOverBorderBrush}" />
+        <Setter Property="FontFamily" Value="{StaticResource FontFamily}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize}" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource ComboBoxItemStyle}" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="MaxDropDownHeight" Value="170" />
+        <Setter Property="Padding" Value="6,4,6,4" />
+        <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type combo:MarkableComboBox}">
+                    <Grid x:Name="PART_Root">
+                        <Border
+                            x:Name="Bg"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="4"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="21" />
+                            </Grid.ColumnDefinitions>
+                            <!--  Label区域  -->
+                            <ContentControl
+                                x:Name="Label"
+                                Margin="1,1,0,1"
+                                Content="{TemplateBinding wpf:ControlAttachProperty.Label}"
+                                IsHitTestVisible="False"
+                                IsTabStop="False"
+                                Template="{TemplateBinding wpf:ControlAttachProperty.LabelTemplate}" />
+                            <!--  附加内容区域  -->
+                            <Border
+                                x:Name="PART_AttachContent"
+                                Grid.Column="2"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Panel.ZIndex="2">
+                                <ContentControl
+                                    VerticalAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    Template="{TemplateBinding wpf:ControlAttachProperty.AttachContent}" />
+                            </Border>
+                            <!--  下拉按钮  -->
+                            <ToggleButton
+                                x:Name="PART_DropDownToggle"
+                                Grid.Column="1"
+                                Grid.ColumnSpan="3"
+                                Margin="2,1,2,1"
+                                Background="{TemplateBinding wpf:ControlAttachProperty.FocusBackground}"
+                                Foreground="White"
+                                IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                IsEnabled="{Binding Path=IsReadOnly, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TrueToFalseConverter}, Mode=OneWay}"
+                                IsTabStop="False"
+                                Style="{StaticResource ComboToggleButton}" />
+
+                            <!--  水印  -->
+                            <Border Grid.Column="1">
+                                <TextBlock
+                                    x:Name="Message"
+                                    Margin="5,2,5,2"
+                                    Padding="0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Foreground="{TemplateBinding Foreground}"
+                                    IsHitTestVisible="False"
+                                    Opacity="{StaticResource WatermarkOpacity}"
+                                    Text="{TemplateBinding wpf:ControlAttachProperty.Watermark}"
+                                    TextAlignment="Center"
+                                    Visibility="Collapsed" />
+                            </Border>
+                            <!--  主内容区域  -->
+                            <Grid
+                                x:Name="ContentSite"
+                                Grid.Column="1"
+                                Margin="2,0,0,0">
+                                <ContentPresenter
+                                    x:Name="PART_SelectedItem"
+                                    Margin="{TemplateBinding Padding}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Content="{TemplateBinding SelectionBoxItem}"
+                                    ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
+                                    ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                    ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                    IsHitTestVisible="False"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                <!--  文本编辑  -->
+                                <TextBox
+                                    x:Name="PART_EditableTextBox"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    FontFamily="{TemplateBinding FontFamily}"
+                                    FontSize="{TemplateBinding FontSize}"
+                                    Foreground="{TemplateBinding Foreground}"
+                                    IsHitTestVisible="True"
+                                    IsReadOnly="{TemplateBinding IsReadOnly}"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                    Style="{StaticResource EditableTextBoxStyle}"
+                                    Text="{TemplateBinding Text}"
+                                    Visibility="Collapsed" />
+                            </Grid>
+                        </Grid>
+                        <!--  弹出下拉控件  -->
+                        <Popup
+                            x:Name="PART_Popup"
+                            AllowsTransparency="True"
+                            Focusable="False"
+                            IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                            Placement="Bottom"
+                            PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
+                            <Grid Width="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}" MaxHeight="{Binding MaxDropDownHeight, RelativeSource={RelativeSource TemplatedParent}}">
+                                <Border
+                                    x:Name="PopupBorder"
+                                    Height="Auto"
+                                    HorizontalAlignment="Stretch"
+                                    Background="#16162B"
+                                    BorderBrush="#2C2C56"
+                                    BorderThickness="1" />
+                                <ScrollViewer
+                                    x:Name="DropDownScrollViewer"
+                                    Margin="1"
+                                    BorderThickness="1">
+                                    <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                </ScrollViewer>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                    <!--  触发器  -->
+                    <ControlTemplate.Triggers>
+                        <!--  1.显示水印  -->
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value="">
+                            <Setter TargetName="Message" Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                        <!--  编辑模式  -->
+                        <Trigger Property="IsEditable" Value="True">
+                            <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_SelectedItem" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PART_DropDownToggle" Property="Grid.Column" Value="3" />
+                            <Setter TargetName="PART_DropDownToggle" Property="Grid.ColumnSpan" Value="1" />
+                            <Setter TargetName="PART_DropDownToggle" Property="Background" Value="Transparent" />
+                            <Setter Property="IsTabStop" Value="false" />
+                            <Setter TargetName="PART_DropDownToggle" Property="Focusable" Value="False" />
+                        </Trigger>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="{Binding Path=(wpf:ControlAttachProperty.MouseOverBorderBrush), RelativeSource={RelativeSource Self}}" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{Binding Path=(wpf:ControlAttachProperty.FocusBorderBrush), RelativeSource={RelativeSource Self}}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                            <Setter Property="BorderBrush" Value="{Binding Path=(wpf:ControlAttachProperty.FocusBorderBrush), RelativeSource={RelativeSource Self}}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="PART_Root" Property="Opacity" Value="{StaticResource DisableOpacity}" />
+                        </Trigger>
+                        <Trigger Property="MarkStatus" Value="Default">
+                            <Setter Property="BorderBrush" Value="{StaticResource Markable.Default.Border}" />
+                        </Trigger>
+                        <Trigger Property="MarkStatus" Value="Modified">
+                            <Setter Property="BorderBrush" Value="{StaticResource Markable.Modified.Border}" />
+                        </Trigger>
+                        <Trigger Property="MarkStatus" Value="Error">
+                            <Setter Property="BorderBrush" Value="{StaticResource Markable.Error.Border}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style BasedOn="{StaticResource MarkableComboBox}" TargetType="{x:Type combo:MarkableComboBox}" />
+
+    <Style
+        x:Key="NanoButtonStyle"
+        BasedOn="{StaticResource MaterialDesignRaisedButton}"
+        TargetType="{x:Type Button}">
+        <Setter Property="FontSize" Value="14px" />
+        <Setter Property="Foreground" Value="{StaticResource BaseForegroundColor}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Background" Value="{StaticResource BaseBackgroundColor}" />
+        <Setter Property="wpf:ButtonAssist.IsEnable" Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled, Mode=TwoWay}" />
+    </Style>
+    <Style BasedOn="{StaticResource NanoButtonStyle}" TargetType="{x:Type Button}" />
+
+    <Style
+        x:Key="NanoPopupBoxStyle"
+        BasedOn="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
+        TargetType="{x:Type wpf:PopupBox}">
+        <Setter Property="Foreground" Value="{StaticResource BaseForegroundColor}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Background" Value="{StaticResource BaseBackgroundColor}" />
+        <Setter Property="PlacementMode" Value="RightAndAlignTopEdges" />
+        <Setter Property="ToolTipService.Placement" Value="Mouse" />
+    </Style>
+    <Style BasedOn="{StaticResource NanoPopupBoxStyle}" TargetType="{x:Type wpf:PopupBox}" />
+
+    <Style
+        x:Key="NanoTextBlockStyle"
+        BasedOn="{StaticResource MaterialDesignTextBlock}"
+        TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="14px" />
+        <Setter Property="Foreground" Value="{StaticResource BaseForegroundColor}" />
+    </Style>
+    <Style BasedOn="{StaticResource NanoTextBlockStyle}" TargetType="{x:Type TextBlock}" />
+
+    <Style
+        x:Key="NanoComboBoxStyle"
+        BasedOn="{StaticResource MaterialDesignOutlinedComboBox}"
+        TargetType="{x:Type ComboBox}">
+        <Setter Property="FontSize" Value="14px" />
+        <Setter Property="Foreground" Value="{StaticResource BaseForegroundColor}" />
+        <Setter Property="Background" Value="{DynamicResource BaseBackgroundColor}" />
+    </Style>
+    <Style BasedOn="{StaticResource NanoComboBoxStyle}" TargetType="{x:Type ComboBox}" />
+
+    <Style
+        x:Key="NanoTabControlStyle"
+        BasedOn="{StaticResource MaterialDesignTabControlBase}"
+        TargetType="{x:Type TabControl}">
+        <Setter Property="FontSize" Value="14px" />
+        <Setter Property="Foreground" Value="{StaticResource BaseForegroundColor}" />
+    </Style>
+    <Style BasedOn="{StaticResource NanoTabControlStyle}" TargetType="{x:Type TabControl}" />
+
+    <Style
+        x:Key="NanoCheckBoxStyle"
+        BasedOn="{StaticResource MaterialDesignCheckBox}"
+        TargetType="{x:Type CheckBox}">
+        <Setter Property="FontSize" Value="14px" />
+        <Setter Property="Foreground" Value="{StaticResource BaseForegroundColor}" />
+        <Setter Property="Background" Value="{StaticResource BaseForegroundColor}" />
+    </Style>
+    <Style BasedOn="{StaticResource NanoCheckBoxStyle}" TargetType="{x:Type CheckBox}" />
+
+    <Style
+        x:Key="NanoRadioButtonStyle"
+        BasedOn="{StaticResource MaterialDesignRadioButton}"
+        TargetType="{x:Type RadioButton}">
+        <Setter Property="FontSize" Value="14px" />
+        <Setter Property="Foreground" Value="{StaticResource BaseForegroundColor}" />
+        <Setter Property="Background" Value="{StaticResource BaseForegroundColor}" />
+    </Style>
+    <Style BasedOn="{StaticResource NanoRadioButtonStyle}" TargetType="{x:Type RadioButton}" />
+
+    <Style
+        x:Key="NanoScrollBarStyle"
+        BasedOn="{StaticResource MaterialDesignScrollBarMinimal}"
+        TargetType="{x:Type ScrollBar}">
+        <Setter Property="wpf:ScrollBarAssist.ThumbCornerRadius" Value="5" />
+        <Setter Property="ContextMenu" Value="{x:Null}" />
+    </Style>
+    <Style BasedOn="{StaticResource NanoScrollBarStyle}" TargetType="{x:Type ScrollBar}" />
+    <Style x:Key="NanoStackPanelStyle" TargetType="{x:Type StackPanel}">
+        <Setter Property="ItemsControl.HorizontalAlignment" Value="Stretch" />
+        <Setter Property="Margin" Value="0,0,0,0" />
+    </Style>
+    <Style BasedOn="{StaticResource NanoStackPanelStyle}" TargetType="{x:Type StackPanel}" />
+
+    <Style x:Key="NanoProgressBarStyle" TargetType="{x:Type ProgressBar}">
+        <Setter Property="Background" Value="{StaticResource BaseForegroundColor}" />
+        <Setter Property="Foreground" Value="Yellow" />
+        <Setter Property="IsIndeterminate" Value="True" />
+        <Setter Property="Height" Value="3" />
+    </Style>
+    <Style BasedOn="{StaticResource NanoProgressBarStyle}" TargetType="{x:Type ProgressBar}" />
+
+    <Style
+        x:Key="NanoDatePickerStyle"
+        BasedOn="{StaticResource MaterialDesignOutlinedDatePicker}"
+        TargetType="{x:Type DatePicker}" />
+    <Style BasedOn="{StaticResource NanoDatePickerStyle}" TargetType="{x:Type DatePicker}" />
+
+    <Style x:Key="NanoPathStyle" TargetType="{x:Type Path}">
+        <Setter Property="Fill" Value="{StaticResource TextBoxBrush}" />
+    </Style>
+    <Style BasedOn="{StaticResource NanoPathStyle}" TargetType="{x:Type Path}" />
+
+    <Style
+        x:Key="NanoPasswordBoxStyle"
+        BasedOn="{StaticResource MaterialDesignPasswordBoxNano}"
+        TargetType="{x:Type PasswordBox}">
+        <Setter Property="FontSize" Value="14px" />
+        <Setter Property="Foreground" Value="{StaticResource BaseForegroundColor}" />
+    </Style>
+    <Style BasedOn="{StaticResource NanoPasswordBoxStyle}" TargetType="{x:Type PasswordBox}" />
+
+    <Style x:Key="WindowsBorder" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="#16162B" />
+        <Setter Property="BorderBrush" Value="#5a5a89" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+    <!--  软件1.0里边搬过来的样式  -->
+    <Style
+        x:Key="HighlightBackgroundButton"
+        BasedOn="{StaticResource MaterialDesignRaisedButton}"
+        TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{DynamicResource ButtonBackground}" />
+        <Setter Property="FontSize" Value="14px" />
+        <Setter Property="Foreground" Value="{StaticResource BaseForegroundColor}" />
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+        <Setter Property="wpf:ButtonAssist.IsEnable" Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled, Mode=TwoWay}" />
+    </Style>
+    <Style x:Key="StackPanelGrid" TargetType="{x:Type Grid}">
+        <Setter Property="Margin" Value="0,2,0,2" />
+        <Setter Property="Height" Value="34" />
+    </Style>
+    <Style x:Key="TitleLabelStyle" TargetType="{x:Type Label}">
+        <Setter Property="Margin" Value="0,0,0,0" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="{StaticResource BaseForegroundColor}" />
+    </Style>
+    <Style x:Key="BoldLabelStyle" TargetType="{x:Type Label}">
+        <Setter Property="FontSize" Value="14px" />
+        <Setter Property="Margin" Value="0,2,0,2" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+        <Setter Property="Foreground" Value="#FFC6C6EC" />
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+    <Style x:Key="StressLineStyle" TargetType="{x:Type Rectangle}">
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Margin" Value="3,0,0,0" />
+        <Setter Property="Stroke" Value="#3044D9" />
+        <Setter Property="StrokeThickness" Value="3" />
+        <Setter Property="Width" Value="80" />
+    </Style>
+    <Style x:Key="WindowTitleGrid" TargetType="{x:Type Grid}">
+        <Setter Property="Background" Value="{StaticResource BaseTabBackBrush}" />
+        <Setter Property="Opacity" Value="0.5" />
+    </Style>
+    <Style x:Key="WrapPanelGrid" TargetType="{x:Type Grid}">
+        <Setter Property="Width" Value="330" />
+        <Setter Property="Margin" Value="0,5,0,5" />
+    </Style>
+
+    <!--  弹出框关闭按钮  -->
+    <Style
+        x:Key="TileCloseButtonStyle"
+        BasedOn="{StaticResource MaterialDesignIconButton}"
+        TargetType="{x:Type Button}">
+        <Setter Property="Margin" Value="0,0,5,0" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Opacity" Value="0.7" />
+        <Setter Property="ToolTip" Value="Close" />
+    </Style>
+    <Style
+        x:Key="TileClosePathStyle"
+        BasedOn="{StaticResource WindowClose}"
+        TargetType="{x:Type Path}">
+        <Setter Property="Fill" Value="{StaticResource TextBoxBrush}" />
+        <Setter Property="Height" Value="16" />
+        <Setter Property="Width" Value="16" />
+        <Setter Property="Stretch" Value="Fill" />
+    </Style>
+
+    <Style x:Key="WindowContentBorder" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="#5A5A89" />
+        <Setter Property="Opacity" Value="0.3" />
+        <Setter Property="CornerRadius" Value="5 5 0 0" />
+    </Style>
+
+    <Style
+        x:Key="TileTextBlock"
+        BasedOn="{StaticResource MaterialDesignTextBlock}"
+        TargetType="{x:Type TextBlock}">
+        <Setter Property="Margin" Value="10,0,0,0" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="14px" />
+        <Setter Property="Foreground" Value="{StaticResource BaseForegroundColor}" />
+    </Style>
+    <Style x:Key="MessageInfoTextBlock" TargetType="{x:Type TextBlock}">
+        <Setter Property="Margin" Value="10,0,10,0" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Foreground" Value="#ffffff" />
+    </Style>
+    <Style
+        x:Key="RadioButton"
+        BasedOn="{StaticResource MaterialDesignRadioButton}"
+        TargetType="{x:Type RadioButton}">
+        <Setter Property="Margin" Value="15,0,0,0" />
+        <Setter Property="FontSize" Value="10" />
+    </Style>
+    <Style x:Key="GroupedBorder" TargetType="{x:Type Border}">
+        <Setter Property="BorderBrush" Value="#5A5A89" />
+        <Setter Property="BorderThickness" Value="1.4" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="Background" Value="#14142B" />
+    </Style>
+
+    <Style x:Key="ToolButtonBorder" TargetType="{x:Type Border}">
+        <Setter Property="Opacity" Value="0.3" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="CornerRadius" Value="0,0,0,10" />
+        <Setter Property="Background" Value="#5A5A89" />
+    </Style>
+    <Style x:Key="StretchGrid" TargetType="{x:Type Grid}">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+    </Style>
+
+    <Style
+        x:Key="InfomationGrid"
+        BasedOn="{StaticResource StretchGrid}"
+        TargetType="{x:Type Grid}">
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="True">
+                <Setter Property="Visibility" Value="Visible" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Visibility" Value="Collapsed" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="SectionTitleTextBlock" TargetType="{x:Type TextBlock}">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Height" Value="34" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="#c8c9ed" />
+    </Style>
+    <Style x:Key="MandatoryInputTextBlock" TargetType="{x:Type TextBlock}">
+        <Setter Property="Text" Value="*" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="#FFA63F" />
+    </Style>
+
+    <Style x:Key="InputLabelTextBlock" TargetType="{x:Type TextBlock}">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Foreground" Value="#ffff" />
+    </Style>
+    <Style
+        x:Key="MandatoryInputLabelTextBlock"
+        BasedOn="{StaticResource InputLabelTextBlock}"
+        TargetType="{x:Type TextBlock}">
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+    <Style x:Key="SectionTitleUnderlineRectangle" TargetType="{x:Type Rectangle}">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+        <Setter Property="Stroke" Value="#3245d8" />
+        <Setter Property="StrokeThickness" Value="3" />
+        <Setter Property="Height" Value="3" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+    </Style>
+
+    <Style
+        x:Key="WithValidationTextBox"
+        BasedOn="{StaticResource MaterialDesignOutlinedTextBox}"
+        TargetType="{x:Type TextBox}">
+        <Setter Property="FontSize" Value="14px" />
+        <Setter Property="Foreground" Value="{StaticResource BaseForegroundColor}" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Height" Value="32px" />
+        <Setter Property="Validation.ErrorTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <DockPanel>
+                        <TextBlock
+                            DockPanel.Dock="Bottom"
+                            FontSize="10"
+                            Foreground="#FFA63F"
+                            Text="{Binding ElementName=adornedElement, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}" />
+                        <Border
+                            BorderBrush="#FFA63F"
+                            BorderThickness="1"
+                            CornerRadius="3">
+                            <AdornedElementPlaceholder Name="adornedElement" />
+                        </Border>
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style
+        x:Key="CommonButton"
+        BasedOn="{StaticResource MaterialDesignRaisedButton}"
+        TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#272743" />
+        <Setter Property="FontSize" Value="14px" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="Width" Value="100" />
+        <Setter Property="Height" Value="40" />
+    </Style>
+    <Style
+        x:Key="ServiceCommonButton"
+        BasedOn="{StaticResource CommonButton}"
+        TargetType="{x:Type Button}">
+        <Setter Property="MinWidth" Value="100" />
+        <Setter Property="Width" Value="auto" />
+        <Setter Property="Padding" Value="10,4" />
+    </Style>
+    <Style
+        x:Key="ExamButton"
+        BasedOn="{StaticResource CommonButton}"
+        TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#1665D8" />
+    </Style>
+    <Style
+        x:Key="ToolbarButton"
+        BasedOn="{StaticResource MaterialDesignRaisedButton}"
+        TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Opacity" Value="0.7" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+    <Style x:Key="DataGridContentTextBlock" TargetType="{x:Type TextBlock}">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Foreground" Value="#ffff" />
+    </Style>
+    <Style x:Key="DataGridContentImage" TargetType="{x:Type Image}">
+        <Setter Property="Width" Value="22" />
+        <Setter Property="Height" Value="22" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+    <Style x:Key="CommonScrollViewer" TargetType="{x:Type ScrollViewer}">
+        <Setter Property="CanContentScroll" Value="True" />
+        <Setter Property="HorizontalScrollBarVisibility" Value="Visible" />
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+    </Style>
+
+    <Style
+        x:Key="CommonDataGrid"
+        BasedOn="{StaticResource MaterialDesignDataGrid}"
+        TargetType="{x:Type DataGrid}">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="ColumnHeaderHeight" Value="40" />
+        <Setter Property="GridLinesVisibility" Value="Horizontal" />
+        <Setter Property="AutoGenerateColumns" Value="False" />
+        <Setter Property="IsReadOnly" Value="True" />
+        <Setter Property="SelectionUnit" Value="FullRow" />
+        <Setter Property="HorizontalScrollBarVisibility" Value="Visible" />
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+    </Style>
+    <Style
+        x:Key="SearchButton"
+        BasedOn="{StaticResource MaterialDesignToolButton}"
+        TargetType="{x:Type Button}">
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="Height" Value="26" />
+        <Setter Property="Width" Value="26" />
+        <Setter Property="Margin" Value="0,0,10,0" />
+    </Style>
+    <Style
+        x:Key="SearchTextBox"
+        BasedOn="{StaticResource MaterialDesignOutlinedTextBox}"
+        TargetType="{x:Type TextBox}">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Background" Value="#FF14142B" />
+        <Setter Property="BorderBrush" Value="#FF3B3B5F" />
+        <Setter Property="Foreground" Value="#FFFFFFFF" />
+        <Setter Property="wpf:HintAssist.Background" Value="Transparent" />
+        <Setter Property="wpf:HintAssist.Foreground" Value="#FF3B3B5F" />
+        <Setter Property="wpf:TextFieldAssist.DecorationVisibility" Value="Hidden" />
+        <Setter Property="wpf:TextFieldAssist.TextFieldCornerRadius" Value="18" />
+        <Setter Property="Height" Value="40" />
+    </Style>
+    <Style x:Key="HeaderLabelTextBlock" TargetType="{x:Type TextBlock}">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Foreground" Value="#ffff" />
+    </Style>
+    <Style x:Key="PatientManagementExportContextMenu" TargetType="{x:Type ContextMenu}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContextMenu">
+                    <Grid>
+                        <Border
+                            x:Name="my_border"
+                            Width="250"
+                            Height="150"
+                            Padding="0,1,1,1"
+                            Background="#16162B"
+                            BorderBrush="#4F4F79"
+                            BorderThickness="1,1,1,1"
+                            CornerRadius="5"
+                            SnapsToDevicePixels="True">
+                            <ItemsPresenter />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="BorderStyle" TargetType="{x:Type Border}">
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="True">
+                <Setter Property="Visibility" Value="Visible" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Visibility" Value="Collapsed" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style
+        x:Key="ToolsRadioButton"
+        BasedOn="{StaticResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}"
+        TargetType="{x:Type RadioButton}">
+        <Setter Property="Command" Value="{Binding Commands[ToolsCommand]}" />
+        <Setter Property="MinWidth" Value="0" />
+    </Style>
+
+    <Style
+        x:Key="ImageListViewRadioButton"
+        BasedOn="{StaticResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}"
+        TargetType="{x:Type RadioButton}">
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=(wpf:ThemeAssist.TriggerBrush), RelativeSource={RelativeSource Self}, Converter={StaticResource IsDarkConverter}}" Value="True" />
+                    <Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueLightBrush}" />
+                <Setter Property="Background" Value="Transparent" />
+            </MultiDataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style
+        x:Key="List01RadioButton"
+        BasedOn="{StaticResource ImageListViewRadioButton}"
+        TargetType="{x:Type RadioButton}">
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <Path
+                            Width="15"
+                            Height="15"
+                            Fill="White"
+                            Stretch="Fill"
+                            Style="{StaticResource List01}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="IsChecked" Value="False">
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <Path
+                            Width="15"
+                            Height="15"
+                            Fill="#5A5A89"
+                            Stretch="Fill"
+                            Style="{StaticResource List01}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style
+        x:Key="List02RadioButton"
+        BasedOn="{StaticResource ImageListViewRadioButton}"
+        TargetType="{x:Type RadioButton}">
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <Path
+                            Width="15"
+                            Height="15"
+                            Fill="White"
+                            Stretch="Fill"
+                            Style="{StaticResource List02}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="IsChecked" Value="False">
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <Path
+                            Width="15"
+                            Height="15"
+                            Fill="#5A5A89"
+                            Stretch="Fill"
+                            Style="{StaticResource List02}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="PatientManagementInstanceViewContextMenu" TargetType="{x:Type ContextMenu}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContextMenu">
+                    <Grid>
+                        <Border
+                            x:Name="my_border"
+                            Width="225"
+                            Height="80"
+                            Padding="0,2,2,2"
+                            Background="#16162B"
+                            BorderBrush="#4F4F79"
+                            BorderThickness="1.5,1.5,1.5,1.5"
+                            CornerRadius="5"
+                            SnapsToDevicePixels="True">
+                            <ItemsPresenter />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="PatientManagementSeriesViewLocalDataContextMenu" TargetType="{x:Type ContextMenu}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContextMenu">
+                    <Grid>
+                        <Border
+                            x:Name="my_border"
+                            Width="220"
+                            Height="160"
+                            Padding="0,1,1,1"
+                            Background="#16162B"
+                            BorderBrush="#4F4F79"
+                            BorderThickness="1,1,1,1"
+                            CornerRadius="5"
+                            SnapsToDevicePixels="True">
+                            <ItemsPresenter />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--  GlintButtons  -->
+    <Style
+        x:Key="RefreshGlintButton"
+        BasedOn="{StaticResource ToolbarButton}"
+        TargetType="Button">
+        <Style.Triggers>
+            <Trigger Property="Button.IsMouseOver" Value="true">
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <Path
+                            Width="15"
+                            Height="15"
+                            Fill="White"
+                            Stretch="Fill"
+                            Style="{StaticResource Refresh}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="Button.IsMouseOver" Value="false">
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <Path
+                            Width="15"
+                            Height="15"
+                            Fill="{StaticResource TextBoxBrush}"
+                            Stretch="Fill"
+                            Style="{StaticResource Refresh}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style
+        x:Key="RepeatRefreshGlintButton"
+        BasedOn="{StaticResource ToolbarButton}"
+        TargetType="Button">
+        <Style.Triggers>
+            <Trigger Property="Button.IsMouseOver" Value="true">
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <Path
+                            Width="15"
+                            Height="15"
+                            Fill="White"
+                            Stretch="Fill"
+                            Style="{StaticResource Refresh}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="Button.IsMouseOver" Value="false">
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <Path
+                            Width="15"
+                            Height="15"
+                            Fill="{StaticResource TextBoxBrush}"
+                            Stretch="Fill"
+                            Style="{StaticResource Refresh}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style
+        x:Key="FilterGlintButton"
+        BasedOn="{StaticResource ToolbarButton}"
+        TargetType="Button">
+        <Style.Triggers>
+            <Trigger Property="Button.IsMouseOver" Value="true">
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <Path
+                            Width="15"
+                            Height="15"
+                            Fill="White"
+                            Stretch="Fill"
+                            Style="{StaticResource Filter}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="Button.IsMouseOver" Value="false">
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <Path
+                            Width="15"
+                            Height="15"
+                            Fill="{StaticResource TextBoxBrush}"
+                            Stretch="Fill"
+                            Style="{StaticResource Filter}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style
+        x:Key="AddGlintButton"
+        BasedOn="{StaticResource ToolbarButton}"
+        TargetType="Button">
+        <Style.Triggers>
+            <Trigger Property="Button.IsMouseOver" Value="true">
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <Path
+                            Width="15"
+                            Height="15"
+                            Fill="White"
+                            Stretch="Fill"
+                            Style="{StaticResource AddGeometry}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="Button.IsMouseOver" Value="false">
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <Path
+                            Width="15"
+                            Height="15"
+                            Fill="{StaticResource TextBoxBrush}"
+                            Stretch="Fill"
+                            Style="{StaticResource AddGeometry}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style
+        x:Key="ImportGlintButton"
+        BasedOn="{StaticResource ToolbarButton}"
+        TargetType="Button">
+        <Style.Triggers>
+            <Trigger Property="Button.IsMouseOver" Value="true">
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <Path
+                            Width="15"
+                            Height="15"
+                            Fill="White"
+                            Stretch="Fill"
+                            Style="{StaticResource Import}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="Button.IsMouseOver" Value="false">
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <Path
+                            Width="15"
+                            Height="15"
+                            Fill="{StaticResource TextBoxBrush}"
+                            Stretch="Fill"
+                            Style="{StaticResource Import}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style
+        x:Key="RawdataImportGlintButton"
+        BasedOn="{StaticResource ToolbarButton}"
+        TargetType="Button">
+        <Style.Triggers>
+            <Trigger Property="Button.IsMouseOver" Value="true">
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <Path
+                            Width="17"
+                            Height="17"
+                            Fill="White"
+                            Stretch="Fill"
+                            Style="{StaticResource ImportRawData}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="Button.IsMouseOver" Value="false">
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <Path
+                            Width="17"
+                            Height="17"
+                            Fill="{StaticResource TextBoxBrush}"
+                            Stretch="Fill"
+                            Style="{StaticResource ImportRawData}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style
+        x:Key="GotoViewGlintButton"
+        BasedOn="{StaticResource ToolbarButton}"
+        TargetType="Button">
+        <Style.Triggers>
+            <Trigger Property="Button.IsMouseOver" Value="true">
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <Path
+                            Fill="White"
+                            Stretch="Fill"
+                            Style="{StaticResource Viewlogo}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="Button.IsMouseOver" Value="false">
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <Path
+                            Fill="{StaticResource TextBoxBrush}"
+                            Stretch="Fill"
+                            Style="{StaticResource Viewlogo}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style
+        x:Key="GotoReconGlintButton"
+        BasedOn="{StaticResource ToolbarButton}"
+        TargetType="Button">
+        <Style.Triggers>
+            <Trigger Property="Button.IsMouseOver" Value="true">
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <Path
+                            Fill="White"
+                            Stretch="Uniform"
+                            Style="{StaticResource RScan}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="Button.IsMouseOver" Value="false">
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <Path
+                            Fill="{StaticResource TextBoxBrush}"
+                            Stretch="Uniform"
+                            Style="{StaticResource RScan}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style
+        x:Key="GotoPrintGlintButton"
+        BasedOn="{StaticResource ToolbarButton}"
+        TargetType="Button">
+        <Style.Triggers>
+            <Trigger Property="Button.IsMouseOver" Value="true">
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <Path
+                            Fill="White"
+                            Stretch="Uniform"
+                            Style="{StaticResource Print}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="Button.IsMouseOver" Value="false">
+                <Setter Property="Content">
+                    <Setter.Value>
+                        <Path
+                            Fill="{StaticResource TextBoxBrush}"
+                            Stretch="Uniform"
+                            Style="{StaticResource Print}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style
+        x:Key="NanoToggleButtonStyle"
+        BasedOn="{StaticResource MaterialDesignSwitchToggleButton}"
+        TargetType="{x:Type ToggleButton}" />
+    <Style BasedOn="{StaticResource NanoToggleButtonStyle}" TargetType="{x:Type ToggleButton}" />
+
+    <Style TargetType="{x:Type control:IPAddressControl}">
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type control:IPAddressControl}">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="3">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <markableTextBox:MarkableTextBox
+                                x:Name="PART_TextBox1"
+                                Grid.Column="0"
+                                HorizontalContentAlignment="Center"
+                                MaxLength="3" />
+                            <TextBlock
+                                Grid.Column="1"
+                                Margin="5,0,5,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Text="." />
+
+                            <markableTextBox:MarkableTextBox
+                                x:Name="PART_TextBox2"
+                                Grid.Column="2"
+                                HorizontalContentAlignment="Center"
+                                MaxLength="3" />
+                            <TextBlock
+                                Grid.Column="3"
+                                Margin="5,0,5,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Text="." />
+
+                            <markableTextBox:MarkableTextBox
+                                x:Name="PART_TextBox3"
+                                Grid.Column="4"
+                                HorizontalContentAlignment="Center"
+                                MaxLength="3" />
+                            <TextBlock
+                                Grid.Column="5"
+                                Margin="5,0,5,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Text="." />
+
+                            <markableTextBox:MarkableTextBox
+                                x:Name="PART_TextBox4"
+                                Grid.Column="6"
+                                HorizontalContentAlignment="Center"
+                                MaxLength="3" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

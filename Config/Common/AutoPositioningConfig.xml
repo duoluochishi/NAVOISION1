@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AutoPositioningConfig>
+	<AutoPositioning>
+		<Resolution Value="1280*768" Default="1280*768" />
+		<PixelSize Min="0" Max="10" />
+		<LeftImageOffset Value="0" Default="0" />
+		<ISOCenterOffset Value="0" Default="0" />
+	</AutoPositioning>
+</AutoPositioningConfig>

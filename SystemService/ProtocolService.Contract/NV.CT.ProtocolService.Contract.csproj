@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Protocol\NV.CT.Protocol.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="NV.CT.FacadeProxy.Common">
+      <HintPath>..\..\bin\NV.CT.FacadeProxy.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

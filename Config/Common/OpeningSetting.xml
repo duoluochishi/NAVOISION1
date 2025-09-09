@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CollimatorOpenings>
+  <OpeningSetting Opening="288" TableFeed="200000" SliceWidth="47520" />
+  <OpeningSetting Opening="256" TableFeed="200000" SliceWidth="42240" />
+  <OpeningSetting Opening="242" TableFeed="200000" SliceWidth="39930" />
+  <OpeningSetting Opening="192" TableFeed="200000" SliceWidth="31680" />
+  <OpeningSetting Opening="144" TableFeed="120000" SliceWidth="23760" />
+  <OpeningSetting Opening="128" TableFeed="120000" SliceWidth="21120" />
+  <OpeningSetting Opening="64" TableFeed="6000" SliceWidth="10560" />
+</CollimatorOpenings>

@@ -1,0 +1,1054 @@
+﻿<UserControl
+    x:Class="NV.CT.ImageViewer.View.Control2D"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:extensions="clr-namespace:NV.CT.ImageViewer.Extensions"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    d:DesignHeight="800"
+    d:DesignWidth="300"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="BaseStyle" TargetType="{x:Type FrameworkElement}">
+            <Setter Property="Width" Value="26" />
+            <Setter Property="Height" Value="26" />
+            <Setter Property="Margin" Value="5,5,5,5" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+        <Style BasedOn="{StaticResource BaseStyle}" TargetType="{x:Type TextBlock}">
+            <Setter Property="Padding" Value="5" />
+        </Style>
+        <Style BasedOn="{StaticResource BaseStyle}" TargetType="{x:Type Button}">
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+        <Style x:Key="ComplexGrid" TargetType="{x:Type Grid}">
+            <Setter Property="Width" Value="38" />
+            <Setter Property="Height" Value="38" />
+            <Setter Property="Margin" Value="3,0,3,0" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+        <!--<Style TargetType="{x:Type ToolTip}">
+			<Setter Property="HorizontalOffset" Value="5" />
+			<Setter Property="VerticalOffset" Value="5" />
+			<Setter Property="Background" Value="Black" />
+			<Setter Property="Placement" Value="Right" />
+			<Setter Property="BorderThickness" Value="0" />
+		</Style>-->
+        <Style TargetType="ContextMenu">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ContextMenu">
+                        <Grid>
+                            <!--<Path Stroke="#353557"  Data="M168,0.5 L18,0.5 C15.3766474,0.5 13.0016474,1.56332372 11.2824856,3.28248558 C9.56332372,5.00164744 8.5,7.37664744 8.5,10 L8.5,53.1900997 L0.668977477,62 L8.5,70.8099003 L8.5,303 C8.5,305.623353 9.56332372,307.998353 11.2824856,309.717514 C13.0016474,311.436676 15.3766474,312.5 18,312.5 L168,312.5 C170.623353,312.5 172.998353,311.436676 174.717514,309.717514 C176.436676,307.998353 177.5,305.623353 177.5,303 L177.5,10 C177.5,7.37664744 176.436676,5.00164744 174.717514,3.28248558 C172.998353,1.56332372 170.623353,0.5 168,0.5 Z"  StrokeThickness="1.6" Fill="#16162B"  HorizontalAlignment="Left">
+                        </Path>-->
+                            <Border
+                                x:Name="my_border"
+                                Width="auto"
+                                Height="auto"
+                                Padding="0"
+                                Background="#16162B"
+                                BorderBrush="#4F4F79"
+                                BorderThickness="1.5,1.5,1.5,1.5"
+                                CornerRadius="5"
+                                SnapsToDevicePixels="True">
+                                <ItemsPresenter Margin="0" />
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="BackendContextMenu" TargetType="{x:Type ContextMenu}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ContextMenu">
+                        <Grid>
+                            <!--<Path Stroke="#353557"  Data="M168,0.5 L18,0.5 C15.3766474,0.5 13.0016474,1.56332372 11.2824856,3.28248558 C9.56332372,5.00164744 8.5,7.37664744 8.5,10 L8.5,53.1900997 L0.668977477,62 L8.5,70.8099003 L8.5,303 C8.5,305.623353 9.56332372,307.998353 11.2824856,309.717514 C13.0016474,311.436676 15.3766474,312.5 18,312.5 L168,312.5 C170.623353,312.5 172.998353,311.436676 174.717514,309.717514 C176.436676,307.998353 177.5,305.623353 177.5,303 L177.5,10 C177.5,7.37664744 176.436676,5.00164744 174.717514,3.28248558 C172.998353,1.56332372 170.623353,0.5 168,0.5 Z"  StrokeThickness="1.6" Fill="#16162B"  HorizontalAlignment="Left">
+                        </Path>-->
+                            <Border
+                                x:Name="my_border"
+                                Width="auto"
+                                Height="auto"
+                                Padding="0"
+                                Background="#16162B"
+                                BorderBrush="#4F4F79"
+                                BorderThickness="1.5,1.5,1.5,1.5"
+                                CornerRadius="5"
+                                SnapsToDevicePixels="True">
+                                <ItemsPresenter Margin="0" />
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type MenuItem}">
+            <Setter Property="Background" Value="#16162B" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="Width" Value="100" />
+        </Style>
+        <Style TargetType="{x:Type Separator}">
+            <Setter Property="Height" Value="1" />
+        </Style>
+        <Style
+            x:Key="BackendMenuItem"
+            BasedOn="{StaticResource MaterialDesignMenuItem}"
+            TargetType="{x:Type MenuItem}">
+            <Setter Property="Background" Value="#16162B" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="Width" Value="100" />
+        </Style>
+        <Style x:Key="BackendSeparator" TargetType="{x:Type Separator}">
+            <Setter Property="Height" Value="1" />
+        </Style>
+        <extensions:SyncSeriesModeToBooleanConverter x:Key="SyncSeriesModeToBooleanConverter" />
+    </UserControl.Resources>
+
+    <Grid x:Name="grdIcon">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <!--  View标签  -->
+        <Label
+            Grid.Row="0"
+            Margin="0,5"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Center"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#5A5A89"
+            Content="{x:Static res:LanguageResource.Content_View}"
+            FontSize="15"
+            FontWeight="Bold"
+            Foreground="White"
+            Opacity="0.7" />
+
+        <StackPanel Grid.Row="1" Orientation="Vertical">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <!--  布局  -->
+                <Grid
+                    Grid.Column="0"
+                    Style="{StaticResource ComplexGrid}"
+                    ToolTip="{x:Static res:LanguageResource.ToolTip_Layout}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="6" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="txtLayout" Tag="0">
+                        <TextBlock.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/stack 2x1_0.png" />
+                        </TextBlock.Background>
+                    </TextBlock>
+                    <Label
+                        x:Name="labelLayout"
+                        Grid.Column="1"
+                        Margin="0,0,0,7"
+                        VerticalAlignment="Bottom"
+                        MouseLeftButtonDown="LabelLayout_OnMouseLeftButtonDown">
+                        <Label.Content>
+                            <Path
+                                Width="6"
+                                Height="6"
+                                Fill="{StaticResource TextBoxBrush}"
+                                Stretch="Fill"
+                                Style="{StaticResource Down}" />
+                        </Label.Content>
+                        <Label.ContextMenu>
+                            <ContextMenu x:Name="menuLayout" Placement="MousePoint">
+                                <MenuItem Foreground="White" Header="Flow">
+                                    <MenuItem
+                                        Name="Item_Layout_1x1"
+                                        Margin="0"
+                                        Command="{Binding Commands[Layout]}"
+                                        CommandParameter="T1x1"
+                                        Header="  1x1  " />
+                                    <Separator Height="1" />
+                                    <MenuItem
+                                        Name="Item_Layout_2x2"
+                                        Command="{Binding Commands[Layout]}"
+                                        CommandParameter="T2x2"
+                                        Header="  2x2  " />
+                                    <Separator Height="1" />
+                                    <MenuItem
+                                        Name="Item_Layout_3x3"
+                                        Command="{Binding Commands[Layout]}"
+                                        CommandParameter="T3x3"
+                                        Header="  3x3  " />
+                                    <Separator Height="1" />
+                                    <MenuItem
+                                        Name="Item_Layout_4x2"
+                                        Command="{Binding Commands[Layout]}"
+                                        CommandParameter="T4x2"
+                                        Header="  4x2  " />
+                                    <Separator Height="1" />
+                                    <MenuItem
+                                        Name="Item_Layout_4x3"
+                                        Command="{Binding Commands[Layout]}"
+                                        CommandParameter="T4x3"
+                                        Header="  4x3  " />
+                                    <Separator Height="1" />
+                                    <MenuItem
+                                        Name="Item_Layout_Custom"
+                                        Command="{Binding Commands[Layout]}"
+                                        CommandParameter="TCustom"
+                                        Header="  Custom  " />
+                                </MenuItem>
+                                <MenuItem Foreground="White" Header="Stack">
+                                    <MenuItem
+                                        Name="Stack_Item_Layout_1x1"
+                                        Command="{Binding Commands[Layout]}"
+                                        CommandParameter="S1x2"
+                                        Header="  1x2  " />
+                                    <Separator Height="1" />
+                                    <MenuItem
+                                        Name="Stack_Item_Layout_2x2"
+                                        Command="{Binding Commands[Layout]}"
+                                        CommandParameter="S2x2"
+                                        Header="  2x2  " />
+                                </MenuItem>
+                            </ContextMenu>
+                        </Label.ContextMenu>
+                    </Label>
+                </Grid>
+
+                <!--  移动  -->
+                <TextBlock
+                    x:Name="txtMove"
+                    Grid.Column="1"
+                    Tag="0"
+                    ToolTip="{x:Static res:LanguageResource.ToolTip_Move}">
+                    <TextBlock.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_move_0.png" />
+                    </TextBlock.Background>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding Commands[Move]}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <!--  放大缩小  -->
+                <TextBlock
+                    x:Name="tbZoom"
+                    Grid.Column="0"
+                    Tag="0"
+                    ToolTip="{x:Static res:LanguageResource.ToolTip_Zoom}">
+                    <TextBlock.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_zoom_0.png" />
+                    </TextBlock.Background>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding Commands[Zoom]}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+
+                <!--  窗宽窗高 WW/WL  -->
+                <Grid
+                    Grid.Column="1"
+                    Style="{StaticResource ComplexGrid}"
+                    ToolTip="{x:Static res:LanguageResource.ToolTip_WL}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="6" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="txtWWWL" Tag="0">
+                        <TextBlock.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_window_0.png" />
+                        </TextBlock.Background>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseLeftButtonDown">
+                                <i:InvokeCommandAction Command="{Binding Commands[Wwwl]}" CommandParameter="" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </TextBlock>
+                    <Label
+                        x:Name="labelWwWl"
+                        Grid.Column="1"
+                        Margin="0,0,0,7"
+                        VerticalAlignment="Bottom"
+                        MouseLeftButtonDown="LabelWwWl_OnMouseLeftButtonDown">
+                        <Label.Content>
+                            <Path
+                                Width="6"
+                                Height="6"
+                                Fill="{StaticResource TextBoxBrush}"
+                                Stretch="Fill"
+                                Style="{StaticResource Down}" />
+                        </Label.Content>
+                        <Label.ContextMenu>
+                            <ContextMenu
+                                x:Name="menuWwWl"
+                                ItemsSource="{Binding WWWLItems}"
+                                Placement="MousePoint">
+                                <ContextMenu.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"
+                                            Tag="{Binding}"
+                                            Text="{Binding Description}" />
+
+                                        <!--<Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="4" />
+                                            </Grid.RowDefinitions>
+                                            <Separator Grid.Row="1" />
+                                        </Grid>-->
+
+                                        <!--<MenuItem
+                                            Command="{Binding Commands[SetWWWL]}"
+                                            CommandParameter=""
+                                            Header="{Binding DisplayBodyPart}"
+                                            Style="{StaticResource BackendMenuItem}" />-->
+                                    </DataTemplate>
+                                </ContextMenu.ItemTemplate>
+                            </ContextMenu>
+                        </Label.ContextMenu>
+                    </Label>
+                </Grid>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <!--  旋转  -->
+                <Grid
+                    Grid.Column="0"
+                    Style="{StaticResource ComplexGrid}"
+                    ToolTip="{x:Static res:LanguageResource.ToolTip_Rotate}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="6" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="txtRotate" Tag="0">
+                        <TextBlock.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/Rotate2D_0.png" />
+                        </TextBlock.Background>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseLeftButtonDown">
+                                <i:InvokeCommandAction Command="{Binding Commands[RotateMode]}" CommandParameter="" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </TextBlock>
+                    <Label
+                        x:Name="labelRotate"
+                        Grid.Column="1"
+                        Margin="0,0,0,7"
+                        VerticalAlignment="Bottom"
+                        MouseLeftButtonDown="LabelRotate_OnMouseLeftButtonDown">
+                        <Label.Content>
+                            <Path
+                                Width="6"
+                                Height="6"
+                                Fill="{StaticResource TextBoxBrush}"
+                                Stretch="Fill"
+                                Style="{StaticResource Down}" />
+                        </Label.Content>
+                        <Label.ContextMenu>
+                            <ContextMenu x:Name="menuRotate" Placement="MousePoint">
+                                <MenuItem Command="{Binding Commands[Rotate]}" Header="+90°">
+                                    <MenuItem.CommandParameter>
+                                        <sys:Int32>90</sys:Int32>
+                                    </MenuItem.CommandParameter>
+                                </MenuItem>
+                                <Separator Height="1" />
+                                <MenuItem Command="{Binding Commands[Rotate]}" Header="-90°">
+                                    <MenuItem.CommandParameter>
+                                        <sys:Int32>-90</sys:Int32>
+                                    </MenuItem.CommandParameter>
+                                </MenuItem>
+                                <Separator Height="1" />
+                                <MenuItem Command="{Binding Commands[Rotate]}" Header="+180°">
+                                    <MenuItem.CommandParameter>
+                                        <sys:Int32>180</sys:Int32>
+                                    </MenuItem.CommandParameter>
+                                </MenuItem>
+                                <Separator Height="1" />
+                                <MenuItem Command="{Binding Commands[Rotate]}" Header="-180°">
+                                    <MenuItem.CommandParameter>
+                                        <sys:Int32>-180</sys:Int32>
+                                    </MenuItem.CommandParameter>
+                                </MenuItem>
+                                <Separator Height="1" />
+                                <MenuItem Command="{Binding Commands[Rotate]}" Header="Custom" />
+                            </ContextMenu>
+                        </Label.ContextMenu>
+                    </Label>
+                </Grid>
+
+                <!--  滚动  -->
+                <TextBlock
+                    x:Name="tbScroll"
+                    Grid.Column="1"
+                    Tag="0"
+                    ToolTip="{x:Static res:LanguageResource.Tooltip_Scroll}">
+                    <TextBlock.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_scroll_0.png" />
+                    </TextBlock.Background>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding Commands[Scroll]}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <!--  水平方向  -->
+                <TextBlock
+                    x:Name="tbFlipHorizontal"
+                    Grid.Column="0"
+                    Tag="0"
+                    ToolTip="{x:Static res:LanguageResource.Tooltip_FlipHorizontal}">
+                    <TextBlock.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_horizontal_over_0.png" />
+                    </TextBlock.Background>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding Commands[FlipHorizontal]}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+
+                <!--  垂直方向  -->
+                <TextBlock
+                    x:Name="tbFlipVertical"
+                    Grid.Column="1"
+                    Tag="0"
+                    ToolTip="{x:Static res:LanguageResource.Tooltip_FlipVertical}">
+                    <TextBlock.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_vertical_over_0.png" />
+                    </TextBlock.Background>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding Commands[FlipVertical]}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <!--  kernel  -->
+                <Grid
+                    Grid.Column="0"
+                    Style="{StaticResource ComplexGrid}"
+                    ToolTip="{x:Static res:LanguageResource.Tooltip_Kernel}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="6" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        x:Name="txtKernel"
+                        Tag="0"
+                        ToolTip="Kernel">
+                        <TextBlock.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_kernel_0.png" />
+                        </TextBlock.Background>
+                    </TextBlock>
+
+                    <Label
+                        x:Name="labelKernel"
+                        Grid.Column="1"
+                        Margin="0,0,0,7"
+                        VerticalAlignment="Bottom"
+                        MouseLeftButtonDown="LabelKernel_OnMouseLeftButtonDown">
+                        <Label.Content>
+                            <Path
+                                Width="6"
+                                Height="6"
+                                Fill="{StaticResource TextBoxBrush}"
+                                Stretch="Fill"
+                                Style="{StaticResource Down}" />
+                        </Label.Content>
+                        <Label.ContextMenu>
+                            <ContextMenu x:Name="menuKernel" Placement="MousePoint">
+                                <MenuItem
+                                    Command="{Binding Commands[Kernel]}"
+                                    CommandParameter="None"
+                                    Header=" None " />
+                                <Separator Height="1" />
+                                <MenuItem
+                                    Command="{Binding Commands[Kernel]}"
+                                    CommandParameter="Sharp"
+                                    Header=" Sharp " />
+                                <Separator Height="1" />
+                                <MenuItem
+                                    Command="{Binding Commands[Kernel]}"
+                                    CommandParameter="Sharp+"
+                                    Header=" Sharp+ " />
+                                <Separator Height="1" />
+                                <MenuItem
+                                    Command="{Binding Commands[Kernel]}"
+                                    CommandParameter="Smooth"
+                                    Header=" Smooth " />
+                                <Separator Height="1" />
+                                <MenuItem
+                                    Command="{Binding Commands[Kernel]}"
+                                    CommandParameter="Smooth+"
+                                    Header=" Smooth+ " />
+                            </ContextMenu>
+                        </Label.ContextMenu>
+                    </Label>
+
+                </Grid>
+                <!--  Invert  -->
+                <TextBlock
+                    x:Name="tbInvert"
+                    Grid.Column="1"
+                    Tag="0"
+                    ToolTip="{x:Static res:LanguageResource.Tooltip_Invert}">
+                    <TextBlock.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_invert_0.png" />
+                    </TextBlock.Background>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding Commands[Invert]}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <!--  隐藏文本  -->
+                <TextBlock
+                    x:Name="tbHideTexts"
+                    Grid.Column="0"
+                    Tag="0"
+                    ToolTip="{x:Static res:LanguageResource.Tooltip_HideTexts}">
+                    <TextBlock.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_hidden_text_0.png" />
+                    </TextBlock.Background>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding Commands[HiddenText]}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+
+                <!--  初始位置  -->
+                <TextBlock
+                    x:Name="tbInitialState"
+                    Grid.Column="1"
+                    Tag="0"
+                    ToolTip="{x:Static res:LanguageResource.Tooltip_InitialState}">
+                    <TextBlock.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_initialposition_0.png" />
+                    </TextBlock.Background>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding Commands[InitialState]}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <!--  sequence反转  -->
+                <TextBlock
+                    x:Name="tbReverse"
+                    Grid.Column="0"
+                    Tag="0"
+                    ToolTip="{x:Static res:LanguageResource.ToolTip_Reverse}">
+                    <TextBlock.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_reverse_sequence_0.png" />
+                    </TextBlock.Background>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding Commands[ReverseSequence]}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+                <!--  dicom tag  -->
+                <TextBlock
+                    x:Name="tbTags"
+                    Grid.Column="1"
+                    Width="21"
+                    Height="21"
+                    Tag="0"
+                    ToolTip="{x:Static res:LanguageResource.Tooltip_DicomTags}">
+                    <TextBlock.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_dicomtag_0.png" />
+                    </TextBlock.Background>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding Commands[Dicomtag]}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <!--  截图  -->
+                <TextBlock
+                    x:Name="txtScreenshot"
+                    Grid.Column="0"
+                    Tag="0"
+                    ToolTip="{x:Static res:LanguageResource.Tooltip_ScreenShot}">
+                    <TextBlock.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/ScreenShot_0.png" />
+                    </TextBlock.Background>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding Commands[Screenshot]}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+                <!--  电影播放  -->
+                <TextBlock
+                    x:Name="tbCine"
+                    Grid.Column="1"
+                    Tag="0"
+                    ToolTip="{x:Static res:LanguageResource.Tooltip_Cine}">
+                    <TextBlock.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_film_0.png" />
+                    </TextBlock.Background>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding Commands[ShowFilm]}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <!--  synchronization  -->
+                <Grid
+                    x:Name="gridSync"
+                    Grid.Column="0"
+                    IsEnabled="{Binding IsSynchronizationEnabled}"
+                    Style="{StaticResource ComplexGrid}"
+                    ToolTip="Synchronization">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="6" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="txtSynchronization" Tag="0">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Margin" Value="3" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SyncEnabled, Mode=TwoWay}" Value="False">
+                                        <Setter Property="Background">
+                                            <Setter.Value>
+                                                <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_synchronized_0.png" />
+                                            </Setter.Value>
+                                        </Setter>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SyncEnabled, Mode=TwoWay}" Value="True">
+                                        <Setter Property="Background">
+                                            <Setter.Value>
+                                                <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_synchronized_1.png" />
+                                            </Setter.Value>
+                                        </Setter>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                        <!--<TextBlock.Background>
+							<ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_synchronized_0.png" />
+						</TextBlock.Background>-->
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseLeftButtonDown">
+                                <i:InvokeCommandAction Command="{Binding Commands[Synchronization]}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </TextBlock>
+                    <Label
+                        x:Name="labelSynchronization"
+                        Grid.Column="1"
+                        Margin="0,0,0,7"
+                        VerticalAlignment="Bottom"
+                        MouseLeftButtonDown="LabelSynchronization_OnMouseLeftButtonDown">
+                        <Label.Content>
+                            <Path
+                                Width="6"
+                                Height="6"
+                                Fill="{StaticResource TextBoxBrush}"
+                                Stretch="Fill"
+                                Style="{StaticResource Down}" />
+                        </Label.Content>
+                        <Label.ContextMenu>
+                            <ContextMenu x:Name="menuSynchronization" Placement="MousePoint">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Sync Position" />
+                                    <StackPanel Margin="44,0" Orientation="Horizontal">
+                                        <RadioButton
+                                            Margin="0,0,5,0"
+                                            Content="No"
+                                            GroupName="SyncSeries"
+                                            IsChecked="{Binding SyncSeriesMode, Mode=TwoWay, Converter={StaticResource SyncSeriesModeToBooleanConverter}, ConverterParameter=0}" />
+                                        <RadioButton
+                                            Margin="0,0,5,0"
+                                            Content="Auto"
+                                            GroupName="SyncSeries"
+                                            IsChecked="{Binding SyncSeriesMode, Mode=TwoWay, Converter={StaticResource SyncSeriesModeToBooleanConverter}, ConverterParameter=1}" />
+                                        <RadioButton
+                                            Margin="0,0,5,0"
+                                            Content="Manual"
+                                            GroupName="SyncSeries"
+                                            IsChecked="{Binding SyncSeriesMode, Mode=TwoWay, Converter={StaticResource SyncSeriesModeToBooleanConverter}, ConverterParameter=2}" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <Separator Height="1" />
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="WW/WL" />
+                                    <ToggleButton
+                                        Margin="20,0"
+                                        IsChecked="{Binding SyncWWWL, Mode=TwoWay}"
+                                        Opacity="1"
+                                        Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                        ToolTip="switch ww/wl">
+                                        <materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
+                                            <SolidColorBrush Opacity="1" Color="LightGreen" />
+                                        </materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
+                                        <materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+                                            <SolidColorBrush Opacity="1" Color="White" />
+                                        </materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+                                    </ToggleButton>
+                                </StackPanel>
+                                <Separator Height="1" />
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Camera" />
+                                    <ToggleButton
+                                        Margin="22,0"
+                                        IsChecked="{Binding SyncPosition, Mode=TwoWay}"
+                                        Style="{StaticResource MaterialDesignSwitchToggleButton}"
+                                        ToolTip="switch position">
+                                        <materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
+                                            <SolidColorBrush Opacity="1" Color="LightGreen" />
+                                        </materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
+                                        <materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+                                            <SolidColorBrush Opacity="1" Color="White" />
+                                        </materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+                                    </ToggleButton>
+                                </StackPanel>
+                            </ContextMenu>
+                        </Label.ContextMenu>
+                    </Label>
+
+                </Grid>
+
+
+            </Grid>
+        </StackPanel>
+
+        <!--  Mark标签  -->
+        <Label
+            Grid.Row="2"
+            Margin="0,10"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Center"
+            HorizontalContentAlignment="Center"
+            Background="#5A5A89"
+            Content="{x:Static res:LanguageResource.Content_Mark}"
+            FontSize="15"
+            FontWeight="Bold"
+            Foreground="White"
+            Opacity="0.7" />
+
+        <!--  Mark标签对应的Icon功能图标  -->
+        <StackPanel Grid.Row="3">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <!--  测量工具  -->
+                <TextBlock
+                    x:Name="tb_Measure"
+                    Grid.Column="0"
+                    Tag="1"
+                    ToolTip="{x:Static res:LanguageResource.Tooltip_Measure}">
+                    <TextBlock.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_measuring_distance_0.png" />
+                    </TextBlock.Background>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding Commands[Create_Length_ROI]}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+
+                <!--  角度工具  -->
+                <TextBlock
+                    x:Name="tb_Angle"
+                    Grid.Column="1"
+                    Tag="1"
+                    ToolTip="{x:Static res:LanguageResource.ToolTip_Angle}">
+                    <TextBlock.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_angle_0.png" />
+                    </TextBlock.Background>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding Commands[Create_Angle_ROI]}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <!--  ROI画圈  -->
+                <TextBlock
+                    x:Name="tb_CircleROI"
+                    Grid.Column="0"
+                    Tag="1"
+                    ToolTip="{x:Static res:LanguageResource.Tooltip_CircleROI}">
+                    <TextBlock.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_circle_ROI_0.png" />
+                    </TextBlock.Background>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding Commands[Create_Circle_ROI]}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+
+                <!--  手绘工具  -->
+                <TextBlock
+                    x:Name="tb_FreehandROI"
+                    Grid.Column="1"
+                    Tag="1"
+                    ToolTip="{x:Static res:LanguageResource.Tooltip_FreehandROI}">
+                    <TextBlock.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_hand_ drawn_0.png" />
+                    </TextBlock.Background>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding Commands[Create_Freehand_ROI]}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+            </Grid>
+
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <!--  ROI画矩形  -->
+                <TextBlock
+                    x:Name="tb_RectangleROI"
+                    Grid.Column="0"
+                    Tag="1"
+                    ToolTip="{x:Static res:LanguageResource.Tooltip_RectangleROI}">
+                    <TextBlock.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i__rectangle_ROI_0.png" />
+                    </TextBlock.Background>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding Commands[Create_Rect_ROI]}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+
+                <!--  签名工具  -->
+                <TextBlock
+                    Grid.Column="1"
+                    Tag="1"
+                    ToolTip="{x:Static res:LanguageResource.Tooltip_Sign}">
+                    <TextBlock.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_sign_0.png" />
+                    </TextBlock.Background>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding Commands[Create_Sign_ROI]}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <!--  箭头工具  -->
+                <TextBlock
+                    x:Name="tb_Arrow"
+                    Grid.Column="0"
+                    Tag="1"
+                    ToolTip="{x:Static res:LanguageResource.ToolTip_Arrow}">
+                    <TextBlock.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_arrow_0.png" />
+                    </TextBlock.Background>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding Commands[Create_Arrow_ROI]}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+
+                <!--  文本工具  -->
+                <TextBlock
+                    Grid.Column="1"
+                    Tag="1"
+                    ToolTip="{x:Static res:LanguageResource.Tooltip_Text}">
+                    <TextBlock.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_text_0.png" />
+                    </TextBlock.Background>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding Commands[Create_Text_ROI]}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <!--  Grid网格  -->
+                <Grid
+                    Grid.Column="0"
+                    Style="{StaticResource ComplexGrid}"
+                    ToolTip="{x:Static res:LanguageResource.Tooltip_Grid}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="6" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        x:Name="txtGrid"
+                        Width="20"
+                        Height="20"
+                        Tag="0"
+                        ToolTip="{x:Static res:LanguageResource.Tooltip_Grid}">
+                        <TextBlock.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_grid_0.png" />
+                        </TextBlock.Background>
+                    </TextBlock>
+
+                    <Label
+                        x:Name="labelGrid"
+                        Grid.Column="1"
+                        Margin="0,0,0,7"
+                        VerticalAlignment="Bottom"
+                        MouseLeftButtonDown="LabelGrid_OnMouseLeftButtonDown">
+                        <Label.Content>
+                            <Path
+                                Width="6"
+                                Height="6"
+                                Fill="{StaticResource TextBoxBrush}"
+                                Stretch="Fill"
+                                Style="{StaticResource Down}" />
+                        </Label.Content>
+                        <Label.ContextMenu>
+                            <ContextMenu x:Name="menuGrid" Placement="MousePoint">
+                                <MenuItem Command="{Binding Commands[Create_Grid_ROI]}" Header=" 1mm ">
+                                    <MenuItem.CommandParameter>
+                                        <sys:Int32>1</sys:Int32>
+                                    </MenuItem.CommandParameter>
+                                </MenuItem>
+                                <Separator Height="1" />
+                                <MenuItem Command="{Binding Commands[Create_Grid_ROI]}" Header=" 2mm ">
+                                    <MenuItem.CommandParameter>
+                                        <sys:Int32>2</sys:Int32>
+                                    </MenuItem.CommandParameter>
+                                </MenuItem>
+                                <Separator Height="1" />
+                                <MenuItem Command="{Binding Commands[Create_Grid_ROI]}" Header=" 3mm ">
+                                    <MenuItem.CommandParameter>
+                                        <sys:Int32>3</sys:Int32>
+                                    </MenuItem.CommandParameter>
+                                </MenuItem>
+                                <Separator Height="1" />
+                                <MenuItem Command="{Binding Commands[Create_Grid_ROI]}" Header=" 5mm ">
+                                    <MenuItem.CommandParameter>
+                                        <sys:Int32>5</sys:Int32>
+                                    </MenuItem.CommandParameter>
+                                </MenuItem>
+                                <Separator Height="1" />
+                                <MenuItem Command="{Binding Commands[Create_Grid_ROI]}" Header=" 10mm ">
+                                    <MenuItem.CommandParameter>
+                                        <sys:Int32>10</sys:Int32>
+                                    </MenuItem.CommandParameter>
+                                </MenuItem>
+                                <Separator Height="1" />
+                                <MenuItem Command="{Binding Commands[Create_Grid_ROI]}" Header=" Delete " />
+                            </ContextMenu>
+                        </Label.ContextMenu>
+                    </Label>
+                </Grid>
+
+                <!--  重新绘制  -->
+                <TextBlock
+                    x:Name="tbRework"
+                    Grid.Column="1"
+                    Tag="1"
+                    ToolTip="{x:Static res:LanguageResource.ToolTip_Rework}">
+                    <TextBlock.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_rework_0.png" />
+                    </TextBlock.Background>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding Commands[Remove_All_ROI2D]}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBlock>
+            </Grid>
+
+        </StackPanel>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,42 @@
+﻿<Window x:Class="NV.CT.PatientManagement.View.English.FiltrationWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"   
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+    Width="350" Height="280" Background="Transparent" ResizeMode="NoResize" AllowsTransparency="True"
+    WindowStyle="None" mc:Ignorable="d">
+    <Window.Resources>
+    </Window.Resources>
+    <Border CornerRadius="10" Style="{StaticResource WindowsBorder}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border Style="{StaticResource WindowContentBorder}" />
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <TextBlock Style="{StaticResource TileTextBlock}" Text="{x:Static res:LanguageResource.Content_Filter}" />
+                <Button Grid.Column="1" Style="{StaticResource TileCloseButtonStyle}" 
+                        ToolTip="{x:Static res:LanguageResource.Content_Close}"
+                        Command="{Binding  Commands[CloseCommand]}" 
+                        CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                    <Path Style="{StaticResource TileClosePathStyle}" />
+                </Button>
+            </Grid>
+            <StackPanel Grid.Row="1" Orientation="Vertical">
+                <TextBlock Style="{StaticResource MessageInfoTextBlock}" Text="{x:Static res:LanguageResource.Content_DefaultSearchScope}"/>
+                <RadioButton Content="{x:Static res:LanguageResource.Content_Today}" GroupName="RearchType" Style="{StaticResource RadioButton}" IsChecked="{Binding IsToday,Mode=TwoWay}"/>
+                <RadioButton Content="{x:Static res:LanguageResource.Content_Yesterday}" GroupName="RearchType" Style="{StaticResource RadioButton}" IsChecked="{Binding IsYesterday,Mode=TwoWay}"/>
+                <RadioButton Content="{x:Static res:LanguageResource.Content_DayBeforeYesterday}" GroupName="RearchType" Style="{StaticResource RadioButton}" IsChecked="{Binding IsDayBeforeYesterday,Mode=TwoWay}"/>
+                <RadioButton Content="{x:Static res:LanguageResource.Content_WithinTheLast7Days}" GroupName="RearchType" Style="{StaticResource RadioButton}" IsChecked="{Binding IsLast7Days,Mode=TwoWay}"/>
+                <RadioButton Content="{x:Static res:LanguageResource.Content_WithinTheLast30Days}" GroupName="RearchType" Style="{StaticResource RadioButton}" IsChecked="{Binding IsLast30Days,Mode=TwoWay}"/>
+                <RadioButton Content="{x:Static res:LanguageResource.Content_All}" GroupName="RearchType" Style="{StaticResource RadioButton}" IsChecked="{Binding IsAll,Mode=TwoWay}"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

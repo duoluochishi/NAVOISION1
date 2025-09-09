@@ -1,0 +1,13 @@
+{
+    "ExposureParameter": {
+        "KV": 120,
+        "MA": 110,
+        "ExposureTime": 5,
+        "FrameTime": 10,
+        "CycleCount": 1
+    },
+    "Threshold": {
+        "HeatCapacityThreshold": 3,
+        "MAThreshold": 5
+    }
+}

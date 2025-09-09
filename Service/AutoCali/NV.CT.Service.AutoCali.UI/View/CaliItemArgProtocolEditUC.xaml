@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="NV.CT.Service.AutoCali.UI.CaliItemArgProtocolEditUC"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="640"
+        Height="auto">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignOutlinedButton}">
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="Padding" Value="3"/>
+                <Setter Property="MinWidth" Value="60"/>
+            </Style>
+            <Style TargetType="GroupBox" BasedOn="{StaticResource MaterialDesignGroupBox}">
+                <Setter Property="Width" Value="200"/>
+            </Style>
+            <Style TargetType="WrapPanel" x:Key="twoColumnsWrapPanel">
+                <Setter Property="Width" Value="450"/>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <WrapPanel Orientation="Horizontal" Grid.Row="0" Style="{StaticResource twoColumnsWrapPanel}">
+
+            <GroupBox Header="Study">
+                <TextBox Text="{Binding Path=Study}"/>
+            </GroupBox>
+            <GroupBox Header="Raw Data Type">
+                <ComboBox ItemsSource="{Binding Path=RawDataTypeOptions}"
+                          SelectedItem="{Binding Path=RawDataType,Mode=TwoWay}"
+                          SelectedIndex="0"/>
+            </GroupBox>
+
+            <GroupBox Header="kV">
+                <TextBox Text="{Binding Path=KV}"/>
+            </GroupBox>
+            <GroupBox Header="mA">
+                <TextBox Text="{Binding Path=MA}"/>
+            </GroupBox>
+            <GroupBox Header="Exposure Mode">
+                <ComboBox ItemsSource="{Binding Path=ExposureModes}"
+                          SelectedItem="{Binding Path=ExposureMode,Mode=TwoWay}"
+                          SelectedIndex="0"/>
+            </GroupBox>
+            <GroupBox Header="Exposure Time(ms)">
+                <TextBox Text="{Binding Path=ExposureTime}"/>
+            </GroupBox>
+            <GroupBox Header="Frame Time(ms)">
+                <TextBox Text="{Binding Path=FrameTime}"/>
+            </GroupBox>
+
+            <!--<GroupBox Header="BodyPart">
+                <TextBox/>
+            </GroupBox>-->
+            <GroupBox Header="Total Frames">
+                <TextBox Text="{Binding Path=TotalFrames}"/>
+            </GroupBox>
+            <GroupBox Header="Frames Per Cycle">
+                <TextBox Text="{Binding Path=FramesPerCycle}"/>
+            </GroupBox>
+            <!--<GroupBox Header="Pitch">
+                <TextBox Text="{Binding Path=Pitch}"/>
+            </GroupBox>-->
+            <!--<GroupBox Header="DelayTime">
+                <TextBox Text="{Binding Path=DelayTime}"/>
+            </GroupBox>-->
+            <GroupBox Header="Collimator">
+                <TextBox Text="{Binding Path=Collimator}"/>
+            </GroupBox>
+            <GroupBox Header="Binning">
+                <ComboBox ItemsSource="{Binding Path=Binnings}"
+                          SelectedItem="{Binding Path=BinningMode,Mode=TwoWay}"
+                          SelectedIndex="0"/>
+            </GroupBox>
+            <GroupBox Header="Gain">
+                <ComboBox ItemsSource="{Binding Path=Gains}"
+                          SelectedItem="{Binding Path=GainMode,Mode=TwoWay}"
+                          SelectedIndex="0"/>
+            </GroupBox>
+            <GroupBox Header="Bowtie">
+                <ComboBox ItemsSource="{Binding Path=BowtieOptions}"
+                          SelectedItem="{Binding Path=BowtieEnable,Mode=TwoWay}"
+                          SelectedIndex="0">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </GroupBox>
+        </WrapPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="confirmBtn" Content="OK" Click="Close" Command="{Binding ConfirmCommand}"/>
+            <Button Name="cancelBtn" Content="Cancel" Click="Close"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

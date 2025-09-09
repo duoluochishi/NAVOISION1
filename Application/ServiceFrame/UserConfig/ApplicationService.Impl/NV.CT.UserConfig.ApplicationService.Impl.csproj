@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Autofac" />
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" />
+		<PackageReference Include="AutoMapper" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\..\Common\CTS\NV.CT.CTS.csproj" />
+	  <ProjectReference Include="..\..\..\..\SystemInterface\MRSIntegration.Contract\NV.CT.SystemInterface.MRSIntegration.Contract.csproj" />
+	  <ProjectReference Include="..\..\..\..\SystemService\ClientProxy\NV.CT.ClientProxy.csproj" />
+	  <ProjectReference Include="..\..\..\..\SystemService\ConfigService.Contract\NV.CT.ConfigService.Contract.csproj" />
+	  <ProjectReference Include="..\ApplicationService.Contract\NV.CT.UserConfig.ApplicationService.Contract.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Reference Include="NAudio">
+	    <HintPath>..\..\..\..\bin\NAudio.dll</HintPath>
+	  </Reference>
+		<Reference Include="NV.MPS.Environment">
+			<HintPath>..\..\..\..\bin\NV.MPS.Environment.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.MPS.Exception">
+			<HintPath>..\..\..\..\bin\NV.MPS.Exception.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.CT.ServiceFrameWork">
+	    <HintPath>..\..\..\..\bin\NV.CT.ServiceFrameWork.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+	
+</Project>

@@ -1,0 +1,64 @@
+﻿<UserControl
+    x:Class="NV.CT.UI.Exam.DynamicParameters.Parameters.Scan.CommonCTDlvol"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"  
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"   
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"    
+    xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+    d:DesignHeight="80" d:DesignWidth="800" mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="CTDITextBlockStyle" BasedOn="{StaticResource MaterialDesignTextBlock}" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="14px" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{StaticResource SExposuresIconFillBrush}" />           
+        </Style>
+        <Style x:Key="CTDIsTextBlockStyle" BasedOn="{StaticResource MaterialDesignTextBlock}" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="14px" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{StaticResource SExposuresIconFillBrush}" />           
+        </Style>
+        <Style x:Key="ImageStyle"  TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="20" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Visibility" Value="Visible" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="LabelStyle" BasedOn="{StaticResource NanoLabelStyle}" TargetType="{x:Type Label}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="30*" />
+            <ColumnDefinition Width="18*" />
+            <ColumnDefinition Width="12*" />
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" VerticalAlignment="Center" Content="{x:Static res:LanguageResource.Content_CTDlvol}" />
+        <Grid  Grid.Column="1" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="45*" />
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="45*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Style="{StaticResource CTDITextBlockStyle}" Text="{Binding Path=CTDI, Mode=TwoWay}" />
+            <Label Grid.Column="1" Content="/" Style="{StaticResource LabelStyle}"/>
+            <TextBlock Grid.Column="2" Style="{StaticResource CTDIsTextBlockStyle}" Margin="5 0 0 0" Text="{Binding Path=CTDIs, Mode=TwoWay}" />
+        </Grid>
+        <Label Grid.Column="2"  VerticalAlignment="Center" Content="{x:Static res:LanguageResource.Content_mGy}" />
+        <Image Grid.Column="3" IsEnabled="{Binding IsCTDIEnabled,Mode=OneWay}" Style="{StaticResource ImageStyle}" Source="{Binding CTDIImage,Mode=OneWay}"/>
+    </Grid>
+</UserControl>

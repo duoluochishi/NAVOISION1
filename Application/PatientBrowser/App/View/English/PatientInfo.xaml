@@ -1,0 +1,885 @@
+﻿<UserControl
+    x:Class="NV.CT.PatientBrowser.View.English.PatientInfo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converter="clr-namespace:NV.CT.UI.Controls.Converter;assembly=NV.CT.UI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableTextBox;assembly=MaterialDesignThemes.Wpf"
+    xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+    xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="boolean2VisibilityConverter" />
+        <converter:MultiValueToBooleanConverter x:Key="multiValue2BooleanConverter" />
+
+        <Style
+            x:Key="AddEmergencyGlintButton"
+            BasedOn="{StaticResource ToolbarButton}"
+            TargetType="Button">
+            <Style.Triggers>
+                <Trigger Property="Button.IsMouseOver" Value="true">
+                    <Setter Property="Content">
+                        <Setter.Value>
+                            <Path
+                                Width="20"
+                                Height="20"
+                                VerticalAlignment="Center"
+                                Fill="White"
+                                Stretch="Fill"
+                                Style="{StaticResource Emergency}" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="Button.IsMouseOver" Value="false">
+                    <Setter Property="Content">
+                        <Setter.Value>
+                            <Path
+                                Width="20"
+                                Height="20"
+                                VerticalAlignment="Center"
+                                Fill="{StaticResource TextBoxBrush}"
+                                Stretch="Fill"
+                                Style="{StaticResource Emergency}" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style
+            x:Key="AddAnonymousGlintButton"
+            BasedOn="{StaticResource ToolbarButton}"
+            TargetType="Button">
+            <Style.Triggers>
+                <Trigger Property="Button.IsMouseOver" Value="true">
+                    <Setter Property="Content">
+                        <Setter.Value>
+                            <Path
+                                Width="22"
+                                Height="15"
+                                VerticalAlignment="Center"
+                                Fill="White"
+                                Stretch="Fill"
+                                Style="{StaticResource AnonymousPath}" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="Button.IsMouseOver" Value="false">
+                    <Setter Property="Content">
+                        <Setter.Value>
+                            <Path
+                                Width="22"
+                                Height="15"
+                                VerticalAlignment="Center"
+                                Fill="{StaticResource TextBoxBrush}"
+                                Stretch="Fill"
+                                Style="{StaticResource AnonymousPath}" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style
+            x:Key="AddPatientGlintButton"
+            BasedOn="{StaticResource ToolbarButton}"
+            TargetType="Button">
+            <Style.Triggers>
+                <Trigger Property="Button.IsMouseOver" Value="true">
+                    <Setter Property="Content">
+                        <Setter.Value>
+                            <Path
+                                Width="20"
+                                Height="20"
+                                VerticalAlignment="Center"
+                                Fill="White"
+                                Stretch="Fill"
+                                Style="{StaticResource AddPatient}" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="Button.IsMouseOver" Value="false">
+                    <Setter Property="Content">
+                        <Setter.Value>
+                            <Path
+                                Width="20"
+                                Height="20"
+                                VerticalAlignment="Center"
+                                Fill="{StaticResource TextBoxBrush}"
+                                Stretch="Fill"
+                                Style="{StaticResource AddPatient}" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style
+            x:Key="AddProcedureGlintButton"
+            BasedOn="{StaticResource ToolbarButton}"
+            TargetType="Button">
+            <Style.Triggers>
+                <Trigger Property="Button.IsMouseOver" Value="true">
+                    <Setter Property="Content">
+                        <Setter.Value>
+                            <Path
+                                Width="20"
+                                Height="20"
+                                VerticalAlignment="Center"
+                                Fill="White"
+                                Stretch="Fill"
+                                Style="{StaticResource AddProcedure}" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="Button.IsMouseOver" Value="false">
+                    <Setter Property="Content">
+                        <Setter.Value>
+                            <Path
+                                Width="20"
+                                Height="20"
+                                VerticalAlignment="Center"
+                                Fill="{StaticResource TextBoxBrush}"
+                                Stretch="Fill"
+                                Style="{StaticResource AddProcedure}" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style
+            x:Key="DeleteGlintButton"
+            BasedOn="{StaticResource ToolbarButton}"
+            TargetType="Button">
+            <Style.Triggers>
+                <Trigger Property="Button.IsMouseOver" Value="true">
+                    <Setter Property="Content">
+                        <Setter.Value>
+                            <Path
+                                Width="20"
+                                Height="20"
+                                VerticalAlignment="Center"
+                                Fill="White"
+                                Stretch="Fill"
+                                Style="{StaticResource Delete}" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="Button.IsMouseOver" Value="false">
+                    <Setter Property="Content">
+                        <Setter.Value>
+                            <Path
+                                Width="20"
+                                Height="20"
+                                VerticalAlignment="Center"
+                                Fill="{StaticResource TextBoxBrush}"
+                                Stretch="Fill"
+                                Style="{StaticResource Delete}" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Border Style="{StaticResource GroupedBorder}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="56*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="32*" />
+                <RowDefinition Height="7*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
+            <Border
+                Grid.Column="3"
+                Grid.ColumnSpan="2"
+                Width="205"
+                Style="{StaticResource ToolButtonBorder}" />
+            <WrapPanel
+                Grid.Column="3"
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Right">
+                <Button
+                    Uid="btnAddEmergencyPatient"
+                    Command="{Binding Commands[AddEmergencyPatientCommand]}"
+                    IsEnabled="{Binding IsPermissionEmergencyEnabled, Mode=TwoWay}"
+                    Style="{StaticResource AddEmergencyGlintButton}"
+                    ToolTip="{x:Static res:LanguageResource.ToolTip_EmergencyPatient}" />
+                <Button
+                    Uid="btnAddAnonymousPatient"
+                    Margin="15,0,0,0"
+                    Command="{Binding Commands[AddAnonymousPatientCommand]}"
+                    Style="{StaticResource AddAnonymousGlintButton}"
+                    ToolTip="{x:Static res:LanguageResource.ToolTip_AnonymousPatient}" />
+                <Button
+                    Uid="btnAddPatient"
+                    Margin="15,0,0,0"
+                    Command="{Binding Commands[AddNewCommand]}"
+                    Style="{StaticResource AddPatientGlintButton}"
+                    ToolTip="{x:Static res:LanguageResource.ToolTip_AddPatient}" />
+                <Button
+                    Uid="btnAddProcedure"
+                    Margin="15,0,10,0"
+                    Command="{Binding Commands[AddProcedureCommand]}"
+                    Style="{StaticResource AddProcedureGlintButton}"
+                    ToolTip="{x:Static res:LanguageResource.ToolTip_AddProcedure}" />
+                <Button
+                    Uid="btnDeleteProcedure"
+                    Margin="0,0,10,0"
+                    Command="{Binding Commands[DeleteCommand]}"
+                    Style="{StaticResource DeleteGlintButton}"
+                    ToolTip="{x:Static res:LanguageResource.ToolTip_DeleteProcedure}" />
+            </WrapPanel>
+            <Grid
+                Grid.Row="1"
+                Grid.Column="1"
+                IsEnabled="{Binding PatientInfoFormIsEnabled}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid>
+                    <TextBlock
+                        x:Name="lblPatient"
+                        Grid.ColumnSpan="2"
+                        Margin="0,8,0,0"
+                        Style="{StaticResource SectionTitleTextBlock}"
+                        Text="{x:Static res:LanguageResource.Content_PatientInfomation}" />
+                    <Rectangle
+                        Grid.Column="0"
+                        Width="{Binding ElementName=lblPatient, Path=ActualWidth}"
+                        Margin="0,0,0,14"
+                        Style="{StaticResource SectionTitleUnderlineRectangle}" />
+                    <Button
+                        Width="180"
+                        Height="40"
+                        Margin="150,8,-111,12"
+                        Background="Green"
+                        Command="{Binding Commands[FastGenerateCommand]}"
+                        Visibility="{Binding IsDevEnvironment, Converter={StaticResource boolean2VisibilityConverter}}">
+                        一键生成(仅研发测试使用)
+                    </Button>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="36*" />
+                        <ColumnDefinition Width="64*" />
+                    </Grid.ColumnDefinitions>
+                    <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock Style="{StaticResource MandatoryInputTextBlock}" />
+                        <TextBlock
+                            Margin="1,0,0,0"
+                            Style="{StaticResource MandatoryInputLabelTextBlock}"
+                            Text="{x:Static res:LanguageResource.Content_LastName}" />
+                    </WrapPanel>
+                    <!--  根据DICOM标准:PatientName = LastName ^ FirstName, PN, 64chars。 给LastName分配33chars， 给FirstName分配30chars，给^留1个char  -->
+                    <md:MarkableTextBox
+                        Uid="txtLastName"
+                        Grid.Column="1"
+                        MaxLength="33"
+                        Style="{StaticResource WithValidationMarkableTextBox}">
+                        <TextBox.Text>
+                            <Binding
+                                Path="SelectedVStudyEntity.LastName"
+                                UpdateSourceTrigger="PropertyChanged"
+                                ValidatesOnDataErrors="True" />
+                        </TextBox.Text>
+                    </md:MarkableTextBox>
+                </Grid>
+                <Grid
+                    Grid.Row="2"
+                    IsEnabled="{Binding IsEnabledFirstName, Mode=TwoWay}"
+                    Style="{StaticResource InfomationGrid}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="36*" />
+                        <ColumnDefinition Width="64*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource InputLabelTextBlock}" Text="{x:Static res:LanguageResource.Content_FirstName}" />
+                    <md:MarkableTextBox
+                        Uid="txtFirstName"
+                        Grid.Column="1"
+                        MaxLength="30"
+                        Style="{StaticResource WithValidationMarkableTextBox}">
+                        <TextBox.Text>
+                            <Binding
+                                Path="SelectedVStudyEntity.FirstName"
+                                UpdateSourceTrigger="PropertyChanged"
+                                ValidatesOnDataErrors="True" />
+                        </TextBox.Text>
+                    </md:MarkableTextBox>
+                </Grid>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="36*" />
+                        <ColumnDefinition Width="64*" />
+                    </Grid.ColumnDefinitions>
+                    <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock Style="{StaticResource MandatoryInputTextBlock}" />
+                        <TextBlock
+                            Margin="1,0,0,0"
+                            Style="{StaticResource MandatoryInputLabelTextBlock}"
+                            Text="{x:Static res:LanguageResource.Content_PatientId}" />
+                    </WrapPanel>
+                    <md:MarkableTextBox
+                        Uid="txtPatientId"
+                        Grid.Column="1"
+                        VerticalContentAlignment="Center"
+                        MaxLength="64"
+                        Style="{StaticResource WithValidationMarkableTextBox}">
+                        <TextBox.Text>
+                            <Binding
+                                Path="SelectedVStudyEntity.PatientId"
+                                UpdateSourceTrigger="PropertyChanged"
+                                ValidatesOnDataErrors="True" />
+                        </TextBox.Text>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseUp">
+                                <i:InvokeCommandAction Command="{Binding Commands[ClickPatientIdCommand]}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </md:MarkableTextBox>
+                </Grid>
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="36*" />
+                        <ColumnDefinition Width="64*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource InputLabelTextBlock}" Text="{x:Static res:LanguageResource.Content_Age}" />
+                    <Grid Grid.Column="1" Style="{StaticResource StretchGrid}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <md:MarkableTextBox
+                            Uid="txtAge"
+                            VerticalContentAlignment="Center"
+                            MaxLength="3"
+                            Style="{StaticResource WithValidationMarkableTextBox}">
+                            <TextBox.Text>
+                                <Binding
+                                    Path="SelectedVStudyEntity.Age"
+                                    UpdateSourceTrigger="PropertyChanged"
+                                    ValidatesOnDataErrors="True" />
+                            </TextBox.Text>
+                        </md:MarkableTextBox>
+                        <ComboBox
+                            x:Name="cbbAgeType"
+                            Uid="cbAgeType"
+                            Grid.Column="1"
+                            Margin="5,0,0,0"
+                            ItemsSource="{Binding AgeTypes, Mode=TwoWay}"
+                            SelectedValue="{Binding SelectedVStudyEntity.AgeType, Mode=TwoWay}"
+                            Style="{StaticResource MaterialDesignOutlinedComboBox}" />
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="36*" />
+                        <ColumnDefinition Width="64*" />
+                    </Grid.ColumnDefinitions>
+                    <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock Style="{StaticResource MandatoryInputTextBlock}" />
+                        <TextBlock
+                            Margin="1,0,0,0"
+                            Style="{StaticResource MandatoryInputLabelTextBlock}"
+                            Text="{x:Static res:LanguageResource.Content_DateOfBirth}" />
+                    </WrapPanel>
+                    <DatePicker
+                        x:Name="dtpDateofBirth"
+                        Uid="dpBirthDate"
+                        Grid.Column="1"
+                        Style="{StaticResource MaterialDesignOutlinedDatePicker}">
+                        <DatePicker.SelectedDate>
+                            <Binding Path="SelectedVStudyEntity.Birthday" ValidatesOnDataErrors="True" />
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+                </Grid>
+                <Grid
+                    Grid.Row="6"
+                    IsEnabled="{Binding IsEnabledSex, Mode=TwoWay}"
+                    Style="{StaticResource InfomationGrid}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="36*" />
+                        <ColumnDefinition Width="64*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource InputLabelTextBlock}" Text="{x:Static res:LanguageResource.Content_Sex}" />
+                    <ComboBox
+                        Name="cbbGender"
+                        Uid="cbbGender"
+                        Grid.Column="1"
+                        DisplayMemberPath="Value"
+                        ItemsSource="{Binding Genders}"
+                        SelectedValuePath="Key"
+                        Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                        <ComboBox.SelectedValue>
+                            <Binding Path="SelectedVStudyEntity.Gender" />
+                        </ComboBox.SelectedValue>
+                    </ComboBox>
+                </Grid>
+                <Grid
+                    Grid.Row="7"
+                    IsEnabled="{Binding IsEnabledHeight, Mode=TwoWay}"
+                    Style="{StaticResource InfomationGrid}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="36*" />
+                        <ColumnDefinition Width="64*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource InputLabelTextBlock}" Text="{x:Static res:LanguageResource.Content_Height}" />
+                    <Grid Grid.Column="1" Style="{StaticResource StretchGrid}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <md:MarkableTextBox
+                            VerticalContentAlignment="Center"
+                            MaxLength="3"
+                            Style="{StaticResource WithValidationMarkableTextBox}">
+                            <TextBox.Text>
+                                <Binding
+                                    Path="SelectedVStudyEntity.Height"
+                                    UpdateSourceTrigger="PropertyChanged"
+                                    ValidatesOnDataErrors="True" />
+                            </TextBox.Text>
+                        </md:MarkableTextBox>
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="4,0,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Text="{x:Static res:LanguageResource.Content_CM}" />
+                    </Grid>
+                </Grid>
+                <Grid
+                    Grid.Row="8"
+                    IsEnabled="{Binding IsEnabledWeight, Mode=TwoWay}"
+                    Style="{StaticResource InfomationGrid}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="36*" />
+                        <ColumnDefinition Width="64*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource InputLabelTextBlock}" Text="{x:Static res:LanguageResource.Content_Weight}" />
+                    <Grid Grid.Column="1" Style="{StaticResource StretchGrid}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <md:MarkableTextBox
+                            VerticalContentAlignment="Center"
+                            MaxLength="3"
+                            Style="{StaticResource WithValidationMarkableTextBox}">
+                            <TextBox.Text>
+                                <Binding
+                                    Path="SelectedVStudyEntity.Weight"
+                                    UpdateSourceTrigger="PropertyChanged"
+                                    ValidatesOnDataErrors="True" />
+                            </TextBox.Text>
+                        </md:MarkableTextBox>
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="4,0,0,0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Text="{x:Static res:LanguageResource.Content_KG}" />
+                    </Grid>
+                </Grid>
+            </Grid>
+            <Grid
+                Grid.Row="1"
+                Grid.Column="2"
+                IsEnabled="{Binding PatientInfoFormIsEnabled}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Button
+                    Name="UpdatePatientInfo"
+                    Grid.Row="3"
+                    Width="50"
+                    Margin="5,0,0,0"
+                    HorizontalAlignment="Left"
+                    Style="{StaticResource RepeatRefreshGlintButton}"
+                    ToolTip="{x:Static res:LanguageResource.ToolTip_Refresh}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding Commands[RefreshWorkListCommand]}" CommandParameter="{Binding SelectedVStudyEntity.PatientId}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </Grid>
+            <Grid
+                Grid.Row="3"
+                Grid.Column="1"
+                VerticalAlignment="Top"
+                IsEnabled="{Binding IsEnabled}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Grid>
+                    <TextBlock
+                        x:Name="lblMedicalInformation"
+                        Grid.Column="0"
+                        Margin="0,8,0,0"
+                        Style="{StaticResource SectionTitleTextBlock}"
+                        Text="{x:Static res:LanguageResource.Content_MedicalInformation}" />
+                    <Rectangle
+                        Width="{Binding ElementName=lblMedicalInformation, Path=ActualWidth}"
+                        Margin="0,0,0,14"
+                        Style="{StaticResource SectionTitleUnderlineRectangle}" />
+                </Grid>
+                <Grid
+                    Grid.Row="1"
+                    IsEnabled="{Binding IsEnabledAdmittingDiagnosis, Mode=TwoWay}"
+                    Style="{StaticResource InfomationGrid}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="36*" />
+                        <ColumnDefinition Width="64*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        Margin="0,16,0,14"
+                        VerticalAlignment="Top"
+                        Style="{StaticResource InputLabelTextBlock}"
+                        Text="{x:Static res:LanguageResource.Content_AdmittingDiagnosis}" />
+                    <md:MarkableTextBox
+                        Grid.Column="1"
+                        Height="80"
+                        HorizontalAlignment="Stretch"
+                        VerticalContentAlignment="Stretch"
+                        MaxLength="64"
+                        Style="{StaticResource WithValidationMarkableTextBox}"
+                        TextWrapping="Wrap"
+                        VerticalScrollBarVisibility="Visible">
+                        <TextBox.Text>
+                            <Binding
+                                Path="SelectedVStudyEntity.AdmittingDiagnosis"
+                                UpdateSourceTrigger="PropertyChanged"
+                                ValidatesOnDataErrors="True" />
+                        </TextBox.Text>
+                    </md:MarkableTextBox>
+                </Grid>
+                <Grid
+                    Grid.Row="2"
+                    IsEnabled="{Binding IsEnabledWard, Mode=TwoWay}"
+                    Style="{StaticResource InfomationGrid}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="36*" />
+                        <ColumnDefinition Width="64*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource InputLabelTextBlock}" Text="{x:Static res:LanguageResource.Content_Ward}" />
+                    <md:MarkableTextBox
+                        Grid.Column="1"
+                        VerticalContentAlignment="Center"
+                        MaxLength="64"
+                        Style="{StaticResource WithValidationMarkableTextBox}">
+                        <TextBox.Text>
+                            <Binding
+                                Path="SelectedVStudyEntity.Ward"
+                                UpdateSourceTrigger="PropertyChanged"
+                                ValidatesOnDataErrors="True" />
+                        </TextBox.Text>
+                    </md:MarkableTextBox>
+                </Grid>
+                <Grid
+                    Grid.Row="3"
+                    IsEnabled="{Binding IsEnabledReferringPhysician, Mode=TwoWay}"
+                    Style="{StaticResource InfomationGrid}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="36*" />
+                        <ColumnDefinition Width="64*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource InputLabelTextBlock}" Text="{x:Static res:LanguageResource.Content_ReferringPhysician}" />
+                    <md:MarkableTextBox
+                        Grid.Column="1"
+                        VerticalContentAlignment="Center"
+                        MaxLength="64"
+                        Style="{StaticResource WithValidationMarkableTextBox}">
+                        <TextBox.Text>
+                            <Binding
+                                Path="SelectedVStudyEntity.ReferringPhysicianName"
+                                UpdateSourceTrigger="PropertyChanged"
+                                ValidatesOnDataErrors="True" />
+                        </TextBox.Text>
+                    </md:MarkableTextBox>
+                </Grid>
+                <Grid
+                    Grid.Row="4"
+                    IsEnabled="{Binding IsEnabledPerformingPhysician, Mode=TwoWay}"
+                    Style="{StaticResource InfomationGrid}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="36*" />
+                        <ColumnDefinition Width="64*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource InputLabelTextBlock}" Text="{x:Static res:LanguageResource.Content_PerformingPhysician}" />
+                    <md:MarkableTextBox
+                        Grid.Column="1"
+                        VerticalContentAlignment="Center"
+                        MaxLength="64"
+                        Style="{StaticResource WithValidationMarkableTextBox}">
+                        <TextBox.Text>
+                            <Binding
+                                Path="SelectedVStudyEntity.PerformingPhysician"
+                                UpdateSourceTrigger="PropertyChanged"
+                                ValidatesOnDataErrors="True" />
+                        </TextBox.Text>
+                    </md:MarkableTextBox>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="130" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid>
+                    <TextBlock
+                        x:Name="lblRequestedProcedure"
+                        Grid.ColumnSpan="2"
+                        Margin="0,8,0,0"
+                        Style="{StaticResource SectionTitleTextBlock}"
+                        Text="{x:Static res:LanguageResource.Content_Requested_Procedure}" />
+                    <Rectangle
+                        Grid.Column="0"
+                        Width="{Binding ElementName=lblRequestedProcedure, Path=ActualWidth}"
+                        Margin="0,0,0,14"
+                        Style="{StaticResource SectionTitleUnderlineRectangle}" />
+                </Grid>
+                <Grid
+                    Grid.Row="1"
+                    IsEnabled="{Binding IsEnabledDescription, Mode=TwoWay}"
+                    Style="{StaticResource InfomationGrid}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="36*" />
+                        <ColumnDefinition Width="64*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource InputLabelTextBlock}" Text="{x:Static res:LanguageResource.Content_StudyDescription}" />
+                    <md:MarkableTextBox
+                        Grid.Column="1"
+                        VerticalContentAlignment="Center"
+                        MaxLength="64"
+                        Style="{StaticResource WithValidationMarkableTextBox}">
+                        <TextBox.Text>
+                            <Binding
+                                Path="SelectedVStudyEntity.StudyDescription"
+                                UpdateSourceTrigger="PropertyChanged"
+                                ValidatesOnDataErrors="True" />
+                        </TextBox.Text>
+                    </md:MarkableTextBox>
+                </Grid>
+                <Grid
+                    Grid.Row="2"
+                    IsEnabled="{Binding IsEnabledAccessionNo, Mode=TwoWay}"
+                    Style="{StaticResource InfomationGrid}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="36*" />
+                        <ColumnDefinition Width="64*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource InputLabelTextBlock}" Text="{x:Static res:LanguageResource.Content_AccessionNo}" />
+                    <md:MarkableTextBox
+                        Grid.Column="1"
+                        VerticalContentAlignment="Center"
+                        IsEnabled="False"
+                        MaxLength="64"
+                        Style="{StaticResource WithValidationMarkableTextBox}">
+                        <TextBox.Text>
+                            <Binding
+                                Path="SelectedVStudyEntity.AccessionNo"
+                                UpdateSourceTrigger="PropertyChanged"
+                                ValidatesOnDataErrors="True" />
+                        </TextBox.Text>
+                    </md:MarkableTextBox>
+                </Grid>
+                <Grid
+                    Grid.Row="3"
+                    IsEnabled="{Binding IsEnabledHisStudyID, Mode=TwoWay}"
+                    Style="{StaticResource InfomationGrid}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="36*" />
+                        <ColumnDefinition Width="64*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource InputLabelTextBlock}" Text="{x:Static res:LanguageResource.Content_StudyId}" />
+                    <md:MarkableTextBox
+                        Grid.Column="1"
+                        VerticalContentAlignment="Center"
+                        IsEnabled="False"
+                        MaxLength="16"
+                        Style="{StaticResource WithValidationMarkableTextBox}">
+                        <TextBox.Text>
+                            <Binding
+                                Path="SelectedVStudyEntity.HisStudyID"
+                                UpdateSourceTrigger="PropertyChanged"
+                                ValidatesOnDataErrors="True" />
+                        </TextBox.Text>
+                    </md:MarkableTextBox>
+                </Grid>
+                <Grid
+                    Grid.Row="4"
+                    IsEnabled="{Binding IsEnabledComments, Mode=TwoWay}"
+                    Style="{StaticResource InfomationGrid}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="36*" />
+                        <ColumnDefinition Width="64*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        Margin="0,20,0,16"
+                        VerticalAlignment="Top"
+                        Style="{StaticResource InputLabelTextBlock}"
+                        Text="{x:Static res:LanguageResource.Content_Comments}" />
+                    <md:MarkableTextBox
+                        Grid.Column="1"
+                        Height="100"
+                        HorizontalAlignment="Stretch"
+                        VerticalContentAlignment="Stretch"
+                        MaxLength="500"
+                        Style="{StaticResource WithValidationMarkableTextBox}"
+                        TextWrapping="Wrap">
+                        <TextBox.Text>
+                            <Binding
+                                Path="SelectedVStudyEntity.Comments"
+                                UpdateSourceTrigger="PropertyChanged"
+                                ValidatesOnDataErrors="True" />
+                        </TextBox.Text>
+                    </md:MarkableTextBox>
+                </Grid>
+            </Grid>
+            <Grid
+                Grid.Row="3"
+                Grid.Column="3"
+                Height="300"
+                VerticalAlignment="Top"
+                IsEnabled="{Binding IsEnabled}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid>
+                    <TextBlock
+                        x:Name="lblInstitution"
+                        Grid.ColumnSpan="2"
+                        Margin="0,8,0,0"
+                        Style="{StaticResource SectionTitleTextBlock}"
+                        Text="{x:Static res:LanguageResource.Content_Institution}" />
+                    <Rectangle
+                        Grid.Column="0"
+                        Width="{Binding ElementName=lblInstitution, Path=ActualWidth}"
+                        Margin="0,0,0,14"
+                        Style="{StaticResource SectionTitleUnderlineRectangle}" />
+                </Grid>
+                <Grid
+                    Grid.Row="1"
+                    IsEnabled="{Binding IsEnabledInstitutionName, Mode=TwoWay}"
+                    Style="{StaticResource InfomationGrid}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="36*" />
+                        <ColumnDefinition Width="64*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource InputLabelTextBlock}" Text="{x:Static res:LanguageResource.Content_InstitutionName}" />
+                    <md:MarkableTextBox
+                        Grid.Column="1"
+                        VerticalContentAlignment="Center"
+                        MaxLength="64"
+                        Style="{StaticResource WithValidationMarkableTextBox}">
+                        <TextBox.Text>
+                            <Binding
+                                Path="SelectedVStudyEntity.InstitutionName"
+                                UpdateSourceTrigger="PropertyChanged"
+                                ValidatesOnDataErrors="True" />
+                        </TextBox.Text>
+                    </md:MarkableTextBox>
+                </Grid>
+                <Grid
+                    Grid.Row="2"
+                    IsEnabled="{Binding IsEnabledInstitutionAddress, Mode=TwoWay}"
+                    Style="{StaticResource InfomationGrid}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="36*" />
+                        <ColumnDefinition Width="64*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource InputLabelTextBlock}" Text="{x:Static res:LanguageResource.Content_InstitutionAddress}" />
+                    <md:MarkableTextBox
+                        Grid.Column="1"
+                        VerticalContentAlignment="Center"
+                        MaxLength="256"
+                        Style="{StaticResource WithValidationMarkableTextBox}">
+                        <TextBox.Text>
+                            <Binding
+                                Path="SelectedVStudyEntity.InstitutionAddress"
+                                UpdateSourceTrigger="PropertyChanged"
+                                ValidatesOnDataErrors="True" />
+                        </TextBox.Text>
+                    </md:MarkableTextBox>
+                </Grid>
+            </Grid>
+            <Grid
+                Grid.Row="4"
+                Grid.Column="3"
+                VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="110" />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button
+                    Uid="btnSave"
+                    Command="{Binding Commands[SaveCommand]}"
+                    Content="{x:Static res:LanguageResource.Content_Save}"
+                    IsEnabled="{Binding SelectedVStudyEntity.ExamButtonStatus, Mode=TwoWay}"
+                    Style="{StaticResource CommonButton}" />
+                <Button
+                    Uid="btnClear"
+                    Grid.Column="1"
+                    Command="{Binding Commands[ClearCommand]}"
+                    Content="{x:Static res:LanguageResource.Content_Clear}"
+                    Style="{StaticResource CommonButton}" />
+                <Button
+                    Uid="btnExam"
+                    Grid.Column="3"
+                    Grid.ColumnSpan="2"
+                    Width="194"
+                    Command="{Binding Commands[GoToExamCommand]}"
+                    Content="{x:Static res:LanguageResource.Content_Exam}"
+                    Style="{StaticResource ExamButton}">
+                    <Button.IsEnabled>
+                        <MultiBinding Converter="{StaticResource multiValue2BooleanConverter}" Mode="TwoWay">
+                            <Binding Mode="TwoWay" Path="IsPermissionExamEnabled" />
+                            <Binding Mode="TwoWay" Path="SelectedVStudyEntity.ExamButtonStatus" />
+                        </MultiBinding>
+                    </Button.IsEnabled>
+                </Button>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

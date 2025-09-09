@@ -1,0 +1,151 @@
+﻿<UserControl
+	x:Class="NV.CT.RGT.View.FooterControl"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:system="clr-namespace:System;assembly=mscorlib"
+	xmlns:view="clr-namespace:NV.CT.RGT.View"
+	d:DesignHeight="100"
+	d:DesignWidth="960"
+	Background="#16162B"
+	mc:Ignorable="d">
+	<UserControl.Resources>
+		<Style TargetType="{x:Type Image}">
+			<Setter Property="Margin" Value="10,10,10,10" />
+			<Setter Property="Cursor" Value="Hand" />
+		</Style>
+
+		<Style TargetType="{x:Type TextBlock}">
+			<Setter Property="Foreground" Value="LightCyan" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="FontSize" Value="20" />
+		</Style>
+
+		<system:Double x:Key="IconWidth">40</system:Double>
+		<system:Double x:Key="IconHeight">40</system:Double>
+
+		<Style
+			x:Key="ImgStyle"
+			TargetType="{x:Type Image}">
+			<Setter Property="Width" Value="36" />
+			<Setter Property="Height" Value="36" />
+		</Style>
+
+	</UserControl.Resources>
+	<Grid VerticalAlignment="Center">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="60" />
+			<ColumnDefinition Width="60" />
+			<ColumnDefinition Width="60" />
+			<ColumnDefinition Width="60" />
+			<ColumnDefinition Width="100" />
+			<ColumnDefinition Width="10" />
+		</Grid.ColumnDefinitions>
+
+		<Grid Grid.Column="0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="2*" />
+				<ColumnDefinition Width="2*" />
+				<ColumnDefinition Width="1*" />
+				<ColumnDefinition Width="1*" />
+				<ColumnDefinition Width="1*" />
+			</Grid.ColumnDefinitions>
+			<TextBlock
+				Grid.Column="0"
+				Padding="10"
+				Text="{Binding PatientModel.PatientName}" />
+			<TextBlock
+				Grid.Column="1"
+				Text="{Binding PatientModel.PatientId}" />
+			<TextBlock
+				Grid.Column="2"
+				Text="{Binding PatientModel.PatientSex}" />
+			<TextBlock
+				Grid.Column="3"
+				Text="{Binding StudyModel.Age}" />
+			<!--<TextBlock
+                Grid.Column="4"
+                Text="Head" />-->
+		</Grid>
+
+
+		<!--  门控状态  -->
+		<Image
+			Grid.Column="1"
+			Width="34"
+			Height="34"
+			Cursor="Hand"
+			Opacity="0.5"
+			Source="../Resources/icons/opendoor.png" />
+
+		<!--  网络状态  -->
+		<Image
+			Grid.Column="2"
+			Width="36"
+			Height="36"
+			Cursor="Hand"
+			Source="../Resources/icons/network.png" />
+
+
+		<!--  系统设置  -->
+
+		<Button
+			Grid.Column="3"
+			Width="{StaticResource IconWidth}"
+			Height="{StaticResource IconHeight}"
+			Background="Transparent"
+			BorderBrush="Transparent"
+			Cursor="Hand"
+			IsEnabled="{Binding IsEnable, Mode=TwoWay}">
+			<Button.Style>
+				<Style
+					BasedOn="{StaticResource MaterialDesignRaisedButton}"
+					TargetType="{x:Type Button}">
+					<Style.Triggers>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter Property="Background" Value="#5a5a89" />
+							<Setter Property="Opacity" Value="0.4" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="True">
+							<Setter Property="Background" Value="#1665D8" />
+							<Setter Property="Opacity" Value="1" />
+						</Trigger>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Background" Value="Transparent" />
+							<Setter Property="Foreground" Value="Transparent" />
+						</Trigger>
+					</Style.Triggers>
+				</Style>
+			</Button.Style>
+			<Button.InputBindings>
+				<MouseBinding
+					Command="{Binding Commands[SettingCommand]}"
+					CommandParameter="Config"
+					MouseAction="LeftClick" />
+			</Button.InputBindings>
+			<Path
+				Cursor="Hand"
+				Data="M24,10.2921461 L24,13.7618809 C24,13.887944 23.9580157,14.008004 23.8740472,14.1190595 C23.7930776,14.2331166 23.6851181,14.2991496 23.5621642,14.3231616 L20.6712483,14.7613807 C20.4733225,15.3226613 20.269399,15.7968984 20.0624766,16.184092 C20.4283394,16.7063532 20.9861302,17.4237119 21.7358491,18.3421711 C21.8408097,18.4682341 21.8947895,18.5972986 21.8947895,18.7353677 C21.8947895,18.8704352 21.8498063,18.9904952 21.7508434,19.0925463 C21.4689491,19.4797399 20.9561414,20.0410205 20.2064226,20.7823912 C19.4567037,21.5207604 18.967887,21.895948 18.7399725,21.895948 C18.6140197,21.895948 18.4820692,21.8509255 18.3321255,21.7518759 L16.175934,20.062031 C15.7171061,20.3021511 15.2432838,20.5002501 14.7544671,20.6563282 C14.5865301,22.0730365 14.4365863,23.0425213 14.3016369,23.5617809 C14.2296639,23.8529265 14.0437336,24 13.7408472,24 L10.2711483,24 C10.1242034,24 9.99825066,23.9549775 9.89029114,23.867934 C9.78233163,23.7808904 9.71935524,23.6668334 9.71035862,23.5347674 L9.26952393,20.6533267 C8.75971511,20.4852426 8.29189054,20.2961481 7.86305136,20.0770385 L5.6618768,21.7518759 C5.55691616,21.8449225 5.42796451,21.895948 5.26902412,21.895948 C5.12207922,21.895948 4.99312758,21.841921 4.87617144,21.7248624 C3.56566288,20.5392696 2.70498563,19.6598299 2.29713857,19.0985493 C2.22516556,18.9934967 2.18917906,18.8734367 2.18917906,18.7413707 C2.18917906,18.6153077 2.23116331,18.4982491 2.31513183,18.3841921 C2.47407222,18.1650825 2.73497438,17.81991 3.10983381,17.3456728 C3.48469324,16.8714357 3.76658753,16.5052526 3.95251781,16.2441221 C3.67062352,15.7248624 3.45770336,15.2086043 3.31075847,14.6983492 L0.452830189,14.2781391 C0.317880795,14.2601301 0.206922404,14.194097 0.125952768,14.0830415 C0.0449831313,13.9749875 0,13.8489245 0,13.7138569 L0,10.2321161 C0,10.106053 0.0419842559,9.9889945 0.125952768,9.87493747 C0.20992128,9.76088044 0.305885293,9.69484742 0.419842559,9.67083542 L3.32275397,9.23261631 C3.46969886,8.75237619 3.67062352,8.27213607 3.93152568,7.79489745 C3.51468199,7.2006003 2.95989004,6.48324162 2.25815319,5.63681841 C2.15319255,5.51075538 2.0992128,5.38769385 2.0992128,5.26163082 C2.0992128,5.15657829 2.14419593,5.03651826 2.24315882,4.90445223 C2.5130576,4.52926463 3.02286643,3.97098549 3.77858303,3.22361181 C4.53429964,2.47623812 5.02611521,2.10405203 5.25402974,2.10405203 C5.38897913,2.10405203 5.52392853,2.15507754 5.6618768,2.26313157 L7.81806822,3.93796898 C8.27389729,3.69784892 8.75071848,3.49974987 9.23953517,3.34367184 C9.4074722,1.92696348 9.55741597,0.957478739 9.69236536,0.43821911 C9.76433837,0.147073537 9.95026865,0 10.2531551,0 L13.7198551,0 C13.8668,0 13.9927527,0.0450225113 14.1007122,0.132066033 C14.2086717,0.219109555 14.2686493,0.333166583 14.2806448,0.465232616 L14.7184806,3.34067034 C15.2282894,3.50875438 15.696114,3.69784892 16.1249531,3.91695848 L18.3411221,2.24212106 C18.4340872,2.14907454 18.56004,2.09804902 18.7159815,2.09804902 C18.8509309,2.09804902 18.9828814,2.14907454 19.1088342,2.25712856 C20.4523304,3.49674837 21.3100087,4.3851926 21.687867,4.91345673 C21.7598401,4.99449725 21.7958266,5.11155578 21.7958266,5.25862931 C21.7958266,5.38469235 21.7538423,5.50475238 21.6698738,5.6158079 C21.5109334,5.83491746 21.2500312,6.18009005 20.8751718,6.65432716 C20.5003124,7.12856428 20.2184181,7.49474737 20.0324878,7.75587794 C20.3023866,8.27813907 20.5153068,8.7883942 20.6742472,9.28664332 L23.5321754,9.72486243 C23.6671248,9.74287144 23.7750843,9.80890445 23.8590529,9.91995998 C23.9550169,10.0370185 24,10.1570785 24,10.2921461 L24,10.2921461 Z M14.8275862,14.8245877 C15.6071964,14.0449775 16,13.1004498 16,11.9970015 C16,10.8935532 15.6071964,9.95202399 14.8275862,9.16941529 C14.047976,8.3928036 13.1034483,8 12,8 C10.8965517,8 9.95502249,8.3928036 9.17241379,9.17241379 C8.3928036,9.95202399 8,10.8965517 8,12 C8,13.1034483 8.3928036,14.0449775 9.17241379,14.8275862 C9.95202399,15.6101949 10.8965517,16 12,16 C13.1034483,15.994003 14.0449775,15.6041979 14.8275862,14.8245877 L14.8275862,14.8245877 Z"
+				Fill="White"
+				Opacity="0.4"
+				Stretch="Fill" />
+		</Button>
+
+
+
+		<!--  锁屏与否  -->
+		<Image
+			Grid.Column="4"
+			Width="34"
+			Height="34"
+			Cursor="Hand"
+			Opacity="0.5"
+			Source="../Resources/icons/lock.png" />
+
+
+		<view:TimeControl Grid.Column="5" />
+
+	</Grid>
+</UserControl>

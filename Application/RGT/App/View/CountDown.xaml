@@ -1,0 +1,56 @@
+﻿<UserControl
+    x:Class="NV.CT.RGT.View.CountDown"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:NV.CT.RGT.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    Background="Transparent"
+    mc:Ignorable="d">
+    <Viewbox>
+        <StackPanel Orientation="Vertical">
+            <!--  头部 protocol loaded  -->
+            <Label
+                Name="lblTop"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="Transparent"
+                Content=""
+                FontSize="2" />
+            <Grid
+                Width="34"
+                Height="34"
+                Background="Transparent">
+                <Path
+                    Name="myCycleProcessBar1"
+                    Width="34"
+                    Height="34"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Data="M17,3 A14,14 0 0 1 16,3 "
+                    Fill="Transparent"
+                    Stroke="DarkGoldenrod"
+                    StrokeThickness="2" />
+                <Grid>
+                    <Label
+                        Name="lblValue"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Background="Transparent"
+                        Content=""
+                        FontSize="4" />
+                </Grid>
+            </Grid>
+            <Label
+                Name="lblBottom"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="Transparent"
+                Content="Delay Time"
+                FontSize="2"
+                Opacity="0.6" />
+        </StackPanel>
+    </Viewbox>
+</UserControl>

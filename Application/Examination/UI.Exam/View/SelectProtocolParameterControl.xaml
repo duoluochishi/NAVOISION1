@@ -1,0 +1,1015 @@
+﻿<UserControl
+    x:Class="NV.CT.UI.Exam.View.SelectProtocolParameterControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+    d:DesignHeight="1250"
+    d:DesignWidth="1650"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style
+            x:Key="SelectProtocolParameterBorderStyle"
+            TargetType="{x:Type Border}">
+            <Setter Property="Background" Value="{StaticResource MaterialDesignPaper}" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="BorderBrush" Value="#5A5A89" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Margin" Value="2,5,5,3" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+        </Style>
+        <Style
+            x:Key="SelectProtocolParameterSacnPathStyle"
+            BasedOn="{StaticResource Sacn}"
+            TargetType="{x:Type Path}">
+            <Setter Property="Width" Value="55" />
+            <Setter Property="Height" Value="65" />
+            <Setter Property="Stretch" Value="Fill" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Margin" Value="20,80,0,61" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Fill" Value="#FFC6C6EC" />
+            <Setter Property="Stroke" Value="Transparent" />
+        </Style>
+        <Style
+            x:Key="SelectProtocolParameterRScanPathStyle"
+            BasedOn="{StaticResource RScan}"
+            TargetType="{x:Type Path}">
+            <Setter Property="Width" Value="55" />
+            <Setter Property="Height" Value="65" />
+            <Setter Property="Stretch" Value="Fill" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Margin" Value="20,80,0,61" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Fill" Value="#FFC6C6EC" />
+            <Setter Property="Stroke" Value="Transparent" />
+        </Style>
+        <Style
+            x:Key="UnitStyle"
+            BasedOn="{StaticResource MaterialDesignLabel}"
+            TargetType="{x:Type Label}">
+            <Setter Property="Margin" Value="5,0,0,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </UserControl.Resources>
+    <Grid
+        HorizontalAlignment="Left"
+        VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2" />
+            <RowDefinition Height="470" />
+            <RowDefinition Height="2" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2" />
+        </Grid.RowDefinitions>
+        <Border
+            Grid.Row="1"
+            Style="{StaticResource SelectProtocolParameterBorderStyle}">
+            <Grid Name="ScamGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="143" />
+                    <ColumnDefinition Width="1000" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="400" />
+                </Grid.ColumnDefinitions>
+                <Path
+                    Grid.Column="1"
+                    Style="{StaticResource SelectProtocolParameterSacnPathStyle}" />
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="11*" />
+                        <RowDefinition Height="3" />
+                        <RowDefinition Height="12*" />
+                        <RowDefinition Height="10" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="10*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="10*" />
+                        <ColumnDefinition Width="10" />
+                    </Grid.ColumnDefinitions>
+                    <!--  General  -->
+                    <StackPanel
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Orientation="Vertical">
+                        <Grid VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="32" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Path
+                                Width="20"
+                                Height="20"
+                                Fill="{StaticResource TextBoxBrush}"
+                                Stretch="Fill"
+                                Style="{StaticResource Config}" />
+                            <Label
+                                Grid.Column="1"
+                                Content="{x:Static res:LanguageResource.Content_GeneralTitle}"
+                                Style="{StaticResource BoldLabelStyle}" />
+                            <Rectangle
+                                Grid.ColumnSpan="2"
+                                Width="90"
+                                Style="{StaticResource StressLineStyle}" />
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_TubePosition}" />
+                            <StackPanel
+                                Grid.Column="1"
+                                Grid.ColumnSpan="2"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <RadioButton
+                                    Content="{x:Static res:LanguageResource.Content_Top}"
+                                    GroupName="SelectTubePositon"
+                                    IsChecked="{Binding Path=IsTop, Mode=TwoWay}" />
+                                <RadioButton
+                                    Content="{x:Static res:LanguageResource.Content_Bottom}"
+                                    GroupName="SelectTubePositon"
+                                    IsChecked="{Binding Path=IsBottom, Mode=TwoWay}" />
+                                <RadioButton
+                                    Content="{x:Static res:LanguageResource.Content_Left}"
+                                    GroupName="SelectTubePositon"
+                                    IsChecked="{Binding Path=IsLeft, Mode=TwoWay}" />
+                                <RadioButton
+                                    Content="{x:Static res:LanguageResource.Content_Right}"
+                                    GroupName="SelectTubePositon"
+                                    IsChecked="{Binding Path=IsRight, Mode=TwoWay}" />
+                            </StackPanel>
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_ScanTime}" />
+                            <TextBox
+                                Grid.Column="1"
+                                IsEnabled="False"
+                                Text="{Binding Path=ScanTime, Mode=TwoWay}" />
+                            <Label
+                                Grid.Column="2"
+                                Content="{x:Static res:LanguageResource.Content_TimeUnitSecond}"
+                                Style="{StaticResource UnitStyle}" />
+                        </Grid>
+                        <Grid
+                            Style="{StaticResource StackPanelGrid}"
+                            Visibility="{Binding Visibility}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_API}" />
+                            <ComboBox
+                                Grid.Column="1"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding ApiStatusList}"
+                                SelectedItem="{Binding Path=SelectAPI, Mode=TwoWay}"
+                                SelectedValuePath="Key" />
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_Pitch}" />
+                            <TextBox
+                                Grid.Column="1"
+                                Text="{Binding Path=Pitch, Mode=TwoWay}" />
+                        </Grid>
+                    </StackPanel>
+                    <!--  Dose  -->
+                    <StackPanel
+                        Grid.Row="1"
+                        Grid.Column="3"
+                        Orientation="Vertical">
+                        <Grid VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="32" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Path
+                                Width="20"
+                                Height="20"
+                                Fill="{StaticResource TextBoxBrush}"
+                                Stretch="Fill"
+                                Style="{StaticResource DoseConfig}" />
+                            <Label
+                                Grid.Column="1"
+                                Content="{x:Static res:LanguageResource.Content_DoseTitle}"
+                                Style="{StaticResource BoldLabelStyle}" />
+                            <Rectangle
+                                Grid.ColumnSpan="2"
+                                Width="73"
+                                Style="{StaticResource StressLineStyle}" />
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_mA}" />
+                            <TextBox
+                                Grid.Column="1"
+                                Text="{Binding Path=mA, Mode=TwoWay}" />
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_kV}" />
+                            <ComboBox
+                                Grid.Column="1"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding KvValueList}"
+                                SelectedItem="{Binding Path=SelectkV, Mode=TwoWay}"
+                                SelectedValuePath="Key" />
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_CTDlvol}" />
+                            <TextBox
+                                Grid.Column="1"
+                                Text="{Binding Path=CTDlvol, Mode=TwoWay}" />
+                            <Label
+                                Grid.Column="2"
+                                Content="{x:Static res:LanguageResource.Content_mGy}"
+                                Style="{StaticResource UnitStyle}" />
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_DLP}" />
+                            <TextBox
+                                Grid.Column="1"
+                                Text="{Binding Path=DLP, Mode=TwoWay}" />
+                            <Label
+                                Grid.Column="2"
+                                Content="{x:Static res:LanguageResource.Content_mGycm}"
+                                Style="{StaticResource UnitStyle}" />
+                        </Grid>
+                    </StackPanel>
+                    <!--  Enhanced scan  -->
+                    <StackPanel
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Orientation="Vertical">
+                        <Grid VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="32" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Path
+                                Width="20"
+                                Height="20"
+                                Fill="{StaticResource TextBoxBrush}"
+                                Stretch="Fill"
+                                Style="{StaticResource SEnhance}" />
+                            <Label
+                                Grid.Column="1"
+                                Content="{x:Static res:LanguageResource.Content_EnhancementTitle}"
+                                Style="{StaticResource BoldLabelStyle}" />
+                            <Rectangle
+                                Grid.ColumnSpan="2"
+                                Width="131"
+                                Style="{StaticResource StressLineStyle}" />
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_TriggerMode}" />
+                            <ComboBox
+                                Grid.Column="1"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding TriggerModeList}"
+                                SelectedItem="{Binding Path=SelectTriggerMode, Mode=TwoWay}"
+                                SelectedValuePath="Key" />
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_Delay}" />
+                            <TextBox
+                                Grid.Column="1"
+                                Text="{Binding Path=Delay, Mode=TwoWay}" />
+                            <Label
+                                Grid.Column="2"
+                                Content="{x:Static res:LanguageResource.Content_TimeUnitSecond}"
+                                Style="{StaticResource UnitStyle}" />
+                        </Grid>
+                    </StackPanel>
+                    <!--  Imaging  -->
+                    <StackPanel
+                        Grid.Row="3"
+                        Grid.Column="3"
+                        Orientation="Vertical">
+                        <Grid VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="32" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Path
+                                Width="20"
+                                Height="20"
+                                Fill="{StaticResource TextBoxBrush}"
+                                Stretch="Fill"
+                                Style="{StaticResource WImage}" />
+                            <Label
+                                Grid.Column="1"
+                                Content="{x:Static res:LanguageResource.Content_ImageTitle}"
+                                Style="{StaticResource BoldLabelStyle}" />
+                            <Rectangle
+                                Grid.ColumnSpan="2"
+                                Width="80"
+                                Style="{StaticResource StressLineStyle}" />
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_BeginRange}" />
+                            <TextBox
+                                Grid.Column="1"
+                                Text="{Binding Path=BeginRange, Mode=TwoWay}" />
+                            <Label
+                                Grid.Column="2"
+                                Content="{x:Static res:LanguageResource.Content_LangthUnitMM}"
+                                Style="{StaticResource UnitStyle}" />
+                        </Grid>
+                        <Grid
+                            Style="{StaticResource StackPanelGrid}"
+                            Visibility="Collapsed">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_BeginRange}" />
+                            <TextBox
+                                Grid.Column="1"
+                                Text="{Binding Path=BeginRange, Mode=TwoWay}" />
+                            <Label
+                                Grid.Column="2"
+                                Content="{x:Static res:LanguageResource.Content_LangthUnitMM}"
+                                Style="{StaticResource UnitStyle}" />
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_EndRange}" />
+                            <TextBox
+                                Grid.Column="1"
+                                Text="{Binding Path=EndRange, Mode=TwoWay}" />
+                            <Label
+                                Grid.Column="2"
+                                Content="{x:Static res:LanguageResource.Content_LangthUnitMM}"
+                                Style="{StaticResource UnitStyle}" />
+                        </Grid>
+                        <Grid
+                            Style="{StaticResource StackPanelGrid}"
+                            Visibility="Collapsed">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_ScanLength}"
+                                Visibility="Hidden" />
+                            <TextBox
+                                Grid.Column="1"
+                                Text="{Binding Path=ScanLength, Mode=TwoWay}" />
+                            <Label
+                                Grid.Column="2"
+                                Content="{x:Static res:LanguageResource.Content_LangthUnitMM}"
+                                Style="{StaticResource UnitStyle}" />
+                        </Grid>                        
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_ScanDirection}" />
+                            <ComboBox
+                                Grid.Column="1"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding ScanDirectList}"
+                                SelectedItem="{Binding Path=SelectScanDirection, Mode=TwoWay}" />
+                        </Grid>
+                        <Grid
+                            Style="{StaticResource StackPanelGrid}"
+                            Visibility="Collapsed">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_TableDirection}"
+                                Visibility="Hidden" />
+                            <TextBox
+                                Grid.Column="1"
+                                Text="{Binding Path=TableDirection, Mode=TwoWay}" />
+                            <Label
+                                Grid.Row="7"
+                                Grid.Column="2"
+                                Content="{x:Static res:LanguageResource.Content_LangthUnitMM}"
+                                Style="{StaticResource UnitStyle}" />
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_RealBeginRange}" />
+                            <TextBox
+                                Grid.Column="1"
+                                Text="{Binding Path=RealBeginRange, Mode=TwoWay}" />
+                            <Label
+                                Grid.Column="2"
+                                Content="{x:Static res:LanguageResource.Content_LangthUnitMM}"
+                                Style="{StaticResource UnitStyle}" />
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_RealEndRange}" />
+                            <TextBox
+                                Grid.Column="1"
+                                Text="{Binding Path=RealEndRange, Mode=TwoWay}" />
+                            <Label
+                                Grid.Column="2"
+                                Content="{x:Static res:LanguageResource.Content_LangthUnitMM}"
+                                Style="{StaticResource UnitStyle}" />
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Border>
+        <Border
+            Grid.Row="3"
+            Style="{StaticResource SelectProtocolParameterBorderStyle}">
+            <Grid Name="ReconGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="143" />
+                    <ColumnDefinition Width="1000" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="400" />
+                </Grid.ColumnDefinitions>
+                <Path
+                    Grid.Column="1"
+                    Style="{StaticResource SelectProtocolParameterRScanPathStyle}" />
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="11*" />
+                        <RowDefinition Height="3" />
+                        <RowDefinition Height="11*" />
+                        <RowDefinition Height="10" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="10*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="10*" />
+                        <ColumnDefinition Width="10" />
+                    </Grid.ColumnDefinitions>
+                    <!--  General  -->
+                    <StackPanel
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Orientation="Vertical">
+                        <Grid VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="32" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Path
+                                Width="20"
+                                Height="20"
+                                Fill="{StaticResource TextBoxBrush}"
+                                Stretch="Fill"
+                                Style="{StaticResource Config}" />
+                            <Label
+                                Grid.Column="1"
+                                Content="{x:Static res:LanguageResource.Content_GeneralTitle}"
+                                Style="{StaticResource BoldLabelStyle}" />
+                            <Rectangle
+                                Grid.ColumnSpan="2"
+                                Width="89"
+                                Style="{StaticResource StressLineStyle}" />
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_SeriesDescription}" />
+                            <Grid
+                                Grid.Column="1"
+                                HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="15*" />
+                                    <ColumnDefinition Width="17*" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    Grid.Column="0"
+                                    MinWidth="30"
+                                    HorizontalAlignment="Stretch"
+                                    Content="{Binding Path=SeriesDescriptionPre, Mode=TwoWay}"
+                                    IsEnabled="False" />
+                                <TextBox
+                                    Grid.Column="1"
+                                    Text="{Binding Path=SeriesDescription, Mode=TwoWay}" />
+                            </Grid>
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_SliceThickness}" />
+                            <ComboBox
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding SliceThicknessList}"
+                                SelectedItem="{Binding Path=SelectSliceThickness, Mode=TwoWay}"
+                                SelectedValuePath="Key" />
+                            <Label
+                                Grid.Column="2"
+                                Content="{x:Static res:LanguageResource.Content_LangthUnitMM}"
+                                Style="{StaticResource UnitStyle}" />
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_ReconIncrement}" />
+                            <TextBox
+                                Grid.Column="1"
+                                Text="{Binding Path=ReconIncrement, Mode=TwoWay}" />
+                            <Label
+                                Grid.Column="2"
+                                Content="{x:Static res:LanguageResource.Content_LangthUnitMM}"
+                                Style="{StaticResource UnitStyle}" />
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_NumberOfImages}" />
+                            <TextBox
+                                Grid.Column="1"
+                                Text="{Binding Path=ImagesCount, Mode=TwoWay}" />
+                        </Grid>
+                    </StackPanel>
+                    <!--  Image  -->
+                    <StackPanel
+                        Grid.Row="1"
+                        Grid.Column="3"
+                        Orientation="Vertical">
+                        <Grid VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="32" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Path
+                                Width="20"
+                                Height="20"
+                                Fill="{StaticResource TextBoxBrush}"
+                                Stretch="Fill"
+                                Style="{StaticResource WImage}" />
+                            <Label
+                                Grid.Column="1"
+                                Content="{x:Static res:LanguageResource.Content_ImageTitle}"
+                                Style="{StaticResource BoldLabelStyle}" />
+                            <Rectangle
+                                Grid.ColumnSpan="2"
+                                Width="81"
+                                Style="{StaticResource StressLineStyle}" />
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_FOV}" />
+                            <TextBox
+                                Grid.Column="1"
+                                Text="{Binding Path=FOV, Mode=TwoWay}" />
+                            <Label
+                                Grid.Column="2"
+                                Content="{x:Static res:LanguageResource.Content_LangthUnitMM}"
+                                Style="{StaticResource UnitStyle}" />
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_ReconMatrix}" />
+                            <ComboBox
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding ReconMatrixeList}"
+                                SelectedItem="{Binding Path=SelectReconMatrix, Mode=TwoWay}"
+                                SelectedValuePath="Key" />
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_ImageOrder}" />
+                            <ComboBox
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding ImageOrderList}"
+                                SelectedItem="{Binding Path=SelectImageOrder, Mode=TwoWay}"
+                                SelectedValuePath="Key" />
+                        </Grid>
+                        <Grid Height="65">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_Comments}" />
+                            <TextBox
+                                Grid.Column="1"
+                                Height="60"
+                                Text="{Binding Path=Comments, Mode=TwoWay}"
+                                TextWrapping="Wrap" />
+                        </Grid>
+                    </StackPanel>
+                    <!--  Recon  -->
+                    <StackPanel
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Orientation="Vertical">
+                        <Grid VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="32" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Path
+                                Width="20"
+                                Height="20"
+                                Fill="{StaticResource TextBoxBrush}"
+                                Stretch="Fill"
+                                Style="{StaticResource Recon}" />
+                            <Label
+                                Grid.Column="1"
+                                Content="{x:Static res:LanguageResource.Content_ReconTitle}"
+                                Style="{StaticResource BoldLabelStyle}" />
+                            <Rectangle
+                                Grid.ColumnSpan="2"
+                                Width="80"
+                                Style="{StaticResource StressLineStyle}" />
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_RemoveArtifacts}" />
+                            <ComboBox
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding RemoveArtifactList}"
+                                SelectedItem="{Binding Path=SelectRemoveArtifact, Mode=TwoWay}"
+                                SelectedValuePath="Key" />
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_ReconMethod}" />
+                            <ComboBox
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding ReconMethodList}"
+                                SelectedItem="{Binding Path=SelectReconMethod, Mode=TwoWay}"
+                                SelectedValuePath="Key" />
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_Kernel}" />
+                            <ComboBox
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding KernelList}"
+                                SelectedItem="{Binding Path=SelectKernel, Mode=TwoWay}"
+                                SelectedValuePath="Key" />
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_Window}" />
+                            <ComboBox
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding WindowList}"
+                                SelectedItem="{Binding Path=SelectWindow, Mode=TwoWay}"
+                                SelectedValuePath="Key" />
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_WWWL}" />
+                            <Grid
+                                Grid.Column="1"
+                                HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="18*" />
+                                    <ColumnDefinition Width="4*" />
+                                    <ColumnDefinition Width="18*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBox
+                                    Grid.Column="0"
+                                    Text="{Binding Path=WW, Mode=TwoWay}" />
+                                <Label
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Center"
+                                    Content="/" />
+                                <TextBox
+                                    Grid.Column="2"
+                                    Text="{Binding Path=WL, Mode=TwoWay}" />
+                            </Grid>
+                            <Button
+                                Grid.Column="2"
+                                Width="65"
+                                Background="Transparent"
+                                ToolTip="{x:Static res:LanguageResource.ToolTip_Custom}">
+                                <Path
+                                    Width="20"
+                                    Height="20"
+                                    Fill="{StaticResource TextBoxBrush}"
+                                    Stretch="Fill"
+                                    Style="{StaticResource IconCustom}" />
+                            </Button>
+                        </Grid>
+                    </StackPanel>
+                    <!--  Transfer  -->
+                    <StackPanel
+                        Grid.Row="3"
+                        Grid.Column="3"
+                        Orientation="Vertical">
+                        <Grid VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="32" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Path
+                                Width="20"
+                                Height="20"
+                                Fill="{StaticResource TextBoxBrush}"
+                                Stretch="Fill"
+                                Style="{StaticResource PQuery}" />
+                            <Label
+                                Grid.Column="1"
+                                Content="{x:Static res:LanguageResource.Content_TransferTitle}"
+                                Style="{StaticResource BoldLabelStyle}" />
+                            <Rectangle
+                                Grid.ColumnSpan="2"
+                                Width="150"
+                                Style="{StaticResource StressLineStyle}" />
+                            <Label
+                                Grid.Column="1"
+                                Margin="65,0,0,0"
+                                Content="(ToDo)"
+                                Foreground="Green"
+                                Style="{StaticResource BoldLabelStyle}" />
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_AutoStorage}" />
+                            <CheckBox
+                                Grid.Column="1"
+                                IsChecked="{Binding Path=IsAutoStorage, Mode=TwoWay}" />
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_AutoFilm}" />
+                            <CheckBox
+                                Grid.Column="1"
+                                IsChecked="{Binding Path=IsAutoFilm, Mode=TwoWay}" />
+                        </Grid>
+                        <Grid Style="{StaticResource StackPanelGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_AutoRecon}" />
+                            <CheckBox
+                                Grid.Column="1"
+                                IsChecked="{Binding Path=IsAutoRecon, Mode=TwoWay}" />
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+                <WrapPanel
+                    Name="splRecon"
+                    Grid.Column="4"
+                    Margin="24,2,21,0"
+                    Orientation="Horizontal">
+                    <WrapPanel.ContextMenu>
+                        <ContextMenu
+                            Placement="Relative"
+                            PlacementTarget="{Binding ElementName=splRecon}">
+                            <MenuItem
+                                VerticalAlignment="Stretch"
+                                HorizontalContentAlignment="Center"
+                                FontSize="12"
+                                Header="Cut" />
+                            <Separator />
+                            <MenuItem
+                                VerticalAlignment="Stretch"
+                                HorizontalContentAlignment="Center"
+                                FontSize="12"
+                                Header="Repeat" />
+                        </ContextMenu>
+                    </WrapPanel.ContextMenu>
+                </WrapPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

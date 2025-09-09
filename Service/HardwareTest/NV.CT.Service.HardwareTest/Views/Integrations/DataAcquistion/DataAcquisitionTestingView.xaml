@@ -1,0 +1,2589 @@
+﻿<Grid
+    x:Class="NV.CT.Service.HardwareTest.Views.Integrations.DataAcquisition.DataAcquisitionTestingView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ap="clr-namespace:NV.CT.Service.Common.AttachedProperty;assembly=NV.CT.Service.Common"
+    xmlns:commonconverters="clr-namespace:NV.CT.Service.Common.Converters;assembly=NV.CT.Service.Common"
+    xmlns:converters="clr-namespace:NV.CT.Service.HardwareTest.Attachments.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:foundation="clr-namespace:NV.CT.Service.HardwareTest.Models.Foundations"
+    xmlns:helpers="clr-namespace:NV.CT.Service.HardwareTest.Attachments.Helpers"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mk="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableTextBox;assembly=MaterialDesignThemes.Wpf"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <Grid.Resources>
+
+        <converters:PartStatusToDisplayConverter x:Key="PartStatusToDisplayConverter" />
+        <converters:CountToIndexConverter x:Key="CountToIndexConverter" />
+        <converters:SliderLocationAutoFitConverter
+            x:Key="SliderHeightAutoFitConverter"
+            HeightAutoFit="True" />
+        <converters:SliderLocationAutoFitConverter
+            x:Key="SliderCenterYAutoFitConverter"
+            HeightAutoFit="False" />
+        <converters:CollimatorStatusWidthAutoFitConverter x:Key="CollimatorStatusWidthAutoFitConverter" />
+        <converters:FreeModeToFillBrushConverter x:Key="FreeModeToFillBrushConverter" />
+        <converters:TableDirectionToParameterVisibilityConverter x:Key="TableDirectionToParameterVisibilityConverter" />
+        <converters:CommonSwitchToEnableConverter x:Key="CommonSwitchToEnableConverter" />
+        <commonconverters:DecimalPointConverter x:Key="DecimalPointConverter" />
+
+        <Style
+            x:Key="ParameterGroupBoxStyle"
+            BasedOn="{StaticResource MaterialDesignGroupBox}"
+            TargetType="{x:Type GroupBox}">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="Padding" Value="4,2" />
+            <Setter Property="Width" Value="145" />
+            <Setter Property="Height" Value="70" />
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock
+                            HorizontalAlignment="Left"
+                            Foreground="White"
+                            Text="{Binding Header, RelativeSource={RelativeSource AncestorType=GroupBox}}" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style
+            x:Key="IconButtonStyle"
+            BasedOn="{StaticResource MaterialDesignRaisedButton}"
+            TargetType="{x:Type Button}">
+
+            <Setter Property="Width" Value="40" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Foreground" Value="White" />
+
+        </Style>
+
+    </Grid.Resources>
+
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="400" />
+        <ColumnDefinition Width="2" />
+        <ColumnDefinition />
+    </Grid.ColumnDefinitions>
+
+    <GroupBox
+        Padding="5,9"
+        Header="Parameters"
+        Style="{DynamicResource StandardGroupBoxStyle}">
+
+        <GroupBox.Resources>
+
+            <DataTemplate x:Key="BoldExpanderHeaderTemplate">
+                <TextBlock
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontWeight="Bold"
+                    Foreground="{StaticResource BaseForegroundColor}"
+                    Text="{Binding Header, RelativeSource={RelativeSource AncestorType=Expander}}" />
+            </DataTemplate>
+
+            <Style
+                BasedOn="{StaticResource NanoButtonStyle}"
+                TargetType="{x:Type Button}">
+                <Setter Property="Width" Value="180" />
+                <Setter Property="Margin" Value="5,0" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Foreground" Value="White" />
+            </Style>
+
+        </GroupBox.Resources>
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+
+            <StackPanel>
+
+                <StackPanel.Resources>
+
+                    <Style
+                        BasedOn="{StaticResource MaterialDesignExpander}"
+                        TargetType="{x:Type Expander}">
+                        <Setter Property="Margin" Value="0,1,0,0" />
+                        <Setter Property="md:ExpanderAssist.HeaderBackground" Value="#3b3b5f" />
+                        <Setter Property="md:ExpanderAssist.HorizontalHeaderPadding" Value="10.5" />
+                        <Setter Property="Foreground" Value="White" />
+                    </Style>
+
+                    <Style
+                        BasedOn="{StaticResource ParameterGroupBoxStyle}"
+                        TargetType="{x:Type GroupBox}">
+                        <Setter Property="Width" Value="192" />
+                        <Setter Property="Margin" Value="1,1,0,1" />
+                    </Style>
+
+                </StackPanel.Resources>
+
+                <Expander
+                    Header="Exposure &amp; Detector Parameters"
+                    HeaderTemplate="{StaticResource BoldExpanderHeaderTemplate}"
+                    IsExpanded="True">
+
+                    <ScrollViewer
+                        Height="675"
+                        VerticalScrollBarVisibility="Hidden">
+
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <StackPanel
+                                Grid.Row="0"
+                                HorizontalAlignment="Center"
+                                Orientation="Horizontal">
+
+                                <Line
+                                    VerticalAlignment="Center"
+                                    Stroke="#666"
+                                    StrokeThickness="3"
+                                    X2="155" />
+
+                                <TextBlock
+                                    Margin="5,0"
+                                    VerticalAlignment="Center"
+                                    FontWeight="Bold"
+                                    Text="Exposure" />
+
+                                <Line
+                                    VerticalAlignment="Center"
+                                    Stroke="#666"
+                                    StrokeThickness="3"
+                                    X2="155" />
+
+                            </StackPanel>
+
+                            <WrapPanel
+                                Grid.Row="1"
+                                Margin="1,2"
+                                HorizontalAlignment="Left">
+
+                                <GroupBox
+                                    Width="385"
+                                    Header="kVs">
+                                    <StackPanel Orientation="Horizontal">
+                                        <mk:MarkableTextBox
+                                            Width="45"
+                                            Margin="1,0"
+                                            ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                            Text="{Binding XDataAcquisitionParameters.ExposureParameters.KVs[0], Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}"
+                                            TextAlignment="Center" />
+                                        <mk:MarkableTextBox
+                                            Width="45"
+                                            Margin="1,0"
+                                            ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                            Text="{Binding XDataAcquisitionParameters.ExposureParameters.KVs[1], Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}"
+                                            TextAlignment="Center" />
+                                        <mk:MarkableTextBox
+                                            Width="45"
+                                            Margin="1,0"
+                                            ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                            Text="{Binding XDataAcquisitionParameters.ExposureParameters.KVs[2], Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}"
+                                            TextAlignment="Center" />
+                                        <mk:MarkableTextBox
+                                            Width="45"
+                                            Margin="1,0"
+                                            ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                            Text="{Binding XDataAcquisitionParameters.ExposureParameters.KVs[3], Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}"
+                                            TextAlignment="Center" />
+                                        <mk:MarkableTextBox
+                                            Width="45"
+                                            Margin="1,0"
+                                            ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                            Text="{Binding XDataAcquisitionParameters.ExposureParameters.KVs[4], Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}"
+                                            TextAlignment="Center" />
+                                        <mk:MarkableTextBox
+                                            Width="45"
+                                            Margin="1,0"
+                                            ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                            Text="{Binding XDataAcquisitionParameters.ExposureParameters.KVs[5], Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}"
+                                            TextAlignment="Center" />
+                                        <mk:MarkableTextBox
+                                            Width="45"
+                                            Margin="1,0"
+                                            ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                            Text="{Binding XDataAcquisitionParameters.ExposureParameters.KVs[6], Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}"
+                                            TextAlignment="Center" />
+                                        <mk:MarkableTextBox
+                                            Width="45"
+                                            Margin="1,0"
+                                            ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                            Text="{Binding XDataAcquisitionParameters.ExposureParameters.KVs[7], Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}"
+                                            TextAlignment="Center" />
+                                    </StackPanel>
+
+                                </GroupBox>
+
+                                <GroupBox
+                                    Width="385"
+                                    Header="mAs">
+                                    <StackPanel Orientation="Horizontal">
+                                        <mk:MarkableTextBox
+                                            Width="45"
+                                            Margin="1,0"
+                                            ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                            Text="{Binding XDataAcquisitionParameters.ExposureParameters.MAs[0], Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}"
+                                            TextAlignment="Center" />
+                                        <mk:MarkableTextBox
+                                            Width="45"
+                                            Margin="1,0"
+                                            ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                            Text="{Binding XDataAcquisitionParameters.ExposureParameters.MAs[1], Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}"
+                                            TextAlignment="Center" />
+                                        <mk:MarkableTextBox
+                                            Width="45"
+                                            Margin="1,0"
+                                            ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                            Text="{Binding XDataAcquisitionParameters.ExposureParameters.MAs[2], Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}"
+                                            TextAlignment="Center" />
+                                        <mk:MarkableTextBox
+                                            Width="45"
+                                            Margin="1,0"
+                                            ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                            Text="{Binding XDataAcquisitionParameters.ExposureParameters.MAs[3], Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}"
+                                            TextAlignment="Center" />
+                                        <mk:MarkableTextBox
+                                            Width="45"
+                                            Margin="1,0"
+                                            ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                            Text="{Binding XDataAcquisitionParameters.ExposureParameters.MAs[4], Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}"
+                                            TextAlignment="Center" />
+                                        <mk:MarkableTextBox
+                                            Width="45"
+                                            Margin="1,0"
+                                            ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                            Text="{Binding XDataAcquisitionParameters.ExposureParameters.MAs[5], Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}"
+                                            TextAlignment="Center" />
+                                        <mk:MarkableTextBox
+                                            Width="45"
+                                            Margin="1,0"
+                                            ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                            Text="{Binding XDataAcquisitionParameters.ExposureParameters.MAs[6], Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}"
+                                            TextAlignment="Center" />
+                                        <mk:MarkableTextBox
+                                            Width="45"
+                                            Margin="1,0"
+                                            ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                            Text="{Binding XDataAcquisitionParameters.ExposureParameters.MAs[7], Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}"
+                                            TextAlignment="Center" />
+                                    </StackPanel>
+                                </GroupBox>
+
+                                <GroupBox Header="XRay Source">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.ExposureParameters.XRaySourceIndex, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Exposure Time (ms)">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedDecimal"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.ExposureTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Frame Time (ms)">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedDecimal"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.FrameTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Scan Option">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.ExposureParameters.ScanOption, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Total Frames">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.TotalFrames, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Scan Mode">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.ExposureParameters.ScanMode, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox
+                                    Width="172"
+                                    Header="Exposure Delay Time">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedDecimal"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.ExposureDelayTime, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                                <GroupBox
+                                    Width="212"
+                                    Header="Active Exposure Source Count"
+                                    IsEnabled="{Binding XDataAcquisitionParameters.ExposureParameters.IsNotInScoutScanOption}">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.ActiveExposureSourceCount, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Exposure Mode">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.ExposureParameters.ExposureMode, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Exposure Trigger Mode">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.ExposureParameters.ExposureTriggerMode, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Energy Spectrum Mode">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.ExposureParameters.EnergySpectrumMode, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Frames Per Cycle">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.FramesPerCycle, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Auto Delete Number">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.AutoDeleteNumber, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Focus">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.ExposureParameters.Focus, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Post Offset">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.PostOffsetFrames, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                                <GroupBox Header="ECG Enable">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.ExposureParameters.ECGEnable, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox
+                                    Header="ECG Phase Position"
+                                    IsEnabled="{Binding XDataAcquisitionParameters.ExposureParameters.ECGEnable, Converter={StaticResource CommonSwitchToEnableConverter}}">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedDecimal"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.PhasePosition, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                                <GroupBox
+                                    Header="ECG Phase Width"
+                                    IsEnabled="{Binding XDataAcquisitionParameters.ExposureParameters.ECGEnable, Converter={StaticResource CommonSwitchToEnableConverter}}">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedDecimal"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.PhaseWidth, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                                <GroupBox Header="CollimatorOffset">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.ExposureParameters.CollimatorOffsetEnable, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox Header="CollimatorSwitch">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.ExposureParameters.CollimatorSwitch, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox
+                                    Header="Collimator Open Type"
+                                    IsEnabled="{Binding XDataAcquisitionParameters.ExposureParameters.CollimatorSwitch, Converter={StaticResource CommonSwitchToEnableConverter}}">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.ExposureParameters.CollimatorOpenType, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox
+                                    Header="Bowtie"
+                                    IsEnabled="{Binding XDataAcquisitionParameters.ExposureParameters.CollimatorSwitch, Converter={StaticResource CommonSwitchToEnableConverter}}">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.ExposureParameters.Bowtie, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Gantry Velocity (0.01°/s)">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.GantryVelocity, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Gantry Start Angle (0.01°)">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.GantryStartAngle, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Gantry Direction">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.ExposureParameters.GantryDirection, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Allow Error XRaySource Count">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.AllowErrorXRaySourceCount, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                                <GroupBox
+                                    Width="385"
+                                    Header="Twelve Exposure Mode Start Index"
+                                    IsEnabled="{Binding XDataAcquisitionParameters.ExposureParameters.IsInTwelveExposureMode}">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.ExposureParameters.TwelveExposureModeXRaySourceStartIndex, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox
+                                    Width="385"
+                                    Height="180"
+                                    Header="Related ChildNodes">
+
+                                    <ItemsControl ItemsSource="{Binding RelatedComponents}">
+
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <CheckBox
+                                                    Margin="6,0"
+                                                    Content="{Binding Name}"
+                                                    IsChecked="{Binding IsChecked}"
+                                                    IsEnabled="{Binding IsEnabled}" />
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+
+                                    </ItemsControl>
+
+                                </GroupBox>
+
+                            </WrapPanel>
+
+                            <StackPanel
+                                Grid.Row="2"
+                                HorizontalAlignment="Center"
+                                Orientation="Horizontal">
+
+                                <Line
+                                    VerticalAlignment="Center"
+                                    Stroke="#666"
+                                    StrokeThickness="3"
+                                    X2="155" />
+
+                                <TextBlock
+                                    Margin="5,0"
+                                    VerticalAlignment="Center"
+                                    FontWeight="Bold"
+                                    Text="Detector" />
+
+                                <Line
+                                    VerticalAlignment="Center"
+                                    Stroke="#666"
+                                    StrokeThickness="3"
+                                    X2="155" />
+
+                            </StackPanel>
+
+                            <WrapPanel
+                                Grid.Row="3"
+                                Margin="1,2"
+                                HorizontalAlignment="Left">
+
+                                <GroupBox Header="Acquisition Mode">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.DetectorParameters.CurrentAcquisitionMode, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Shutter Mode">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.DetectorParameters.CurrentShutterMode, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Gain">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.DetectorParameters.CurrentGain, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Binning">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.DetectorParameters.CurrentBinning, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Scattering Detector Gain">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.DetectorParameters.CurrentScatteringGain, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Printf Enable">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.DetectorParameters.PrintfEnable, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Double Read">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.DetectorParameters.CurrentDoubleRead, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Heart Beat Time (ms)">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                        Text="{Binding XDataAcquisitionParameters.DetectorParameters.HeartBeatTimeInterval, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Encode Mode">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.DetectorParameters.EncodeMode, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox Header="RDelay">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedDecimal"
+                                        Text="{Binding XDataAcquisitionParameters.DetectorParameters.RDelay, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                                <GroupBox Header="TDelay">
+                                    <mk:MarkableTextBox Text="{Binding XDataAcquisitionParameters.DetectorParameters.TDelay, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox Header="PreOffset Enable">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.DetectorParameters.PreOffsetEnable, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox
+                                    Header="PreOffset Total Frame"
+                                    IsEnabled="{Binding XDataAcquisitionParameters.DetectorParameters.PreOffsetEnable, Converter={StaticResource CommonSwitchToEnableConverter}}">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                        Text="{Binding XDataAcquisitionParameters.DetectorParameters.PreOffsetAcqTotalFrame, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                                <GroupBox
+                                    Header="PreOffset Start Vaild Frame"
+                                    IsEnabled="{Binding XDataAcquisitionParameters.DetectorParameters.PreOffsetEnable, Converter={StaticResource CommonSwitchToEnableConverter}}">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                        Text="{Binding XDataAcquisitionParameters.DetectorParameters.PreOffsetAcqStartVaildFrame, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                            </WrapPanel>
+
+                        </Grid>
+
+                    </ScrollViewer>
+
+                </Expander>
+
+                <Expander
+                    Header="Gantry Control"
+                    HeaderTemplate="{StaticResource BoldExpanderHeaderTemplate}"
+                    IsExpanded="False">
+
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="45" />
+                        </Grid.RowDefinitions>
+
+                        <WrapPanel
+                            Margin="1,2"
+                            HorizontalAlignment="Left">
+
+                            <GroupBox Header="Rotate Direction">
+                                <ComboBox
+                                    helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                    SelectedItem="{Binding XMotionControlParameters.GantryParameters.CurrentRotateDirection, Mode=TwoWay}" />
+                            </GroupBox>
+
+                            <GroupBox Header="Max Velocity (0.01 °/s)">
+                                <mk:MarkableTextBox
+                                    ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                    Text="{Binding XMotionControlParameters.GantryParameters.MaximumVelocity, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                            </GroupBox>
+
+                            <GroupBox Header="Move Mode">
+                                <ComboBox
+                                    helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                    SelectedItem="{Binding XMotionControlParameters.GantryParameters.CurrentMoveMode, Mode=TwoWay}" />
+                            </GroupBox>
+
+                            <GroupBox Header="Target Angle (0.01 °)">
+                                <mk:MarkableTextBox
+                                    ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                    Text="{Binding XMotionControlParameters.GantryParameters.TargetAngle, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                            </GroupBox>
+
+                        </WrapPanel>
+
+                        <StackPanel
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
+
+                            <Button
+                                Command="{Binding StartMoveGantryCommand}"
+                                Content="Start" />
+
+                            <Button
+                                Command="{Binding StopMoveGantryCommand}"
+                                Content="Stop" />
+
+                        </StackPanel>
+
+                    </Grid>
+
+                </Expander>
+
+                <Expander
+                    Header="Collimator Control"
+                    HeaderTemplate="{StaticResource BoldExpanderHeaderTemplate}"
+                    IsExpanded="False">
+
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="45" />
+                        </Grid.RowDefinitions>
+
+                        <WrapPanel
+                            Margin="1,2"
+                            HorizontalAlignment="Left">
+
+                            <GroupBox Header="Collimator Motor Type">
+                                <ComboBox
+                                    helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                    SelectedItem="{Binding XMotionControlParameters.CollimatorParameters.MotorType, Mode=TwoWay}" />
+                            </GroupBox>
+
+                            <GroupBox Header="Collimator Source Index">
+                                <ComboBox
+                                    helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                    SelectedItem="{Binding XMotionControlParameters.CollimatorParameters.SourceIndex, Mode=TwoWay}" />
+                            </GroupBox>
+
+                            <GroupBox Header="Collimator Message Type">
+                                <ComboBox
+                                    helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                    SelectedItem="{Binding XMotionControlParameters.CollimatorParameters.MessageType, Mode=TwoWay}" />
+                            </GroupBox>
+
+                            <GroupBox Header="Collimator Move Step">
+                                <mk:MarkableTextBox
+                                    VerticalAlignment="Center"
+                                    ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                    Text="{Binding XMotionControlParameters.CollimatorParameters.MoveStep, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                            </GroupBox>
+
+                        </WrapPanel>
+
+                        <StackPanel
+                            Grid.Row="1"
+                            Margin="2"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
+
+                            <Button
+                                Width="200"
+                                Command="{Binding ExecuteCollimatorStepMoveCommand}"
+                                Content="Execute" />
+
+                        </StackPanel>
+
+                    </Grid>
+
+                </Expander>
+
+                <Expander
+                    Header="Table Control"
+                    HeaderTemplate="{StaticResource BoldExpanderHeaderTemplate}"
+                    IsExpanded="False">
+
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="45" />
+                        </Grid.RowDefinitions>
+
+                        <WrapPanel
+                            Margin="1,2"
+                            HorizontalAlignment="Left">
+
+                            <GroupBox
+                                Width="385"
+                                Header="Table Move Direction">
+                                <ComboBox
+                                    x:Name="tableMoveDirection"
+                                    helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                    SelectedItem="{Binding XMotionControlParameters.TableParameters.Direction, Mode=TwoWay}" />
+                            </GroupBox>
+
+                            <GroupBox
+                                Header="Horizontal Target Position"
+                                Visibility="{Binding SelectedItem, ElementName=tableMoveDirection, Converter={StaticResource TableDirectionToParameterVisibilityConverter}, ConverterParameter=Horizontal}">
+                                <mk:MarkableTextBox
+                                    ap:TextBoxAttachedProperty.InputType="Decimal"
+                                    Text="{Binding XMotionControlParameters.TableParameters.HorizontalPosition, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                            </GroupBox>
+
+                            <GroupBox
+                                Header="Horizontal Target Velocity"
+                                Visibility="{Binding SelectedItem, ElementName=tableMoveDirection, Converter={StaticResource TableDirectionToParameterVisibilityConverter}, ConverterParameter=Horizontal}">
+                                <mk:MarkableTextBox
+                                    ap:TextBoxAttachedProperty.InputType="UnsignedDecimal"
+                                    Text="{Binding XMotionControlParameters.TableParameters.HorizontalVelocity, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                            </GroupBox>
+
+                            <GroupBox
+                                Header="Vertical Target Position"
+                                Visibility="{Binding SelectedItem, ElementName=tableMoveDirection, Converter={StaticResource TableDirectionToParameterVisibilityConverter}, ConverterParameter=Vertical}">
+                                <mk:MarkableTextBox
+                                    ap:TextBoxAttachedProperty.InputType="Decimal"
+                                    Text="{Binding XMotionControlParameters.TableParameters.VerticalPosition, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                            </GroupBox>
+
+                            <GroupBox
+                                Header="Vertical Target Velocity"
+                                Visibility="{Binding SelectedItem, ElementName=tableMoveDirection, Converter={StaticResource TableDirectionToParameterVisibilityConverter}, ConverterParameter=Vertical}">
+                                <mk:MarkableTextBox
+                                    ap:TextBoxAttachedProperty.InputType="UnsignedDecimal"
+                                    Text="{Binding XMotionControlParameters.TableParameters.VerticalVelocity, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                            </GroupBox>
+
+                            <GroupBox
+                                Header="Vertical Target Position"
+                                Visibility="{Binding SelectedItem, ElementName=tableMoveDirection, Converter={StaticResource TableDirectionToParameterVisibilityConverter}, ConverterParameter=AxisX}">
+                                <mk:MarkableTextBox
+                                    ap:TextBoxAttachedProperty.InputType="Decimal"
+                                    Text="{Binding XMotionControlParameters.TableParameters.AxisXPosition, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                            </GroupBox>
+
+                            <GroupBox
+                                Header="Vertical Target Velocity"
+                                Visibility="{Binding SelectedItem, ElementName=tableMoveDirection, Converter={StaticResource TableDirectionToParameterVisibilityConverter}, ConverterParameter=AxisX}">
+                                <mk:MarkableTextBox
+                                    ap:TextBoxAttachedProperty.InputType="UnsignedDecimal"
+                                    Text="{Binding XMotionControlParameters.TableParameters.AxisXVelocity, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                            </GroupBox>
+
+                        </WrapPanel>
+
+                        <StackPanel
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
+
+                            <Button
+                                Command="{Binding StartMoveTableCommand}"
+                                Content="Start" />
+
+                            <Button
+                                Command="{Binding StopMoveTableCommand}"
+                                Content="Stop" />
+
+                        </StackPanel>
+
+                    </Grid>
+
+                </Expander>
+
+            </StackPanel>
+
+            <Rectangle
+                Grid.Row="1"
+                Height="1"
+                Fill="{StaticResource BaseBackgroundColor}" />
+
+            <StackPanel
+                Grid.Row="2"
+                Margin="0,0,0,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Orientation="Horizontal">
+
+                <Button
+                    Command="{Binding StartDataAcquisitionCommand}"
+                    Content="Start Acquisition" />
+
+                <Button
+                    Command="{Binding StopDataAcquisitionCommand}"
+                    Content="Stop Acquisition" />
+
+            </StackPanel>
+
+        </Grid>
+
+    </GroupBox>
+
+    <Grid Grid.Column="2">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="47" />
+            <RowDefinition Height="0.65*" />
+            <RowDefinition Height="0.35*" />
+        </Grid.RowDefinitions>
+
+        <Border Background="{StaticResource PrimaryHueLightBrush}">
+
+            <DockPanel LastChildFill="False">
+
+                <!--  MenuBar  -->
+                <Menu DockPanel.Dock="Left">
+                    <Menu.Resources>
+                        <DataTemplate x:Key="MenuItemBoldHeaderTemplate">
+                            <TextBlock Text="{Binding Header, RelativeSource={RelativeSource AncestorType=MenuItem}}" />
+                        </DataTemplate>
+                    </Menu.Resources>
+                    <MenuItem Margin="0,0,1,0">
+                        <MenuItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontWeight="Bold"
+                                    Text="File" />
+                                <md:PackIcon
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Kind="FileDocumentMultipleOutline" />
+                            </StackPanel>
+                        </MenuItem.Header>
+                        <MenuItem
+                            Background="Transparent"
+                            Command="{Binding LoadImagesCommand}"
+                            Header="Load Images"
+                            HeaderTemplate="{StaticResource MenuItemBoldHeaderTemplate}" />
+                        <MenuItem
+                            Background="Transparent"
+                            Command="{Binding LoadImageSeriesCommand}"
+                            Header="Load Image Series"
+                            HeaderTemplate="{StaticResource MenuItemBoldHeaderTemplate}" />
+                        <MenuItem
+                            Background="Transparent"
+                            Command="{Binding SaveAsSingleFrameImageCommand}"
+                            Header="Save As Single Frame Image"
+                            HeaderTemplate="{StaticResource MenuItemBoldHeaderTemplate}"
+                            IsEnabled="{Binding ImageViewerManager.IsDataLoaded}" />
+                        <MenuItem
+                            Background="Transparent"
+                            Command="{Binding SaveAsImageSeriesCommand}"
+                            Header="Save As Image Series"
+                            HeaderTemplate="{StaticResource MenuItemBoldHeaderTemplate}"
+                            IsEnabled="{Binding ImageViewerManager.IsDataLoaded}" />
+                    </MenuItem>
+                    <MenuItem Margin="0,0,1,0">
+                        <MenuItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontWeight="Bold"
+                                    Text="Actions" />
+                                <md:PackIcon
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Kind="Toolbox" />
+                            </StackPanel>
+                        </MenuItem.Header>
+                        <MenuItem
+                            Background="Transparent"
+                            Command="{Binding ExecuteImageCutCommand}"
+                            Header="Image Cut"
+                            HeaderTemplate="{StaticResource MenuItemBoldHeaderTemplate}"
+                            IsEnabled="{Binding ImageViewerManager.CanRunRawDataActions}" />
+                        <MenuItem
+                            Background="Transparent"
+                            Command="{Binding ExecuteImageSortCommand}"
+                            Header="Image Sort"
+                            HeaderTemplate="{StaticResource MenuItemBoldHeaderTemplate}"
+                            IsEnabled="{Binding ImageViewerManager.CanRunRawDataActions}" />
+                        <MenuItem
+                            Background="Transparent"
+                            Command="{Binding DrawHorizontalLineByAxisYValueCommand}"
+                            Header="Draw Horizontal Line"
+                            HeaderTemplate="{StaticResource MenuItemBoldHeaderTemplate}"
+                            IsEnabled="{Binding ImageViewerManager.CanRunRawDataActions}" />
+                    </MenuItem>
+                </Menu>
+
+                <!--  PageNumber  -->
+                <TextBlock
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    FontWeight="Bold"
+                    Text="{Binding ImageViewerManager.ImageLoadMessage, StringFormat='Image Loaded : {0}'}" />
+
+                <!--  ProgressBar  -->
+                <ProgressBar
+                    Margin="10,0,0,0"
+                    Background="{StaticResource BaseTabBackBrush}"
+                    Foreground="Green"
+                    Style="{StaticResource MaterialDesignCircularProgressBar}"
+                    Visibility="{Binding DataLoadProgressVisibility, Delay=1000, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Value="{Binding DataLoadProgress}" />
+
+                <!--  ImageControl Toolbox  -->
+                <StackPanel
+                    Margin="0,0,5,0"
+                    DockPanel.Dock="Right"
+                    Orientation="Horizontal">
+                    <ItemsControl ItemsSource="{Binding ImageViewerManager.ImageViewerActions}">
+                        <ItemsControl.Resources>
+                            <DataTemplate DataType="{x:Type foundation:ImageViewerMutexAction}">
+                                <ToggleButton
+                                    Command="{Binding DataContext.ImageViewerManager.ExecuteImageViewerMutexActionCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                    CommandParameter="{Binding}"
+                                    IsChecked="{Binding IsChecked, Mode=TwoWay}"
+                                    Style="{DynamicResource ImageMutexActionToggleButtonStyle}"
+                                    ToolTip="{Binding Tooltip}">
+                                    <md:PackIcon
+                                        Width="19"
+                                        Height="19"
+                                        Kind="{Binding Icon}" />
+                                </ToggleButton>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type foundation:ImageViewerNormalAction}">
+                                <Button
+                                    Command="{Binding DataContext.ImageViewerManager.ExecuteImageViewerNormalActionCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                    CommandParameter="{Binding}"
+                                    Style="{DynamicResource ImageNormalActionButtonStyle}"
+                                    ToolTip="{Binding Tooltip}">
+                                    <md:PackIcon
+                                        Width="19"
+                                        Height="19"
+                                        Kind="{Binding Icon}" />
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.Resources>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                    </ItemsControl>
+                </StackPanel>
+
+            </DockPanel>
+
+        </Border>
+
+        <Border
+            Grid.Row="1"
+            Margin="0,2">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <ContentControl
+                    x:Name="imageContentControl"
+                    Content="{Binding ImageViewerManager.ImageViewer.XWindowsFormsHost, Mode=TwoWay}">
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Loaded">
+                            <i:InvokeCommandAction
+                                Command="{Binding ImageViewerManager.ImageContentControlLoadedCommand}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContentControl}}" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="SizeChanged">
+                            <i:InvokeCommandAction
+                                Command="{Binding ImageViewerManager.ImageContentControlSizeChangedCommand}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContentControl}}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
+                </ContentControl>
+
+                <ScrollBar
+                    Grid.Column="1"
+                    Maximum="{Binding ImageViewerManager.LoadedImageCount, Mode=TwoWay}"
+                    Minimum="1"
+                    Style="{DynamicResource ImageControlScrollBarStyle}"
+                    Thumb.DragDelta="ImageControlScrollBar_DragDelta"
+                    Value="{Binding ImageViewerManager.CurrentImageIndex, Mode=TwoWay}" />
+
+            </Grid>
+
+        </Border>
+
+        <TabControl Grid.Row="2">
+
+            <TabControl.Resources>
+                <DataTemplate x:Key="TabItemBoldHeaderTemplate">
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontSize="12"
+                        FontWeight="Bold"
+                        Text="{Binding Header, RelativeSource={RelativeSource AncestorType=TabItem}}" />
+                </DataTemplate>
+            </TabControl.Resources>
+
+            <!--  Console  -->
+            <TabItem
+                Header="Console"
+                HeaderTemplate="{StaticResource TabItemBoldHeaderTemplate}">
+
+                <Grid>
+
+                    <mk:MarkableTextBox
+                        x:Name="feedbackConsole"
+                        Grid.Column="1"
+                        Height="285"
+                        Margin="1,3,3,1"
+                        Padding="5,15"
+                        VerticalContentAlignment="Top"
+                        IsReadOnly="True"
+                        Style="{StaticResource MarkableTextBox}"
+                        Text="{Binding ConsoleMessage, Mode=TwoWay}"
+                        TextChanged="FeedbackConsole_TextChanged"
+                        TextWrapping="Wrap"
+                        VerticalScrollBarVisibility="Auto" />
+
+                    <Button
+                        Grid.Column="1"
+                        Margin="0,15,5,0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Command="{Binding ClearConsoleMessageCommand}"
+                        Style="{StaticResource IconButtonStyle}">
+                        <Button.Content>
+                            <md:PackIcon Kind="Refresh" />
+                        </Button.Content>
+                    </Button>
+
+                </Grid>
+
+            </TabItem>
+
+            <!--  Detector Status  -->
+            <TabItem
+                Header="Detector Status"
+                HeaderTemplate="{StaticResource TabItemBoldHeaderTemplate}">
+
+                <Grid>
+
+                    <Grid.Resources>
+
+                        <Style
+                            x:Key="DectectorStatusBorderStyle"
+                            TargetType="{x:Type Border}">
+                            <Setter Property="Margin" Value="5,1" />
+                            <Setter Property="Padding" Value="8,3,0,3" />
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="CornerRadius" Value="5" />
+                            <Setter Property="Background" Value="{StaticResource BaseBackgroundColor}" />
+                        </Style>
+
+                    </Grid.Resources>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="35" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <!--  Acquisition Card  -->
+                    <StackPanel
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Left"
+                        Orientation="Horizontal">
+
+                        <Line
+                            VerticalAlignment="Center"
+                            Stroke="#666"
+                            StrokeThickness="3"
+                            X2="295" />
+
+                        <TextBlock
+                            Margin="5,0"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold"
+                            Text="Acquisition Card" />
+
+                        <Line
+                            VerticalAlignment="Center"
+                            Stroke="#666"
+                            StrokeThickness="3"
+                            X2="295" />
+
+                    </StackPanel>
+
+                    <Border
+                        Grid.Row="1"
+                        Style="{StaticResource DectectorStatusBorderStyle}">
+
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition />
+
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                FontWeight="Bold"
+                                Text="Acquisition Card " />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                FontWeight="Bold"
+                                Text=" - Serial Number 01 Status : " />
+
+                            <md:PackIcon
+                                Grid.Column="2"
+                                Width="36"
+                                Height="28"
+                                VerticalAlignment="Center"
+                                Kind="{Binding AcquisitionCardSources[0].Status, Converter={StaticResource PartStatusToDisplayConverter}}" />
+
+                            <TextBlock
+                                Grid.Column="3"
+                                VerticalAlignment="Center"
+                                FontWeight="Bold"
+                                Text=" - Serial Number 02 Status : " />
+
+                            <md:PackIcon
+                                Grid.Column="4"
+                                Width="36"
+                                Height="28"
+                                VerticalAlignment="Center"
+                                Kind="{Binding AcquisitionCardSources[1].Status, Converter={StaticResource PartStatusToDisplayConverter}}" />
+
+                        </Grid>
+
+                    </Border>
+
+                    <!--  Detectors  -->
+                    <StackPanel
+                        Grid.Row="2"
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Left"
+                        Orientation="Horizontal">
+
+                        <Line
+                            VerticalAlignment="Center"
+                            Stroke="#666"
+                            StrokeThickness="3"
+                            X2="320" />
+
+                        <TextBlock
+                            Margin="5,0"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold"
+                            Text="Detectors" />
+
+                        <Line
+                            VerticalAlignment="Center"
+                            Stroke="#666"
+                            StrokeThickness="3"
+                            X2="320" />
+
+                    </StackPanel>
+
+                    <ScrollViewer Grid.Row="3">
+                        <ItemsControl ItemsSource="{Binding DetectorSources}">
+
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Style="{StaticResource DectectorStatusBorderStyle}">
+
+                                        <Grid>
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                FontWeight="Bold"
+                                                Text="{Binding Name}" />
+
+                                            <TextBlock
+                                                Grid.Column="1"
+                                                VerticalAlignment="Center"
+                                                FontWeight="Bold"
+                                                Text="  -  Process Board Status : " />
+
+                                            <StackPanel
+                                                Grid.Column="2"
+                                                Orientation="Horizontal">
+
+                                                <md:PackIcon
+                                                    Width="36"
+                                                    Height="28"
+                                                    VerticalAlignment="Center"
+                                                    Kind="{Binding ProcessBoards[0].Status, Converter={StaticResource PartStatusToDisplayConverter}}" />
+                                                <TextBlock
+                                                    VerticalAlignment="Center"
+                                                    Text=" - " />
+
+                                                <md:PackIcon
+                                                    Width="36"
+                                                    Height="28"
+                                                    VerticalAlignment="Center"
+                                                    Kind="{Binding ProcessBoards[1].Status, Converter={StaticResource PartStatusToDisplayConverter}}" />
+                                                <TextBlock
+                                                    VerticalAlignment="Center"
+                                                    Text=" - " />
+
+                                                <md:PackIcon
+                                                    Width="36"
+                                                    Height="28"
+                                                    VerticalAlignment="Center"
+                                                    Kind="{Binding ProcessBoards[2].Status, Converter={StaticResource PartStatusToDisplayConverter}}" />
+                                                <TextBlock
+                                                    VerticalAlignment="Center"
+                                                    Text=" - " />
+
+                                                <md:PackIcon
+                                                    Width="36"
+                                                    Height="28"
+                                                    VerticalAlignment="Center"
+                                                    Kind="{Binding ProcessBoards[3].Status, Converter={StaticResource PartStatusToDisplayConverter}}" />
+
+                                            </StackPanel>
+
+                                            <TextBlock
+                                                Grid.Column="3"
+                                                VerticalAlignment="Center"
+                                                FontWeight="Bold"
+                                                Text=" -  Temperture Control Board Status : " />
+
+                                            <md:PackIcon
+                                                Grid.Column="4"
+                                                Width="36"
+                                                Height="28"
+                                                VerticalAlignment="Center"
+                                                Kind="{Binding TemperatureControlBoard.Status, Converter={StaticResource PartStatusToDisplayConverter}}" />
+
+                                            <TextBlock
+                                                Grid.Column="5"
+                                                VerticalAlignment="Center"
+                                                FontWeight="Bold"
+                                                Text=" -  Transmission Board Status : " />
+
+                                            <md:PackIcon
+                                                Grid.Column="6"
+                                                Width="36"
+                                                Height="28"
+                                                VerticalAlignment="Center"
+                                                Kind="{Binding TransmissionBoard.Status, Converter={StaticResource PartStatusToDisplayConverter}}" />
+
+                                        </Grid>
+
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+
+                        </ItemsControl>
+                    </ScrollViewer>
+
+                </Grid>
+
+            </TabItem>
+
+            <!--  Detector Temperature  -->
+            <TabItem
+                Header="Detector Temp"
+                HeaderTemplate="{StaticResource TabItemBoldHeaderTemplate}">
+
+                <Grid>
+
+                    <Grid.Resources>
+
+                        <Style
+                            x:Key="DetectorTemperatureControlBorderStyle"
+                            TargetType="{x:Type Border}">
+
+                            <Setter Property="Margin" Value="4,2,0,2" />
+                            <Setter Property="Padding" Value="5,0" />
+                            <Setter Property="Background" Value="{StaticResource BaseBackgroundColor}" />
+                            <Setter Property="CornerRadius" Value="5" />
+
+                        </Style>
+
+                        <Style
+                            x:Key="DetectorTemperatureBorderStyle"
+                            TargetType="{x:Type Border}">
+
+                            <Setter Property="Margin" Value="4,2,0,2" />
+                            <Setter Property="Padding" Value="10,5,0,10" />
+                            <Setter Property="Background" Value="{StaticResource BaseBackgroundColor}" />
+                            <Setter Property="CornerRadius" Value="5" />
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+
+                        </Style>
+
+                    </Grid.Resources>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel
+                        Margin="0,5,0,0"
+                        Orientation="Horizontal">
+
+                        <Border Style="{StaticResource DetectorTemperatureControlBorderStyle}">
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <TextBlock
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontWeight="Bold"
+                                    Text="Ignore Detector Temperature Validation: " />
+
+                                <ToggleButton
+                                    Margin="10,0"
+                                    VerticalAlignment="Center"
+                                    IsChecked="{Binding IgnoreDetectorTemperature, Mode=TwoWay}" />
+
+                            </StackPanel>
+
+                        </Border>
+
+                    </StackPanel>
+
+                    <!--  Detector Control  -->
+                    <StackPanel
+                        Grid.Row="1"
+                        Orientation="Horizontal">
+
+                        <StackPanel.Resources>
+
+                            <Style
+                                BasedOn="{StaticResource MaterialDesignActionLightToggleButton}"
+                                TargetType="{x:Type ToggleButton}">
+
+                                <Setter Property="Background" Value="Red" />
+
+                                <Style.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}"
+                                        Value="True">
+                                        <Setter Property="Background" Value="Green" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+
+                            </Style>
+
+                            <Style
+                                BasedOn="{StaticResource NanoButtonStyle}"
+                                TargetType="{x:Type Button}">
+                                <Setter Property="Width" Value="60" />
+                                <Setter Property="Height" Value="27" />
+                                <Setter Property="Margin" Value="10,0,0,0" />
+                                <Setter Property="Padding" Value="10,0,10,3" />
+                            </Style>
+
+                            <Style
+                                BasedOn="{StaticResource NanoTextBlockStyle}"
+                                TargetType="{x:Type TextBlock}">
+                                <Setter Property="FontWeight" Value="Bold" />
+                                <Setter Property="Margin" Value="10,5,5,5" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                            </Style>
+
+                            <Style
+                                BasedOn="{StaticResource MarkableTextBox}"
+                                TargetType="{x:Type mk:MarkableTextBox}">
+                                <Setter Property="Width" Value="58" />
+                                <Setter Property="Height" Value="28" />
+                                <Setter Property="Margin" Value="0,2,0,4" />
+                                <Setter Property="Padding" Value="5,0,5,0.5" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="TextAlignment" Value="Center" />
+                            </Style>
+
+                        </StackPanel.Resources>
+
+                        <Border Style="{StaticResource DetectorTemperatureControlBorderStyle}">
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <TextBlock Text="Free Mode: " />
+
+                                <ItemsControl ItemsSource="{Binding DetectorSources}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Rectangle
+                                                Width="10"
+                                                Height="26"
+                                                Margin="2,0"
+                                                Fill="{Binding AcquisitionMode, Converter={StaticResource FreeModeToFillBrushConverter}}" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+
+                                <Button
+                                    Command="{Binding StartFreeModeCommand}"
+                                    Content="Start" />
+
+                                <Button
+                                    Command="{Binding StopFreeModeCommand}"
+                                    Content="Stop" />
+
+                            </StackPanel>
+
+                        </Border>
+
+                        <Border Style="{StaticResource DetectorTemperatureControlBorderStyle}">
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <TextBlock Text="Detector Temperature Data Save Enable : " />
+
+                                <ToggleButton
+                                    Margin="3,2,2,0"
+                                    IsChecked="{Binding CanSaveDetectorTemperatureData, Mode=TwoWay}"
+                                    Style="{StaticResource MaterialDesignSwitchToggleButton}">
+
+                                    <md:ToggleButtonAssist.SwitchTrackOnBackground>
+                                        <SolidColorBrush
+                                            Opacity="1"
+                                            Color="Lime" />
+                                    </md:ToggleButtonAssist.SwitchTrackOnBackground>
+                                    <md:ToggleButtonAssist.SwitchTrackOffBackground>
+                                        <SolidColorBrush
+                                            Opacity="1"
+                                            Color="Red" />
+                                    </md:ToggleButtonAssist.SwitchTrackOffBackground>
+
+                                </ToggleButton>
+
+                                <TextBlock Text=" Data Save Interval(s) : " />
+
+                                <mk:MarkableTextBox
+                                    ap:TextBoxAttachedProperty.InputType="UnsignedDecimal"
+                                    IsEnabled="{Binding CanSetTemperatureDataSaveInterval}"
+                                    Text="{Binding TemperatureDataSaveInterval, Converter={StaticResource DecimalPointConverter}}" />
+
+                                <Button
+                                    Command="{Binding SetTemperatureDataSaveIntervalCommand}"
+                                    Content="Set" />
+
+                            </StackPanel>
+
+                        </Border>
+
+                    </StackPanel>
+
+                    <!--  Detector Temperature  -->
+                    <ScrollViewer Grid.Row="2">
+
+                        <ItemsControl ItemsSource="{Binding DetectorSources}">
+
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Style="{StaticResource DetectorTemperatureBorderStyle}">
+
+                                        <Border.Resources>
+
+                                            <Style
+                                                BasedOn="{StaticResource MarkableTextBox}"
+                                                TargetType="{x:Type mk:MarkableTextBox}">
+                                                <Setter Property="IsReadOnly" Value="True" />
+                                                <Setter Property="Width" Value="50" />
+                                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                            </Style>
+
+                                            <Style
+                                                x:Key="DetectorStatusTextBlockStyle"
+                                                TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Width" Value="74" />
+                                                <Setter Property="VerticalAlignment" Value="Center" />
+                                                <Setter Property="TextAlignment" Value="Center" />
+                                            </Style>
+
+                                        </Border.Resources>
+
+                                        <Grid>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+
+                                            <!--  Detector Index  -->
+                                            <TextBlock
+                                                Grid.ColumnSpan="2"
+                                                HorizontalAlignment="Center"
+                                                FontWeight="Bold"
+                                                Text="{Binding Name}" />
+
+                                            <!--  ProcessBoard Temperature  -->
+                                            <TextBlock
+                                                Grid.Row="1"
+                                                Grid.Column="0"
+                                                VerticalAlignment="Center"
+                                                Text="Process Board - Temperature (℃) : " />
+
+                                            <StackPanel
+                                                Grid.Row="1"
+                                                Grid.Column="1"
+                                                Orientation="Horizontal">
+
+                                                <TextBlock
+                                                    Style="{StaticResource DetectorStatusTextBlockStyle}"
+                                                    Text="{Binding ProcessBoards[0].Temperature, StringFormat=F1}" />
+                                                <TextBlock
+                                                    VerticalAlignment="Center"
+                                                    Text="-" />
+
+                                                <TextBlock
+                                                    Style="{StaticResource DetectorStatusTextBlockStyle}"
+                                                    Text="{Binding ProcessBoards[1].Temperature, StringFormat=F1}" />
+                                                <TextBlock
+                                                    VerticalAlignment="Center"
+                                                    Text="-" />
+
+                                                <TextBlock
+                                                    Style="{StaticResource DetectorStatusTextBlockStyle}"
+                                                    Text="{Binding ProcessBoards[2].Temperature, StringFormat=F1}" />
+                                                <TextBlock
+                                                    VerticalAlignment="Center"
+                                                    Text="-" />
+
+                                                <TextBlock
+                                                    Style="{StaticResource DetectorStatusTextBlockStyle}"
+                                                    Text="{Binding ProcessBoards[3].Temperature, StringFormat=F1}" />
+
+                                            </StackPanel>
+
+                                            <!--  DetectBoard Up Temperature  -->
+                                            <TextBlock
+                                                Grid.Row="2"
+                                                Grid.Column="0"
+                                                VerticalAlignment="Center"
+                                                Text="Detect Board - Up Temp (℃) : " />
+
+                                            <StackPanel
+                                                Grid.Row="2"
+                                                Grid.Column="1"
+                                                Orientation="Horizontal">
+
+                                                <TextBlock
+                                                    Style="{StaticResource DetectorStatusTextBlockStyle}"
+                                                    Text="{Binding DetectBoards[0].UpTemperature, StringFormat=F1}" />
+                                                <TextBlock
+                                                    VerticalAlignment="Center"
+                                                    Text="-" />
+
+                                                <TextBlock
+                                                    Style="{StaticResource DetectorStatusTextBlockStyle}"
+                                                    Text="{Binding DetectBoards[1].UpTemperature, StringFormat=F1}" />
+                                                <TextBlock
+                                                    VerticalAlignment="Center"
+                                                    Text="-" />
+
+                                                <TextBlock
+                                                    Style="{StaticResource DetectorStatusTextBlockStyle}"
+                                                    Text="{Binding DetectBoards[2].UpTemperature, StringFormat=F1}" />
+                                                <TextBlock
+                                                    VerticalAlignment="Center"
+                                                    Text="-" />
+
+                                                <TextBlock
+                                                    Style="{StaticResource DetectorStatusTextBlockStyle}"
+                                                    Text="{Binding DetectBoards[3].UpTemperature, StringFormat=F1}" />
+
+                                            </StackPanel>
+
+                                            <!--  DetectBoard Down Temperature  -->
+                                            <TextBlock
+                                                Grid.Row="3"
+                                                Grid.Column="0"
+                                                VerticalAlignment="Center"
+                                                Text="Detect Board - Down Temp (℃) : " />
+
+                                            <StackPanel
+                                                Grid.Row="3"
+                                                Grid.Column="1"
+                                                Orientation="Horizontal">
+
+                                                <TextBlock
+                                                    Style="{StaticResource DetectorStatusTextBlockStyle}"
+                                                    Text="{Binding DetectBoards[0].DownTemperature, StringFormat=F1}" />
+                                                <TextBlock
+                                                    VerticalAlignment="Center"
+                                                    Text="-" />
+
+                                                <TextBlock
+                                                    Style="{StaticResource DetectorStatusTextBlockStyle}"
+                                                    Text="{Binding DetectBoards[1].DownTemperature, StringFormat=F1}" />
+                                                <TextBlock
+                                                    VerticalAlignment="Center"
+                                                    Text="-" />
+
+                                                <TextBlock
+                                                    Style="{StaticResource DetectorStatusTextBlockStyle}"
+                                                    Text="{Binding DetectBoards[2].DownTemperature, StringFormat=F1}" />
+                                                <TextBlock
+                                                    VerticalAlignment="Center"
+                                                    Text="-" />
+
+                                                <TextBlock
+                                                    Style="{StaticResource DetectorStatusTextBlockStyle}"
+                                                    Text="{Binding DetectBoards[3].DownTemperature, StringFormat=F1}" />
+
+                                            </StackPanel>
+
+                                            <!--  TemperatureBoard Temperature  -->
+                                            <TextBlock
+                                                Grid.Row="4"
+                                                Grid.Column="0"
+                                                VerticalAlignment="Center"
+                                                Text="Temprature Control Board - Power : " />
+
+                                            <StackPanel
+                                                Grid.Row="4"
+                                                Grid.Column="1"
+                                                Orientation="Horizontal">
+
+                                                <TextBlock
+                                                    Style="{StaticResource DetectorStatusTextBlockStyle}"
+                                                    Text="{Binding TemperatureControlBoard.PowerValues[0]}" />
+                                                <TextBlock
+                                                    VerticalAlignment="Center"
+                                                    Text="-" />
+
+                                                <TextBlock
+                                                    Style="{StaticResource DetectorStatusTextBlockStyle}"
+                                                    Text="{Binding TemperatureControlBoard.PowerValues[1]}" />
+                                                <TextBlock
+                                                    VerticalAlignment="Center"
+                                                    Text="-" />
+
+                                                <TextBlock
+                                                    Style="{StaticResource DetectorStatusTextBlockStyle}"
+                                                    Text="{Binding TemperatureControlBoard.PowerValues[2]}" />
+                                                <TextBlock
+                                                    VerticalAlignment="Center"
+                                                    Text="-" />
+
+                                                <TextBlock
+                                                    Style="{StaticResource DetectorStatusTextBlockStyle}"
+                                                    Text="{Binding TemperatureControlBoard.PowerValues[3]}" />
+
+                                            </StackPanel>
+
+                                        </Grid>
+
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+
+                        </ItemsControl>
+
+                    </ScrollViewer>
+
+                </Grid>
+
+            </TabItem>
+
+            <!--  XRaySource Status  -->
+            <TabItem
+                Header="XRaySource Status"
+                HeaderTemplate="{StaticResource TabItemBoldHeaderTemplate}">
+
+                <Grid>
+
+                    <Grid.Resources>
+
+                        <Style
+                            x:Key="XRaySourceTemplateTextBlockStyle"
+                            TargetType="{x:Type TextBlock}">
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="TextAlignment" Value="Center" />
+                        </Style>
+
+                        <Style
+                            x:Key="XRaySourceBorderStyle"
+                            TargetType="{x:Type Border}">
+                            <Setter Property="Margin" Value="1,1" />
+                            <Setter Property="CornerRadius" Value="5" />
+                            <Setter Property="Background" Value="{StaticResource BaseBackgroundColor}" />
+                        </Style>
+
+                    </Grid.Resources>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock
+                        Style="{StaticResource XRaySourceTemplateTextBlockStyle}"
+                        Text="Format :  XRay Source-[Index]  [kV] - [mA] - [ms] - [Heat Capacity] - [Oil Temperature]" />
+
+                    <ScrollViewer Grid.Row="1">
+
+                        <ItemsControl
+                            VerticalAlignment="Center"
+                            ItemsSource="{Binding XRaySources}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Style="{StaticResource XRaySourceBorderStyle}">
+
+                                        <Border.Resources>
+
+                                            <Style
+                                                x:Key="XRaySourceTextBlockStyle"
+                                                TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Padding" Value="5" />
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                <Setter Property="VerticalAlignment" Value="Center" />
+                                                <Setter Property="TextAlignment" Value="Center" />
+                                            </Style>
+
+                                        </Border.Resources>
+
+                                        <StackPanel Orientation="Horizontal">
+
+                                            <TextBlock
+                                                FontWeight="Bold"
+                                                Style="{StaticResource XRaySourceTextBlockStyle}"
+                                                Text="{Binding Name}" />
+
+                                            <TextBlock
+                                                Width="250"
+                                                Style="{StaticResource XRaySourceTextBlockStyle}"
+                                                Text="{Binding RealtimeInfomation}" />
+
+                                        </StackPanel>
+
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+
+                        </ItemsControl>
+
+                    </ScrollViewer>
+
+                </Grid>
+
+            </TabItem>
+
+            <!--  Table & Gantry Status  -->
+            <TabItem
+                Header="Motion Status"
+                HeaderTemplate="{StaticResource TabItemBoldHeaderTemplate}">
+
+                <StackPanel>
+
+                    <StackPanel.Resources>
+
+                        <Style
+                            x:Key="MotionComponentStatusCardStyle"
+                            TargetType="{x:Type md:Card}">
+                            <Setter Property="Width" Value="260" />
+                            <Setter Property="Margin" Value="5,5,0,0" />
+                            <Setter Property="Padding" Value="10,20" />
+                            <Setter Property="Background" Value="{StaticResource BaseBackgroundColor}" />
+                        </Style>
+
+                        <Style
+                            x:Key="MotionComponentStatusTextBlockStyle"
+                            BasedOn="{StaticResource NanoTextBlockStyle}"
+                            TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="FontSize" Value="14" />
+                        </Style>
+
+                    </StackPanel.Resources>
+
+                    <StackPanel
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal">
+
+                        <Line
+                            VerticalAlignment="Center"
+                            Stroke="#666"
+                            StrokeThickness="3"
+                            X2="200" />
+
+                        <TextBlock
+                            Margin="5,0"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold"
+                            Text="Gantry Status" />
+
+                        <Line
+                            VerticalAlignment="Center"
+                            Stroke="#666"
+                            StrokeThickness="3"
+                            X2="200" />
+
+                    </StackPanel>
+
+                    <WrapPanel HorizontalAlignment="Center">
+
+                        <md:Card Style="{StaticResource MotionComponentStatusCardStyle}">
+
+                            <StackPanel>
+
+                                <TextBlock
+                                    Style="{StaticResource MotionComponentStatusTextBlockStyle}"
+                                    Text="Gantry Rotate Velocity (°/s)" />
+
+                                <TextBlock
+                                    Style="{StaticResource MotionComponentStatusTextBlockStyle}"
+                                    Text="{Binding XGantrySource.Velocity, StringFormat={}{0:F2}}" />
+
+                            </StackPanel>
+
+                        </md:Card>
+
+                        <md:Card Style="{StaticResource MotionComponentStatusCardStyle}">
+
+                            <StackPanel>
+
+                                <TextBlock
+                                    Style="{StaticResource MotionComponentStatusTextBlockStyle}"
+                                    Text="Gantry Rotate Position (°)" />
+
+                                <TextBlock
+                                    Style="{StaticResource MotionComponentStatusTextBlockStyle}"
+                                    Text="{Binding XGantrySource.Position, StringFormat={}{0:F2}}" />
+
+                            </StackPanel>
+
+                        </md:Card>
+
+                    </WrapPanel>
+
+                    <StackPanel
+                        Margin="0,5,0,0"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal">
+
+                        <Line
+                            VerticalAlignment="Center"
+                            Stroke="#666"
+                            StrokeThickness="3"
+                            X2="200" />
+
+                        <TextBlock
+                            Margin="5,0"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold"
+                            Text="Table Status" />
+
+                        <Line
+                            VerticalAlignment="Center"
+                            Stroke="#666"
+                            StrokeThickness="3"
+                            X2="200" />
+
+                    </StackPanel>
+
+                    <WrapPanel HorizontalAlignment="Center">
+
+                        <md:Card Style="{StaticResource MotionComponentStatusCardStyle}">
+
+                            <StackPanel>
+
+                                <TextBlock
+                                    Style="{StaticResource MotionComponentStatusTextBlockStyle}"
+                                    Text="Table Horizontal Velocity (mm/s)" />
+
+                                <TextBlock
+                                    Style="{StaticResource MotionComponentStatusTextBlockStyle}"
+                                    Text="{Binding XTableSource.HorizontalVelocity, StringFormat={}{0:F2}}" />
+
+                            </StackPanel>
+
+                        </md:Card>
+
+                        <md:Card Style="{StaticResource MotionComponentStatusCardStyle}">
+
+                            <StackPanel>
+
+                                <TextBlock
+                                    Style="{StaticResource MotionComponentStatusTextBlockStyle}"
+                                    Text="Table Horizontal Position (mm)" />
+
+                                <TextBlock
+                                    Style="{StaticResource MotionComponentStatusTextBlockStyle}"
+                                    Text="{Binding XTableSource.HorizontalPosition, StringFormat={}{0:F2}}" />
+
+                            </StackPanel>
+
+                        </md:Card>
+
+                        <md:Card Style="{StaticResource MotionComponentStatusCardStyle}">
+
+                            <StackPanel>
+
+                                <TextBlock
+                                    Style="{StaticResource MotionComponentStatusTextBlockStyle}"
+                                    Text="Table Vertical Velocity (mm/s)" />
+
+                                <TextBlock
+                                    Style="{StaticResource MotionComponentStatusTextBlockStyle}"
+                                    Text="{Binding XTableSource.VerticalVelocity, StringFormat={}{0:F2}}" />
+
+                            </StackPanel>
+
+                        </md:Card>
+
+                        <md:Card Style="{StaticResource MotionComponentStatusCardStyle}">
+
+                            <StackPanel>
+
+                                <TextBlock
+                                    Style="{StaticResource MotionComponentStatusTextBlockStyle}"
+                                    Text="Table Vertical Position (mm)" />
+
+                                <TextBlock
+                                    Style="{StaticResource MotionComponentStatusTextBlockStyle}"
+                                    Text="{Binding XTableSource.VerticalPosition, StringFormat={}{0:F2}}" />
+
+                            </StackPanel>
+
+                        </md:Card>
+
+                    </WrapPanel>
+
+                </StackPanel>
+
+            </TabItem>
+
+            <!--  Collimator Status  -->
+            <TabItem
+                Header="Collimator Status"
+                HeaderTemplate="{StaticResource TabItemBoldHeaderTemplate}">
+
+                <TabItem.Resources>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="TextAlignment" Value="Center" />
+                        <Setter Property="FontSize" Value="12" />
+                    </Style>
+                </TabItem.Resources>
+
+                <md:Card
+                    Margin="1,5,1,1"
+                    Padding="0,0,0,5"
+                    HorizontalAlignment="Left"
+                    Background="{StaticResource BaseBackgroundColor}">
+
+                    <StackPanel Orientation="Horizontal">
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="1" />
+                                <RowDefinition />
+                                <RowDefinition Height="1" />
+                                <RowDefinition />
+                                <RowDefinition Height="1" />
+                                <RowDefinition />
+                                <RowDefinition Height="1" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="1" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                Width="150"
+                                FontWeight="Bold"
+                                Text="Collimator Index" />
+
+                            <Rectangle
+                                Grid.Row="1"
+                                Height="1"
+                                Fill="White" />
+                            <TextBlock
+                                Grid.Row="2"
+                                Width="150"
+                                FontWeight="Bold"
+                                Text="Bowtie Position" />
+                            <Rectangle
+                                Grid.Row="3"
+                                Height="1"
+                                Fill="White" />
+                            <TextBlock
+                                Grid.Row="4"
+                                Width="150"
+                                FontWeight="Bold"
+                                Text="Front Blade Position" />
+                            <Rectangle
+                                Grid.Row="5"
+                                Height="1"
+                                Fill="White" />
+                            <TextBlock
+                                Grid.Row="6"
+                                Width="150"
+                                FontWeight="Bold"
+                                Text="Rear Blade Position" />
+                            <Rectangle
+                                Grid.Row="7"
+                                Height="1"
+                                Fill="White" />
+
+                            <Rectangle
+                                Grid.RowSpan="7"
+                                Grid.Column="1"
+                                Width="1"
+                                Fill="White" />
+
+                        </Grid>
+
+                        <ItemsControl ItemsSource="{Binding CollimatorSources}">
+
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel
+                                        Orientation="Horizontal"
+                                        VirtualizingPanel.IsVirtualizing="True"
+                                        VirtualizingPanel.ScrollUnit="Pixel" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+
+                                        <Grid.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                <Setter Property="VerticalAlignment" Value="Center" />
+                                                <Setter Property="Width">
+                                                    <Setter.Value>
+                                                        <MultiBinding Converter="{StaticResource CollimatorStatusWidthAutoFitConverter}">
+                                                            <Binding
+                                                                Path="ActualWidth"
+                                                                RelativeSource="{RelativeSource AncestorType=TabControl}" />
+                                                            <Binding
+                                                                Path="Children[0].ActualWidth"
+                                                                RelativeSource="{RelativeSource AncestorType=StackPanel}" />
+                                                        </MultiBinding>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Setter Property="TextAlignment" Value="Center" />
+                                                <Setter Property="FontSize" Value="12" />
+                                            </Style>
+                                        </Grid.Resources>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition Height="1" />
+                                            <RowDefinition />
+                                            <RowDefinition Height="1" />
+                                            <RowDefinition />
+                                            <RowDefinition Height="1" />
+                                            <RowDefinition />
+                                            <RowDefinition Height="1" />
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock
+                                            FontWeight="Bold"
+                                            Text="{Binding Name}" />
+                                        <Rectangle
+                                            Grid.Row="1"
+                                            Height="1"
+                                            Fill="White" />
+                                        <TextBlock
+                                            Grid.Row="2"
+                                            Text="{Binding BowtieMoveStep}" />
+                                        <Rectangle
+                                            Grid.Row="3"
+                                            Height="1"
+                                            Fill="White" />
+                                        <TextBlock
+                                            Grid.Row="4"
+                                            Text="{Binding FrontBladeMoveStep}" />
+                                        <Rectangle
+                                            Grid.Row="5"
+                                            Height="1"
+                                            Fill="White" />
+                                        <TextBlock
+                                            Grid.Row="6"
+                                            Text="{Binding RearBladeMoveStep}" />
+                                        <Rectangle
+                                            Grid.Row="7"
+                                            Height="1"
+                                            Fill="White" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+
+                        </ItemsControl>
+
+                    </StackPanel>
+
+                </md:Card>
+
+            </TabItem>
+
+            <!--  ECG Parameters  -->
+
+            <TabItem
+                Header="ECG Parameters"
+                HeaderTemplate="{StaticResource TabItemBoldHeaderTemplate}">
+
+                <ScrollViewer>
+
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Grid.Resources>
+
+                            <Style
+                                x:Key="ECGParameterCardStyle"
+                                TargetType="{x:Type md:Card}">
+                                <Setter Property="Width" Value="200" />
+                                <Setter Property="Margin" Value="5,5,0,0" />
+                                <Setter Property="Padding" Value="10" />
+                                <Setter Property="Background" Value="{StaticResource BaseBackgroundColor}" />
+                            </Style>
+
+                            <Style
+                                x:Key="ECGParameterTextBlockStyle"
+                                BasedOn="{StaticResource NanoTextBlockStyle}"
+                                TargetType="{x:Type TextBlock}">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                                <Setter Property="FontSize" Value="12" />
+                            </Style>
+
+                        </Grid.Resources>
+
+                        <StackPanel
+                            Grid.Row="0"
+                            Orientation="Horizontal">
+
+                            <md:Card Style="{StaticResource ECGParameterCardStyle}">
+
+                                <StackPanel Orientation="Horizontal">
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="Limitation ( 0 - 1 )：" />
+
+                                    <mk:MarkableTextBox
+                                        Width="60"
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedDecimal"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.Limitation, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource DecimalPointConverter}}"
+                                        TextAlignment="Center" />
+
+                                </StackPanel>
+
+                            </md:Card>
+
+                            <md:Card Style="{StaticResource ECGParameterCardStyle}">
+
+                                <StackPanel Orientation="Horizontal">
+
+                                    <TextBlock
+                                        Margin="0,0,10,0"
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="HeartRate: " />
+
+                                    <mk:MarkableTextBox
+                                        Width="100"
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedDecimal"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.HeartRate, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource DecimalPointConverter}}"
+                                        TextAlignment="Center" />
+
+                                </StackPanel>
+
+                            </md:Card>
+
+                        </StackPanel>
+
+                        <WrapPanel Grid.Row="1">
+
+                            <md:Card Style="{StaticResource ECGParameterCardStyle}">
+
+                                <StackPanel>
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="ECG_HT ( ms )" />
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.ECG_HT, Mode=OneWay, StringFormat={}{0:F2}}" />
+
+                                </StackPanel>
+
+                            </md:Card>
+
+                            <md:Card Style="{StaticResource ECGParameterCardStyle}">
+
+                                <StackPanel>
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="ECG_GateH ( ms )" />
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.ECG_GateStartPosition, Mode=OneWay, StringFormat={}{0:F2}}" />
+
+                                </StackPanel>
+
+                            </md:Card>
+
+                            <md:Card Style="{StaticResource ECGParameterCardStyle}">
+
+                                <StackPanel>
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="ECG_GateT ( ms )" />
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.ECG_GateStopPosition, Mode=OneWay, StringFormat={}{0:F2}}" />
+
+                                </StackPanel>
+
+                            </md:Card>
+
+                            <md:Card Style="{StaticResource ECGParameterCardStyle}">
+
+                                <StackPanel>
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="ECG_GateW ( ms )" />
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.ECG_GateW, Mode=OneWay, StringFormat={}{0:F2}}" />
+
+                                </StackPanel>
+
+                            </md:Card>
+
+                            <md:Card Style="{StaticResource ECGParameterCardStyle}">
+
+                                <StackPanel>
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="ECG_Beats" />
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.ECG_Beats, Mode=OneWay, StringFormat={}{0:F2}}" />
+
+                                </StackPanel>
+
+                            </md:Card>
+
+                            <md:Card Style="{StaticResource ECGParameterCardStyle}">
+
+                                <StackPanel>
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="ECG_TotalExposureTime ( ms )" />
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.ECG_TotalExposureTime, Mode=OneWay, StringFormat={}{0:F2}}" />
+
+                                </StackPanel>
+
+                            </md:Card>
+
+                        </WrapPanel>
+
+                        <WrapPanel Grid.Row="2">
+
+                            <md:Card Style="{StaticResource ECGParameterCardStyle}">
+
+                                <StackPanel>
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="ECG_GantryVelocityA ( °/s )" />
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.ECG_GantryVelocityA, Mode=OneWay, StringFormat={}{0:F2}}" />
+
+                                </StackPanel>
+
+                            </md:Card>
+
+                            <md:Card Style="{StaticResource ECGParameterCardStyle}">
+
+                                <StackPanel>
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="ECG_GantrySweepAngle ( ° )" />
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.ECG_GantrySweepAngle, Mode=OneWay, StringFormat={}{0:F2}}" />
+
+                                </StackPanel>
+
+                            </md:Card>
+
+                            <md:Card Style="{StaticResource ECGParameterCardStyle}">
+
+                                <StackPanel>
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="ECG_GantryVelocityB ( °/s )" />
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.ECG_GantryVelocityB, Mode=OneWay, StringFormat={}{0:F2}}" />
+
+                                </StackPanel>
+
+                            </md:Card>
+
+                            <md:Card Style="{StaticResource ECGParameterCardStyle}">
+
+                                <StackPanel>
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="ECG_ActualGantryVelocity(°/s)" />
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.ECG_ActualGantryVelocity, Mode=OneWay, StringFormat={}{0:F2}}" />
+
+                                </StackPanel>
+
+                            </md:Card>
+
+                        </WrapPanel>
+
+                        <WrapPanel Grid.Row="3">
+
+                            <md:Card Style="{StaticResource ECGParameterCardStyle}">
+
+                                <StackPanel>
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="ECG_ImageNumber" />
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.ECG_ImageNumber, Mode=OneWay}" />
+
+                                </StackPanel>
+
+                            </md:Card>
+
+                            <md:Card Style="{StaticResource ECGParameterCardStyle}">
+
+                                <StackPanel>
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="ECG_GantryRotateAngle ( ° )" />
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.ECG_GantryRotateAngle, Mode=OneWay, StringFormat={}{0:F2}}" />
+
+                                </StackPanel>
+
+                            </md:Card>
+
+                            <md:Card Style="{StaticResource ECGParameterCardStyle}">
+
+                                <StackPanel>
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="ECG_ProjectionNumber" />
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.ECG_ProjectionNumber, Mode=OneWay, StringFormat={}{0:F2}}" />
+
+                                </StackPanel>
+
+                            </md:Card>
+
+                            <md:Card Style="{StaticResource ECGParameterCardStyle}">
+
+                                <StackPanel>
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="ECG_ScanTime ( s )" />
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.ECG_ScanTime, Mode=OneWay, StringFormat={}{0:F2}}" />
+
+                                </StackPanel>
+
+                            </md:Card>
+
+                            <md:Card Style="{StaticResource ECGParameterCardStyle}">
+
+                                <StackPanel>
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="ECG_AngleInterval ( ° )" />
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.ECG_AngleInterval, Mode=OneWay, StringFormat={}{0:F2}}" />
+
+                                </StackPanel>
+
+                            </md:Card>
+
+                            <md:Card Style="{StaticResource ECGParameterCardStyle}">
+
+                                <StackPanel>
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="ECG_AngleRange ( ° )" />
+
+                                    <TextBlock
+                                        Style="{StaticResource ECGParameterTextBlockStyle}"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.ECG_AngleRange, Mode=OneWay, StringFormat={}{0:F2}}" />
+
+                                </StackPanel>
+
+                            </md:Card>
+
+                        </WrapPanel>
+
+                    </Grid>
+
+                </ScrollViewer>
+
+            </TabItem>
+
+        </TabControl>
+
+    </Grid>
+
+</Grid>

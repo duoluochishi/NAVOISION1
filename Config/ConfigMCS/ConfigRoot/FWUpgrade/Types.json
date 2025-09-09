@@ -1,0 +1,30 @@
+[
+    {
+        "DisplayName": "{Config_TubeintfBox}",
+        "FirmwareType": "Tubeintf"
+    },
+    {
+        "DisplayName": "{Config_XRay}",
+        "FirmwareType": "XRay"
+    },
+    {
+        "DisplayName": "{Config_ADU}",
+        "FirmwareType": "ADU"
+    },
+    {
+        "DisplayName": "{Config_Coll}",
+        "FirmwareType": "Coll"
+    },
+    {
+        "DisplayName": "{Config_TransmitBox}",
+        "FirmwareType": "TransmitBox"
+    },
+    {
+        "DisplayName": "{Config_ProcessBox}",
+        "FirmwareType": "ProcessBox"
+    },
+    {
+        "DisplayName": "{Config_TempBox}",
+        "FirmwareType": "TempBox"
+    }
+]

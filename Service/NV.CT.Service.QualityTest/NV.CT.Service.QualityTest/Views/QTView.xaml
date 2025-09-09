@@ -1,0 +1,235 @@
+﻿<UserControl
+    x:Class="NV.CT.Service.QualityTest.Views.QTView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:calcBinding="clr-namespace:CalcBinding;assembly=CalcBinding"
+    xmlns:markableTextBox="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableTextBox;assembly=MaterialDesignThemes.Wpf"
+    xmlns:res="clr-namespace:NV.CT.Service.Common.Resources;assembly=NV.CT.Service.Common"
+    xmlns:enums="clr-namespace:NV.CT.Service.QualityTest.Enums"
+    xmlns:qualityTest="clr-namespace:NV.CT.Service.QualityTest"
+    mc:Ignorable="d"
+    x:Name="UCMain"
+    d:DesignHeight="1080"
+    d:DesignWidth="1920"
+    d:DataContext="{x:Static qualityTest:VMManager.MainVM}"
+    Loaded="UCMain_Loaded"
+    Unloaded="UCMain_Unloaded">
+    <AdornerDecorator>
+        <Grid>
+            <Grid x:Name="GridScan">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Grid.RowSpan="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="10" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <GroupBox
+                        Grid.Row="0"
+                        Header="{x:Static res:Quality_Lang.Quality_Items}">
+                        <ListBox
+                            x:Name="ListBoxQTItems"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            SelectionMode="Single"
+                            DisplayMemberPath="Name"
+                            IsEnabled="{calcBinding:Binding !IsScanning}"
+                            SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            ItemsSource="{Binding Items}"
+                            SelectionChanged="ListBoxQTItems_SelectionChanged" />
+                    </GroupBox>
+                    <GridSplitter
+                        Grid.Row="1"
+                        Height="3"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        ShowsPreview="False" />
+                    <GroupBox
+                        Grid.Row="2"
+                        Header="{x:Static res:Quality_Lang.Quality_RunLog}">
+                        <markableTextBox:MarkableTextBox
+                            x:Name="TextBoxLog"
+                            IsReadOnly="True"
+                            TextWrapping="Wrap"
+                            Height="auto"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            HorizontalContentAlignment="Left"
+                            VerticalContentAlignment="Top"
+                            VerticalScrollBarVisibility="Auto"
+                            TextChanged="TextBoxLog_TextChanged"
+                            Style="{StaticResource MarkableTextBox}"
+                            Text="{Binding RunLog}" />
+                    </GroupBox>
+                </Grid>
+                <GridSplitter
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Grid.RowSpan="3"
+                    Width="3"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Stretch"
+                    ShowsPreview="False" />
+                <Grid
+                    Grid.Column="2"
+                    Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <StackPanel
+                        Grid.Row="0"
+                        Margin="0 0 0 10"
+                        Orientation="Horizontal"
+                        Visibility="Collapsed">
+                        <StackPanel.Resources>
+                            <RoutedUICommand x:Key="ImageFuncCommand" />
+                            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ServiceCommonButton}">
+                                <Setter Property="Margin" Value="5 0 0 0" />
+                                <Setter Property="Command" Value="{StaticResource ImageFuncCommand}" />
+                            </Style>
+                        </StackPanel.Resources>
+                        <StackPanel.CommandBindings>
+                            <CommandBinding
+                                Command="{StaticResource ImageFuncCommand}"
+                                Executed="ImageFuncCommand_Executed"
+                                CanExecute="ImageFuncCommand_CanExecute" />
+                        </StackPanel.CommandBindings>
+                        <Button
+                            x:Name="ButtonRawView"
+                            Margin="0"
+                            Content="{x:Static res:Quality_Lang.Quality_Image_RawView}"
+                            CommandParameter="{x:Static enums:ImageFuncType.RawView}" />
+                        <Button
+                            x:Name="ButtonCutView"
+                            Content="{x:Static res:Quality_Lang.Quality_Image_CutView}"
+                            CommandParameter="{x:Static enums:ImageFuncType.CutView}" />
+                        <Button
+                            x:Name="ButtonCorrView"
+                            Content="{x:Static res:Quality_Lang.Quality_Image_CorrView}"
+                            CommandParameter="{x:Static enums:ImageFuncType.CorrView}" />
+                        <Button
+                            x:Name="ButtonSinogramView"
+                            Content="{x:Static res:Quality_Lang.Quality_Image_SinogramView}"
+                            CommandParameter="{x:Static enums:ImageFuncType.SinogramView}" />
+                        <Button
+                            x:Name="ButtonReconView"
+                            Content="{x:Static res:Quality_Lang.Quality_Image_ReconView}"
+                            CommandParameter="{x:Static enums:ImageFuncType.ReconView}" />
+                        <Button
+                            x:Name="ButtonNone"
+                            Content="{x:Static res:Quality_Lang.Quality_Image_None}"
+                            CommandParameter="{x:Static enums:ImageFuncType.None}" />
+                        <Button
+                            x:Name="ButtonOneToOne"
+                            Content="{x:Static res:Quality_Lang.Quality_Image_OneToOne}"
+                            CommandParameter="{x:Static enums:ImageFuncType.OneToOne}" />
+                        <Button
+                            x:Name="ButtonFit"
+                            Content="{x:Static res:Quality_Lang.Quality_Image_Fit}"
+                            CommandParameter="{x:Static enums:ImageFuncType.Fit}" />
+                        <Button
+                            x:Name="ButtonZoom"
+                            Content="{x:Static res:Quality_Lang.Quality_Image_Zoom}"
+                            CommandParameter="{x:Static enums:ImageFuncType.Zoom}" />
+                        <Button
+                            x:Name="ButtonPan"
+                            Content="{x:Static res:Quality_Lang.Quality_Image_Pan}"
+                            CommandParameter="{x:Static enums:ImageFuncType.Pan}" />
+                        <Button
+                            x:Name="ButtonRect"
+                            Content="{x:Static res:Quality_Lang.Quality_Image_Rect}"
+                            CommandParameter="{x:Static enums:ImageFuncType.Rect}" />
+                        <Button
+                            x:Name="ButtonAngle"
+                            Content="{x:Static res:Quality_Lang.Quality_Image_Angle}"
+                            CommandParameter="{x:Static enums:ImageFuncType.Angle}" />
+                        <Button
+                            x:Name="ButtonEllipse"
+                            Content="{x:Static res:Quality_Lang.Quality_Image_Ellipse}"
+                            CommandParameter="{x:Static enums:ImageFuncType.Ellipse}" />
+                        <Button
+                            x:Name="ButtonDelete"
+                            Content="{x:Static res:Quality_Lang.Quality_Image_Delete}"
+                            CommandParameter="{x:Static enums:ImageFuncType.Delete}" />
+                    </StackPanel>
+                    <Border x:Name="BorderUC" Grid.Row="1" />
+                </Grid>
+                <StackPanel
+                    Grid.Column="2"
+                    Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+                    <Button
+                        x:Name="ButtonReport"
+                        Style="{StaticResource ServiceCommonButton}"
+                        IsEnabled="{calcBinding:Binding !IsScanning}"
+                        Content="{x:Static res:Quality_Lang.Quality_BrowseReport}"
+                        Click="ButtonReport_Click" />
+                    <Button
+                        x:Name="ButtonStartScan"
+                        Margin="10 0 0 0"
+                        Style="{StaticResource ServiceCommonButton}"
+                        Content="{x:Static res:Common_Lang.Common_Go}"
+                        IsEnabled="{Binding CanButtonStartScan}"
+                        Command="{Binding ButtonStartScanCommand}" />
+
+                    <Button
+                        x:Name="ButtonStopScan"
+                        Margin="10 0 0 0"
+                        Style="{StaticResource ServiceCommonButton}"
+                        Content="{x:Static res:Quality_Lang.Quality_Button_StopScanRecon}"
+                        IsEnabled="{Binding CanButtonStopScan}"
+                        Command="{Binding ButtonStopScanCommand}" />
+                    <Button
+                        x:Name="ButtonStopOfflineRecon"
+                        Margin="10 0 0 0"
+                        Style="{StaticResource ServiceCommonButton}"
+                        Content="{x:Static res:Quality_Lang.Quality_Buton_StopOfflineRecon}"
+                        IsEnabled="{Binding CanButtonStopOfflineRecon}"
+                        Command="{Binding ButtonStopOfflineReconCommand}" />
+                </StackPanel>
+            </Grid>
+            <Grid x:Name="GridReport" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <WebBrowser
+                    x:Name="ReportBrowser"
+                    Grid.Row="0" />
+                <StackPanel
+                    Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+                    <Button
+                        x:Name="ButtonReportExport"
+                        Style="{StaticResource ServiceCommonButton}"
+                        Content="{x:Static res:Common_Lang.Common_Export}"
+                        Click="ButtonReportExport_Click" />
+                    <Button
+                        x:Name="ButtonReportClose"
+                        Margin="10 0 0 0"
+                        Style="{StaticResource ServiceCommonButton}"
+                        Content="{x:Static res:Common_Lang.Common_Close}"
+                        Click="ButtonReportClose_Click" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </AdornerDecorator>
+</UserControl>

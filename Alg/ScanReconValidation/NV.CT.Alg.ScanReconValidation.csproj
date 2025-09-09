@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Folder Include="Scan\RawData\Topo\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Common\Protocol\NV.CT.Protocol.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Autofac" />
+		<PackageReference Include="Autofac.Configuration" />
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" />
+		<PackageReference Include="Microsoft.Extensions.Logging" />
+		<PackageReference Include="Microsoft.Extensions.Options" />
+		<PackageReference Include="Newtonsoft.Json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!--<Reference Include="NV.MPS.RawDataHelper">
+			<HintPath>..\..\bin\NV.MPS.RawDataHelper.dll</HintPath>
+		</Reference>-->
+		<Reference Include="NV.MPS.RawDataHelperWrapper">
+			<HintPath>..\..\bin\NV.MPS.RawDataHelperWrapper.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+</Project>

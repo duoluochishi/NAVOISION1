@@ -1,0 +1,145 @@
+﻿<UserControl x:Class="NV.CT.Service.AutoCali.UI.DailyCaliUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NV.CT.Service.AutoCali.UI"
+             xmlns:res="clr-namespace:NV.CT.Service.Common.Resources;assembly=NV.CT.Service.Common"
+             xmlns:logic="clr-namespace:NV.CT.Service.AutoCali.Logic"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
+             xmlns:calc="clr-namespace:CalcBinding;assembly=CalcBinding"
+             mc:Ignorable="d"
+             d:DesignHeight="800" d:DesignWidth="1280">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Resources/CommonResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <!--ToDo:暂时添加AdornerDecorator作为View的父节点，避免MCS的皮肤库解析错误“VisualParents Must have AdornerDecorator!”-->
+    <AdornerDecorator>
+        <TabControl>
+            <TabItem Header="{x:Static res:Calibration_Lang.Calibration_Selection}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="300"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*" MinWidth="600"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <GroupBox Header="{x:Static res:Calibration_Lang.Calibration_CalibrationItems}"
+                                      Grid.Row="1" Grid.Column="0" Margin="5"  DataContext="{Binding CaliTask}">
+                                <ListView Grid.Row="1" Grid.Column="0" ItemsSource="{Binding CaliItemTaskViewModels}"
+                                          SelectedItem="{Binding SelectedCaliItemTaskViewModel}"
+                                          ItemTemplate="{StaticResource caliProjectTemplate}">
+                                </ListView>
+                            </GroupBox>
+                        </Grid>
+
+                        <!--左右分割条-->
+                        <GridSplitter Grid.Column="1" Style="{StaticResource HorizontalGridSplitterStyle}"/>
+                        <!--校准项目运行-->
+                        <local:AutoCaliTaskUC Grid.Column="2" HorizontalAlignment="Stretch" DataContext="{Binding CaliTask}" />
+                    </Grid>
+
+                    <Grid x:Name="footerContainer" Grid.Row="1" Margin="5" DataContext="{Binding CaliTask}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="300"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox x:Name="logTextBox" Grid.Column="0" Text="{Binding TaskOutput}" VerticalScrollBarVisibility="Visible" Height="60"
+                                 IsReadOnly="True" TextWrapping="Wrap" VerticalAlignment="Stretch" VerticalContentAlignment="Top"
+                                 HorizontalContentAlignment="Left">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="TextChanged">
+                                        <i:CallMethodAction MethodName="ScrollToEnd"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </TextBox>
+
+                            <ToggleButton Grid.Column="1" Click="LogToggleButton_Click"/>
+                        </Grid>
+
+                        <Grid Grid.Column="2" HorizontalAlignment="Right">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Grid.Column="0" x:Name="redoBtn" Command="{Binding RedoCommand}" 
+                                    Content="{x:Static res:Calibration_Lang.Calibration_Redo}" 
+                                    IsEnabled="{calc:Binding NextCommandEnabled,Mode=OneWay}"
+                                    MinWidth="80" Margin="10,10,10,20">
+                                <!--<i:Interaction.Triggers>
+                                        <i:DataTrigger Binding="{Binding IsAutoConfirmResult}" Value="true">
+                                            <i:ChangePropertyAction PropertyName="Visibility" Value="Collapsed" />
+                                        </i:DataTrigger>
+                                    </i:Interaction.Triggers>-->
+                            </Button>
+
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                <Button Content="{x:Static res:Common_Lang.Common_Go}" IsEnabled="{calc:Binding StartCommandEnabled,Mode=OneWay}"
+                                    MinWidth="80" Margin="10,10,10,20">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <i:InvokeCommandAction Command="{Binding StartCommand}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Button>
+                                <Button Content="Stop All" 
+                                        IsEnabled="{calc:Binding !StartCommandEnabled,Mode=OneWay}"
+                                    MinWidth="80" Margin="10,10,10,20">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <i:InvokeCommandAction Command="{Binding StopAllCommand}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="{x:Static res:Calibration_Lang.Calibration_History}">
+                <GroupBox Grid.Row="2" Margin="5" Header="{x:Static res:Calibration_Lang.Calibration_History}">
+                    <ListView x:Name="historyListView" Grid.Row="1" VerticalAlignment="Stretch"
+                              ItemsSource="{Binding CaliHistoryList}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding OperationObject}"/>
+                                    <TextBlock Text="{Binding CreatedTime}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </GroupBox>
+
+            </TabItem>
+        </TabControl>
+    </AdornerDecorator>
+</UserControl>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HospitalSettingConfig>
+	<HospitalSetting>
+		<Manufacturer Value="" Default=""/>
+		<InstitutionName Value="" Default=""/>
+		<InstitutionAddress Value="" Default=""/>
+		<InstitutionDepartmentName Value="" Default=""/>
+		<InstitutionPhoneNum Value="" Default=""/>
+		<InstitutionZip Value="" Default=""/>
+		<City Value="" Default=""/>
+		<Country Value="" Default=""/>
+	</HospitalSetting>
+</HospitalSettingConfig>

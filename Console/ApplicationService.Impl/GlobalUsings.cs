@@ -1,0 +1,11 @@
+﻿global using Microsoft.Extensions.Logging;
+global using Microsoft.Extensions.Options;
+global using NV.CT.AppService.Contract;
+global using NV.CT.Console.ApplicationService.Contract.Interfaces;
+global using NV.CT.Console.ApplicationService.Contract.Models;
+global using NV.CT.CTS;
+global using NV.CT.CTS.Enums;
+global using NV.CT.CTS.Extensions;
+global using NV.CT.DatabaseService.Contract;
+global using NV.CT.WorkflowService.Contract;
+global using System.Collections.ObjectModel;

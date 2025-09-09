@@ -1,0 +1,283 @@
+﻿<UserControl
+	x:Class="NV.CT.NanoConsole.View.English.BackendFixedItemsControl"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:NV.CT.NanoConsole.View.English"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+	d:DesignHeight="40"
+	xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+	xmlns:converter="clr-namespace:NV.CT.UI.Controls.Converter;assembly=NV.CT.UI.Controls"
+	d:DesignWidth="100"
+	mc:Ignorable="d">
+	<UserControl.Resources>
+		<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></BooleanToVisibilityConverter>
+		<converter:ReverseBooleanToVisibilityConverter x:Key="ReverseBooleanToVisibilityConverter"></converter:ReverseBooleanToVisibilityConverter>
+		<Style TargetType="{x:Type Separator}">
+			<Setter Property="Height" Value="1" />
+		</Style>
+		
+		<Style
+			x:Key="MainContentContextMenu"
+			TargetType="ContextMenu">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="ContextMenu">
+						<Grid>
+							<Border
+								x:Name="my_border"
+								Width="175"
+								Height="318"
+								Padding="0,2,2,2"
+								Background="#16162B"
+								BorderBrush="#4F4F79"
+								BorderThickness="1.5,1.5,1.5,1.5"
+								CornerRadius="5"
+								SnapsToDevicePixels="True">
+								<ItemsPresenter />
+							</Border>
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style
+			x:Key="SelfCheckStyle"
+			TargetType="{x:Type Image}">
+			<Style.Triggers>
+				<DataTrigger
+					Binding="{Binding SelfCheckOk}"
+					Value="true">
+					<Setter Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Icons/message_done.png" />
+				</DataTrigger>
+				<DataTrigger
+					Binding="{Binding SelfCheckOk}"
+					Value="false">
+					<Setter Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Icons/message_warning.png" />
+				</DataTrigger>
+			</Style.Triggers>
+		</Style>
+
+	</UserControl.Resources>
+	<StackPanel
+		HorizontalAlignment="Right"
+		Orientation="Horizontal">
+
+		<!--debug active info-->
+		<TextBlock
+			Margin="5,0,3,0"
+			VerticalAlignment="Center" Visibility="Collapsed"
+			Text="{Binding DebugActive}" />
+
+		<!--自检简易结果指示图标-->
+		<Image
+			Height="20" Width="20" Margin="3 0 6 0"
+			Stretch="Uniform" Cursor="Hand"
+			Visibility="{Binding SelfCheckOk,Converter={StaticResource ReverseBooleanToVisibilityConverter}}"
+			Style="{StaticResource SelfCheckStyle}"
+			ToolTip="{Binding SelfCheckShortTip}">
+			<i:Interaction.Triggers>
+				<i:EventTrigger EventName="MouseDown">
+					<i:InvokeCommandAction Command="{Binding Commands[ShowSelfCheckResult]}" />
+				</i:EventTrigger>
+			</i:Interaction.Triggers>
+		</Image>
+
+		<TextBlock
+			Margin="5,0,3,0"
+			VerticalAlignment="Center"
+			Text="{Binding LoginUserName}" />
+
+		<Button
+			x:Name="BtnLogin"
+			Width="26"
+			Height="26"
+			Margin="3,0,2,0"
+			HorizontalAlignment="Left"
+			Background="Transparent"
+			BorderBrush="Transparent"
+			Click="BtnLogin_OnClick"
+			Cursor="Hand"
+			Initialized="BtnLogin_OnInitialized"
+			ToolTip="{x:Static res:LanguageResource.ToolTip_User}">
+			<Button.Content>
+				<Path
+					Width="20"
+					Height="20"
+					Data="{StaticResource UserIcon}"
+					Fill="{StaticResource IconNormalColor}"
+					Stretch="Fill">
+					<Path.Style>
+						<Style TargetType="Path">
+							<Style.Triggers>
+								<Trigger Property="IsMouseOver" Value="True">
+									<Setter Property="Fill" Value="{StaticResource IconActiveColor}" />
+								</Trigger>
+								<Trigger Property="IsMouseOver" Value="False">
+									<Setter Property="Fill" Value="{StaticResource IconNormalColor}" />
+								</Trigger>
+							</Style.Triggers>
+						</Style>
+					</Path.Style>
+				</Path>
+			</Button.Content>
+			<Button.ContextMenu>
+				<ContextMenu x:Name="PopLoginMenu"
+					Placement="Bottom"
+					Style="{StaticResource MainContentContextMenu}"
+					VerticalOffset="10">
+					<MenuItem
+						Width="200"
+						Height="30"
+						Background="Transparent"
+						Command="{Binding Commands[SwitchUser]}"
+						Cursor="Hand"
+						Header="Switch user">
+						<MenuItem.Icon>
+							<Path
+								Data="{StaticResource SwitchUserIcon}"
+								Fill="White"
+								Stretch="Fill" />
+						</MenuItem.Icon>
+					</MenuItem>
+					<Separator />
+					<MenuItem
+						Width="200"
+						Height="30"
+						Background="Transparent"
+						Command="{Binding Commands[ChangePassword]}"
+						Cursor="Hand"
+						Header="Change Password">
+						<MenuItem.Icon>
+							<Path
+								Data="{StaticResource SwitchUserIcon}"
+								Fill="White"
+								Stretch="Fill" />
+						</MenuItem.Icon>
+					</MenuItem>
+					<Separator />
+					<MenuItem
+						Width="200"
+						Height="30"
+						Background="Transparent"
+						Command="{Binding Commands[Logout]}"
+						Cursor="Hand"
+						Header="Logout">
+						<MenuItem.Icon>
+							<Path
+								Data="{StaticResource RestartIcon}"
+								Fill="White"
+								Stretch="Fill" />
+						</MenuItem.Icon>
+					</MenuItem>
+					<Separator />
+					<MenuItem
+						Width="200"
+						Height="30"
+						Background="Transparent"
+						Command="{Binding Commands[Restart]}"
+						Cursor="Hand"
+						Header="Restart">
+						<MenuItem.Icon>
+							<Path
+								Data="{StaticResource RestartIcon}"
+								Fill="White"
+								Stretch="Fill" />
+						</MenuItem.Icon>
+					</MenuItem>
+					<Separator />
+
+					<MenuItem
+						Width="200"
+						Height="30"
+						Background="Transparent"
+						Command="{Binding Commands[Shutdown]}"
+						Cursor="Hand"
+						Header="Shut down">
+						<MenuItem.Icon>
+							<Path
+								Data="{StaticResource ShutdownIcon}"
+								Fill="White"
+								Stretch="Fill" />
+						</MenuItem.Icon>
+					</MenuItem>
+					<Separator />
+					<MenuItem
+						Width="200"
+						Height="30"
+						Background="Transparent"
+						Command="{Binding Commands[UserManual]}"
+						Cursor="Hand"
+						Header="User manual">
+						<MenuItem.Icon>
+							<Path
+								Data="{StaticResource UserManualIcon}"
+								Fill="White"
+								Stretch="Fill" />
+						</MenuItem.Icon>
+					</MenuItem>
+                    <Separator />
+                    <MenuItem
+						Width="200"
+						Height="30"
+						Background="Transparent"
+						Command="{Binding Commands[Logpackaging]}"
+						Cursor="Hand"
+						Header="Log packaging">
+                        <MenuItem.Icon>
+                            <Path
+								Data="{StaticResource RestartIcon}"
+								Fill="White"
+								Stretch="Fill" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </ContextMenu>
+			</Button.ContextMenu>
+		</Button>
+
+		<!--  系统设置按钮  -->
+		<Button
+			Width="28"
+			Height="28"
+			Margin="2,0,2,0"
+			Background="Transparent"
+			BorderBrush="Transparent"
+			Cursor="Hand" Command="{Binding Commands[OpenCommand]}" CommandParameter="Config"
+			ToolTip="{x:Static res:LanguageResource.ToolTip_SystemSetting}">
+			<Path
+				Width="20"
+				Height="20"
+				Data="{StaticResource SettingIcon}"
+				Stretch="Fill">
+				<Path.Style>
+					<Style TargetType="Path">
+						<Setter Property="Fill" Value="{StaticResource IconNormalColor}" />
+						<Style.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter Property="Fill" Value="{StaticResource IconActiveColor}" />
+							</Trigger>
+							<DataTrigger
+								Binding="{Binding SettingCardActive}"
+								Value="true">
+								<Setter Property="Fill" Value="{StaticResource IconActiveColor}" />
+							</DataTrigger>
+							<DataTrigger
+								Binding="{Binding SettingCardActive}"
+								Value="false">
+								<Setter Property="Fill" Value="{StaticResource IconNormalColor}" />
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</Path.Style>
+			</Path>
+		</Button>
+
+		<TextBlock
+			VerticalAlignment="Center"
+			Visibility="{Binding IsDevelopment,Converter={StaticResource BooleanToVisibilityConverter}}"
+			Foreground="{StaticResource DebugColor}"
+			Text="{Binding VersionInfo}" />
+	</StackPanel>
+</UserControl>

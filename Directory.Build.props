@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+	<TargetFramework>net8.0</TargetFramework>
+	<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+	<SatelliteResourceLanguages>en-US;zh-CN</SatelliteResourceLanguages>
+  </PropertyGroup>
+ </Project>

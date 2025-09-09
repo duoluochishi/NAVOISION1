@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProductSettingConfig>
+	<ProductSetting
+	ImplementationClassUID="1.3.1.7.1.20231127.1.1.1.8.155" 
+	SoftwareName="InsightVision" 
+	VersionName="InsightVisionV2" 
+	DetailName="InsightVision V2.0.3" 
+	Manufacturer="Nanovision" 
+	InstitutionName="Nanovision" 
+	CityName="Shanghai" 
+	InstitutionalDepartmentName="Department of radiology" 
+	ManufacturerModel="CompoundEye 24 Pro" 
+	DeviceSerialNumber="20231127581510C80001" 
+	SoftwareVersion="V2.0.3.10556" 
+	StationName="Computed Tomography X-ray System" 	
+	AEC="1" OSVersion="Microsoft Windows 10 professional 10.0.18363"
+	Copyright="Copyright © 2023 NANOVISION. All rights reserved."
+	FooterCopyright="Copyright © 2023 NANOVISION. All rights reserved."	/>
+</ProductSettingConfig>

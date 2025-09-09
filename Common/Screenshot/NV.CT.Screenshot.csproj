@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <OutputType>Library</OutputType>
+	  <TargetFramework>$(TargetFramework)-windows</TargetFramework>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>enable</Nullable>
+	  <UseWPF>true</UseWPF>
+	  <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\close.png" />
+    <None Remove="Resources\close_Select.png" />
+    <None Remove="Resources\Cross.cur" />
+    <None Remove="Resources\error.png" />
+    <None Remove="Resources\finish.png" />
+    <None Remove="Resources\OK.png" />
+    <None Remove="Resources\OK_Select.png" />
+    <None Remove="Resources\logo.png" />
+  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="CalcBinding" />
+		<PackageReference Include="DynamicExpresso.Core" />
+		<PackageReference Include="ThoughtWorks.QRCode.Standard" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Resource Include="Resources\close.png" />
+	  <Resource Include="Resources\close_Select.png" />
+	  <Resource Include="Resources\Cross.cur" />
+	  <Resource Include="Resources\error.png" />
+	  <Resource Include="Resources\finish.png" />
+	  <Resource Include="Resources\OK.png" />
+	  <Resource Include="Resources\OK_Select.png" />
+    <Resource Include="Resources\logo.png" />
+	</ItemGroup>
+</Project>

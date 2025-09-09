@@ -1,0 +1,105 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>$(TargetFramework)-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<Platforms>x64</Platforms>
+		<Platforms>AnyCPU;x64</Platforms>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<AssemblyName>NV.CT.PatientManagement</AssemblyName>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="View\Chinese\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Common\CTS\NV.CT.CTS.csproj" />
+		<ProjectReference Include="..\..\..\Common\DicomImageViewer\NV.CT.DicomImageViewer.csproj" />
+		<ProjectReference Include="..\..\..\Common\DicomUtility\NV.CT.DicomUtility.csproj" />
+		<ProjectReference Include="..\..\..\Common\UI.Controls\NV.CT.UI.Controls.csproj" />
+		<ProjectReference Include="..\..\..\Common\ViewModel\NV.CT.UI.ViewModel.csproj" />
+		<ProjectReference Include="..\..\..\Infrastructure\Logging\NV.CT.Logging.csproj" />
+		<ProjectReference Include="..\..\..\SystemInterface\MCSRuntime.Contract\NV.CT.SystemInterface.MCSRuntime.Contract.csproj" />
+		<ProjectReference Include="..\..\..\SystemService\AppService.Contract\NV.CT.AppService.Contract.csproj" />
+		<ProjectReference Include="..\..\..\SystemService\ClientProxy\NV.CT.ClientProxy.csproj" />
+		<ProjectReference Include="..\..\..\SystemService\WorkflowService.Contract\NV.CT.WorkflowService.Contract.csproj" />
+		<ProjectReference Include="..\ApplicationService.Contract\NV.CT.PatientManagement.ApplicationService.Contract.csproj" />
+		<ProjectReference Include="..\ApplicationService.Impl\NV.CT.PatientManagement.ApplicationService.Impl.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="NV.MPS.Communication">
+			<HintPath>..\..\..\bin\NV.MPS.Communication.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.MPS.Environment">
+			<HintPath>..\..\..\bin\NV.MPS.Environment.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.MPS.Exception">
+			<HintPath>..\..\..\bin\NV.MPS.Exception.dll</HintPath>
+		</Reference>
+		<Reference Include="MaterialDesignColors">
+		  <HintPath>..\..\..\bin\MaterialDesignColors.dll</HintPath>
+		</Reference>
+		<Reference Include="MaterialDesignThemes.Wpf">
+		  <HintPath>..\..\..\bin\MaterialDesignThemes.Wpf.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.CT.ImageViewer.Interop">
+		  <HintPath>..\..\..\bin\NV.CT.ImageViewer.Interop.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.CT.Language">
+		  <HintPath>..\..\..\bin\NV.CT.Language.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.MPS.UI.Dialog">
+		  <HintPath>..\..\..\bin\NV.MPS.UI.Dialog.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.CT.ErrorCodes">
+			<HintPath>..\..\..\bin\NV.CT.ErrorCodes.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<!--<ItemGroup>
+    <Compile Update="View\English\InstanceViewList.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\English\SeriesViewListControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\English\StudyViewListControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="View\English\InstanceViewList.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\English\MainWindow.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\English\PatientManagement.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="View\English\SeriesViewListControl.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\English\StudyViewListControl.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>-->
+
+</Project>

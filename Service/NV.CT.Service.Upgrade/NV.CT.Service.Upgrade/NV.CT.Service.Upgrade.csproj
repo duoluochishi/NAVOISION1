@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>$(TargetFramework)-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <OutDir>..\..\..\Bin</OutDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Converters\**" />
+    <EmbeddedResource Remove="Converters\**" />
+    <None Remove="Converters\**" />
+    <Page Remove="Converters\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CalcBinding" />
+    <PackageReference Include="CommunityToolkit.Mvvm" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\NV.CT.Service.Common\NV.CT.Service.Common\NV.CT.Service.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="NV.MPS.UI.Dialog">
+      <HintPath>..\..\..\Bin\NV.MPS.UI.Dialog.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.CT.ErrorCodes">
+      <HintPath>..\..\..\Bin\NV.CT.ErrorCodes.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf">
+      <HintPath>..\..\..\Bin\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.CT.FacadeProxy">
+      <HintPath>..\..\..\Bin\NV.CT.FacadeProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.CT.FacadeProxy.Common">
+      <HintPath>..\..\..\Bin\NV.CT.FacadeProxy.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.CT.ServiceFramework">
+      <HintPath>..\..\..\Bin\NV.CT.ServiceFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.MPS.Environment">
+      <HintPath>..\..\..\Bin\NV.MPS.Environment.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

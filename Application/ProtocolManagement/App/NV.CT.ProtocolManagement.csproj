@@ -1,0 +1,101 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>$(TargetFramework)-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>True</UseWPF>
+    <StartupObject>NV.CT.ProtocolManagement.Program</StartupObject>
+    <UseWindowsForms>True</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" />
+    <PackageReference Include="Microsoft.Extensions.Options" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" />
+    <PackageReference Include="Prism.Core" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\CTS\NV.CT.CTS.csproj" />
+    <ProjectReference Include="..\..\..\Common\Protocol\NV.CT.Protocol.csproj" />
+    <ProjectReference Include="..\..\..\Common\UI.Controls\NV.CT.UI.Controls.csproj" />
+    <ProjectReference Include="..\..\..\Common\ViewModel\NV.CT.UI.ViewModel.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\Logging\NV.CT.Logging.csproj" />
+    <ProjectReference Include="..\..\..\SystemService\ClientProxy\NV.CT.ClientProxy.csproj" />
+    <ProjectReference Include="..\ApplicationService.Impl\NV.CT.ProtocolManagement.ApplicationService.Impl.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <Reference Include="NV.MPS.Communication">
+		  <HintPath>..\..\..\bin\NV.MPS.Communication.dll</HintPath>
+	  </Reference>
+	  <Reference Include="NV.MPS.Configuration">
+		  <HintPath>..\..\..\bin\NV.MPS.Configuration.dll</HintPath>
+	  </Reference>
+	  <Reference Include="NV.MPS.Environment">
+		  <HintPath>..\..\..\bin\NV.MPS.Environment.dll</HintPath>
+	  </Reference>
+	  <Reference Include="NV.MPS.Exception">
+		  <HintPath>..\..\..\bin\NV.MPS.Exception.dll</HintPath>
+	  </Reference>
+	  <Reference Include="MaterialDesignColors">
+      <HintPath>..\..\..\bin\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf">
+      <HintPath>..\..\..\bin\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.CT.CommonAttributeUI">
+      <HintPath>..\..\..\bin\NV.CT.CommonAttributeUI.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.CT.FacadeProxy.Common">
+      <HintPath>..\..\..\bin\NV.CT.FacadeProxy.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.CT.Language">
+      <HintPath>..\..\..\bin\NV.CT.Language.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.MPS.UI.Dialog">
+      <HintPath>..\..\..\bin\NV.MPS.UI.Dialog.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="View\English\MainUserControl.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="View\English\DialogView\DialogView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="View\English\DialogView\InputDIalogView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="View\English\MeasurementParameterControl.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="View\English\ProtocolFilterControl.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="View\English\ProtocolOperationControl.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="View\English\ProtocolParameterControl.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="View\English\ProtocolTreeControl.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="View\English\ReconParameterControl.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="View\English\ScanParameterControl.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="View\English\SearchBoxControl.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+  </ItemGroup>
+
+</Project>

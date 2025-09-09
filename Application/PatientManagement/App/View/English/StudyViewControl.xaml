@@ -1,0 +1,574 @@
+﻿<UserControl
+    x:Class="NV.CT.PatientManagement.View.English.StudyViewControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:converter="clr-namespace:NV.CT.UI.Controls.Converter;assembly=NV.CT.UI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:NV.CT.UI.Controls.Behavior;assembly=NV.CT.UI.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableTextBox;assembly=MaterialDesignThemes.Wpf"
+    xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+    xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converter:BoolToStyleConverter x:Key="boolToStyleConverter" />
+        <converter:CorrectionStatusStyleConverter x:Key="correctionStatusStyleConverter" />
+        <converter:PatientTypeStyleConverter x:Key="patientTypeStyleConverter" />
+        <converter:WorkflowStatusStyleConverter x:Key="workflowStatusStyleConverter" />
+        <converter:JobTaskStatusStyleConverter x:Key="jobTaskStatusStyleConverter" />
+        <Style x:Key="DataContextMenu" TargetType="{x:Type ContextMenu}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ContextMenu}">
+                        <Grid>
+                            <Border
+                                x:Name="my_border"
+                                Width="220"
+                                Height="240"
+                                Padding="0,1,1,1"
+                                Background="#16162B"
+                                BorderBrush="#4F4F79"
+                                BorderThickness="1,1,1,1"
+                                CornerRadius="5"
+                                SnapsToDevicePixels="True">
+                                <ItemsPresenter />
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="DataGridCell">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Height" Value="36" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="91*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="72*" />
+            <ColumnDefinition Width="20*" />
+            <ColumnDefinition Width="8*" />
+        </Grid.ColumnDefinitions>
+        <!--  顶部工具栏  -->
+        <Grid>
+            <!--  搜索框  -->
+            <TextBox
+                x:Name="txtSearchBox"
+                wpf:HintAssist.Hint="{x:Static res:LanguageResource.ToolTip_Search}"
+                Style="{StaticResource SearchTextBox}">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="TextChanged">
+                        <b:InvokeCommandAction Command="{Binding Commands[SearchCommand]}" CommandParameter="{Binding ElementName=txtSearchBox, Path=Text}" />
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </TextBox>
+            <Button
+                Command="{Binding Commands[SearchCommand]}"
+                CommandParameter="{Binding ElementName=txtSearchBox, Path=Text}"
+                Style="{StaticResource SearchButton}">
+                <wpf:PackIcon
+                    Width="25"
+                    Height="25"
+                    Foreground="White"
+                    Kind="Magnify"
+                    Opacity=".56" />
+            </Button>
+        </Grid>
+        <Border
+            Grid.Row="0"
+            Grid.Column="2"
+            Background="#5a5a89"
+            CornerRadius="10,0,0,0"
+            Opacity="0.3" />
+        <!--  上面右侧 按钮 导航到 View Recon Print 页面  -->
+        <Grid Grid.Row="0" Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <!--  打开viewer界面  -->
+            <Button
+                Width="30"
+                IsEnabled="{Binding IsViewerEnabled, Mode=TwoWay}"
+                Style="{StaticResource GotoViewGlintButton}"
+                ToolTip="{x:Static res:LanguageResource.ToolTip_View}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:InvokeCommandAction Command="{Binding Commands[OpenViewerCommand]}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+            <!--  打开recon界面  -->
+            <Button
+                Grid.Column="1"
+                IsEnabled="{Binding IsReconEnabled, Mode=TwoWay}"
+                Style="{StaticResource GotoReconGlintButton}"
+                ToolTip="{x:Static res:LanguageResource.ToolTip_Recon}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:InvokeCommandAction Command="{Binding Commands[OpenReconProcessCommand]}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+            <!--  打开Print打印页面  -->
+            <Button
+                Grid.Column="2"
+                IsEnabled="{Binding IsFilmEnabled, Mode=TwoWay}"
+                Style="{StaticResource GotoPrintGlintButton}"
+                ToolTip="{x:Static res:LanguageResource.ToolTip_Print}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:InvokeCommandAction Command="{Binding Commands[OpenPrintProcessCommand]}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </Grid>
+        <Grid
+            Grid.Row="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*" />
+                <RowDefinition Height="90*" />
+            </Grid.RowDefinitions>
+            <Border Background="#14142b" CornerRadius="10,10,0,0" />
+            <!--  study列表 头部工具栏  -->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="90*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                    Margin="5,0,0,0"
+                    Style="{StaticResource HeaderLabelTextBlock}"
+                    Text="{x:Static res:LanguageResource.Content_Studies}" />
+                <TextBlock
+                    Margin="70,0,0,0"
+                    FontSize="10"
+                    Style="{StaticResource HeaderLabelTextBlock}"
+                    Text="{Binding LocalDataDescription}" />
+                <Button
+                    Grid.Column="1"
+                    Style="{StaticResource RefreshGlintButton}"
+                    ToolTip="{x:Static res:LanguageResource.ToolTip_Refresh}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding Commands[RefreshWorkListCommand]}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+                <Button
+                    x:Name="btnFilter"
+                    Grid.Column="2"
+                    Style="{StaticResource FilterGlintButton}"
+                    ToolTip="{x:Static res:LanguageResource.ToolTip_Filter}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding Commands[FilterCommand]}" CommandParameter="{Binding ElementName=btnFilter}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+                <Button
+                    x:Name="btnColumnConfig"
+                    Grid.Column="3"
+                    Style="{StaticResource AddGlintButton}"
+                    ToolTip="{x:Static res:LanguageResource.ToolTip_ColumnConfig}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding Commands[ColumnsConfigCommand]}" CommandParameter="{Binding ElementName=btnColumnConfig}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
+                </Button>
+                <Button
+                    Grid.Column="4"
+                    IsEnabled="{Binding IsPermissionImportEnabled, Mode=TwoWay}"
+                    Style="{StaticResource ImportGlintButton}"
+                    ToolTip="{x:Static res:LanguageResource.ToolTip_Import}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding Commands[ImportCommand]}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+                <Button
+                    Grid.Column="5"
+                    IsEnabled="{Binding IsPermissionImportEnabled, Mode=TwoWay}"
+                    Style="{StaticResource RawdataImportGlintButton}"
+                    ToolTip="{x:Static res:LanguageResource.TooTip_ImportRawData}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding Commands[ImportRawdataCommand]}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </Grid>
+            <!--  study列表组件 DataGrid  -->
+            <DataGrid
+                x:Name="dgStudy"
+                Grid.Row="1"
+                local:DataGridDoubleClickBehavior.DoubleClickCommand="{Binding Commands[OpenViewerCommand]}"
+                ItemsSource="{Binding VStudies}"
+                SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                SelectionMode="Single"
+                Style="{StaticResource CommonDataGrid}">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn
+                        Width="*"
+                        MinWidth="160"
+                        Header="{x:Static res:LanguageResource.Header_Name}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="22" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Path
+                                        Width="15"
+                                        Height="15"
+                                        Margin="6,0,0,0"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Style="{Binding PatientType, Converter={StaticResource patientTypeStyleConverter}}"
+                                        ToolTip="{Binding PatientTypeString}" />
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Margin="5,0,10,0"
+                                        Style="{StaticResource DataGridContentTextBlock}"
+                                        Text="{Binding PatientName}" />
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn
+                        Width="*"
+                        MinWidth="200"
+                        Header="{x:Static res:LanguageResource.Header_PatientId}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    Margin="0,0,10,0"
+                                    Style="{StaticResource DataGridContentTextBlock}"
+                                    Text="{Binding PatientId}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn
+                        Width="auto"
+                        MinWidth="80"
+                        Header="{x:Static res:LanguageResource.Header_Birthday}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    Margin="0,0,10,0"
+                                    Style="{StaticResource DataGridContentTextBlock}"
+                                    Text="{Binding Birthday, StringFormat='yyyy/MM/dd'}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn
+                        Width="auto"
+                        MinWidth="50"
+                        Header="{x:Static res:LanguageResource.Header_Sex}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    Margin="10,0,10,0"
+                                    HorizontalAlignment="Left"
+                                    Style="{StaticResource DataGridContentTextBlock}"
+                                    Text="{Binding GenderString}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn
+                        Width="auto"
+                        MinWidth="80"
+                        Header="{x:Static res:LanguageResource.Header_BodyPart}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    Margin="10,0,00,0"
+                                    HorizontalAlignment="Left"
+                                    Style="{StaticResource DataGridContentTextBlock}"
+                                    Text="{Binding BodyPart}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn
+                        Width="auto"
+                        MinWidth="80"
+                        Header="{x:Static res:LanguageResource.Header_Study_Status}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Path
+                                    Width="22"
+                                    Height="22"
+                                    Margin="40,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Stretch="Uniform"
+                                    Style="{Binding StudyStatus, Converter={StaticResource workflowStatusStyleConverter}}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn
+                        Width="auto"
+                        MinWidth="80"
+                        Header="{x:Static res:LanguageResource.Header_Archive}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Path
+                                    Width="22"
+                                    Height="22"
+                                    Margin="30,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Stretch="Uniform"
+                                    Style="{Binding ArchiveStatus, Converter={StaticResource jobTaskStatusStyleConverter}}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn
+                        Width="auto"
+                        MinWidth="80"
+                        Header="{x:Static res:LanguageResource.Header_Print}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Path
+                                    Width="22"
+                                    Height="22"
+                                    Margin="20,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Stretch="Uniform"
+                                    Style="{Binding PrintStatus, Converter={StaticResource jobTaskStatusStyleConverter}}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn
+                        Width="auto"
+                        MinWidth="80"
+                        Header="{x:Static res:LanguageResource.Header_Correct}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Path
+                                    Width="22"
+                                    Height="22"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Style="{Binding CorrectStatus, Converter={StaticResource correctionStatusStyleConverter}}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn
+                        Width="auto"
+                        MinWidth="180"
+                        Header="{x:Static res:LanguageResource.Header_Study_Time}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    Margin="0,0,10,0"
+                                    Style="{StaticResource DataGridContentTextBlock}"
+                                    Text="{Binding StudyTime, StringFormat='yyyy/MM/dd HH:mm:ss'}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn
+                        Width="auto"
+                        MinWidth="100"
+                        Header="{x:Static res:LanguageResource.Header_Technician}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    Margin="0,0,10,0"
+                                    HorizontalAlignment="Left"
+                                    Style="{StaticResource DataGridContentTextBlock}"
+                                    Text="{Binding Technician}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn
+                        Width="auto"
+                        MinWidth="100"
+                        Header="{x:Static res:LanguageResource.Header_Ward}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    Margin="0,0,10,0"
+                                    HorizontalAlignment="Left"
+                                    Style="{StaticResource DataGridContentTextBlock}"
+                                    Text="{Binding Ward}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn
+                        Width="auto"
+                        MinWidth="120"
+                        Header="{x:Static res:LanguageResource.Header_ReferringPhysician}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    Margin="0,0,10,0"
+                                    HorizontalAlignment="Left"
+                                    Style="{StaticResource DataGridContentTextBlock}"
+                                    Text="{Binding ReferringPhysician}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn
+                        Width="auto"
+                        MinWidth="100"
+                        Header="{x:Static res:LanguageResource.Header_CreatedTime}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Style="{StaticResource DataGridContentTextBlock}" Text="{Binding StudyCreateTime, StringFormat='yyyy/MM/dd HH:mm:ss'}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn
+                        Width="auto"
+                        MinWidth="100"
+                        Header="{x:Static res:LanguageResource.Header_Lock}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button
+                                    x:Name="imgLock"
+                                    Width="24"
+                                    Height="24"
+                                    Margin="20,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    BorderThickness="0"
+                                    Command="{Binding Path=DataContext.Commands[SwitchLockedStatusCommand], RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                    CommandParameter="{Binding ElementName=imgLock, Path=Tag}"
+                                    Cursor="Hand"
+                                    IsEnabled="{Binding DataContext.IsPermissionProtectionEnabled, Mode=TwoWay, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                    Tag="{Binding StudyId}">
+                                    <Path
+                                        Fill="DarkGray"
+                                        Stretch="Uniform"
+                                        Style="{Binding IsProtected, Converter={StaticResource boolToStyleConverter}, ConverterParameter='Lock:Unlock'}" />
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectedCellsChanged">
+                        <i:InvokeCommandAction Command="{Binding Commands[SelectionChangedCommand]}" CommandParameter="{Binding SelectedItems, ElementName=dgStudy}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <!--  右键菜单  -->
+                <DataGrid.ContextMenu>
+                    <ContextMenu Placement="MousePoint" Style="{StaticResource DataContextMenu}">
+                        <MenuItem
+                            x:Name="menuItem_Delete"
+                            Height="40"
+                            Padding="10,0,0,0"
+                            Command="{Binding Commands[DeleteCommand]}"
+                            Header="{x:Static res:LanguageResource.ContextMenuItem_Delete}"
+                            IsEnabled="{Binding IsPermissionDeletionEnabled, Mode=TwoWay}">
+                            <MenuItem.Icon>
+                                <Path
+                                    Fill="{StaticResource TextBoxBrush}"
+                                    Stretch="Fill"
+                                    Style="{StaticResource Delete}" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem
+                            Height="40"
+                            Padding="10,0,0,0"
+                            Command="{Binding Commands[ResumeCommand]}"
+                            Header="{x:Static res:LanguageResource.ContextMenuItem_Resume_Examination}">
+                            <MenuItem.Icon>
+                                <Path
+                                    Fill="{StaticResource TextBoxBrush}"
+                                    Stretch="Fill"
+                                    Style="{StaticResource Undo}" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem
+                            Height="40"
+                            Padding="10,0,0,0"
+                            Command="{Binding Commands[CorrectCommand]}"
+                            Header="{x:Static res:LanguageResource.ContextMenuItem_Correct}"
+                            IsEnabled="{Binding IsPermissionCorrectionEnabled, Mode=TwoWay}">
+                            <MenuItem.Icon>
+                                <Path
+                                    Fill="{StaticResource TextBoxBrush}"
+                                    Stretch="Fill"
+                                    Style="{StaticResource Correct}" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem
+                            Height="40"
+                            Padding="10,0,0,0"
+                            Command="{Binding Commands[RawDataManageCommand]}"
+                            Header="{x:Static res:LanguageResource.ContextMenuItem_ExportRawData}"
+                            IsEnabled="{Binding IsPermissionExportRawEnabled, Mode=TwoWay}">
+                            <MenuItem.Icon>
+                                <Path
+                                    Fill="{StaticResource TextBoxBrush}"
+                                    Stretch="Fill"
+                                    Style="{StaticResource RawData}" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem
+                            Height="40"
+                            Padding="10,0,0,0"
+                            Command="{Binding Commands[OpenDataExportControlCommand]}"
+                            Header="{x:Static res:LanguageResource.ContextMenuItem_Export}"
+                            IsEnabled="{Binding IsPermissionExportEnabled, Mode=TwoWay}">
+                            <MenuItem.Icon>
+                                <Path
+                                    Fill="{StaticResource TextBoxBrush}"
+                                    Stretch="Fill"
+                                    Style="{StaticResource Export}" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <!--  CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.SelectedItems}"  -->
+                        <MenuItem
+                            Height="40"
+                            Padding="10,0,0,0"
+                            Command="{Binding Commands[OpenFileArchiveControlCommand]}"
+                            Header="{x:Static res:LanguageResource.ContextMenuItem_Archive}"
+                            IsEnabled="{Binding IsPermissionArchiveEnabled, Mode=TwoWay}">
+                            <MenuItem.Icon>
+                                <Path
+                                    Fill="{StaticResource TextBoxBrush}"
+                                    Stretch="Fill"
+                                    Style="{StaticResource Archive}" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+            </DataGrid>
+        </Grid>
+        <Border
+            Grid.Row="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            BorderBrush="#5a5a89"
+            BorderThickness="1.4"
+            CornerRadius="10"
+            Opacity="1" />
+    </Grid>
+</UserControl>

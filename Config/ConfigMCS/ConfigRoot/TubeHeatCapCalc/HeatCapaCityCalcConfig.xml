@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TubeHeatCapacity>
+	<TubeNum>24</TubeNum>
+	<LowLimit>0.2</LowLimit>
+	<UpperLimit>0.2</UpperLimit>
+	<Threshold>1.2</Threshold>
+</TubeHeatCapacity>

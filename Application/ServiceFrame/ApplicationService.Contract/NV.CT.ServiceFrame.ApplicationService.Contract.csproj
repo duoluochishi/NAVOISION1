@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\SystemService\AppService.Contract\NV.CT.AppService.Contract.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="NV.CT.ServiceFramework">
+      <HintPath>..\..\..\bin\NV.CT.ServiceFrameWork.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

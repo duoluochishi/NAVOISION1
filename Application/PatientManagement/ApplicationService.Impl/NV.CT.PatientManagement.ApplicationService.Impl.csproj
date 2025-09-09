@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" />
+    <PackageReference Include="AutoMapper" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Protocol\NV.CT.Protocol.csproj" />
+    <ProjectReference Include="..\..\..\SystemService\AppService.Contract\NV.CT.AppService.Contract.csproj" />
+    <ProjectReference Include="..\..\..\SystemService\ConfigService.Contract\NV.CT.ConfigService.Contract.csproj" />
+    <ProjectReference Include="..\..\..\SystemService\DatabaseService.Contract\NV.CT.DatabaseService.Contract.csproj" />
+    <ProjectReference Include="..\ApplicationService.Contract\NV.CT.PatientManagement.ApplicationService.Contract.csproj" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="NV.CT.FacadeProxy.Common">
+		  <HintPath>..\..\..\bin\NV.CT.FacadeProxy.Common.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.MPS.Environment">
+		  <HintPath>..\..\..\bin\NV.MPS.Environment.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.MPS.Exception">
+			<HintPath>..\..\..\bin\NV.MPS.Exception.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.MPS.Configuration">
+			<HintPath>..\..\..\bin\NV.MPS.Configuration.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+</Project>

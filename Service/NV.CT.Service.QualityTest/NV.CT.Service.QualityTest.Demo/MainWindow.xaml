@@ -1,0 +1,17 @@
+﻿<Window
+    x:Class="NV.CT.Service.QualityTest.Demo.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:NV.CT.Service.QualityTest.Demo"
+    xmlns:qualityTest="clr-namespace:NV.CT.Service.QualityTest;assembly=NV.CT.Service.QualityTest"
+    mc:Ignorable="d"
+    Title="QualityTest"
+    Height="450"
+    Width="800"
+    WindowState="Maximized">
+    <Grid Background="#14142B">
+        <qualityTest:QTWrapper />
+    </Grid>
+</Window>

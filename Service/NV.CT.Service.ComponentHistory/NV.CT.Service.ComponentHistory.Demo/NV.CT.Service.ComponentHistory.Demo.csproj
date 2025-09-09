@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>$(TargetFramework)-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <OutDir>..\..\..\Bin</OutDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NV.CT.Service.ComponentHistory\NV.CT.Service.ComponentHistory.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MaterialDesignColors">
+      <HintPath>..\..\..\Bin\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf">
+      <HintPath>..\..\..\Bin\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.CT.ServiceFramework">
+      <HintPath>..\..\..\Bin\NV.CT.ServiceFramework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

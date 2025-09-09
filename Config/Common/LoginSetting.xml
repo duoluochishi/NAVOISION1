@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LoginSetting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <MinPasswordLength Value="6" Default="6" />
+  <MaxPasswordLength Value="12" Default="12" />
+  <WrongPassTryTimes Value="5" Default="5" />
+  <ApplyStrongPassword Value="true" Default="true" />
+  <RememberPassword Value="true" Default="true" />
+</LoginSetting>

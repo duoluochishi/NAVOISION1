@@ -1,0 +1,147 @@
+﻿<dialog:BaseCustomWindow
+    x:Class="NV.CT.Service.QualityTest.Views.ReportHeadInfoWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:NV.CT.Service.QualityTest.Views"
+    xmlns:res="clr-namespace:NV.CT.Service.Common.Resources;assembly=NV.CT.Service.Common"
+    xmlns:dialog="clr-namespace:NV.MPS.UI.Dialog;assembly=NV.MPS.UI.Dialog"
+    mc:Ignorable="d"
+    Title="{x:Static res:Quality_Lang.Quality_Report_HeadInfo}"
+    Height="450"
+    Width="600"
+    WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Column="0"
+                Grid.Row="0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Text="{x:Static res:Quality_Lang.Quality_Report_GenerationData}" />
+            <TextBlock
+                Grid.Column="2"
+                Grid.Row="0"
+                VerticalAlignment="Center"
+                Text="{Binding GenerationDate}" />
+            <TextBlock
+                Grid.Column="0"
+                Grid.Row="1"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Text="{x:Static res:Quality_Lang.Quality_Report_LastData}" />
+            <TextBlock
+                Grid.Column="2"
+                Grid.Row="1"
+                Text="{Binding LastSessionDate}" />
+            <TextBlock
+                Grid.Column="0"
+                Grid.Row="2"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Text="{x:Static res:Quality_Lang.Quality_Report_Reason}" />
+            <TextBox
+                Grid.Column="2"
+                Grid.Row="2"
+                Text="{Binding Reason, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock
+                Grid.Column="0"
+                Grid.Row="3"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Text="{x:Static res:Quality_Lang.Quality_Report_SystemSN}" />
+            <TextBox
+                Grid.Column="2"
+                Grid.Row="3"
+                Text="{Binding SystemSN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock
+                Grid.Column="0"
+                Grid.Row="4"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Text="{x:Static res:Quality_Lang.Quality_Report_Name}" />
+            <TextBox
+                Grid.Column="2"
+                Grid.Row="4"
+                Text="{Binding CustomerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock
+                Grid.Column="0"
+                Grid.Row="5"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Text="{x:Static res:Quality_Lang.Quality_Report_Address}" />
+            <TextBox
+                Grid.Column="2"
+                Grid.Row="5"
+                Text="{Binding CustomerAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock
+                Grid.Column="0"
+                Grid.Row="6"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Text="{x:Static res:Quality_Lang.Quality_Report_PhantomSN}" />
+            <TextBox
+                Grid.Column="2"
+                Grid.Row="6"
+                Text="{Binding PhantomSN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock
+                Grid.Column="0"
+                Grid.Row="7"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Text="{x:Static res:Quality_Lang.Quality_Report_Version}" />
+            <TextBox
+                Grid.Column="2"
+                Grid.Row="7"
+                Text="{Binding SoftwareVersion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock
+                Grid.Column="0"
+                Grid.Row="8"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Text="{x:Static res:Quality_Lang.Quality_Report_Executed}" />
+            <TextBox
+                Grid.Column="2"
+                Grid.Row="8"
+                Text="{Binding ExecutedBy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        </Grid>
+        <StackPanel
+            Grid.Row="1"
+            Margin="10"
+            Orientation="Horizontal"
+            HorizontalAlignment="Right">
+            <Button
+                x:Name="ButtonOk"
+                Style="{StaticResource ServiceCommonButton}"
+                Content="{x:Static res:Common_Lang.Common_OK}"
+                Click="ButtonOk_Click" />
+            <Button
+                x:Name="ButtonCancel"
+                Margin="10 0 0 0"
+                Style="{StaticResource ServiceCommonButton}"
+                Content="{x:Static res:Common_Lang.Common_Cancel}"
+                Click="ButtonCancel_Click" />
+        </StackPanel>
+    </Grid>
+</dialog:BaseCustomWindow>

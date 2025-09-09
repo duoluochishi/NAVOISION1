@@ -1,0 +1,106 @@
+﻿<local:QTUCBase
+    x:Class="NV.CT.Service.QualityTest.Views.QTUC.HighContrastResolutionXYUC"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:NV.CT.Service.QualityTest.Views.QTUC"
+    xmlns:calcBinding="clr-namespace:CalcBinding;assembly=CalcBinding"
+    xmlns:framework="clr-namespace:NV.CT.Service.Common.Framework;assembly=NV.CT.Service.Common"
+    xmlns:res="clr-namespace:NV.CT.Service.Common.Resources;assembly=NV.CT.Service.Common"
+    mc:Ignorable="d"
+    d:DesignHeight="450" d:DesignWidth="800">
+    <local:QTUCBase.Resources>
+        <ResourceDictionary>
+            <framework:ProxyData x:Key="QTViewDataContext"
+                                 Data="{Binding Tag.DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}" />
+            <framework:ProxyData x:Key="UCDataContext"
+                                 Data="{Binding DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/NV.CT.Service.QualityTest;component/Themes/QTUCResource.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </local:QTUCBase.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="200" />
+        </Grid.RowDefinitions>
+        <Border x:Name="BorderIC1" Grid.Column="0" Grid.Row="0" />
+        <Border x:Name="BorderIC2" Grid.Column="2" Grid.Row="0" />
+        <Border x:Name="BorderIC3" Grid.Column="4" Grid.Row="0" />
+        <DataGrid
+            x:Name="DataGridParas"
+            Grid.Column="0"
+            Grid.Row="2"
+            Grid.ColumnSpan="5"
+            ColumnHeaderStyle="{StaticResource DataGridColumnHeaderCenterStyle}"
+            SelectedItem="{Binding SelectedEntry}"
+            ItemsSource="{Binding Entries}"
+            SelectionChanged="DataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn IsReadOnly="True">
+                    <DataGridTemplateColumn.Header>
+                        <CheckBox
+                            x:Name="TitleCheckBox"
+                            IsHitTestVisible="{calcBinding:Binding !Data.IsScanning, Source={StaticResource QTViewDataContext}}"
+                            IsChecked="{Binding Data.IsAllChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Source={StaticResource UCDataContext}}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Click="TitleCheckBox_Click" />
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox
+                                x:Name="ItemCheckBox"
+                                IsHitTestVisible="{calcBinding:Binding !Data.IsScanning, Source={StaticResource QTViewDataContext}}"
+                                IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Click="ItemCheckBox_Click" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn
+                    Header="{x:Static res:Quality_Lang.Quality_Number}"
+                    IsReadOnly="True"
+                    ElementStyle="{StaticResource CenterStyle}"
+                    Binding="{Binding ID}" />
+                <DataGridTextColumn
+                    Header="{x:Static res:Common_Lang.Common_Name}"
+                    IsReadOnly="True"
+                    ElementStyle="{StaticResource LeftStyle}"
+                    Binding="{Binding Param.Name}" />
+                <DataGridTemplateColumn
+                    Header="{x:Static res:Common_Lang.Common_Result}"
+                    CellTemplate="{StaticResource ResultDataTemplate}" />
+                <DataGridTemplateColumn
+                    Header="{x:Static res:Common_Lang.Common_Status}"
+                    MinWidth="200"
+                    CellTemplate="{StaticResource StatusDataTemplate}" />
+                <DataGridTemplateColumn
+                    IsReadOnly="True"
+                    Header="{x:Static res:Quality_Lang.Quality_Operation}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button
+                                x:Name="ButtonCurve"
+                                Style="{StaticResource ServiceCommonButton}"
+                                IsEnabled="{calcBinding:Binding !Data.IsScanning, Source={StaticResource QTViewDataContext}}"
+                                Content="{x:Static res:Quality_Lang.Quality_MTF_Curve}"
+                                Click="ButtonCurve_Click" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</local:QTUCBase>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Preset3D>
+    <ScalarOpacity>
+        <dict>
+            <X>-3024</X>
+            <scalarOpacity>0</scalarOpacity>
+        </dict>
+        <dict>
+            <X>-200</X>
+            <scalarOpacity>0</scalarOpacity>
+        </dict>
+        <dict>
+            <X>1500</X>
+            <scalarOpacity>0.05</scalarOpacity>
+        </dict>
+        <dict>
+            <X>3071</X>
+            <scalarOpacity>0.05</scalarOpacity>
+        </dict>
+    </ScalarOpacity>
+    <ColorTransfer>
+        <dict>
+            <X>-3024</X>
+            <red>1</red>
+            <green>1</green>
+            <blue>1</blue>
+        </dict>
+        <dict>
+            <X>3071</X>
+            <red>1</red>
+            <green>1</green>
+            <blue>1</blue>
+        </dict>
+    </ColorTransfer>
+    <shade>0</shade>
+    <specularPower>10</specularPower>
+    <specular>0.2</specular>
+    <ambient>0.1</ambient>
+    <diffuse>0.9</diffuse>
+    <interpolation>1</interpolation>
+    <wl>-250</wl>
+    <ww>1550</ww>
+</Preset3D>

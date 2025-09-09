@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DeletionLengthConfig>
+	<DeletionLength Name="Typical Head" BodyPart="Head" ObjectFOV="150000" CollimatorZ="256" Length="3000" />
+	<DeletionLength Name="Typical Head" BodyPart="Head" ObjectFOV="150000" CollimatorZ="242" Length="3000" />
+	<DeletionLength Name="Typical Head" BodyPart="Head" ObjectFOV="150000" CollimatorZ="144" Length="3000" />
+	<DeletionLength Name="Typical Head" BodyPart="Head" ObjectFOV="150000" CollimatorZ="128" Length="3000" />
+	<DeletionLength Name="Typical Neck" BodyPart="Neck" ObjectFOV="150000" CollimatorZ="256" Length="6000" />
+	<DeletionLength Name="Typical Neck" BodyPart="Neck" ObjectFOV="150000" CollimatorZ="242" Length="6000" />
+	<DeletionLength Name="Typical Neck" BodyPart="Neck" ObjectFOV="150000" CollimatorZ="144" Length="9000" />
+	<DeletionLength Name="Typical Neck" BodyPart="Neck" ObjectFOV="150000" CollimatorZ="128" Length="9000" />
+	<DeletionLength Name="Typical Chest" BodyPart="Chest" ObjectFOV="300000" CollimatorZ="256" Length="6000" />
+	<DeletionLength Name="Typical Chest" BodyPart="Chest" ObjectFOV="300000" CollimatorZ="242" Length="6000" />
+	<DeletionLength Name="Typical Chest" BodyPart="Chest" ObjectFOV="300000" CollimatorZ="144" Length="6000" />
+	<DeletionLength Name="Typical Chest" BodyPart="Chest" ObjectFOV="300000" CollimatorZ="128" Length="6000" />
+	<DeletionLength Name="Typical Abdomen" BodyPart="Abdomen" ObjectFOV="300000" CollimatorZ="256" Length="6000" />
+	<DeletionLength Name="Typical Abdomen" BodyPart="Abdomen" ObjectFOV="300000" CollimatorZ="242" Length="6000" />
+	<DeletionLength Name="Typical Abdomen" BodyPart="Abdomen" ObjectFOV="300000" CollimatorZ="144" Length="9000" />
+	<DeletionLength Name="Typical Abdomen" BodyPart="Abdomen" ObjectFOV="300000" CollimatorZ="128" Length="9000" />
+	<DeletionLength Name="Water 20CM" BodyPart="Head" ObjectFOV="150000" CollimatorZ="256" Length="3000" />
+	<DeletionLength Name="Water 20CM" BodyPart="Head" ObjectFOV="150000" CollimatorZ="242" Length="3000" />
+	<DeletionLength Name="Water 20CM" BodyPart="Head" ObjectFOV="150000" CollimatorZ="144" Length="3000" />
+	<DeletionLength Name="Water 20CM" BodyPart="Head" ObjectFOV="150000" CollimatorZ="128" Length="3000" />
+	<DeletionLength Name="Water 30CM" BodyPart="Chest" ObjectFOV="300000" CollimatorZ="256" Length="6000" />
+	<DeletionLength Name="Water 30CM" BodyPart="Chest" ObjectFOV="300000" CollimatorZ="242" Length="6000" />
+	<DeletionLength Name="Water 30CM" BodyPart="Chest" ObjectFOV="300000" CollimatorZ="144" Length="6000" />
+	<DeletionLength Name="Water 30CM" BodyPart="Chest" ObjectFOV="300000" CollimatorZ="128" Length="6000" />
+</DeletionLengthConfig>

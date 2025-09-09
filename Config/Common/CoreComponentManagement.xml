@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CoreComponents xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<TransmissionBoards>
+		<TransmissionBoard Id="1" SerialNumber="" BeginTime="" EndTime=""/>
+		<TransmissionBoard Id="2" SerialNumber="" BeginTime="" EndTime="" />
+		<TransmissionBoard Id="3" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TransmissionBoard Id="4" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TransmissionBoard Id="5" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TransmissionBoard Id="6" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TransmissionBoard Id="7" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TransmissionBoard Id="8" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TransmissionBoard Id="9" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TransmissionBoard Id="10" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TransmissionBoard Id="11" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TransmissionBoard Id="12" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TransmissionBoard Id="13" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TransmissionBoard Id="14" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TransmissionBoard Id="15" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TransmissionBoard Id="16" SerialNumber="" BeginTime=""  EndTime=""/>
+	</TransmissionBoards>
+	<TemperatureControlBoards>
+		<TemperatureControlBoard Id="1" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TemperatureControlBoard Id="2" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TemperatureControlBoard Id="3" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TemperatureControlBoard Id="4" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TemperatureControlBoard Id="5" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TemperatureControlBoard Id="6" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TemperatureControlBoard Id="7" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TemperatureControlBoard Id="8" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TemperatureControlBoard Id="9" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TemperatureControlBoard Id="10" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TemperatureControlBoard Id="11" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TemperatureControlBoard Id="12" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TemperatureControlBoard Id="13" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TemperatureControlBoard Id="14" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TemperatureControlBoard Id="15" SerialNumber="" BeginTime=""  EndTime=""/>
+		<TemperatureControlBoard Id="16" SerialNumber="" BeginTime=""  EndTime=""/>
+	</TemperatureControlBoards>
+	<Detectors>
+		<DetectorUnit Id="1" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="2" SerialNumber="ccccddddeeee" BeginTime="2025-08-06 13:36:33"  EndTime=""/>
+		<DetectorUnit Id="3" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="4" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="5" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="6" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="7" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="8" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="9" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="10" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="11" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="12" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="13" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="14" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="15" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="16" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="17" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="18" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="19" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="20" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="21" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="22" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="23" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="24" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="25" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="26" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="27" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="28" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="29" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="30" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="31" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="32" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="33" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="34" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="35" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="36" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="37" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="38" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="39" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="40" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="41" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="42" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="43" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="44" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="45" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="46" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="47" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="48" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="49" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="50" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="51" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="52" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="53" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="54" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="55" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="56" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="57" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="58" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="59" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="60" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="61" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="62" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="63" SerialNumber="" BeginTime=""  EndTime=""/>
+		<DetectorUnit Id="64" SerialNumber="" BeginTime=""  EndTime=""/>
+	</Detectors>
+	<XRaySourceTankboxes>
+		<XRaySourceTankbox Id="1" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceTankbox Id="2" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceTankbox Id="3" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceTankbox Id="4" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceTankbox Id="5" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceTankbox Id="6" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceTankbox Id="7" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceTankbox Id="8" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceTankbox Id="9" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceTankbox Id="10" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceTankbox Id="11" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceTankbox Id="12" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceTankbox Id="13" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceTankbox Id="14" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceTankbox Id="15" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceTankbox Id="16" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceTankbox Id="17" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceTankbox Id="18" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceTankbox Id="19" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceTankbox Id="20" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceTankbox Id="21" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceTankbox Id="22" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceTankbox Id="23" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceTankbox Id="24" SerialNumber="" BeginTime=""  EndTime=""/>
+	</XRaySourceTankboxes>
+	<XRaySourceBuckboxes>
+		<XRaySourceBuckbox Id="1" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceBuckbox Id="2" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceBuckbox Id="3" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceBuckbox Id="4" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceBuckbox Id="5" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceBuckbox Id="6" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceBuckbox Id="7" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceBuckbox Id="8" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceBuckbox Id="9" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceBuckbox Id="10" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceBuckbox Id="11" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceBuckbox Id="12" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceBuckbox Id="13" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceBuckbox Id="14" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceBuckbox Id="15" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceBuckbox Id="16" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceBuckbox Id="17" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceBuckbox Id="18" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceBuckbox Id="19" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceBuckbox Id="20" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceBuckbox Id="21" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceBuckbox Id="22" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceBuckbox Id="23" SerialNumber="" BeginTime=""  EndTime=""/>
+		<XRaySourceBuckbox Id="24" SerialNumber="" BeginTime=""  EndTime=""/>
+	</XRaySourceBuckboxes>
+	<Collimators>
+		<Collimator Id="1" SerialNumber="" BeginTime=""  EndTime=""/>
+		<Collimator Id="2" SerialNumber="" BeginTime=""  EndTime=""/>
+		<Collimator Id="3" SerialNumber="" BeginTime=""  EndTime=""/>
+		<Collimator Id="4" SerialNumber="" BeginTime=""  EndTime=""/>
+		<Collimator Id="5" SerialNumber="" BeginTime=""  EndTime=""/>
+		<Collimator Id="6" SerialNumber="" BeginTime=""  EndTime=""/>
+		<Collimator Id="7" SerialNumber="" BeginTime=""  EndTime=""/>
+		<Collimator Id="8" SerialNumber="" BeginTime=""  EndTime=""/>
+		<Collimator Id="9" SerialNumber="" BeginTime=""  EndTime=""/>
+		<Collimator Id="10" SerialNumber="" BeginTime=""  EndTime=""/>
+		<Collimator Id="11" SerialNumber="" BeginTime=""  EndTime=""/>
+		<Collimator Id="12" SerialNumber="" BeginTime=""  EndTime=""/>
+		<Collimator Id="13" SerialNumber="" BeginTime=""  EndTime=""/>
+		<Collimator Id="14" SerialNumber="" BeginTime=""  EndTime=""/>
+		<Collimator Id="15" SerialNumber="" BeginTime=""  EndTime=""/>
+		<Collimator Id="16" SerialNumber="" BeginTime=""  EndTime=""/>
+		<Collimator Id="17" SerialNumber="" BeginTime=""  EndTime=""/>
+		<Collimator Id="18" SerialNumber="" BeginTime=""  EndTime=""/>
+		<Collimator Id="19" SerialNumber="" BeginTime=""  EndTime=""/>
+		<Collimator Id="20" SerialNumber="" BeginTime=""  EndTime=""/>
+		<Collimator Id="21" SerialNumber="" BeginTime=""  EndTime=""/>
+		<Collimator Id="22" SerialNumber="" BeginTime=""  EndTime=""/>
+		<Collimator Id="23" SerialNumber="" BeginTime=""  EndTime=""/>
+		<Collimator Id="24" SerialNumber="" BeginTime=""  EndTime=""/>
+	</Collimators>
+</CoreComponents>

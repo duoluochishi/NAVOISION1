@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NV.CT.Service.TubeWarmUp", "NV.CT.Service.TubeWarmUp\NV.CT.Service.TubeWarmUp.csproj", "{E6C83332-DFF5-408A-952A-ADE2DA689737}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NV.CT.Service.TubeWarmUp.Test", "..\..\..\MRS\UnitTest\NV.CT.Service.TubeWarmUp.Test\NV.CT.Service.TubeWarmUp.Test.csproj", "{761281FF-867B-4698-95CD-0DC5962A9CFF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NV.CT.Service.TubeWarmUp.Demo", "NV.CT.Service.TubeWarmUp.Demo\NV.CT.Service.TubeWarmUp.Demo.csproj", "{8AEEA2A9-0F8D-42C0-BAF4-CFA3721AD61D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NV.CT.Service.Common", "..\NV.CT.Service.Common\NV.CT.Service.Common\NV.CT.Service.Common.csproj", "{DB010AD3-9922-430B-90F1-509922174B8D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6C83332-DFF5-408A-952A-ADE2DA689737}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6C83332-DFF5-408A-952A-ADE2DA689737}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6C83332-DFF5-408A-952A-ADE2DA689737}.Debug|x64.ActiveCfg = Debug|x64
+		{E6C83332-DFF5-408A-952A-ADE2DA689737}.Debug|x64.Build.0 = Debug|x64
+		{E6C83332-DFF5-408A-952A-ADE2DA689737}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6C83332-DFF5-408A-952A-ADE2DA689737}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6C83332-DFF5-408A-952A-ADE2DA689737}.Release|x64.ActiveCfg = Release|x64
+		{E6C83332-DFF5-408A-952A-ADE2DA689737}.Release|x64.Build.0 = Release|x64
+		{761281FF-867B-4698-95CD-0DC5962A9CFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{761281FF-867B-4698-95CD-0DC5962A9CFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{761281FF-867B-4698-95CD-0DC5962A9CFF}.Debug|x64.ActiveCfg = Debug|x64
+		{761281FF-867B-4698-95CD-0DC5962A9CFF}.Debug|x64.Build.0 = Debug|x64
+		{761281FF-867B-4698-95CD-0DC5962A9CFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{761281FF-867B-4698-95CD-0DC5962A9CFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{761281FF-867B-4698-95CD-0DC5962A9CFF}.Release|x64.ActiveCfg = Release|x64
+		{761281FF-867B-4698-95CD-0DC5962A9CFF}.Release|x64.Build.0 = Release|x64
+		{8AEEA2A9-0F8D-42C0-BAF4-CFA3721AD61D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AEEA2A9-0F8D-42C0-BAF4-CFA3721AD61D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AEEA2A9-0F8D-42C0-BAF4-CFA3721AD61D}.Debug|x64.ActiveCfg = Debug|x64
+		{8AEEA2A9-0F8D-42C0-BAF4-CFA3721AD61D}.Debug|x64.Build.0 = Debug|x64
+		{8AEEA2A9-0F8D-42C0-BAF4-CFA3721AD61D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AEEA2A9-0F8D-42C0-BAF4-CFA3721AD61D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AEEA2A9-0F8D-42C0-BAF4-CFA3721AD61D}.Release|x64.ActiveCfg = Release|x64
+		{8AEEA2A9-0F8D-42C0-BAF4-CFA3721AD61D}.Release|x64.Build.0 = Release|x64
+		{DB010AD3-9922-430B-90F1-509922174B8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB010AD3-9922-430B-90F1-509922174B8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB010AD3-9922-430B-90F1-509922174B8D}.Debug|x64.ActiveCfg = Debug|x64
+		{DB010AD3-9922-430B-90F1-509922174B8D}.Debug|x64.Build.0 = Debug|x64
+		{DB010AD3-9922-430B-90F1-509922174B8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB010AD3-9922-430B-90F1-509922174B8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB010AD3-9922-430B-90F1-509922174B8D}.Release|x64.ActiveCfg = Release|x64
+		{DB010AD3-9922-430B-90F1-509922174B8D}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8206B9BD-5A24-45C3-81F0-8E4B5A7A83E6}
+	EndGlobalSection
+EndGlobal

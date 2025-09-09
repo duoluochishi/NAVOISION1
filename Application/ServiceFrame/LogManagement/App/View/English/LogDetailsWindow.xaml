@@ -1,0 +1,46 @@
+﻿<Window x:Class="NV.CT.LogManagement.View.English.LogDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NV.CT.LogManagement.View.English"
+        mc:Ignorable="d"
+        xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:control="clr-namespace:NV.CT.UI.Controls.Controls;assembly=NV.CT.UI.Controls"
+        xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+        Title="LogDetailsWindow" Height="450" Width="800" 
+        Background="Transparent" ResizeMode="CanResizeWithGrip" AllowsTransparency="True" WindowStyle="None">
+    <Window.Resources>
+    </Window.Resources>
+    <Border CornerRadius="10" Style="{StaticResource WindowsBorder}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border Style="{StaticResource WindowContentBorder}" />
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <TextBlock Style="{StaticResource TileTextBlock}" Text="{Binding WindowTitle}" />
+                <Button Grid.Column="1" Style="{StaticResource TileCloseButtonStyle}" 
+                        ToolTip="{x:Static res:LanguageResource.Content_Close}"
+                        Command="{Binding  Commands[CloseCommand]}" 
+                        CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                    <Path Style="{StaticResource TileClosePathStyle}" />
+                </Button>
+            </Grid>
+            <Grid Grid.Row="1">
+                <control:BindableRichTextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="0" FontSize="14" Foreground="White" Margin="4,4,4,10"
+                                             ContextMenu="{x:Null}"
+                                             VerticalScrollBarVisibility="Auto"
+                                             HorizontalScrollBarVisibility="Auto"
+                                             Style="{StaticResource MaterialDesignRichTextBox}" 
+                                             Document="{Binding ContentDetails, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                </control:BindableRichTextBox>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

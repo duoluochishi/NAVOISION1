@@ -1,0 +1,69 @@
+{
+  "NextId": 8,
+  "Tasks": [
+    {
+      "Id": 1,
+      "Name": null,
+      "RestTimeInterval": 30,
+      "KV": 70,
+      "MA": 40000,
+      "ScanTimes": 1
+    },
+    {
+      "Id": 2,
+      "Name": null,
+      "RestTimeInterval": 30,
+      "KV": 80,
+      "MA": 40000,
+      "ScanTimes": 1
+    },
+    {
+      "Id": 3,
+      "Name": null,
+      "RestTimeInterval": 30,
+      "KV": 90,
+      "MA": 60000,
+      "ScanTimes": 2
+    },
+    {
+      "Id": 4,
+      "Name": null,
+      "RestTimeInterval": 30,
+      "KV": 100,
+      "MA": 60000,
+      "ScanTimes": 1
+    },
+    {
+      "Id": 5,
+      "Name": null,
+      "RestTimeInterval": 30,
+      "KV": 110,
+      "MA": 80000,
+      "ScanTimes": 1
+    }
+  ],
+  "ScanParam": {
+    "ExposureTime": 5000,
+    "FrameTime": 10000,
+    "FramesPerCycle": 1080,
+    "TotalFrames": 2400,
+    "ScanOption": 2,
+    "ScanMode": 1,
+    "ExposureMode": 3,
+    "TableDirection": 1,
+    "TableSpeed": 2500,
+    "TableFeed": 440,
+    "DelayTime": 5000000,
+    "AutoScan": true,
+    "ScanLength": 470,
+    "ScanPositionEnd": -8470,
+    "ScanPositionStart": -8000,
+    "Gain": 4,
+    "TableHeight": 7000,
+    "Pitch": 100,
+    "PreOffsetFrames": 10,
+    "PostOffsetFrames": 10,
+    "CollimitorX": 2,
+    "CollimitorZ": 288
+  }
+}

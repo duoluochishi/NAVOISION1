@@ -1,0 +1,132 @@
+[
+    {
+        "FirmwareType": "CTBox",
+        "Files": [
+            "baremetal.bin",
+            "config.ini",
+            "doubleirq.ko",
+            "gigevdevice.xml",
+            "petalinux_ctbox.elf",
+            "run.sh"
+        ]
+    },
+    {
+        "FirmwareType": "IFBox",
+        "Files": [
+            "baremetal.bin",
+            "config.ini",
+            "doubleirq.ko",
+            "gigevdevice.xml",
+            "petalinux_ifbox.elf",
+            "run.sh",
+            "vdmadriver.ko",
+            "zynq_wrapper.bin"
+        ]
+    },
+    {
+        "FirmwareType": "MtCtrl",
+        "Files": [
+            "baremetal.bin",
+            "config.ini",
+            "doubleirq.ko",
+            "gigevdevice.xml",
+            "petalinux_mtctrl.elf",
+            "run.sh",
+            "zynq_wrapper.bin",
+            "daemon_script.sh"
+        ]
+    },
+    {
+        "FirmwareType": "AuxBoard",
+        "Files": [
+            "CM4.elf",
+            "NANO_Aux_Service",
+            "run.sh"
+        ]
+    },
+    {
+        "FirmwareType": "CtrlBox",
+        "Files": [
+            "cob.bin"
+        ]
+    },
+    {
+        "FirmwareType": "BNV",
+        "Files": [
+            "bnv.bin"
+        ]
+    },
+    {
+        "FirmwareType": "GCP",
+        "Files": [
+            "gcp.bin"
+        ]
+    },
+    {
+        "FirmwareType": "Table",
+        "Files": [
+            "table.bin"
+        ]
+    },
+    {
+        "FirmwareType": "Pdu",
+        "Files": [
+            "pdu.bin"
+        ]
+    },
+    {
+        "FirmwareType": "Tubeintf",
+        "Files": [
+            "baremetal.bin",
+            "config.ini",
+            "doubleirq.ko",
+            "gigevdevice.xml",
+            "petalinux_tubeintf.elf",
+            "run.sh",
+            "zynq_wrapper.bin",
+            "daemon_script.sh"
+        ]
+    },
+    {
+        "FirmwareType": "GantryServo",
+        "Files": [
+            "servo_config.txt"
+        ]
+    },
+    {
+        "FirmwareType": "XRay",
+        "Files": [
+            "M28.bin"
+        ]
+    },
+    {
+        "FirmwareType": "ADU",
+        "Files": [
+            "ADU.bin"
+        ]
+    },
+    {
+        "FirmwareType": "Coll",
+        "Files": [
+            "COLL.bin"
+        ]
+    },
+    {
+        "FirmwareType": "TransmitBox",
+        "Files": [
+            "det_trans.bin"
+        ]
+    },
+    {
+        "FirmwareType": "ProcessBox",
+        "Files": [
+            "det_process.bin"
+        ]
+    },
+    {
+        "FirmwareType": "TempBox",
+        "Files": [
+            "det_tempctrl.bin"
+        ]
+    }
+]

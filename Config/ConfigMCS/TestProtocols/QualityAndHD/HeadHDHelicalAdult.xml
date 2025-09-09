@@ -1,0 +1,456 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProtocolTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Descriptor>
+    <Id>73f48288-eec5-4da7-833a-fa80b8ae2e76</Id>
+    <Name>HeadHDHelicalAdult</Name>
+    <Type>ProtocolTemplate</Type>
+  </Descriptor>
+  <Parameters />
+  <Protocol>
+    <Descriptor>
+      <Id>dbcecd72-5dcd-4b2e-a60e-e80e90e92807</Id>
+      <Name>HeadHDHelicalAdult</Name>
+      <Type>Protocol</Type>
+    </Descriptor>
+    <Parameters>
+      <Parameter Name="BodySize" Value="Adult" />
+      <Parameter Name="BodyPart" Value="Head" />
+      <Parameter Name="Description" Value="" />
+      <Parameter Name="IsTabletSuitable" Value="0" />
+      <Parameter Name="IsFactory" Value="1" />
+      <Parameter Name="IsValid" Value="1" />
+      <Parameter Name="ProtocolFamily" Value="CEye24" />
+      <Parameter Name="SortID" Value="1" />
+      <Parameter Name="Version" Value="0.9.2" />
+    </Parameters>
+    <FrameOfReferences>
+      <FrameOfReference>
+        <Descriptor>
+          <Id>fc3a1457-e83c-4ea7-90a7-2304a49a839f</Id>
+          <Name>FrameOfReference</Name>
+          <Type>FrameOfReference</Type>
+        </Descriptor>
+        <Parameters>
+          <Parameter Name="PatientPosition" Value="HFS" />
+        </Parameters>
+        <Measurements>
+          <Measurement>
+            <Descriptor>
+              <Id>e905f5e9-ff78-494b-a66f-4d8ad4b7c5cc</Id>
+              <Name>Measurement</Name>
+              <Type>Measurement</Type>
+            </Descriptor>
+            <Parameters />
+            <Scans>
+              <Scan>
+                <Descriptor>
+                  <Id>6959b54c-0968-421c-addd-c6ebd1b8f60b</Id>
+                  <Name>Topogram</Name>
+                  <Type>Scan</Type>
+                </Descriptor>
+                <Parameters>
+                  <Parameter Name="Binning" Value="Bin11" />
+                  <Parameter Name="PreVoiceId" Value="0" />
+                  <Parameter Name="PostVoiceId" Value="0" />
+                  <Parameter Name="AutoScan" Value="False" />
+                  <Parameter Name="ScanNumber" Value="0" />
+                  <Parameter Name="kV" Value="[120,0,0,0,0,0,0,0]" />
+                  <Parameter Name="mA" Value="[60,0,0,0,0,0,0,0]" />
+                  <Parameter Name="ExposureTime" Value="2500" />
+                  <Parameter Name="FrameTime" Value="240000" />
+                  <Parameter Name="FramesPerCycle" Value="1" />
+                  <Parameter Name="ScanOption" Value="Surview" />
+                  <Parameter Name="ScanMode" Value="JumpExposure" />
+                  <Parameter Name="RawDataType" Value="DarkL" />
+                  <Parameter Name="TriggerMode" Value="None" />
+                  <Parameter Name="TriggerEnd" Value="10" />
+                  <Parameter Name="ExposureMode" Value="Single" />
+                  <Parameter Name="TableDirection" Value="In" />
+                  <Parameter Name="BowtieEnable" Value="True" />
+                  <Parameter Name="Gain" Value="Dynamic" />
+                  <Parameter Name="TableHeight" Value="0" />
+                  <Parameter Name="BodyPart" Value="Head" />
+                  <Parameter Name="TubePositionType" Value="Lateral" />
+                  <Parameter Name="TubePositions" Value="[270,0]" />
+                  <Parameter Name="DoseCurve" Value="null" />
+                  <Parameter Name="TableSpeed" Value="200000" />
+                  <Parameter Name="TableFeed" Value="20000" />
+                  <Parameter Name="Pitch" Value="100" />
+                  <Parameter Name="PreOffsetFrames" Value="0" />
+                  <Parameter Name="PostOffsetFrames" Value="0" />
+                  <Parameter Name="Loops" Value="0" />
+                  <Parameter Name="LoopTime" Value="0" />
+                  <Parameter Name="IsEnhanced" Value="0" />
+                  <Parameter Name="DoseNotification_CTDI" Value="0" />
+                  <Parameter Name="DoseNotification_DLP" Value="0" />
+                  <Parameter Name="DoseEstimated_CTDI" Value="0" />
+                  <Parameter Name="DoseEstimated_DLP" Value="0" />
+                  <Parameter Name="AccumulatedDoseEstimated_CTDI" Value="0" />
+                  <Parameter Name="AccumulatedDoseEstimated_DLP" Value="0" />
+                  <Parameter Name="Effective_CTDI" Value="0" />
+                  <Parameter Name="Effective_DLP" Value="0" />
+                  <Parameter Name="ActualScanTime" Value="0" />
+                  <Parameter Name="ActualScanLength" Value="0" />
+                  <Parameter Name="Effective_KVP" Value="0" />
+                  <Parameter Name="Effective_MeanMA" Value="0" />
+                  <Parameter Name="DoseNotificationId" Value="" />
+                  <Parameter Name="DoseAlertId" Value="" />
+                  <Parameter Name="IsVoiceSupported" Value="False" />
+                  <Parameter Name="PreVoiceDelayTime" Value="0" />
+                  <Parameter Name="ScanFOV" Value="506880" />
+                  <Parameter Name="TriggerStart" Value="0" />
+                  <Parameter Name="PreVoicePlayTime" Value="0" />
+                  <Parameter Name="TubeNumbers" Value="[0,0]" />
+                  <Parameter Name="FocalType" Value="Small" />
+                  <Parameter Name="ExposureDelayTime" Value="5000000" />
+                  <Parameter Name="ExposureStartPosition" Value="" />
+                  <Parameter Name="ExposureEndPosition" Value="" />
+                  <Parameter Name="ReconVolumeStartPosition" Value="-300000" />
+                  <Parameter Name="ReconVolumeEndPosition" Value="-600000" />
+                  <Parameter Name="TableStartPosition" Value="0" />
+                  <Parameter Name="TableEndPosition" Value="0" />
+                  <Parameter Name="TableAcceleration" Value="200000" />
+                  <Parameter Name="TableAccelerationTime" Value="0" />
+                  <Parameter Name="GantryStartPosition" Value="0" />
+                  <Parameter Name="GantryEndPosition" Value="0" />
+                  <Parameter Name="GantryDirection" Value="CounterClockwise" />
+                  <Parameter Name="GantryAcceleration" Value="2700" />
+                  <Parameter Name="GantryAccelerationTime" Value="0" />
+                  <Parameter Name="GantrySpeed" Value="0" />
+                  <Parameter Name="WarmUp" Value="false" />
+                  <Parameter Name="WarmUpTubeNumber" Value="0" />
+                  <Parameter Name="AutoDeleteNum" Value="0" />
+                  <Parameter Name="TotalFrames" Value="0" />
+                  <Parameter Name="ContrastBolusAgent" Value="" />
+                  <Parameter Name="ContrastBolusVolume" Value="" />
+                  <Parameter Name="ContrastFlowRate" Value="" />
+                  <Parameter Name="ContrastFlowDuration" Value="" />
+                  <Parameter Name="ContrastBolusIngredientConcentration" Value="" />
+                  <Parameter Name="DoseNotificationMessage" Value="" />
+                  <Parameter Name="DoseNotificationOperator" Value="" />
+                  <Parameter Name="DoseAlertMessage" Value="" />
+                  <Parameter Name="DoseAlertOperator" Value="" />
+                  <Parameter Name="ScanLength" Value="200000" />
+                  <Parameter Name="CollimatorZ" Value="242" />
+                  <Parameter Name="CollimatorSliceWidth" Value="39930" />
+                  <Parameter Name="FuncMode" Value="Clinical" />
+                  <Parameter Name="CollimatorOpenMode" Value="NearSmallAngle" />
+                  <Parameter Name="SmallAngleDeleteLength" Value="0" />
+                  <Parameter Name="LargeAngleDeleteLength" Value="0" />
+                  <Parameter Name="ObjectFOV" Value="150000" />
+                  <Parameter Name="ExposureTrigger" Value="TablePositionTrigger" />
+                  <Parameter Name="PostDeleteLength" Value="0" />
+                  <Parameter Name="AllowErrorTubeCount" Value="0" />
+                </Parameters>
+                <Recons>
+                  <Recon>
+                    <Descriptor>
+                      <Id>d3e9788a-0eb8-44a6-8ba6-73d2fcc5a034</Id>
+                      <Name>Recon</Name>
+                      <Type>Recon</Type>
+                    </Descriptor>
+                    <Parameters>
+                      <Parameter Name="ReconType" Value="HCT" />
+                      <Parameter Name="FilterType" Value="SharpPlus" />
+                      <Parameter Name="InterpType" Value="0" />
+                      <Parameter Name="MetalAritifactEnable" Value="False" />
+                      <Parameter Name="SliceThickness" Value="2000" />
+                      <Parameter Name="PreDenoiseType" Value="BM3D" />
+                      <Parameter Name="PreDenoiseCoef" Value="0" />
+                      <Parameter Name="PostDenoiseType" Value="BM3D" />
+                      <Parameter Name="PostDenoiseCoef" Value="0" />
+                      <Parameter Name="WindowType" Value="Custom" />
+                      <Parameter Name="WindowCenter" Value="[1024]" />
+                      <Parameter Name="WindowWidth" Value="[4096]" />
+                      <Parameter Name="ViewWindowCenter" Value="0" />
+                      <Parameter Name="ViewWindowWidth" Value="-1" />
+                      <Parameter Name="CenterFirstX" Value="0" />
+                      <Parameter Name="CenterFirstY" Value="0" />
+                      <Parameter Name="CenterFirstZ" Value="-450000" />
+                      <Parameter Name="CenterLastX" Value="0" />
+                      <Parameter Name="CenterLastY" Value="0" />
+                      <Parameter Name="CenterLastZ" Value="-450000" />
+                      <Parameter Name="FoVDirectionHorX" Value="1" />
+                      <Parameter Name="FoVDirectionHorY" Value="0" />
+                      <Parameter Name="FoVDirectionHorZ" Value="0" />
+                      <Parameter Name="FoVDirectionVertX" Value="0" />
+                      <Parameter Name="FoVDirectionVertY" Value="0" />
+                      <Parameter Name="FoVDirectionVertZ" Value="-1" />
+                      <Parameter Name="FoVLengthHor" Value="506880" />
+                      <Parameter Name="FoVLengthVert" Value="506880" />
+                      <Parameter Name="ImageMatrixHor" Value="768" />
+                      <Parameter Name="ImageMatrixVert" Value="768" />
+                      <Parameter Name="ImageIncrement" Value="2000" />
+                      <Parameter Name="IsRTD" Value="True" />
+                      <Parameter Name="ImagePath" Value="" />
+                      <Parameter Name="ImageOrder" Value="HeadFoot" />
+                      <Parameter Name="SeriesDescription" Value="" />
+                      <Parameter Name="SeriesNumber" Value="0" />
+                      <Parameter Name="AirCorrectionMode" Value="None" />
+                      <Parameter Name="BoneAritifactEnable" Value="False" />
+                      <Parameter Name="ScatterAlgorithm" Value="SD" />
+                      <Parameter Name="RingAritifactEnable" Value="False" />
+                      <Parameter Name="SmoothZEnable" Value="True" />
+                      <Parameter Name="TwoPassEnable" Value="False" />
+                      <Parameter Name="MinTablePosition" Value="0" />
+                      <Parameter Name="MaxTablePosition" Value="0" />
+                      <Parameter Name="IVRTVCoef" Value="0.02" />
+                      <Parameter Name="RingCorrectCoef" Value="0" />
+                      <Parameter Name="PreBinning" Value="XY_1x1" />
+                      <Parameter Name="ReconBodyPart" Value="Head" />
+                      <Parameter Name="IsHDRecon" Value="False" />
+                      <Parameter Name="WindmillArtifactEnable" Value="False" />
+                      <Parameter Name="ConeAngleArtifactEnable" Value="False" />
+                    </Parameters>
+                    <PostProcesses />
+                  </Recon>
+                </Recons>
+              </Scan>
+            </Scans>
+          </Measurement>
+          <Measurement>
+            <Descriptor>
+              <Id>c2aaee99-2a87-4056-84c1-ebabdf45367b</Id>
+              <Name>Measurement</Name>
+              <Type>Measurement</Type>
+            </Descriptor>
+            <Parameters />
+            <Scans>
+              <Scan>
+                <Descriptor>
+                  <Id>52a65707-d00c-4175-8b1d-39a8c1c6e724</Id>
+                  <Name>Head Helical</Name>
+                  <Type>Scan</Type>
+                </Descriptor>
+                <Parameters>
+                  <Parameter Name="Binning" Value="Bin11" />
+                  <Parameter Name="PreVoiceId" Value="0" />
+                  <Parameter Name="PostVoiceId" Value="0" />
+                  <Parameter Name="AutoScan" Value="False" />
+                  <Parameter Name="ScanNumber" Value="0" />
+                  <Parameter Name="kV" Value="[120,0,0,0,0,0,0,0]" />
+                  <Parameter Name="mA" Value="[180,0,0,0,0,0,0,0]" />
+                  <Parameter Name="ExposureTime" Value="2500" />
+                  <Parameter Name="FrameTime" Value="3500" />
+                  <Parameter Name="FramesPerCycle" Value="540" />
+                  <Parameter Name="ScanOption" Value="Helical" />
+                  <Parameter Name="ScanMode" Value="JumpExposure" />
+                  <Parameter Name="RawDataType" Value="DarkL" />
+                  <Parameter Name="TriggerMode" Value="None" />
+                  <Parameter Name="TriggerEnd" Value="10" />
+                  <Parameter Name="ExposureMode" Value="Single" />
+                  <Parameter Name="TableDirection" Value="In" />
+                  <Parameter Name="BowtieEnable" Value="True" />
+                  <Parameter Name="Gain" Value="Dynamic" />
+                  <Parameter Name="TableHeight" Value="0" />
+                  <Parameter Name="BodyPart" Value="Head" />
+                  <Parameter Name="TubePositionType" Value="Normal" />
+                  <Parameter Name="TubePositions" Value="[0,0]" />
+                  <Parameter Name="DoseCurve" Value="null" />
+                  <Parameter Name="TableSpeed" Value="200000" />
+                  <Parameter Name="TableFeed" Value="20000" />
+                  <Parameter Name="Pitch" Value="40" />
+                  <Parameter Name="PreOffsetFrames" Value="30" />
+                  <Parameter Name="PostOffsetFrames" Value="40" />
+                  <Parameter Name="Loops" Value="0" />
+                  <Parameter Name="LoopTime" Value="0" />
+                  <Parameter Name="IsEnhanced" Value="0" />
+                  <Parameter Name="DoseNotification_CTDI" Value="0" />
+                  <Parameter Name="DoseNotification_DLP" Value="0" />
+                  <Parameter Name="DoseEstimated_CTDI" Value="0" />
+                  <Parameter Name="DoseEstimated_DLP" Value="0" />
+                  <Parameter Name="AccumulatedDoseEstimated_CTDI" Value="0" />
+                  <Parameter Name="AccumulatedDoseEstimated_DLP" Value="0" />
+                  <Parameter Name="Effective_CTDI" Value="0" />
+                  <Parameter Name="Effective_DLP" Value="0" />
+                  <Parameter Name="ActualScanTime" Value="0" />
+                  <Parameter Name="ActualScanLength" Value="0" />
+                  <Parameter Name="Effective_KVP" Value="0" />
+                  <Parameter Name="Effective_MeanMA" Value="0" />
+                  <Parameter Name="DoseNotificationId" Value="" />
+                  <Parameter Name="DoseAlertId" Value="" />
+                  <Parameter Name="IsVoiceSupported" Value="False" />
+                  <Parameter Name="PreVoiceDelayTime" Value="0" />
+                  <Parameter Name="ScanFOV" Value="506880" />
+                  <Parameter Name="TriggerStart" Value="0" />
+                  <Parameter Name="PreVoicePlayTime" Value="0" />
+                  <Parameter Name="TubeNumbers" Value="[0,0]" />
+                  <Parameter Name="FocalType" Value="Small" />
+                  <Parameter Name="ExposureDelayTime" Value="3000000" />
+                  <Parameter Name="ExposureStartPosition" Value="0" />
+                  <Parameter Name="ExposureEndPosition" Value="0" />
+                  <Parameter Name="ReconVolumeStartPosition" Value="-300000" />
+                  <Parameter Name="ReconVolumeEndPosition" Value="-600000" />
+                  <Parameter Name="TableStartPosition" Value="0" />
+                  <Parameter Name="TableEndPosition" Value="0" />
+                  <Parameter Name="TableAcceleration" Value="200000" />
+                  <Parameter Name="TableAccelerationTime" Value="0" />
+                  <Parameter Name="GantryStartPosition" Value="0" />
+                  <Parameter Name="GantryEndPosition" Value="0" />
+                  <Parameter Name="GantryDirection" Value="CounterClockwise" />
+                  <Parameter Name="GantryAcceleration" Value="2700" />
+                  <Parameter Name="GantryAccelerationTime" Value="0" />
+                  <Parameter Name="GantrySpeed" Value="0" />
+                  <Parameter Name="WarmUp" Value="false" />
+                  <Parameter Name="WarmUpTubeNumber" Value="0" />
+                  <Parameter Name="AutoDeleteNum" Value="48" />
+                  <Parameter Name="TotalFrames" Value="0" />
+                  <Parameter Name="ContrastBolusAgent" Value="" />
+                  <Parameter Name="ContrastBolusVolume" Value="" />
+                  <Parameter Name="ContrastFlowRate" Value="" />
+                  <Parameter Name="ContrastFlowDuration" Value="" />
+                  <Parameter Name="ContrastBolusIngredientConcentration" Value="" />
+                  <Parameter Name="DoseNotificationMessage" Value="" />
+                  <Parameter Name="DoseNotificationOperator" Value="" />
+                  <Parameter Name="DoseAlertMessage" Value="" />
+                  <Parameter Name="DoseAlertOperator" Value="" />
+                  <Parameter Name="ScanLength" Value="150000" />
+                  <Parameter Name="CollimatorZ" Value="242" />
+                  <Parameter Name="CollimatorSliceWidth" Value="39930" />
+                  <Parameter Name="FuncMode" Value="Clinical" />
+                  <Parameter Name="CollimatorOpenMode" Value="NearSmallAngle" />
+                  <Parameter Name="SmallAngleDeleteLength" Value="0" />
+                  <Parameter Name="LargeAngleDeleteLength" Value="0" />
+                  <Parameter Name="ObjectFOV" Value="150000" />
+                  <Parameter Name="ExposureTrigger" Value="TimeTrigger" />
+                  <Parameter Name="PostDeleteLength" Value="0" />
+                  <Parameter Name="AllowErrorTubeCount" Value="1" />
+                </Parameters>
+                <Recons>
+                  <Recon>
+                    <Descriptor>
+                      <Id>627e7970-3edf-4904-bac4-9b6d6385ce2b</Id>
+                      <Name>Recon</Name>
+                      <Type>Recon</Type>
+                    </Descriptor>
+                    <Parameters>
+                      <Parameter Name="ReconType" Value="HCT" />
+                      <Parameter Name="FilterType" Value="Sharp" />
+                      <Parameter Name="InterpType" Value="0" />
+                      <Parameter Name="MetalAritifactEnable" Value="False" />
+                      <Parameter Name="SliceThickness" Value="1000" />
+                      <Parameter Name="PreDenoiseType" Value="BM3D" />
+                      <Parameter Name="PreDenoiseCoef" Value="0" />
+                      <Parameter Name="PostDenoiseType" Value="BM3D" />
+                      <Parameter Name="PostDenoiseCoef" Value="0" />
+                      <Parameter Name="WindowType" Value="Bone" />
+                      <Parameter Name="WindowCenter" Value="[300]" />
+                      <Parameter Name="WindowWidth" Value="[1200]" />
+                      <Parameter Name="ViewWindowCenter" Value="0" />
+                      <Parameter Name="ViewWindowWidth" Value="-1" />
+                      <Parameter Name="CenterFirstX" Value="0" />
+                      <Parameter Name="CenterFirstY" Value="0" />
+                      <Parameter Name="CenterFirstZ" Value="-300000" />
+                      <Parameter Name="CenterLastX" Value="0" />
+                      <Parameter Name="CenterLastY" Value="0" />
+                      <Parameter Name="CenterLastZ" Value="-600000" />
+                      <Parameter Name="FoVDirectionHorX" Value="1" />
+                      <Parameter Name="FoVDirectionHorY" Value="0" />
+                      <Parameter Name="FoVDirectionHorZ" Value="0" />
+                      <Parameter Name="FoVDirectionVertX" Value="0" />
+                      <Parameter Name="FoVDirectionVertY" Value="1" />
+                      <Parameter Name="FoVDirectionVertZ" Value="0" />
+                      <Parameter Name="FoVLengthHor" Value="506880" />
+                      <Parameter Name="FoVLengthVert" Value="506880" />
+                      <Parameter Name="ImageMatrixHor" Value="768" />
+                      <Parameter Name="ImageMatrixVert" Value="768" />
+                      <Parameter Name="ImageIncrement" Value="1000" />
+                      <Parameter Name="IsRTD" Value="True" />
+                      <Parameter Name="ImagePath" Value="" />
+                      <Parameter Name="ImageOrder" Value="HeadFoot" />
+                      <Parameter Name="SeriesDescription" Value="" />
+                      <Parameter Name="SeriesNumber" Value="0" />
+                      <Parameter Name="AirCorrectionMode" Value="None" />
+                      <Parameter Name="BoneAritifactEnable" Value="False" />
+                      <Parameter Name="ScatterAlgorithm" Value="SD" />
+                      <Parameter Name="RingAritifactEnable" Value="False" />
+                      <Parameter Name="SmoothZEnable" Value="True" />
+                      <Parameter Name="TwoPassEnable" Value="False" />
+                      <Parameter Name="MinTablePosition" Value="0" />
+                      <Parameter Name="MaxTablePosition" Value="0" />
+                      <Parameter Name="IVRTVCoef" Value="0.02" />
+                      <Parameter Name="RingCorrectCoef" Value="0" />
+                      <Parameter Name="PreBinning" Value="XY_1x1" />
+                      <Parameter Name="ReconBodyPart" Value="Head" />
+                      <Parameter Name="IsHDRecon" Value="False" />
+                      <Parameter Name="WindmillArtifactEnable" Value="False" />
+                      <Parameter Name="ConeAngleArtifactEnable" Value="False" />
+                    </Parameters>
+                    <PostProcesses />
+                  </Recon>
+                  <Recon>
+                    <Descriptor>
+                      <Id>416804f6-1606-47ad-a6ce-6968454b19ec</Id>
+                      <Name>Head0.165mmSharpPlusBone</Name>
+                      <Type>Recon</Type>
+                    </Descriptor>
+                    <Parameters>
+                      <Parameter Name="ReconType" Value="IVR_TV" />
+                      <Parameter Name="FilterType" Value="SharpPlus" />
+                      <Parameter Name="InterpType" Value="0" />
+                      <Parameter Name="MetalAritifactEnable" Value="False" />
+                      <Parameter Name="SliceThickness" Value="165" />
+                      <Parameter Name="PreDenoiseType" Value="BM3D" />
+                      <Parameter Name="PreDenoiseCoef" Value="0" />
+                      <Parameter Name="PostDenoiseType" Value="BM3D" />
+                      <Parameter Name="PostDenoiseCoef" Value="0" />
+                      <Parameter Name="WindowType" Value="Bone" />
+                      <Parameter Name="WindowCenter" Value="[300]" />
+                      <Parameter Name="WindowWidth" Value="[1200]" />
+                      <Parameter Name="ViewWindowCenter" Value="0" />
+                      <Parameter Name="ViewWindowWidth" Value="-1" />
+                      <Parameter Name="CenterFirstX" Value="0" />
+                      <Parameter Name="CenterFirstY" Value="0" />
+                      <Parameter Name="CenterFirstZ" Value="-300000" />
+                      <Parameter Name="CenterLastX" Value="0" />
+                      <Parameter Name="CenterLastY" Value="0" />
+                      <Parameter Name="CenterLastZ" Value="-600000" />
+                      <Parameter Name="FoVDirectionHorX" Value="1" />
+                      <Parameter Name="FoVDirectionHorY" Value="0" />
+                      <Parameter Name="FoVDirectionHorZ" Value="0" />
+                      <Parameter Name="FoVDirectionVertX" Value="0" />
+                      <Parameter Name="FoVDirectionVertY" Value="1" />
+                      <Parameter Name="FoVDirectionVertZ" Value="0" />
+                      <Parameter Name="FoVLengthHor" Value="337920" />
+                      <Parameter Name="FoVLengthVert" Value="337920" />
+                      <Parameter Name="ImageMatrixHor" Value="2048" />
+                      <Parameter Name="ImageMatrixVert" Value="2048" />
+                      <Parameter Name="ImageIncrement" Value="165" />
+                      <Parameter Name="IsRTD" Value="False" />
+                      <Parameter Name="ImagePath" Value="" />
+                      <Parameter Name="ImageOrder" Value="HeadFoot" />
+                      <Parameter Name="SeriesDescription" Value="" />
+                      <Parameter Name="SeriesNumber" Value="0" />
+                      <Parameter Name="AirCorrectionMode" Value="ReferencePixel" />
+                      <Parameter Name="BoneAritifactEnable" Value="True" />
+                      <Parameter Name="ScatterAlgorithm" Value="SD" />
+                      <Parameter Name="RingAritifactEnable" Value="False" />
+                      <Parameter Name="SmoothZEnable" Value="True" />
+                      <Parameter Name="TwoPassEnable" Value="False" />
+                      <Parameter Name="MinTablePosition" Value="0" />
+                      <Parameter Name="MaxTablePosition" Value="0" />
+                      <Parameter Name="IVRTVCoef" Value="0.02" />
+                      <Parameter Name="RingCorrectCoef" Value="0" />
+                      <Parameter Name="PreBinning" Value="XY_1x1" />
+                      <Parameter Name="ReconBodyPart" Value="Head" />
+                      <Parameter Name="IsHDRecon" Value="False" />
+                      <Parameter Name="WindmillArtifactEnable" Value="False" />
+                      <Parameter Name="ConeAngleArtifactEnable" Value="False" />
+                    </Parameters>
+                    <PostProcesses>
+					   <PostProcess Index="0" Type="Sharp">
+                        <Parameters>
+                          <Parameter Name="SharpLevel" Value="1" />
+                        </Parameters>
+                      </PostProcess>
+					</PostProcesses>
+                  </Recon>
+                </Recons>
+              </Scan>
+            </Scans>
+          </Measurement>
+        </Measurements>
+      </FrameOfReference>
+    </FrameOfReferences>
+  </Protocol>
+</ProtocolTemplate>

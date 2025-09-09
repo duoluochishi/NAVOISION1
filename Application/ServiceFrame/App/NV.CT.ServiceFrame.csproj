@@ -1,0 +1,79 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>$(TargetFramework)-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" />
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" />
+	  <PackageReference Include="Microsoft.Extensions.Hosting" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" />
+    <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="Prism.Core" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\CTS\NV.CT.CTS.csproj" />
+    <ProjectReference Include="..\..\..\Common\UI.Controls\NV.CT.UI.Controls.csproj" />
+    <ProjectReference Include="..\..\..\Common\ViewModel\NV.CT.UI.ViewModel.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\Logging\NV.CT.Logging.csproj" />
+    <ProjectReference Include="..\..\..\SystemInterface\MRSIntegration.Impl\NV.CT.SystemInterface.MRSIntegration.Impl.csproj" />
+    <ProjectReference Include="..\..\..\SystemService\ClientProxy\NV.CT.ClientProxy.csproj" />
+    <ProjectReference Include="..\ApplicationService.Contract\NV.CT.ServiceFrame.ApplicationService.Contract.csproj" />
+    <ProjectReference Include="..\ApplicationService.Impl\NV.CT.ServiceFrame.ApplicationService.Impl.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <Reference Include="NV.MPS.Communication">
+		  <HintPath>..\..\..\bin\NV.MPS.Communication.dll</HintPath>
+	  </Reference>
+	  <Reference Include="NV.MPS.Environment">
+		  <HintPath>..\..\..\bin\NV.MPS.Environment.dll</HintPath>
+	  </Reference>
+	  <Reference Include="MaterialDesignColors">
+      <HintPath>..\..\..\bin\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf">
+      <HintPath>..\..\..\bin\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.CT.ServiceFrameWork">
+      <HintPath>..\..\..\bin\NV.CT.ServiceFrameWork.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.MPS.UI.Dialog">
+      <HintPath>..\..\..\bin\NV.MPS.UI.Dialog.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="View\English\Items.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\English\MainControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="View\English\Items.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\English\MainControl.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+</Project>

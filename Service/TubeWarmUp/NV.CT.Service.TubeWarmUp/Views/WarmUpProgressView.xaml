@@ -1,0 +1,60 @@
+﻿<UserControl
+    x:Class="NV.CT.Service.TubeWarmUp.Views.WarmUpProgressView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cvts="clr-namespace:NV.CT.Service.TubeWarmUp.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:NV.CT.Service.TubeWarmUp.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:res="clr-namespace:NV.CT.Service.Common.Resources;assembly=NV.CT.Service.Common"
+    Margin="10"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <cvts:TubeHeatCapStatusConverter
+            x:Key="TubeHeatCapStatusConverter"
+            AboveNormal="Orange"
+            High="Red"
+            Low="Red"
+            Normal="Green" />
+        <SolidColorBrush x:Key="exposureColor" Color="#FFA63F" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="14" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock
+            Grid.Column="0"
+            HorizontalAlignment="Right"
+            Text="{x:Static res:Warmup_Lang.Warmup_ElapsedTime}" />
+        <TextBlock
+            Grid.Column="1"
+            HorizontalAlignment="Left"
+            Text="{Binding CostTime, Mode=OneWay}" />
+        <TextBlock
+            Grid.Column="2"
+            HorizontalAlignment="Right"
+            Text="{x:Static res:Common_Lang.Common_Progress1}" />
+        <TextBlock
+            Grid.Column="3"
+            HorizontalAlignment="Left"
+            Text="{Binding Progress, StringFormat={}{0,2}%, Mode=OneWay}" />
+        <ProgressBar
+            Grid.Row="1"
+            Grid.ColumnSpan="4"
+            Background="#595989"
+            Foreground="{StaticResource exposureColor}"
+            IsIndeterminate="False"
+            Maximum="100"
+            Style="{x:Null}"
+            Value="{Binding Progress, Mode=OneWay}" />
+    </Grid>
+</UserControl>

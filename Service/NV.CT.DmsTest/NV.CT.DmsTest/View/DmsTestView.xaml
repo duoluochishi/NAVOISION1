@@ -1,0 +1,205 @@
+﻿<UserControl x:Class="NV.CT.DmsTest.View.DmsTestView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:views="clr-namespace:NV.CT.DmsTest.View"
+             xmlns:matterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:viewmodel="clr-namespace:NV.CT.DmsTest.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:DmsTestVM}"
+            
+             mc:Ignorable="d" 
+             Foreground="{DynamicResource MaterialDesignBody}"
+             Background="{DynamicResource MaterialDesignPaper}"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid>
+        <Grid.Resources>
+            <DataTemplate x:Key="TestItemInfoTemplate">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" Margin="5">
+                        <CheckBox IsChecked="{Binding IsCheck}" Width="Auto" Content="{Binding Path=TestItemInfo.TestItemName}">
+
+                        </CheckBox>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Ellipse Width="10" Height="10" >
+                            <Ellipse.Style>
+                                <Style  TargetType="Ellipse">
+                                    <Style.Triggers>
+                                        <DataTrigger  Binding="{Binding Path=TestItemStaus}" Value="NotTest">
+                                            <Setter Property="Shape.Fill" Value="Gray"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=TestItemStaus}" Value="Pass">
+                                            <Setter Property="Shape.Fill" Value="Green"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=TestItemStaus}" Value="Error">
+                                            <Setter Property="Shape.Fill" Value="Red"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Ellipse.Style>
+                        </Ellipse>
+                    </Grid>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="TestResultStatus">
+
+            </DataTemplate>
+
+
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="16*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <GroupBox Grid.Column="0" Header="TestItem" >
+                    <ListView x:Name="TestItemLists"  ItemsSource="{Binding Path=TestControllerList}" ItemTemplate="{StaticResource TestItemInfoTemplate}" SelectedIndex="{Binding TestItemSelectedIndex}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding Path=TestItemListSelectionCommand}">
+                                </i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ListView>
+                </GroupBox>
+
+                <UserControl Grid.Row="1">
+                    <views:TestHistroyView></views:TestHistroyView>
+                </UserControl>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"></RowDefinition>
+                    <RowDefinition Height="5*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+
+                </Grid.RowDefinitions>
+                <GroupBox Grid.Row="0" >
+                    <GroupBox.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="ScanParam" Margin="10,10,10,10"></TextBlock>
+                            <CheckBox  Content="Debug" Click="DebugModeChange_Click" IsChecked="{Binding IsDebugMode}" ></CheckBox>
+                        </StackPanel>
+
+                    </GroupBox.Header>
+                    <Grid>
+                      
+                        <DataGrid  ItemsSource="{Binding Path=CoreScanParamList}" CanUserAddRows="False" AutoGenerateColumns="False"  x:Name="CoreParamShow" Grid.ColumnSpan="2">
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="RawDataType" Binding="{Binding Path=RawDataType}" IsReadOnly="True"></DataGridTextColumn>
+                                <DataGridTemplateColumn Header="RawData"  Visibility="Collapsed" x:Name="RawDataPathSelecte">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal"  Margin="0,10, 10,10">
+                                                <TextBox Text="{Binding RawDataPath}"  MaxWidth="250" MinWidth="250" TextWrapping="Wrap"></TextBox>
+                                                <Button Click="SelectRawDataPath_Click" ClickMode="Press" Content="..">
+                                                    <!--<matterialDesign:PackIcon Kind="SelectAll"></matterialDesign:PackIcon>-->
+                                                </Button>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="kV" Binding="{Binding Path=Kv}"  IsReadOnly="True"/>
+                                <DataGridTextColumn Header="mA" Binding="{Binding Path=Ma}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Gain" Binding="{Binding Path=Gain}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="FrameTime"  Binding="{Binding Path=FrameTime}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="ExpTime"  Binding="{Binding Path=ExpTime}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="AutoDelFrame" Binding="{Binding Path=AutoDelFrame}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="TotalFrame"  Binding="{Binding Path=TotalFrame}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="PreOffset"  Binding="{Binding Path=PreOffset}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="XRaySourceIndex"  Binding="{Binding Path=XRaySourceIndex}" IsReadOnly="True"/>
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+                     </Grid>
+                </GroupBox>
+
+                <TabControl Grid.Row="1">
+                    <TabItem Header="Raw">
+                        <!--<imageControl:SeriesRawImageControl x:Name="rawImageControl" />-->
+                    </TabItem>
+                </TabControl>
+
+                <ItemsControl Grid.Row="2"  ItemsSource="{Binding CurrentALLModuleTestStatusList}" Margin="10, 10, 10, 10" >
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="32"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding ChannelNo}" Margin="2,2,2,2" Width="Auto" Height="Auto" >
+                                <Label.Style>
+                                    <Style  TargetType="Label">
+                                        <Style.Triggers>
+                                            <DataTrigger  Binding="{Binding CalcStatus}" Value="OK">
+                                                <Setter Property="Background" Value="Green"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding CalcStatus}" Value="POK">
+                                                <Setter Property="Background" Value="Yellow"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding CalcStatus}" Value="NG">
+                                                <Setter Property="Background" Value="Red"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+
+                                </Label.Style>
+
+                            </Label>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+
+                </ItemsControl>
+
+              
+            </Grid>
+
+            <GroupBox Header="RunningLog" Grid.Column="2" >
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="20*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <ScrollViewer  x:Name="RunLogGrid" Grid.Row="0" Grid.RowSpan="2">
+                        <TextBlock Text="{Binding RunLogMessage}" DataContextChanged="TextBlock_DataContextChanged"  x:Name="RunLogText"></TextBlock>
+                    </ScrollViewer>
+                    <Button Grid.Row="0" HorizontalAlignment="Right" Command="{Binding Path=RunLogMessageClickCommand}" Content="flush">
+                        <!--<matterialDesign:PackIcon Kind="Refresh" />-->
+                    </Button>
+
+
+                </Grid>
+            </GroupBox>
+        </Grid>
+        <Grid Grid.Row="1" >
+            <DockPanel HorizontalAlignment="Right"  >
+                <Button Content="Go"  Command="{Binding Path=TestGoCommand}" Width="40" Margin="0,0,10,0"/>
+
+                <Button Content="Stop"  Width="40" Margin="0,0,10,0"/>
+                <Button Content="Chart" DockPanel.Dock="Right" Command="{Binding Path=GenerateChartCommand}" Width="40" Margin="0,0,300,0" />
+            </DockPanel>
+           
+            
+        </Grid>
+    </Grid>
+
+</UserControl>

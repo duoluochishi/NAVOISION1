@@ -1,0 +1,1148 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NV.MPS.Configuration</name>
+    </assembly>
+    <members>
+        <member name="P:NV.MPS.Configuration.AcquisitionInfo.ExposureMode">
+            <summary>
+            曝光模式（单源、双源、三源、六源等等）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.AcquisitionInfo.FrameTime">
+            <summary>
+            帧时间（单位：微秒）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.AcquisitionInfo.FramesPerCycle">
+            <summary>
+            每圈帧数（180/360/540/720/1080等等）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.AcquisitionInfo.ExposureTime">
+            <summary>
+            曝光时间（单位：微秒）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.AcquisitionInfo.ExposureInterval">
+            <summary>
+            曝光间隔
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.AcquisitionInfo.ExposureIntervalTime">
+            <summary>
+            曝光间隔时间（单位：微秒）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.AcquisitionInfo.TopoOffsetFrameTime">
+            <summary>
+            定位像PreOffset帧时间（单位：微秒）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.AcquisitionInfo.PostPreVoiceDelayTime">
+            <summary>
+            前语音播报完成后默认延迟时间（单位：微秒）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ArchiveInfo.Id">
+            <summary>
+            唯一标识
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ArchiveInfo.ClientAETitle">
+            <summary>
+            客户端AE标题
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ArchiveInfo.ServerAETitle">
+            <summary>
+            服务端AE标题
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ArchiveInfo.IsDefault">
+            <summary>
+            是否缺省
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ArchiveInfo.IP">
+            <summary>
+            IP地址
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ArchiveInfo.Port">
+            <summary>
+            端口
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ArchiveInfo.IncludesDeoseReportingByAuto">
+            <summary>
+            自动是否包含剂量报告
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ArchiveInfo.Remark">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ExtremumItemField`1.Max">
+            <summary>
+            配置最大值
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ExtremumItemField`1.Min">
+            <summary>
+            配置最小值
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ExtremumItemField`1.DefaultMax">
+            <summary>
+            默认配置最大值（恢复使用）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ExtremumItemField`1.DefaultMin">
+            <summary>
+            默认配置最小值（恢复使用）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.RangeItemField`1.Ranges">
+            <summary>
+            枚举范围值
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ItemField`1.Value">
+            <summary>
+            配置值
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ItemField`1.Default">
+            <summary>
+            默认值（恢复使用）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.BaseField.Remark">
+            <summary>
+            配置项描述
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.OpeningSettingInfo.Opening">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.OpeningSettingInfo.TableFeed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.OpeningSettingInfo.SliceWidth">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NV.MPS.Configuration.DetectBoardsExchangeHistoryConfig">
+            <summary>
+            检出板更新记录
+            </summary>
+        </member>
+        <member name="M:NV.MPS.Configuration.DetectBoardsExchangeHistoryConfig.#ctor">
+            <summary>
+            ctor
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectBoardsExchangeHistoryConfig.DetectBoardExchangeRecords">
+            <summary>
+            多个检出板更新记录
+            </summary>
+        </member>
+        <member name="T:NV.MPS.Configuration.DetectBoardExchangeRecord">
+            <summary>
+            检出板更换记录
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectBoardExchangeRecord.Using">
+            <summary>
+            是否在使用
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectBoardExchangeRecord.DetectorModuleID">
+            <summary>
+            对应探测器模组ID（1-64）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectBoardExchangeRecord.SeriesNumber">
+            <summary>
+            序列号
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectBoardExchangeRecord.InstallTime">
+            <summary>
+            安装时间
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectBoardExchangeRecord.RetireTime">
+            <summary>
+            退休时间
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectBoardExchangeRecord.DirectoryName">
+            <summary>
+            对应文件夹名
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorInfo.Width">
+            <summary>
+            探测器宽度（单位：微米）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorInfo.PhysicalWidth">
+            <summary>
+            探测器物理宽度
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorInfo.ScanFOV">
+            <summary>
+            扫描FOV（单位：微米）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorInfo.Resolution">
+            <summary>
+            分辨率（单位：微米）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorInfo.EncodeMode">
+            <summary>
+            图像编码模式  0 原始模式, 1 Flag模式 , 2 Log2模式
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorInfo.PreOffsetStartVaildFrame">
+            <summary>
+            探测器PreOffset开始有效帧数
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorInfo.TargetTemperature">
+            <summary>
+            目标温度，单位0.1° , 260代表26°,值用int表示
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorInfo.Shutter">
+            <summary>
+            快门模式，0代表Global，1代表Rolling
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorInfo.ScateringPlateGain">
+            <summary>
+            散射板增益设置
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorInfo.PrintfEnable">
+            <summary>
+            Print使能
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorInfo.HeartBeatTimeInterval">
+            <summary>
+            心跳间隔
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorInfo.ImageMode">
+            <summary>
+            ImageMode
+            	0代表SelfTest
+            	1代表NormalDataAcquisition
+            	2代表NormalImageAcquisition
+            	3代表ADCTest
+            	4代表FPGADigitalTest
+            	5代表PDRegisterReadWriteMode
+            	6代表PowerSavingMode
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorInfo.AcqMode">
+            <summary>
+            AcqMode
+            	0代表FreeMode
+            	1代表FallingEdgeTriggering
+            	2代表RisingEdgeTriggering
+            	3代表LowLevelTriggering
+            	4代表HighLevelTriggering
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorInfo.DoubleRead">
+            <summary>
+            DoubleRead
+            	0代表FastRead
+            	1代表DoubleRead
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorParam.DoubleRead">
+            <summary>
+            DoubleRead
+            	0代表FastRead
+            	1代表DoubleRead
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorParam.AcqMode">
+            <summary>
+            AcqMode
+            	0代表FreeMode
+            	1代表FallingEdgeTriggering
+            	2代表RisingEdgeTriggering
+            	3代表LowLevelTriggering
+            	4代表HighLevelTriggering
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorParam.ImageMode">
+            <summary>
+            ImageMode
+            	0代表SelfTest
+            	1代表NormalDataAcquisition
+            	2代表NormalImageAcquisition
+            	3代表ADCTest
+            	4代表FPGADigitalTest
+            	5代表PDRegisterReadWriteMode
+            	6代表PowerSavingMode
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorParam.HeartBeatTimeInterval">
+            <summary>
+            心跳间隔
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorParam.PrintfEnable">
+            <summary>
+            Print使能
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorParam.ScateringPlateGain">
+            <summary>
+            散射板增益设置
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorParam.Shutter">
+            <summary>
+            快门模式，0代表Global，1代表Rolling
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorParam.TargetTemperature">
+            <summary>
+            目标温度，单位0.1° , 260代表26°,值用int表示
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorParam.EncodeMode">
+            <summary>
+            图像编码模式  0 原始模式, 1 Flag模式 , 2 Log2模式
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorParam.PreOffsetStartVaildFrame">
+            <summary>
+            探测器PreOffset开始有效帧数
+            </summary>
+        </member>
+        <member name="T:NV.MPS.Configuration.DetectorModuleConfig">
+            <summary>
+            探测器模组Config
+            </summary>
+        </member>
+        <member name="M:NV.MPS.Configuration.DetectorModuleConfig.#cctor">
+            <summary>
+            ctor
+            </summary>
+        </member>
+        <member name="F:NV.MPS.Configuration.DetectorModuleConfig.DetectorModuleCount">
+            <summary>
+            探测器模组数量
+            </summary>
+        </member>
+        <member name="F:NV.MPS.Configuration.DetectorModuleConfig.DefaultDirectoryName">
+            <summary>
+            默认文件夹名
+            </summary>
+        </member>
+        <member name="F:NV.MPS.Configuration.DetectorModuleConfig.IrradiationStatisticsFileName">
+            <summary>
+            探测器辐照统计文件名
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorModuleConfig.DetectorConfigDirectory">
+            <summary>
+            Detector配置文件夹路径
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorModuleConfig.ExchangeHistoryXmlConfigFilePath">
+            <summary>
+            检出板更换记录Xml配置文件路径
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorModuleConfig.IrradiationStatisticsDirectory">
+            <summary>
+            探测器辐照统计文件夹
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorModuleConfig.IrradiationStatisticsHistoryDirectory">
+            <summary>
+            探测器辐照统计文件历史文件夹
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorModuleConfig.IrradiationStatisticsLatestDirectory">
+            <summary>
+            探测器辐照统计文件最新文件夹
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorModuleConfig.IrradiationStatisticsLatestFilePath">
+            <summary>
+            探测器辐照统计文件路径
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorModuleConfig.AncillaryDataDirectory">
+            <summary>
+            辅助数据文件夹路径
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorModuleConfig.BrightFieldDataDirectory">
+            <summary>
+            亮场数据文件夹路径
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorModuleConfig.BrightFieldSourceDataDirectory">
+            <summary>
+            亮场源数据文件夹路径
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorModuleConfig.DarkFieldDataDirectory">
+            <summary>
+            暗场数据文件夹路径
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorModuleConfig.DarkFieldSourceDataDirectory">
+            <summary>
+            暗场源数据文件夹路径
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorModuleConfig.AfterGlowCaliDataDirectory">
+            <summary>
+            余晖校准文件夹路径
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorModuleConfig.AfterGlowCaliSourceDataDirectory">
+            <summary>
+            余晖校准源数据文件夹路径
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DetectorModuleConfig.DetectBoardsExchangeHistoryConfig">
+            <summary>
+            探测器检出板更新历史
+            </summary>
+        </member>
+        <member name="M:NV.MPS.Configuration.DetectorModuleConfig.EnsureDirectory">
+            <summary>
+            确保文件夹路径存在
+            </summary>
+        </member>
+        <member name="M:NV.MPS.Configuration.DetectorModuleConfig.ReloadVoltageCurrentCoefficientConfig">
+            <summary>
+            重新加载探测器检出板更新历史
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.DetectorModuleConfig.SaveDetectBoardsExchangeHistory">
+            <summary>
+            保存探测器检出板更新历史
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.DetectorModuleConfig.AddOrUpdateDetectBoardExchangeRecord(NV.MPS.Configuration.DetectBoardExchangeRecord)">
+            <summary>
+            添加或更新检出板记录
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.DetectorModuleConfig.AddOrUpdateDetectBoardExchangeRecords(System.Collections.Generic.IEnumerable{NV.MPS.Configuration.DetectBoardExchangeRecord})">
+            <summary>
+            添加或更新检出板记录
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.DetectorModuleConfig.DeleteDetectBoardExchangeRecord(NV.MPS.Configuration.DetectBoardExchangeRecord)">
+            <summary>
+            删除检出板记录
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.DetectorModuleConfig.GetIrradiationStatisticsDirectories">
+            <summary>
+            获取辐照统计探测器模组文件夹路径
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.DetectorModuleConfig.GetAncillaryDataDirectories(NV.MPS.Configuration.DataType)">
+            <summary>
+            获取辅助数据文件夹路径
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:NV.MPS.Configuration.DataType">
+            <summary>
+            数据类型
+            </summary>
+        </member>
+        <member name="F:NV.MPS.Configuration.DataType.DarkField">
+            <summary>
+            暗场
+            </summary>
+        </member>
+        <member name="F:NV.MPS.Configuration.DataType.BrightField">
+            <summary>
+            亮场
+            </summary>
+        </member>
+        <member name="F:NV.MPS.Configuration.DataType.AfterGlow">
+            <summary>
+            余晖
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ComponentInfo.BeginTime">
+            <summary>
+            不可使用，见UsingBeginTime
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DiskspaceSettingInfo.RawDataErrorThreshold">
+            <summary>
+            生数据目录可用空间 错误值, 比如 90
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DiskspaceSettingInfo.RawDataWarningThreshold">
+            <summary>
+            生数据目录可用空间警告（百分比，%）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DiskspaceSettingInfo.ImageDataErrorThreshold">
+            <summary>
+            图像数据目录可用空间错误值
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DiskspaceSettingInfo.ImageDataWarningThreshold">
+            <summary>
+            图像数据目录可用空间警告（百分比，%）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DoseSettingInfo.AdultAlertCTDIThreshold">
+            <summary>
+            成人剂量CTDI警告设置
+            </summary>
+            <summary>
+            是否启用剂量通知
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DoseSettingInfo.AdultAlertDLPThreshold">
+            <summary>
+            成人剂量DLP警告设置
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DoseSettingInfo.ChildAlertCTDIThreshold">
+            <summary>
+            小孩剂量CTDI警告设置
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DoseSettingInfo.ChildAlertDLPThreshold">
+            <summary>
+            小孩剂量DLP警告设置
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.DoseSettingInfo.NotificationEnabled">
+            <summary>
+            是否启用剂量通知
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.GantryInfo.Angle">
+            <summary>
+            机架旋转范围（Min: 6°, Max: 523°, 单位：0.01°）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.GantryInfo.FirstTubeOffset">
+            <summary>
+            第一个球管偏移量（单位：0.01°）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.GantryInfo.MaxRotationSpeed">
+            <summary>
+            旋转最大速度（单位：0.01°/S）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.GantryInfo.RotationAcceleration">
+            <summary>
+            旋转加速度（单位：0.01°/S^2）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.GantryInfo.RotationSpeedAccuracy">
+            <summary>
+            单位：0.01°
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.GantryInfo.RotationPositioningAccuracy">
+            <summary>
+            单位：0.01°
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.GantryInfo.ResetSpeed">
+            <summary>
+            单位：0.01°/秒
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.GantryInfo.ManualRotationSpeed">
+            <summary>
+            单位：0.01°/秒
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.GantryInfo.MaxRotationAcceleration">
+            <summary>
+            单位：0.01°/S^2
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.LocalDicomSettingInfo.EnableJpegLosslessCompression">
+            <summary>
+            JpegLosslessCompression jpeg无损压缩
+            </summary>
+        </member>
+        <member name="M:NV.MPS.Configuration.ProductConfig.SaveProductSetting">
+            <summary>
+            保存产品配置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:NV.MPS.Configuration.OfflineReconParamInfo.ReconLength">
+            <summary>
+            重建长度范围，最大/最小（单位：微米）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ReconParamInfo.SliceThickness">
+            <summary>
+            层厚（单位：微米）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ReconParamInfo.ImageIncrement">
+            <summary>
+            层间距（单位：微米）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ReconParamInfo.ReconMatrix">
+            <summary>
+            重建矩阵
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ReconParamInfo.DefinedMinPixelSpacing">
+            <summary>
+            单位：微米
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ReconParamInfo.DefinedHDMinPixelSpacing">
+            <summary>
+            单位：微米
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ScanDelayInfo.Id">
+            <summary>
+            唯一标识
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ScanDelayInfo.ScanOption">
+            <summary>
+            扫描类型（定位像、双定位像、轴扫或螺旋扫描）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ScanDelayInfo.FrameTime">
+            <summary>
+            帧时间（默认：-1，单位：微秒）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ScanDelayInfo.RDelay">
+            <summary>
+            单位：微秒
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ScanDelayInfo.TDelay">
+            <summary>
+            单位：微秒
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ScanDelayInfo.SpotDelay">
+            <summary>
+            单位：微秒
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ScanDeletionLengthInfo.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ScanDeletionLengthInfo.BodyPart">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ScanDeletionLengthInfo.ObjectFOV">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ScanDeletionLengthInfo.CollimatorZ">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ScanDeletionLengthInfo.Length">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ScanningParamInfo.AvailableVoltages">
+            <summary>
+            球管电压范围，最大/最小（单位：千伏）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ScanningParamInfo.TubeCurrent">
+            <summary>
+            球管电流范围，最大/最小（单位：微安）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ScanningParamInfo.SmallFocal">
+            <summary>
+            小焦点功率限制（单位：千瓦）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ScanningParamInfo.LargeFocal">
+            <summary>
+            大焦点功率限制（单位：千瓦）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ScanningParamInfo.AxialScanFeed">
+            <summary>
+            单位：微米
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ScanningParamInfo.AxialScanDetectorWidth">
+            <summary>
+            单位：微米
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ScanningParamInfo.Pitch">
+            <summary>
+            为实际值的100倍
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ScanningParamInfo.ScanFOV">
+            <summary>
+            单位：微米
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ScanningParamInfo.TopoLength">
+            <summary>
+            长度，最大/最小（单位：微米）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ScanningParamInfo.AxialLength">
+            <summary>
+            长度，最大/最小（单位：微米）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ScanningParamInfo.SpiralLength">
+            <summary>
+            长度，最大/最小（单位：微米）
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ScanningParamInfo.CombinedScanIntervalTime">
+            <summary>
+            连扫间隔时间限制
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.ScanningParamInfo.MinExposureDelayTime">
+            <summary>
+            单位：微秒
+            </summary>
+        </member>
+        <member name="T:NV.MPS.Configuration.SourceComponent">
+            <summary>
+            射线源组件
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.SourceComponent.MaxThermalCapacity">
+            <summary>
+            球管热容量最大值
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.SourceComponent.WarmupThermalCapacityRatio">
+            <summary>
+            预热球管的热容比
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.SourceComponent.NotifyThermalCapacityRatio">
+            <summary>
+            通知球管热容比
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.SourceComponent.WarningThermalCapacityRatio">
+            <summary>
+            警告球管热容比
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.SourceComponent.SourceNumer">
+            <summary>
+            射线源数量，24
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.SourceComponent.TubeItfNumber">
+            <summary>
+            高压接口板数量
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.SourceComponent.OilTemperatureLimit">
+            <summary>
+            油温上限
+            </summary>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.SaveCollimatorConfig">
+            <summary>
+            保存限束器开口设置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.SaveTableConfig">
+            <summary>
+            保存床设置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.SaveGantryConfig">
+            <summary>
+            保存机架设置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.SaveScanDelays">
+            <summary>
+            保存扫描延迟参数设置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.SaveAutoPositioningConfig">
+            <summary>
+            保存智能摆位设置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.SaveScanningParamConfig">
+            <summary>
+            保存扫码参数设置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.SaveOfflineReconParamConfig">
+            <summary>
+            保存离线重建参数设置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.SaveRTDReconParamConfig">
+            <summary>
+            保存RTD重建参数设置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.SaveAcquisitionConfig">
+            <summary>
+            保存采集参数设置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.SaveSourceComponentConfig">
+            <summary>
+            保存射线源参数设置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.SaveDetectorConfig">
+            <summary>
+            保存探测器参数设置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.ReloadVoltageCurrentCoefficientConfig">
+            <summary>
+            重新加载电压电流系数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.SaveVoltageCurrentCoefficientConfig">
+            <summary>
+            全量保存电压电流系数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.AddOrUpdateVoltageCoefficient(NV.MPS.Configuration.CategoryCoefficientInfo)">
+            <summary>
+            添加或更新电压电流系数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.DeleteVoltageCoefficient(NV.MPS.Configuration.CategoryCoefficientInfo)">
+            <summary>
+            删除电压电流系数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.SaveLaserConfig">
+            <summary>
+            保存激光灯参数设置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.ReloadDetectorTemperatureConfig">
+            <summary>
+            重新加载探测器温度设置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.SaveDetectorTemperatures">
+            <summary>
+            全量保存探测器温度设置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.AddOrUpdateDetectorTemperature(NV.MPS.Configuration.DetectorModuleTemperatureInfo)">
+            <summary>
+            保存指定探测器温度设置
+            </summary>
+            <param name="temperatureInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.AddOrUpdateDeviceComponent(NV.MPS.Configuration.DeviceComponentType,NV.MPS.Configuration.ComponentInfo)">
+            <summary>
+            核心设备维护和管理
+            </summary>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.AddOrUpdateDeviceComponent(System.Collections.Generic.IEnumerable{NV.MPS.Configuration.ComponentInfo})">
+            <summary>
+            批量修改组件序列编号
+            </summary>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.AddOrUpdateTransmissionBoard(NV.MPS.Configuration.ComponentInfo)">
+            <summary>
+            传输板维护管理
+            </summary>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.AddOrUpdateTemperatureControlBoard(NV.MPS.Configuration.ComponentInfo)">
+            <summary>
+            温控板维护管理
+            </summary>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.AddOrUpdateDetectorUnit(NV.MPS.Configuration.ComponentInfo)">
+            <summary>
+            detector unit
+            </summary>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.AddOrUpdateXRaySourceTankBox(NV.MPS.Configuration.ComponentInfo)">
+            <summary>
+            tank box
+            </summary>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.AddOrUpdateXRaySourceBuckBox(NV.MPS.Configuration.ComponentInfo)">
+            <summary>
+            buck box
+            </summary>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.AddOrUpdateCollimator(NV.MPS.Configuration.ComponentInfo)">
+            <summary>
+            限束器维护管理
+            </summary>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.AppendDeviceComponentHistory(NV.MPS.Configuration.ComponentInfo,System.String,System.String)">
+            <summary>
+            核心部件更换历史记录保存
+            </summary>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.GetComponentHistory(NV.MPS.Configuration.DeviceComponentType,System.Int32)">
+            <summary>
+            获取核心部件的历史记录
+            </summary>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.GetComponentHistory(System.Collections.Generic.IEnumerable{NV.MPS.Configuration.ComponentInfo})">
+            <summary>
+            批量获取组件历史记录
+            </summary>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.GetHelicalDeletionLength(System.String,System.UInt32,System.UInt32)">
+            <summary>
+            获取螺旋Pre/Post Deletion Length
+            </summary>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.GetAxialDeletionLength(System.String,System.UInt32)">
+            <summary>
+            获取轴扫Pre/Post Deletion Length
+            </summary>
+            <param name="focalType"></param>
+            <param name="collimatorZ"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.GetTVCoefficientInfo(System.String,System.String)">
+            <summary>
+            获取新TV系数
+            </summary>
+            <param name="bodyPart"></param>
+            <param name="windowing"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.GetCollimatorOpeningSetting(System.UInt32)">
+            <summary>
+            获取限束器开口设置
+            </summary>
+            <param name="collimatorZ"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.SaveCavitySetting">
+            <summary>
+            保存腔体温湿度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:NV.MPS.Configuration.TableInfo.MaxX">
+            <summary>
+            单位：微米
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.TableInfo.MinX">
+            <summary>
+            单位：微米
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.TableInfo.MaxY">
+            <summary>
+            单位：微米
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.TableInfo.MinY">
+            <summary>
+            单位：微米
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.TableInfo.MaxZ">
+            <summary>
+            单位：微米
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.TableInfo.MinZ">
+            <summary>
+            单位：微米
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.TableInfo.MaxZAcc">
+            <summary>
+            单位：微米/秒^2
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.TableInfo.MaxZSpeed">
+            <summary>
+            单位：微米/秒
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.TableInfo.MinZSpeed">
+            <summary>
+            单位：微米/秒
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.TableInfo.YFreeMoveZThreshold">
+            <summary>
+            单位：微米
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.TableInfo.ZFreeMoveYThreshold">
+            <summary>
+            单位：微米
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.TVCoefficientInfo.BodyPart">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.TVCoefficientInfo.Windowing">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.TVCoefficientInfo.Factor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NV.MPS.Configuration.UserConfig.SaveWindowings">
+            <summary>
+            保存窗宽窗位设置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.UserConfig.SaveTablets">
+            <summary>
+            保存平板设置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.UserConfig.SavePrinters">
+            <summary>
+            保存打印机配置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.UserConfig.SaveArchives">
+            <summary>
+            保存归档服务器配置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.UserConfig.SaveWorklists">
+            <summary>
+            保存Worklist配置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.UserConfig.SaveDoseSetting">
+            <summary>
+            保存剂量信息通知配置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.UserConfig.SaveDiskspaceSetting">
+            <summary>
+            保存磁盘可用空间配置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.UserConfig.SavePatientSetting">
+            <summary>
+            保存患者年龄设置（成人/小孩）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.UserConfig.SaveEquipmentSetting">
+            <summary>
+            保存设备配置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.UserConfig.SaveHospitalSetting">
+            <summary>
+            保存医院配置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.UserConfig.SaveLocalDicomSetting">
+            <summary>
+            保存医院配置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.UserConfig.SaveVoices">
+            <summary>
+            API语音保存
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

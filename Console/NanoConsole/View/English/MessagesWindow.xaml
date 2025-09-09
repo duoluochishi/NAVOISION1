@@ -1,0 +1,139 @@
+﻿<Window
+	x:Class="NV.CT.NanoConsole.View.English.MessagesWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:comboBox="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableComboBox;assembly=MaterialDesignThemes.Wpf"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+	Width="800"	Height="450" AllowsTransparency="True" Background="Transparent"
+	ResizeMode="NoResize" WindowStyle="None" mc:Ignorable="d">
+    <Window.Resources>
+        <Style x:Key="TitleBorderStyle" TargetType="{x:Type Border}">
+            <Setter Property="Opacity" Value="0.3"/>
+            <Setter Property="Background" Value="{StaticResource BaseTabBackBrush}"/>
+            <Setter Property="CornerRadius" Value="5 5 0 0" />
+        </Style>
+        <Style TargetType="DataGridCell">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        <Style x:Key="SearchButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignToolButton}">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Height" Value="24"/>
+            <Setter Property="Width" Value="24"/>
+            <Setter Property="Margin" Value="0 0 10 0"/>
+        </Style>
+        <Style x:Key="CloseButtonStyle" TargetType="Button" BasedOn="{StaticResource  MaterialDesignIconButton}">
+            <Setter Property="Width" Value="22"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+    <Border Style="{StaticResource WindowsBorder}" CornerRadius="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="36"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Border  Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource TitleBorderStyle}"/>
+            <Grid Grid.Row="0" Margin="5,0,0,0" >
+                <Label Grid.ColumnSpan="2" 
+                     Name="lblTabTitle" 
+                     FontSize="16" FontWeight="Bold" 
+                     Margin="0,0,0,0" 
+                     Content="Message list"
+                     HorizontalAlignment="Left" 
+                     VerticalAlignment="Center" 
+                     Height="34" 
+                     Foreground="#FFC6C6EC" />
+                <Button  Command="{Binding Commands[CloseCommand]}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Style="{StaticResource CloseButtonStyle}">
+                    <Path Style="{StaticResource TileClosePathStyle}" />
+                </Button>
+            </Grid>
+            <StackPanel Grid.Row="1"  Orientation="Horizontal" HorizontalAlignment="Left"  Margin="5 0 0 0" >
+                <comboBox:MarkableComboBox Width="220" Height="36" Margin="5 0 5 0" FontSize="14px" VerticalAlignment="Center" DisplayMemberPath="Value"  SelectedValuePath="Key" ItemsSource="{Binding SourceList}" SelectedItem="{Binding Path=SelectSource, Mode=TwoWay}" Style="{StaticResource MarkableComboBox}" />
+                <TextBox Width="260" Height="36"
+                         x:Name="txtSearchBox"                          
+                         wpf:HintAssist.Hint="Enter to search"
+                         wpf:TextFieldAssist.DecorationVisibility="Visible"
+                         wpf:TextFieldAssist.TextFieldCornerRadius="15" 
+                         HorizontalAlignment="Center"                         
+                         VerticalAlignment="Center" Background="Transparent">
+                    <i:Interaction.Triggers>
+                        <i:KeyTrigger FiredOn="KeyUp" Key="Return">
+                            <i:InvokeCommandAction Command="{Binding Commands[SearchCommand]}" CommandParameter="{Binding ElementName=txtSearchBox,Path=Text}"></i:InvokeCommandAction>
+                        </i:KeyTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+                <Button Command="{Binding Commands[SearchCommand]}" 
+                             CommandParameter="{Binding ElementName=txtSearchBox, Path=Text}"
+                             Style="{StaticResource SearchButtonStyle}" Margin="-50,0,0,0">
+                    <wpf:PackIcon Foreground="White" Kind="Magnify" Opacity="1" Margin="0,0,0,0" />
+                </Button>
+                <CheckBox
+                    VerticalAlignment="Center"
+                    Margin="20 0 0 0"
+                    Content="Info"
+                    IsChecked="{Binding Path=IsInfo, Mode=TwoWay}"
+                    />
+                <CheckBox
+                    VerticalAlignment="Center"
+                    Margin="10 0 0 0"
+                    Content="Warning"
+                    IsChecked="{Binding Path=IsWarning, Mode=TwoWay}"
+                    />
+                <CheckBox
+                    VerticalAlignment="Center"
+                    Margin="10 0 0 0"
+                    Content="Error"
+                    IsChecked="{Binding Path=IsError, Mode=TwoWay}"
+                    />
+                <CheckBox
+                    VerticalAlignment="Center"
+                    Margin="10 0 10 0"
+                    Content="Fatal"
+                    IsChecked="{Binding Path=IsFatal, Mode=TwoWay}"
+                    />
+            </StackPanel>
+            <!--  study列表组件 DataGrid  -->
+            <DataGrid Grid.Row="2" ItemsSource="{Binding MessageList}" SelectionMode="Single" Style="{StaticResource CommonDataGrid}" Margin="5">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Width="100" Header="Time">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding SendTimeDisplay}" HorizontalAlignment="Left" Margin="15,0,0,0" Style="{StaticResource DataGridContentTextBlock}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="130" Header="Source">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding SenderDisplay}" HorizontalAlignment="Left" Margin="15,0,0,0" Style="{StaticResource DataGridContentTextBlock}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="90" Header="Level">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding LevelDisplay}" HorizontalAlignment="Left" Margin="15,0,0,0" Style="{StaticResource DataGridContentTextBlock}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="*" MinWidth="100" Header="Message info" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Content}" ToolTip="{Binding Content}" HorizontalAlignment="Left"  Margin="15,0,0,0"  Style="{StaticResource DataGridContentTextBlock}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Border>
+</Window>

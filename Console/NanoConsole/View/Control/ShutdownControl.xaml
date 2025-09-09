@@ -1,0 +1,138 @@
+﻿<UserControl
+	x:Class="NV.CT.NanoConsole.View.Control.ShutdownControl"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:controls="clr-namespace:NV.CT.UI.Controls.Controls;assembly=NV.CT.UI.Controls"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+	xmlns:local="clr-namespace:NV.CT.NanoConsole.View.Control"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	mc:Ignorable="d">
+	<UserControl.Resources>
+		<Style
+			x:Key="ItemContainer"
+			TargetType="Grid">
+			<Setter Property="Margin" Value="10" />
+			<Setter Property="Width" Value="400" />
+		</Style>
+		<Style
+			x:Key="Title"
+			TargetType="TextBlock">
+			<!--<Setter Property="Width" Value="400" />-->
+			<Setter Property="HorizontalAlignment" Value="Left" />
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="FontSize" Value="14" />
+		</Style>
+		<Style
+			x:Key="Status"
+			TargetType="TextBlock">
+			<!--<Setter Property="Width" Value="150" />-->
+			<Setter Property="HorizontalAlignment" Value="Right" />
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="FontSize" Value="14" />
+		</Style>
+	</UserControl.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="2*" />
+			<RowDefinition Height="3*" />
+			<RowDefinition Height="80" />
+			<RowDefinition Height="150" />
+		</Grid.RowDefinitions>
+		<StackPanel
+			Grid.Row="0"
+			HorizontalAlignment="Center"
+			VerticalAlignment="Center"
+			Orientation="Horizontal">
+			<controls:LoadingControl
+				Width="80"
+				Height="80"
+				VerticalAlignment="Center"
+				VerticalContentAlignment="Center" />
+			<TextBlock
+				Margin="20,0,0,0"
+				VerticalAlignment="Center"
+				FontSize="36"
+				FontWeight="Bold"
+				Text="{Binding Title}" />
+		</StackPanel>
+		<Grid
+			Grid.Row="1"
+			HorizontalAlignment="Center">
+			<StackPanel Orientation="Vertical">
+				<Grid Style="{StaticResource ItemContainer}">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="0" />
+						<ColumnDefinition Width="3*" />
+						<ColumnDefinition Width="1*" />
+					</Grid.ColumnDefinitions>
+					<TextBlock
+						Grid.Column="1"
+						Style="{StaticResource Title}"
+						Text="Server is down" />
+
+					<TextBlock
+						Grid.Column="2"
+						Style="{StaticResource Status}"
+						Text="Completed" />
+				</Grid>
+				<Grid Style="{StaticResource ItemContainer}">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="0" />
+						<ColumnDefinition Width="3*" />
+						<ColumnDefinition Width="1*" />
+					</Grid.ColumnDefinitions>
+					<TextBlock
+						Grid.Column="1"
+						DockPanel.Dock="Left"
+						Style="{StaticResource Title}"
+						Text="Console computer is shutting down" />
+					<TextBlock
+						Grid.Column="2"
+						Style="{StaticResource Status}"
+						Text="Closing..." />
+				</Grid>
+			</StackPanel>
+		</Grid>
+		<Grid Row="2">
+			<StackPanel
+				HorizontalAlignment="Center"
+				Orientation="Horizontal">
+				<TextBlock
+					Cursor="Hand"
+					FontSize="24"
+					Style="{StaticResource Status}"
+					Text="Force Shutdown">
+					<i:Interaction.Triggers>
+						<i:EventTrigger EventName="MouseLeftButtonDown">
+							<i:InvokeCommandAction Command="{Binding Commands[ForceShutdownCommand]}" />
+						</i:EventTrigger>
+					</i:Interaction.Triggers>
+				</TextBlock>
+				<TextBlock
+					Margin="100,0,30,0"
+					Cursor="Hand"
+					FontSize="24"
+					Style="{StaticResource Status}"
+					Text="Cancel">
+					<i:Interaction.Triggers>
+						<i:EventTrigger EventName="MouseLeftButtonDown">
+							<i:InvokeCommandAction Command="{Binding Commands[CancelCommand]}" />
+						</i:EventTrigger>
+					</i:Interaction.Triggers>
+				</TextBlock>
+			</StackPanel>
+		</Grid>
+		<Grid
+			Grid.Row="3"
+			HorizontalAlignment="Center"
+			VerticalAlignment="Center">
+			<TextBlock
+				x:Name="txtCopyright"
+				Opacity="0.3"
+				Text="{Binding Copyright}" />
+		</Grid>
+	</Grid>
+</UserControl>

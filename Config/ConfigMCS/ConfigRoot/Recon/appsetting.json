@@ -1,0 +1,8 @@
+{
+	"DeviceMonitorConfig":{
+		"MonitorCTBox": true,
+		"MonitorDoorClosed":false,
+		"MonitorReconConnectionStatus":true,
+		"MonitorTableStatus":true
+	}
+}

@@ -1,0 +1,220 @@
+﻿<UserControl
+	x:Class="NV.CT.NanoConsole.View.English.DeviceStatus"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:converter="clr-namespace:NV.CT.UI.Controls.Converter;assembly=NV.CT.UI.Controls"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:gif="http://wpfanimatedgif.codeplex.com"
+	xmlns:local="clr-namespace:NV.CT.NanoConsole.View.Control"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	mc:Ignorable="d">
+	<UserControl.Resources>
+		<converter:SelfCheckStateConverter x:Key="SelfCheckStateConverter" />
+		<Style TargetType="DataGridRow">
+			<Setter Property="Padding" Value="5" />
+			<Setter Property="Margin" Value="5,4,5,6" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+			<Style.Triggers>
+				<Trigger Property="IsMouseOver" Value="True">
+					<Setter Property="Background" Value="Transparent" />
+				</Trigger>
+				<Trigger Property="IsMouseOver" Value="False">
+					<Setter Property="Background" Value="Transparent" />
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+	</UserControl.Resources>
+
+	<Grid>
+
+		<!--<ListView ItemsSource="{Binding CheckItems}">
+			
+		</ListView>-->
+		<!--  自检项 内容区域  -->
+		<DataGrid
+			Margin="0,0,0,10"
+			HorizontalAlignment="Stretch"
+			VerticalContentAlignment="Center"
+			AutoGenerateColumns="False"
+			BorderThickness="0"
+			CanUserSortColumns="False"
+			ColumnHeaderHeight="40"
+			GridLinesVisibility="Horizontal"
+			HeadersVisibility="Column"
+			HorizontalGridLinesBrush="#18696969"
+			HorizontalScrollBarVisibility="Disabled"
+			IsReadOnly="True"
+			ItemsSource="{Binding CheckItems}"
+			SelectionUnit="FullRow"
+			VerticalScrollBarVisibility="Auto">
+			<DataGrid.Columns>
+
+				<!--  检查进度状态标志图片，没啥意义，隐藏  -->
+
+				<!--不要直接用图片地址,会导致 ImageConverterException ,用Converter转换一次-->
+				<!--<DataGridTemplateColumn
+					Width="40"
+					Visibility="Hidden">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<Image
+								x:Name="checkStateImg"
+								Width="10"
+								Height="4"
+								Margin="0,0,0,6"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/NotScaned.png"
+								Visibility="Visible" />
+
+							<DataTemplate.Triggers>
+								<DataTrigger
+									Binding="{Binding CheckStatusString}"
+									Value="Success">
+									<Setter TargetName="checkStateImg" Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Icons/Scaned.png" />
+								</DataTrigger>
+								<DataTrigger
+									Binding="{Binding CheckStatusString}"
+									Value="Error">
+									<Setter TargetName="checkStateImg" Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Icons/Scaned.png" />
+								</DataTrigger>
+								<DataTrigger
+									Binding="{Binding CheckStatusString}"
+									Value="InProgress">
+									<Setter TargetName="checkStateImg" Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Icons/StatusScaning.png" />
+								</DataTrigger>
+							</DataTemplate.Triggers>
+						</DataTemplate>
+
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>-->
+
+				<DataGridTextColumn
+					Width="300"
+					Binding="{Binding CheckName}"
+					Header="Check Item">
+					<DataGridTextColumn.ElementStyle>
+						<Style TargetType="TextBlock">
+							<Setter Property="TextAlignment" Value="Left"></Setter>
+						</Style>
+					</DataGridTextColumn.ElementStyle>
+				</DataGridTextColumn>
+
+				<DataGridTextColumn
+					Width="150"
+					Binding="{Binding CheckStatusString}"
+					Header="Status">
+					<DataGridTextColumn.ElementStyle>
+						<Style TargetType="TextBlock">
+							<Setter Property="TextAlignment" Value="Left"></Setter>
+						</Style>
+					</DataGridTextColumn.ElementStyle>
+				</DataGridTextColumn>
+
+				<DataGridTemplateColumn
+					Width="150"
+					Header="Indicator">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<Border VerticalAlignment="Center" Padding="10 0 0 0">
+								<Grid VerticalAlignment="Center">
+
+									<Image
+										x:Name="imgState"
+										Height="20"
+										HorizontalAlignment="Left"
+										VerticalAlignment="Center"
+										Source="{Binding CheckStatusString, Converter={StaticResource SelfCheckStateConverter}}"
+										Visibility="Collapsed" />
+
+									<Image
+										x:Name="txtLoading"
+										Height="25"
+										HorizontalAlignment="Left"
+										VerticalAlignment="Center"
+										gif:ImageBehavior.AnimatedSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/hourglass.gif"
+										Visibility="Collapsed" />
+								</Grid>
+							</Border>
+
+							<DataTemplate.Triggers>
+								<DataTrigger
+									Binding="{Binding CheckStatusString}"
+									Value="Success">
+									<Setter TargetName="imgState" Property="Visibility" Value="Visible" />
+									<Setter TargetName="txtLoading" Property="Visibility" Value="Collapsed" />
+								</DataTrigger>
+								<DataTrigger
+									Binding="{Binding CheckStatusString}"
+									Value="Error">
+									<Setter TargetName="imgState" Property="Visibility" Value="Visible" />
+									<Setter TargetName="txtLoading" Property="Visibility" Value="Collapsed" />
+								</DataTrigger>
+								<DataTrigger
+									Binding="{Binding CheckStatusString}"
+									Value="InProgress">
+									<Setter TargetName="imgState" Property="Visibility" Value="Collapsed" />
+									<Setter TargetName="txtLoading" Property="Visibility" Value="Visible" />
+								</DataTrigger>
+							</DataTemplate.Triggers>
+
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn
+					Width="*"
+					Header="Error Message">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+
+							<TextBlock
+									x:Name="txtECount"
+									Padding="5,0,0,0"
+									HorizontalAlignment="Left"
+									VerticalAlignment="Center"
+									Cursor="Hand" TextWrapping="NoWrap"
+									Foreground="White" Width="250"
+									TextTrimming="CharacterEllipsis"
+									Text="{Binding ErrorMessageTip}"
+									ToolTip="{Binding ErrorMessageTip}"
+									ToolTipService.InitialShowDelay="0"
+									ToolTipService.Placement="Mouse"
+									ToolTipService.HorizontalOffset="20"
+									ToolTipService.VerticalOffset="-10"
+									Visibility="Collapsed" />
+
+							<DataTemplate.Triggers>
+								<DataTrigger
+									Binding="{Binding CheckStatusString}"
+									Value="Success">
+									<Setter TargetName="txtECount" Property="Visibility" Value="Collapsed" />
+								</DataTrigger>
+								<DataTrigger
+									Binding="{Binding CheckStatusString}"
+									Value="Error">
+									<Setter TargetName="txtECount" Property="Visibility" Value="Visible" />
+								</DataTrigger>
+								<DataTrigger
+									Binding="{Binding CheckStatusString}"
+									Value="InProgress">
+									<Setter TargetName="txtECount" Property="Visibility" Value="Collapsed" />
+								</DataTrigger>
+							</DataTemplate.Triggers>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+			</DataGrid.Columns>
+			<!--<DataGrid.RowStyle>
+				<Style TargetType="DataGridRow">
+					<Setter Property="Height" Value="Auto"></Setter>
+				</Style>
+			</DataGrid.RowStyle>-->
+		</DataGrid>
+
+	</Grid>
+
+</UserControl>

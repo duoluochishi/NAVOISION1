@@ -1,0 +1,92 @@
+﻿<UserControl
+    x:Class="NV.CT.PatientManagement.View.English.InstanceViewControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*" />
+            <RowDefinition Height="92*" />
+        </Grid.RowDefinitions>
+        <WrapPanel Margin="0,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
+            <Label HorizontalAlignment="Left" VerticalAlignment="Bottom"  Content="{x:Static res:LanguageResource.Content_Instances}" FontSize="15" />
+            <RadioButton
+                x:Name="rbInvert"
+                Margin="13,0,0,0"
+                BorderThickness="0"
+                Checked="RadioButton_Checked"
+                Cursor="Hand"
+                GroupName="gr1"
+                ToolTip="{x:Static res:LanguageResource.ToolTip_ImageView}"
+                Style="{StaticResource List01RadioButton}"
+                Tag="container1" />
+            <RadioButton
+                Margin="2,0,0,0"
+                BorderThickness="0"
+                Checked="RadioButton_Checked"
+                Cursor="Hand"
+                GroupName="gr1"
+                ToolTip="{x:Static res:LanguageResource.ToolTip_ListView}"
+                Style="{StaticResource List02RadioButton}"
+                Tag="container2" />
+            <!--<RadioButton
+                Name="rbFilm"
+                Margin="0"
+                BorderThickness="0"
+                Checked="RadioButton_Checked"
+                Cursor="Hand"
+                Style="{StaticResource ToolsRadioButton}"
+                Tag="container1">
+                <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_film_0.png" />
+            </RadioButton>-->
+        </WrapPanel>
+        <Border Grid.Row="1" Background="#14142B" BorderBrush="#5A5A89" BorderThickness="0" CornerRadius="0">
+            <Grid x:Name="grdMain">
+                <ContentControl Name="container1" Content="{Binding TomoImageViewerWrapper.WindowsFormsHost}"/>
+                <Grid Name="container2" Visibility="Collapsed">
+                    <DataGrid Grid.Row="2" Grid.ColumnSpan="3" Margin="3" AutoGenerateColumns="False" ColumnHeaderHeight="40" GridLinesVisibility="Horizontal"
+                              HorizontalScrollBarVisibility="Auto" IsReadOnly="True"  RowHeight="40" SelectionMode="Extended" SelectionUnit="FullRow" VerticalScrollBarVisibility="Auto"
+                              ItemsSource="{Binding ImageModels}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Width="auto" MinWidth="100" Header="{x:Static res:LanguageResource.Header_Number}">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Text="{Binding ImageNumber}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="*" MinWidth="125" Header="{x:Static res:LanguageResource.Header_Imagetime}">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding ImageTime, StringFormat='yyyy/MM/dd HH:mm:ss'}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                        <!--<DataGrid.ContextMenu>
+                            <ContextMenu Placement="MousePoint" Style="{StaticResource PatientManagementInstanceViewContextMenu}">
+                                <MenuItem Command="{Binding Commands[DeleteCommand]}"
+                                          CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.SelectedItems}"
+                                          Header="{x:Static res:LanguageResource.ContextMenuItem_Delete}">
+                                    <MenuItem.Icon>
+                                        <Path Fill="{StaticResource TextBoxBrush}" Stretch="Fill" Style="{StaticResource Delete}" />
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>-->
+                    </DataGrid>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

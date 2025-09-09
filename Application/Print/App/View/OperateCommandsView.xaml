@@ -1,0 +1,543 @@
+﻿<UserControl x:Class="NV.CT.Print.View.OperateCommandsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NV.CT.Print.View"
+             xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
+             xmlns:converter="clr-namespace:NV.CT.UI.Controls.Converter;assembly=NV.CT.UI.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"></BooleanToVisibilityConverter>
+        <converter:ReverseBooleanToVisibilityConverter x:Key="reverseBooleanToVisibilityConverter"></converter:ReverseBooleanToVisibilityConverter>
+
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="56"/>
+            <!-- 0 //Operate Section-->
+            <RowDefinition Height="*"/>
+            <!-- 1 //Operate  Buttons-->
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <TextBlock x:Name="lblOperateSection" Text="{x:Static res:LanguageResource.Content_Operate}" 
+                           Style="{StaticResource SectionTitleTextBlock}" Margin="8,0,0,0"/>
+            <Rectangle Width="{Binding ElementName=lblOperateSection,Path=ActualWidth}"
+                           Style="{StaticResource SectionTitleUnderlineRectangle}" Margin="8,0,0,14"/>
+        </Grid>
+        <Grid Grid.Row="1" Style="{StaticResource InfomationGrid}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <WrapPanel HorizontalAlignment="Left" Margin="8,0,0,0" IsEnabled="{Binding IsEditable}">
+                <CheckBox BorderThickness="0" Cursor="Hand" Margin="0,0,6,6" wpf:CheckBoxAssist.CheckBoxSize="0"
+                          ToolTip="{x:Static res:LanguageResource.ToolTip_SelectAll}" 
+                          IsChecked="{Binding IsSelectAllChecked, Mode =TwoWay}"
+                          Command="{Binding Commands[OperateImageCommand]}" CommandParameter="selectall">
+                    <CheckBox.Content>
+                        <StackPanel Orientation="Vertical">
+                            <Path Style="{StaticResource ImageSelectAll}" Fill="White" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsSelectAllHighlighted, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                            <Path Style="{StaticResource ImageSelectAll}" Fill="#5A5A89" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsSelectAllHighlighted, Converter={StaticResource reverseBooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+                    </CheckBox.Content>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseEnter]}" CommandParameter="selectall" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseLeave]}" CommandParameter="selectall" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </CheckBox>
+
+                <CheckBox BorderThickness="0" Cursor="Hand" Margin="0,0,6,6" wpf:CheckBoxAssist.CheckBoxSize="0"
+                          ToolTip="{x:Static res:LanguageResource.ToolTip_UnSelectAll}" 
+                          IsChecked="{Binding IsUnSelectAllChecked, Mode =TwoWay}"
+                          Command="{Binding Commands[OperateImageCommand]}" CommandParameter="unselectall">
+                    <CheckBox.Content>
+                        <StackPanel Orientation="Vertical">
+                            <Path Style="{StaticResource ImageUnSelectAll}" Fill="White" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsUnSelectAllHighlighted, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                            <Path Style="{StaticResource ImageUnSelectAll}" Fill="#5A5A89" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsUnSelectAllHighlighted, Converter={StaticResource reverseBooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+                    </CheckBox.Content>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseEnter]}" CommandParameter="unselectall" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseLeave]}" CommandParameter="unselectall" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </CheckBox>
+
+                <CheckBox BorderThickness="0" Cursor="Hand" Margin="0,0,6,6" wpf:CheckBoxAssist.CheckBoxSize="0"
+                          ToolTip="{x:Static res:LanguageResource.ToolTip_Zoom}" 
+                          IsChecked="{Binding IsZoomChecked, Mode =TwoWay}"
+                          Command="{Binding Commands[OperateImageCommand]}" CommandParameter="zoom">
+                    <CheckBox.Content>
+                        <StackPanel Orientation="Vertical">
+                            <Path Style="{StaticResource ImageZoom}" Fill="White" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsZoomHighlighted, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                            <Path Style="{StaticResource ImageZoom}" Fill="#5A5A89" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsZoomHighlighted, Converter={StaticResource reverseBooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+                    </CheckBox.Content>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseEnter]}" CommandParameter="zoom" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseLeave]}" CommandParameter="zoom" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </CheckBox>
+                <CheckBox BorderThickness="0" Cursor="Hand" Margin="0,0,6,6" wpf:CheckBoxAssist.CheckBoxSize="0"
+                          ToolTip="{x:Static res:LanguageResource.ToolTip_Move}" 
+                          IsChecked="{Binding IsMoveChecked, Mode =TwoWay}"
+                          Command="{Binding Commands[OperateImageCommand]}" CommandParameter="move">
+                    <CheckBox.Content>
+                        <StackPanel Orientation="Vertical">
+                            <Path Style="{StaticResource ImageMove}" Fill="White" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsMoveHighlighted, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                            <Path Style="{StaticResource ImageMove}" Fill="#5A5A89" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsMoveHighlighted, Converter={StaticResource reverseBooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+                    </CheckBox.Content>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseEnter]}" CommandParameter="move" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseLeave]}" CommandParameter="move" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </CheckBox>
+                <CheckBox x:Name="checkboxWwwl" BorderThickness="0" Cursor="Hand" Margin="0,0,6,6" wpf:CheckBoxAssist.CheckBoxSize="0"
+                          ToolTip="{x:Static res:LanguageResource.ToolTip_WL}"
+                          IsChecked="{Binding IsWWWLChecked, Mode =TwoWay}"
+                          PreviewMouseLeftButtonUp="OnCheckBoxWwwlPreviewMouseLeftButtonUp">
+                    <CheckBox.Content>
+                        <StackPanel Orientation="Vertical">
+                            <Path Style="{StaticResource ImageWWWL}" Fill="White" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsWWWLHighlighted, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                            <Path Style="{StaticResource ImageWWWL}" Fill="#5A5A89" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsWWWLHighlighted, Converter={StaticResource reverseBooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+                    </CheckBox.Content>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseEnter]}" CommandParameter="wwwl" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseLeave]}" CommandParameter="wwwl" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </CheckBox>
+                <Label x:Name="labelWwWl" VerticalAlignment="Bottom" Margin="0,0,6,6" PreviewMouseLeftButtonUp="OnLabelWwWlPreviewMouseLeftButtonUp">
+                    <Label.Content>
+                        <Path Width="6" Height="6" Fill="{Binding WWWLFillColor}" Stretch="Fill" Style="{StaticResource Down}" />
+                    </Label.Content>
+                    <Label.ContextMenu>
+                        <ContextMenu x:Name="menuWwWl" ItemsSource="{Binding WWWLItems}" Placement="MousePoint">
+                            <ContextMenu.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Tag="{Binding}" Text="{Binding Description}" PreviewMouseLeftButtonUp="OnContextMenuItemMouseLeftButtonUp" />
+                                </DataTemplate>
+                            </ContextMenu.ItemTemplate>
+                        </ContextMenu>
+                    </Label.ContextMenu>
+                </Label>
+                <CheckBox BorderThickness="0" Cursor="Hand" Margin="0,0,6,6" wpf:CheckBoxAssist.CheckBoxSize="0" 
+                          ToolTip="{x:Static res:LanguageResource.ToolTip_Rotate}"                          
+                          IsChecked="{Binding IsRotateChecked, Mode =TwoWay}"
+                          Command="{Binding Commands[OperateImageCommand]}" CommandParameter="rotate">
+                    <CheckBox.Content>
+                        <StackPanel Orientation="Vertical">
+                            <Path Style="{StaticResource ImageRotate}" Fill="White" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsRotateHighlighted, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                            <Path Style="{StaticResource ImageRotate}" Fill="#5A5A89" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsRotateHighlighted, Converter={StaticResource reverseBooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+                    </CheckBox.Content>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseEnter]}" CommandParameter="rotate" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseLeave]}" CommandParameter="rotate" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </CheckBox>
+                <CheckBox BorderThickness="0" Cursor="Hand" Margin="0,0,6,6" wpf:CheckBoxAssist.CheckBoxSize="0"
+                          ToolTip="{x:Static res:LanguageResource.Tooltip_Invert}"
+                          IsChecked="{Binding IsInvertChecked, Mode =TwoWay}"
+                          Command="{Binding Commands[OperateImageCommand]}" CommandParameter="invert">
+                    <CheckBox.Content>
+                        <StackPanel Orientation="Vertical">
+                            <Path Style="{StaticResource ImageInvert}" Fill="White" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsInvertHighlighted, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                            <Path Style="{StaticResource ImageInvert}" Fill="#5A5A89" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsInvertHighlighted, Converter={StaticResource reverseBooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+                    </CheckBox.Content>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseEnter]}" CommandParameter="invert" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseLeave]}" CommandParameter="invert" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </CheckBox>
+                <CheckBox BorderThickness="0" Cursor="Hand" Margin="0,0,6,6" wpf:CheckBoxAssist.CheckBoxSize="0"
+                          ToolTip="{x:Static res:LanguageResource.ToolTip_ResetToInit}"
+                          IsChecked="{Binding IsResetChecked, Mode =TwoWay}"
+                          Command="{Binding Commands[OperateImageCommand]}" CommandParameter="reset2init">
+                    <CheckBox.Content>
+                        <StackPanel Orientation="Vertical">
+                            <Path Style="{StaticResource ImageInverse}" Fill="White" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsResetHighlighted, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                            <Path Style="{StaticResource ImageInverse}" Fill="#5A5A89" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsResetHighlighted, Converter={StaticResource reverseBooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+                    </CheckBox.Content>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseEnter]}" CommandParameter="reset2init" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseLeave]}" CommandParameter="reset2init" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </CheckBox>
+                <CheckBox BorderThickness="0" Cursor="Hand" Margin="0,0,6,6" wpf:CheckBoxAssist.CheckBoxSize="0"
+                          ToolTip="{x:Static res:LanguageResource.Tooltip_FlipHorizontal}" 
+                          IsChecked="{Binding IsFlipHorizontalChecked, Mode =TwoWay}"
+                          Command="{Binding Commands[OperateImageCommand]}" CommandParameter="flip_horizontal">
+                    <CheckBox.Content>
+                        <StackPanel Orientation="Vertical">
+                            <Path Style="{StaticResource ImageFlipHorizontal}" Fill="White" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsFlipHorizontalHighlighted, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                            <Path Style="{StaticResource ImageFlipHorizontal}" Fill="#5A5A89" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsFlipHorizontalHighlighted, Converter={StaticResource reverseBooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+                    </CheckBox.Content>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseEnter]}" CommandParameter="flip_horizontal" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseLeave]}" CommandParameter="flip_horizontal" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </CheckBox>
+                <CheckBox BorderThickness="0" Cursor="Hand" Margin="0,0,6,6" wpf:CheckBoxAssist.CheckBoxSize="0"
+                          ToolTip="{x:Static res:LanguageResource.Tooltip_FlipVertical}"
+                          IsChecked="{Binding IsFlipVerticalChecked, Mode =TwoWay}"
+                          Command="{Binding Commands[OperateImageCommand]}" CommandParameter="flip_vertical">
+                    <CheckBox.Content>
+                        <StackPanel Orientation="Vertical">
+                            <Path Style="{StaticResource ImageFlipVertical}" Fill="White" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsFlipVerticalHighlighted, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                            <Path Style="{StaticResource ImageFlipVertical}" Fill="#5A5A89" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsFlipVerticalHighlighted, Converter={StaticResource reverseBooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+                    </CheckBox.Content>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseEnter]}" CommandParameter="flip_vertical" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseLeave]}" CommandParameter="flip_vertical" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </CheckBox>
+                <CheckBox BorderThickness="0" Cursor="Hand" Margin="0,0,6,6" wpf:CheckBoxAssist.CheckBoxSize="0"
+                          ToolTip="{x:Static res:LanguageResource.Tooltip_HideTexts}" 
+                          IsChecked="{Binding IsHideTextsChecked, Mode =TwoWay}"
+                          Command="{Binding Commands[OperateImageCommand]}" CommandParameter="hide_texts">
+                    <CheckBox.Content>
+                        <StackPanel Orientation="Vertical">
+                            <Path Style="{StaticResource ImageHideTexts}" Fill="White" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsHideTextsHighlighted, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                            <Path Style="{StaticResource ImageHideTexts}" Fill="#5A5A89" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsHideTextsHighlighted, Converter={StaticResource reverseBooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+                    </CheckBox.Content>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseEnter]}" CommandParameter="hide_texts" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseLeave]}" CommandParameter="hide_texts" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </CheckBox>
+                <CheckBox BorderThickness="0" Cursor="Hand" Margin="0,0,6,6" wpf:CheckBoxAssist.CheckBoxSize="0"
+                          ToolTip="{x:Static res:LanguageResource.ToolTip_ReferenceLine}" 
+                          IsChecked="{Binding IsReferenceLineChecked, Mode =TwoWay}"
+                          Command="{Binding Commands[OperateImageCommand]}" CommandParameter="reference_line">
+                    <CheckBox.Content>
+                        <StackPanel Orientation="Vertical">
+                            <Path Style="{StaticResource RefernceLine}" Fill="White" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsReferenceLineHighlighted, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                            <Path Style="{StaticResource RefernceLine}" Fill="#5A5A89" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsReferenceLineHighlighted, Converter={StaticResource reverseBooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+                    </CheckBox.Content>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseEnter]}" CommandParameter="reference_line" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseLeave]}" CommandParameter="reference_line" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </CheckBox>
+
+                <CheckBox BorderThickness="0" Cursor="Hand" Margin="0,0,6,6" wpf:CheckBoxAssist.CheckBoxSize="0"
+                          ToolTip="{x:Static res:LanguageResource.ToolTip_Copy}" 
+                          IsChecked="{Binding IsCopyChecked, Mode =TwoWay}"
+                          Command="{Binding Commands[OperateImageCommand]}" CommandParameter="copy">
+                    <CheckBox.Content>
+                        <StackPanel Orientation="Vertical">
+                            <Path Style="{StaticResource ImageCopy}" Fill="White" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsCopyHighlighted, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                            <Path Style="{StaticResource ImageCopy}" Fill="#5A5A89" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsCopyHighlighted, Converter={StaticResource reverseBooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+                    </CheckBox.Content>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseEnter]}" CommandParameter="copy" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseLeave]}" CommandParameter="copy" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </CheckBox>
+
+                <CheckBox BorderThickness="0" Cursor="Hand" Margin="0,0,6,6" wpf:CheckBoxAssist.CheckBoxSize="0"
+                          ToolTip="{x:Static res:LanguageResource.Tooltip_Cut}" 
+                          IsChecked="{Binding IsCutChecked, Mode =TwoWay}"
+                          Command="{Binding Commands[OperateImageCommand]}" CommandParameter="cut">
+                    <CheckBox.Content>
+                        <StackPanel Orientation="Vertical">
+                            <Path Style="{StaticResource ImageCut}" Fill="White" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsCutHighlighted, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                            <Path Style="{StaticResource ImageCut}" Fill="#5A5A89" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsCutHighlighted, Converter={StaticResource reverseBooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+                    </CheckBox.Content>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseEnter]}" CommandParameter="cut" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseLeave]}" CommandParameter="cut" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </CheckBox>
+
+                <CheckBox BorderThickness="0" Cursor="Hand" Margin="0,0,6,6" wpf:CheckBoxAssist.CheckBoxSize="0"
+                          ToolTip="{x:Static res:LanguageResource.ToolTip_Paste}" 
+                          IsChecked="{Binding IsPasteChecked, Mode =TwoWay}"
+                          Command="{Binding Commands[OperateImageCommand]}" CommandParameter="paste">
+                    <CheckBox.Content>
+                        <StackPanel Orientation="Vertical">
+                            <Path Style="{StaticResource ImagePaste}" Fill="White" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsPasteHighlighted, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                            <Path Style="{StaticResource ImagePaste}" Fill="#5A5A89" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsPasteHighlighted, Converter={StaticResource reverseBooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+                    </CheckBox.Content>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseEnter]}" CommandParameter="paste" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseLeave]}" CommandParameter="paste" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </CheckBox>
+
+                <CheckBox BorderThickness="0" Cursor="Hand" Margin="0,0,6,6" wpf:CheckBoxAssist.CheckBoxSize="0"
+                          ToolTip="{x:Static res:LanguageResource.ToolTip_Delete}" 
+                          IsChecked="{Binding IsDeleteChecked, Mode =TwoWay}"
+                          Command="{Binding Commands[OperateImageCommand]}" CommandParameter="delete">
+                    <CheckBox.Content>
+                        <StackPanel Orientation="Vertical">
+                            <Path Style="{StaticResource ImageDelete}" Fill="White" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsDeleteHighlighted, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                            <Path Style="{StaticResource ImageDelete}" Fill="#5A5A89" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsDeleteHighlighted, Converter={StaticResource reverseBooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+                    </CheckBox.Content>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseEnter]}" CommandParameter="delete" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseLeave]}" CommandParameter="delete" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </CheckBox>
+
+                <CheckBox x:Name="checkboxFilter" BorderThickness="0" Cursor="Hand" Margin="0,0,6,6" wpf:CheckBoxAssist.CheckBoxSize="0"
+                          ToolTip="{x:Static res:LanguageResource.ToolTip_Filter}"
+                          IsChecked="{Binding IsFilterChecked, Mode =TwoWay}"
+                          PreviewMouseLeftButtonUp="OnCheckBoxFilterPreviewMouseLeftButtonUp">
+                    <CheckBox.Content>
+                        <StackPanel Orientation="Vertical">
+                            <Path Style="{StaticResource ImageFilter}" Fill="White" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsFilterHighlighted, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                            <Path Style="{StaticResource ImageFilter}" Fill="#5A5A89" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsFilterHighlighted, Converter={StaticResource reverseBooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+                    </CheckBox.Content>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseEnter]}" CommandParameter="filter" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseLeave]}" CommandParameter="filter" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </CheckBox>
+                <Label x:Name="labelFilter" VerticalAlignment="Bottom" Margin="0,0,6,6" PreviewMouseLeftButtonUp="OnLabelFilterPreviewMouseLeftButtonUp">
+                    <Label.Content>
+                        <Path Width="6" Height="6" Fill="{Binding FilterFillColor}" Stretch="Fill" Style="{StaticResource Down}" />
+                    </Label.Content>
+                    <Label.ContextMenu>
+                        <ContextMenu x:Name="menuFilter" ItemsSource="{Binding FilterItems}" Placement="MousePoint">
+                            <ContextMenu.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Tag="{Binding}" Text="{Binding Description}" PreviewMouseLeftButtonUp="OnFilterMenuItemMouseLeftButtonUp" />
+                                </DataTemplate>
+                            </ContextMenu.ItemTemplate>
+                        </ContextMenu>
+                    </Label.ContextMenu>
+                </Label>
+                <CheckBox BorderThickness="0" Cursor="Hand" Margin="0,0,6,6" wpf:CheckBoxAssist.CheckBoxSize="0"
+                          ToolTip="{x:Static res:LanguageResource.ToolTip_SplitCell}" 
+                          IsChecked="{Binding IsSplitChecked, Mode =TwoWay}"
+                          Command="{Binding Commands[OperateImageCommand]}" CommandParameter="split">
+                    <CheckBox.Content>
+                        <StackPanel Orientation="Vertical">
+                            <Path Style="{StaticResource ImageSplitCell}" Fill="White" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsSplitHighlighted, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                            <Path Style="{StaticResource ImageSplitCell}" Fill="#5A5A89" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsSplitHighlighted, Converter={StaticResource reverseBooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+                    </CheckBox.Content>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseEnter]}" CommandParameter="split" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseLeave]}" CommandParameter="split" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </CheckBox>
+                <CheckBox BorderThickness="0" Cursor="Hand" Margin="0,0,6,6" wpf:CheckBoxAssist.CheckBoxSize="0"
+                          ToolTip="{x:Static res:LanguageResource.ToolTip_MergeCells}" 
+                          IsChecked="{Binding IsMergeChecked, Mode =TwoWay}"
+                          Command="{Binding Commands[OperateImageCommand]}" CommandParameter="merge">
+                    <CheckBox.Content>
+                        <StackPanel Orientation="Vertical">
+                            <Path Style="{StaticResource ImageMergeCells}" Fill="White" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsMergeHighlighted, Converter={StaticResource booleanToVisibilityConverter}}"/>
+                            <Path Style="{StaticResource ImageMergeCells}" Fill="#5A5A89" Stretch="Fill" Width="20" Height="20" Visibility="{Binding IsMergeHighlighted, Converter={StaticResource reverseBooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+                    </CheckBox.Content>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseEnter]}" CommandParameter="merge" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseLeave]}" CommandParameter="merge" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </CheckBox>
+                <!--Rectangle ROI-->
+                <CheckBox x:Name="ckbROIRect" BorderThickness="0" Cursor="Hand" Margin="0,0,6,6" Padding="0" wpf:CheckBoxAssist.CheckBoxSize="0"
+                          ToolTip="{x:Static res:LanguageResource.Tooltip_RectangleROI}" 
+                          IsChecked="{Binding IsCreateROIRectChecked, Mode =TwoWay}"
+                          Command="{Binding Commands[OperateImageCommand]}" CommandParameter="roi_rect">
+                    <CheckBox.Content>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Width="32" Height="32" Visibility="{Binding IsCreateROIRectHighlighted, Converter={StaticResource booleanToVisibilityConverter}}">
+                                <TextBlock.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i__rectangle_ROI_1.png" Stretch="UniformToFill"/>
+                                </TextBlock.Background>
+                            </TextBlock>
+                            <TextBlock Width="32" Height="32" Visibility="{Binding IsCreateROIRectHighlighted, Converter={StaticResource reverseBooleanToVisibilityConverter}}">
+                                <TextBlock.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i__rectangle_ROI_0.png" Stretch="UniformToFill"/>
+                                </TextBlock.Background>
+                            </TextBlock>
+                        </StackPanel>
+                    </CheckBox.Content>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseEnter]}" CommandParameter="roi_rect" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseLeave]}" CommandParameter="roi_rect" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </CheckBox>
+                <!--Circle ROI-->
+                <CheckBox x:Name="ckbROICircle" BorderThickness="0" Cursor="Hand" Margin="0,0,6,6" Padding="0" wpf:CheckBoxAssist.CheckBoxSize="0"
+                          ToolTip="{x:Static res:LanguageResource.Tooltip_CircleROI}" 
+                          IsChecked="{Binding IsCreateROICircleChecked, Mode =TwoWay}"
+                          Command="{Binding Commands[OperateImageCommand]}" CommandParameter="roi_circle">
+                    <CheckBox.Content>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Width="32" Height="32" Visibility="{Binding IsCreateROICircleHighlighted, Converter={StaticResource booleanToVisibilityConverter}}">
+                                <TextBlock.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_circle_ROI_1.png" Stretch="UniformToFill"/>
+                                </TextBlock.Background>
+                            </TextBlock>
+                            <TextBlock Width="32" Height="32" Visibility="{Binding IsCreateROICircleHighlighted, Converter={StaticResource reverseBooleanToVisibilityConverter}}">
+                                <TextBlock.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_circle_ROI_0.png" Stretch="UniformToFill"/>
+                                </TextBlock.Background>
+                            </TextBlock>
+                        </StackPanel>
+                    </CheckBox.Content>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseEnter]}" CommandParameter="roi_circle" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseLeave]}" CommandParameter="roi_circle" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </CheckBox>
+                <!--Free hand ROI-->
+                <CheckBox x:Name="ckbROIFreehand" BorderThickness="0" Cursor="Hand" Margin="0,0,6,6" Padding="0" wpf:CheckBoxAssist.CheckBoxSize="0"
+                          ToolTip="{x:Static res:LanguageResource.Tooltip_FreehandROI}" 
+                          IsChecked="{Binding IsCreateROIFreehandChecked, Mode =TwoWay}"
+                          Command="{Binding Commands[OperateImageCommand]}" CommandParameter="roi_freehand">
+                    <CheckBox.Content>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Width="32" Height="32" Visibility="{Binding IsCreateROIFreehandHighlighted, Converter={StaticResource booleanToVisibilityConverter}}">
+                                <TextBlock.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_hand_ drawn_1.png" Stretch="UniformToFill"/>
+                                </TextBlock.Background>
+                            </TextBlock>
+                            <TextBlock Width="32" Height="32" Visibility="{Binding IsCreateROIFreehandHighlighted, Converter={StaticResource reverseBooleanToVisibilityConverter}}">
+                                <TextBlock.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_hand_ drawn_0.png" Stretch="UniformToFill"/>
+                                </TextBlock.Background>
+                            </TextBlock>
+                        </StackPanel>
+                    </CheckBox.Content>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseEnter]}" CommandParameter="roi_freehand" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseLeave]}" CommandParameter="roi_freehand" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </CheckBox>
+                <!--Remove All ROI-->
+                <CheckBox x:Name="ckbROIRemoveAll" BorderThickness="0" Cursor="Hand" Margin="0,0,6,6" Padding="0" wpf:CheckBoxAssist.CheckBoxSize="0"
+                          ToolTip="{x:Static res:LanguageResource.ToolTip_Rework}" 
+                          Command="{Binding Commands[OperateImageCommand]}" CommandParameter="roi_removeall">
+                    <CheckBox.Content>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Width="32" Height="32" Visibility="{Binding IsRemoveAllROIHighlighted, Converter={StaticResource booleanToVisibilityConverter}}">
+                                <TextBlock.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_rework_1.png" Stretch="UniformToFill"/>
+                                </TextBlock.Background>
+                            </TextBlock>
+                            <TextBlock Width="32" Height="32" Visibility="{Binding IsRemoveAllROIHighlighted, Converter={StaticResource reverseBooleanToVisibilityConverter}}">
+                                <TextBlock.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_rework_0.png" Stretch="UniformToFill"/>
+                                </TextBlock.Background>
+                            </TextBlock>
+                        </StackPanel>
+                    </CheckBox.Content>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseEnter">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseEnter]}" CommandParameter="roi_removeall" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding Commands[MouseLeave]}" CommandParameter="roi_removeall" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </CheckBox>
+            </WrapPanel>
+        </Grid>
+    </Grid>
+</UserControl>

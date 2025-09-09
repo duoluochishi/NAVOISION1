@@ -1,0 +1,602 @@
+﻿<Window x:Class="NV.CT.JobViewer.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NV.CT.JobViewer.View"
+        xmlns:converter="clr-namespace:NV.CT.UI.Controls.Converter;assembly=NV.CT.UI.Controls"
+        xmlns:common="clr-namespace:NV.CT.UI.Controls.Common;assembly=NV.CT.UI.Controls"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="768" Width="1024" WindowState="Maximized">
+    <Window.Resources>
+        <converter:ReconStatusConvert x:Key="ReconStatusConvert1"></converter:ReconStatusConvert>
+        <converter:Visuality2Converter x:Key="Visuality2Converter"></converter:Visuality2Converter>
+        <converter:ArchiveTaskStatusConverter x:Key="ArchiveTaskStatusConverter"></converter:ArchiveTaskStatusConverter>
+        <converter:DateTimeConverter x:Key="DateTimeConverter"></converter:DateTimeConverter>
+        <SolidColorBrush x:Key="DataGridLinesBrush" Color="#979797" Opacity="0.1"></SolidColorBrush>
+        <SolidColorBrush x:Key="TextForeground" Color="White"></SolidColorBrush>
+        <Style TargetType="{x:Type ProgressBar}" x:Key="SimpleProgressBar">
+
+            <Setter Property="Background" Value="#5A5A89"></Setter>
+            <Setter Property="Foreground" Value="#FFA640"></Setter>
+            <!--<Setter Property="Foreground" Value="#FFA640"></Setter>-->
+            <!--<Style.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=ShowOrange,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Value="True">
+                    <Setter Property="Foreground" Value="#FFA640"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=ShowBlue,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Value="True">
+                    <Setter Property="Foreground" Value="#1665D8"></Setter>
+                </DataTrigger>
+                
+            </Style.Triggers>-->
+            <!--<DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Value}" Value="0.2">
+                    <Setter Property="Foreground" Value="#FFA640"></Setter>
+                </DataTrigger>-->
+            <!--<Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ProgressBar}">
+                        <ControlTemplate.Triggers>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Value}" Value="1">
+                                <Setter Property="Foreground" Value="#1665D8"></Setter>
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+                        -->
+            <!--<Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="30"/>-->
+            <!--<Grid>
+                            <Rectangle RadiusX="10" RadiusY="10" Fill="{TemplateBinding Background}" />
+                            <Rectangle x:Name="PART_Track" RadiusX="10" RadiusY="10" Fill="{StaticResource GrayBrush}" />
+                            <Rectangle x:Name="PART_Indicator" RadiusX="10" RadiusY="10" Fill="{TemplateBinding Foreground}" />
+                        </Grid>-->
+            <!--
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>-->
+        </Style>
+
+        <Style x:Key="GridStyle" TargetType="Grid">
+            <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+            <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+        </Style>
+        <Style x:Key="DataGridTextColumnCenterSytle" TargetType="{x:Type TextBlock}">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="20,0,0,0"></Setter>
+            <!--<Setter Property="MinWidth" Value="50" />
+            <Setter Property="MaxWidth" Value="200" />-->
+        </Style>
+        <Style TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="Background" Value="Transparent"></Setter>
+        </Style>
+        <Style x:Key="DefaultDataGridRow" TargetType="{x:Type DataGridRow}">
+            <Setter Property="Foreground" Value="{StaticResource TextForeground}" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Margin" Value="0,0,0,0" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Height" Value="40"></Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter  Property="Background" Value="{Binding Path=(common:ControlAttachProperty.GridSelectedBrush),RelativeSource={RelativeSource Self}}"/>
+                    <!--<Setter Property="Foreground" Value="{StaticResource ItemSelectedForeground}" />-->
+                </Trigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsSelected" Value="True" />
+                        <Condition Property="Selector.IsSelectionActive" Value="True" />
+                    </MultiTrigger.Conditions>
+                    <Setter  Property="Background" Value="{Binding Path=(common:ControlAttachProperty.GridSelectedBrush),RelativeSource={RelativeSource Self}}"/>
+                </MultiTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter  Property="Background" Value="{Binding Path=(common:ControlAttachProperty.GridMouseOverBrush),RelativeSource={RelativeSource Self}}"/>
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="ContextMenu"  x:Key="LocalDataContextMenu">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ContextMenu">
+                        <Grid>
+                            <Border x:Name="my_border" CornerRadius="5" Padding="0,2,2,2" Background="#16162B" BorderBrush="#4F4F79"  SnapsToDevicePixels="True" Height="236" Width="160" BorderThickness="1.5,1.5,1.5,1.5">
+                                <ItemsPresenter />
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="MenuItem" x:Key="ScanTaskMenuItem">
+            <Setter Property="Foreground" Value="#D0D0D6"/>
+            <Setter Property="Height" Value="33"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Grid x:Name="m_item"  Height="33" Margin="2,0,0,0" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="38"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" HorizontalAlignment="Stretch"  Width="38" Height="33" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center">
+                            </Label>
+                            <Label Grid.Column="1"  x:Name="menu_txt"   HorizontalAlignment="Stretch" VerticalAlignment="Center" HorizontalContentAlignment="Left" Content="{Binding Header,RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="m_item" Property="Background" Value="#2A2A47" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="menu_txt"  Property="Foreground" Value="#444" />
+                                <Setter TargetName="menu_txt"  Property="FontWeight" Value="Bold" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type Path}" x:Key="SimpleButton">
+            <Setter Property="Fill" Value="#5A5A89"></Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True">
+                    <Setter Property="Fill" Value="White"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="False">
+                    <Setter Property="Fill" Value="#5a5a89"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="buttonPath" TargetType="Path">
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetProperty="Fill.Color" To="White" Duration="0:0:0.1"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetProperty="Fill.Color" To="#5A5A89" Duration="0:0:0.1"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+        <SolidColorBrush x:Key="BorderColor">#16162B</SolidColorBrush>
+        <SolidColorBrush x:Key="BaseBackgroundColor" Color="#5a5a89" Opacity="0.3"></SolidColorBrush>
+        <SolidColorBrush x:Key="ItemSelectedForeground" Color="White"></SolidColorBrush>
+        <SolidColorBrush x:Key="DisableOpacity" Opacity="0.5"></SolidColorBrush>
+        <SolidColorBrush x:Key="ItemMouseOverForeground" Color="White"></SolidColorBrush>
+        <Style x:Key="Scan_ListBoxItem" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Foreground" Value="{StaticResource TextForeground}" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="MinHeight" Value="25" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Background" Value="{StaticResource BorderColor}" />
+            <Setter Property="Padding" Value="8,0,0,0" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Grid>
+                            <Border x:Name="Border" Background="{TemplateBinding Background}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"  Margin="0,0,0,0" BorderBrush="#3B3B5E" BorderThickness="0,0,0,0">
+                                <ContentPresenter Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Foreground" Value="{StaticResource ItemSelectedForeground}" />
+                                <Setter TargetName="Border" Property="Background" Value="#4A4A62" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="{StaticResource ItemMouseOverForeground}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="Scan_ListBox" TargetType="{x:Type ListBox}">
+            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}" />
+            <Setter Property="Background" Value="{StaticResource BaseBackgroundColor}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="ItemContainerStyle" Value="{StaticResource Scan_ListBoxItem}"></Setter>
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="False"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBox}">
+                        <Border Name="Border" CornerRadius="0 0 10 10" Background="{TemplateBinding Background}"
+                            BorderBrush="#5A5A89" BorderThickness="1,0,1,1">
+                            <ScrollViewer>
+                                <ItemsPresenter />
+                            </ScrollViewer>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Border" Property="Opacity" Value="0.5" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        </Window.Resources>
+        <Grid Background="#14142B">
+            <Border Background="Black" Padding="0,5,0,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="40" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Border Grid.ColumnSpan="5" Background="#16162B" Opacity="0.3" />
+                    <Grid Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="3" Margin="0,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="300"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0" Height="40" BorderThickness="1" Background="#16162B" 
+                            CornerRadius="10,10,0,0" BorderBrush="#5A5A89" VerticalAlignment="Top" 
+                            Margin="0,0,10,0" >
+
+                        </Border>
+                        <Label Content="Job Viewer" Name="lblTop" Grid.Column="0" Background="#16162B" Foreground="White" 
+                           HorizontalAlignment="Left" 
+                           FontFamily="Microsoft YaHei" 
+                           FontSize="15" 
+                           Margin="25,07,10,0" 
+                           VerticalAlignment="Top" ></Label>
+                        <ListBox  MinHeight="0" Grid.Row="1" Grid.Column="0" Background="#16162B" Name="BodyListBox" 
+                              Style="{StaticResource Scan_ListBox}" SelectionChanged="BodyListBox_SelectionChanged" 
+                              Margin="0,40,10,10">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid x:Name="UserConfigListBox_Item" Height="36">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="36" />
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Column="1" Text="{Binding Text}" 
+                                               VerticalAlignment="Center" Margin="15,0,0,0" 
+                                               FontSize="14" 
+                                               FontFamily="Microsoft YaHei"></TextBlock>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <Border Grid.Row="0" Grid.Column="1" Background="#16162B" BorderThickness="1" CornerRadius="10,10,10,10" 
+                            BorderBrush="#5A5A89" Margin="0,0,5,10">
+                            <Grid Margin="5,0,5,5">
+                                <Grid x:Name="gridRecon" Visibility="Collapsed">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="70" />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Row="0" Height="60" VerticalAlignment="Top" Margin="20,0,0,0">
+                                        <Label FontSize="15" FontWeight="Bold" Margin="0,8,0,0"  Content="Recon" 
+                                           HorizontalAlignment="Left" x:Name="lblRecon"  VerticalAlignment="Center"  Grid.ColumnSpan="2" Height="34" 
+                                           Foreground="#FFC6C6EC" />
+                                        <Rectangle VerticalAlignment="Bottom"  Grid.Column="0" 
+                                               Stroke="#3044D9" Height="3" 
+                                               StrokeThickness="3" Width="{Binding ElementName=lblRecon,Path=ActualWidth}" 
+                                               HorizontalAlignment="Left" 
+                                               Margin="0,0,0,10" 
+                                               SnapsToDevicePixels="True" />
+                                    </Grid>
+                                    <WrapPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Center" Visibility="Collapsed">
+                                        <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="btn_MoveUp" Width="100" Height="40" Margin="5,0,0,0" Command="{Binding Commands[ReconTaskMoveUpCommand]}" CommandParameter="{Binding ElementName=grdJobView,Path=SelectedItem}" Visibility="Collapsed">Up</Button>
+                                        <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="btn_MoveDown" Width="100" Height="40" Margin="5,0,0,0" Command="{Binding Commands[ReconTaskMoveDownCommand]}" CommandParameter="{Binding ElementName=grdJobView,Path=SelectedItem}" Visibility="Collapsed">Down</Button>
+                                        <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="btn_SetTop" Width="100" Height="40" Margin="5,0,0,0" Command="{Binding Commands[ReconTaskToppingCommand]}" CommandParameter="{Binding ElementName=grdJobView,Path=SelectedItem}" Visibility="Collapsed">Top</Button>
+                                        <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="btn_Upgrade" Width="100" Height="40" Margin="5,0,0,0" Command="{Binding Commands[ReconTaskUpgradeCommand]}" CommandParameter="{Binding ElementName=grdJobView,Path=SelectedItem}" Visibility="Collapsed">Upgrade</Button>
+                                        <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="btn_Downgrade" Width="100" Height="40" Margin="5,0,0,0" Command="{Binding Commands[ReconTaskDowngradeCommand]}" CommandParameter="{Binding ElementName=grdJobView,Path=SelectedItem}" Visibility="Collapsed">Downgrade</Button>
+                                        <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="btn_StartRecon" Width="100" Height="40" Margin="5,0,0,0" Command="{Binding Commands[ReconTaskStartCommand]}" CommandParameter="{Binding ElementName=grdJobView,Path=SelectedItem}" Visibility="Collapsed">Start</Button>
+                                        <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="btn_Stop" Width="100" Height="40" Margin="5,0,0,0" Command="{Binding Commands[ReconTaskCancelCommand]}" CommandParameter="{Binding ElementName=grdJobView,Path=SelectedItem}" Visibility="Collapsed">Cancel</Button>
+                                        <Button Grid.Column="1" HorizontalAlignment="Stretch" Width="100" VerticalAlignment="Stretch" x:Name="btn_Delete" Margin="5,0,0,0" Height="40" Command="{Binding Commands[ReconTaskDestroyCommand]}" CommandParameter="{Binding ElementName=grdJobView,Path=SelectedItem}" Visibility="Collapsed">Delete</Button>
+                                    </WrapPanel>
+                                    <DataGrid Name="grdJobView" Grid.Row="1" Grid.ColumnSpan="2"  Grid.RowSpan="5" 
+                                      IsReadOnly="True" 
+                                      SelectionUnit="FullRow" 
+                                      ItemsSource="{Binding OfflineReconInfoModels,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" 
+                                      GridLinesVisibility="Horizontal" 
+                                      HorizontalGridLinesBrush="{StaticResource DataGridLinesBrush }" 
+                                      Background="Transparent"
+                                       VerticalScrollBarVisibility="Auto" 
+                                      HorizontalScrollBarVisibility="Auto" 
+                                      VerticalAlignment="Top"
+                                      Padding="20,0,20,0"
+                                      AutoGenerateColumns="False" ColumnHeaderHeight="40"
+                                       SelectedItem="{Binding CurrentSelectItem,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+                                        <DataGrid.ColumnHeaderStyle>
+                                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                                <Setter Property="Padding" Value="20,0,20,0"></Setter>
+                                                <Setter Property="Background" Value="#1C1C35"></Setter>
+                                            </Style>
+                                        </DataGrid.ColumnHeaderStyle>
+                                        <DataGrid.CellStyle>
+                                            <Style TargetType="{x:Type DataGridCell}">
+                                                <Setter Property="Margin" Value="0,0,0,0"></Setter>
+                                                <Setter Property="Height" Value="45"></Setter>
+                                            </Style>
+                                        </DataGrid.CellStyle>
+                                        <DataGrid.ContextMenu>
+                                            <ContextMenu Placement="MousePoint"
+                                             Style="{StaticResource LocalDataContextMenu}">
+                                                <MenuItem Header="Topping" IsEnabled="{Binding CanToppingTask}" Style="{StaticResource ScanTaskMenuItem}" Command="{Binding Commands[ReconTaskToppingCommand]}" CommandParameter="{Binding CurrentSelectItem}" />
+                                                <Separator />
+                                                <MenuItem Header="Upgrade" IsEnabled="{Binding CanUpgradeTask}" Style="{StaticResource ScanTaskMenuItem}" Command="{Binding Commands[ReconTaskUpgradeCommand]}" CommandParameter="{Binding CurrentSelectItem}" />
+                                                <Separator />
+                                                <MenuItem Header="Downgrade" IsEnabled="{Binding CanDowngradeTask}" Style="{StaticResource ScanTaskMenuItem}" Command="{Binding Commands[ReconTaskDowngradeCommand]}" CommandParameter="{Binding CurrentSelectItem}" />
+                                                <Separator />
+                                                <MenuItem Header="MoveUp" IsEnabled="{Binding CanMoveUpTask}" Style="{StaticResource ScanTaskMenuItem}" Command="{Binding Commands[ReconTaskMoveUpCommand]}" CommandParameter="{Binding CurrentSelectItem}" />
+                                                <Separator />
+                                                <MenuItem Header="MoveDown" IsEnabled="{Binding CanMoveDownTask}" Style="{StaticResource ScanTaskMenuItem}" Command="{Binding Commands[ReconTaskMoveDownCommand]}" CommandParameter="{Binding CurrentSelectItem}" />
+                                            </ContextMenu>
+                                        </DataGrid.ContextMenu>
+                                        <DataGrid.Columns >                                            <DataGridTextColumn  Header="Series number" Width="*"  Binding="{Binding SeriesUID}"  ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" >                                            </DataGridTextColumn>                                            <DataGridTextColumn Header="Recon status" Width="*" Binding="{Binding Status}" ElementStyle="{StaticResource DataGridTextColumnCenterSytle}"  FontSize="15"  FontWeight="Bold" />                                            <DataGridTextColumn Header="Patient name" Width="*" Binding="{Binding PatientName}"  ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" />                                            <DataGridTextColumn Header="Patient ID" Width="*" Binding="{Binding PatientId}"  ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" />                                            <DataGridTextColumn Header="Task time" x:Name="dtcReconTaskDateTime" Width="*" Binding="{Binding ReconTaskDateTime,Converter={StaticResource DateTimeConverter}}"  ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" />                                            <DataGridTextColumn Header="Series description" Width="*" Binding="{Binding SeriesDescription}"  ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" />                                            <DataGridTemplateColumn Width="150"  Header="Progress">                                                <DataGridTemplateColumn.CellTemplate>                                                    <DataTemplate>                                                        <ProgressBar Height="8" Style="{StaticResource SimpleProgressBar}" Value="{Binding Progress,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="1" Margin="0,0,5,0" ValueChanged="ProgressBar_ValueChanged">
+                                                        </ProgressBar>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTemplateColumn
+                                            Width="auto"
+                                            MinWidth="200"
+                                            Header="Operate">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                                            <Button
+                                                        x:Name="btn_Start"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        Background="Transparent"
+                                                        BorderThickness="0"
+                                                        ToolTip="Start task"
+                                                        Opacity="0.7" Margin="20 0 0 0" IsEnabled="{Binding StartEnabled}">
+                                                                <!--Data="M823.8 603.5l-501.2 336c-50.7 34-119.3 20.4-153.2-30.2-12.2-18.2-18.7-39.6-18.7-61.5v-672c0-61 49.5-110.4 110.4-110.4 21.9 0 43.3 6.5 61.5 18.7l501.1 336c50.7 34 64.2 102.6 30.2 153.2-7.8 11.9-18.1 22.2-30.1 30.2z m0 0"-->
+
+                                                                <Path
+                                                        Width="20"
+                                                        Height="20"                                                        
+                                                        Data="M409 379.1c0-36.42 25.12-50.47 56.11-31.38L674 476.42c31 19.08 30.91 50 0 69L465.11 674.15c-31 19.09-56.11 5-56.11-31.38z m0 0"
+                                                        Fill="#5a5a89"
+                                                        Stretch="Fill" Style="{StaticResource buttonPath}">
+                                                                </Path>
+                                                                <Button.InputBindings>
+                                                                    <MouseBinding MouseAction="LeftClick" Command="{Binding DataContext.Commands[ReconTaskStartCommand],RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DataGrid}}" CommandParameter="{Binding }"></MouseBinding>
+                                                                </Button.InputBindings>
+                                                            </Button>
+                                                            <Button
+                                                        x:Name="btn_Cancel"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        Background="Transparent"
+                                                        BorderThickness="0"  
+                                                        ToolTip="Cancel task"
+                                                        Opacity="0.7" Margin="5 0 0 0" IsEnabled="{Binding CancelEnabled}">
+                                                                <Path
+                                                        Width="20"
+                                                        Height="20"
+                                                        Data="M573.696636 137.035153c-213.499732 0-386.574729 170.813091-386.574728 381.522615v35.578071L113.658856 480.674744a29.252167 29.252167 0 0 0-20.764147-8.61129c-16.209027 0.001957-29.351957 13.140974-29.350001 29.350001a29.246297 29.246297 0 0 0 8.595637 20.754364l125.220799 125.218842c0.665267 0.667223 1.363797 1.301183 2.089721 1.90188 0.168273 0.136967 0.3522 0.256323 0.52243 0.389377 0.567433 0.448077 1.136823 0.894197 1.73752 1.299227 0.242627 0.16436 0.50482 0.29937 0.75136 0.455903 0.549823 0.348287 1.095733 0.700487 1.670993 1.01551 0.285673 0.15262 0.587 0.27589 0.87463 0.420684 0.559607 0.28176 1.111387 0.571347 1.69056 0.81593 0.178057 0.074353 0.367853 0.127183 0.543953 0.19958 0.708313 0.283717 1.42054 0.559607 2.15429 0.78658 0.04109 0.013697 0.084137 0.021523 0.125227 0.033263 0.878543 0.27002 1.77274 0.50482 2.686504 0.69266 0.091963 0.019567 0.18784 0.025437 0.28176 0.04109 1.82557 0.356113 3.705927 0.553737 5.631286 0.553737h0.003914c1.92536 0 3.805717-0.19958 5.631286-0.553737 0.09392-0.01761 0.189797-0.02348 0.28176-0.04109 0.913763-0.18784 1.80796-0.42264 2.686504-0.69266 0.04109-0.01174 0.084137-0.019567 0.125227-0.033263a29.467401 29.467401 0 0 0 2.15429-0.78658c0.178057-0.07044 0.367853-0.12327 0.543953-0.19958 0.579173-0.244583 1.130953-0.53417 1.69056-0.81593 0.28763-0.144793 0.590913-0.268063 0.87463-0.420684 0.57526-0.313067 1.119213-0.667223 1.670993-1.01551 0.24654-0.156533 0.508733-0.291543 0.75136-0.455903 0.600697-0.40503 1.170087-0.853107 1.73752-1.299227 0.17023-0.133053 0.354157-0.25241 0.52243-0.389377 0.725923-0.600697 1.42641-1.234657 2.08972-1.90188l125.2208-125.218842a29.252167 29.252167 0 0 0 8.595637-20.754364c0.001957-16.209027-13.140974-29.348044-29.350001-29.350001a29.248254 29.248254 0 0 0-20.764147 8.61129l-75.985195 75.983239v-43.899775c0-180.502504 148.264463-317.021097 331.159971-317.021097 182.893551 0 323.810731 136.518593 323.810731 317.021097 0 178.559534-147.693117 325.393674-327.870815 328.494991-16.209027 0-29.350001 13.14293-29.35 29.350001 0 16.210984 13.140974 29.350001 29.35 29.350001 208.905478-5.204733 386.574729-173.969194 386.574729-381.395433-0.003913-210.709525-173.080867-381.522615-386.580599-381.522615z"
+                                                        Fill="#5a5a89"
+                                                        Stretch="Fill" Style="{StaticResource buttonPath}">
+                                                                </Path>
+                                                                <Button.InputBindings>
+                                                                    <MouseBinding MouseAction="LeftClick" Command="{Binding DataContext.Commands[ReconTaskCancelCommand],RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DataGrid}}" CommandParameter="{Binding }"></MouseBinding>
+                                                                </Button.InputBindings>
+                                                            </Button>
+                                                            <Button
+                                                            x:Name="btn_Delete"
+                                                            HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"
+                                                            Background="Transparent"
+                                                            BorderThickness="0" 
+                                                            ToolTip="Delete task"
+                                                            Opacity="0.7" Margin="5 0 0 0" IsEnabled="{Binding DeleteEnabled}">
+                                                                <Path
+                                                                Width="20"
+                                                                Height="20"
+                                                                Data="M236,3.93536692 L236,4.8096012 C236,4.93561695 235.963175,5.04325541 235.884615,5.12201525 C235.806056,5.20602575 235.710311,5.24540568 235.592471,5.24540568 L234.364975,5.24540568 L234.364975,18.2092762 C234.364975,18.9653707 234.163666,19.6190774 233.765957,20.1703963 C233.365794,20.7217152 232.884615,21 232.322422,21 L221.677578,21 C221.115385,21 220.634206,20.7322165 220.234043,20.1992749 C219.833879,19.6663333 219.635025,19.0205026 219.635025,18.2644081 L219.635025,5.25065633 L218.407529,5.25065633 C218.289689,5.25065633 218.189034,5.21127641 218.115385,5.12726591 C218.036825,5.04325541 218,4.94086761 218,4.81485186 L218,3.94061758 C218,3.81460183 218.036825,3.70696337 218.115385,3.62820353 C218.193944,3.54419302 218.289689,3.5048131 218.407529,3.5048131 L222.360065,3.5048131 L223.256137,1.2207776 C223.386252,0.884735592 223.614566,0.595949494 223.948445,0.357044631 C224.282324,0.120765096 224.618658,0 224.959902,0 L229.052373,0 C229.393617,0 229.729951,0.118139767 230.06383,0.357044631 C230.397709,0.593324166 230.626023,0.879484936 230.756137,1.2207776 L231.652209,3.5048131 L235.602291,3.5048131 C235.720131,3.5048131 235.820786,3.54419302 235.894435,3.62820353 C235.963175,3.70171271 236,3.80935117 236,3.93536692 Z M224,16.5435 L224,6.4565 C224,6.3245 223.954887,6.21175 223.858647,6.12925 C223.762406,6.04125 223.645113,6 223.500752,6 L222.499248,6 C222.354887,6 222.231579,6.04125 222.141353,6.12925 C222.045113,6.21725 222,6.3245 222,6.4565 L222,16.5435 C222,16.6755 222.045113,16.78825 222.141353,16.87075 C222.237594,16.95875 222.354887,17 222.499248,17 L223.500752,17 C223.645113,17 223.768421,16.95875 223.858647,16.87075 C223.954887,16.7855 224,16.6755 224,16.5435 Z M225,4 L230,4 L229.464439,2.17117117 C229.413025,2.07507508 229.348757,2.02102102 229.273779,2 L225.736932,2 C225.661954,2.02102102 225.597686,2.07807808 225.546272,2.17117117 L225,4 L225,4 Z M228,16.5435 L228,6.4565 C228,6.3245 227.954887,6.21175 227.858647,6.12925 C227.762406,6.04125 227.645113,6 227.500752,6 L226.499248,6 C226.354887,6 226.231579,6.04125 226.141353,6.12925 C226.045113,6.21725 226,6.3245 226,6.4565 L226,16.5435 C226,16.6755 226.045113,16.78825 226.141353,16.87075 C226.237594,16.95875 226.354887,17 226.499248,17 L227.500752,17 C227.645113,17 227.768421,16.95875 227.858647,16.87075 C227.95188,16.7855 228,16.6755 228,16.5435 Z M232,16.5435 L232,6.4565 C232,6.3245 231.954887,6.21175 231.858647,6.12925 C231.762406,6.04125 231.645113,6 231.500752,6 L230.499248,6 C230.354887,6 230.231579,6.04125 230.141353,6.12925 C230.045113,6.21725 230,6.3245 230,6.4565 L230,16.5435 C230,16.6755 230.045113,16.78825 230.141353,16.87075 C230.237594,16.95875 230.354887,17 230.499248,17 L231.500752,17 C231.645113,17 231.768421,16.95875 231.858647,16.87075 C231.954887,16.7855 232,16.6755 232,16.5435 L232,16.5435 Z"
+                                                                Fill="#5a5a89"
+                                                                Stretch="Fill" Style="{StaticResource buttonPath}">
+                                                                </Path>
+                                                                <Button.InputBindings>
+                                                                    <MouseBinding MouseAction="LeftClick" Command="{Binding DataContext.Commands[ReconTaskDestroyCommand],RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DataGrid}}" CommandParameter="{Binding }"></MouseBinding>
+                                                                </Button.InputBindings>
+                                                            </Button>
+                                                            <Button
+                                                        x:Name="btn_Up"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        Background="Transparent"
+                                                        BorderThickness="0"
+                                                        ToolTip="Upgrade task"
+                                                        Opacity="0.7" Margin="5 0 0 0" IsEnabled="{Binding UpgradeEnabled}">
+                                                                <Path
+                                                                Width="20"
+                                                                Height="20"
+                                                                Data="M96.196 671.807l415.804-415.632 415.803 415.632-63.616 63.445-352.209-352.017-352.102 352.017z"
+                                                                Fill="#5a5a89"
+                                                                Stretch="Fill" Style="{StaticResource buttonPath}">
+                                                                </Path>
+                                                                <Button.InputBindings>
+                                                                    <MouseBinding MouseAction="LeftClick" Command="{Binding DataContext.Commands[ReconTaskUpgradeCommand],RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DataGrid}}" CommandParameter="{Binding }"></MouseBinding>
+                                                                </Button.InputBindings>
+                                                            </Button>
+                                                            <Button
+                                                        x:Name="btn_Down"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        Background="Transparent"
+                                                        BorderThickness="0"
+                                                        ToolTip="Downgrade task"
+                                                        Opacity="0.7" Margin="5 0 0 0" IsEnabled="{Binding DowngradeEnabled}">
+                                                                <Path
+                                                                Width="20"
+                                                                Height="20"
+                                                                Data="M927.804 352.193l-415.804 415.632-415.803-415.632 63.616-63.445 352.209 352.017 352.102-352.017z"
+                                                                Fill="#5a5a89"
+                                                                Stretch="Fill" Style="{StaticResource buttonPath}">
+                                                                </Path>
+                                                                <Button.InputBindings>
+                                                                    <MouseBinding MouseAction="LeftClick" Command="{Binding DataContext.Commands[ReconTaskDowngradeCommand],RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DataGrid}}" CommandParameter="{Binding }"></MouseBinding>
+                                                                </Button.InputBindings>
+                                                            </Button>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Grid>
+                                <Grid x:Name="gridPrint" Visibility="Collapsed">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40*"/>
+                                        <ColumnDefinition Width="403*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <DataGrid Name="dgPrint" Grid.ColumnSpan="2" ItemsSource="{Binding PrintTasks,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="{StaticResource DataGridLinesBrush }" Background="Transparent"
+                                       VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" AutoGenerateColumns="False" ColumnHeaderHeight="40">
+
+                                        <DataGrid.Columns>
+
+                                            <DataGridTextColumn  Header="Task ID" Width="120"  Binding="{Binding TaskID}"  ElementStyle="{StaticResource DataGridTextColumnCenterSytle}">
+                                            </DataGridTextColumn>
+                                            <DataGridTextColumn Header="Printer" Width="150" Binding="{Binding Printer}"  ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" />
+                                            <DataGridTextColumn Header="Patient ID" Width="*" Binding="{Binding PatientID}"  ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" />
+                                            <DataGridTextColumn Header="Patient name" Width="*" Binding="{Binding PatientName}"  ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" />
+                                            <DataGridTextColumn Header="Copies" Width="100" Binding="{Binding Copies}" ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" />
+                                            <DataGridTextColumn Header="Paper size" Width="150" Binding="{Binding PaperSize}"  ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" />
+                                            <DataGridTextColumn Header="Start time" x:Name="dtcStartDate" Width="150" Binding="{Binding StartTime}"  ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" />
+                                            <DataGridTextColumn Header="End time" Width="*" x:Name="dtcEndDate" Binding="{Binding EndTime}"  ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" />
+                                            <DataGridTextColumn Header="Task state" Width="100" Binding="{Binding TaskState}"  ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" />
+                                            <!--<DataGridTextColumn Header="Progress" Width="100" Binding="{Binding Progress}"  ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" />-->
+                                            <DataGridTemplateColumn Width="150"  Header="Progress">                                                <DataGridTemplateColumn.CellTemplate>                                                    <DataTemplate>                                                        <ProgressBar Height="8"  Value="{Binding Progress,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="100" Margin="0,0,5,0"></ProgressBar>
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Grid>
+
+                                <Grid x:Name="gridArchive" Visibility="Collapsed">
+                                    <DataGrid ItemsSource="{Binding ArchivedataSource,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Grid.RowSpan="5" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="{StaticResource DataGridLinesBrush }" Background="Transparent"
+                                       VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" AutoGenerateColumns="False" ColumnHeaderHeight="40">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Patient name" Width="*" Binding="{Binding PatientName}"  ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" />
+                                            <DataGridTextColumn Header="Patient ID" Width="*" Binding="{Binding PatientID}"  ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" />
+                                            <DataGridTextColumn Header="AE" Width="150" Binding="{Binding AE}"  ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" />
+                                            <DataGridTextColumn Header="Start time" Width="150" x:Name="dtcStartTime" Binding="{Binding StartTime}"  ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" />
+                                            <DataGridTextColumn Header="End time" Width="150" x:Name="dtcEndTime" Binding="{Binding EndTime}"  ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" />
+                                            <DataGridTextColumn Header="Creator" Width="150" Binding="{Binding Creator}" ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" />
+                                            <DataGridTextColumn Header="Task state" Width="100" Binding="{Binding TaskState,Converter={StaticResource ArchiveTaskStatusConverter}}" ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Grid>
+
+                                <Grid x:Name="gridImport" Visibility="Collapsed">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="10*"/>
+                                        <ColumnDefinition Width="73*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <DataGrid  Grid.ColumnSpan="2" IsReadOnly="True" ItemsSource="{Binding ImportTaskInfos,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="{StaticResource DataGridLinesBrush }" Background="Transparent"
+                                       VerticalScrollBarVisibility="Auto"  HorizontalScrollBarVisibility="Auto" AutoGenerateColumns="False" ColumnHeaderHeight="40">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Task name" Width="*" Binding="{Binding TaskName}"  ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" />
+                                            <DataGridTextColumn Header="Task time" Width="*" Binding="{Binding TaskTime}"  ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" />
+                                            <!--Style="{StaticResource importProgressBar}"-->
+                                        <DataGridTemplateColumn Width="150"  Header="Progress">                                            <DataGridTemplateColumn.CellTemplate>                                                <DataTemplate>                                                    <ProgressBar Height="8" x:Name="barImportTask" ValueChanged="barImportTask_ValueChanged" Style="{StaticResource SimpleProgressBar}" ToolTip="{Binding ErrorMessage}" Value="{Binding Progress,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="110" Margin="0,0,5,0">
+
+                                                    </ProgressBar>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                    </DataGrid>
+                                </Grid>
+                            <Grid Grid.Row="1" x:Name="gridExport" Visibility="Collapsed">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10*"/>
+                                    <ColumnDefinition Width="73*"/>
+                                </Grid.ColumnDefinitions>
+                                <DataGrid  Grid.ColumnSpan="2" IsReadOnly="True" ItemsSource="{Binding ExportTaskInfos,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" 
+                                           GridLinesVisibility="Horizontal" 
+                                           HorizontalGridLinesBrush="{StaticResource DataGridLinesBrush }" 
+                                           Background="Transparent" Margin="0,15,0,0" Padding="20,0,20,0"
+                                           VerticalScrollBarVisibility="Auto" 
+                                           HorizontalScrollBarVisibility="Auto" 
+                                           AutoGenerateColumns="False" 
+                                           ColumnHeaderHeight="40">
+                                    <DataGrid.ColumnHeaderStyle>
+                                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                                            <Setter Property="Padding" Value="20,0,20,0"></Setter>
+                                            <Setter Property="Background" Value="#1C1C35"></Setter>
+                                        </Style>
+                                    </DataGrid.ColumnHeaderStyle>
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Patient name" Width="*" Binding="{Binding PatientName}"  ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" />
+                                        <DataGridTextColumn Header="Patient Id" Width="*" Binding="{Binding PatientId}"  ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" />
+                                        <DataGridTextColumn Header="Task name" Width="*" Binding="{Binding TaskName}"  ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" />
+                                        <DataGridTextColumn Header="Task time" Width="*" Binding="{Binding TaskTime}"  ElementStyle="{StaticResource DataGridTextColumnCenterSytle}" />
+                                        <!--Style="{StaticResource importProgressBar}"-->
+                                        <DataGridTemplateColumn Width="150"  Header="Progress">                                            <DataGridTemplateColumn.CellTemplate>                                                <DataTemplate>                                                    <ProgressBar x:Name="barExportTask" ValueChanged="barExportTask_ValueChanged" Height="8" Style="{StaticResource SimpleProgressBar}" ToolTip="{Binding ErrorMessage}" Value="{Binding Progress,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="100"   Margin="0,0,5,0">
+
+                                                    </ProgressBar>
+
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+
+
+                            <!--<TabControl x:Name="tabControl" VerticalAlignment="Stretch" Visibility="Collapsed" HorizontalAlignment="Stretch" 
+                                    Background="Transparent" Margin="0,30,0,0">
+                        <TabItem x:Name="tb1" Header="Recon" Width="250" Height="50" Margin="0 0 0 0" 
+                                 BorderThickness="1" 
+                                 common:ControlAttachProperty.TabItemBorderThickness="1" 
+                                 common:ControlAttachProperty.FIconSize="15" 
+                                 common:ControlAttachProperty.CornerRadius="3,3,0,0" 
+                                 common:ControlAttachProperty.FocusBackground="#3247E5">
+                                <TextBlock></TextBlock>
+                        </TabItem>
+                        <TabItem x:Name="tb2" Header="Print" Width="250" Height="50" BorderThickness="0" common:ControlAttachProperty.TabItemBorderThickness="0" common:ControlAttachProperty.FIconSize="15" common:ControlAttachProperty.CornerRadius="3,3,0,0" common:ControlAttachProperty.FocusBackground="#3247E5">
+                            
+                        </TabItem>
+                        <TabItem x:Name="tb3" Header="Archive" Width="250" Height="50" common:ControlAttachProperty.TabItemBorderThickness="0" common:ControlAttachProperty.FIconSize="15" common:ControlAttachProperty.CornerRadius="3,3,0,0" common:ControlAttachProperty.FocusBackground="#3247E5">
+
+                        </TabItem>
+                        <TabItem  Header="Import" x:Name="tbImport" Width="250" Height="50" common:ControlAttachProperty.TabItemBorderThickness="0" common:ControlAttachProperty.FIconSize="15" common:ControlAttachProperty.CornerRadius="3,3,0,0" common:ControlAttachProperty.FocusBackground="#3247E5">
+
+                        </TabItem>
+                    </TabControl>-->
+                            </Grid>
+                        </Border>
+
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+</Window>

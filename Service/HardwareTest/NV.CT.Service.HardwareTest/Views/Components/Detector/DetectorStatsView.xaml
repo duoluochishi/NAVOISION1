@@ -1,0 +1,485 @@
+﻿<Grid
+    x:Class="NV.CT.Service.HardwareTest.Views.Components.Detector.DetectorStatsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:NV.CT.Service.HardwareTest.Attachments.Converters"
+    xmlns:helpers="clr-namespace:NV.CT.Service.HardwareTest.Attachments.Helpers"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mk="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableTextBox;assembly=MaterialDesignThemes.Wpf">
+    <Grid.Resources>
+        <converters:UniversalMultiBindingConverter x:Key="UniversalMultiBindingConverter" />
+        <!--  ParameterGroupBoxStyle  -->
+        <Style
+            x:Key="ParameterGroupBoxStyle"
+            BasedOn="{StaticResource MaterialDesignGroupBox}"
+            TargetType="{x:Type GroupBox}">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="Padding" Value="4,2" />
+            <Setter Property="Width" Value="160" />
+            <Setter Property="Height" Value="70" />
+            <Setter Property="Margin" Value="1,1,0,1" />
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock
+                            HorizontalAlignment="Left"
+                            Foreground="White"
+                            Text="{Binding Header, RelativeSource={RelativeSource AncestorType=GroupBox}}" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--  SeriesNumberMarkableTextBoxStyle  -->
+        <Style
+            x:Key="SeriesNumberMarkableTextBoxStyle"
+            BasedOn="{StaticResource MarkableTextBox}"
+            TargetType="{x:Type mk:MarkableTextBox}">
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Margin" Value="5,0" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="IsReadOnly" Value="True" />
+        </Style>
+        <!--  SplitRectangeStyle  -->
+        <Style
+            x:Key="SplitRectangeStyle"
+            TargetType="{x:Type Rectangle}">
+            <Setter Property="Width" Value="400" />
+            <Setter Property="Height" Value="2" />
+            <Setter Property="Stroke" Value="{StaticResource BaseRoundButtonBrush}" />
+            <Setter Property="StrokeThickness" Value="1" />
+        </Style>
+        <!--  SplitTextBlockStyle  -->
+        <Style
+            x:Key="SplitTextBlockStyle"
+            BasedOn="{StaticResource NanoTextBlockStyle}"
+            TargetType="{x:Type TextBlock}">
+            <Setter Property="Width" Value="300" />
+            <Setter Property="Margin" Value="10,0" />
+            <Setter Property="Padding" Value="40,3" />
+            <Setter Property="Background" Value="{StaticResource BaseBackgroundColor}" />
+            <Setter Property="Opacity" Value="0.95" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="TextAlignment" Value="Center" />
+        </Style>
+        <!--  StandardButtonStyle  -->
+        <Style
+            x:Key="StandardButtonStyle"
+            BasedOn="{StaticResource NanoButtonStyle}"
+            TargetType="{x:Type Button}">
+            <Setter Property="Margin" Value="20,0" />
+            <Setter Property="Padding" Value="20,0" />
+        </Style>
+        <!--  DetectorOuterBorderStyle  -->
+        <Style
+            x:Key="DetectorBorderStyle"
+            TargetType="{x:Type Border}">
+            <Setter Property="Width" Value="1110" />
+            <Setter Property="Padding" Value="20" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="BorderBrush" Value="{StaticResource BaseTabBackBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="5" />
+        </Style>
+        <!--  StandardMarkableTextBoxStyle  -->
+        <Style
+            x:Key="StandardMarkableTextBoxStyle"
+            BasedOn="{StaticResource MarkableTextBox}"
+            TargetType="{x:Type mk:MarkableTextBox}">
+            <Setter Property="Height" Value="260" />
+            <Setter Property="VerticalContentAlignment" Value="Top" />
+            <Setter Property="IsReadOnly" Value="True" />
+            <Setter Property="VerticalScrollBarVisibility" Value="Visible" />
+        </Style>
+        <!--  ClearButtonStyle  -->
+        <Style
+            x:Key="ClearButtonStyle"
+            BasedOn="{StaticResource NanoButtonStyle}"
+            TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="50" />
+            <Setter Property="Height" Value="24" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Margin" Value="1" />
+        </Style>
+
+    </Grid.Resources>
+
+    <GroupBox
+        Header="Detector Irradiation Data Statistics Viewer"
+        Style="{DynamicResource StandardGroupBoxStyle}">
+
+        <TabControl>
+
+            <!--  Data Acquisition  -->
+            <TabItem Header="Data Acquisition">
+
+                <Border Style="{StaticResource DetectorBorderStyle}">
+
+                    <Grid Margin="10">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="45" />
+                            <RowDefinition />
+                            <RowDefinition Height="45" />
+                            <RowDefinition Height="100" />
+                            <RowDefinition Height="45" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid
+                            Grid.ColumnSpan="2"
+                            Margin="0,10"
+                            HorizontalAlignment="Center">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Rectangle
+                                Grid.Column="0"
+                                Style="{StaticResource SplitRectangeStyle}" />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                Style="{StaticResource SplitTextBlockStyle}"
+                                Text="Data Acquisiton Parameters" />
+
+                            <Rectangle
+                                Grid.Column="2"
+                                Style="{StaticResource SplitRectangeStyle}" />
+
+                        </Grid>
+
+                        <GroupBox
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Margin="10,10"
+                            Padding="10"
+                            Header="【Dark Field】 Data Acquisition Parameters">
+
+                            <WrapPanel>
+
+                                <GroupBox
+                                    Header="kV"
+                                    IsEnabled="False"
+                                    Style="{StaticResource ParameterGroupBoxStyle}">
+                                    <mk:MarkableTextBox Text="{Binding DarkFieldParameters.ExposureParameters.KVs[0], Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox
+                                    Header="mA"
+                                    IsEnabled="False"
+                                    Style="{StaticResource ParameterGroupBoxStyle}">
+                                    <TextBox Text="{Binding DarkFieldParameters.ExposureParameters.MAs[0], Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox
+                                    Header="Gain"
+                                    Style="{StaticResource ParameterGroupBoxStyle}">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding DarkFieldParameters.DetectorParameters.CurrentGain, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox
+                                    Header="Auto Delete Number"
+                                    Style="{StaticResource ParameterGroupBoxStyle}">
+                                    <mk:MarkableTextBox Text="{Binding DarkFieldParameters.ExposureParameters.AutoDeleteNumber, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox
+                                    Header="Total Frames"
+                                    Style="{StaticResource ParameterGroupBoxStyle}">
+                                    <mk:MarkableTextBox Text="{Binding DarkFieldParameters.ExposureParameters.TotalFrames, Mode=TwoWay}" />
+                                </GroupBox>
+
+                            </WrapPanel>
+
+                        </GroupBox>
+
+                        <GroupBox
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="10,10"
+                            Padding="10"
+                            Header="【Bright Field】 Data Acquisition Parameters">
+
+                            <WrapPanel>
+
+                                <GroupBox
+                                    Header="kV"
+                                    Style="{StaticResource ParameterGroupBoxStyle}">
+                                    <mk:MarkableTextBox Text="{Binding BrightFieldParameters.ExposureParameters.KVs[0], Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox
+                                    Header="mA"
+                                    Style="{StaticResource ParameterGroupBoxStyle}">
+                                    <mk:MarkableTextBox Text="{Binding BrightFieldParameters.ExposureParameters.MAs[0], Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox
+                                    Header="Frame Time(ms)"
+                                    Style="{StaticResource ParameterGroupBoxStyle}">
+                                    <mk:MarkableTextBox Text="{Binding BrightFieldParameters.ExposureParameters.FrameTime, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox
+                                    Header="Gain"
+                                    Style="{StaticResource ParameterGroupBoxStyle}">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding BrightFieldParameters.DetectorParameters.CurrentGain, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox
+                                    Header="Auto Delete Number"
+                                    Style="{StaticResource ParameterGroupBoxStyle}">
+                                    <mk:MarkableTextBox Text="{Binding BrightFieldParameters.ExposureParameters.AutoDeleteNumber, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox
+                                    Header="Total Frames"
+                                    Style="{StaticResource ParameterGroupBoxStyle}">
+                                    <mk:MarkableTextBox Text="{Binding BrightFieldParameters.ExposureParameters.TotalFrames, Mode=TwoWay}" />
+                                </GroupBox>
+
+                            </WrapPanel>
+
+                        </GroupBox>
+
+                        <Grid
+                            Grid.Row="2"
+                            Grid.ColumnSpan="2"
+                            Margin="0,10"
+                            HorizontalAlignment="Center">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Rectangle
+                                Grid.Column="0"
+                                Style="{StaticResource SplitRectangeStyle}" />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                Style="{StaticResource SplitTextBlockStyle}"
+                                Text="Data Acquisition Control" />
+
+                            <Rectangle
+                                Grid.Column="2"
+                                Style="{StaticResource SplitRectangeStyle}" />
+
+                        </Grid>
+
+                        <StackPanel
+                            Grid.Row="3"
+                            Grid.ColumnSpan="2"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
+
+                            <Button
+                                Command="{Binding StartDataAcquisitionCommand}"
+                                Content="Start Data Acquisition"
+                                Style="{StaticResource StandardButtonStyle}" />
+                            <Button
+                                Command="{Binding StopDataAcquisitionCommand}"
+                                Content="Stop Data Acquisition"
+                                Style="{StaticResource StandardButtonStyle}" />
+
+                        </StackPanel>
+
+                        <Grid
+                            Grid.Row="4"
+                            Grid.ColumnSpan="2"
+                            Margin="0,10"
+                            HorizontalAlignment="Center">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Rectangle
+                                Grid.Column="0"
+                                Style="{StaticResource SplitRectangeStyle}" />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                Style="{StaticResource SplitTextBlockStyle}"
+                                Text="Console" />
+
+                            <Rectangle
+                                Grid.Column="2"
+                                Style="{StaticResource SplitRectangeStyle}" />
+
+                        </Grid>
+
+                        <mk:MarkableTextBox
+                            Grid.Row="5"
+                            Grid.ColumnSpan="2"
+                            Style="{StaticResource StandardMarkableTextBoxStyle}"
+                            Text="{Binding ConsoleMessage, Mode=TwoWay}"
+                            TextChanged="MarkableTextBox_TextChanged" />
+
+                        <Button
+                            Grid.Row="5"
+                            Grid.ColumnSpan="2"
+                            Command="{Binding ClearConsoleMessageCommand}"
+                            Style="{StaticResource ClearButtonStyle}">
+                            <md:PackIcon Kind="Refresh" />
+                        </Button>
+
+                    </Grid>
+
+                </Border>
+
+            </TabItem>
+
+            <!--  Detector Board Series Number NoteBook  -->
+            <TabItem Header="Detector Board Series Number NoteBook">
+
+                <Grid>
+
+                    <Grid.Resources>
+
+                        <!--  DetectorSeriesNumberBorderStyle  -->
+                        <Style
+                            x:Key="DetectorSeriesNumberBorderStyle"
+                            TargetType="{x:Type Border}">
+                            <Setter Property="Padding" Value="2" />
+                            <Setter Property="Margin" Value="5,2" />
+                            <Setter Property="BorderBrush" Value="{StaticResource BaseTabBackBrush}" />
+                            <Setter Property="BorderThickness" Value="1" />
+                            <Setter Property="CornerRadius" Value="5" />
+                        </Style>
+
+                        <!--  DetectorSeriesNumberButtonStyle  -->
+                        <Style
+                            x:Key="DetectorSeriesNumberButtonStyle"
+                            BasedOn="{StaticResource NanoButtonStyle}"
+                            TargetType="{x:Type Button}">
+                            <Setter Property="MinWidth" Value="28" />
+                            <Setter Property="Height" Value="28" />
+                            <Setter Property="Padding" Value="5,1" />
+                            <Setter Property="Margin" Value="2,0" />
+                        </Style>
+
+                    </Grid.Resources>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions>
+
+                    <ScrollViewer Margin="10">
+
+                        <ItemsControl
+                            HorizontalAlignment="Center"
+                            ItemsSource="{Binding DetectBoardSlots}">
+
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+
+                            <ItemsControl.ItemTemplate>
+
+                                <DataTemplate>
+
+                                    <Border Style="{StaticResource DetectorSeriesNumberBorderStyle}">
+
+                                        <Grid>
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="150" />
+                                                <ColumnDefinition Width="110" />
+                                                <ColumnDefinition Width="300" />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                FontWeight="Bold"
+                                                Text="{Binding Name}" />
+
+                                            <TextBlock
+                                                Grid.Column="1"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Text="Series Number :" />
+
+                                            <mk:MarkableTextBox
+                                                Grid.Column="2"
+                                                Style="{StaticResource SeriesNumberMarkableTextBoxStyle}"
+                                                Text="{Binding InstalledDetectBoard.SeriesNumber, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+
+                                            <StackPanel
+                                                Grid.Column="3"
+                                                Orientation="Horizontal">
+
+                                                <Button
+                                                    Command="{Binding DataContext.UpdateDetectBoardSlotSourceCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                    Style="{StaticResource DetectorSeriesNumberButtonStyle}">
+                                                    <md:PackIcon Kind="Edit" />
+                                                    <Button.CommandParameter>
+                                                        <MultiBinding Converter="{StaticResource UniversalMultiBindingConverter}">
+                                                            <Binding Path="DetectorModuleID" />
+                                                            <Binding Path="InstalledDetectBoard.SeriesNumber" />
+                                                        </MultiBinding>
+                                                    </Button.CommandParameter>
+                                                </Button>
+
+                                                <Button
+                                                    Command="{Binding DataContext.BroswerDetectBoardSlotSourceUpdateHistoryCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                    CommandParameter="{Binding DetectorModuleID}"
+                                                    Style="{StaticResource DetectorSeriesNumberButtonStyle}">
+                                                    <md:PackIcon Kind="BookOpenOutline" />
+                                                </Button>
+
+                                            </StackPanel>
+
+                                        </Grid>
+
+                                    </Border>
+
+                                </DataTemplate>
+
+                            </ItemsControl.ItemTemplate>
+
+                        </ItemsControl>
+
+                    </ScrollViewer>
+
+                    <Button
+                        Grid.Row="1"
+                        Width="600"
+                        Command="{Binding LoadSeriesNumbersWhenNewInstallationCommand}"
+                        Content="Load 64 Detect Board Series Numbers (Only for new installations)"
+                        Style="{StaticResource StandardButtonStyle}" />
+
+                </Grid>
+
+            </TabItem>
+
+        </TabControl>
+
+    </GroupBox>
+
+</Grid>

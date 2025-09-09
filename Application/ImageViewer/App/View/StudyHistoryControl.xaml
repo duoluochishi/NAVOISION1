@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="NV.CT.ImageViewer.View.StudyHistoryControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NV.CT.ImageViewer.View"   xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language" 
+             xmlns:converter="clr-namespace:NV.CT.UI.Controls.Converter;assembly=NV.CT.UI.Controls"
+             mc:Ignorable="d"   xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             d:DesignHeight="450" d:DesignWidth="800">
+	<UserControl.Resources>
+		<converter:Visuality2Converter x:Key="Visuality2Converter" />
+		<Style x:Key="StudyInfoLabel" TargetType="TextBlock">
+			<Setter Property="FontSize"  Value="12"></Setter>
+		</Style>
+	</UserControl.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="50" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<!--  StudyList标签文本和下面的矩形标记  -->
+		<Grid Grid.Row="0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition></ColumnDefinition>
+				<ColumnDefinition></ColumnDefinition>
+			</Grid.ColumnDefinitions>
+
+			<Grid Grid.Row="0">
+				<Label
+					Name="LblStudyList"
+					Grid.ColumnSpan="2"
+					Height="34"
+					Margin="10,8,0,0"
+					HorizontalAlignment="Left"
+					VerticalAlignment="Center"
+					Content="{x:Static res:LanguageResource.Content_StudyInfo}"
+					FontSize="15"
+					FontWeight="Bold"
+					Foreground="#FFC6C6EC" />
+				<Rectangle
+					Grid.Column="0"
+					Width="{Binding ElementName=LblStudyList, Path=ActualWidth}"
+					Height="3"
+					Margin="10,0,0,10"
+					HorizontalAlignment="Left"
+					VerticalAlignment="Bottom"
+					SnapsToDevicePixels="True"
+					Stroke="#3044D9"
+					StrokeThickness="3"
+					Visibility="{Binding ShowBottomLine, Converter={StaticResource Visuality2Converter}}" />
+			</Grid>
+
+			<Grid Grid.Column="1">
+				<Button Margin="2 10 0 0"  x:Name="BtnFilter" VerticalAlignment="Center" VerticalContentAlignment="Center"  ToolTip="{x:Static res:LanguageResource.ToolTip_Filter}"
+				        Style="{StaticResource FilterGlintButton}">
+					<i:Interaction.Triggers>
+						<i:EventTrigger EventName="Click">
+							<i:InvokeCommandAction Command="{Binding Commands[FilterCommand]}" 
+							                       CommandParameter="{Binding ElementName=BtnFilter}"/>
+						</i:EventTrigger>
+					</i:Interaction.Triggers>
+				</Button>
+			</Grid>
+
+		</Grid>
+
+		<Grid Grid.Row="1" Opacity="0.8">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="1*"></RowDefinition>
+				<RowDefinition Height="1*"></RowDefinition>
+				<RowDefinition Height="1*"></RowDefinition>
+			</Grid.RowDefinitions>
+			<Grid Grid.Row="0" Margin="40 4 0 0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition></ColumnDefinition>
+					<ColumnDefinition></ColumnDefinition>
+				</Grid.ColumnDefinitions>
+				<TextBlock Style="{StaticResource StudyInfoLabel}" Grid.Column="0" Text="{Binding SelectedItem.BodyPart}"></TextBlock>
+				<TextBlock Style="{StaticResource StudyInfoLabel}" Grid.Column="1" Text="{Binding SelectedItem.PatientSexString}"></TextBlock>
+			</Grid>
+			<Grid Grid.Row="1" Margin="40 4 0 0">
+				<TextBlock Style="{StaticResource StudyInfoLabel}"  Text="{Binding SelectedItem.PatientId}"></TextBlock>
+			</Grid>
+			<Grid Grid.Row="2" Margin="40 4 0 0">
+				<TextBlock  Style="{StaticResource StudyInfoLabel}" Text="{Binding SelectedItem.ExamStartTime, StringFormat='yyyy/MM/dd HH:mm:ss'}"></TextBlock>
+			</Grid>
+			<!--<Grid Grid.Row="3">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition></ColumnDefinition>
+					<ColumnDefinition></ColumnDefinition>
+				</Grid.ColumnDefinitions>
+				<TextBlock Grid.Column="0" Text="Study desc:"></TextBlock>
+				<TextBlock Grid.Column="1"></TextBlock>
+			</Grid>-->
+		</Grid>
+
+	</Grid>
+</UserControl>

@@ -1,0 +1,249 @@
+﻿<Window
+    x:Class="NV.CT.PatientManagement.View.English.DataImportWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converter="clr-namespace:NV.CT.UI.Controls.Converter;assembly=NV.CT.UI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:domain="clr-namespace:NV.CT.PatientManagement.Models"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+    Title="DataImportWindow"
+    Width="800"
+    Height="600"
+    AllowsTransparency="True"
+    Background="Transparent"
+    ResizeMode="NoResize"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <converter:DiskSourceStyleConverter x:Key="diskSourceStyleConverter" />
+        <converter:FolderStyleConverter x:Key="folderStyleConverter" />
+    </Window.Resources>
+    <Border CornerRadius="10" Style="{StaticResource WindowsBorder}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="20" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="540" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Border
+                Grid.ColumnSpan="5"
+                Background="#5A5A89"
+                CornerRadius="10,10,0,0"
+                Opacity="0.3" />
+            <Grid Grid.ColumnSpan="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button
+                    Margin="10,5,0,4"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    Opacity="0.7">
+                    <Path
+                        Width="15"
+                        Height="15"
+                        Fill="{StaticResource TextBoxBrush}"
+                        Stretch="Fill"
+                        Style="{StaticResource Import}" />
+                </Button>
+                <TextBlock
+                    Name="txtCaption"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Width="430"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Text="{x:Static res:LanguageResource.Content_Import}" />
+                <Button
+                    Grid.Column="3"
+                    Command="{Binding Commands[CloseCommand]}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource TileCloseButtonStyle}"
+                    ToolTip="{x:Static res:LanguageResource.Content_Close}">
+                    <Path Style="{StaticResource TileClosePathStyle}" />
+                </Button>
+            </Grid>
+            <Grid Grid.Row="1" Grid.ColumnSpan="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10" />
+                    <!--  space  -->
+                    <RowDefinition Height="28" />
+                    <RowDefinition MinHeight="420" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid
+                    Grid.Row="1"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch">
+                    <TextBlock
+                        x:Name="lblSourceArea"
+                        Grid.Row="0"
+                        Margin="10,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        FontSize="14"
+                        Style="{StaticResource SectionTitleTextBlock}"
+                        Text="{x:Static res:LanguageResource.Content_SourceArea}" />
+                    <Rectangle
+                        Width="{Binding ElementName=lblSourceArea, Path=ActualWidth}"
+                        Margin="10,0,0,0"
+                        Style="{StaticResource SectionTitleUnderlineRectangle}" />
+
+                </Grid>
+                <Grid
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="5"
+                    Margin="0,0,10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TreeView
+                        x:Name="treeDriver"
+                        Height="400"
+                        MinWidth="620"
+                        VerticalAlignment="Top"
+                        BorderThickness="1,1,1,1"
+                        ItemsSource="{Binding DriverTypes}"
+                        SelectedValuePath="VituralPath">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectedItemChanged">
+                                <i:InvokeCommandAction Command="{Binding Commands[SelectedTreeItemChangedCommand]}" CommandParameter="{Binding ElementName=treeDriver, Path=SelectedItem}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <TreeView.Resources>
+                            <Style BasedOn="{StaticResource MaterialDesignTreeViewItem}" TargetType="TreeViewItem">
+                                <Setter Property="materialDesign:TreeViewAssist.ShowSelection" Value="True" />
+                            </Style>
+                            <HierarchicalDataTemplate DataType="{x:Type domain:DriverType}" ItemsSource="{Binding Folders}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Path
+                                        Width="15"
+                                        Height="15"
+                                        Margin="0,0,4,0"
+                                        Fill="White"
+                                        Stretch="Fill"
+                                        Style="{Binding Path=DirectoryTreeItemType, Converter={StaticResource diskSourceStyleConverter}}" />
+                                    <TextBlock
+                                        Margin="2,2,0,2"
+                                        Tag="{Binding FullPath}"
+                                        Text="{Binding Name}" />
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+                            <HierarchicalDataTemplate DataType="{x:Type domain:Folder}" ItemsSource="{Binding SubFolders}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Path
+                                        Width="15"
+                                        Height="15"
+                                        Margin="0,0,4,0"
+                                        Fill="White"
+                                        Stretch="Fill"
+                                        Style="{Binding IsLogicalDisk, Converter={StaticResource folderStyleConverter}}" />
+                                    <TextBlock
+                                        Margin="0,2"
+                                        Tag="{Binding FullPath}"
+                                        Text="{Binding Name}" />
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+                        </TreeView.Resources>
+                        <TreeView.ItemContainerStyle>
+                            <Style BasedOn="{StaticResource MaterialDesignTreeViewItem}" TargetType="TreeViewItem">
+                                <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                                <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                            </Style>
+                        </TreeView.ItemContainerStyle>
+                    </TreeView>
+                </Grid>
+                <TextBlock
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="5"
+                    Margin="10,10,10,10"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontSize="12"
+                    Foreground="#FFA63F"
+                    Text="{Binding OmittedChosenPath}"
+                    ToolTip="{Binding ElementName=treeDriver, Path=SelectedValue}" />
+                <!--  底部 导出和关闭 按钮 Begin  -->
+                <TextBlock
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Width="435"
+                    Margin="2,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontSize="12"
+                    Foreground="#FFA63F"
+                    Text="{Binding MessageContent}" />
+                <StackPanel
+                    Grid.Row="4"
+                    Grid.Column="3"
+                    Grid.ColumnSpan="2"
+                    Margin="0,0,40,0"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
+                    <Button
+                        x:Name="btnImport"
+                        Width="150"
+                        Height="40"
+                        Margin="0,0,20,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Content="{x:Static res:LanguageResource.Content_Import}"
+                        IsEnabled="{Binding IsImportButtonEnabled}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <i:InvokeCommandAction Command="{Binding Commands[ImportCommand]}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                    <Button
+                        x:Name="btnClose"
+                        Width="150"
+                        Height="40"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Content="{x:Static res:LanguageResource.Content_Cancel}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <i:InvokeCommandAction Command="{Binding Commands[CloseCommand]}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                </StackPanel>
+                <!--  底部 导出和关闭 按钮 End  -->
+            </Grid>
+        </Grid>
+    </Border>
+
+</Window>

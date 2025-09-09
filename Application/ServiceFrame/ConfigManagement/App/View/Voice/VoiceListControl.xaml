@@ -1,0 +1,312 @@
+﻿<UserControl
+    x:Class="NV.CT.ConfigManagement.View.VoiceListControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  
+    xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"   
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="DataGridCell">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        <Style x:Key="VoiceButtonStyle" BasedOn="{StaticResource NanoButtonStyle}" TargetType="Button">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="{StaticResource BaseBackgroundColor}" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="Background" Value="{StaticResource ButtonBackground}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="SearchButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignToolButton}">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Height" Value="24"/>
+            <Setter Property="Width" Value="24"/>
+            <Setter Property="Margin" Value="0 0 10 0"/>
+        </Style>
+        <Style x:Key="IconFactoryPathStyle" BasedOn="{StaticResource IconFactory}" TargetType="{x:Type Path}">
+            <Setter Property="Width" Value="15" />
+            <Setter Property="Height" Value="18" />
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Stretch" Value="Fill" />
+            <Setter Property="ToolTip" Value="{x:Static res:LanguageResource.ToolTip_Factory}" />
+            <Setter Property="Fill" Value="{StaticResource PatOrderIconFillBrush}" />
+        </Style>
+        <Style x:Key="LoginPathStyle" BasedOn="{StaticResource Login}" TargetType="{x:Type Path}">
+            <Setter Property="Width" Value="15" />
+            <Setter Property="Height" Value="18" />
+            <Setter Property="Stretch" Value="Fill" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="ToolTip" Value="{x:Static res:LanguageResource.ToolTip_Custom}" />
+            <Setter Property="Fill" Value="{StaticResource PatOrderIconFillBrush}" />
+        </Style>
+    </UserControl.Resources>
+    <Border Background="Transparent"  Margin="0,2,0,0" CornerRadius="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="#5A5A89" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="10,0,0,0" >
+                <Label Grid.ColumnSpan="2" 
+                       Name="lblTabTitle" 
+                       FontSize="16" FontWeight="Bold" 
+                       Margin="0,0,0,0" 
+                       Content="Voice list"
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Center" 
+                       Height="34" 
+                       Foreground="#FFC6C6EC" />
+                <Rectangle Grid.Column="0" 
+                     VerticalAlignment="Bottom" Stroke="#3044D9" 
+                     Height="3" StrokeThickness="3" 
+                     Width="{Binding ElementName=lblTabTitle,Path=ActualWidth}" HorizontalAlignment="Left"
+                     Margin="-3,0,0,8" 
+                     SnapsToDevicePixels="True" Visibility="Visible" />
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="490"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="0" Margin="10 0 0 0">
+                    <Label VerticalAlignment="Center" HorizontalAlignment="Left" Content="{x:Static res:LanguageResource.Content_APIType}"/>
+                    <RadioButton VerticalAlignment="Center" Content="{x:Static res:LanguageResource.Content_PreVoice}" Margin="10,0,20,0" IsChecked="{Binding PreVoice,Mode=TwoWay}" GroupName="apiType"/>
+                    <RadioButton VerticalAlignment="Center" Content="{x:Static res:LanguageResource.Content_PostVoice}" Margin="0,0,20,0" IsChecked="{Binding PostVoice,Mode=TwoWay}" GroupName="apiType"/>
+                    <RadioButton VerticalAlignment="Center" Content="{x:Static res:LanguageResource.Content_All}" IsChecked="{Binding IsAll,Mode=TwoWay}" GroupName="apiType"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button  Height="40" Width="120" Opacity="1" Margin="0,0,10,0" 
+                      Command="{Binding Commands[VoiceAddCommand]}" 
+                      Content="{x:Static res:LanguageResource.Content_Add}" Style="{StaticResource VoiceButtonStyle}"></Button>
+                    <Button  Height="40" Width="120" Opacity="1" Margin="0,0,10,0" 
+                      Command="{Binding Commands[VoiceEditCommand]}"                      
+                      Content="{x:Static res:LanguageResource.Content_Edit}" IsEnabled="{Binding IsFactory}" Style="{StaticResource VoiceButtonStyle}"></Button>
+                    <Button  Height="40" Width="120" Opacity="1" Margin="0,0,10,0" 
+                      Command="{Binding Commands[VoiceDeleteCommand]}" 
+                      Content="{x:Static res:LanguageResource.Content_Delete}" IsEnabled="{Binding IsFactory}" Style="{StaticResource VoiceButtonStyle}"></Button>
+                </StackPanel>
+            </Grid>
+            <!--  study列表组件 DataGrid  -->
+            <DataGrid Grid.Row="2" ItemsSource="{Binding VoiceList}" SelectedItem="{Binding SelectedVoice, Mode=TwoWay}" SelectionMode="Single"
+                      Style="{StaticResource CommonDataGrid}" Margin="0 5 5 5">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Width="*" MinWidth="00"  Header="{x:Static res:LanguageResource.Header_Name}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Margin="15,0,0,0" Text="{Binding Name}"  Style="{StaticResource DataGridContentTextBlock}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="*" MinWidth="100" Header="{x:Static res:LanguageResource.Header_Description}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Description}" Style="{StaticResource DataGridContentTextBlock}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="100" MinWidth="80" Header="{x:Static res:LanguageResource.Header_APIType}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding IsFrontDisalpy}" HorizontalAlignment="Center" Style="{StaticResource DataGridContentTextBlock}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="80" MinWidth="60" Header="{x:Static res:LanguageResource.Header_Time}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding VoiceLength}" HorizontalAlignment="Center" Style="{StaticResource DataGridContentTextBlock}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Width="100" MinWidth="80" Header="{x:Static res:LanguageResource.Header_Language}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Language}" HorizontalAlignment="Center" Style="{StaticResource DataGridContentTextBlock}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Width="80" MinWidth="80" Header="{x:Static res:LanguageResource.Header_Factory}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ContentControl Background="Transparent" HorizontalAlignment="Center" Cursor="Arrow" Focusable="False" IsEnabled="{Binding IsFactory,Mode=TwoWay}">
+                                    <ContentControl.Style>
+                                        <Style TargetType="ContentControl">
+                                            <Style.Triggers>
+                                                <Trigger Property="IsEnabled" Value="True">
+                                                    <Setter Property="Content">
+                                                        <Setter.Value>
+                                                            <Path Style="{StaticResource IconFactoryPathStyle}" />
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Trigger>
+                                                <Trigger Property="IsEnabled" Value="False">
+                                                    <Setter Property="Content">
+                                                        <Setter.Value>
+                                                            <Path Style="{StaticResource LoginPathStyle}" />
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ContentControl.Style>
+                                </ContentControl>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Width="80" MinWidth="80" Header="{x:Static res:LanguageResource.Header_Default}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Background="Transparent" BorderThickness="0" Tag="{Binding ID}" >
+                                    <Button.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick" Command="{Binding DataContext.Commands[SetDefaultCommand],RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DataGrid}}" 
+                                            CommandParameter="{Binding DataContext,RelativeSource={RelativeSource FindAncestor,AncestorType=DataGridRow}}"></MouseBinding>
+                                    </Button.InputBindings>
+                                    <ContentControl>
+                                        <Path Width="16" Height="20" HorizontalAlignment="Center">
+                                            <Path.Style>
+                                                <Style BasedOn="{StaticResource LoginPathStyle}" TargetType="Path">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsDefault,Mode=TwoWay}" Value="True">
+                                                            <Setter Property="Fill" Value="#FFFFFF"></Setter>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding IsDefault,Mode=TwoWay}" Value="False">
+                                                            <Setter Property="Fill" Value="#565485"></Setter>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding IsFront,Mode=TwoWay}" Value="True">
+                                                            <Setter Property="ToolTip" Value="{x:Static res:LanguageResource.ToolTip_DefaultPreVoice}"></Setter>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding IsFront,Mode=TwoWay}" Value="False">
+                                                            <Setter Property="ToolTip" Value="{x:Static res:LanguageResource.ToolTip_DefaultPostVoice}"></Setter>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Path.Style>
+                                        </Path>
+                                    </ContentControl>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Width="150" MinWidth="80" Header="{x:Static res:LanguageResource.Header_Operate}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Button BorderThickness="0" 
+                                            Background="Transparent" 
+                                            HorizontalAlignment="Left" 
+                                            Margin="10,0,0,0" 
+                                            Cursor="Hand" 
+                                            ToolTip="{x:Static res:LanguageResource.ToolTip_Resume}" 
+                                            IsEnabled="{Binding ResumeIsEnabled}"                                             
+                                            Command="{Binding DataContext.Commands[ResumeCommand],RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DataGrid}}"
+                                            CommandParameter="{Binding DataContext,RelativeSource={RelativeSource FindAncestor,AncestorType=DataGridRow}}">
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <Path Stretch="Fill" Cursor="Hand" 
+                                                                   Width="23" Height="23" 
+                                                                   Style="{StaticResource VoicePlay}" Fill="{StaticResource PatOrderIconFillBrush}">
+                                                            </Path>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="Button">
+                                                                    <Path Stretch="Fill" Cursor="Hand" 
+                                                                           Width="23" Height="23" 
+                                                                           Style="{StaticResource VoicePlay}" Fill="White">
+                                                                    </Path>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Trigger>
+                                                    <Trigger Property="IsPressed" Value="True">
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="Button">
+                                                                    <Path Stretch="Fill" Cursor="Hand" 
+                                                                       Width="23" Height="23" 
+                                                                       Style="{StaticResource VoicePlay}" Fill="White">
+                                                                    </Path>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+
+                                    <Button x:Name="btn_Pause" BorderThickness="0" Background="Transparent" HorizontalAlignment="Left" 
+                                            Margin="10,0,0,0" ToolTip="{x:Static res:LanguageResource.ToolTip_Pause}" 
+                                            Command="{Binding DataContext.Commands[PauseCommand],RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DataGrid}}"
+                                            CommandParameter="{Binding DataContext,RelativeSource={RelativeSource FindAncestor,AncestorType=DataGridRow}}">
+                                        <ContentControl>
+                                            <Path Stretch="Fill" 
+                                                Width="23" Height="23"                                                 >
+                                                <Path.Style>
+                                                    <Style BasedOn="{StaticResource VoicePause}" TargetType="Path">
+                                                        <Setter Property="Fill" Value="{StaticResource PatOrderIconFillBrush}"></Setter>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Fill" Value="White"></Setter>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Path.Style>
+                                            </Path>
+                                        </ContentControl>
+                                    </Button>
+                                    <Button x:Name="btn_Stop" BorderThickness="0" Background="Transparent" HorizontalAlignment="Left"  
+                                        Margin="10,0,0,0" ToolTip="{x:Static res:LanguageResource.ToolTip_Stop}" 
+                                        Command="{Binding DataContext.Commands[StopCommand],RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=DataGrid}}"
+                                        CommandParameter="{Binding DataContext,RelativeSource={RelativeSource FindAncestor,AncestorType=DataGridRow}}">
+                                        <ContentControl>
+                                            <Path Stretch="Fill" 
+                                                Width="23" Height="23">
+                                                <Path.Style>
+                                                    <Style BasedOn="{StaticResource VoiceStop}" TargetType="Path">
+                                                        <Setter Property="Fill" Value="{StaticResource PatOrderIconFillBrush}"></Setter>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Fill" Value="White"></Setter>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Path.Style>
+                                            </Path>
+                                        </ContentControl>
+                                    </Button>
+                                </WrapPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Border>
+</UserControl>

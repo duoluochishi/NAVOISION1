@@ -1,0 +1,59 @@
+﻿<UserControl
+    x:Class="NV.CT.UI.Exam.DynamicParameters.Parameters.Scan.CommonPitch"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"   
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableTextBox;assembly=MaterialDesignThemes.Wpf"
+    xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+    d:DesignHeight="450" d:DesignWidth="800" mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="PitchGridStyle" TargetType="Grid">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid IsEnabled="{Binding IsPichEnable, Mode=OneWay}" Style="{StaticResource PitchGridStyle}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*" />
+            <ColumnDefinition Width="55*" />
+            <ColumnDefinition Width="15*" />
+        </Grid.ColumnDefinitions>
+        <Label
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            Margin="0 0 10 0"
+            Content="{x:Static res:LanguageResource.Content_Pitch}" />
+        <md:MarkableTextBox
+            Grid.Column="1"
+            VerticalContentAlignment="Center"
+            IsEnabled="{Binding Path=PageEnable}"
+            MarkStatus="{Binding Path=PitchMarkStatus}"
+            Maximum="1.5"
+            Minimum="0.33"
+            Style="{StaticResource MarkableTextBox}"
+            Text="{Binding Path=Pitch, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+            TextType="Decimal">           
+            <b:Interaction.Triggers>
+                <b:EventTrigger EventName="GotFocus">
+                    <b:InvokeCommandAction
+                        Command="{Binding Commands[MarkableTextBoxGotFocus]}"
+                        CommandParameter="Pitch" />
+                </b:EventTrigger>              
+                <b:EventTrigger EventName="LostFocus">
+                    <b:InvokeCommandAction
+                        Command="{Binding Commands[MarkableTextBoxTextChanged]}"
+                        CommandParameter="Pitch" />
+                </b:EventTrigger>
+            </b:Interaction.Triggers>
+        </md:MarkableTextBox>
+    </Grid>
+</UserControl>

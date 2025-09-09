@@ -1,0 +1,25 @@
+﻿<Window x:Class="NV.CT.Service.AutoCali.Demo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="clr-namespace:NV.CT.Service.AutoCali.UI;assembly=NV.CT.Service.AutoCali.UI"
+        mc:Ignorable="d" HorizontalAlignment="Stretch" Width="1280" Height="1024" WindowStartupLocation="CenterScreen"
+        Title="自动校准">
+    <Border Background="{DynamicResource MaterialDesignPaper}" BorderThickness="1" CornerRadius="0" BorderBrush="#5a5a89">
+        <TabControl>
+            <TabItem Header="AutoCali">
+                <Grid>
+                    <ui:AutoCaliWrapper/>
+                    <!--<ui:DailyCaliWrapper/>-->
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Test">
+                <WrapPanel>
+                    <Button x:Name="TestAlgCalculator" Content="TestAlgCalculator" Click="TestAlgCalculator_Click"/>
+                </WrapPanel>
+            </TabItem>
+        </TabControl>
+    </Border>
+</Window>

@@ -1,0 +1,80 @@
+﻿<UserControl
+    x:Class="NV.CT.Service.HardwareTest.UserControls.Components.Detector.BroswerDetectBoardUpdateHistoryView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ScrollViewer>
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <TextBlock
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{Binding Title}" />
+
+
+            <DataGrid
+                Grid.Row="1"
+                AutoGenerateColumns="False"
+                CanUserAddRows="False"
+                CanUserDeleteRows="False"
+                CanUserReorderColumns="False"
+                Foreground="White"
+                HorizontalScrollBarVisibility="Hidden"
+                IsReadOnly="True"
+                ItemsSource="{Binding DetectBoardSourceUpdateHistory}"
+                VerticalScrollBarVisibility="Hidden">
+
+                <DataGrid.Resources>
+
+                    <Style
+                        x:Key="UpdateHistoryGridElementStyle"
+                        TargetType="{x:Type TextBlock}">
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                    </Style>
+
+                </DataGrid.Resources>
+
+                <DataGrid.ColumnHeaderStyle>
+                    <Style
+                        BasedOn="{StaticResource {x:Type DataGridColumnHeader}}"
+                        TargetType="DataGridColumnHeader">
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        <Setter Property="FontWeight" Value="Bold" />
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn
+                        Width="240"
+                        Binding="{Binding InstallTime, StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}"
+                        ElementStyle="{StaticResource UpdateHistoryGridElementStyle}"
+                        Header="Install Time" />
+
+                    <DataGridTextColumn
+                        Width="240"
+                        Binding="{Binding RetireTime, StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}"
+                        ElementStyle="{StaticResource UpdateHistoryGridElementStyle}"
+                        Header="Retire Time" />
+
+                    <DataGridTextColumn
+                        Width="280"
+                        Binding="{Binding SeriesNumber}"
+                        ElementStyle="{StaticResource UpdateHistoryGridElementStyle}"
+                        Header="Series Number" />
+
+                </DataGrid.Columns>
+
+            </DataGrid>
+
+        </Grid>
+
+    </ScrollViewer>
+
+</UserControl>

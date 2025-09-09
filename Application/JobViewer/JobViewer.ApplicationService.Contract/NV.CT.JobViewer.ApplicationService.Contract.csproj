@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\CTS\NV.CT.CTS.csproj" />
+    <ProjectReference Include="..\..\..\SystemService\JobService.Contract\NV.CT.JobService.Contract.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="NV.CT.FacadeProxy.Common">
+      <HintPath>..\..\..\bin\NV.CT.FacadeProxy.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

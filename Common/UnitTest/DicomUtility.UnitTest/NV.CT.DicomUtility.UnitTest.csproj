@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>$(TargetFramework)-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" />
+		<PackageReference Include="NSubstitute" />
+		<PackageReference Include="NUnit" />
+		<PackageReference Include="NUnit3TestAdapter" />
+		<PackageReference Include="NUnit.Analyzers">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\CTS\NV.CT.CTS.csproj" />
+	  <ProjectReference Include="..\..\DicomUtility\NV.CT.DicomUtility.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="NV.CT.FacadeProxy.Common">
+	    <HintPath>..\..\..\bin\NV.CT.FacadeProxy.Common.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+	
+</Project>

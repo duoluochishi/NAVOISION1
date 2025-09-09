@@ -1,0 +1,143 @@
+﻿<UserControl
+	x:Class="NV.CT.RGT.View.ScanControlsControl"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+	d:DesignHeight="700"
+	d:DesignWidth="300"
+	Background="#16162B"
+	mc:Ignorable="d">
+	<UserControl.Resources>
+		<Style TargetType="Image">
+			<Setter Property="HorizontalAlignment" Value="Center" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="Margin" Value="20" />
+		</Style>
+
+		<Style
+			x:Key="AddEmergencyGlintButton"
+			BasedOn="{StaticResource ToolbarButton}"
+			TargetType="Button">
+			<Setter Property="Width" Value="100" />
+			<Setter Property="Height" Value="85" />
+			<Style.Triggers>
+				<Trigger Property="Button.IsMouseOver" Value="true">
+					<Setter Property="Content">
+						<Setter.Value>
+							<Path
+								VerticalAlignment="Center"
+								Fill="White"
+								Stretch="Fill"
+								Style="{StaticResource Emergency}" />
+						</Setter.Value>
+					</Setter>
+				</Trigger>
+				<Trigger Property="Button.IsMouseOver" Value="false">
+					<Setter Property="Content">
+						<Setter.Value>
+							<Path
+								VerticalAlignment="Center"
+								Fill="#FFA63F"
+								Stretch="Fill"
+								Style="{StaticResource Emergency}" />
+						</Setter.Value>
+					</Setter>
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+
+	</UserControl.Resources>
+	<Grid x:Name="gridContainer">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="1*" />
+			<RowDefinition Height="1*" />
+			<RowDefinition Height="1*" />
+		</Grid.RowDefinitions>
+
+
+		<!--  急诊  -->
+		<Button
+			x:Name="btnEmergency"
+			Grid.Row="0"
+			Width="80"
+			Height="70"
+			Command="{Binding Commands[EmergencyCommand]}"
+			CommandParameter="Config"
+			Cursor="Hand"
+			IsEnabled="True"
+			Style="{StaticResource AddEmergencyGlintButton}"
+			ToolTip="Emergency" />
+
+
+
+		<Grid Grid.Row="1">
+			<Image
+				Cursor="Hand"
+				Opacity="0.5"
+				Source="../Resources/icons/i_rework_1.png" />
+		</Grid>
+
+
+		<!--  暂时不能回退  -->
+		<Grid Grid.Row="1">
+
+			<Image
+				x:Name="imgBack"
+				Width="100"
+				Cursor="Hand"
+				IsEnabled="{Binding IsEnable, Mode=TwoWay}"
+				Opacity="0.8"
+				Source="../Resources/icons/i_revocation_1.png"
+				Visibility="Hidden">
+				<Image.Style>
+					<Style TargetType="{x:Type Image}">
+						<Style.Triggers>
+							<Trigger Property="IsEnabled" Value="False">
+								<Setter Property="Opacity" Value="0.2" />
+							</Trigger>
+							<Trigger Property="IsEnabled" Value="True">
+								<Setter Property="Opacity" Value="1" />
+							</Trigger>
+						</Style.Triggers>
+					</Style>
+				</Image.Style>
+				<Image.InputBindings>
+					<MouseBinding
+						Command="{Binding Commands[Back]}"
+						Gesture="LeftClick" />
+				</Image.InputBindings>
+			</Image>
+
+		</Grid>
+
+		<Grid Grid.Row="2">
+			<Button
+				Width="100"
+				Height="100"
+				Command="{Binding Commands[Go]}"
+				Content="{x:Static res:LanguageResource.Content_Go}"
+				Cursor="Hand"
+				IsEnabled="{Binding IsEnable, Mode=TwoWay}">
+				<Button.Style>
+					<Style
+						BasedOn="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+						TargetType="{x:Type Button}">
+						<Setter Property="Width" Value="60" />
+						<Setter Property="Height" Value="60" />
+						<Setter Property="FontSize" Value="30px" />
+						<Style.Triggers>
+							<Trigger Property="IsEnabled" Value="False">
+								<Setter Property="Background" Value="#5a5a89" />
+							</Trigger>
+							<Trigger Property="IsEnabled" Value="True">
+								<Setter Property="Background" Value="#1665D8" />
+							</Trigger>
+						</Style.Triggers>
+					</Style>
+				</Button.Style>
+			</Button>
+		</Grid>
+	</Grid>
+</UserControl>

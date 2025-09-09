@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="Autofac" />
+	  <PackageReference Include="Autofac.Extensions.DependencyInjection" />
+	  <PackageReference Include="Microsoft.Extensions.Logging" />
+	  <PackageReference Include="Microsoft.Extensions.Configuration" />
+	  <PackageReference Include="Microsoft.Extensions.Hosting" />
+	  <PackageReference Include="AutoMapper" />
+	  <PackageReference Include="AutoMapper.Extensions.EnumMapping" />
+	  <ProjectReference Include="..\..\..\SystemService\ClientProxy\NV.CT.ClientProxy.csproj" />
+	  <ProjectReference Include="..\..\..\SystemService\JobService.Contract\NV.CT.JobService.Contract.csproj" />
+	  <ProjectReference Include="..\JobViewer.ApplicationService.Contract\NV.CT.JobViewer.ApplicationService.Contract.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="NV.CT.FacadeProxy.Common">
+      <HintPath>..\..\..\bin\NV.CT.FacadeProxy.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

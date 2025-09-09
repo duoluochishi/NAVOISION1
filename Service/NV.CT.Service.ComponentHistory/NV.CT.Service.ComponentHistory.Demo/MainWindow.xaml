@@ -1,0 +1,16 @@
+﻿<Window x:Class="NV.CT.Service.ComponentHistory.Demo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:componentHistory="clr-namespace:NV.CT.Service.ComponentHistory;assembly=NV.CT.Service.ComponentHistory"
+        mc:Ignorable="d"
+        Title="Component History"
+        Height="450"
+        Width="800"
+        Background="Transparent"
+        WindowState="Maximized">
+    <Grid>
+        <componentHistory:ComponentHistoryWrapper />
+    </Grid>
+</Window>

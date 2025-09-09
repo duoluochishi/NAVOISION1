@@ -1,0 +1,254 @@
+﻿<Window
+    x:Class="NV.CT.Screenshot.RegionSelectionWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    Name="winp"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    MouseDoubleClick="winp_MouseDoubleClick"
+    MouseRightButtonDown="winp_MouseRightButtonDown"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <!--  鼠标移入移出事件  -->
+        <Style
+            x:Key="Sty_Canv_ScrollAll"
+            TargetType="Border">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Cursor" Value="SizeAll" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Canvas>
+        <Image
+            Name="BackgroundImage"
+            Opacity="0.1" />
+        <Border
+            Name="SelectionBorder"
+            Width="0"
+            Height="0"
+            ClipToBounds="True"
+            MouseLeftButtonDown="SelectionBorder_MouseLeftButtonDown"
+            Style="{StaticResource Sty_Canv_ScrollAll}">
+            <Grid>
+                <Grid.Resources />
+                <Canvas
+                    x:Name="canvas"
+                    Margin="0">
+                    <Image
+                        Name="SelectionImage"
+                        Width="{Binding ActualWidth, ElementName=BackgroundImage}"
+                        Height="{Binding ActualHeight, ElementName=BackgroundImage}"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Source="{Binding Source, ElementName=BackgroundImage}"
+                        Stretch="None" />
+                </Canvas>
+                <Border
+                    Name="InnerBorder"
+                    BorderBrush="Red"
+                    BorderThickness="1" />
+            </Grid>
+        </Border>
+        <Border
+            Name="ChangeBoderSize"
+            Width="0"
+            Height="0"
+            ClipToBounds="True">
+            <Grid>
+                <Grid.Resources>
+                    <sys:Double x:Key="Zero">1</sys:Double>
+                    <sys:Double x:Key="EllSize">8</sys:Double>
+                    <sys:Double x:Key="RectSize">5</sys:Double>
+                    <!--  斜杠  -->
+                    <Style
+                        x:Key="Sty_Ell_Slash"
+                        TargetType="Ellipse">
+                        <Style.Triggers>
+                            <!--  鼠标移入移出事件  -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="SizeNESW" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                    <!--  反斜杠  -->
+                    <Style
+                        x:Key="Sty_Ell_Backslash"
+                        TargetType="Ellipse">
+                        <Style.Triggers>
+                            <!--  鼠标移入移出事件  -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="SizeNWSE" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                    <!--  左右  -->
+                    <Style
+                        x:Key="Sty_Ell_LeftRight"
+                        TargetType="Ellipse">
+                        <Style.Triggers>
+                            <!--  鼠标移入移出事件  -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="SizeWE" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                    <!--  上下  -->
+                    <Style
+                        x:Key="Sty_Ell_UpDown"
+                        TargetType="Ellipse">
+                        <Style.Triggers>
+                            <!--  鼠标移入移出事件  -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="SizeNS" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                    <!--  鼠标移入移出事件  -->
+                    <Style
+                        x:Key="Sty_Canv_ScrollAll"
+                        TargetType="Canvas">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="SizeAll" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Resources>
+                <Canvas x:Name="canvas_change">
+                    <Ellipse
+                        Name="Ell_LeftTop"
+                        Canvas.Left="0"
+                        Canvas.Top="0"
+                        Width="{StaticResource EllSize}"
+                        Height="{StaticResource EllSize}"
+                        Fill="{Binding BorderBrush, ElementName=InnerBorder}"
+                        MouseLeftButtonDown="Ell_LeftTop_MouseLeftButtonDown"
+                        Style="{StaticResource Sty_Ell_Backslash}" />
+                    <Ellipse
+                        Name="Ell_LeftDown"
+                        Canvas.Left="0"
+                        Canvas.Top="{Binding ActualHeight, ElementName=SelectionBorder}"
+                        Width="{StaticResource EllSize}"
+                        Height="{StaticResource EllSize}"
+                        Fill="{Binding BorderBrush, ElementName=InnerBorder}"
+                        MouseLeftButtonDown="Ell_LeftDown_MouseLeftButtonDown"
+                        Style="{StaticResource Sty_Ell_Slash}" />
+                    <Ellipse
+                        Name="Ell_LeftMid"
+                        Canvas.Left="0"
+                        Canvas.Top="{c:Binding ActualHeight/2,
+                                               ElementName=SelectionBorder}"
+                        Width="{StaticResource EllSize}"
+                        Height="{StaticResource EllSize}"
+                        Fill="{Binding BorderBrush, ElementName=InnerBorder}"
+                        MouseLeftButtonDown="Ell_LeftMid_MouseLeftButtonDown"
+                        Style="{StaticResource Sty_Ell_LeftRight}" />
+                    <Ellipse
+                        Name="Ell_TopMid"
+                        Canvas.Left="{c:Binding ActualWidth/2,
+                                                ElementName=SelectionBorder}"
+                        Canvas.Top="0"
+                        Width="{StaticResource EllSize}"
+                        Height="{StaticResource EllSize}"
+                        Fill="{Binding BorderBrush, ElementName=InnerBorder}"
+                        MouseLeftButtonDown="Ell_TopMid_MouseLeftButtonDown"
+                        Style="{StaticResource Sty_Ell_UpDown}" />
+                    <Ellipse
+                        Name="Ell_RightTop"
+                        Canvas.Left="{c:Binding ActualWidth,
+                                                ElementName=SelectionBorder}"
+                        Canvas.Top="0"
+                        Width="{StaticResource EllSize}"
+                        Height="{StaticResource EllSize}"
+                        Fill="{Binding BorderBrush, ElementName=InnerBorder}"
+                        MouseLeftButtonDown="Ell_RightTop_MouseLeftButtonDown"
+                        Style="{StaticResource Sty_Ell_Slash}" />
+                    <Ellipse
+                        Name="Ell_RightMid"
+                        Canvas.Left="{c:Binding ActualWidth,
+                                                ElementName=SelectionBorder}"
+                        Canvas.Top="{c:Binding ActualHeight/2,
+                                               ElementName=SelectionBorder}"
+                        Width="{StaticResource EllSize}"
+                        Height="{StaticResource EllSize}"
+                        Fill="{Binding BorderBrush, ElementName=InnerBorder}"
+                        MouseLeftButtonDown="Ell_RightMid_MouseLeftButtonDown"
+                        Style="{StaticResource Sty_Ell_LeftRight}" />
+                    <Ellipse
+                        Name="Ell_RightDown"
+                        Canvas.Left="{c:Binding ActualWidth,
+                                                ElementName=SelectionBorder}"
+                        Canvas.Top="{c:Binding ActualHeight,
+                                               ElementName=SelectionBorder}"
+                        Width="{StaticResource EllSize}"
+                        Height="{StaticResource EllSize}"
+                        Fill="{Binding BorderBrush, ElementName=InnerBorder}"
+                        MouseLeftButtonDown="Ell_RightDown_MouseLeftButtonDown"
+                        Style="{StaticResource Sty_Ell_Backslash}" />
+                    <Ellipse
+                        Name="Ell_DownMid"
+                        Canvas.Left="{c:Binding ActualWidth/2,
+                                                ElementName=SelectionBorder}"
+                        Canvas.Top="{c:Binding ActualHeight,
+                                               ElementName=SelectionBorder}"
+                        Width="{StaticResource EllSize}"
+                        Height="{StaticResource EllSize}"
+                        Fill="{Binding BorderBrush, ElementName=InnerBorder}"
+                        MouseLeftButtonDown="Ell_DownMid_MouseLeftButtonDown"
+                        Style="{StaticResource Sty_Ell_UpDown}" />
+                </Canvas>
+            </Grid>
+        </Border>
+        <Border
+            Name="Bor_Tool"
+            Width="80"
+            Height="25"
+            Background="White"
+            CornerRadius="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image
+                    Name="Image_Cancle"
+                    Grid.Column="0"
+                    Margin="5,0,1,0"
+                    Cursor="Arrow"
+                    MouseLeftButtonDown="Image_Cancle_MouseLeftButtonDown"
+                    Source="/NV.CT.Screenshot;component/Resources/close.png"
+                    ToolTip="Cancel" />
+                <Image
+                    Name="Image_OK"
+                    Grid.Column="1"
+                    Margin="1,0,5,0"
+                    Cursor="Arrow"
+                    MouseLeftButtonDown="Image_OK_MouseLeftButtonDown"
+                    Source="/NV.CT.Screenshot;component/Resources/OK.png"
+                    ToolTip="OK" />
+            </Grid>
+        </Border>
+        <!--<Label Name="Lab_Info" Canvas.Top="0" Canvas.Left="0"  FontSize="15" Margin="10" TextOptions.TextFormattingMode="Display">111</Label>-->
+    </Canvas>
+    <!--<Canvas>
+        <Image Name="BackgroundImage" Opacity="0.5" />
+        <Border Name="SelectionBorder" Width="0" Height="0" ClipToBounds="True">
+            <Grid>
+                <Canvas>
+                    <Image Name="SelectionImage"
+                 Source="{Binding Source, ElementName=BackgroundImage}"
+                 Width="{Binding ActualWidth, ElementName=BackgroundImage}"
+                 Height="{Binding ActualHeight, ElementName=BackgroundImage}"
+                 Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                </Canvas>
+                <Border Name="InnerBorder" BorderThickness="1" BorderBrush="Red" />
+            </Grid>
+        </Border>
+    </Canvas>-->
+</Window>

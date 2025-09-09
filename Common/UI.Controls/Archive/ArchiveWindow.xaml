@@ -1,0 +1,149 @@
+﻿<Window x:Class="NV.CT.UI.Controls.Archive.ArchiveWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NV.CT.UI.Controls.Archive"
+        xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+        Title="FileArchiveWindow"
+        Width="800"
+        Height="500"
+        Background="Transparent"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        mc:Ignorable="d">
+    <Border CornerRadius="10" Style="{StaticResource WindowsBorder}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="20" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="10" />
+            </Grid.RowDefinitions>
+            <Border
+                Grid.ColumnSpan="5"
+                Background="#5A5A89"
+                CornerRadius="5, 5, 0, 0"
+                Opacity="0.3" />
+            <Grid Grid.Row="0" Grid.ColumnSpan="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button
+                    Margin="10,5,0,4"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Opacity="0.7">
+                    <Path
+                        Width="15"
+                        Height="15"
+                        Fill="{StaticResource TextBoxBrush}"
+                        Stretch="Fill"
+                        Style="{StaticResource Archive}" />
+                </Button>
+                <Label Name="txtCaption" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Width="430" 
+                    Content="{x:Static res:LanguageResource.Content_Archive}" />
+                <Button x:Name="btn_Close" Grid.Column="4" Style="{StaticResource TileCloseButtonStyle}" ToolTip="{x:Static res:LanguageResource.Content_Close}"
+                    Command="{Binding  Commands[CloseCommand]}" 
+                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                    <Path Style="{StaticResource TileClosePathStyle}" />
+                </Button>
+            </Grid>
+            <Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition  Width="130"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <DataGrid Grid.Row="0" Grid.ColumnSpan="2" AutoGenerateColumns="False" ColumnHeaderHeight="40" GridLinesVisibility="Horizontal"
+                          HorizontalScrollBarVisibility="Auto" IsReadOnly="True" ItemsSource="{Binding ArchiveModels}"
+                          SelectedItem="{Binding SelectedArchiveModel, Mode=TwoWay}" SelectionUnit="FullRow" VerticalScrollBarVisibility="Auto">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Width="*" MinWidth="100" Header="{x:Static res:LanguageResource.Header_SenderAeTitle}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding AECaller}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Width="*" MinWidth="100" Header="{x:Static res:LanguageResource.Header_ServerAeTitle}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding AETitle}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Width="*" MinWidth="100" Header="{x:Static res:LanguageResource.Header_Host}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Host}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Width="*" MinWidth="100" Header="{x:Static res:LanguageResource.Header_Port}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Port}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static res:LanguageResource.Content_TransferSyntax}" Margin="10,0,0,0" Style="{StaticResource InputLabelTextBlock}" />
+                <ComboBox Grid.Row="1" Grid.Column="1" Width="210" HorizontalAlignment="Left"
+                          ItemsSource="{Binding DicomTransferSyntaxTypes}"  
+                          SelectedValue="{Binding SelectedDicomTransferSyntax}" 
+                          Style="{StaticResource MaterialDesignOutlinedComboBox}" />
+                <CheckBox Grid.Row="2" Grid.Column="0" IsChecked="{Binding UseTls}" Content="{x:Static res:LanguageResource.Content_UseTls}" Style="{StaticResource NanoCheckBoxStyle}" />
+                <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding Anonymous}" Content="{x:Static res:LanguageResource.Content_Anonymous}" Style="{StaticResource NanoCheckBoxStyle}" />
+                <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition  Width="400"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"
+                               Text="{Binding Message}" FontSize="12" Foreground="#FFA63F"/>
+                    <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,20,0">
+                        <Button x:Name="btn_ArchiveOk" Width="150" Height="40" Margin="0,5,20,0"
+                            Content="{x:Static res:LanguageResource.Content_OK}" HorizontalAlignment="Center" VerticalAlignment="Top">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction Command="{Binding Commands[OKCommand]}" 
+                                                       CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                        <Button Width="150" Height="40" Margin="0,5,0,0" Content="{x:Static res:LanguageResource.Content_Cancel}" HorizontalAlignment="Center" VerticalAlignment="Top">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction
+                                    Command="{Binding Commands[CloseCommand]}"
+                                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                    </StackPanel>
+                </Grid> 
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EquipmentSettingConfig>
+	<EquipmentSetting>
+		<ManufacturerModelName Value="CompoundEye 24 Pro" Default=""/>
+		<DeviceSerialNumber Value="20231127581510C80001" Default=""/>
+		<PhantomSeriealNumber Value="" Default=""/>
+		<SoftwareName Value="InsightVision" Default=""/>
+		<SoftwareVersion Value="InsightVision V2.0" Default=""/>
+		<SoftwareVersionDetail Value="V2.0.2.9909" Default=""/>
+		<SystemVersion Value="" Default=""/>
+		<OperatingSystemVersion Value="Microsoft Windows 10 professional 10.0.18363" Default=""/>
+	</EquipmentSetting>
+</EquipmentSettingConfig>

@@ -1,0 +1,540 @@
+﻿<Grid
+    x:Class="NV.CT.Service.HardwareTest.Views.Components.Table.TableThreeAxisMotionTestingView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:NV.CT.Service.HardwareTest.Attachments.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helper="clr-namespace:NV.CT.Service.HardwareTest.Attachments.Helpers"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mk="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableTextBox;assembly=MaterialDesignThemes.Wpf"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <Grid.Resources>
+
+        <converters:TableDirectionToParameterVisibilityConverter x:Key="TableDirectionToParameterVisibilityConverter" />
+        <converters:TableMoveStatusToPackIconKindConverter x:Key="TableMoveStatusToPackIconKindConverter" />
+        <converters:TableMoveStatusToBrushConverter x:Key="TableMoveStatusToBrushConverter" />
+        <converters:TableMoveStatusToVisibilityConverter x:Key="TableMoveStatusToVisibilityConverter" />
+
+        <!--  TextBlockStyle  -->
+        <Style
+            BasedOn="{StaticResource NanoTextBlockStyle}"
+            TargetType="{x:Type TextBlock}">
+            <Setter Property="Width" Value="260" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontWeight" Value="Regular" />
+        </Style>
+
+        <!--  TextBoxStyle  -->
+        <Style
+            BasedOn="{StaticResource NanoTextBoxStyle}"
+            TargetType="{x:Type TextBox}">
+            <Setter Property="Width" Value="200" />
+            <Setter Property="FontWeight" Value="Regular" />
+        </Style>
+
+        <!--  KeyValuePairStackPanelStyle  -->
+        <Style
+            x:Key="KeyValuePairStackPanelStyle"
+            TargetType="{x:Type StackPanel}">
+            <Setter Property="Orientation" Value="Horizontal" />
+            <Setter Property="Margin" Value="0,5" />
+        </Style>
+
+        <!--  ButtonStyle  -->
+        <Style
+            BasedOn="{StaticResource NanoButtonStyle}"
+            TargetType="{x:Type Button}">
+            <Setter Property="Padding" Value="20,0" />
+            <Setter Property="Margin" Value="10,0" />
+            <Setter Property="Width" Value="220" />
+        </Style>
+
+        <!--  TableStatusBorderStyle  -->
+        <Style
+            x:Key="TableStatusBorderStyle"
+            TargetType="{x:Type Border}">
+            <Setter Property="Width" Value="300" />
+            <Setter Property="Height" Value="180" />
+            <Setter Property="Margin" Value="10,0" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="BorderBrush" Value="{StaticResource BaseTabBackBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="5" />
+        </Style>
+
+        <!--  TableStatusHeadTextBlockStyle  -->
+        <Style
+            x:Key="TableStatusHeadTextBlockStyle"
+            BasedOn="{StaticResource NanoTextBlockStyle}"
+            TargetType="{x:Type TextBlock}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Padding" Value="0,10" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="Background" Value="{StaticResource BaseTabBackBrush}" />
+            <Setter Property="TextAlignment" Value="Center" />
+        </Style>
+
+        <!--  TableStatusContentTextBlockStyle  -->
+        <Style
+            x:Key="TableStatusContentTextBlockStyle"
+            BasedOn="{StaticResource NanoTextBlockStyle}"
+            TargetType="{x:Type TextBlock}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="TextAlignment" Value="Center" />
+        </Style>
+
+        <!--  ConsoleMarkableTextBoxStyle  -->
+        <Style
+            x:Key="ConsoleMarkableTextBoxStyle"
+            BasedOn="{StaticResource MarkableTextBox}"
+            TargetType="{x:Type mk:MarkableTextBox}">
+            <Setter Property="VerticalContentAlignment" Value="Top" />
+            <Setter Property="Background" Value="#111111" />
+            <Setter Property="IsReadOnly" Value="True" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+        </Style>
+
+        <!--  SplitRectangeStyle  -->
+        <Style
+            x:Key="SplitRectangeStyle"
+            TargetType="{x:Type Rectangle}">
+            <Setter Property="Width" Value="400" />
+            <Setter Property="Height" Value="1" />
+            <Setter Property="Stroke" Value="{StaticResource BaseTabBackBrush}" />
+            <Setter Property="StrokeThickness" Value="1" />
+        </Style>
+
+        <!--  SplitTextBlockStyle  -->
+        <Style
+            x:Key="SplitTextBlockStyle"
+            BasedOn="{StaticResource NanoTextBlockStyle}"
+            TargetType="{x:Type TextBlock}">
+            <Setter Property="Width" Value="300" />
+            <Setter Property="Margin" Value="10,0" />
+            <Setter Property="Padding" Value="40,3" />
+            <Setter Property="Background" Value="{StaticResource BaseTabBackBrush}" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="TextAlignment" Value="Center" />
+        </Style>
+
+        <!--  IconButtonStyle  -->
+        <Style
+            x:Key="IconButtonStyle"
+            BasedOn="{StaticResource MaterialDesignRaisedButton}"
+            TargetType="{x:Type Button}">
+
+            <Setter Property="Width" Value="40" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Margin" Value="0,5,5,0" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+
+        </Style>
+
+    </Grid.Resources>
+
+    <GroupBox
+        Header="Table Three-Axis Motion In Place Test"
+        Style="{DynamicResource StandardGroupBoxStyle}">
+
+        <Grid Margin="80,20">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45" />
+                <RowDefinition Height="80" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="200" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="80" />
+                <RowDefinition Height="45" />
+                <RowDefinition />
+                <RowDefinition Height="45" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid
+                Grid.Row="0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Rectangle
+                    Grid.Column="0"
+                    Style="{StaticResource SplitRectangeStyle}" />
+
+                <TextBlock
+                    Grid.Column="1"
+                    Style="{StaticResource SplitTextBlockStyle}"
+                    Text="Table Motion Control" />
+
+                <Rectangle
+                    Grid.Column="2"
+                    Style="{StaticResource SplitRectangeStyle}" />
+
+            </Grid>
+
+            <StackPanel
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal">
+
+                <TextBlock
+                    VerticalAlignment="Center"
+                    Text="Table Target Move Direction :  " />
+
+                <ComboBox
+                    x:Name="tableMoveDirection"
+                    Width="200"
+                    VerticalAlignment="Center"
+                    helper:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                    SelectedItem="{Binding TableParameters.Direction}" />
+
+            </StackPanel>
+
+            <Rectangle
+                Grid.Row="2"
+                Width="600"
+                HorizontalAlignment="Center"
+                Fill="{StaticResource BaseTabBackBrush}"
+                Opacity="0.3" />
+
+            <StackPanel
+                Grid.Row="3"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+                <StackPanel
+                    Style="{StaticResource KeyValuePairStackPanelStyle}"
+                    Visibility="{Binding SelectedItem, ElementName=tableMoveDirection, Converter={StaticResource TableDirectionToParameterVisibilityConverter}, ConverterParameter=Horizontal}">
+
+                    <TextBlock Text="Horizontal Target Position (mm) :  " />
+
+                    <mk:MarkableTextBox
+                        Width="200"
+                        Text="{Binding TableParameters.HorizontalPosition, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                </StackPanel>
+
+                <StackPanel
+                    Style="{StaticResource KeyValuePairStackPanelStyle}"
+                    Visibility="{Binding SelectedItem, ElementName=tableMoveDirection, Converter={StaticResource TableDirectionToParameterVisibilityConverter}, ConverterParameter=Horizontal}">
+
+                    <TextBlock Text="Horizontal Target Velocity (mm/s) :  " />
+
+                    <mk:MarkableTextBox
+                        Width="200"
+                        Text="{Binding TableParameters.HorizontalVelocity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                </StackPanel>
+
+                <StackPanel
+                    Style="{StaticResource KeyValuePairStackPanelStyle}"
+                    Visibility="{Binding SelectedItem, ElementName=tableMoveDirection, Converter={StaticResource TableDirectionToParameterVisibilityConverter}, ConverterParameter=Vertical}">
+
+                    <TextBlock Text="Vertical Target Position (mm) :  " />
+
+                    <mk:MarkableTextBox
+                        Width="200"
+                        Text="{Binding TableParameters.VerticalPosition, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                </StackPanel>
+
+                <StackPanel
+                    Style="{StaticResource KeyValuePairStackPanelStyle}"
+                    Visibility="{Binding SelectedItem, ElementName=tableMoveDirection, Converter={StaticResource TableDirectionToParameterVisibilityConverter}, ConverterParameter=Vertical}">
+
+                    <TextBlock Text="Vertical Target Velocity (mm/s) :  " />
+
+                    <mk:MarkableTextBox
+                        Width="200"
+                        Text="{Binding TableParameters.VerticalVelocity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                </StackPanel>
+
+                <StackPanel
+                    Style="{StaticResource KeyValuePairStackPanelStyle}"
+                    Visibility="{Binding SelectedItem, ElementName=tableMoveDirection, Converter={StaticResource TableDirectionToParameterVisibilityConverter}, ConverterParameter=AxisX}">
+
+                    <TextBlock Text="Axis-X Target Position (mm) :  " />
+
+                    <mk:MarkableTextBox
+                        Width="200"
+                        Text="{Binding TableParameters.AxisXPosition, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                </StackPanel>
+
+                <StackPanel
+                    Style="{StaticResource KeyValuePairStackPanelStyle}"
+                    Visibility="{Binding SelectedItem, ElementName=tableMoveDirection, Converter={StaticResource TableDirectionToParameterVisibilityConverter}, ConverterParameter=AxisX}">
+
+                    <TextBlock Text="Axis-X Target Velocity (mm/s) :  " />
+
+                    <mk:MarkableTextBox
+                        Width="200"
+                        Text="{Binding TableParameters.AxisXVelocity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                </StackPanel>
+
+            </StackPanel>
+
+            <Rectangle
+                Grid.Row="4"
+                Width="600"
+                HorizontalAlignment="Center"
+                Fill="{StaticResource BaseTabBackBrush}"
+                Opacity="0.3" />
+
+            <StackPanel
+                Grid.Row="5"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal">
+
+                <Button
+                    Command="{Binding StartMoveCommand}"
+                    Content="Start Move" />
+
+                <Button
+                    Command="{Binding StopMoveCommand}"
+                    Content="Stop Move" />
+
+            </StackPanel>
+
+            <Grid
+                Grid.Row="6"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Rectangle
+                    Grid.Column="0"
+                    Style="{StaticResource SplitRectangeStyle}" />
+
+                <TextBlock
+                    Grid.Column="1"
+                    Style="{StaticResource SplitTextBlockStyle}"
+                    Text="Table Realtime Status" />
+
+                <Rectangle
+                    Grid.Column="2"
+                    Style="{StaticResource SplitRectangeStyle}" />
+
+            </Grid>
+
+            <StackPanel
+                Grid.Row="7"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal">
+
+                <Border Style="{StaticResource TableStatusBorderStyle}">
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock
+                            Grid.Row="0"
+                            Style="{StaticResource TableStatusHeadTextBlockStyle}"
+                            Text="Table Horizontal Position (mm) " />
+
+                        <TextBlock
+                            Grid.Row="1"
+                            Grid.RowSpan="2"
+                            Style="{StaticResource TableStatusContentTextBlockStyle}"
+                            Text="{Binding TableSource.HorizontalPosition}" />
+
+                        <StackPanel
+                            Grid.Row="2"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Orientation="Horizontal">
+
+                            <TextBlock
+                                Width="100"
+                                FontSize="11"
+                                Text="{Binding HorizontalDeviation, StringFormat=Deviation - {0:F2}}"
+                                TextAlignment="Center"
+                                Visibility="{Binding HorizontalMoveStatus, Converter={StaticResource TableMoveStatusToVisibilityConverter}}" />
+
+                            <md:PackIcon
+                                Margin="5"
+                                Foreground="{Binding HorizontalMoveStatus, Converter={StaticResource TableMoveStatusToBrushConverter}}"
+                                Kind="{Binding HorizontalMoveStatus, Converter={StaticResource TableMoveStatusToPackIconKindConverter}}"
+                                Visibility="{Binding SelectedItem, ElementName=tableMoveDirection, Converter={StaticResource TableDirectionToParameterVisibilityConverter}, ConverterParameter=Horizontal}" />
+
+                        </StackPanel>
+
+                    </Grid>
+
+                </Border>
+
+                <Border Style="{StaticResource TableStatusBorderStyle}">
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock
+                            Grid.Row="0"
+                            Style="{StaticResource TableStatusHeadTextBlockStyle}"
+                            Text="Table Vertical Position (mm) " />
+
+                        <TextBlock
+                            Grid.Row="1"
+                            Grid.RowSpan="2"
+                            Style="{StaticResource TableStatusContentTextBlockStyle}"
+                            Text="{Binding TableSource.VerticalPosition}" />
+
+                        <StackPanel
+                            Grid.Row="2"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Orientation="Horizontal">
+
+                            <TextBlock
+                                Width="100"
+                                FontSize="11"
+                                Text="{Binding VerticalDeviation, StringFormat=Deviation - {0:F2}}"
+                                TextAlignment="Center"
+                                Visibility="{Binding VerticalMoveStatus, Converter={StaticResource TableMoveStatusToVisibilityConverter}}" />
+
+                            <md:PackIcon
+                                Margin="5"
+                                Foreground="{Binding VerticalMoveStatus, Converter={StaticResource TableMoveStatusToBrushConverter}}"
+                                Kind="{Binding VerticalMoveStatus, Converter={StaticResource TableMoveStatusToPackIconKindConverter}}"
+                                Visibility="{Binding SelectedItem, ElementName=tableMoveDirection, Converter={StaticResource TableDirectionToParameterVisibilityConverter}, ConverterParameter=Vertical}" />
+
+                        </StackPanel>
+
+                    </Grid>
+
+                </Border>
+
+                <Border Style="{StaticResource TableStatusBorderStyle}">
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock
+                            Style="{StaticResource TableStatusHeadTextBlockStyle}"
+                            Text="Table Axis-X Position (mm) " />
+
+                        <TextBlock
+                            Grid.Row="1"
+                            Grid.RowSpan="2"
+                            Style="{StaticResource TableStatusContentTextBlockStyle}"
+                            Text="{Binding TableSource.AxisXPosition}" />
+
+                        <StackPanel
+                            Grid.Row="2"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Orientation="Horizontal">
+
+                            <TextBlock
+                                Width="100"
+                                FontSize="11"
+                                Text="{Binding AxisXDeviation, StringFormat=Deviation - {0:F2}}"
+                                TextAlignment="Center"
+                                Visibility="{Binding AxisXMoveStatus, Converter={StaticResource TableMoveStatusToVisibilityConverter}}" />
+
+                            <md:PackIcon
+                                Margin="5"
+                                Foreground="{Binding AxisXMoveStatus, Converter={StaticResource TableMoveStatusToBrushConverter}}"
+                                Kind="{Binding AxisXMoveStatus, Converter={StaticResource TableMoveStatusToPackIconKindConverter}}"
+                                Visibility="{Binding SelectedItem, ElementName=tableMoveDirection, Converter={StaticResource TableDirectionToParameterVisibilityConverter}, ConverterParameter=AxisX}" />
+
+                        </StackPanel>
+
+                    </Grid>
+
+                </Border>
+
+            </StackPanel>
+
+            <Grid
+                Grid.Row="8"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Rectangle
+                    Grid.Column="0"
+                    Style="{StaticResource SplitRectangeStyle}" />
+
+                <TextBlock
+                    Grid.Column="1"
+                    Style="{StaticResource SplitTextBlockStyle}"
+                    Text="Console" />
+
+                <Rectangle
+                    Grid.Column="2"
+                    Style="{StaticResource SplitRectangeStyle}" />
+
+            </Grid>
+
+            <Border
+                Grid.Row="9"
+                BorderBrush="{StaticResource BaseTabBackBrush}"
+                BorderThickness="1"
+                CornerRadius="5">
+
+                <mk:MarkableTextBox
+                    x:Name="consoleTextBox"
+                    Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Border}}"
+                    Style="{StaticResource ConsoleMarkableTextBoxStyle}"
+                    Text="{Binding ConsoleMessage}"
+                    TextChanged="Console_TextChanged" />
+
+            </Border>
+
+            <Button
+                Grid.Row="9"
+                Command="{Binding ClearConsoleMessageCommand}"
+                Style="{StaticResource IconButtonStyle}">
+
+                <Button.Content>
+                    <md:PackIcon Kind="Refresh" />
+                </Button.Content>
+
+            </Button>
+
+        </Grid>
+
+    </GroupBox>
+
+</Grid>

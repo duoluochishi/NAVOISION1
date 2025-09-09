@@ -1,0 +1,121 @@
+﻿<UserControl x:Class="NV.CT.Print.View.SelectPrinterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:md="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableTextBox;assembly=MaterialDesignThemes.Wpf"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NV.CT.Print.View"
+             xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="56"/> <!-- 0 //Select Printer Section-->
+            <RowDefinition Height="50"/> <!-- 1 //ServerAETitle-->
+            <RowDefinition Height="50"/> <!-- 2 //PageSize-->
+            <RowDefinition Height="50"/> <!-- 3 //Copies-->
+            <RowDefinition Height="50"/> <!-- 4 //Show Header  &&  Show Footer-->
+            <RowDefinition Height="50"/> <!-- 5 //Orientation -->
+            <RowDefinition Height="50"/> <!-- 6 //Layout-->
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <TextBlock x:Name="lblPrinterSection" Text="{x:Static res:LanguageResource.Content_SelectPrinter}" 
+                       Style="{StaticResource SectionTitleTextBlock}" Margin="8,0,0,0"/>
+            <Rectangle Width="{Binding ElementName=lblPrinterSection,Path=ActualWidth}"
+                       Style="{StaticResource SectionTitleUnderlineRectangle}" Margin="8,0,0,14"/>
+        </Grid>
+        <Grid Grid.Row="1" Style="{StaticResource InfomationGrid}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="38*"/>
+                <ColumnDefinition Width="62*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{x:Static res:LanguageResource.Content_ServerAETitle}" Style="{StaticResource InputLabelTextBlock}" 
+                           Margin="8,0,0,0" />
+            <ComboBox Name="cbbServerAETitle" Grid.Column="1" ItemsSource="{Binding ServerAETitles}" Margin="0,0,8,0"
+                          Style="{StaticResource MaterialDesignOutlinedComboBox}" DisplayMemberPath="AETitle">
+                <ComboBox.SelectedValue>
+                    <Binding Path="SelectedServerAETitle" />
+                </ComboBox.SelectedValue>
+            </ComboBox>
+        </Grid>
+        <Grid Grid.Row="2" Style="{StaticResource InfomationGrid}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="38*"/>
+                <ColumnDefinition Width="62*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{x:Static res:LanguageResource.Content_PageSize}" Style="{StaticResource InputLabelTextBlock}" 
+                           Margin="8,0,0,0" />
+            <ComboBox Name="cbbPageSize" Grid.Column="1" ItemsSource="{Binding PageSizes}" Margin="0,0,8,0"
+                          Style="{StaticResource MaterialDesignOutlinedComboBox}" DisplayMemberPath="DisplayText">
+                <ComboBox.SelectedValue>
+                    <Binding Path="SelectedPageSize" />
+                </ComboBox.SelectedValue>
+            </ComboBox>
+        </Grid>
+        <Grid Grid.Row="3" Style="{StaticResource InfomationGrid}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="38*"/>
+                <ColumnDefinition Width="62*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{x:Static res:LanguageResource.Content_Copies}" Style="{StaticResource InputLabelTextBlock}" 
+                           Margin="8,0,0,0" />
+            <md:MarkableTextBox Grid.Column="1" HorizontalAlignment="Left" Minimum="1" Maximum="50" TextType="Decimal" Width="100"
+                                Style="{StaticResource MarkableTextBox}" MaxLength="2" 
+                                Text="{Binding Path=Copies, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            </md:MarkableTextBox>
+        </Grid>
+        <Grid Grid.Row="6" Style="{StaticResource InfomationGrid}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="38*"/>
+                <ColumnDefinition Width="62*"/>
+            </Grid.ColumnDefinitions>
+            <CheckBox Grid.Column="0" Content="{x:Static res:LanguageResource.Content_ShowHeader}" Width="120" HorizontalAlignment="Left"
+                          IsChecked="{Binding IsShowHeader}" Margin="8,0,0,0" />
+            <CheckBox Grid.Column="1"  Content="{x:Static res:LanguageResource.Content_ShowFooter}" Width="120" HorizontalAlignment="Left"
+                          IsChecked="{Binding IsShowFooter}" Margin="60,0,0,0"/>
+
+        </Grid>
+        <Grid Grid.Row="4" Style="{StaticResource InfomationGrid}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="38*"/>
+                <ColumnDefinition Width="62*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{x:Static res:LanguageResource.Content_Orientation}" Style="{StaticResource InputLabelTextBlock}" 
+                           Margin="8,0,0,0" />
+            <ComboBox Name="cbbFilmOrientation" Grid.Column="1" ItemsSource="{Binding OrientationList}" Margin="0,0,8,0"
+                          Style="{StaticResource MaterialDesignOutlinedComboBox}" DisplayMemberPath="DisplayText">
+                <ComboBox.SelectedValue>
+                    <Binding Path="SelectedOrientation" />
+                </ComboBox.SelectedValue>
+            </ComboBox>
+        </Grid>
+        <Grid Grid.Row="5" Style="{StaticResource InfomationGrid}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="38*"/>
+                <ColumnDefinition Width="62*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{x:Static res:LanguageResource.Content_SelectLayout}" Style="{StaticResource InputLabelTextBlock}" Margin="8,0,0,0" />
+            <Grid Grid.Column="1">
+                <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal" Background="Transparent">
+                    <ComboBox Name="cbbSelectLayout" ItemsSource="{Binding Layouts}" Width="170" HorizontalAlignment="Left" VerticalAlignment="Center"
+                              Style="{StaticResource MaterialDesignOutlinedComboBox}" DisplayMemberPath="Name">
+                        <ComboBox.SelectedValue>
+                            <Binding Path="SelectedLayout" />
+                        </ComboBox.SelectedValue>
+                    </ComboBox>
+                    <Button x:Name="btnSetPrintProtocol" Grid.Column="1" ToolTip="{x:Static res:LanguageResource.ToolTip_PrintProtocolSettings}" Margin="8,0,0,0"
+                                    Width="20" Height="20" VerticalAlignment="Center"  HorizontalAlignment="Left"
+                                    Command="{Binding Commands[SetPrintProtocolCommand]}"
+                                    CommandParameter="{Binding ElementName=btnSetPrintProtocol}"
+                                    Style="{StaticResource ToolbarButton}">
+                        <Button.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/Custom.png" Stretch="Fill" />
+                        </Button.Background>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

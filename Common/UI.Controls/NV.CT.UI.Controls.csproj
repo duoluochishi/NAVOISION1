@@ -1,0 +1,604 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<TargetFramework>$(TargetFramework)-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<UseWindowsForms>true</UseWindowsForms>
+		<PlatformTarget>x64</PlatformTarget>
+		<Platforms>AnyCPU;x64</Platforms>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<AssemblyName>NV.CT.UI.Controls</AssemblyName>
+		<RootNamespace>NV.CT.UI.Controls</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="Fonts\fontawesome.ttf" />
+		<None Remove="Fonts\iconfont.ttf" />
+		<None Remove="Icons\add_02.png" />
+		<None Remove="Icons\Archive_PartlyCompleted.png" />
+		<None Remove="Icons\AutoVoice.png" />
+		<None Remove="Icons\bg.png" />
+		<None Remove="Icons\close1.png" />
+		<None Remove="Icons\close2.png" />
+		<None Remove="Icons\FF_Next.png" />
+		<None Remove="Icons\FR_Pre.png" />
+		<None Remove="Icons\icon_CD.png" />
+		<None Remove="Icons\icon_Disk.png" />
+		<None Remove="Icons\icon_Usb.png" />
+		<None Remove="Icons\i_BatchAngle_0.png" />
+		<None Remove="Icons\i_BatchAngle_1.png" />
+		<None Remove="Icons\i_BatchMPR_0.png" />
+		<None Remove="Icons\i_BatchMPR_1.png" />
+		<None Remove="Icons\i_grid_0.png" />
+		<None Remove="Icons\i_grid_1.png" />
+		<None Remove="Icons\i_kernel_0.png" />
+		<None Remove="Icons\i_kernel_1.png" />
+		<None Remove="Icons\i_RGB_0.png" />
+		<None Remove="Icons\i_RGB_1.png" />
+		<None Remove="Icons\i_Slice_0.png" />
+		<None Remove="Icons\i_Slice_1.png" />
+		<None Remove="Icons\i_style_0.png" />
+		<None Remove="Icons\i_style_1.png" />
+		<None Remove="Icons\i__rectangle_ROI_0.png" />
+		<None Remove="Icons\i__rectangle_ROI_1.png" />
+		<None Remove="Icons\loading.gif" />
+		<None Remove="Icons\logo.png" />
+		<None Remove="Icons\logo.svg" />
+		<None Remove="Icons\message_done.png" />
+		<None Remove="Icons\message_error.png" />
+		<None Remove="Icons\message_info.png" />
+		<None Remove="Icons\message_warning.png" />
+		<None Remove="Icons\Pause.png" />
+		<None Remove="Icons\Rotate2D_0.png" />
+		<None Remove="Icons\Rotate2D_1.png" />
+		<None Remove="Icons\ScanedFailed.png" />
+		<None Remove="Icons\ScreenShot_0.png" />
+		<None Remove="Icons\ScreenShot_1.png" />
+		<None Remove="Icons\thunder.png" />
+		<None Remove="Icons\wait.png" />
+		<None Remove="Images\loading.gif" />
+		<None Remove="Images\voice.png" />
+		<None Remove="Images\voicewhite.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Icons\add_02.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Icons\ScanedFailed.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Fonts\fontawesome.ttf" />
+	  <Resource Include="Fonts\iconfont.ttf" />
+	  <Resource Include="Icons\FF_Next.png" />
+	  <Resource Include="Icons\FR_Pre.png" />
+	  <Resource Include="Icons\i_BatchAngle_0.png" />
+	  <Resource Include="Icons\i_BatchAngle_1.png" />
+	  <Resource Include="Icons\i_BatchMPR_0.png" />
+	  <Resource Include="Icons\i_BatchMPR_1.png" />
+	  <Resource Include="Icons\i_RGB_0.png" />
+	  <Resource Include="Icons\i_RGB_1.png" />
+	  <Resource Include="Icons\i_Slice_0.png" />
+	  <Resource Include="Icons\i_Slice_1.png" />
+	  <Resource Include="Icons\loading.gif" />
+	  <Resource Include="Icons\logo.svg">
+	    <CopyToOutputDirectory></CopyToOutputDirectory>
+	  </Resource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Icons\icon_CD.png" />
+	  <Resource Include="Icons\icon_Disk.png" />
+	  <Resource Include="Icons\icon_Usb.png" />
+	  <Resource Include="Icons\i_grid_0.png" />
+	  <Resource Include="Icons\i_grid_1.png" />
+	  <Resource Include="Icons\i_style_0.png" />
+	  <Resource Include="Icons\i_style_1.png" />
+	  <Resource Include="Icons\message_done.png" />
+	  <Resource Include="Icons\message_error.png" />
+	  <Resource Include="Icons\message_info.png" />
+	  <Resource Include="Icons\message_warning.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Icons\AutoVoice.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Icons\bg.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" />
+		<PackageReference Include="AutoMapper" />
+		<PackageReference Include="Microsoft.Extensions.Logging" />
+		<PackageReference Include="Prism.Core" />
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" />
+		<PackageReference Include="WpfAnimatedGif" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\SystemInterface\MCSRuntime.Contract\NV.CT.SystemInterface.MCSRuntime.Contract.csproj" />
+	  <ProjectReference Include="..\..\SystemService\ConfigService.Contract\NV.CT.ConfigService.Contract.csproj" />
+	  <ProjectReference Include="..\..\SystemService\MessageService.Contract\NV.CT.MessageService.Contract.csproj" />
+	  <ProjectReference Include="..\..\SystemService\WorkflowService.Contract\NV.CT.WorkflowService.Contract.csproj" />
+	  <ProjectReference Include="..\CommonAttributeUI\NV.CT.CommonAttributeUI.csproj" />
+	  <ProjectReference Include="..\CTS\NV.CT.CTS.csproj" />
+	  <ProjectReference Include="..\DicomUtilityWin\NV.CT.DicomUtilityWin.csproj" />
+	  <ProjectReference Include="..\DicomUtility\NV.CT.DicomUtility.csproj" />
+	  <ProjectReference Include="..\ViewModel\NV.CT.UI.ViewModel.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="NV.MPS.Environment">
+			<HintPath>..\..\bin\NV.MPS.Environment.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.MPS.Configuration">
+			<HintPath>..\..\bin\NV.MPS.Configuration.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.MPS.Exception">
+			<HintPath>..\..\bin\NV.MPS.Exception.dll</HintPath>
+		</Reference>
+		<Reference Include="MaterialDesignColors">
+			<HintPath>..\..\bin\MaterialDesignColors.dll</HintPath>
+		</Reference>
+		<Reference Include="MaterialDesignThemes.Wpf">
+			<HintPath>..\..\bin\MaterialDesignThemes.Wpf.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.CT.Language">
+		  <HintPath>..\..\bin\NV.CT.Language.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.MPS.UI.Dialog">
+		  <HintPath>..\..\bin\NV.MPS.UI.Dialog.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="Icons\Add.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Icons\adult.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Icons\Archive_PartlyCompleted.png" />
+		<Resource Include="Icons\Axial.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Icons\child.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Icons\close.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Icons\close1.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Icons\close2.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Icons\Controlbox_Connected.png" />
+		<Resource Include="Icons\Controlbox_DisConnected.png" />
+		<Resource Include="Icons\Custom.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="Icons\Delete.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Icons\down.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Icons\exit.png" />
+		<Resource Include="Icons\Factory.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Icons\Female_0.png" />
+		<Resource Include="Icons\FF_0.png" />
+		<Resource Include="Icons\FR_0.png" />
+		<Resource Include="Icons\hourglass.gif" />
+		<Resource Include="Icons\import.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="Icons\229136151233152159.png" />
+		<Resource Include="Icons\230173163229156168232191144232161140.png" />
+		<Resource Include="Icons\2868688.jpg" />
+		<Resource Include="Icons\briefcase_0.png" />
+		<Resource Include="Icons\briefcase_1.png" />
+		<Resource Include="Icons\Calculate.png" />
+		<Resource Include="Icons\CD.png" />
+		<Resource Include="Icons\closedoor.png" />
+		<Resource Include="Icons\color.png" />
+		<Resource Include="Icons\Disk.png" />
+		<Resource Include="Icons\doseerror.png" />
+		<Resource Include="Icons\dosewarning.png" />
+		<Resource Include="Icons\DropDown.png" />
+		<Resource Include="Icons\error.png" />
+		<Resource Include="Icons\EStop-Choose.png" />
+		<Resource Include="Icons\Estop.png" />
+		<Resource Include="Icons\export.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Icons\FFL.png" />
+		<Resource Include="Icons\FFL_Axial.png" />
+		<Resource Include="Icons\FFL_Helical.png" />
+		<Resource Include="Icons\FFL_Top.png" />
+		<Resource Include="Icons\FFP.png" />
+		<Resource Include="Icons\FFP_Axial.png" />
+		<Resource Include="Icons\FFP_Helical.png" />
+		<Resource Include="Icons\FFP_Top.png" />
+		<Resource Include="Icons\FFR.png" />
+		<Resource Include="Icons\FFR_Axial.png" />
+		<Resource Include="Icons\FFR_Helical.png" />
+		<Resource Include="Icons\FFR_Top.png" />
+		<Resource Include="Icons\FFS.png" />
+		<Resource Include="Icons\FFS_Axial.png" />
+		<Resource Include="Icons\FFS_Helical.png" />
+		<Resource Include="Icons\FFS_Top.png" />
+		<Resource Include="Icons\FF_left.png" />
+		<Resource Include="Icons\FF_prone.png" />
+		<Resource Include="Icons\FF_right.png" />
+		<Resource Include="Icons\FF_supine.png" />
+		<Resource Include="Icons\finish.png" />
+		<Resource Include="Icons\Follow Up 2TP 2x2_0.png" />
+		<Resource Include="Icons\Follow Up 2TP 2x2_1.png" />
+		<Resource Include="Icons\Follow Up 2TP 4x2_0.png" />
+		<Resource Include="Icons\Follow Up 2TP 4x2_1.png" />
+		<Resource Include="Icons\Follow Up 2TP 4x3_0.png" />
+		<Resource Include="Icons\Follow Up 2TP 4x3_1.png" />
+		<Resource Include="Icons\going.png" />
+		<Resource Include="Icons\hard_green.png" />
+		<Resource Include="Icons\hard_orange.png" />
+		<Resource Include="Icons\hard_red.png" />
+		<Resource Include="Icons\HFL.png" />
+		<Resource Include="Icons\HFL_Axial.png" />
+		<Resource Include="Icons\HFL_Helical.png" />
+		<Resource Include="Icons\HFL_Top.png" />
+		<Resource Include="Icons\HFP.png" />
+		<Resource Include="Icons\HFP_Axial.png" />
+		<Resource Include="Icons\HFP_Helical.png" />
+		<Resource Include="Icons\HFP_Top.png" />
+		<Resource Include="Icons\HFR.png" />
+		<Resource Include="Icons\HFR_Axial.png" />
+		<Resource Include="Icons\HFR_Helical.png" />
+		<Resource Include="Icons\HFR_Top.png" />
+		<Resource Include="Icons\HFS.png" />
+		<Resource Include="Icons\HFS_Axial.png" />
+		<Resource Include="Icons\HFS_Helical.png" />
+		<Resource Include="Icons\HFS_Top.png" />
+		<Resource Include="Icons\HF_left.png" />
+		<Resource Include="Icons\HF_prone.png" />
+		<Resource Include="Icons\HF_right.png" />
+		<Resource Include="Icons\HF_supine.png" />
+		<Resource Include="Icons\home_0.png" />
+		<Resource Include="Icons\home_1.png" />
+		<Resource Include="Icons\info.png" />
+		<Resource Include="Icons\Injection_Connected.png" />
+		<Resource Include="Icons\Injection_Disconnected.png" />
+		<Resource Include="Icons\Ipad_Connected.png" />
+		<Resource Include="Icons\Ipad_Disconnected.png" />
+		<Resource Include="Icons\i_ dissect_d_0.png" />
+		<Resource Include="Icons\i_ dissect_d_1.png" />
+		<Resource Include="Icons\i_.parallel_R_0.png" />
+		<Resource Include="Icons\i_2D_0.png" />
+		<Resource Include="Icons\i_2D_1.png" />
+		<Resource Include="Icons\i_3D_0.png" />
+		<Resource Include="Icons\i_3D_1.png" />
+		<Resource Include="Icons\i_3d_reference_0.png" />
+		<Resource Include="Icons\i_3d_reference_1.png" />
+		<Resource Include="Icons\i_alignment_0.png" />
+		<Resource Include="Icons\i_alignment_1.png" />
+		<Resource Include="Icons\i_angle_0.png" />
+		<Resource Include="Icons\i_any_cut_0.png" />
+		<Resource Include="Icons\i_any_cut_1.png" />
+		<Resource Include="Icons\i_arrow_0.png" />
+		<Resource Include="Icons\i_auto_alignment_0.png" />
+		<Resource Include="Icons\i_auto_alignment_1.png" />
+		<Resource Include="Icons\i_auto_remve_bone__1.png" />
+		<Resource Include="Icons\i_auto_rem_bone_0.png" />
+		<Resource Include="Icons\i_auto_rem_bone_1.png" />
+		<Resource Include="Icons\i_auto_view_0.png" />
+		<Resource Include="Icons\i_auto_view_1.png" />
+		<Resource Include="Icons\i_auto_window_0.png" />
+		<Resource Include="Icons\i_auto_window_1.png" />
+		<Resource Include="Icons\i_bmd_0.png" />
+		<Resource Include="Icons\i_bmd_1.png" />
+		<Resource Include="Icons\i_body_rem_b_0.png" />
+		<Resource Include="Icons\i_body_rem_b_1.png" />
+		<Resource Include="Icons\i_bone_notrans_0.png" />
+		<Resource Include="Icons\i_bone_notrans_1.png" />
+		<Resource Include="Icons\i_broken_0.png" />
+		<Resource Include="Icons\i_broken_1.png" />
+		<Resource Include="Icons\i_circle_ROI_0.png" />
+		<Resource Include="Icons\i_coronal_0.png" />
+		<Resource Include="Icons\i_coronal_1.png" />
+		<Resource Include="Icons\i_cut_fault_0.png" />
+		<Resource Include="Icons\i_cut_fault_1.png" />
+		<Resource Include="Icons\i_cut_frame_0.png" />
+		<Resource Include="Icons\i_cut_frame_1.png" />
+		<Resource Include="Icons\i_cut_plane_0.png" />
+		<Resource Include="Icons\i_cut_plane_1.png" />
+		<Resource Include="Icons\i_dicomtag_0.png" />
+		<Resource Include="Icons\i_dicomtag_1.png" />
+		<Resource Include="Icons\i_edit_bone_0.png" />
+		<Resource Include="Icons\i_edit_bone_1.png" />
+		<Resource Include="Icons\i_edit_result_0.png" />
+		<Resource Include="Icons\i_edit_result_1.png" />
+		<Resource Include="Icons\i_film_0.png" />
+		<Resource Include="Icons\i_film_1.png" />
+		<Resource Include="Icons\i_hand_ drawn_0.png" />
+		<Resource Include="Icons\i_hand_ drawn_1.png" />
+		<Resource Include="Icons\i_head_re_b_0.png" />
+		<Resource Include="Icons\i_head_re_b_1.png" />
+		<Resource Include="Icons\i_help_0.png" />
+		<Resource Include="Icons\i_help_1.png" />
+		<Resource Include="Icons\i_hidden_co_0.png" />
+		<Resource Include="Icons\i_hidden_co_1.png" />
+		<Resource Include="Icons\i_hidden_cust_0.png" />
+		<Resource Include="Icons\i_hidden_cust_1.png" />
+		<Resource Include="Icons\i_hidden_img_0.png" />
+		<Resource Include="Icons\i_hidden_img_1.png" />
+		<Resource Include="Icons\i_hidden_text_0.png" />
+		<Resource Include="Icons\i_hidden_text_1.png" />
+		<Resource Include="Icons\i_horizontal_over_0.png" />
+		<Resource Include="Icons\i_horizontal_over_1.png" />
+		<Resource Include="Icons\i_initialposition_0.png" />
+		<Resource Include="Icons\i_initial_d_0.png" />
+		<Resource Include="Icons\i_initial_d_1.png" />
+		<Resource Include="Icons\i_invert_0.png" />
+		<Resource Include="Icons\i_invert_1.png" />
+		<Resource Include="Icons\i_kernel_0.png" />
+		<Resource Include="Icons\i_kernel_1.png" />
+		<Resource Include="Icons\i_last_0.png" />
+		<Resource Include="Icons\i_last_1.png" />
+		<Resource Include="Icons\i_leg_rem_0.png" />
+		<Resource Include="Icons\i_leg_rem_1.png" />
+		<Resource Include="Icons\i_lock_coordinate_0.png" />
+		<Resource Include="Icons\i_lock_coordinate_1.png" />
+		<Resource Include="Icons\i_max_d_0.png" />
+		<Resource Include="Icons\i_max_d_1.png" />
+		<Resource Include="Icons\i_measuring_distance_0.png" />
+		<Resource Include="Icons\i_MIP_0.png" />
+		<Resource Include="Icons\i_MIP_1.png" />
+		<Resource Include="Icons\i_move_0.png" />
+		<Resource Include="Icons\i_move_1.png" />
+		<Resource Include="Icons\i_MPRMP_0.png" />
+		<Resource Include="Icons\i_MPRMP_1.png" />
+		<Resource Include="Icons\i_MPR_0.png" />
+		<Resource Include="Icons\i_MPR_1.png" />
+		<Resource Include="Icons\i_next_0.png" />
+		<Resource Include="Icons\i_next_1.png" />
+		<Resource Include="Icons\i_parallel_R_0.png" />
+		<Resource Include="Icons\i_parallel_R_1.png" />
+		<Resource Include="Icons\i_performed_0.png" />
+		<Resource Include="Icons\i_performed_1.png" />
+		<Resource Include="Icons\i_polygon_ROI_0.png" />
+		<Resource Include="Icons\i_polygon_ROI_1.png" />
+		<Resource Include="Icons\i_radial_0.png" />
+		<Resource Include="Icons\i_radial_1.png" />
+		<Resource Include="Icons\i_range_increase_0.png" />
+		<Resource Include="Icons\i_range_increase_1.png" />
+		<Resource Include="Icons\i_remove_tab_0.png" />
+		<Resource Include="Icons\i_remove_tab_1.png" />
+		<Resource Include="Icons\i_reset_layout_0.png" />
+		<Resource Include="Icons\i_reset_layout_1.png" />
+		<Resource Include="Icons\i_reset_preset_0.png" />
+		<Resource Include="Icons\i_reset_preset_1.png" />
+		<Resource Include="Icons\i_reverse_sequence_0.png" />
+		<Resource Include="Icons\i_revocation_0.png" />
+		<Resource Include="Icons\i_revocation_1.png" />
+		<Resource Include="Icons\i_rework_0.png" />
+		<Resource Include="Icons\i_re_window_0.png" />
+		<Resource Include="Icons\i_re_window_1.png" />
+		<Resource Include="Icons\i_rotate360_0.png" />
+		<Resource Include="Icons\i_rotate360_1.png" />
+		<Resource Include="Icons\i_rotate_0.png" />
+		<Resource Include="Icons\i_rotate_1.png" />
+		<Resource Include="Icons\i_sagittal_0.png" />
+		<Resource Include="Icons\i_sagittal_1.png" />
+		<Resource Include="Icons\i_scroll_0.png" />
+		<Resource Include="Icons\i_scroll_1.png" />
+		<Resource Include="Icons\i_sign_0.png" />
+		<Resource Include="Icons\i_sign_1.png" />
+		<Resource Include="Icons\i_sphere_VOI_0.png" />
+		<Resource Include="Icons\i_sphere_VOI_1.png" />
+		<Resource Include="Icons\i_spine_R_0.png" />
+		<Resource Include="Icons\i_spine_R_1.png" />
+		<Resource Include="Icons\i_spine_sign_0.png" />
+		<Resource Include="Icons\i_spine_sign_1.png" />
+		<Resource Include="Icons\i_surface_0.png" />
+		<Resource Include="Icons\i_surface_1.png" />
+		<Resource Include="Icons\i_synchronized_0.png" />
+		<Resource Include="Icons\i_synchronized_1.png" />
+		<Resource Include="Icons\i_syn_config_0.png" />
+		<Resource Include="Icons\i_syn_config_1.png" />
+		<Resource Include="Icons\i_tb_MPR_0.png" />
+		<Resource Include="Icons\i_tb_MPR_1.png" />
+		<Resource Include="Icons\i_text_0.png" />
+		<Resource Include="Icons\i_text_1.png" />
+		<Resource Include="Icons\i_thin_Min_0.png" />
+		<Resource Include="Icons\i_thin_Min_1.png" />
+		<Resource Include="Icons\i_thin_MIP_0.png" />
+		<Resource Include="Icons\i_thin_MIP_1.png" />
+		<Resource Include="Icons\i_thin_VRT_0.png" />
+		<Resource Include="Icons\i_thin_VRT_1.png" />
+		<Resource Include="Icons\i_undo_0.png" />
+		<Resource Include="Icons\i_undo_1.png" />
+		<Resource Include="Icons\i_vertical_over_0.png" />
+		<Resource Include="Icons\i_vertical_over_1.png" />
+		<Resource Include="Icons\i_VRT_0.png" />
+		<Resource Include="Icons\i_VRT_1.png" />
+		<Resource Include="Icons\i_VRT_colour_0.png" />
+		<Resource Include="Icons\i_VRT_colour_1.png" />
+		<Resource Include="Icons\i_window_0.png" />
+		<Resource Include="Icons\i_window_1.png" />
+		<Resource Include="Icons\i__rectangle_ROI_0.png" />
+		<Resource Include="Icons\i__rectangle_ROI_1.png" />
+		<Resource Include="Icons\lock.png" />
+		<Resource Include="Icons\logo.gif">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Icons\manager.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Icons\Man_0.png" />
+		<Resource Include="Icons\message.png" />
+		<Resource Include="Icons\Modify.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Icons\MPR MIP_0.png" />
+		<Resource Include="Icons\MPR MIP_1.png" />
+		<Resource Include="Icons\MPR VRT_0.png" />
+		<Resource Include="Icons\MPR VRT_1.png" />
+		<Resource Include="Icons\MRS_Connected.png" />
+		<Resource Include="Icons\MRS_Disconnected.png" />
+		<Resource Include="Icons\network.png" />
+		<Resource Include="Icons\logo.png" />
+		<Resource Include="Icons\NotScaned.png" />
+		<Resource Include="Icons\no_message.png" />
+		<Resource Include="Icons\opendoor.png" />
+		<Resource Include="Icons\Panel_Connected.png" />
+		<Resource Include="Icons\Panel_DisConnected.png" />
+		<Resource Include="Icons\patient1.png" />
+		<Resource Include="Icons\patient2.png" />
+		<Resource Include="Icons\patient3.png" />
+		<Resource Include="Icons\Pause.png" />
+		<Resource Include="Icons\Play_0.png" />
+		<Resource Include="Icons\preregister.png" />
+		<Resource Include="Icons\raw_green.png" />
+		<Resource Include="Icons\raw_orange.png" />
+		<Resource Include="Icons\raw_red.png" />
+		<Resource Include="Icons\reconfailed.png" />
+		<Resource Include="Icons\reconing.png" />
+		<Resource Include="Icons\reconrt.png">
+			<CopyToOutputDirectory></CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Icons\reconwaiting.png" />
+		<Resource Include="Icons\Repeat.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Icons\Rotate2D_0.png" />
+		<Resource Include="Icons\Rotate2D_1.png" />
+		<Resource Include="Icons\Scaned.png" />
+		<Resource Include="Icons\scaning.png" />
+		<Resource Include="Icons\ScreenShot_0.png" />
+		<Resource Include="Icons\ScreenShot_1.png" />
+		<Resource Include="Icons\Search.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Icons\setup_0.png" />
+		<Resource Include="Icons\setup_1.png" />
+		<Resource Include="Icons\SpeedDown_0.png" />
+		<Resource Include="Icons\SpeedUp_0.png" />
+		<Resource Include="Icons\Spiral.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Icons\stack 1x1_0.png" />
+		<Resource Include="Icons\stack 1x1_1.png" />
+		<Resource Include="Icons\stack 2x1_0.png" />
+		<Resource Include="Icons\stack 2x1_1.png" />
+		<Resource Include="Icons\stack 2x2_0.png" />
+		<Resource Include="Icons\stack 2x2_1.png" />
+		<Resource Include="Icons\stack 3x2_0.png" />
+		<Resource Include="Icons\stack 3x2_1.png" />
+		<Resource Include="Icons\stack 4x3_0.png" />
+		<Resource Include="Icons\stack 4x3_1.png" />
+		<Resource Include="Icons\StatusScaning.png" />
+		<Resource Include="Icons\Suspend_0.png" />
+		<Resource Include="Icons\thunder.png" />
+		<Resource Include="Icons\Tvgrayadd.png" />
+		<Resource Include="Icons\Tvgraysub.png" />
+		<Resource Include="Icons\unlock.png" />
+		<Resource Include="Icons\up.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Icons\USB.png" />
+		<Resource Include="Icons\usermangae_0.png" />
+		<Resource Include="Icons\usermangae_1.png" />
+		<Resource Include="Icons\user_0.png" />
+		<Resource Include="Icons\user_1.png" />
+		<Resource Include="Icons\user_login.png" />
+		<Resource Include="Icons\ViewLog.png" />
+		<Resource Include="Icons\wait.png" />
+		<Resource Include="Icons\warning.png" />
+		<Resource Include="Icons\Lightning.png" />
+		<Resource Include="Images\Beforescan.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Images\icon_product.png" />
+		<Resource Include="Images\loading.gif" />
+		<Resource Include="Images\Movetable.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Images\Nanovision.png" />
+		<Resource Include="Images\raw_green.png" />
+		<Resource Include="Images\raw_orange.png" />
+		<Resource Include="Images\raw_red.png" />
+		<Resource Include="Images\Scanning.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="Icons\i_angle_1.png" />
+		<Resource Include="Icons\i_arrow_1.png" />
+		<Resource Include="Icons\i_circle_ROI_1.png" />
+		<Resource Include="Icons\i_initialposition_1.png" />
+		<Resource Include="Icons\i_measuring_distance_1.png" />
+		<Resource Include="Icons\i_pixel_len_0.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Icons\i_pixel_len_1.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Icons\i_reverse_sequence_1.png" />
+		<Resource Include="Icons\i_rework_1.png" />
+		<Resource Include="Icons\i_zoom_0.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Icons\i_zoom_1.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Images\child_bg1.png" />
+		<Resource Include="Images\child_bg2.png" />
+		<Resource Include="Images\Cutimage.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Images\CutimagePress.png" />
+		<Resource Include="Images\human_bg1.png" />
+		<Resource Include="Images\human_bg2.png" />
+		<Resource Include="Images\SmartPositionTest.png" />
+		<Resource Include="Images\Tvgrayadd.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Images\Tvgraysub.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Images\voice.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Images\voicewhite.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+	</ItemGroup>
+
+	<!--<ItemGroup>
+		<Page Update="Dialog\View\InfoDialogView.xaml">
+			<XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+			<SubType>Designer</SubType>
+		</Page>
+		<Page Update="Dialog\View\ConfirmDialogView.xaml">
+			<XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+		</Page>
+	</ItemGroup>-->
+
+</Project>

@@ -1,0 +1,69 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>$(TargetFramework)-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<Platforms>x64</Platforms>
+		<Platforms>AnyCPU;x64</Platforms>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<AssemblyName>NV.CT.InterventionScan</AssemblyName>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Autofac" />
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" />
+		<PackageReference Include="AutoMapper" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" />
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" />
+		<PackageReference Include="Newtonsoft.Json" />
+		<PackageReference Include="AspectInjector" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Common\CommonAttributeUI\NV.CT.CommonAttributeUI.csproj" />
+		<ProjectReference Include="..\..\..\Common\CTS\NV.CT.CTS.csproj" />
+		<ProjectReference Include="..\..\..\Common\DicomImageViewer\NV.CT.DicomImageViewer.csproj" />
+		<ProjectReference Include="..\..\..\Common\UI.Controls\NV.CT.UI.Controls.csproj" />
+		<ProjectReference Include="..\..\..\Common\ViewModel\NV.CT.UI.ViewModel.csproj" />
+		<ProjectReference Include="..\..\..\Common\WorkingBoxThread\NV.CT.WorkingBoxThread.csproj" />
+		<ProjectReference Include="..\..\..\Infrastructure\Logging\NV.CT.Logging.csproj" />
+		<ProjectReference Include="..\..\..\SystemInterface\MCSRuntime.Impl\NV.CT.SystemInterface.MCSRuntime.Impl.csproj" />
+		<ProjectReference Include="..\..\..\SystemInterface\MRSIntegration.Impl\NV.CT.SystemInterface.MRSIntegration.Impl.csproj" />
+		<ProjectReference Include="..\..\..\SystemService\ClientProxy\NV.CT.ClientProxy.csproj" />
+		<ProjectReference Include="..\..\..\SystemService\WorkflowService.Contract\NV.CT.WorkflowService.Contract.csproj" />
+		<ProjectReference Include="..\..\Examination\ApplicationService.Contract\NV.CT.Examination.ApplicationService.Contract.csproj" />
+		<ProjectReference Include="..\..\Examination\ApplicationService.Impl\NV.CT.Examination.ApplicationService.Impl.csproj" />
+		<ProjectReference Include="..\ApplicationService.Contract\NV.CT.InterventionScan.ApplicationService.Contract.csproj" />
+		<ProjectReference Include="..\ApplicationService.Impl\NV.CT.InterventionScan.ApplicationService.Impl.csproj" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<Reference Include="NV.MPS.Communication">
+			<HintPath>..\..\..\bin\NV.MPS.Communication.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.MPS.Configuration">
+		  <HintPath>..\..\..\bin\NV.MPS.Configuration.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.MPS.Environment">
+			<HintPath>..\..\..\bin\NV.MPS.Environment.dll</HintPath>
+		</Reference>
+		<Reference Include="MaterialDesignColors">
+			<HintPath>..\..\..\bin\MaterialDesignColors.dll</HintPath>
+		</Reference>
+		<Reference Include="MaterialDesignThemes.Wpf">
+			<HintPath>..\..\..\bin\MaterialDesignThemes.Wpf.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.CT.ImageViewer.Interop">
+		  <HintPath>..\..\..\bin\NV.CT.ImageViewer.Interop.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.CT.Language">
+		  <HintPath>..\..\..\bin\NV.CT.Language.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.MPS.UI.Dialog">
+			<HintPath>..\..\..\bin\NV.MPS.UI.Dialog.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+</Project>

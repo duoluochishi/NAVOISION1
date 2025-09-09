@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TVCoefficients>
+	<Coefficient BodyPart="Head" Windowing="Brain" Factor="0.02" />
+	<Coefficient BodyPart="Abdomen" Windowing="Abdomen" Factor="0.02" />
+	<Coefficient BodyPart="Chest" Windowing="Med" Factor="0.02" />
+	<Coefficient BodyPart="Neck" Windowing="Med" Factor="0.02" />
+</TVCoefficients>

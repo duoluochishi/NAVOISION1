@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>$(TargetFramework)-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	<UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<PackageReference Include="Microsoft.Extensions.Logging" />
+    <PackageReference Include="AspectInjector" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CTS\NV.CT.CTS.csproj" />
+  </ItemGroup>
+
+</Project>

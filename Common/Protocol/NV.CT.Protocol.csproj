@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CTS\NV.CT.CTS.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <Reference Include="NV.MPS.Exception">
+		  <HintPath>..\..\bin\NV.MPS.Exception.dll</HintPath>
+	  </Reference>
+	  <Reference Include="NV.CT.ErrorCodes">
+      <HintPath>..\..\bin\NV.CT.ErrorCodes.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.CT.FacadeProxy.Common">
+      <HintPath>..\..\bin\NV.CT.FacadeProxy.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

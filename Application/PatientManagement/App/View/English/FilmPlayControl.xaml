@@ -1,0 +1,59 @@
+﻿<Window x:Class="NV.CT.PatientManagement.View.English.FilmPlayControl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NV.CT.PatientManagement.View.English"
+        mc:Ignorable="d"
+        Title="FilmPlayControl"   WindowStyle="None" ResizeMode="NoResize" Background="Transparent" Height="40" Width="240">
+    <Border CornerRadius="0" Background="#14142B">
+        <Grid Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                
+            </Grid.RowDefinitions>
+            <Button x:Name="btn_FR" Command="{Binding Commands[PreviousCommand]}" Grid.RowSpan="2" HorizontalAlignment="Center" BorderThickness="0" Width="20" Height="20" VerticalAlignment="Center" Content="" Cursor="Hand">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/FR_0.png" Stretch="Uniform" />
+                </Button.Background>
+            </Button>
+            <Button x:Name="btn_Play" Command="{Binding Commands[PlayOrPauseCommand]}" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Center" BorderThickness="0" Width="20" Height="20" VerticalAlignment="Center" Content="" Cursor="Hand">                                                                                   
+                <Button.Background>
+                    <ImageBrush ImageSource="{Binding BtnPlayIcon}" Stretch="Uniform" />
+                </Button.Background>
+            </Button>
+            <Button x:Name="btn_FF"  Command="{Binding Commands[NextCommand]}" Grid.Column="2" Grid.RowSpan="2" BorderThickness="0" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Content="" Cursor="Hand">                                                                                   
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/FF_0.png" Stretch="Uniform" />
+                </Button.Background>
+            </Button>
+            <TextBlock Grid.Column="3" Text="FPS" HorizontalAlignment="Right" Foreground="White" FontSize="10" VerticalAlignment="Bottom" />
+            <TextBlock Grid.Column="3"  Name="txtFPS" Grid.Row="1" Text="{Binding FPS}" HorizontalAlignment="Right" FontSize="10" Foreground="White" VerticalAlignment="Bottom" />
+            <Button x:Name="btn_SpeedUp" Command="{Binding Commands[SpeedUpCommand]}" Grid.Column="4" BorderThickness="0" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Content="" Cursor="Hand">                                                                               
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/SpeedUp_0.png" Stretch="Uniform" />
+                </Button.Background>
+            </Button>
+            <Button x:Name="btn_SpeedDown" Command="{Binding Commands[SpeedDownCommand]}" Grid.Row="1" BorderThickness="0" Width="20" Height="20" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="" Cursor="Hand">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/SpeedDown_0.png" Stretch="Uniform" />
+                </Button.Background>
+            </Button>
+            <Button Grid.Column="5" x:Name="btn_close" Grid.RowSpan="2"
+                                        HorizontalAlignment="Right" Click="btn_close_Click"
+                                           Content="X" Cursor="Hand"  
+                                           Width="30" Height="30"  BorderThickness="0"
+                                          Background="Transparent"
+                                           ></Button>
+        </Grid>
+    </Border>
+</Window>

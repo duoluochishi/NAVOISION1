@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SourceComponentConfig>
+	<SourceComponent DeviceType="24" SourceCount="24" TubeInterfaceCount="6">
+		<MaxHeatCapacity Value="260" Default="260"/>
+		<MaxDissipationPower Value="450" Default="260"/>
+		<PreheatCapThreshold Value="10" Default="10"/>
+		<NotifyHeatCapThreshold Value="60" Default="60"/>
+		<AlertHeatCapThreshold Value="70" Default="70"/>
+		<OilTempUpperThreshold Value="30" Default="30"/>
+		<SmallFocusMaxPower Value="0" Default="0"/>
+	</SourceComponent>
+</SourceComponentConfig>

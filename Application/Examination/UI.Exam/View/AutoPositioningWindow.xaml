@@ -1,0 +1,275 @@
+﻿<Window
+    x:Class="NV.CT.UI.Exam.View.AutoPositioningWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:extensions="clr-namespace:NV.CT.UI.Exam.Extensions"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"   
+    Width="1208" Height="740" Background="Transparent" AllowsTransparency="True" ResizeMode="NoResize" WindowStyle="None" mc:Ignorable="d">
+    <Window.Resources>
+        <Style
+            x:Key="TileMinPathStyle"
+            BasedOn="{StaticResource WindowMin}"
+            TargetType="{x:Type Path}">
+            <Setter Property="Fill" Value="{StaticResource TextBoxBrush}" />
+            <Setter Property="Height" Value="4" />
+            <Setter Property="Width" Value="16" />
+            <Setter Property="Stretch" Value="Fill" />
+        </Style>
+        <Style
+            x:Key="TileMaxPathStyle"
+            BasedOn="{StaticResource WindowMax}"
+            TargetType="{x:Type Path}">
+            <Setter Property="Fill" Value="{StaticResource TextBoxBrush}" />
+            <Setter Property="Height" Value="16" />
+            <Setter Property="Width" Value="16" />
+            <Setter Property="Stretch" Value="Fill" />
+        </Style>
+        <Style
+            x:Key="LableMessageStyle"
+            TargetType="TextBlock">
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Height" Value="26" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Foreground" Value="#FFA63F" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="TextAlignment" Value="Left" />
+            <Setter Property="Padding" Value="5,4,5,0" />
+        </Style>
+        <Style
+            x:Key="TextBlockMessageStyle"
+            BasedOn="{StaticResource LableMessageStyle}"
+            TargetType="TextBlock">
+            <Setter Property="Width" Value="60" />
+        </Style>
+        <Style
+            x:Key="RangeMessageStackPanel"
+            TargetType="{x:Type StackPanel}">
+            <Setter Property="Orientation" Value="Vertical" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="Background" Value="Transparent" />
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style
+            x:Key="RangeMessageBorder"
+            TargetType="{x:Type Border}">
+            <Setter Property="Width" Value="160" />
+            <Setter Property="Height" Value="100" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="Background" Value="#5a5a89" />
+            <Setter Property="CornerRadius" Value="5" />
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style
+            x:Key="RangeLineStackPanel"
+            TargetType="{x:Type StackPanel}">
+            <Setter Property="Width" Value="3" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Cursor" Value="SizeWE" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="Cursor" Value="SizeWE" />
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style
+            x:Key="TitlePathIconStyle"
+            BasedOn="{StaticResource CameraIcon}"
+            TargetType="{x:Type Path}">
+            <Setter Property="Stretch" Value="Fill" />
+            <Setter Property="Height" Value="18" />
+            <Setter Property="Width" Value="24" />
+            <Setter Property="Fill" Value="{StaticResource TextBoxBrush}" />
+        </Style>
+        <Style
+            x:Key="TitleButtonStyle"
+            BasedOn="{StaticResource MaterialDesignIconButton}"
+            TargetType="{x:Type Button}">
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Width" Value="22" />
+        </Style>
+        <Style
+            x:Key="RangeLineStyle"
+            TargetType="{x:Type Line}">
+            <Setter Property="Stroke" Value="#FFA63F" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="TitleMessageStyle" BasedOn="{StaticResource MaterialDesignTextBlock}" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="{StaticResource SAlertIconFillBrush}" />
+            <Setter Property="Margin" Value="15 0 0 0" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="TextWrapping" Value="NoWrap" />
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+    </Window.Resources>
+    <Border CornerRadius="10" Style="{StaticResource WindowsBorder}">
+        <Grid VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="28" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="135" />
+                <ColumnDefinition Width="73*" />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
+            <Border Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="4" Background="{StaticResource BaseTabBackBrush}" CornerRadius="5 5 0 0" Opacity="0.3" />
+            <Path Grid.Row="0" Grid.Column="0" Style="{StaticResource TitlePathIconStyle}" />
+            <Label Grid.Row="0" Grid.Column="1" Content="Auto Positioning" FontSize="16" Style="{StaticResource TitleLabelStyle}" />
+            <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource TitleMessageStyle}" Text="{Binding Message,Mode=TwoWay}" />
+            <Button
+                Grid.Column="3"
+                Margin="0,0,54,0"
+                Command="{Binding Commands[MinCommand]}"
+                CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                IsEnabled="{Binding Path=IsMinEnable}"
+                Style="{StaticResource TitleButtonStyle}">
+                <Path Style="{StaticResource TileMinPathStyle}" />
+            </Button>
+            <Button
+                Grid.Column="3"
+                Margin="0,0,26,0"
+                Command="{Binding Commands[MaxCommand]}"
+                CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                IsEnabled="{Binding Path=IsMaxEnable}"
+                Style="{StaticResource TitleButtonStyle}">
+                <Path Style="{StaticResource TileMaxPathStyle}" />
+            </Button>
+            <Button
+                Grid.Column="3"
+                Margin="0,0,2,0"
+                Command="{Binding Commands[CloseCommand]}"
+                CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                Style="{StaticResource TitleButtonStyle}">
+                <Path Style="{StaticResource TileClosePathStyle}" />
+            </Button>
+            <Image Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Source="{Binding PositionImage,Mode=TwoWay}" />
+            <Canvas x:Name="CvLine" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" AllowDrop="True" Background="Transparent">
+                <StackPanel x:Name="RangeStartControl" IsEnabled="{Binding Path=RangeLineShow}" Style="{StaticResource RangeLineStackPanel}">
+                    <i:Interaction.Behaviors>
+                        <extensions:DragMoveBehavior />
+                    </i:Interaction.Behaviors>
+                    <Line x:Name="RangeStartLine"
+                        Style="{StaticResource RangeLineStyle}"
+                        X1="1"
+                        X2="1"
+                        Y1="0"
+                        Y2="678" />
+                </StackPanel>
+                <StackPanel x:Name="RangeEndControl"
+                    IsEnabled="{Binding Path=RangeLineShow}"
+                    Style="{StaticResource RangeLineStackPanel}">
+                    <i:Interaction.Behaviors>
+                        <extensions:DragMoveBehavior />
+                    </i:Interaction.Behaviors>
+                    <Line x:Name="RangeEndLine"
+                        Style="{StaticResource RangeLineStyle}"
+                        X1="1"
+                        X2="1"
+                        Y1="0"  
+                        Y2="678" />
+                </StackPanel>
+            </Canvas>
+            <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,10,50,10" IsEnabled="{Binding Path=RangeMessageShow}" Style="{StaticResource RangeMessageBorder}">
+                <StackPanel Style="{StaticResource RangeMessageStackPanel}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource LableMessageStyle}" Text="Begin range:" />
+                        <TextBlock Style="{StaticResource TextBlockMessageStyle}" Text="{Binding Path=BeginRange}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource LableMessageStyle}" Text="End range:" />
+                        <TextBlock Style="{StaticResource TextBlockMessageStyle}" Text="{Binding Path=EndRange}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock  Style="{StaticResource LableMessageStyle}" Text="Length:" />
+                        <TextBlock Style="{StaticResource TextBlockMessageStyle}" Text="{Binding Path=RangeLength}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource LableMessageStyle}" Text="Bed height:" />
+                        <TextBlock Style="{StaticResource TextBlockMessageStyle}" Text="{Binding Path=BedHeight}" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <Border
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                Background="{StaticResource BaseTabBackBrush}"
+                CornerRadius="0 0 5 5"
+                Opacity="0.3" />
+            <!--<ToggleButton
+                x:Name="IsSmartPositioning"
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Center"
+                Command="{Binding Commands[IsSmartPositioningCommand]}"
+                CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                Style="{StaticResource MaterialDesignSwitchToggleButton}">
+                <materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
+                    <SolidColorBrush Opacity="2" Color="Green" />
+                </materialDesign:ToggleButtonAssist.SwitchTrackOnBackground>
+                <materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+                    <SolidColorBrush Color="White" />
+                </materialDesign:ToggleButtonAssist.SwitchTrackOffBackground>
+            </ToggleButton>-->
+            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" IsEnabled="{ Binding Path= IsButtonShow,Mode=TwoWay}" VerticalAlignment="Center">
+                <StackPanel.Style>
+                    <Style TargetType="{x:Type StackPanel}">
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                <Button Command="{Binding Commands[Detect]}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Content="Detecting" Width="100" Margin="0 0 0 0" />
+
+                <!--<Button Command="{Binding Commands[Recording]}" Content="Recording" Width="100" Margin="5 0 0 0" />
+                <Button Command="{Binding Commands[Calculation]}" Content="calculation"  Width="100" Margin="5 0 0 0" />
+                <TextBlock Text="{Binding  TableMoveH}" Margin="5 0 0 0" Width="120"/>
+                <TextBlock Text="{Binding  HeadMoveH}"  Margin="5 0 0 0" Width="120"/>-->
+
+                <TextBlock Text="T0(mm):" Margin="15 0 0 0" Width="60"/>
+                <TextBox Text="{Binding Path=PLENGTH,Mode=TwoWay}" Margin="2 0 0 0" Width="120" Height="24"/>
+                <TextBlock Text="Tc(mm):" Margin="5 0 0 0" Width="60"/>
+                <TextBox Text="{ Binding Path=Tc,Mode=TwoWay}" Margin="2 0 0 0" Width="120" Height="24"/>
+                <TextBlock Text="PPD(mm):" Margin="5 0 0 0" Width="70"/>
+                <TextBox Text="{Binding Path=PixelBedCode,Mode=TwoWay}" Margin="2 0 0 0" Width="120" Height="24"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

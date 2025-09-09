@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableConfig>
+	<Table>
+		<MaxX Value="200000" Default="200000" />
+		<MinX Value="0" Default="0" />
+		<XPositionAccuracy Value="1" Default="1" />
+		<MaxY Value="980000" Default="980000" />
+		<MinY Value="480000" Default="480000" />
+		<YPositionAccuracy Value="1" Default="1" />
+		<MaxZ Value="0" Default="0" />
+		<MinZ Value="-1850000" Default="-1850000" />
+		<ZPositionAccuracy Value="1" Default="1" />
+		<MaxZAcc Value="270000" Default="270000" />
+		<MaxZSpeed Value="250000" Default="250000" />
+		<MinZSpeed Value="0" Default="0" />
+		<MaxLoad Max="230" Min="0" DefaultMax="230" DefaultMin="0" />
+		<YFreeMoveZThreshold Value="280000" Default="280000" />
+		<ZFreeMoveYThreshold Value="710000" Default="710000" />
+		<YResetAccuracy Value="0.5" Default="0.5" />
+	</Table>
+</TableConfig>

@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Autofac" />
+		<PackageReference Include="AutoMapper" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\SystemService\DatabaseService.Contract\NV.CT.DatabaseService.Contract.csproj" />
+	  <ProjectReference Include="..\ApplicationService.Contract\NV.CT.RGT.ApplicationService.Contract.csproj" />
+	</ItemGroup>
+
+</Project>

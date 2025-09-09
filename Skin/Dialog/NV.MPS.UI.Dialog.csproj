@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>$(TargetFramework)-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+	  <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Icons\doseerror.png" />
+    <None Remove="Icons\dosewarning.png" />
+    <None Remove="Icons\info.png" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" />
+		<PackageReference Include="AutoMapper" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
+		<PackageReference Include="Microsoft.Extensions.Logging" />
+		<PackageReference Include="Prism.Core" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\ErrorCodes\NV.CT.ErrorCodes.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Icons\doseerror.png" />
+	  <Resource Include="Icons\dosewarning.png" />
+	  <Resource Include="Icons\info.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Page Update="View\ErrorDialogView.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,125 @@
+﻿<Window
+    x:Class="NV.CT.PatientManagement.View.English.AddEditFolderWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    Width="500"
+    Height="180"
+    AllowsTransparency="True"
+    Background="Transparent"
+    ResizeMode="NoResize"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Window.Resources>
+    </Window.Resources>
+    <Border CornerRadius="10" Style="{StaticResource WindowsBorder}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="20" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="80" />
+                <RowDefinition Height="40" />
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border Grid.ColumnSpan="5"
+                    Background="#5A5A89"
+                    CornerRadius="10,10,0,0"
+                    Opacity="0.3" />
+            <Grid Grid.ColumnSpan="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button Visibility="Collapsed" Margin="10,5,0,4"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Opacity="0.7">
+                    <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/Custom.png" Width="15"  Height="15">
+                    </Image>   
+                </Button>                
+                <Label Name="txtCaption"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        Margin="10,0,0,0"
+                        Width="230"
+                        HorizontalAlignment="Left"
+                        Content="{Binding WindowTitle}"
+                        VerticalAlignment="Center">                    
+                </Label>
+                <Button Grid.Column="3" Style="{StaticResource TileCloseButtonStyle}" ToolTip="{x:Static res:LanguageResource.Content_Close}"
+                        Command="{Binding  Commands[CloseCommand]}" 
+                        CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                    <Path Style="{StaticResource TileClosePathStyle}" />
+                </Button>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Width="100" HorizontalAlignment="Right" VerticalAlignment="Top" Content="{x:Static res:LanguageResource.Content_FolderName}" />
+                <TextBox x:Name="txtFolderName" Grid.Column="1" MaxLength="50"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="356" Focusable="True">
+                    <TextBox.Text>
+                        <Binding Path="FolderName" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True"/>
+                    </TextBox.Text>
+                </TextBox>
+            </Grid>
+            <!--  底部 按钮 End -->
+            <StackPanel Grid.Row="2"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="4"
+                        HorizontalAlignment="Right"                        
+                        Orientation="Horizontal"
+                        Margin="0,0,0,0">
+                <Button x:Name="btnSave"
+                            IsDefault="True"
+                            Width="150"
+                            Height="40"
+                            Margin="0,0,20,0"
+                            Content="{x:Static res:LanguageResource.Content_Save}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            IsEnabled="{Binding IsSaveEnabled}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding Commands[OKCommand]}" 
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+                <Button x:Name="btnClose"
+                            Width="150"
+                            Height="40"
+                            Content="{x:Static res:LanguageResource.Content_Cancel}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction
+                                        Command="{Binding Commands[CloseCommand]}"
+                                        CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </StackPanel>
+            <!--  底部 按钮 End -->
+
+        </Grid>
+    </Border>
+
+</Window>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Config AutoConfirmResult="false" DebugMode="true" AutoDeleteHandler="None|BySoftware|ByEmbedded" ScatteringDetectorGain="Fix16Pc">
+  <!--ScatteringDetectorGain, value: Fix1Pc,Fix2Pc,Fix3Pc,Fix4Pc,Fix5Pc,Fix6Pc,Fix7Pc,Fix8Pc,Fix9Pc,Fix10Pc,Fix11Pc,Fix12Pc,Fix13Pc,Fix14Pc,Fix15Pc,Fix16Pc,-->
+  <CalibrationScenarioGroup>
+
+    <CalibrationScenario Name="Image" Description="Image" ID="1">
+      <CalibrationItemReferenceGroup>
+        <string>Defect</string>
+
+        <string>AfterGlow</string>
+        <string>Gain</string>
+        <string>Air</string>
+        <string>AirBowtie</string>
+        <string>Harden</string>
+
+        <string>NonLinear</string>
+        <string>WaterValue</string>
+      </CalibrationItemReferenceGroup>
+    </CalibrationScenario>
+
+    <CalibrationScenario Name="Setup new system" Description="Setup the new system" ID="1">
+      <CalibrationItemReferenceGroup>
+        <string>Defect</string>
+        <string>DetectorOffset</string>
+
+        <string>Gain</string>
+        <string>Air</string>
+
+        <string>SourceXZ</string>
+        <string>CenterOffset</string>
+        <string>DLT</string>
+
+        <string>AfterGlow</string>
+        <string>Gain</string>
+        <string>Air</string>
+        <string>AirBowtie</string>
+        <string>Harden</string>
+
+        <string>NonLinear</string>
+        <string>WaterValue</string>
+      </CalibrationItemReferenceGroup>
+    </CalibrationScenario>
+
+    <CalibrationScenario Name="Test" Description="" ID="7">
+      <CalibrationItemReferenceGroup>
+        <string>Offset_Test</string>
+        
+        <string>AfterGlow_Test</string>
+        <string>Air_Test</string>
+        <string>Gain_Test</string>
+        <string>AirBowtie_Test</string>
+        <string>Harden_Test</string>
+
+        <string>BackgroundScatter</string>
+        <string>NonLinear_Test</string>
+        <string>WaterValue_Test</string>
+        
+        <string>SourceXZ_Old</string>
+      </CalibrationItemReferenceGroup>
+    </CalibrationScenario>
+
+  </CalibrationScenarioGroup>
+</Config>

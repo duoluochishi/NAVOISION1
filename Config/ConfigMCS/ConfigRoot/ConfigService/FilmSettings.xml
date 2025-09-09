@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FilmSettingsList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <FilmSettings Id="d8o197ae-0b1a-49c0-b4d3-5d1efcd4lo8h" IsPortrait="true" NormalizedHeaderHeight="0.085057475" NormalizedFooterHeight="0.057471264">
+    <HeaderLogo IsVisible="false" NormalizedLocationX="0.45810056" NormalizedLocationY="0.01954023" NormalizedWidth="0.083798885" NormalizedHeight="0.03448276" PicturePath="" />
+    <FooterLogo IsVisible="false" NormalizedLocationX="0.45810056" NormalizedLocationY="0.95977014" NormalizedWidth="0.083798885" NormalizedHeight="0.03448276" PicturePath="" />
+    <Headers>
+      <Cell RowIndex="0" ColumnIndex="0" Text="PatientName" FontSize="10" NormalizedLocationX="0.01396648" NormalizedLocationY="0.011494253" NormalizedWidth="0.32402235" NormalizedHeight="0.014712644" />
+      <Cell RowIndex="0" ColumnIndex="1" Text="Gender" FontSize="10" NormalizedLocationX="0.33798882" NormalizedLocationY="0.011494253" NormalizedWidth="0.32402235" NormalizedHeight="0.014712644" />
+      <Cell RowIndex="0" ColumnIndex="2" Text="Age" FontSize="10" NormalizedLocationX="0.66201115" NormalizedLocationY="0.011494253" NormalizedWidth="0.32402235" NormalizedHeight="0.014712644" />
+    </Headers>
+    <Footers>
+      <Cell RowIndex="0" ColumnIndex="0" Text="StudyDate" FontSize="8" NormalizedLocationX="0.01396648" NormalizedLocationY="0.9425287" NormalizedWidth="0.32402235" NormalizedHeight="0.01532567" />
+      <Cell RowIndex="0" ColumnIndex="2" Text="PageNumber" FontSize="9" NormalizedLocationX="0.66201115" NormalizedLocationY="0.9425287" NormalizedWidth="0.32402235" NormalizedHeight="0.01532567" />
+    </Footers>
+  </FilmSettings>
+  <FilmSettings Id="50ojyr3b-2gr6-4ada-md64-b17c10kur5eg" IsPortrait="false" NormalizedHeaderHeight="0.08045977" NormalizedFooterHeight="0.13793103">
+    <HeaderLogo IsVisible="false" NormalizedLocationX="0.4716178" NormalizedLocationY="0.01724138" NormalizedWidth="0.056764428" NormalizedHeight="0.03448276" PicturePath="" />
+    <FooterLogo IsVisible="false" NormalizedLocationX="0.4716178" NormalizedLocationY="0.9195402" NormalizedWidth="0.056764428" NormalizedHeight="0.03448276" PicturePath="" />
+    <Headers>
+      <Cell RowIndex="0" ColumnIndex="0" Text="PatientName" FontSize="6" NormalizedLocationX="0.009460738" NormalizedLocationY="0.011494253" NormalizedWidth="0.32702616" NormalizedHeight="0.013793103" />
+      <Cell RowIndex="0" ColumnIndex="1" Text="Age" FontSize="7" NormalizedLocationX="0.3364869" NormalizedLocationY="0.011494253" NormalizedWidth="0.32702616" NormalizedHeight="0.013793103" />
+      <Cell RowIndex="1" ColumnIndex="0" Text="Gender" FontSize="9" NormalizedLocationX="0.009460738" NormalizedLocationY="0.025287356" NormalizedWidth="0.32702616" NormalizedHeight="0.013793103" />
+    </Headers>
+    <Footers>
+      <Cell RowIndex="2" ColumnIndex="0" Text="StudyDate" FontSize="6" NormalizedLocationX="0.009460738" NormalizedLocationY="0.9463601" NormalizedWidth="0.32702616" NormalizedHeight="0.042145595" />
+      <Cell RowIndex="2" ColumnIndex="2" Text="PageNumber" FontSize="13" NormalizedLocationX="0.66351306" NormalizedLocationY="0.9463601" NormalizedWidth="0.32702616" NormalizedHeight="0.042145595" />
+    </Footers>
+  </FilmSettings>
+</FilmSettingsList>

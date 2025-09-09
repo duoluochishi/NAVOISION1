@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StudyListColumnsConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ColumnItems>
+    <Item ItemName="PatientName" IsFixed="true" IsChecked="true" SortNumber="0" />
+    <Item ItemName="PatientID" IsFixed="true" IsChecked="true" SortNumber="1" />
+    <Item ItemName="Sex" IsFixed="false" IsChecked="true" SortNumber="2" />
+    <Item ItemName="Birthday" IsFixed="false" IsChecked="true" SortNumber="3" />
+    <Item ItemName="BodyPartExam" IsFixed="false" IsChecked="true" SortNumber="4" />
+    <Item ItemName="StudyStatus" IsFixed="true" IsChecked="true" SortNumber="5" />
+    <Item ItemName="ArchiveStatus" IsFixed="true" IsChecked="true" SortNumber="6" />
+    <Item ItemName="PrintStatus" IsFixed="true" IsChecked="true" SortNumber="7" />
+    <Item ItemName="CorrectionStatus" IsFixed="true" IsChecked="true" SortNumber="8" />
+    <Item ItemName="StudyTime" IsFixed="false" IsChecked="true" SortNumber="9" />
+    <Item ItemName="Technician" IsFixed="false" IsChecked="false" SortNumber="10" />
+    <Item ItemName="Ward" IsFixed="false" IsChecked="false" SortNumber="11" />
+    <Item ItemName="ReferringPhysician" IsFixed="false" IsChecked="false" SortNumber="12" />
+    <Item ItemName="CreateTime" IsFixed="true" IsChecked="true" SortNumber="13" />
+    <Item ItemName="IsLocked" IsFixed="true" IsChecked="true" SortNumber="14" />
+  </ColumnItems>
+</StudyListColumnsConfig>

@@ -1,0 +1,311 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>$(TargetFramework)-windows</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<PlatformTarget>x64</PlatformTarget>
+		<Platforms>AnyCPU;x64</Platforms>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <NoWarn>1701;1702;CA1416</NoWarn>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <NoWarn>1701;1702;CA1416</NoWarn>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+	  <NoWarn>1701;1702;CA1416</NoWarn>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+	  <NoWarn>1701;1702;CA1416</NoWarn>
+	</PropertyGroup>
+
+	<ItemGroup>
+
+	  <Compile Remove="DynamicParameters\Templates\Normal\**" />
+	  <Compile Remove="DynamicParameters\Templates\SpiralDefault\**" />
+	  <Compile Remove="DynamicParameters\Templates\Tomo\**" />
+	  <Compile Remove="DynamicParameters\Templates\TopoDefault\**" />
+	  <EmbeddedResource Remove="DynamicParameters\Templates\Normal\**" />
+	  <EmbeddedResource Remove="DynamicParameters\Templates\SpiralDefault\**" />
+	  <EmbeddedResource Remove="DynamicParameters\Templates\Tomo\**" />
+	  <EmbeddedResource Remove="DynamicParameters\Templates\TopoDefault\**" />
+	  <None Remove="DynamicParameters\Templates\Normal\**" />
+	  <None Remove="DynamicParameters\Templates\SpiralDefault\**" />
+	  <None Remove="DynamicParameters\Templates\Tomo\**" />
+	  <None Remove="DynamicParameters\Templates\TopoDefault\**" />
+	  <Page Remove="DynamicParameters\Templates\Normal\**" />
+	  <Page Remove="DynamicParameters\Templates\SpiralDefault\**" />
+	  <Page Remove="DynamicParameters\Templates\Tomo\**" />
+	  <Page Remove="DynamicParameters\Templates\TopoDefault\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Autofac" />
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" />
+		<PackageReference Include="AutoMapper" />
+		<PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" />
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" />
+		<PackageReference Include="Newtonsoft.Json" />
+		<PackageReference Include="AspectInjector" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Common\CommonAttributeUI\NV.CT.CommonAttributeUI.csproj" />
+		<ProjectReference Include="..\..\..\Common\CTS\NV.CT.CTS.csproj" />
+		<ProjectReference Include="..\..\..\Common\DicomImageViewer\NV.CT.DicomImageViewer.csproj" />
+		<ProjectReference Include="..\..\..\Common\DicomUtilityWin\NV.CT.DicomUtilityWin.csproj" />
+		<ProjectReference Include="..\..\..\Common\DicomUtility\NV.CT.DicomUtility.csproj" />
+		<ProjectReference Include="..\..\..\Common\Protocol\NV.CT.Protocol.csproj" />
+		<ProjectReference Include="..\..\..\Common\UI.Controls\NV.CT.UI.Controls.csproj" />
+		<ProjectReference Include="..\..\..\Common\ViewModel\NV.CT.UI.ViewModel.csproj" />
+		<ProjectReference Include="..\..\..\Infrastructure\Logging\NV.CT.Logging.csproj" />
+		<ProjectReference Include="..\..\..\Skin\ErrorCodes\NV.CT.ErrorCodes.csproj" />
+		<ProjectReference Include="..\..\..\SystemInterface\MCSRuntime.Contract\NV.CT.SystemInterface.MCSRuntime.Contract.csproj" />
+		<ProjectReference Include="..\..\..\SystemService\AppService.Contract\NV.CT.AppService.Contract.csproj" />
+		<ProjectReference Include="..\..\..\SystemService\SyncService.Contract\NV.CT.SyncService.Contract.csproj" />
+		<ProjectReference Include="..\..\..\SystemService\WorkflowService.Contract\NV.CT.WorkflowService.Contract.csproj" />
+		<ProjectReference Include="..\ApplicationService.Contract\NV.CT.Examination.ApplicationService.Contract.csproj" />
+		<ProjectReference Include="..\ApplicationService.Impl\NV.CT.Examination.ApplicationService.Impl.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Page Update="DynamicParameters\Parameters\Recon\Common\CommonSeriesDescription.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="DynamicParameters\Parameters\Recon\Common\CommonTestFOV.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	    <SubType>Designer</SubType>
+	  </Page>
+	  <Page Update="DynamicParameters\Parameters\Recon\TestFOV.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="DynamicParameters\Parameters\Scan\AutoVoice.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="DynamicParameters\Parameters\Scan\CenterPosition.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="DynamicParameters\Parameters\Scan\Common\CommonEffectiveKv.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="DynamicParameters\Parameters\Scan\ScanOption.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="DynamicParameters\Parameters\Scan\Common\CommonAutoVoice.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="DynamicParameters\Parameters\Scan\Common\CommonIntervel.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="DynamicParameters\Parameters\Scan\Common\CommonRotTime.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="DynamicParameters\Parameters\Scan\Common\CommonScanNum.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="DynamicParameters\Parameters\Scan\Common\CommonRange.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="DynamicParameters\Parameters\Scan\Common\CommonScanOption.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="DynamicParameters\Parameters\Scan\Common\CommonTableFeed.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="DynamicParameters\Parameters\Scan\Common\CommonCenterPosition.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	    <SubType>Designer</SubType>
+	  </Page>
+	  <Page Update="DynamicParameters\Parameters\Scan\Common\CommonBeginRange.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="DynamicParameters\Parameters\Scan\Common\CommonCTDlvol.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="DynamicParameters\Parameters\Scan\Common\CommonDLP.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="DynamicParameters\Parameters\Scan\Common\CommonScanTime.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="DynamicParameters\Parameters\Scan\Common\CommonKv.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="DynamicParameters\Parameters\Scan\Common\CommonMa.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="DynamicParameters\Parameters\Scan\Common\CommonScanLength.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="DynamicParameters\Parameters\Scan\Common\CommonDoseTitle.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	    <SubType>Designer</SubType>
+	  </Page>
+	  <Page Update="DynamicParameters\Parameters\Scan\Common\CommonLayerFrames.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	    <SubType>Designer</SubType>
+	  </Page>
+	  <Page Update="DynamicParameters\Parameters\Scan\Common\CommonTubePosition.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="DynamicParameters\Parameters\Scan\DoseTitle.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="DynamicParameters\Parameters\Scan\LayerFrames.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="DynamicParameters\Templates\AdvancedScanParameterDetailControl.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="View\AutoPositioningWindow.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="View\BodyPositionControl.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="View\CommonView\AdultNormalControl.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="View\CommonView\AdultVeinControl.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="View\CommonView\ChildNormalControl.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="View\CommonView\ChildVeinControl.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="View\TubePositionWindow.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	    <SubType>Designer</SubType>
+	  </Page>
+	  <Page Update="View\TimeDensityWindow.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="View\VoiceAPIConfigWindow.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	    <SubType>Designer</SubType>
+	  </Page>
+	  <Page Update="View\LoadStaticDicomControl.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="View\MessageTooltipControl.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="View\NotificationWindows\CommonWarningWindow.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	    <SubType>Designer</SubType>
+	  </Page>
+	  <Page Update="View\NotificationWindows\CommonNotificationWindow.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	    <SubType>Designer</SubType>
+	  </Page>
+	  <Page Update="View\NotificationWindows\DoseAlertWindow.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	    <SubType>Designer</SubType>
+	  </Page>
+	  <Page Update="View\NotificationWindows\DoseNotificationWindow.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="View\ProtocolSaveAsWindow.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="View\ProtocolPatientInfoControl.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="DynamicParameters\Templates\InterventionDefault\ReconParameterControl.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="DynamicParameters\Templates\InterventionDefault\ReconParameterDetailControl.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="View\ScanControlsControl.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="View\ScanPanelControl.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="DynamicParameters\Templates\Default\ScanParameterControl.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	  <Page Update="DynamicParameters\Templates\Default\ScanParameterDetailControl.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	  <Page Update="View\SelectProtocolControl.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="View\SelectProtocolParameterControl.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="View\TaskListControl.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="View\ImageScrollBarControl.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="View\ToolsControl.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="NV.MPS.Configuration">
+			<HintPath>..\..\..\bin\NV.MPS.Configuration.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.MPS.Environment">
+			<HintPath>..\..\..\bin\NV.MPS.Environment.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.MPS.Exception">
+			<HintPath>..\..\..\bin\NV.MPS.Exception.dll</HintPath>
+		</Reference>
+		<Reference Include="MaterialDesignColors">
+			<HintPath>..\..\..\bin\MaterialDesignColors.dll</HintPath>
+		</Reference>
+		<Reference Include="MaterialDesignThemes.Wpf">
+			<HintPath>..\..\..\bin\MaterialDesignThemes.Wpf.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.CT.FacadeProxy.Common">
+		  <HintPath>..\..\..\bin\NV.CT.FacadeProxy.Common.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.CT.ImageViewer.Interop">
+			<HintPath>..\..\..\bin\NV.CT.ImageViewer.Interop.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.CT.Language">
+		  <HintPath>..\..\..\bin\NV.CT.Language.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.MPS.UI.Dialog">
+		  <HintPath>..\..\..\bin\NV.MPS.UI.Dialog.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.CT.Alg.ScanReconCalculation">
+			<HintPath>..\..\..\bin\NV.CT.Alg.ScanReconCalculation.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="View\CommonView\AdultVeinControl.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="View\CommonView\ChildNormalControl.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="View\CommonView\ChildVeinControl.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="View\LoadStaticDicomControl.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	</ItemGroup>
+</Project>

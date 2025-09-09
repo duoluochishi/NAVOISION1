@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PatientSettingConfig>
+	<PatientSetting>
+		<AdultAgeThreshold Value="12" Default="12"/>
+	</PatientSetting>
+</PatientSettingConfig>

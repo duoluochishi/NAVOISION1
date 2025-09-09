@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ScanDelayConfig>
+	<ScanDelay Id="13912345671" ScanOption="SURVIEW" FrameTime="-1" RDelay="300" TDelay="300" SpotDelay="0" />
+	<ScanDelay Id="13912345672" ScanOption="AXIAL" FrameTime="-1" RDelay="300" TDelay="300" SpotDelay="0" />
+	<ScanDelay Id="13912345673" ScanOption="HELICAL" FrameTime="-1" RDelay="300" TDelay="300" SpotDelay="0" />
+	<ScanDelay Id="13912345674" ScanOption="DUALSCOUT" FrameTime="-1" RDelay="300" TDelay="300" SpotDelay="0" />
+</ScanDelayConfig>

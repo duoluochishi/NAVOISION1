@@ -1,0 +1,3210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Content_API" xml:space="preserve">
+    <value>API</value>
+    <comment>API标签描述</comment>
+  </data>
+  <data name="Content_AutoFilm" xml:space="preserve">
+    <value>Auto film</value>
+    <comment>Auto film标签描述</comment>
+  </data>
+  <data name="Content_AutoRecon" xml:space="preserve">
+    <value>Auto recon</value>
+    <comment>Auto recon标签描述</comment>
+  </data>
+  <data name="Content_AutoStorage" xml:space="preserve">
+    <value>Auto storage</value>
+    <comment>Auto storage标签描述</comment>
+  </data>
+  <data name="Content_BeginRange" xml:space="preserve">
+    <value>Begin range</value>
+    <comment>Begin range标签描述</comment>
+  </data>
+  <data name="Content_BodyPart" xml:space="preserve">
+    <value>Body part</value>
+  </data>
+  <data name="Content_BodyPartsAbdomen" xml:space="preserve">
+    <value>Abdomen</value>
+    <comment>人体部位——腹部</comment>
+  </data>
+  <data name="Content_BodyPartsChest" xml:space="preserve">
+    <value>Chest</value>
+    <comment>人体部位——胸部</comment>
+  </data>
+  <data name="Content_BodyPartsHead" xml:space="preserve">
+    <value>Head</value>
+    <comment>人体部位——头部</comment>
+  </data>
+  <data name="Content_BodyPartsLowerExtremities" xml:space="preserve">
+    <value>Lower extremities</value>
+    <comment>人体部位——下肢</comment>
+  </data>
+  <data name="Content_BodyPartsNeck" xml:space="preserve">
+    <value>Neck</value>
+    <comment>人体部位——颈部</comment>
+  </data>
+  <data name="Content_BodyPartsPelvis" xml:space="preserve">
+    <value>Pelvis</value>
+    <comment>人体部位——骨盆</comment>
+  </data>
+  <data name="Content_BodyPartsShoulder" xml:space="preserve">
+    <value>Shoulder</value>
+    <comment>人体部位——肩部</comment>
+  </data>
+  <data name="Content_BodyPartsSpine" xml:space="preserve">
+    <value>Spine</value>
+    <comment>人体部位——脊椎</comment>
+  </data>
+  <data name="Content_BodyPartsUpperExtremities" xml:space="preserve">
+    <value>Upper extremities</value>
+    <comment>人体部位——上肢</comment>
+  </data>
+  <data name="Content_BodySize" xml:space="preserve">
+    <value>Body size</value>
+  </data>
+  <data name="Content_Bottom" xml:space="preserve">
+    <value>Bottom</value>
+    <comment>Bottom标签描述</comment>
+  </data>
+  <data name="Content_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>Cancel</comment>
+  </data>
+  <data name="Content_CDROM" xml:space="preserve">
+    <value>CDROM</value>
+    <comment>光驱</comment>
+  </data>
+  <data name="Content_CDROM_NotReady" xml:space="preserve">
+    <value>CDROM (Not Ready)</value>
+    <comment>光驱(未就绪)</comment>
+  </data>
+  <data name="Content_CenterPosition" xml:space="preserve">
+    <value>Center</value>
+  </data>
+  <data name="Content_CenterX" xml:space="preserve">
+    <value>Center X</value>
+    <comment>CenterX</comment>
+  </data>
+  <data name="Content_CenterY" xml:space="preserve">
+    <value>Center Y</value>
+    <comment>CenterY</comment>
+  </data>
+  <data name="Content_ChosenPath" xml:space="preserve">
+    <value>Chosen path:</value>
+    <comment>已选路径</comment>
+  </data>
+  <data name="Content_Close" xml:space="preserve">
+    <value>Close</value>
+    <comment>Close</comment>
+  </data>
+  <data name="Content_Comments" xml:space="preserve">
+    <value>Comments</value>
+    <comment>Comments标签描述</comment>
+  </data>
+  <data name="Content_Confirm" xml:space="preserve">
+    <value>Confirm</value>
+    <comment>Confirm</comment>
+  </data>
+  <data name="Content_CTDlvol" xml:space="preserve">
+    <value>CTDlvol</value>
+    <comment>CTDlvol标签描述</comment>
+  </data>
+  <data name="Content_CTDlvols" xml:space="preserve">
+    <value>CTDlvol/s</value>
+    <comment>CTDlvol/s标签描述</comment>
+  </data>
+  <data name="Content_Delay" xml:space="preserve">
+    <value>Delay</value>
+    <comment>Delay标签描述</comment>
+  </data>
+  <data name="Content_TVDenoiseCoef" xml:space="preserve">
+    <value>TV DenoiseCoef</value>
+    <comment>DenoiseCoef</comment>
+  </data>
+  <data name="Content_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Content_DLP" xml:space="preserve">
+    <value>DLP</value>
+    <comment>DLP标签描述</comment>
+  </data>
+  <data name="Content_DLPs" xml:space="preserve">
+    <value>DLP/s</value>
+    <comment>DLP/s标签描述</comment>
+  </data>
+  <data name="Content_DoseAlert" xml:space="preserve">
+    <value>Dose Alert</value>
+  </data>
+  <data name="Content_DoseTitle" xml:space="preserve">
+    <value>Dose</value>
+    <comment>参数详情Dose模块标题</comment>
+  </data>
+  <data name="Content_DualScout" xml:space="preserve">
+    <value>DualScout</value>
+    <comment>双定位</comment>
+  </data>
+  <data name="Content_EmergencyMode" xml:space="preserve">
+    <value>Emergency</value>
+    <comment>选择为急诊模式</comment>
+  </data>
+  <data name="Content_EndRange" xml:space="preserve">
+    <value>End range</value>
+    <comment>End range标签描述</comment>
+  </data>
+  <data name="Content_EnhancementPattern" xml:space="preserve">
+    <value>Enhanced</value>
+    <comment>选择为增强扫描模式</comment>
+  </data>
+  <data name="Content_EnhancementTitle" xml:space="preserve">
+    <value>Enhancement</value>
+    <comment>参数详情Enhancement模块标题</comment>
+  </data>
+  <data name="Content_DFOV" xml:space="preserve">
+    <value>DFOV</value>
+    <comment>FOV标签描述</comment>
+  </data>
+  <data name="Content_GeneralTitle" xml:space="preserve">
+    <value>General</value>
+    <comment>参数详情gengeral模块标题</comment>
+  </data>
+  <data name="Content_Go" xml:space="preserve">
+    <value>GO</value>
+    <comment>GO</comment>
+  </data>
+  <data name="Content_Height" xml:space="preserve">
+    <value>Height</value>
+    <comment>Height标签描述</comment>
+  </data>
+  <data name="Content_ImageOrder" xml:space="preserve">
+    <value>Image order</value>
+    <comment>Image order 标签描述</comment>
+  </data>
+  <data name="Content_ImageTitle" xml:space="preserve">
+    <value>Image</value>
+    <comment>参数详情Image模块标题</comment>
+  </data>
+  <data name="Content_Import" xml:space="preserve">
+    <value>Import</value>
+    <comment>导入</comment>
+  </data>
+  <data name="Content_IsEmergency" xml:space="preserve">
+    <value>Is emergency</value>
+  </data>
+  <data name="Content_IsEnhanced" xml:space="preserve">
+    <value>Is enhanced</value>
+  </data>
+  <data name="Content_IsTabletSuitable" xml:space="preserve">
+    <value>Is tablet suitable</value>
+  </data>
+  <data name="Content_ImportingFinished" xml:space="preserve">
+    <value>Importing finished</value>
+    <comment>导入结束</comment>
+  </data>
+  <data name="Content_Kernel" xml:space="preserve">
+    <value>Kernel</value>
+    <comment>Kernel标签描述</comment>
+  </data>
+  <data name="Content_kV" xml:space="preserve">
+    <value>kV</value>
+    <comment>kV标签描述</comment>
+  </data>
+  <data name="Content_Label" xml:space="preserve">
+    <value>Label</value>
+    <comment>Label标签描述</comment>
+  </data>
+  <data name="Content_LangthUnitMM" xml:space="preserve">
+    <value>mm</value>
+    <comment>长度单位</comment>
+  </data>
+  <data name="Content_Lateral" xml:space="preserve">
+    <value>Lateral</value>
+    <comment>侧位</comment>
+  </data>
+  <data name="Content_LayerFrames" xml:space="preserve">
+    <value>Layer*Frames</value>
+  </data>
+  <data name="Content_Left" xml:space="preserve">
+    <value>Left</value>
+    <comment>Left标签描述</comment>
+  </data>
+  <data name="Content_Load" xml:space="preserve">
+    <value>Load</value>
+  </data>
+  <data name="Content_LocalPath" xml:space="preserve">
+    <value>Local Path</value>
+    <comment>本地系统</comment>
+  </data>
+  <data name="Content_mA" xml:space="preserve">
+    <value>mA</value>
+    <comment>mA标签描述</comment>
+  </data>
+  <data name="Content_mGy" xml:space="preserve">
+    <value>mGy</value>
+    <comment>mGy单位描述</comment>
+  </data>
+  <data name="Content_mGycm" xml:space="preserve">
+    <value>mGy*cm</value>
+    <comment>mGy*cm单位描述</comment>
+  </data>
+  <data name="Content_mGycms" xml:space="preserve">
+    <value>mGy*cm/s</value>
+    <comment>mGy*cm/s单位描述</comment>
+  </data>
+  <data name="Content_mGys" xml:space="preserve">
+    <value>mGy/s</value>
+    <comment>mGy/s单位描述</comment>
+  </data>
+  <data name="Content_Normal" xml:space="preserve">
+    <value>Normal</value>
+    <comment>正位</comment>
+  </data>
+  <data name="Content_NotReady" xml:space="preserve">
+    <value>Not ready</value>
+    <comment>空</comment>
+  </data>
+  <data name="Content_NumberOfImages" xml:space="preserve">
+    <value>No. of images</value>
+    <comment>No. of images标签描述</comment>
+  </data>
+  <data name="Content_OK" xml:space="preserve">
+    <value>OK</value>
+    <comment>确定</comment>
+  </data>
+  <data name="Content_PageTitle_ProtocolManagement" xml:space="preserve">
+    <value>Protocol management</value>
+    <comment>协议管理页面标题</comment>
+  </data>
+  <data name="Content_PatientAge" xml:space="preserve">
+    <value>Age</value>
+    <comment>病人的年龄</comment>
+  </data>
+  <data name="Content_PatientInfoAge" xml:space="preserve">
+    <value>Age</value>
+    <comment>Age</comment>
+  </data>
+  <data name="Content_PatientInfoHeight" xml:space="preserve">
+    <value>Height</value>
+    <comment>Height</comment>
+  </data>
+  <data name="Content_PatientInfoHeightUnit" xml:space="preserve">
+    <value>cm</value>
+    <comment>cm</comment>
+  </data>
+  <data name="Content_PatientInfoSex" xml:space="preserve">
+    <value>Sex</value>
+    <comment>Sex</comment>
+  </data>
+  <data name="Content_PatientInfoTitle" xml:space="preserve">
+    <value>Patient</value>
+    <comment>Patient</comment>
+  </data>
+  <data name="Content_PatientInfoWeight" xml:space="preserve">
+    <value>Weight</value>
+    <comment>Weight</comment>
+  </data>
+  <data name="Content_PatientInfoWeightUnit" xml:space="preserve">
+    <value>kg</value>
+    <comment>kg</comment>
+  </data>
+  <data name="Content_PatientPosition" xml:space="preserve">
+    <value>Patient position</value>
+  </data>
+  <data name="Content_Pitch" xml:space="preserve">
+    <value>Pitch</value>
+    <comment>Pitch标签描述</comment>
+  </data>
+  <data name="Content_PlanBasis" xml:space="preserve">
+    <value>Plan Basis</value>
+    <comment>Plan Basis</comment>
+  </data>
+  <data name="Content_PlanningBase" xml:space="preserve">
+    <value>Planning Base</value>
+    <comment>Planning Base</comment>
+  </data>
+  <data name="Content_Program" xml:space="preserve">
+    <value>Program</value>
+    <comment>Program</comment>
+  </data>
+  <data name="Content_Protocol" xml:space="preserve">
+    <value>Protocol</value>
+  </data>
+  <data name="Content_ProtocolFamily" xml:space="preserve">
+    <value>Protocol family</value>
+  </data>
+  <data name="Content_ProtocolName" xml:space="preserve">
+    <value>Protocol name</value>
+  </data>
+  <data name="Content_ProtocolType" xml:space="preserve">
+    <value>Protocol type</value>
+    <comment>协议类型（自定义协议、出厂协议）</comment>
+  </data>
+  <data name="Content_RealBeginRange" xml:space="preserve">
+    <value>Real Begin range</value>
+    <comment>Real Begin range标签描述</comment>
+  </data>
+  <data name="Content_RealEndRange" xml:space="preserve">
+    <value>Real End range</value>
+    <comment>Real End range标签描述</comment>
+  </data>
+  <data name="Content_Recon" xml:space="preserve">
+    <value>Recon</value>
+    <comment>Recon</comment>
+  </data>
+  <data name="Content_ReconAll" xml:space="preserve">
+    <value>Recon All</value>
+    <comment>Recon All</comment>
+  </data>
+  <data name="Content_ReconIncrement" xml:space="preserve">
+    <value>Recon increment</value>
+    <comment>Recon increment标签描述</comment>
+  </data>
+  <data name="Content_ReconMatrix" xml:space="preserve">
+    <value>Recon matrix</value>
+    <comment>Recon matrix标签描述</comment>
+  </data>
+  <data name="Content_ReconMethod" xml:space="preserve">
+    <value>Recon method</value>
+    <comment>Recon method标签描述</comment>
+  </data>
+  <data name="Content_ReconParametersWindowTitle" xml:space="preserve">
+    <value>Recon Parameters</value>
+    <comment>Recon 参数详情弹出框标题</comment>
+  </data>
+  <data name="Content_ReconRanges" xml:space="preserve">
+    <value>Recon ranges</value>
+    <comment>Recon ranges</comment>
+  </data>
+  <data name="Content_ReconTitle" xml:space="preserve">
+    <value>Recon</value>
+    <comment>参数详情Recon模块标题</comment>
+  </data>
+  <data name="Content_RemoveArtifacts" xml:space="preserve">
+    <value>Remove artifacts</value>
+    <comment>Remove artifacts标签描述</comment>
+  </data>
+  <data name="Content_Right" xml:space="preserve">
+    <value>Right</value>
+    <comment>Right标签描述</comment>
+  </data>
+  <data name="Content_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Content_SaveAs" xml:space="preserve">
+    <value>Save as</value>
+  </data>
+  <data name="Content_ScanDirection" xml:space="preserve">
+    <value>Scan direction</value>
+    <comment>Scan direction标签描述</comment>
+  </data>
+  <data name="Content_ScanLength" xml:space="preserve">
+    <value>Scan length</value>
+    <comment>Scan length标签描述</comment>
+  </data>
+  <data name="Content_ScanMode" xml:space="preserve">
+    <value>Scan mode</value>
+    <comment>扫描模式（轴扫、螺旋）</comment>
+  </data>
+  <data name="Content_ScanParametersWindowTitle" xml:space="preserve">
+    <value>Scan Parameters</value>
+    <comment>Scan 参数详情弹出标题</comment>
+  </data>
+  <data name="Content_ScanTime" xml:space="preserve">
+    <value>Scan time</value>
+    <comment>Scan time标签描述</comment>
+  </data>
+  <data name="Content_Series" xml:space="preserve">
+    <value>Series</value>
+    <comment>序列</comment>
+  </data>
+  <data name="Content_SeriesDescription" xml:space="preserve">
+    <value>Series description</value>
+    <comment>Series description标签描述</comment>
+  </data>
+  <data name="Content_SliceThickness" xml:space="preserve">
+    <value>Slice thickness</value>
+    <comment>Slice thickness标签描述</comment>
+  </data>
+  <data name="Content_SourceArea" xml:space="preserve">
+    <value>Source Area</value>
+    <comment>输入源</comment>
+  </data>
+  <data name="Content_Studies_Scheduled" xml:space="preserve">
+    <value>Studies Scheduled for</value>
+    <comment>检查时间范围</comment>
+  </data>
+  <data name="Content_Sure" xml:space="preserve">
+    <value>Sure</value>
+  </data>
+  <data name="Content_TableDirection" xml:space="preserve">
+    <value>Table direction</value>
+    <comment>Table direction标签描述</comment>
+  </data>
+  <data name="Content_TablePosition" xml:space="preserve">
+    <value>Table position</value>
+    <comment>Table position标签描述</comment>
+  </data>
+  <data name="Content_TimeUnitSecond" xml:space="preserve">
+    <value>s</value>
+    <comment>s时间单位秒</comment>
+  </data>
+  <data name="Content_Top" xml:space="preserve">
+    <value>Top</value>
+    <comment>Top标签描述</comment>
+  </data>
+  <data name="Content_TopogramLength" xml:space="preserve">
+    <value>Topogram length</value>
+    <comment>Topogram length标签描述</comment>
+  </data>
+  <data name="Content_TransferTitle" xml:space="preserve">
+    <value>Transfer</value>
+    <comment>参数详情Transfer模块标题</comment>
+  </data>
+  <data name="Content_TriggerMode" xml:space="preserve">
+    <value>Trigger mode</value>
+    <comment>Trigger mode标签描述</comment>
+  </data>
+  <data name="Content_TubePosition" xml:space="preserve">
+    <value>Tube position</value>
+    <comment>Tube position标签描述</comment>
+  </data>
+  <data name="Content_USB" xml:space="preserve">
+    <value>USB</value>
+    <comment>U盘</comment>
+  </data>
+  <data name="Content_USB_NotReady" xml:space="preserve">
+    <value>USB (Not Ready)</value>
+    <comment>U盘(未就绪)</comment>
+  </data>
+  <data name="Content_Window" xml:space="preserve">
+    <value>Window</value>
+    <comment>Window标签描述</comment>
+  </data>
+  <data name="Content_WWWL" xml:space="preserve">
+    <value>WW/WL</value>
+    <comment>WW/WL标签描述</comment>
+  </data>
+  <data name="ContextMenuItem_Archive" xml:space="preserve">
+    <value>Archive</value>
+    <comment>归档菜单</comment>
+  </data>
+  <data name="ContextMenuItem_Delete" xml:space="preserve">
+    <value>Delete</value>
+    <comment>删除菜单</comment>
+  </data>
+  <data name="ContextMenuItem_Export" xml:space="preserve">
+    <value>Export dicom</value>
+    <comment>导出菜单</comment>
+  </data>
+  <data name="ContextMenuItem_Resume_Examination" xml:space="preserve">
+    <value>Resume examination</value>
+    <comment>恢复检查菜单</comment>
+  </data>
+  <data name="Enum_ApiStatus_No" xml:space="preserve">
+    <value>No</value>
+    <comment>No</comment>
+  </data>
+  <data name="Enum_ApiStatus_Yes" xml:space="preserve">
+    <value>Yes</value>
+    <comment>Yes</comment>
+  </data>
+  <data name="Enum_ImageOrders_FootHead" xml:space="preserve">
+    <value>Foot-Head</value>
+    <comment>Foot-Head</comment>
+  </data>
+  <data name="Enum_ImageOrders_HeadFoot" xml:space="preserve">
+    <value>Head-Foot</value>
+    <comment>Head-Foot</comment>
+  </data>
+  <data name="Enum_Kernels_Balance" xml:space="preserve">
+    <value>Balance</value>
+    <comment>Balance</comment>
+  </data>
+  <data name="Enum_Kernels_Sharp" xml:space="preserve">
+    <value>Sharp</value>
+    <comment>Sharp</comment>
+  </data>
+  <data name="Enum_Kernels_SharpPlus" xml:space="preserve">
+    <value>Sharp+</value>
+    <comment>Sharp+</comment>
+  </data>
+  <data name="Enum_Kernels_Smooth" xml:space="preserve">
+    <value>Smooth</value>
+    <comment>Smooth</comment>
+  </data>
+  <data name="Enum_Kernels_SmoothPlus" xml:space="preserve">
+    <value>Smooth+</value>
+    <comment>SmoothPlus</comment>
+  </data>
+  <data name="Enum_Kernels_Std" xml:space="preserve">
+    <value>Std</value>
+    <comment>Std</comment>
+  </data>
+  <data name="Enum_KvValues_KV100" xml:space="preserve">
+    <value>100</value>
+    <comment>100kv</comment>
+  </data>
+  <data name="Enum_KvValues_KV110" xml:space="preserve">
+    <value>110</value>
+    <comment>110kv</comment>
+  </data>
+  <data name="Enum_KvValues_KV120" xml:space="preserve">
+    <value>120</value>
+    <comment>120kv</comment>
+  </data>
+  <data name="Enum_KvValues_KV60" xml:space="preserve">
+    <value>60</value>
+    <comment>60kv</comment>
+  </data>
+  <data name="Enum_KvValues_KV70" xml:space="preserve">
+    <value>70</value>
+    <comment>70kv</comment>
+  </data>
+  <data name="Enum_KvValues_KV80" xml:space="preserve">
+    <value>80</value>
+    <comment>80kv</comment>
+  </data>
+  <data name="Enum_KvValues_KV90" xml:space="preserve">
+    <value>90</value>
+    <comment>90kv</comment>
+  </data>
+  <data name="Enum_ReconMatrixes_RM1024" xml:space="preserve">
+    <value>1024</value>
+    <comment>1024</comment>
+  </data>
+  <data name="Enum_ReconMatrixes_RM1536" xml:space="preserve">
+    <value>1536</value>
+    <comment>1536</comment>
+  </data>
+  <data name="Enum_ReconMatrixes_RM2048" xml:space="preserve">
+    <value>2048</value>
+    <comment>2048</comment>
+  </data>
+  <data name="Enum_ReconMatrixes_RM512" xml:space="preserve">
+    <value>512</value>
+    <comment>512</comment>
+  </data>
+  <data name="Enum_ReconMatrixes_RM768" xml:space="preserve">
+    <value>768</value>
+    <comment>768</comment>
+  </data>
+  <data name="Enum_RemoveArtifacts_Bone" xml:space="preserve">
+    <value>Bone</value>
+    <comment>Bone</comment>
+  </data>
+  <data name="Enum_RemoveArtifacts_Metal" xml:space="preserve">
+    <value>Metal</value>
+    <comment>Metal</comment>
+  </data>
+  <data name="Enum_RemoveArtifacts_None" xml:space="preserve">
+    <value>None</value>
+    <comment>None</comment>
+  </data>
+  <data name="Enum_ScanDirection_FootHead" xml:space="preserve">
+    <value>Foot-Head</value>
+    <comment>Foot-Head</comment>
+  </data>
+  <data name="Enum_ScanDirection_HeadFoot" xml:space="preserve">
+    <value>Head-Foot</value>
+    <comment>Head-Foot</comment>
+  </data>
+  <data name="Enum_SliceThicknesses_ST1000" xml:space="preserve">
+    <value>1.0</value>
+    <comment>1.0</comment>
+  </data>
+  <data name="Enum_SliceThicknesses_ST10000" xml:space="preserve">
+    <value>10.0</value>
+    <comment>10.0</comment>
+  </data>
+  <data name="Enum_SliceThicknesses_ST1300" xml:space="preserve">
+    <value>1.3</value>
+    <comment>1.3</comment>
+  </data>
+  <data name="Enum_SliceThicknesses_ST165" xml:space="preserve">
+    <value>0.165</value>
+    <comment>0.165</comment>
+  </data>
+  <data name="Enum_SliceThicknesses_ST2000" xml:space="preserve">
+    <value>2.0</value>
+    <comment>2.0</comment>
+  </data>
+  <data name="Enum_SliceThicknesses_ST2500" xml:space="preserve">
+    <value>2.5</value>
+    <comment>2.5</comment>
+  </data>
+  <data name="Enum_SliceThicknesses_ST3000" xml:space="preserve">
+    <value>3.0</value>
+    <comment>3.0</comment>
+  </data>
+  <data name="Enum_SliceThicknesses_ST330" xml:space="preserve">
+    <value>0.33</value>
+    <comment>0.33</comment>
+  </data>
+  <data name="Enum_SliceThicknesses_ST4000" xml:space="preserve">
+    <value>4.0</value>
+    <comment>4.0</comment>
+  </data>
+  <data name="Enum_SliceThicknesses_ST5000" xml:space="preserve">
+    <value>5.0</value>
+    <comment>5.0</comment>
+  </data>
+  <data name="Enum_SliceThicknesses_ST6000" xml:space="preserve">
+    <value>6.0</value>
+    <comment>6.0</comment>
+  </data>
+  <data name="Enum_SliceThicknesses_ST660" xml:space="preserve">
+    <value>0.66</value>
+    <comment>0.66</comment>
+  </data>
+  <data name="Enum_SliceThicknesses_ST8000" xml:space="preserve">
+    <value>8.0</value>
+    <comment>8.0</comment>
+  </data>
+  <data name="Enum_TopogramLengthes_L1024" xml:space="preserve">
+    <value>1024</value>
+    <comment>1024</comment>
+  </data>
+  <data name="Enum_TopogramLengthes_L128" xml:space="preserve">
+    <value>128</value>
+    <comment>128</comment>
+  </data>
+  <data name="Enum_TopogramLengthes_L256" xml:space="preserve">
+    <value>256</value>
+    <comment>256</comment>
+  </data>
+  <data name="Enum_TopogramLengthes_L512" xml:space="preserve">
+    <value>512</value>
+    <comment>512</comment>
+  </data>
+  <data name="Enum_TopogramLengthes_L768" xml:space="preserve">
+    <value>768</value>
+    <comment>768</comment>
+  </data>
+  <data name="Enum_TriggerModes_BolusLowDose" xml:space="preserve">
+    <value>Bolus LowDose</value>
+    <comment>Bolus LowDose</comment>
+  </data>
+  <data name="Enum_TriggerModes_BolusTracking" xml:space="preserve">
+    <value>Bolus Tracking</value>
+    <comment>Bolus Tracking</comment>
+  </data>
+  <data name="Enum_TriggerModes_Timed" xml:space="preserve">
+    <value>Timed</value>
+    <comment>Timed</comment>
+  </data>
+  <data name="Enum_Windows_Abdomen" xml:space="preserve">
+    <value>Abdomen</value>
+    <comment>Abdomen</comment>
+  </data>
+  <data name="Enum_Windows_Bone" xml:space="preserve">
+    <value>Bone</value>
+    <comment>Bone</comment>
+  </data>
+  <data name="Enum_Windows_Brain" xml:space="preserve">
+    <value>Brain</value>
+    <comment>Brain</comment>
+  </data>
+  <data name="Enum_Windows_Custom" xml:space="preserve">
+    <value>Custom</value>
+    <comment>Custom</comment>
+  </data>
+  <data name="Enum_Windows_Lung" xml:space="preserve">
+    <value>Lung</value>
+    <comment>Lung</comment>
+  </data>
+  <data name="Enum_Windows_Med" xml:space="preserve">
+    <value>Med</value>
+    <comment>Med</comment>
+  </data>
+  <data name="Enum_Windows_Pelvis" xml:space="preserve">
+    <value>Pelvis</value>
+    <comment>Pelvis</comment>
+  </data>
+  <data name="Enum_Windows_Spine" xml:space="preserve">
+    <value>Spine</value>
+    <comment>Spine</comment>
+  </data>
+  <data name="Header_Archive" xml:space="preserve">
+    <value>Archive</value>
+    <comment>归档状态列</comment>
+  </data>
+  <data name="Header_Birthday" xml:space="preserve">
+    <value>Birthday</value>
+    <comment>生日列</comment>
+  </data>
+  <data name="Header_BodyPart" xml:space="preserve">
+    <value>Body part</value>
+    <comment>部位列</comment>
+  </data>
+  <data name="Header_CAREBolus" xml:space="preserve">
+    <value>CARE bolus</value>
+    <comment>CARE bolus</comment>
+  </data>
+  <data name="Header_CommanParmsR" xml:space="preserve">
+    <value>Recon</value>
+    <comment>Comman Parms Recon tab header </comment>
+  </data>
+  <data name="Header_CommanParmsS" xml:space="preserve">
+    <value>Scan</value>
+    <comment>Comman Parms Scan tab header</comment>
+  </data>
+  <data name="Header_ContrastAgent" xml:space="preserve">
+    <value>Contrast agent</value>
+    <comment>Contrast agent</comment>
+  </data>
+  <data name="Header_Copy" xml:space="preserve">
+    <value>Copy</value>
+    <comment>Copy</comment>
+  </data>
+  <data name="Header_Correct" xml:space="preserve">
+    <value>Correction</value>
+    <comment>纠正状态列</comment>
+  </data>
+  <data name="Header_CustomMenu" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="Header_Cut" xml:space="preserve">
+    <value>Cut</value>
+    <comment>Cut</comment>
+  </data>
+  <data name="Header_ImageCount" xml:space="preserve">
+    <value>Image count</value>
+    <comment>图像数</comment>
+  </data>
+  <data name="Header_Lock" xml:space="preserve">
+    <value>Lock</value>
+    <comment>锁状态列</comment>
+  </data>
+  <data name="Header_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>名称列</comment>
+  </data>
+  <data name="Header_Paste" xml:space="preserve">
+    <value>Paste</value>
+    <comment>Paste</comment>
+  </data>
+  <data name="Header_PatienPosition" xml:space="preserve">
+    <value>Patient position</value>
+  </data>
+  <data name="Header_PatientId" xml:space="preserve">
+    <value>Patient ID</value>
+  </data>
+  <data name="Header_Pause" xml:space="preserve">
+    <value>Pause</value>
+    <comment>Pause</comment>
+  </data>
+  <data name="Header_Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="Header_ProtocolAdult" xml:space="preserve">
+    <value>Adult</value>
+    <comment>Adult tab header</comment>
+  </data>
+  <data name="Header_ProtocolChild" xml:space="preserve">
+    <value>Child</value>
+    <comment>Child tab header</comment>
+  </data>
+  <data name="Header_ProtocolParam" xml:space="preserve">
+    <value>Parameters</value>
+    <comment>Parameters tab header</comment>
+  </data>
+  <data name="Header_ProtocolSelect" xml:space="preserve">
+    <value>Protocol Selection</value>
+    <comment>Protocol Selection tab header</comment>
+  </data>
+  <data name="Header_Repeat" xml:space="preserve">
+    <value>Repeat</value>
+    <comment>Repeat</comment>
+  </data>
+  <data name="Header_SeriesDate" xml:space="preserve">
+    <value>Series date</value>
+    <comment>序列日期列</comment>
+  </data>
+  <data name="Header_SeriesTime" xml:space="preserve">
+    <value>Series time</value>
+    <comment>序列时间列</comment>
+  </data>
+  <data name="Header_Series_Description" xml:space="preserve">
+    <value>Series description</value>
+    <comment>序列描述列</comment>
+  </data>
+  <data name="Header_Sex" xml:space="preserve">
+    <value>Sex</value>
+    <comment>性别列</comment>
+  </data>
+  <data name="Header_Study_Status" xml:space="preserve">
+    <value>Study status</value>
+    <comment>检查状态列</comment>
+  </data>
+  <data name="Header_Study_Time" xml:space="preserve">
+    <value>Study time</value>
+    <comment>检查时间列</comment>
+  </data>
+  <data name="Message_Confirm_CompletedInterventionTaskContinue" xml:space="preserve">
+    <value>The position of the center frame currently set is inconsistent with that of the completed intervention task. Do you want to continue?</value>
+  </data>
+  <data name="Message_Confirm_Delete" xml:space="preserve">
+    <value>Are you sure to delete the item?</value>
+    <comment>确认消息，是否确认删除</comment>
+  </data>
+  <data name="Message_Confirm_ResumeExamination" xml:space="preserve">
+    <value>Are you sure to resume the examination?</value>
+    <comment>确认消息，是否确认恢复检查记录</comment>
+  </data>
+  <data name="Message_Confirm_SureClose" xml:space="preserve">
+    <value>Are you sure to close ?</value>
+  </data>
+  <data name="Message_Confirm_Title" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Message_Error_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Message_Error_SourceFolderNotExist" xml:space="preserve">
+    <value>The source folder does not exist currently, please try again later!</value>
+    <comment>源路径不存在</comment>
+  </data>
+  <data name="Message_Info_CloseConfirmTitle" xml:space="preserve">
+    <value>Confirm</value>
+    <comment>确认消息框标题</comment>
+  </data>
+  <data name="Message_Info_CloseErrorTitle" xml:space="preserve">
+    <value>Error</value>
+    <comment>错误消息框标题</comment>
+  </data>
+  <data name="Message_Info_CloseInformationTitle" xml:space="preserve">
+    <value>Information</value>
+    <comment>信息消息框标题</comment>
+  </data>
+  <data name="Message_Info_CloseMessage" xml:space="preserve">
+    <value>Are you sure to close ?</value>
+  </data>
+  <data name="Message_Info_CloseWarningTitle" xml:space="preserve">
+    <value>Warning</value>
+    <comment>警告消息框标题</comment>
+  </data>
+  <data name="Message_Info_EnterCorrectPassword" xml:space="preserve">
+    <value>Please enter the correct password!</value>
+  </data>
+  <data name="Message_Info_EnterDiagnosticInstructions" xml:space="preserve">
+    <value>Please enter the diagnostic instructions!</value>
+  </data>
+  <data name="Message_Info_MultiApplication" xml:space="preserve">
+    <value>Dose not open to run multi application instances,placse.</value>
+    <comment>不允许重复启动同一个进程</comment>
+  </data>
+  <data name="Message_Info_MustSelectAStudy" xml:space="preserve">
+    <value>Please select a study!</value>
+    <comment>提示消息，必须选择一个检查记录</comment>
+  </data>
+  <data name="Message_Info_MustSelectItem" xml:space="preserve">
+    <value>Please select an item!</value>
+    <comment>需要先选择操作项</comment>
+  </data>
+  <data name="Message_Info_PatientAlreadyExists" xml:space="preserve">
+    <value>The patient already exists.</value>
+    <comment>提示消息，患者已经存在</comment>
+  </data>
+  <data name="Message_Info_ProtocolNameAlreadyExists" xml:space="preserve">
+    <value>The protocol name already exists!</value>
+  </data>
+  <data name="Message_Info_ProtocolNameNotEmpty" xml:space="preserve">
+    <value>Protocol name cannot be empty!</value>
+  </data>
+  <data name="Message_Info_ScanMessageExposureing" xml:space="preserve">
+    <value>Please press the exposure button</value>
+    <comment>Please press the exposure button</comment>
+  </data>
+  <data name="Message_Info_ScanMessageMoveTable" xml:space="preserve">
+    <value>Please press the move button</value>
+    <comment>Please press the move button</comment>
+  </data>
+  <data name="Message_Info_ScanMessageScanning" xml:space="preserve">
+    <value>Scanning . . .</value>
+    <comment>Scanning . . .</comment>
+  </data>
+  <data name="Message_Info_Title" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="Message_Warning_Errors" xml:space="preserve">
+    <value>Errors:</value>
+  </data>
+  <data name="Message_Warning_FailedStartScan" xml:space="preserve">
+    <value>Failed to start scan!</value>
+  </data>
+  <data name="Message_Warning_Title" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="PatientPosition_FFL" xml:space="preserve">
+    <value>FFL</value>
+    <comment>FFL</comment>
+  </data>
+  <data name="PatientPosition_FFP" xml:space="preserve">
+    <value>FFP</value>
+    <comment>FFP</comment>
+  </data>
+  <data name="PatientPosition_FFR" xml:space="preserve">
+    <value>FFR</value>
+    <comment>FFR</comment>
+  </data>
+  <data name="PatientPosition_FFS" xml:space="preserve">
+    <value>FFS</value>
+    <comment>FFS</comment>
+  </data>
+  <data name="PatientPosition_HFL" xml:space="preserve">
+    <value>HFL</value>
+    <comment>HFL</comment>
+  </data>
+  <data name="PatientPosition_HFP" xml:space="preserve">
+    <value>HFP</value>
+    <comment>HFP</comment>
+  </data>
+  <data name="PatientPosition_HFR" xml:space="preserve">
+    <value>HFR</value>
+    <comment>HFR</comment>
+  </data>
+  <data name="PatientPosition_HFS" xml:space="preserve">
+    <value>HFS</value>
+    <comment>HFS</comment>
+  </data>
+  <data name="Text_Acc" xml:space="preserve">
+    <value>Acc.</value>
+  </data>
+  <data name="Text_API" xml:space="preserve">
+    <value>API</value>
+  </data>
+  <data name="Text_Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="Text_DoseNotification" xml:space="preserve">
+    <value>Dose Notification</value>
+  </data>
+  <data name="Text_Est" xml:space="preserve">
+    <value>Est.</value>
+  </data>
+  <data name="Text_Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Text_Notification" xml:space="preserve">
+    <value>Notification</value>
+  </data>
+  <data name="Text_PostVoice" xml:space="preserve">
+    <value>Post-voice</value>
+  </data>
+  <data name="Text_PreVoice" xml:space="preserve">
+    <value>Pre-voice</value>
+  </data>
+  <data name="Text_PreVoiceDelayTime" xml:space="preserve">
+    <value>Pre-voice delay time(s)</value>
+  </data>
+  <data name="Text_Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="ToolTip_AddNeedle" xml:space="preserve">
+    <value>Add needle</value>
+  </data>
+  <data name="ToolTip_Angle" xml:space="preserve">
+    <value>Angle</value>
+    <comment>Angle选择按钮提示信息</comment>
+  </data>
+  <data name="ToolTip_Arrow" xml:space="preserve">
+    <value>Arrow</value>
+    <comment>Arrow选择按钮提示信息</comment>
+  </data>
+  <data name="ToolTip_ColumnConfig" xml:space="preserve">
+    <value>Column config</value>
+    <comment>列配置提示信息</comment>
+  </data>
+  <data name="ToolTip_Crop" xml:space="preserve">
+    <value>Crop</value>
+    <comment>Crop选择按钮提示信息</comment>
+  </data>
+  <data name="ToolTip_Custom" xml:space="preserve">
+    <value>Custom</value>
+    <comment>Custom按钮的提示信息</comment>
+  </data>
+  <data name="ToolTip_DeleteNeddle" xml:space="preserve">
+    <value>Delete needle</value>
+  </data>
+  <data name="ToolTip_Filter" xml:space="preserve">
+    <value>Filter</value>
+    <comment>过滤</comment>
+  </data>
+  <data name="ToolTip_FovSettings" xml:space="preserve">
+    <value>Fov Settings</value>
+    <comment>Fov Settings</comment>
+  </data>
+  <data name="ToolTip_HU" xml:space="preserve">
+    <value>HU</value>
+    <comment>HU选择按钮提示信息</comment>
+  </data>
+  <data name="ToolTip_Import" xml:space="preserve">
+    <value>Import</value>
+    <comment>导入提示信息</comment>
+  </data>
+  <data name="ToolTip_Importing" xml:space="preserve">
+    <value>Importing...</value>
+    <comment>导入中提示</comment>
+  </data>
+  <data name="ToolTip_ImportingFailed" xml:space="preserve">
+    <value>Failed to import for {0}</value>
+    <comment>导入失败提示</comment>
+  </data>
+  <data name="ToolTip_Layout" xml:space="preserve">
+    <value>Layout</value>
+  </data>
+  <data name="ToolTip_Length" xml:space="preserve">
+    <value>Length</value>
+    <comment>Length选择按钮提示信息</comment>
+  </data>
+  <data name="ToolTip_MIPThin" xml:space="preserve">
+    <value>MIP Thin</value>
+    <comment>MIP Thin</comment>
+  </data>
+  <data name="ToolTip_Move" xml:space="preserve">
+    <value>Move</value>
+    <comment>Move选择按钮提示信息</comment>
+  </data>
+  <data name="ToolTip_MPR" xml:space="preserve">
+    <value>MPR</value>
+    <comment>MPR</comment>
+  </data>
+  <data name="ToolTip_ParameterDetail" xml:space="preserve">
+    <value>Detail</value>
+    <comment>Detail</comment>
+  </data>
+  <data name="ToolTip_PatientTypeAdult" xml:space="preserve">
+    <value>Adult</value>
+    <comment>病人类型——成人</comment>
+  </data>
+  <data name="ToolTip_PatientTypeChild" xml:space="preserve">
+    <value>Child</value>
+    <comment>病人类型——儿童</comment>
+  </data>
+  <data name="ToolTip_Print" xml:space="preserve">
+    <value>Print</value>
+    <comment>打印提示信息</comment>
+  </data>
+  <data name="ToolTip_ProtocolCollapsed" xml:space="preserve">
+    <value>Collapsed</value>
+    <comment>使协议详情收缩</comment>
+  </data>
+  <data name="ToolTip_ProtocolDelete" xml:space="preserve">
+    <value>Delete</value>
+    <comment>删除协议</comment>
+  </data>
+  <data name="ToolTip_ProtocolExpand" xml:space="preserve">
+    <value>Expand</value>
+    <comment>使协议详情展开</comment>
+  </data>
+  <data name="ToolTip_ProtocolExport" xml:space="preserve">
+    <value>Export</value>
+    <comment>导出协议</comment>
+  </data>
+  <data name="ToolTip_ProtocolImport" xml:space="preserve">
+    <value>Import</value>
+    <comment>导入协议</comment>
+  </data>
+  <data name="ToolTip_ProtocolMoveDown" xml:space="preserve">
+    <value>Move down</value>
+    <comment>使协议下移</comment>
+  </data>
+  <data name="ToolTip_ProtocolMoveUp" xml:space="preserve">
+    <value>Move up</value>
+    <comment>使协议上移</comment>
+  </data>
+  <data name="ToolTip_ProtocolRepeat" xml:space="preserve">
+    <value>Repeat</value>
+    <comment>使协议重复一次（等同于复制并粘贴）</comment>
+  </data>
+  <data name="ToolTip_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+    <comment>刷新提示信息</comment>
+  </data>
+  <data name="ToolTip_RefSettings" xml:space="preserve">
+    <value>Ref Settings</value>
+    <comment>Ref Settings</comment>
+  </data>
+  <data name="ToolTip_Reverse" xml:space="preserve">
+    <value>Reverse</value>
+    <comment>Reverse选择按钮提示信息</comment>
+  </data>
+  <data name="ToolTip_Rework" xml:space="preserve">
+    <value>Rework</value>
+    <comment>Rework选择按钮提示信息</comment>
+  </data>
+  <data name="ToolTip_ROI" xml:space="preserve">
+    <value>ROI</value>
+    <comment>ROI选择按钮提示信息</comment>
+  </data>
+  <data name="ToolTip_Rotate" xml:space="preserve">
+    <value>Rotate</value>
+    <comment>Rotate</comment>
+  </data>
+  <data name="ToolTip_Scan" xml:space="preserve">
+    <value>Scan</value>
+    <comment>重建提示信息</comment>
+  </data>
+  <data name="ToolTip_Search" xml:space="preserve">
+    <value>Please enter what you want to search</value>
+    <comment>搜索框提示信息</comment>
+  </data>
+  <data name="ToolTip_Select" xml:space="preserve">
+    <value>Select</value>
+    <comment>Select选择按钮提示信息</comment>
+  </data>
+  <data name="ToolTip_SetCenterPosition" xml:space="preserve">
+    <value>Set center position</value>
+  </data>
+  <data name="ToolTip_ShowHideAxes" xml:space="preserve">
+    <value>Show/Hide axes</value>
+    <comment>Show/Hide axes</comment>
+  </data>
+  <data name="ToolTip_SwitchViews" xml:space="preserve">
+    <value>Switch views</value>
+  </data>
+  <data name="ToolTip_View" xml:space="preserve">
+    <value>View</value>
+    <comment>查看提示信息</comment>
+  </data>
+  <data name="ToolTip_WL" xml:space="preserve">
+    <value>W/L</value>
+    <comment>W/L选择按钮提示信息</comment>
+  </data>
+  <data name="ToolTip_Zoom" xml:space="preserve">
+    <value>Zoom</value>
+    <comment>Zoom选择按钮提示信息</comment>
+  </data>
+  <data name="Content_Export" xml:space="preserve">
+    <value>Export</value>
+    <comment>导出</comment>
+  </data>
+  <data name="Content_AddSubfolder" xml:space="preserve">
+    <value>Add Subfolder</value>
+    <comment>新增文件夹</comment>
+  </data>
+  <data name="Content_AddViewer" xml:space="preserve">
+    <value>Add Viewer</value>
+    <comment>添加查看工具</comment>
+  </data>
+  <data name="Content_Anonymous" xml:space="preserve">
+    <value>Anonymous</value>
+    <comment>匿名</comment>
+  </data>
+  <data name="Content_DeleteFolder" xml:space="preserve">
+    <value>Delete Folder</value>
+    <comment>删除文件夹</comment>
+  </data>
+  <data name="Content_Exporting" xml:space="preserve">
+    <value>Exporting ...</value>
+    <comment>导出中...</comment>
+  </data>
+  <data name="Content_ExportingFinished" xml:space="preserve">
+    <value>Exporting finished</value>
+    <comment>导出结束</comment>
+  </data>
+  <data name="Content_FolderName" xml:space="preserve">
+    <value>Folder Name</value>
+    <comment>文件夹名</comment>
+  </data>
+  <data name="Content_Image" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="Content_NotAllowedEmptyString" xml:space="preserve">
+    <value>Please do not enter empty string!</value>
+    <comment>输入不能为空！</comment>
+  </data>
+  <data name="Content_NotAllowedIllegalCharacters" xml:space="preserve">
+    <value>Please do not enter illegal characters!</value>
+    <comment>清不要输入非法字符！</comment>
+  </data>
+  <data name="Content_RenameFolder" xml:space="preserve">
+    <value>Rename Folder</value>
+    <comment>重命名文件夹</comment>
+  </data>
+  <data name="Content_TargetArea" xml:space="preserve">
+    <value>Target Area</value>
+    <comment>目标区</comment>
+  </data>
+  <data name="Content_Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Message_Error_ExportNoSelectedSeries" xml:space="preserve">
+    <value>Cannot export because there is no any series!</value>
+    <comment>没有任何序列，不能执行导出操作！</comment>
+  </data>
+  <data name="Message_Error_FailedNewFolder" xml:space="preserve">
+    <value>Failed to create new folder, please try it again later!</value>
+    <comment>创建文件夹失败，请稍后再试！</comment>
+  </data>
+  <data name="Message_Error_FailedToDeleteFolder" xml:space="preserve">
+    <value>Failed to delete folder, please try again later!</value>
+    <comment>删除文件夹失败，请重试！</comment>
+  </data>
+  <data name="Message_Error_FailedToExport" xml:space="preserve">
+    <value>Failed to export for {0}</value>
+    <comment>导出失败</comment>
+  </data>
+  <data name="Message_Error_NoEnoughSpace" xml:space="preserve">
+    <value>No enough available space!</value>
+    <comment>磁盘空间不够！</comment>
+  </data>
+  <data name="Message_Error_PathNotExist" xml:space="preserve">
+    <value>The path does not exist, please check it!</value>
+    <comment>路径不存在，请确认！</comment>
+  </data>
+  <data name="Message_Error_RenameNewFolder" xml:space="preserve">
+    <value>Failed to rename folder, please try it again later!</value>
+    <comment>重命名文件夹失败，请稍后再试！</comment>
+  </data>
+  <data name="Message_Error_SeriesPathNotExist" xml:space="preserve">
+    <value>The path of series does not exist, please check it!</value>
+    <comment>序列的路径不存在，请确认！</comment>
+  </data>
+  <data name="Message_Info_SelecteStudyOrSeries" xml:space="preserve">
+    <value>Please selecte a study or series!</value>
+    <comment>请选择检查数据或序列数据！</comment>
+  </data>
+  <data name="ContentOK" xml:space="preserve">
+    <value>OK</value>
+    <comment>确定</comment>
+  </data>
+  <data name="Header_Host" xml:space="preserve">
+    <value>Host</value>
+    <comment>主机</comment>
+  </data>
+  <data name="Header_Port" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="Header_SenderAeTitle" xml:space="preserve">
+    <value>Sender AE title</value>
+    <comment>应用实体请求方标题</comment>
+  </data>
+  <data name="Header_ServerAeTitle" xml:space="preserve">
+    <value>Server AE title</value>
+    <comment>应用实体服务方标题</comment>
+  </data>
+  <data name="Content_Archive" xml:space="preserve">
+    <value>Archive</value>
+    <comment>归档</comment>
+  </data>
+  <data name="Content_Instances" xml:space="preserve">
+    <value>Instances</value>
+  </data>
+  <data name="Header_Imagetime" xml:space="preserve">
+    <value>Image time</value>
+  </data>
+  <data name="Header_Number" xml:space="preserve">
+    <value>Number</value>
+  </data>
+  <data name="Message_Error_FailedToConnectServer" xml:space="preserve">
+    <value>The server is not available to connect!</value>
+    <comment>连接服务器失败！</comment>
+  </data>
+  <data name="Message_Info_ArchiveTasksStillRunning" xml:space="preserve">
+    <value>There are archiving tasks still performing, please try it later!</value>
+    <comment>已有正在运行的该归档任务，请稍后再试！</comment>
+  </data>
+  <data name="Message_Info_ArchiveTaskStarted" xml:space="preserve">
+    <value>The archive task has started, you can take a look at Job Viewer!</value>
+    <comment>归档任务已经开始，请在任务查看界面中查看进度！</comment>
+  </data>
+  <data name="Message_Info_NoStudiesNeedToArchive" xml:space="preserve">
+    <value>There are no any studies that need to archive!</value>
+    <comment>没有需要归档的检查记录</comment>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="Content_AccessionNo" xml:space="preserve">
+    <value>Accession No.</value>
+  </data>
+  <data name="Content_AdmittingDiagnosis" xml:space="preserve">
+    <value>Admitting diagnosis</value>
+  </data>
+  <data name="Content_Age" xml:space="preserve">
+    <value>Age</value>
+  </data>
+  <data name="Content_AgeTypeDay" xml:space="preserve">
+    <value>Day</value>
+  </data>
+  <data name="Content_AgeTypeMonth" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="Content_AgeTypeWeek" xml:space="preserve">
+    <value>Week</value>
+  </data>
+  <data name="Content_AgeTypeYear" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="Content_All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Content_CanceledExportingFor" xml:space="preserve">
+    <value>Canceled exporting for</value>
+    <comment>取消导出</comment>
+  </data>
+  <data name="Content_Canceled_ImportingFor" xml:space="preserve">
+    <value>Canceled importing for</value>
+    <comment>取消导入</comment>
+  </data>
+  <data name="Content_CM" xml:space="preserve">
+    <value>cm</value>
+    <comment>厘米</comment>
+  </data>
+  <data name="Content_DateOfBirth" xml:space="preserve">
+    <value>Date of birth</value>
+  </data>
+  <data name="Content_DayBeforeYesterday" xml:space="preserve">
+    <value>Day before yesterday</value>
+  </data>
+  <data name="Content_DefaultSearchScope" xml:space="preserve">
+    <value>The search scope on patients by default.</value>
+  </data>
+  <data name="Content_EmergencyPatient" xml:space="preserve">
+    <value>Emergency patient</value>
+  </data>
+  <data name="Content_Exam" xml:space="preserve">
+    <value>Exam</value>
+  </data>
+  <data name="Content_ExamInformation" xml:space="preserve">
+    <value>Exam Information</value>
+  </data>
+  <data name="Content_ExportingDoneFor" xml:space="preserve">
+    <value>Exporting done for</value>
+    <comment>导出已完成</comment>
+  </data>
+  <data name="Content_ExportingFor" xml:space="preserve">
+    <value>Exporting for</value>
+    <comment>正在导出</comment>
+  </data>
+  <data name="Content_FailedToExportFor" xml:space="preserve">
+    <value>Failed to export for</value>
+    <comment>导出失败</comment>
+  </data>
+  <data name="Content_FailedToExportingFor" xml:space="preserve">
+    <value>Failed to exporting for</value>
+    <comment>导出失败</comment>
+  </data>
+  <data name="Content_FailedToImportFor" xml:space="preserve">
+    <value>Failed to import for</value>
+    <comment>导入失败</comment>
+  </data>
+  <data name="Content_Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="Content_FirstName" xml:space="preserve">
+    <value>First name</value>
+  </data>
+  <data name="Content_GenderFemale" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="Content_GenderMale" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="Content_GenderOther" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Content_ImportingFor" xml:space="preserve">
+    <value>Importing for</value>
+    <comment>正在导入</comment>
+  </data>
+  <data name="Content_Importing_DoneFor" xml:space="preserve">
+    <value>Importing done for</value>
+    <comment>导入已完成</comment>
+  </data>
+  <data name="Content_Institution" xml:space="preserve">
+    <value>Institution</value>
+  </data>
+  <data name="Content_InstitutionAddress" xml:space="preserve">
+    <value>Institution address</value>
+  </data>
+  <data name="Content_InstitutionName" xml:space="preserve">
+    <value>Institution name</value>
+  </data>
+  <data name="Content_KG" xml:space="preserve">
+    <value>kg</value>
+    <comment>公斤</comment>
+  </data>
+  <data name="Content_LastName" xml:space="preserve">
+    <value>Last name</value>
+  </data>
+  <data name="Content_LocalPatient" xml:space="preserve">
+    <value>Local patient</value>
+  </data>
+  <data name="Content_MedicalInformation" xml:space="preserve">
+    <value>Med Info</value>
+  </data>
+  <data name="Content_PatientId" xml:space="preserve">
+    <value>Patient ID</value>
+  </data>
+  <data name="Content_PatientInfomation" xml:space="preserve">
+    <value>Patient</value>
+  </data>
+  <data name="Content_PerformingPhysician" xml:space="preserve">
+    <value>Performing physician</value>
+  </data>
+  <data name="Content_PreRegisteredPatient" xml:space="preserve">
+    <value>Pre-registered patient</value>
+  </data>
+  <data name="Content_ReferringPhysician" xml:space="preserve">
+    <value>Referring physician</value>
+  </data>
+  <data name="Content_Savess" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Content_ScheduledFor" xml:space="preserve">
+    <value>Scheduled For</value>
+    <comment>时间范围</comment>
+  </data>
+  <data name="Content_Sex" xml:space="preserve">
+    <value>Sex</value>
+  </data>
+  <data name="Content_Studies" xml:space="preserve">
+    <value>Studies</value>
+    <comment>检查</comment>
+  </data>
+  <data name="Content_StudyDescription" xml:space="preserve">
+    <value>Study description</value>
+  </data>
+  <data name="Content_StudyId" xml:space="preserve">
+    <value>Study ID</value>
+  </data>
+  <data name="Content_Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="Content_UserMessages" xml:space="preserve">
+    <value>User Messages</value>
+  </data>
+  <data name="Content_Ward" xml:space="preserve">
+    <value>Ward</value>
+  </data>
+  <data name="Content_Weight" xml:space="preserve">
+    <value>Weight</value>
+  </data>
+  <data name="Content_WithinTheLast30Days" xml:space="preserve">
+    <value>Within the last 30 days</value>
+  </data>
+  <data name="Content_WithinTheLast7Days" xml:space="preserve">
+    <value>Within the last 7 days</value>
+  </data>
+  <data name="Content_Yesterday" xml:space="preserve">
+    <value>Yesterday</value>
+  </data>
+  <data name="Header_CreatedTime" xml:space="preserve">
+    <value>Created time</value>
+    <comment>创建时间</comment>
+  </data>
+  <data name="Header_PatientName" xml:space="preserve">
+    <value>Patient name</value>
+  </data>
+  <data name="Message_Error_AgeCannotBeEmpty" xml:space="preserve">
+    <value>Cannot be empty</value>
+  </data>
+  <data name="Message_Error_AgeMustBeInteger" xml:space="preserve">
+    <value>Must be an integer</value>
+  </data>
+  <data name="Message_Error_AgeRange" xml:space="preserve">
+    <value>Range is 0 to 162</value>
+  </data>
+  <data name="Message_Error_CurrentScanning" xml:space="preserve">
+    <value>Studies Currently in Scan Tab cannot be deleted.</value>
+  </data>
+  <data name="Message_Error_ExportNoStudyFound" xml:space="preserve">
+    <value>The study is not found</value>
+    <comment>未找到检查信息</comment>
+  </data>
+  <data name="Message_Error_HeightMustBeNumber" xml:space="preserve">
+    <value>Must be a number</value>
+  </data>
+  <data name="Message_Error_HeightRange" xml:space="preserve">
+    <value>Range is 0 to 280</value>
+  </data>
+  <data name="Message_Error_IllegalCharachersNotAllowed" xml:space="preserve">
+    <value>Please do not enter illegal characters</value>
+  </data>
+  <data name="Message_Error_LastNameNotEmpty" xml:space="preserve">
+    <value>Last name cannot be empty</value>
+  </data>
+  <data name="Message_Error_PatientIdNotEmpty" xml:space="preserve">
+    <value>Patient Id cannot be empty</value>
+  </data>
+  <data name="Message_Error_WeightMustBeNumber" xml:space="preserve">
+    <value>Must be a number</value>
+  </data>
+  <data name="Message_Error_WeightRange" xml:space="preserve">
+    <value>Range is 0 to 230</value>
+  </data>
+  <data name="Message_Warning_AlreadyScanning" xml:space="preserve">
+    <value>A patient is currently being scanned, do you need to close this scan task and load the current emergency patient?</value>
+  </data>
+  <data name="Message_Warning_DeleteProcedure" xml:space="preserve">
+    <value>Are you sure you want to delete this procedure?</value>
+  </data>
+  <data name="ToolTip_AddPatient" xml:space="preserve">
+    <value>Add patient</value>
+    <comment>添加患者</comment>
+  </data>
+  <data name="ToolTip_AddProcedure" xml:space="preserve">
+    <value>Add procedure</value>
+  </data>
+  <data name="ToolTip_AnonymousPatient" xml:space="preserve">
+    <value>Add anonymous patient</value>
+    <comment>匿名患者</comment>
+  </data>
+  <data name="ToolTip_DeleteProcedure" xml:space="preserve">
+    <value>Delete procedure</value>
+  </data>
+  <data name="ToolTip_EmergencyPatient" xml:space="preserve">
+    <value>Add emergency patient</value>
+    <comment>急诊患者</comment>
+  </data>
+  <data name="Content_JobViewer" xml:space="preserve">
+    <value>Job Viewer</value>
+    <comment>任务查看</comment>
+  </data>
+  <data name="Content_Print" xml:space="preserve">
+    <value>Print</value>
+    <comment>打印</comment>
+  </data>
+  <data name="Content_Up" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="Header_AECaller" xml:space="preserve">
+    <value>AECaller</value>
+    <comment>AE调用方</comment>
+  </data>
+  <data name="Header_AETitle" xml:space="preserve">
+    <value>AE title</value>
+    <comment>AE服务方</comment>
+  </data>
+  <data name="Header_Copies" xml:space="preserve">
+    <value>Copies</value>
+    <comment>拷贝数</comment>
+  </data>
+  <data name="Header_EndTime" xml:space="preserve">
+    <value>End time</value>
+    <comment>结束时间</comment>
+  </data>
+  <data name="Header_PaperSize" xml:space="preserve">
+    <value>Paper size</value>
+    <comment>纸张尺寸</comment>
+  </data>
+  <data name="Header_Printer" xml:space="preserve">
+    <value>Printer</value>
+  </data>
+  <data name="Header_Progress" xml:space="preserve">
+    <value>Progress</value>
+  </data>
+  <data name="Header_ReconStatus" xml:space="preserve">
+    <value>Recon status</value>
+  </data>
+  <data name="Header_SeriesDescription" xml:space="preserve">
+    <value>Series description</value>
+    <comment>序列描述</comment>
+  </data>
+  <data name="Header_SeriesNumber" xml:space="preserve">
+    <value>Series number</value>
+    <comment>序列号</comment>
+  </data>
+  <data name="Header_StartTime" xml:space="preserve">
+    <value>Start time</value>
+    <comment>开始时间</comment>
+  </data>
+  <data name="Header_TaskId" xml:space="preserve">
+    <value>Task ID</value>
+    <comment>任务Id</comment>
+  </data>
+  <data name="Header_TaskStatus" xml:space="preserve">
+    <value>Task status</value>
+    <comment>任务状态</comment>
+  </data>
+  <data name="Header_TaskTime" xml:space="preserve">
+    <value>Task time</value>
+    <comment>时间</comment>
+  </data>
+  <data name="Content_Delete" xml:space="preserve">
+    <value>Delete</value>
+    <comment>删除</comment>
+  </data>
+  <data name="Content_2D" xml:space="preserve">
+    <value>2D</value>
+  </data>
+  <data name="Content_3D" xml:space="preserve">
+    <value>3D</value>
+  </data>
+  <data name="Content_Advance" xml:space="preserve">
+    <value>Advance</value>
+  </data>
+  <data name="Content_Angle" xml:space="preserve">
+    <value>Angle</value>
+    <comment>角度</comment>
+  </data>
+  <data name="Content_BMI" xml:space="preserve">
+    <value>BMI</value>
+  </data>
+  <data name="Content_BodyPartExam" xml:space="preserve">
+    <value>Body part exam</value>
+  </data>
+  <data name="Content_CustomAngle" xml:space="preserve">
+    <value>Custom Angle</value>
+    <comment>自定义角度</comment>
+  </data>
+  <data name="Content_DicomTags" xml:space="preserve">
+    <value>Dicom Tags</value>
+  </data>
+  <data name="Content_Length" xml:space="preserve">
+    <value>Length</value>
+  </data>
+  <data name="Content_Mark" xml:space="preserve">
+    <value>Mark</value>
+  </data>
+  <data name="Content_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Content_NO" xml:space="preserve">
+    <value>NO</value>
+  </data>
+  <data name="Content_StartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="Content_StudyInfo" xml:space="preserve">
+    <value>Study Info</value>
+  </data>
+  <data name="Content_TagId" xml:space="preserve">
+    <value>Tag Id</value>
+  </data>
+  <data name="Content_Value" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="Content_View" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="Content_ViewMode" xml:space="preserve">
+    <value>View Mode</value>
+  </data>
+  <data name="Content_VM" xml:space="preserve">
+    <value>VM</value>
+  </data>
+  <data name="Content_VR" xml:space="preserve">
+    <value>VR</value>
+  </data>
+  <data name="Content_WL" xml:space="preserve">
+    <value>WL</value>
+    <comment>窗位</comment>
+  </data>
+  <data name="Content_WW" xml:space="preserve">
+    <value>WW</value>
+    <comment>窗宽</comment>
+  </data>
+  <data name="Tooltip_Cine" xml:space="preserve">
+    <value>Cine</value>
+  </data>
+  <data name="Tooltip_CircleROI" xml:space="preserve">
+    <value>Circle ROI</value>
+  </data>
+  <data name="Tooltip_ClipBox" xml:space="preserve">
+    <value>Clip box</value>
+  </data>
+  <data name="Tooltip_CPR" xml:space="preserve">
+    <value>CPR</value>
+  </data>
+  <data name="Tooltip_Cut" xml:space="preserve">
+    <value>Cut</value>
+  </data>
+  <data name="Tooltip_DicomTags" xml:space="preserve">
+    <value>Dicom tags</value>
+  </data>
+  <data name="Tooltip_FlipHorizontal" xml:space="preserve">
+    <value>Flip Horizontal</value>
+  </data>
+  <data name="Tooltip_FlipVertical" xml:space="preserve">
+    <value>Flip Vertical</value>
+  </data>
+  <data name="Tooltip_FreehandROI" xml:space="preserve">
+    <value>Freehand ROI</value>
+  </data>
+  <data name="Tooltip_Grid" xml:space="preserve">
+    <value>Grid</value>
+  </data>
+  <data name="Tooltip_HideTexts" xml:space="preserve">
+    <value>Hidden texts</value>
+  </data>
+  <data name="Tooltip_InitialState" xml:space="preserve">
+    <value>Initial State</value>
+  </data>
+  <data name="Tooltip_Invert" xml:space="preserve">
+    <value>Invert</value>
+  </data>
+  <data name="Tooltip_Kernel" xml:space="preserve">
+    <value>Kernel</value>
+  </data>
+  <data name="Tooltip_Measure" xml:space="preserve">
+    <value>Measure</value>
+  </data>
+  <data name="Tooltip_MinIP" xml:space="preserve">
+    <value>MInIP</value>
+  </data>
+  <data name="Tooltip_MIP" xml:space="preserve">
+    <value>MIP</value>
+  </data>
+  <data name="Tooltip_MMPR" xml:space="preserve">
+    <value>MMPR</value>
+  </data>
+  <data name="Tooltip_RectangleROI" xml:space="preserve">
+    <value>Rectangle ROI</value>
+  </data>
+  <data name="Tooltip_ScreenShot" xml:space="preserve">
+    <value>Screen shot</value>
+  </data>
+  <data name="Tooltip_Scroll" xml:space="preserve">
+    <value>Scroll</value>
+  </data>
+  <data name="Tooltip_Sign" xml:space="preserve">
+    <value>Sign</value>
+  </data>
+  <data name="Tooltip_SSD" xml:space="preserve">
+    <value>SSD</value>
+  </data>
+  <data name="Tooltip_Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="Tooltip_Undo" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="Tooltip_VR" xml:space="preserve">
+    <value>VR</value>
+  </data>
+  <data name="Tooltip_VRTColor" xml:space="preserve">
+    <value>VRT Color</value>
+  </data>
+  <data name="Tooltip_VRTReset" xml:space="preserve">
+    <value>VRT Reset</value>
+  </data>
+  <data name="Content_Scheduler" xml:space="preserve">
+    <value>Scan worklist</value>
+    <comment>Scan worklist</comment>
+  </data>
+  <data name="Content_VersionInformationTitle" xml:space="preserve">
+    <value>CompoundEye 24 System Version Information</value>
+  </data>
+  <data name="Header_BodyPartExamined" xml:space="preserve">
+    <value>Body part examined</value>
+    <comment>检查身体部位</comment>
+  </data>
+  <data name="Header_Delete" xml:space="preserve">
+    <value>Delete</value>
+    <comment>删除列头</comment>
+  </data>
+  <data name="Text_GantryCurPST" xml:space="preserve">
+    <value>GantryCurPST</value>
+    <comment>机架当前位置</comment>
+  </data>
+  <data name="Text_ModelType" xml:space="preserve">
+    <value>Model type</value>
+  </data>
+  <data name="Text_OperatingSystem" xml:space="preserve">
+    <value>Operating system</value>
+  </data>
+  <data name="Text_ProductName" xml:space="preserve">
+    <value>Product name</value>
+  </data>
+  <data name="Text_SN" xml:space="preserve">
+    <value>SN</value>
+  </data>
+  <data name="Text_Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="ToolTip_Delete" xml:space="preserve">
+    <value>Delete</value>
+    <comment>删除</comment>
+  </data>
+  <data name="ToolTip_Home" xml:space="preserve">
+    <value>Home</value>
+    <comment>首页</comment>
+  </data>
+  <data name="ToolTip_JobViewer" xml:space="preserve">
+    <value>Job Viewer</value>
+  </data>
+  <data name="ToolTip_MoveTable" xml:space="preserve">
+    <value>Move Table</value>
+    <comment>状态栏弹窗移床</comment>
+  </data>
+  <data name="ToolTip_PatientBrowser" xml:space="preserve">
+    <value>PatientBrowser</value>
+    <comment>PatientBrowser</comment>
+  </data>
+  <data name="ToolTip_PatientManagement" xml:space="preserve">
+    <value>PatientManagement</value>
+  </data>
+  <data name="ToolTip_SystemSetting" xml:space="preserve">
+    <value>SystemSetting</value>
+    <comment>SystemSetting</comment>
+  </data>
+  <data name="ToolTip_User" xml:space="preserve">
+    <value>User</value>
+    <comment>User</comment>
+  </data>
+  <data name="Content_Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Content_AlertSettingTitle" xml:space="preserve">
+    <value>Alert setting</value>
+  </data>
+  <data name="Content_ErrorCodeTitle" xml:space="preserve">
+    <value>ErrorCode</value>
+  </data>
+  <data name="Content_IsNotification" xml:space="preserve">
+    <value>Is notification</value>
+  </data>
+  <data name="Content_NoticeSettingTitle" xml:space="preserve">
+    <value>Notice setting</value>
+  </data>
+  <data name="Header_Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="Header_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Header_Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="Header_Module" xml:space="preserve">
+    <value>Module</value>
+  </data>
+  <data name="Header_Reason" xml:space="preserve">
+    <value>Reason</value>
+  </data>
+  <data name="Header_Solution" xml:space="preserve">
+    <value>Solution</value>
+  </data>
+  <data name="Text_Adult" xml:space="preserve">
+    <value>Adult</value>
+  </data>
+  <data name="Text_Child" xml:space="preserve">
+    <value>Child</value>
+  </data>
+  <data name="Text_CTDIvol" xml:space="preserve">
+    <value>CTDIvol</value>
+  </data>
+  <data name="Text_DLP" xml:space="preserve">
+    <value>DLP</value>
+  </data>
+  <data name="Message_Error_CannotArchiveNoAnySeries" xml:space="preserve">
+    <value>No any selected series to archive!</value>
+  </data>
+  <data name="Tooltip_Preset" xml:space="preserve">
+    <value>Preset</value>
+  </data>
+  <data name="Message_Info_ProtocolSaveAsEmergency" xml:space="preserve">
+    <value>Are you sure to save this protocol as an emergency protocol?</value>
+  </data>
+  <data name="Content_APIType" xml:space="preserve">
+    <value>APIType</value>
+  </data>
+  <data name="Content_ChildrenAge" xml:space="preserve">
+    <value>Children age</value>
+  </data>
+  <data name="Content_Custom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="Content_DisplayItems" xml:space="preserve">
+    <value>Display items</value>
+  </data>
+  <data name="Content_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Content_FontColor" xml:space="preserve">
+    <value>Font color</value>
+  </data>
+  <data name="Content_FontConfig" xml:space="preserve">
+    <value>Font config</value>
+  </data>
+  <data name="Content_FontSize" xml:space="preserve">
+    <value>Font size</value>
+  </data>
+  <data name="Content_HostName" xml:space="preserve">
+    <value>Server name</value>
+  </data>
+  <data name="Content_Infix" xml:space="preserve">
+    <value>Infix</value>
+  </data>
+  <data name="Content_Interval" xml:space="preserve">
+    <value>Interval</value>
+  </data>
+  <data name="Content_IP" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="Content_Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Content_Layout" xml:space="preserve">
+    <value>Layout</value>
+  </data>
+  <data name="Content_PACS" xml:space="preserve">
+    <value>PACS</value>
+  </data>
+  <data name="Content_PaperSize" xml:space="preserve">
+    <value>Paper size</value>
+  </data>
+  <data name="Content_PatientIdConfiguration" xml:space="preserve">
+    <value>Patient id configuration</value>
+  </data>
+  <data name="Content_Port" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="Content_PostVoice" xml:space="preserve">
+    <value>Post-voice</value>
+  </data>
+  <data name="Content_Prefix" xml:space="preserve">
+    <value>Prefix</value>
+  </data>
+  <data name="Content_Preview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="Content_PreVoice" xml:space="preserve">
+    <value>Pre-voice</value>
+  </data>
+  <data name="Content_Record" xml:space="preserve">
+    <value>Record</value>
+  </data>
+  <data name="Content_RefreshTime" xml:space="preserve">
+    <value>Refresh time</value>
+  </data>
+  <data name="Content_Remark" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="Content_Resolution" xml:space="preserve">
+    <value>Resolution</value>
+  </data>
+  <data name="Content_SelfAccretion" xml:space="preserve">
+    <value>Self accretion</value>
+  </data>
+  <data name="Content_SenderAETitle" xml:space="preserve">
+    <value>Sender AE Title</value>
+  </data>
+  <data name="Content_ServerAETitle" xml:space="preserve">
+    <value>Server AE Title</value>
+  </data>
+  <data name="Content_Shortcut" xml:space="preserve">
+    <value>Shortcut</value>
+  </data>
+  <data name="Content_SuffixType" xml:space="preserve">
+    <value>Suffix type</value>
+  </data>
+  <data name="Content_Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="Content_TimeFormat" xml:space="preserve">
+    <value>Time format</value>
+  </data>
+  <data name="Content_UpperAgeLimitForChildren" xml:space="preserve">
+    <value>Upper age limit for children</value>
+  </data>
+  <data name="Content_Voice" xml:space="preserve">
+    <value>Voice</value>
+  </data>
+  <data name="Content_WindowLevel" xml:space="preserve">
+    <value>Window level</value>
+  </data>
+  <data name="Content_WindowWidth" xml:space="preserve">
+    <value>Window width</value>
+  </data>
+  <data name="Content_WindowWL" xml:space="preserve">
+    <value>Window WL</value>
+  </data>
+  <data name="Content_Worklist" xml:space="preserve">
+    <value>Worklist</value>
+  </data>
+  <data name="Header_APIType" xml:space="preserve">
+    <value>API type</value>
+  </data>
+  <data name="Header_Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="Header_Display" xml:space="preserve">
+    <value>Display</value>
+  </data>
+  <data name="Header_Factory" xml:space="preserve">
+    <value>Factory</value>
+  </data>
+  <data name="Header_ItemName" xml:space="preserve">
+    <value>Item name</value>
+  </data>
+  <data name="Header_Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Header_Operate" xml:space="preserve">
+    <value>Operate</value>
+  </data>
+  <data name="Header_Path" xml:space="preserve">
+    <value>Path</value>
+  </data>
+  <data name="Header_Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="ToolTip_DefaultPostVoice" xml:space="preserve">
+    <value>Default PostVoice</value>
+  </data>
+  <data name="ToolTip_DefaultPreVoice" xml:space="preserve">
+    <value>Default PreVoice</value>
+  </data>
+  <data name="ToolTip_Factory" xml:space="preserve">
+    <value>Factory</value>
+  </data>
+  <data name="ToolTip_ImportWav" xml:space="preserve">
+    <value>Import wav</value>
+  </data>
+  <data name="ToolTip_Pause" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="ToolTip_Recording" xml:space="preserve">
+    <value>Recording</value>
+  </data>
+  <data name="ToolTip_Resume" xml:space="preserve">
+    <value>Resume</value>
+  </data>
+  <data name="ToolTip_Stop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="BodySize" xml:space="preserve">
+    <value>Body size</value>
+  </data>
+  <data name="Content_Binning" xml:space="preserve">
+    <value>Binning</value>
+  </data>
+  <data name="Content_BinningMode" xml:space="preserve">
+    <value>Binning mode</value>
+  </data>
+  <data name="Content_CenterXmm" xml:space="preserve">
+    <value>Center-x(mm)</value>
+  </data>
+  <data name="Content_CenterYmm" xml:space="preserve">
+    <value>Center-y(mm)</value>
+  </data>
+  <data name="Content_DelayS" xml:space="preserve">
+    <value>Delay(s)</value>
+  </data>
+  <data name="Content_Emergency" xml:space="preserve">
+    <value>Emergency</value>
+  </data>
+  <data name="Content_Enhanced" xml:space="preserve">
+    <value>Enhanced</value>
+  </data>
+  <data name="Content_ExposureMode" xml:space="preserve">
+    <value>Exposure mode</value>
+  </data>
+  <data name="Content_ExposureSum" xml:space="preserve">
+    <value>Exposure sum</value>
+  </data>
+  <data name="Content_ExposureTime" xml:space="preserve">
+    <value>Exposure time</value>
+  </data>
+  <data name="Content_Factory" xml:space="preserve">
+    <value>Factory</value>
+  </data>
+  <data name="Content_FOVMM" xml:space="preserve">
+    <value>FOV(mm)</value>
+  </data>
+  <data name="Content_FrameNumber" xml:space="preserve">
+    <value>Frame number</value>
+  </data>
+  <data name="Content_FrameTime" xml:space="preserve">
+    <value>Frame time</value>
+  </data>
+  <data name="Content_FuncMode" xml:space="preserve">
+    <value>Func mode</value>
+  </data>
+  <data name="Content_IsRTD" xml:space="preserve">
+    <value>IsRTD</value>
+  </data>
+  <data name="Content_OverSample" xml:space="preserve">
+    <value>Over sample</value>
+  </data>
+  <data name="Content_ProtocolParameters" xml:space="preserve">
+    <value>Protocol parameters</value>
+  </data>
+  <data name="Content_ReconParameters" xml:space="preserve">
+    <value>Recon parameters</value>
+  </data>
+  <data name="Content_ReconType" xml:space="preserve">
+    <value>Recon type</value>
+  </data>
+  <data name="Content_ScanHeight" xml:space="preserve">
+    <value>Scan height</value>
+  </data>
+  <data name="Content_ScanName" xml:space="preserve">
+    <value>Scan name</value>
+  </data>
+  <data name="Content_ScanNumber" xml:space="preserve">
+    <value>Scan number</value>
+  </data>
+  <data name="Content_ScanOption" xml:space="preserve">
+    <value>Scan option</value>
+  </data>
+  <data name="Content_ScanParameters" xml:space="preserve">
+    <value>Scan parameters</value>
+  </data>
+  <data name="Content_ScanPositionEnd" xml:space="preserve">
+    <value>Scan position end</value>
+  </data>
+  <data name="Content_ScanPositionStart" xml:space="preserve">
+    <value>Scan position start</value>
+  </data>
+  <data name="Content_TableSpeed" xml:space="preserve">
+    <value>Table speed</value>
+  </data>
+  <data name="Content_Valid" xml:space="preserve">
+    <value>Valid</value>
+  </data>
+  <data name="Content_VoiceId" xml:space="preserve">
+    <value>Voice Id</value>
+  </data>
+  <data name="Content_VoxelSizeXY" xml:space="preserve">
+    <value>Voxel size xy</value>
+  </data>
+  <data name="ToolTip_Axial" xml:space="preserve">
+    <value>Axial</value>
+  </data>
+  <data name="ToolTip_Spiral" xml:space="preserve">
+    <value>Spiral</value>
+  </data>
+  <data name="Message_Info_Deletion_Protected" xml:space="preserve">
+    <value>Cannot delete because it is protected by lock</value>
+  </data>
+  <data name="Content_ProtocolSelection" xml:space="preserve">
+    <value>Protocol Selection</value>
+  </data>
+  <data name="Content_Replace" xml:space="preserve">
+    <value>Replace</value>
+  </data>
+  <data name="Content_RequesterDefaultScheme" xml:space="preserve">
+    <value>Requester default scheme</value>
+  </data>
+  <data name="Content_SaveConfig" xml:space="preserve">
+    <value>Save config</value>
+  </data>
+  <data name="Content_TheDefaultMatching" xml:space="preserve">
+    <value>The default matching</value>
+  </data>
+  <data name="Header_Top" xml:space="preserve">
+    <value>Top</value>
+  </data>
+  <data name="Header_Unpin" xml:space="preserve">
+    <value>Unpin</value>
+  </data>
+  <data name="Hint_Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Text_Indications" xml:space="preserve">
+    <value>Indications:</value>
+  </data>
+  <data name="Text_ReconstructionMission" xml:space="preserve">
+    <value>Reconstruction Mission</value>
+  </data>
+  <data name="Text_ScanMode" xml:space="preserve">
+    <value>Scan Mode:</value>
+  </data>
+  <data name="Text_ScanRange" xml:space="preserve">
+    <value>Scan Range</value>
+  </data>
+  <data name="ToolTip_AutoPositioning" xml:space="preserve">
+    <value>Auto positioning</value>
+  </data>
+  <data name="ToolTip_CancelTop" xml:space="preserve">
+    <value>Cancel top</value>
+  </data>
+  <data name="ToolTip_SaveAs" xml:space="preserve">
+    <value>Save as</value>
+  </data>
+  <data name="ToolTip_ToTop" xml:space="preserve">
+    <value>To top</value>
+  </data>
+  <data name="Content_AEC" xml:space="preserve">
+    <value>AEC</value>
+  </data>
+  <data name="Content_CityName" xml:space="preserve">
+    <value>City name</value>
+  </data>
+  <data name="Content_DetailName" xml:space="preserve">
+    <value>Detail version</value>
+  </data>
+  <data name="Content_DeviceSerialNumber" xml:space="preserve">
+    <value>Device serial number</value>
+  </data>
+  <data name="Content_ImplementationClassUID" xml:space="preserve">
+    <value>Implementation class UID</value>
+  </data>
+  <data name="Content_InstitutionalDepartmentName" xml:space="preserve">
+    <value>Institutional department name</value>
+  </data>
+  <data name="Content_Manufacturer" xml:space="preserve">
+    <value>Manufacturer</value>
+  </data>
+  <data name="Content_ManufacturerModel" xml:space="preserve">
+    <value>Manufacturer model</value>
+  </data>
+  <data name="Content_OSVersion" xml:space="preserve">
+    <value>OS version</value>
+  </data>
+  <data name="Content_SoftwareName" xml:space="preserve">
+    <value>Software name</value>
+  </data>
+  <data name="Content_SoftwareVersion" xml:space="preserve">
+    <value>Software version</value>
+  </data>
+  <data name="Content_StationName" xml:space="preserve">
+    <value>Station name</value>
+  </data>
+  <data name="Content_VersionName" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="Message_Warning_RevertInitialState" xml:space="preserve">
+    <value>Confirm whether to restore to their original state?</value>
+  </data>
+  <data name="Message_Warning_DeletionSelectionNeedle" xml:space="preserve">
+    <value>Confirm whether to delete the current selected needle?</value>
+  </data>
+  <data name="ContextMenuItem_Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="Content_Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Content_Referring_Physician" xml:space="preserve">
+    <value>Referring physician</value>
+  </data>
+  <data name="Content_Requested_Procedure" xml:space="preserve">
+    <value>Requested procedure</value>
+  </data>
+  <data name="ToolTip_PleaseEnterAccessionNo" xml:space="preserve">
+    <value>Please enter Accession No.</value>
+  </data>
+  <data name="ToolTip_PleaseEnterAdmittingDiagnosis" xml:space="preserve">
+    <value>Please enter admitting diagnosis</value>
+  </data>
+  <data name="ToolTip_PleaseEnterAge" xml:space="preserve">
+    <value>Please enter age</value>
+  </data>
+  <data name="ToolTip_PleaseEnterDateOfBirth" xml:space="preserve">
+    <value>Please enter date of birth</value>
+  </data>
+  <data name="ToolTip_PleaseEnterFirstName" xml:space="preserve">
+    <value>Please enter first name</value>
+  </data>
+  <data name="ToolTip_PleaseEnterHeight" xml:space="preserve">
+    <value>Please enter height</value>
+  </data>
+  <data name="ToolTip_PleaseEnterInstitutionAddress" xml:space="preserve">
+    <value>Please enter institution address</value>
+  </data>
+  <data name="ToolTip_PleaseEnterInstitutionName" xml:space="preserve">
+    <value>Please enter institution name</value>
+  </data>
+  <data name="ToolTip_PleaseEnterLastName" xml:space="preserve">
+    <value>Please enter last name</value>
+  </data>
+  <data name="ToolTip_PleaseEnterPatientID" xml:space="preserve">
+    <value>Please enter patient ID</value>
+  </data>
+  <data name="ToolTip_PleaseEnterPerformingPhysician" xml:space="preserve">
+    <value>Please enter performing physician</value>
+  </data>
+  <data name="ToolTip_PleaseEnterReferringPhysician" xml:space="preserve">
+    <value>Please enter referring physician</value>
+  </data>
+  <data name="ToolTip_PleaseEnterSex" xml:space="preserve">
+    <value>Please enter sex</value>
+  </data>
+  <data name="ToolTip_PleaseEnterStudyDescription" xml:space="preserve">
+    <value>Please enter study description</value>
+  </data>
+  <data name="ToolTip_PleaseEnterWard" xml:space="preserve">
+    <value>Please enter ward</value>
+  </data>
+  <data name="ToolTip_PleaseEnterWeight" xml:space="preserve">
+    <value>Please enter weight</value>
+  </data>
+  <data name="ToolTip_PleasEnterComments" xml:space="preserve">
+    <value>Please enter comments</value>
+  </data>
+  <data name="Content_LocalDataFor" xml:space="preserve">
+    <value>Loacal data For</value>
+  </data>
+  <data name="Message_Warning_CurrentPrinting" xml:space="preserve">
+    <value>There is already a processing print task,are you sure to continue?</value>
+  </data>
+  <data name="Message_Confirm_CloseApplication" xml:space="preserve">
+    <value>Are you sure you want to close the {0}?</value>
+  </data>
+  <data name="Content.AutoScan" xml:space="preserve">
+    <value>AutoScan</value>
+  </data>
+  <data name="Content_Copies" xml:space="preserve">
+    <value>Copies</value>
+  </data>
+  <data name="Content_Operate" xml:space="preserve">
+    <value>Operate</value>
+  </data>
+  <data name="Content_PageSize" xml:space="preserve">
+    <value>Page size</value>
+  </data>
+  <data name="Content_SelectLayout" xml:space="preserve">
+    <value>Select layout</value>
+  </data>
+  <data name="Content_SelectPrinter" xml:space="preserve">
+    <value>Select Printer</value>
+  </data>
+  <data name="Content_ShowFooter" xml:space="preserve">
+    <value>Show footer</value>
+  </data>
+  <data name="Content_ShowHeader" xml:space="preserve">
+    <value>Show header</value>
+  </data>
+  <data name="ToolTip_LayoutSettings" xml:space="preserve">
+    <value>Layout settings</value>
+  </data>
+  <data name="Content_Preview22" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Content_SelectAll" xml:space="preserve">
+    <value>Select all</value>
+  </data>
+  <data name="Content_SelectPages" xml:space="preserve">
+    <value>Select pages</value>
+  </data>
+  <data name="Content_StudyList" xml:space="preserve">
+    <value>Study List</value>
+  </data>
+  <data name="Header_EndDate" xml:space="preserve">
+    <value>End date</value>
+  </data>
+  <data name="ToolTip_ImageView" xml:space="preserve">
+    <value>Image view</value>
+  </data>
+  <data name="ToolTip_Inverse" xml:space="preserve">
+    <value>Inverse</value>
+  </data>
+  <data name="ToolTip_ListView" xml:space="preserve">
+    <value>List view</value>
+  </data>
+  <data name="ToolTip_Overlap" xml:space="preserve">
+    <value>Overlap</value>
+  </data>
+  <data name="ToolTip_Sharpen" xml:space="preserve">
+    <value>Sharpen</value>
+  </data>
+  <data name="ToolTip_Smooth" xml:space="preserve">
+    <value>Smooth</value>
+  </data>
+  <data name="Content_Column" xml:space="preserve">
+    <value>Column</value>
+  </data>
+  <data name="Content_IsDefault" xml:space="preserve">
+    <value>Is default</value>
+  </data>
+  <data name="Content_PrintProtocolSettings" xml:space="preserve">
+    <value>Print protocol settings</value>
+  </data>
+  <data name="Content_Row" xml:space="preserve">
+    <value>Row</value>
+  </data>
+  <data name="ToolTip_PleaseEnterColumn" xml:space="preserve">
+    <value>Please enter column</value>
+  </data>
+  <data name="ToolTip_PleaseEnterName" xml:space="preserve">
+    <value>Please enter name</value>
+  </data>
+  <data name="ToolTip_PleaseEnterRow" xml:space="preserve">
+    <value>Please enter row</value>
+  </data>
+  <data name="ToolTip_PrintProtocolSettings" xml:space="preserve">
+    <value>Print protocol settings</value>
+  </data>
+  <data name="Message_Info_AddScanningNeedleInfo" xml:space="preserve">
+    <value>Please add a scanning needle to the interventional scan series!</value>
+  </data>
+  <data name="Content_Repeat" xml:space="preserve">
+    <value>Repeat</value>
+  </data>
+  <data name="Text_ProtocolName" xml:space="preserve">
+    <value>Protocol name</value>
+  </data>
+  <data name="ToolTip_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Content_CenterX_Y" xml:space="preserve">
+    <value>Center X/Y</value>
+  </data>
+  <data name="Text_Needle" xml:space="preserve">
+    <value>Needle</value>
+  </data>
+  <data name="Message_Warning_StartAbnormalStudy" xml:space="preserve">
+    <value>An abnormally closed study found, are you sure to continue this study?</value>
+  </data>
+  <data name="ToolTip_Recon" xml:space="preserve">
+    <value>Recon</value>
+  </data>
+  <data name="Message_Warning_NoStartExamination" xml:space="preserve">
+    <value>Unable start Examination, Because the Service Tools process was started!</value>
+  </data>
+  <data name="Message_Warning_NoStartServiceTools" xml:space="preserve">
+    <value>Unable start Service Tools, Because the Examination process was started!</value>
+  </data>
+  <data name="Message_Error_PrintTaskFailed" xml:space="preserve">
+    <value>The print task failed, please try agagin later.</value>
+  </data>
+  <data name="Message_Info_PrintTaskQueued" xml:space="preserve">
+    <value>The print task has queued, please take a look at Job Viewer to see more details.</value>
+  </data>
+  <data name="Text_TubePosition" xml:space="preserve">
+    <value>Tube position</value>
+  </data>
+  <data name="Text_CopyrightCompoundEye" xml:space="preserve">
+    <value>Copyright @{0} CompoundEye CT all rights reserved.</value>
+  </data>
+  <data name="Text_CopyrightTechnology" xml:space="preserve">
+    <value>Nanovision Technology @{0} COMPOUND EYE CT ALL RIGHTS RESERVED.</value>
+  </data>
+  <data name="Header_AEPrinter" xml:space="preserve">
+    <value>AE printer</value>
+  </data>
+  <data name="Header_JobId" xml:space="preserve">
+    <value>Job ID</value>
+  </data>
+  <data name="Content_BeginDate" xml:space="preserve">
+    <value>Begin date</value>
+  </data>
+  <data name="Content_Body_Part_Exam" xml:space="preserve">
+    <value>Body part exam</value>
+  </data>
+  <data name="Content_Correct" xml:space="preserve">
+    <value>Correct</value>
+  </data>
+  <data name="Content_EndDate" xml:space="preserve">
+    <value>End date</value>
+  </data>
+  <data name="Content_Modify_Study" xml:space="preserve">
+    <value>Modify study</value>
+  </data>
+  <data name="ContextMenuItem_Correct" xml:space="preserve">
+    <value>Correct</value>
+  </data>
+  <data name="Content_CorrectionHistory" xml:space="preserve">
+    <value>Correction history</value>
+  </data>
+  <data name="Content_Editor" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="Content_Modify" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+  <data name="Header_CorrectionTime" xml:space="preserve">
+    <value>Correction time</value>
+  </data>
+  <data name="Header_Editor" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="Message_Error_EditorNotEmpty" xml:space="preserve">
+    <value>Editor cannot be empty</value>
+  </data>
+  <data name="Content_OriginalRecord" xml:space="preserve">
+    <value>Original record</value>
+  </data>
+  <data name="Content_MoveToTop" xml:space="preserve">
+    <value>Move to top</value>
+  </data>
+  <data name="Content_Pause" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="Content_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="Content_Resume" xml:space="preserve">
+    <value>Resume</value>
+  </data>
+  <data name="Content_RawDataList" xml:space="preserve">
+    <value>Raw data list</value>
+  </data>
+  <data name="Content_RawDataManagement" xml:space="preserve">
+    <value>Raw data management</value>
+  </data>
+  <data name="Header_ExportStatus" xml:space="preserve">
+    <value>Export status</value>
+  </data>
+  <data name="Header_ScanEndtime" xml:space="preserve">
+    <value>Scan end date</value>
+  </data>
+  <data name="Header_ScanRange" xml:space="preserve">
+    <value>Scan range</value>
+  </data>
+  <data name="Content_ExportFailed" xml:space="preserve">
+    <value>Export failed,please try again!</value>
+  </data>
+  <data name="Messge_Error_RequireFolderName" xml:space="preserve">
+    <value>Folder name cannot be empty</value>
+  </data>
+  <data name="Content_Orienation_Landscape" xml:space="preserve">
+    <value>LANDSCAPE</value>
+  </data>
+  <data name="Content_Orienation_Portrait" xml:space="preserve">
+    <value>PORTRAIT</value>
+  </data>
+  <data name="Content_Orientation" xml:space="preserve">
+    <value>Orientation</value>
+  </data>
+  <data name="Message_CTDI_DoseAlert" xml:space="preserve">
+    <value>The maximum of accumulated CTDlvol({0} mGy) will locally exceed the alert value({1} mGy for {2})</value>
+  </data>
+  <data name="Message_CTDI_DoseNatification" xml:space="preserve">
+    <value>{0}:CTDlvol({1}mGy) exceeds the notification value({2} mGy).</value>
+  </data>
+  <data name="Message_DLP_DoseAlert" xml:space="preserve">
+    <value>The maximum of accumulated DLP({0} mGy*cm) will locally exceed the alert value({1} mGy*cm for {2})</value>
+  </data>
+  <data name="Message_DLP_DoseNatification" xml:space="preserve">
+    <value>{0}:DLP({1}mGy*cm) exceeds the notification value({2} mGy*cm).</value>
+  </data>
+  <data name="Text_DiagnosticReason" xml:space="preserve">
+    <value>Diagnostic reason</value>
+  </data>
+  <data name="Text_DoseAlertValueExceeded" xml:space="preserve">
+    <value>A dose alert value will be exceeded!</value>
+  </data>
+  <data name="Text_ExaminationDoorOpen" xml:space="preserve">
+    <value>The examination room door is open!</value>
+  </data>
+  <data name="Text_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Text_ReconsiderCurrentProtocolSetting" xml:space="preserve">
+    <value>Please reconsider the current protocol setting.</value>
+  </data>
+  <data name="Text_UserName_Mandatory" xml:space="preserve">
+    <value>User name(mandatory)</value>
+  </data>
+  <data name="ToolTip_ResetToInit" xml:space="preserve">
+    <value>Reset to init</value>
+  </data>
+  <data name="Content_Browser" xml:space="preserve">
+    <value>Browser</value>
+  </data>
+  <data name="Content_Display" xml:space="preserve">
+    <value>Display</value>
+  </data>
+  <data name="Content_Overview" xml:space="preserve">
+    <value>Overview</value>
+  </data>
+  <data name="Message_FailedToSave" xml:space="preserve">
+    <value>Failed to save, please try again or contact administrator!</value>
+  </data>
+  <data name="Message_Saved_Successfully" xml:space="preserve">
+    <value>Saved Successfully!</value>
+  </data>
+  <data name="Message_Error_ArchiveTaskFailed" xml:space="preserve">
+    <value>The archive task failed, please try agagin later.</value>
+  </data>
+  <data name="Content_TransferSyntax" xml:space="preserve">
+    <value>Transfer syntax</value>
+  </data>
+  <data name="Header_TaskDesc" xml:space="preserve">
+    <value>Task description</value>
+  </data>
+  <data name="Header_OperationLevel" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="Message_Error_ExportTaskFailed" xml:space="preserve">
+    <value>The export task failed, please try agagin later.</value>
+  </data>
+  <data name="Message_Error_ImportTaskFailed" xml:space="preserve">
+    <value>The import task failed, please try agagin later.</value>
+  </data>
+  <data name="Message_Info_ExportTaskStarted" xml:space="preserve">
+    <value>Exporting... You can take a look at Job Viewer!</value>
+  </data>
+  <data name="Message_Info_ImportTaskStarted" xml:space="preserve">
+    <value>Importing... You can take a look at Job Viewer!</value>
+  </data>
+  <data name="Header_InputPath" xml:space="preserve">
+    <value>Input path</value>
+  </data>
+  <data name="Header_OutputPath" xml:space="preserve">
+    <value>Output path</value>
+  </data>
+  <data name="Header_AccessionNo" xml:space="preserve">
+    <value>Accession No.</value>
+  </data>
+  <data name="Header_StudyDescription" xml:space="preserve">
+    <value>Study description</value>
+  </data>
+  <data name="Message_Info_Selected_Patient_Required" xml:space="preserve">
+    <value>Please select a patient from worklist first!</value>
+  </data>
+  <data name="Header_Window" xml:space="preserve">
+    <value>Window</value>
+  </data>
+  <data name="Message_Info_FailedToSavePara" xml:space="preserve">
+    <value>Failed to save</value>
+  </data>
+  <data name="Message_Info_SaveSuccessfullyPara" xml:space="preserve">
+    <value>Save successfully, please restart the software to use!</value>
+  </data>
+  <data name="Content_Laser" xml:space="preserve">
+    <value>Laser</value>
+  </data>
+  <data name="Content_LaserInfo" xml:space="preserve">
+    <value>Laser info</value>
+  </data>
+  <data name="Content_TableFeed" xml:space="preserve">
+    <value>Table feed</value>
+  </data>
+  <data name="Content_ColumnConfig" xml:space="preserve">
+    <value>Column config</value>
+  </data>
+  <data name="Content_Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="Content_ArchiveStatus" xml:space="preserve">
+    <value>Archive status</value>
+  </data>
+  <data name="Content_Ascending" xml:space="preserve">
+    <value>Ascending</value>
+  </data>
+  <data name="Content_BirthdayRange" xml:space="preserve">
+    <value>Birthday range</value>
+  </data>
+  <data name="Content_Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Content_DateRange" xml:space="preserve">
+    <value>Date range</value>
+  </data>
+  <data name="Content_Descending" xml:space="preserve">
+    <value>Descending</value>
+  </data>
+  <data name="Content_Female" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="Content_LockStatus" xml:space="preserve">
+    <value>Lock status</value>
+  </data>
+  <data name="Content_Male" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="Content_Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Content_PatientType" xml:space="preserve">
+    <value>Patient type</value>
+  </data>
+  <data name="Content_PatientTypeEmergency" xml:space="preserve">
+    <value>Emergency</value>
+  </data>
+  <data name="Content_PatientTypeLocal" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="Content_PatientTypePreReg" xml:space="preserve">
+    <value>Pre registration</value>
+  </data>
+  <data name="Content_PrintStatus" xml:space="preserve">
+    <value>Print status</value>
+  </data>
+  <data name="Content_Sort" xml:space="preserve">
+    <value>Sort</value>
+  </data>
+  <data name="Content_SortedBy" xml:space="preserve">
+    <value>Sorted by</value>
+  </data>
+  <data name="Content_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Content_StudyStatus" xml:space="preserve">
+    <value>Study status</value>
+  </data>
+  <data name="Header_ReferringPhysician" xml:space="preserve">
+    <value>Referring physician</value>
+  </data>
+  <data name="Header_Technician" xml:space="preserve">
+    <value>Technician</value>
+  </data>
+  <data name="Header_Ward" xml:space="preserve">
+    <value>Ward</value>
+  </data>
+  <data name="ToolTip_MoveDown" xml:space="preserve">
+    <value>Move down</value>
+  </data>
+  <data name="ToolTip_MoveUp" xml:space="preserve">
+    <value>Move up</value>
+  </data>
+  <data name="Content_BM3DenoiseCoef" xml:space="preserve">
+    <value>BM3 DenoiseCoef</value>
+  </data>
+  <data name="Content_Finished" xml:space="preserve">
+    <value>Finished</value>
+  </data>
+  <data name="Content_InProgress" xml:space="preserve">
+    <value>In progress</value>
+  </data>
+  <data name="Content_Local" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="Content_Locked" xml:space="preserve">
+    <value>Locked</value>
+  </data>
+  <data name="Content_PreRegistration" xml:space="preserve">
+    <value>Preregistration</value>
+  </data>
+  <data name="Content_Unlocked" xml:space="preserve">
+    <value>Unlocked</value>
+  </data>
+  <data name="Content_Abnormal" xml:space="preserve">
+    <value>Abnormal</value>
+  </data>
+  <data name="Content_Corrected" xml:space="preserve">
+    <value>Corrected</value>
+  </data>
+  <data name="Content_Correction" xml:space="preserve">
+    <value>Correction</value>
+  </data>
+  <data name="Content_Failed" xml:space="preserve">
+    <value>Failed</value>
+  </data>
+  <data name="Content_NotYet" xml:space="preserve">
+    <value>Not yet</value>
+  </data>
+  <data name="Content_PartlyFinished" xml:space="preserve">
+    <value>Partly finished</value>
+  </data>
+  <data name="Content_Uncorrected" xml:space="preserve">
+    <value>Uncorrected</value>
+  </data>
+  <data name="Content_PostDenoise" xml:space="preserve">
+    <value>Post type/Denoise</value>
+  </data>
+  <data name="Content_PreDenoise" xml:space="preserve">
+    <value>Pre type/Denoise</value>
+  </data>
+  <data name="ToolTip_Expand" xml:space="preserve">
+    <value>Expand</value>
+  </data>
+  <data name="TooTip_Fold" xml:space="preserve">
+    <value>Fold</value>
+  </data>
+  <data name="Message_Info_Input_Different_Patient_Info" xml:space="preserve">
+    <value>Please input different PatientID, Name, Sex or Birthday.</value>
+  </data>
+  <data name="Message_Info_Patient_Not_Existing" xml:space="preserve">
+    <value>Patient already exists!</value>
+  </data>
+  <data name="TooTip_ImportRawData" xml:space="preserve">
+    <value>Import raw data</value>
+  </data>
+  <data name="Content_ImportRawData" xml:space="preserve">
+    <value>Import raw data</value>
+  </data>
+  <data name="Content_Import_Failed" xml:space="preserve">
+    <value>Import failed.</value>
+  </data>
+  <data name="Content_Import_Succeeded" xml:space="preserve">
+    <value>Import succeeded.</value>
+  </data>
+  <data name="Content_SelectPath" xml:space="preserve">
+    <value>Select path</value>
+  </data>
+  <data name="Content_SourcePath" xml:space="preserve">
+    <value>Source path</value>
+  </data>
+  <data name="Content_Unlimited" xml:space="preserve">
+    <value>Unlimited</value>
+  </data>
+  <data name="Content_XRayFocusType" xml:space="preserve">
+    <value>Focal</value>
+  </data>
+  <data name="Content_Batch" xml:space="preserve">
+    <value>Batch</value>
+  </data>
+  <data name="Content_ReconName" xml:space="preserve">
+    <value>Recon name</value>
+  </data>
+  <data name="ToolTip_BatchAngle" xml:space="preserve">
+    <value>Multi angle</value>
+  </data>
+  <data name="ToolTip_BatchMPR" xml:space="preserve">
+    <value>MPR</value>
+  </data>
+  <data name="ToolTip_BatchRGB" xml:space="preserve">
+    <value>RGB data</value>
+  </data>
+  <data name="ToolTip_BatchSlice" xml:space="preserve">
+    <value>Free slice</value>
+  </data>
+  <data name="Content_Query" xml:space="preserve">
+    <value>Query</value>
+  </data>
+  <data name="ToolTip_ReferenceLine" xml:space="preserve">
+    <value>Reference line</value>
+  </data>
+  <data name="ContextMenuItem_Browse" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <data name="Message_Error_NoSelectedSeries" xml:space="preserve">
+    <value>No any selected series!</value>
+  </data>
+  <data name="ToolTip_TimeDensityDetail" xml:space="preserve">
+    <value>Time density detail</value>
+  </data>
+  <data name="Text_TimeDensityCurve" xml:space="preserve">
+    <value>Time density curve</value>
+  </data>
+  <data name="Message_Info_ExportingTaskStarted" xml:space="preserve">
+    <value>The Export task has started, you can take a look at Job Viewer!</value>
+  </data>
+  <data name="Content_ReconBinning" xml:space="preserve">
+    <value>Binning</value>
+  </data>
+  <data name="ContextMenuItem_BrowseRawData" xml:space="preserve">
+    <value>Browse raw data</value>
+  </data>
+  <data name="Message_Warning_ConfirmPositionInfo" xml:space="preserve">
+    <value>Please confirm that the position you currently selected is consistent to patient's position!</value>
+  </data>
+  <data name="Message_Warning_GoWarningTitle" xml:space="preserve">
+    <value>Go Warning!</value>
+  </data>
+  <data name="Content_AirCorrectionMode" xml:space="preserve">
+    <value>Air correction mode</value>
+  </data>
+  <data name="Content_IsTwoPassEnable" xml:space="preserve">
+    <value>2Pass</value>
+  </data>
+  <data name="Content_IsBoneAritifactEnable" xml:space="preserve">
+    <value>BoneBH</value>
+  </data>
+  <data name="Content_IsMetalAritifactEnable" xml:space="preserve">
+    <value>iMar</value>
+  </data>
+  <data name="Content_IVRTVCoef" xml:space="preserve">
+    <value>IVR_TV_Coef</value>
+  </data>
+  <data name="Content_RingCorrectionCoef" xml:space="preserve">
+    <value>Ring correct coef</value>
+  </data>
+  <data name="Content_LockUnLock" xml:space="preserve">
+    <value>LockUnlock</value>
+  </data>
+  <data name="Text_PostVoiceDelayTime" xml:space="preserve">
+    <value>Pre-voice post delay time(s)</value>
+  </data>
+  <data name="Content_UseTls" xml:space="preserve">
+    <value>UseTls</value>
+    <comment>使用Dicom加密传输</comment>
+  </data>
+  <data name="Content_Topping" xml:space="preserve">
+    <value>Topping</value>
+    <comment>Topping按钮</comment>
+  </data>
+  <data name="ToolTip_Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="ToolTip_Paste" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="ToolTip_SelectAll" xml:space="preserve">
+    <value>SelectAll</value>
+  </data>
+  <data name="ToolTip_UnSelectAll" xml:space="preserve">
+    <value>UnSelect All</value>
+  </data>
+  <data name="Message_Warring_OfflineConnectFailed" xml:space="preserve">
+    <value>Offline service connection failed!</value>
+  </data>
+  <data name="Content_SkullArtifactReduce" xml:space="preserve">
+    <value>Skull Artifact Reduce</value>
+  </data>
+  <data name="Content_MotionArtifactReduce" xml:space="preserve">
+    <value>Motion Artifact Reduce</value>
+  </data>
+  <data name="Content_PitchArtifactReduce" xml:space="preserve">
+    <value>Pitch Artifact Reduce</value>
+  </data>
+  <data name="Content_SparseArtifactReduce10" xml:space="preserve">
+    <value>Sparse Artifact Reduce10</value>
+  </data>
+  <data name="Content_Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="Content_SparseArtifactReduce20" xml:space="preserve">
+    <value>Sparse Artifact Reduce20</value>
+  </data>
+  <data name="Content_WindmillArtifactReduce" xml:space="preserve">
+    <value>Windmill Artifact Reduce</value>
+  </data>
+  <data name="Content_StreakArtifactReduce" xml:space="preserve">
+    <value>Streak Artifact Reduce</value>
+  </data>
+  <data name="Content_PostProcessTitle" xml:space="preserve">
+    <value>Post Process</value>
+  </data>
+  <data name="Content_PostPrcoessDenoise" xml:space="preserve">
+    <value>Denoise</value>
+    <comment>Label标签描述</comment>
+  </data>
+  <data name="Content_PostProcessSharp" xml:space="preserve">
+    <value>Sharp</value>
+  </data>
+  <data name="Content_PostProcessSetting" xml:space="preserve">
+    <value>Post Process Setting</value>
+  </data>
+  <data name="Content_PostProcessList" xml:space="preserve">
+    <value>Post Process List</value>
+  </data>
+  <data name="Content_Method" xml:space="preserve">
+    <value>Method</value>
+  </data>
+  <data name="Content_Parameters" xml:space="preserve">
+    <value>Parameters</value>
+  </data>
+  <data name="Content_Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="Content_ConeAngleArtifactReduce" xml:space="preserve">
+    <value>Cone Angle Artifact Reduce</value>
+  </data>
+  <data name="Content_ReconBodyPart" xml:space="preserve">
+    <value>Recon Body Part </value>
+  </data>
+  <data name="Content_Reconstruction" xml:space="preserve">
+    <value>Reconstruction</value>
+    <comment>Reconstruction</comment>
+  </data>
+  <data name="Content_CTDIthreshold" xml:space="preserve">
+    <value>CTDI Threshold</value>
+    <comment>CTDI 阈值</comment>
+  </data>
+  <data name="Content_DLPthreshold" xml:space="preserve">
+    <value>DLP Threshold</value>
+    <comment>DLP 阈值</comment>
+  </data>
+  <data name="Content_IsHDRecon" xml:space="preserve">
+    <value>HD Recon</value>
+  </data>
+  <data name="Content_AllowErrorTubeCount" xml:space="preserve">
+    <value>Error tube count</value>
+    <comment>允许缺源数量</comment>
+  </data>
+  <data name="Message_Info_PatientPositionChangedMessage" xml:space="preserve">
+    <value>Attention！The scan plan can't match the topo。</value>
+  </data>
+  <data name="Message_Info_PatientPositionNoTopoMessage" xml:space="preserve">
+    <value>Attention！The scan plan without  the topo。</value>
+  </data>
+  <data name="Header_ImageViewerSeriesNumber" xml:space="preserve">
+    <value>SN</value>
+    <comment>Series Number</comment>
+  </data>
+  <data name="Content_ScanFov" xml:space="preserve">
+    <value>Scan fov</value>
+  </data>
+  <data name="Content_AdvancedTitle" xml:space="preserve">
+    <value>Advanced</value>
+  </data>
+  <data name="Content_FOV" xml:space="preserve">
+    <value>FOV</value>
+  </data>
+  <data name="Content_OtherTitle" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Content_SFOV" xml:space="preserve">
+    <value>SFOV</value>
+  </data>
+  <data name="Content_StartEnd" xml:space="preserve">
+    <value>Start/End</value>
+  </data>
+  <data name="Content_CollimatorSliceWidth" xml:space="preserve">
+    <value>CollimatorSliceWidth</value>
+  </data>
+  <data name="Content_Effective_KVP" xml:space="preserve">
+    <value>KVP</value>
+  </data>
+  <data name="Content_Effective_MeanMA" xml:space="preserve">
+    <value>MeanMA</value>
+  </data>
+  <data name="Content_FramesPerCycle" xml:space="preserve">
+    <value>FramesPerCycle</value>
+  </data>
+  <data name="Content_Gain" xml:space="preserve">
+    <value>Gain</value>
+  </data>
+  <data name="Content_IsBowtieEnable" xml:space="preserve">
+    <value>Bowtie enable</value>
+  </data>
+  <data name="Content_ObjectFOV" xml:space="preserve">
+    <value>Object FOV</value>
+  </data>
+  <data name="Content_PostDeleteLength" xml:space="preserve">
+    <value>PostDeleteLength</value>
+  </data>
+  <data name="Content_TimeUnitsmicrosecond" xml:space="preserve">
+    <value>μs</value>
+  </data>
+  <data name="Content_Recon_BodyPart" xml:space="preserve">
+    <value>Body part</value>
+  </data>
+  <data name="Content_ScatterAlgorithm" xml:space="preserve">
+    <value>Scatter algorithm</value>
+  </data>
+  <data name="Content_SmoothZEnable" xml:space="preserve">
+    <value>Smooth Z</value>
+  </data>
+  <data name="ContextMenuItem_ExportRawData" xml:space="preserve">
+    <value>Export raw data</value>
+  </data>
+  <data name="Content_ConeAngleArtifactEnable" xml:space="preserve">
+    <value>Cone angle</value>
+  </data>
+  <data name="Content_WindmillArtifactEnable" xml:space="preserve">
+    <value>Windmill</value>
+  </data>
+  <data name="Content_ExposureIntervalTime" xml:space="preserve">
+    <value>Interval time</value>
+  </data>
+  <data name="Content_ConnectionCheck" xml:space="preserve">
+    <value>Test Connection</value>
+  </data>
+  <data name="Message_Info_SeriesAlreadyExists" xml:space="preserve">
+    <value>Existing image sequences detected. For new imports, access jobviewer.</value>
+  </data>
+  <data name="Content_ExposureInterval" xml:space="preserve">
+    <value>Interval</value>
+  </data>
+  <data name="Message_Warning_Is_Not_Tomo" xml:space="preserve">
+    <value>Please select an original tomographic sequence image!</value>
+    <comment>打印模块中查当前选中是否为断层图像</comment>
+  </data>
+  <data name="Message_Warning_Topo_Missing" xml:space="preserve">
+    <value>Missing localizer image!</value>
+    <comment>打印模块中检查当前定位项是否存在</comment>
+  </data>
+  <data name="ToolTip_SplitCell" xml:space="preserve">
+    <value>Split Cell</value>
+  </data>
+  <data name="ToolTip_MergeCells" xml:space="preserve">
+    <value>Merge Cells</value>
+  </data>
+</root>

@@ -1,0 +1,173 @@
+﻿<Window
+    x:Class="NV.CT.UI.Exam.View.ProtocolSaveAsWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"   
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"    
+    Width="860" Height="600" Background="Transparent" AllowsTransparency="True" ResizeMode="NoResize" WindowStyle="None" mc:Ignorable="d">
+    <Window.Resources>
+        <Style x:Key="BorderStyle" TargetType="{x:Type Border}">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="TitleBorderStyle" TargetType="{x:Type Border}">
+            <Setter Property="Opacity" Value="0.3"/>
+            <Setter Property="Background" Value="{StaticResource BaseTabBackBrush}"/>
+            <Setter Property="CornerRadius" Value="5 5 0 0" />
+        </Style>
+        <Style x:Key="TitlePathStyle" BasedOn="{StaticResource IconSavea}" TargetType="{x:Type Path}">
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Stretch" Value="Fill"/>
+            <Setter Property="Fill" Value="{StaticResource TextBoxBrush}"/>
+        </Style>
+        <Style x:Key="CloseButtonStyle" TargetType="Button" BasedOn="{StaticResource  MaterialDesignIconButton}">
+            <Setter Property="Width" Value="22"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="ComboBox" BasedOn="{StaticResource NanoComboBoxStyle}">
+            <Setter Property="DisplayMemberPath" Value="Value"/>
+            <Setter Property="SelectedValuePath" Value="Key"/>
+        </Style>
+        <Style x:Key="ProtocolTileLabelStyle" BasedOn="{StaticResource MaterialDesignLabel}" TargetType="Label">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Foreground" Value="#FFC6C6EC"/>
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="ProtocolTileRectangleStyle" TargetType="Rectangle">
+            <Setter Property="StrokeThickness" Value="3"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Stroke" Value="#3044D9" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="Height" Value="3" />
+            <Setter Property="Width" Value="70" />
+            <Setter Property="Margin" Value="2,0,0,10" />
+        </Style>
+        <Style x:Key="ProtocolLabelStyle" BasedOn="{StaticResource MaterialDesignLabel}" TargetType="Label">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="ProtocolTextBoxStyle" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}" TargetType="TextBox">
+            <Setter Property="Foreground" Value="{StaticResource BaseForegroundColor}"/>
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="AcceptsReturn" Value="True" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+            <Setter Property="Height" Value="80" />
+            <Setter Property="Margin" Value="2" />
+        </Style>
+        <Style x:Key="ProtocolStackPanelStyle" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="SaveButtonStyle" TargetType="Button" BasedOn="{StaticResource  NanoButtonStyle}">
+            <Setter Property="Width" Value="160"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="0,0,15,0"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+        </Style>
+        <Style x:Key="ClosedButtonStyle" TargetType="Button" BasedOn="{StaticResource  NanoButtonStyle}">
+            <Setter Property="Width" Value="160"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="15,0,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style x:Key="SuffTextBlockStyle" BasedOn="{StaticResource NanoTextBlockStyle}" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="#FFA63F" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </Window.Resources>
+    <Border Style="{StaticResource WindowsBorder}" CornerRadius="10" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="36" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Border Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource TitleBorderStyle}"/>
+            <Path Grid.Row="0" Grid.Column="0" Style="{StaticResource TitlePathStyle}" />
+
+            <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Content="{x:Static res:LanguageResource.Content_SaveAs}" FontSize="16" Style="{StaticResource TitleLabelStyle}" />
+            <Button Grid.Row="0" Grid.Column="2" Command="{Binding Commands[CloseCommand]}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Style="{StaticResource CloseButtonStyle}">
+                <Path Style="{StaticResource TileClosePathStyle}" />
+            </Button>
+            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="44"/>
+                    <ColumnDefinition Width="117"/>
+                    <ColumnDefinition Width="213"/>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="214"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="104"/>
+                    <RowDefinition Height="104"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="1" Orientation="Vertical">
+                    <Label Margin="0,8,0,0" Content="{x:Static res:LanguageResource.Content_Protocol}" Grid.ColumnSpan="2" Height="34" Style="{StaticResource ProtocolTileLabelStyle}"/>
+                    <Rectangle Grid.Column="0" Style="{StaticResource ProtocolTileRectangleStyle}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                    <TextBlock Style="{StaticResource SuffTextBlockStyle}" Text="*" />
+                    <Label Style="{StaticResource ProtocolLabelStyle}" Content="{x:Static res:LanguageResource.Content_ProtocolName}"/>
+                </StackPanel>
+                <TextBox Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="4" Text="{Binding Path=ProtocolName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                <Label Grid.Column="1" Grid.Row="2" Style="{StaticResource ProtocolLabelStyle}" Content="{x:Static res:LanguageResource.Content_BodyPart}"/>
+                <ComboBox Grid.Column="2" Grid.Row="2" ItemsSource="{Binding BodyPartList}" SelectedItem="{Binding Path=SelectBodyPart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Grid.Column="4" Grid.Row="2" Style="{StaticResource ProtocolLabelStyle}" Content="{x:Static res:LanguageResource.Content_PatientPosition}"/>
+                <ComboBox Grid.Column="5" Grid.Row="2" ItemsSource="{Binding PatientPositionList}" SelectedItem="{Binding Path=SelectPatientPosition, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Label Grid.Column="1" Grid.Row="3" Style="{StaticResource ProtocolLabelStyle}" Content="{x:Static res:LanguageResource.Content_BodySize}"/>
+                <ComboBox Grid.Column="2" Grid.Row="3" ItemsSource="{Binding BodySizeList}" SelectedItem="{Binding Path=SelectBodySize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Grid.Column="4" Grid.Row="3" Style="{StaticResource ProtocolLabelStyle}" Content="{x:Static res:LanguageResource.Content_ProtocolFamily}"/>
+                <TextBox Grid.Column="5" Grid.Row="3"  Text="{Binding Path=ProtocolFamily, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                <Label Grid.Column="1" Grid.Row="4" Style="{StaticResource ProtocolLabelStyle}" Content="{x:Static res:LanguageResource.Content_IsEnhanced}" />
+                <CheckBox  Grid.Column="2" Grid.Row="4" IsChecked="{Binding Path=IsEnhanced, Mode=TwoWay}" IsEnabled="False"/>
+                <Label Grid.Column="4" Grid.Row="4" Style="{StaticResource ProtocolLabelStyle}" Content="{x:Static res:LanguageResource.Content_IsEmergency}" />
+                <CheckBox  Grid.Column="5" Grid.Row="4" IsChecked="{Binding Path=IsEmergency, Mode=TwoWay}"/>
+
+                <Label Grid.Column="1" Grid.Row="5" Style="{StaticResource ProtocolLabelStyle}" Content="{x:Static res:LanguageResource.Content_IsTabletSuitable}"/>
+                <CheckBox  Grid.Column="2" Grid.Row="5" IsChecked="{Binding Path=IsTabletSuitable, Mode=TwoWay}"/>
+                <Label Grid.Column="4" Grid.Row="5" Style="{StaticResource ProtocolLabelStyle}" Content="{x:Static res:LanguageResource.Content_Top}"/>
+                <CheckBox Grid.Column="5" Grid.Row="5" IsChecked="{Binding Path=IsTop, Mode=TwoWay}"/>
+
+                <Label Grid.Column="1" Grid.Row="6" Style="{StaticResource ProtocolLabelStyle}" Content="{x:Static res:LanguageResource.Content_Description}"/>
+                <TextBox Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="4" Style="{StaticResource ProtocolTextBoxStyle}" Text="{Binding Path=Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <StackPanel Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="4" Style="{StaticResource ProtocolStackPanelStyle}">
+                    <Button Style="{StaticResource SaveButtonStyle}" Command="{Binding Commands[SaveCommand]}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Content="{x:Static res:LanguageResource.Content_Save}" />
+                    <Button Style="{StaticResource ClosedButtonStyle}" Command="{Binding Commands[CloseCommand]}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Content="{x:Static res:LanguageResource.Content_Close}"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

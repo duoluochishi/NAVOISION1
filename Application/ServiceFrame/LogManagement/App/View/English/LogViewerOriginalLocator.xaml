@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="NV.CT.LogManagement.View.English.LogViewerOriginalLocator"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:md="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableTextBox;assembly=MaterialDesignThemes.Wpf"
+             xmlns:local="clr-namespace:NV.CT.LogManagement.View.English"
+             xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:convert="clr-namespace:NV.CT.UI.Controls.Converter;assembly=NV.CT.UI.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <convert:LogLevelColorConverter x:Key="logLevelColorConverter" />
+        <Style x:Key="DatagridCenterHeader" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+    </UserControl.Resources>
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,4">
+        <DataGrid x:Name="dgOriginalLogViewer" GridLinesVisibility="Vertical" HorizontalAlignment="Stretch"
+                  ItemsSource="{Binding LogLinesSource}" SelectedItem="{Binding SelectedLogLine}" Style="{StaticResource CommonDataGrid}" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding Commands[ShowDetailsCommand]}" CommandParameter="{Binding ElementName=dgOriginalLogViewer,Path=SelectedItem}" />
+                </i:EventTrigger>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding Commands[SelectionChangedCommand]}" CommandParameter="{Binding ElementName=dgOriginalLogViewer}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Line NO" Width="90" HeaderStyle="{StaticResource DatagridCenterHeader}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Text="{Binding LineNumber}" Style="{StaticResource DataGridContentTextBlock}" 
+                               Foreground="{Binding LogLevel, Converter={StaticResource logLevelColorConverter}}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Date time" Width="210" HeaderStyle="{StaticResource DatagridCenterHeader}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Text="{Binding OccurredDateTime}" Style="{StaticResource DataGridContentTextBlock}" 
+                               Foreground="{Binding LogLevel, Converter={StaticResource logLevelColorConverter}}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Log level" Width="90" HeaderStyle="{StaticResource DatagridCenterHeader}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding LogLevel}" Style="{StaticResource DataGridContentTextBlock}" 
+                               Foreground="{Binding LogLevel, Converter={StaticResource logLevelColorConverter}}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Module" Width="170" HeaderStyle="{StaticResource DatagridCenterHeader}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding ModuleName}" ToolTip="{Binding ModuleName}" Style="{StaticResource DataGridContentTextBlock}" 
+                               Foreground="{Binding LogLevel, Converter={StaticResource logLevelColorConverter}}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Service" Width="260" HeaderStyle="{StaticResource DatagridCenterHeader}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding ServiceName}" ToolTip="{Binding ServiceName}" Style="{StaticResource DataGridContentTextBlock}" 
+                               Foreground="{Binding LogLevel, Converter={StaticResource logLevelColorConverter}}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Thread ID" Width="100" HeaderStyle="{StaticResource DatagridCenterHeader}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding ThreadID}" Style="{StaticResource DataGridContentTextBlock}" 
+                               Foreground="{Binding LogLevel, Converter={StaticResource logLevelColorConverter}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Content" Width="*" MinWidth="100" HeaderStyle="{StaticResource DatagridCenterHeader}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding OmissiveContent}" ToolTip="{Binding Content}" Style="{StaticResource DataGridContentTextBlock}" 
+                               Foreground="{Binding LogLevel, Converter={StaticResource logLevelColorConverter}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>$(TargetFramework)-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <OutDir>..\..\..\Bin</OutDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NV.CT.Service.QualityTest\NV.CT.Service.QualityTest.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MaterialDesignColors">
+      <HintPath>..\..\..\Bin\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf">
+      <HintPath>..\..\..\Bin\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.MPS.DICOM.Toolkit">
+      <HintPath>..\..\..\Bin\NV.MPS.DICOM.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.MPS.ImageControl">
+      <HintPath>..\..\..\Bin\NV.MPS.ImageControl.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.MPS.ImageIO">
+      <HintPath>..\..\..\Bin\NV.MPS.ImageIO.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.MPS.ImageRender">
+      <HintPath>..\..\..\Bin\NV.MPS.ImageRender.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.MPS.UI.Components">
+      <HintPath>..\..\..\Bin\NV.MPS.UI.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.MPS.UI.Generic">
+      <HintPath>..\..\..\Bin\NV.MPS.UI.Generic.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.CT.ServiceFramework">
+      <HintPath>..\..\..\Bin\NV.CT.ServiceFramework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

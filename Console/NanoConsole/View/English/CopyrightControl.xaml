@@ -1,0 +1,168 @@
+﻿<UserControl x:Class="NV.CT.NanoConsole.View.English.CopyrightControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:local="clr-namespace:NV.CT.NanoConsole.View.English"
+             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+             xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+             mc:Ignorable="d" 
+             d:DesignHeight="36" d:DesignWidth="200">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadSystemInfoCommand}"></i:InvokeCommandAction>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Image x:Name="nanoLogo" Source="pack://application:,,,/NV.CT.UI.Controls;component/icons/logo.png" Height="34" Width="150"  Margin="10,0,0,2" HorizontalAlignment="Left" Cursor="Hand"
+               MouseLeave="nanoLogo_MouseLeave"
+               MouseLeftButtonDown="nanoLogo_MouseLeftButtonDown"/>        
+        <Popup
+                x:Name="p_SystemInfo"
+                Width="550"
+                Height="250"
+                Margin="0,0,0,0"
+                AllowsTransparency="True"
+                MouseLeave="p_SystemInfo_MouseLeave"
+                Opacity="0"
+                PlacementTarget="{Binding ElementName=nanoLogo}">
+            <Grid>
+                <Border
+                        Background="#1E1E35"
+                        BorderBrush="#5A5A89"
+                        BorderThickness="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="10" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="42" />
+                            <RowDefinition Height="0" />
+                            <RowDefinition />
+                            <RowDefinition Height="10" />
+                        </Grid.RowDefinitions>
+                        <Border
+                                Grid.ColumnSpan="5"
+                                Background="#5A5A89"
+                                BorderThickness="1"
+                                CornerRadius="10, 0, 0, 0"
+                                Opacity="0.3" />
+                        <Grid Grid.ColumnSpan="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="18" />
+                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                    Name="txtCaption"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="5"
+                                    Width="520"
+                                    Margin="10,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    FontSize="15" Content="{x:Static res:LanguageResource.Content_VersionInformationTitle}">
+                            </Label>
+                        </Grid>
+                        <Grid
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Margin="0,0,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="170" />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="5" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{x:Static res:LanguageResource.Text_ProductName}"></TextBlock>
+                                    <TextBlock Text=":"></TextBlock>
+                                </StackPanel>
+                            </Label>
+                            <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{x:Static res:LanguageResource.Text_ModelType}"></TextBlock>
+                                    <TextBlock Text=":"></TextBlock>
+                                </StackPanel>
+                            </Label>
+                            <Label
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{x:Static res:LanguageResource.Text_Version}"></TextBlock>
+                                    <TextBlock Text=":"></TextBlock>
+                                </StackPanel>
+                            </Label>
+                            <Label
+                                    Grid.Row="3"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{x:Static res:LanguageResource.Text_SN}"></TextBlock>
+                                    <TextBlock Text=":"></TextBlock>
+                                </StackPanel>
+                            </Label>
+                            <Label
+                                    Grid.Row="4"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{x:Static res:LanguageResource.Text_OperatingSystem}"></TextBlock>
+                                    <TextBlock Text=":"></TextBlock>
+                                </StackPanel>
+                            </Label>
+                            <Label
+                                    Grid.Row="0"
+                                    Grid.Column="2"
+                                    Content="{Binding ProductInfo.StationName}" />
+                            <Label
+                                    Grid.Row="1"
+                                    Grid.Column="2"
+                                    Content="{Binding ProductInfo.ManufacturerModel}" />
+                            <TextBlock
+                                    Grid.Row="2"
+                                    Grid.Column="2"
+                                    Margin="0,5,0,0"
+                                    FontWeight="Bold"
+                                    Text="{Binding ProductInfo.VersionName}" />
+                            <Label
+                                    Grid.Row="3"
+                                    Grid.Column="2"
+                                    Content="{Binding ProductInfo.DeviceSerialNumber}" />
+                            <Label
+                                    Grid.Row="4"
+                                    Grid.Column="2"
+                                    Content="{Binding ProductInfo.OSVersion}" />
+                            <Label
+                                    Grid.Row="10"
+                                    Grid.Column="1"
+                                    Grid.ColumnSpan="2" Content="{Binding ProductInfo.Copyright}">
+                            </Label>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Popup>
+    </Grid>
+</UserControl>

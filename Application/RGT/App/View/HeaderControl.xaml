@@ -1,0 +1,110 @@
+﻿<UserControl
+	x:Class="NV.CT.RGT.View.HeaderControl"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:System="clr-namespace:System;assembly=mscorlib"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+	d:DesignHeight="150"
+	d:DesignWidth="800"
+	Background="#16162B"
+	mc:Ignorable="d">
+	<UserControl.Resources>
+		<Style TargetType="{x:Type TextBlock}">
+			<Setter Property="Foreground" Value="White" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="FontSize" Value="30" />
+		</Style>
+		<Style TargetType="{x:Type StackPanel}">
+			<Setter Property="HorizontalAlignment" Value="Center" />
+		</Style>
+		<System:Double x:Key="IconWidth">65</System:Double>
+		<System:Double x:Key="IconHeight">65</System:Double>
+
+		<Style
+			x:Key="ContentTextBlock"
+			TargetType="{x:Type TextBlock}">
+			<Setter Property="Margin" Value="10" />
+			<Setter Property="Foreground" Value="LightCyan" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="TextAlignment" Value="Center" />
+			<Setter Property="FontSize" Value="30" />
+		</Style>
+	</UserControl.Resources>
+	<Grid VerticalAlignment="Center">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="100" />
+			<ColumnDefinition Width="1*" />
+			<ColumnDefinition Width="1*" />
+			<ColumnDefinition Width="1*" />
+			<ColumnDefinition Width="100" />
+		</Grid.ColumnDefinitions>
+
+		<Grid Grid.Column="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="1*" />
+				<ColumnDefinition Width="80" />
+				<ColumnDefinition Width="200" />
+				<ColumnDefinition Width="1*" />
+			</Grid.ColumnDefinitions>
+			<Path
+				Grid.Column="1"
+				Width="{StaticResource IconWidth}"
+				Height="{StaticResource IconHeight}"
+				Data="M41.499,65.122c0-1.381-1.119-2.5-2.5-2.5c-11.262,0-20.424-9.162-20.424-20.425     c0-11.262,9.162-20.424,20.424-20.424c8.765,0,16.541,5.573,19.351,13.869c0.443,1.308,1.86,2.005,3.17,1.566     c1.308-0.443,2.009-1.862,1.566-3.17c-3.498-10.327-13.178-17.266-24.087-17.266c-14.019,0-25.424,11.405-25.424,25.424     c0,14.02,11.405,25.425,25.424,25.425C40.38,67.622,41.499,66.503,41.499,65.122z M87.328,72.256c0.137-0.331,0.137-0.704,0-1.035c-0.049-0.118-0.13-0.216-0.209-0.315     c-0.031-0.039-0.045-0.087-0.081-0.123l-5.428-5.428c-0.527-0.525-1.383-0.525-1.91,0c-0.526,0.527-0.526,1.383,0,1.91     l3.124,3.123H63.841l3.124-3.123c0.526-0.527,0.526-1.383,0-1.91c-0.527-0.525-1.383-0.525-1.91,0l-5.428,5.428     c-0.036,0.036-0.05,0.084-0.081,0.123c-0.079,0.098-0.159,0.197-0.209,0.315c-0.137,0.331-0.137,0.704,0,1.035     c0.049,0.118,0.13,0.216,0.209,0.315c0.031,0.039,0.045,0.087,0.081,0.123l5.428,5.428c0.264,0.263,0.609,0.395,0.955,0.395     s0.691-0.132,0.955-0.395c0.526-0.527,0.526-1.383,0-1.91l-3.124-3.123h18.983l-3.124,3.123c-0.526,0.527-0.526,1.383,0,1.91     c0.264,0.263,0.609,0.395,0.955,0.395s0.691-0.132,0.955-0.395l5.428-5.428c0.036-0.036,0.05-0.084,0.081-0.123     C87.199,72.472,87.279,72.374,87.328,72.256z M49.098,78.555h-5.764l16.742-23.852c0.098-0.14,0.18-0.287,0.246-0.438h24.142     c1.381,0,2.5-1.119,2.5-2.5s-1.119-2.5-2.5-2.5H48.577c-1.381,0-2.5,1.119-2.5,2.5s1.119,2.5,2.5,2.5h5.698L37.317,78.426     c-0.029,0.042-0.047,0.087-0.073,0.13H25.776c-1.381,0-2.5,1.119-2.5,2.5s1.119,2.5,2.5,2.5h23.322c1.381,0,2.5-1.119,2.5-2.5     S50.479,78.555,49.098,78.555z"
+				Fill="White"
+				Opacity="0.8"
+				Stretch="Fill" />
+			<TextBlock
+				Grid.Column="2"
+				HorizontalAlignment="Left"
+				Style="{StaticResource ContentTextBlock}"
+				Text="{Binding HorizontalPosition, StringFormat={}{0} mm}" />
+		</Grid>
+
+		<Grid Grid.Column="2">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="1*" />
+				<ColumnDefinition Width="80" />
+				<ColumnDefinition Width="200" />
+				<ColumnDefinition Width="1*" />
+			</Grid.ColumnDefinitions>
+			<Path
+				Grid.Column="1"
+				Width="{StaticResource IconWidth}"
+				Height="{StaticResource IconHeight}"
+				Data="M84.907,75.355l-6.187-2.879c-0.675-0.314-1.479-0.021-1.793,0.654s-0.021,1.479,0.654,1.793l3.557,1.655     l-9.173,4.27l-9.173-4.27l3.556-1.655c0.676-0.314,0.969-1.117,0.654-1.793c-0.313-0.676-1.119-0.969-1.793-0.654l-6.186,2.879     c-0.477,0.222-0.78,0.698-0.78,1.224s0.304,1.002,0.78,1.224l12.372,5.759c0.181,0.084,0.375,0.126,0.569,0.126     s0.389-0.042,0.569-0.126l12.372-5.759c0.477-0.222,0.78-0.698,0.78-1.224S85.383,75.576,84.907,75.355z M71.965,77.407c0.745,0,1.35-0.604,1.35-1.35V59.909l4.039,4.04c0.264,0.264,0.609,0.396,0.955,0.396     s0.691-0.132,0.954-0.395c0.527-0.527,0.527-1.383,0.001-1.909l-6.344-6.345c-0.022-0.022-0.052-0.03-0.076-0.051     c-0.109-0.095-0.224-0.183-0.359-0.24c-0.163-0.068-0.34-0.105-0.521-0.105c-0.181,0-0.357,0.037-0.521,0.105     c-0.096,0.04-0.171,0.11-0.254,0.17c-0.059,0.042-0.128,0.068-0.18,0.12l-6.345,6.345c-0.526,0.527-0.526,1.383,0,1.91     c0.527,0.525,1.383,0.525,1.91,0l4.04-4.041v16.148C70.616,76.803,71.22,77.407,71.965,77.407z M85.579,43.583H29.422c-1.381,0-2.5,1.119-2.5,2.5s1.119,2.5,2.5,2.5h14.399L38.078,63.63     c-10.634-0.427-19.16-9.187-19.16-19.924c0-11.009,8.956-19.965,19.965-19.965c8.568,0,16.169,5.448,18.915,13.558     c0.443,1.307,1.86,2.009,3.17,1.566c1.308-0.443,2.009-1.862,1.566-3.17C59.1,25.555,49.595,18.741,38.882,18.741     c-13.766,0-24.965,11.199-24.965,24.965c0,12.862,9.779,23.481,22.291,24.82l-3.033,7.946h-9.5c-1.381,0-2.5,1.119-2.5,2.5     s1.119,2.5,2.5,2.5h23.322c1.381,0,2.5-1.119,2.5-2.5s-1.119-2.5-2.5-2.5h-8.469l10.646-27.889h36.404c1.381,0,2.5-1.119,2.5-2.5     S86.96,43.583,85.579,43.583z"
+				Fill="White"
+				Opacity="0.8"
+				Stretch="Fill" />
+			<TextBlock
+				Grid.Column="2"
+				HorizontalAlignment="Left"
+				Style="{StaticResource ContentTextBlock}"
+				Text="{Binding VerticalPosition, StringFormat={}{0} mm}" />
+		</Grid>
+
+		<Grid Grid.Column="3">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="1*" />
+					<ColumnDefinition Width="100" />
+					<ColumnDefinition Width="80" />
+					<ColumnDefinition Width="1*" />
+				</Grid.ColumnDefinitions>
+				<TextBlock
+					Grid.Column="1"
+					Margin="0"
+					FontSize="50"
+					Opacity="0.8"
+					Text="{x:Static res:LanguageResource.Content_BMI}"
+					TextAlignment="Center" />
+				<TextBlock
+					Grid.Column="2"
+					Style="{StaticResource ContentTextBlock}"
+					Text="{Binding BMI, StringFormat={}{0:F1}}" />
+			</Grid>
+		</Grid>
+	</Grid>
+</UserControl>

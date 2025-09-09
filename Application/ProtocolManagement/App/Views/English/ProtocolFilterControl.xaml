@@ -1,0 +1,326 @@
+﻿<UserControl  x:Class="NV.CT.ProtocolManagement.Views.English.ProtocolFilter"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+                Width="auto"
+                Height="auto"
+                MinWidth="1000"
+                MinHeight="500"
+                mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="ToolsRadioButton" BasedOn="{StaticResource MaterialDesignChoiceChipOutlineRadioButton}" TargetType="{x:Type RadioButton}">
+            <Setter Property="Margin" Value="0,0,0,10" />
+            <Setter Property="BorderBrush" Value="{DynamicResource BaseBackgroundColor}" />
+            <Setter Property="Height" Value="42" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+        <Border Background="#14142B" BorderBrush="#5A5A89" BorderThickness="1,1,1,1" CornerRadius="10 10 0 0">
+            <UniformGrid Rows="1">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Loaded">
+                        <i:InvokeCommandAction Command="{Binding Commands[SwitchProtocolFilterCommand]}" CommandParameter="{Binding ElementName=btn_Head, Path=Content}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <RadioButton x:Name="btn_Head" Width="auto" Height="40" Margin="5,0,5,0" Padding="15,0,15,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="14" IsChecked="True"
+                             Content="{x:Static res:LanguageResource.Content_BodyPartsHead}" Style="{StaticResource ToolsRadioButton}"
+                             Command="{Binding Commands[SwitchProtocolFilterCommand]}"
+                             CommandParameter="{Binding ElementName=btn_Head, Path=Content}" />
+                <RadioButton x:Name="btn_Neck" Width="auto" Height="40" Margin="5,0,5,0" Padding="15,0,15,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="14" Style="{StaticResource ToolsRadioButton}"
+                             Command="{Binding Commands[SwitchProtocolFilterCommand]}"
+                             CommandParameter="{Binding ElementName=btn_Neck, Path=Content}"
+                             Content="{x:Static res:LanguageResource.Content_BodyPartsNeck}"/>
+                <RadioButton x:Name="btn_Shoulder" Width="auto" Height="40" Margin="5,0,5,0" Padding="15,0,15,0" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" FontSize="14"
+                             Style="{StaticResource ToolsRadioButton}"
+                             Command="{Binding Commands[SwitchProtocolFilterCommand]}"
+                             CommandParameter="{Binding ElementName=btn_Shoulder, Path=Content}"
+                             Content="{x:Static res:LanguageResource.Content_BodyPartsShoulder}" />
+                <RadioButton
+                    x:Name="btn_Lowerextremities"
+                    Width="auto"
+                    Height="40"
+                    Margin="5,0,5,0"
+                    Padding="15,0,15,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding Commands[SwitchProtocolFilterCommand]}"
+                    CommandParameter="Leg"
+                    Content="{x:Static res:LanguageResource.Content_BodyPartsLowerExtremities}"
+                    FontSize="14"
+                    Style="{StaticResource ToolsRadioButton}" />
+                <RadioButton
+                    x:Name="btn_Breast"
+                    Width="auto"
+                    Height="40"
+                    Margin="5,0,5,0"
+                    Padding="15,0,15,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding Commands[SwitchProtocolFilterCommand]}"
+                    CommandParameter="{Binding ElementName=btn_Breast, Path=Content}"
+                    Content="{x:Static res:LanguageResource.Content_BodyPartsChest}"
+                    FontSize="14"
+                    Style="{StaticResource ToolsRadioButton}" />
+                <RadioButton
+                    x:Name="btn_Abdomen"
+                    Width="auto"
+                    Height="40"
+                    Margin="5,0,5,0"
+                    Padding="15,0,15,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding Commands[SwitchProtocolFilterCommand]}"
+                    CommandParameter="{Binding ElementName=btn_Abdomen, Path=Content}"
+                    Content="{x:Static res:LanguageResource.Content_BodyPartsAbdomen}"
+                    FontSize="14"
+                    Style="{StaticResource ToolsRadioButton}" />
+                <RadioButton
+                    x:Name="btn_Spine"
+                    Width="auto"
+                    Height="40"
+                    Margin="5,0,5,0"
+                    Padding="15,0,15,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding Commands[SwitchProtocolFilterCommand]}"
+                    CommandParameter="{Binding ElementName=btn_Spine, Path=Content}"
+                    Content="{x:Static res:LanguageResource.Content_BodyPartsSpine}"
+                    FontSize="14"
+                    Style="{StaticResource ToolsRadioButton}" />
+                <RadioButton
+                    x:Name="btn_Pelvis"
+                    Width="auto"
+                    Height="40"
+                    Margin="5,0,5,0"
+                    Padding="15,0,15,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding Commands[SwitchProtocolFilterCommand]}"
+                    CommandParameter="{Binding ElementName=btn_Pelvis, Path=Content}"
+                    Content="{x:Static res:LanguageResource.Content_BodyPartsPelvis}"
+                    FontSize="14"
+                    Style="{StaticResource ToolsRadioButton}" />
+                <RadioButton
+                    x:Name="btn_Upperextremities"
+                    Width="auto"
+                    Height="40"
+                    Margin="5,0,5,0"
+                    Padding="15,0,15,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding Commands[SwitchProtocolFilterCommand]}"
+                    CommandParameter="Arm"
+                    Content="{x:Static res:LanguageResource.Content_BodyPartsUpperExtremities}"
+                    FontSize="14"
+                    Style="{StaticResource ToolsRadioButton}" />
+                <RadioButton
+                    x:Name="btn_Emergency"
+                    Width="auto"
+                    Height="40"
+                    Margin="5,0,5,0"
+                    Padding="15,0,15,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding Commands[SwitchEmergencyProtocolFilterCommand]}"
+                    Content="{x:Static res:LanguageResource.Content_Emergency}"
+                    FontSize="14"
+                    Style="{StaticResource ToolsRadioButton}" />
+            </UniformGrid>
+        </Border>
+        <Border
+            Grid.Row="1"
+            Background="#14142B"
+            BorderBrush="#5A5A89"
+            BorderThickness="1,0,1,1"
+            CornerRadius="0 0 10 10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0" />
+                    <ColumnDefinition Width="135" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <WrapPanel
+                    Grid.ColumnSpan="3"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <WrapPanel VerticalAlignment="Center">
+                            <Label
+                                Width="auto"
+                                Height="34"
+                                Margin="10,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_PatientAge}" />
+                            <CheckBox
+                                Name="rdoAdult"
+                                Margin="10,0,0,0"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                IsChecked="{Binding IsAdult,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                <Button
+                                    Width="30"
+                                    Height="30"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    Command="{Binding Commands[AgeTypeCommand]}"
+                                    ToolTip="{x:Static res:LanguageResource.ToolTip_PatientTypeAdult}">
+                                    <Image
+                                        Width="21"
+                                        Height="23"
+                                        Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/adult.png" />
+                                </Button>
+                            </CheckBox>
+                            <CheckBox
+                                Name="rdoChild"
+                                Margin="10,0,0,0"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                IsChecked="{Binding IsChild,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                <Button
+                                    Width="30"
+                                    Height="30"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    ToolTip="{x:Static res:LanguageResource.ToolTip_PatientTypeChild}">
+                                    <Image
+                                        Width="25"
+                                        Height="25"
+                                        Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/child.png" />
+                                </Button>
+                            </CheckBox>
+                        </WrapPanel>
+                        <WrapPanel
+                            Grid.Column="1"
+                            Margin="20,0,0,0"
+                            VerticalAlignment="Center">
+                            <Label
+                                Width="auto"
+                                Height="34"
+                                Margin="10,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_ProtocolType}" />
+                            <CheckBox
+                                Name="rdoFactory"
+                                Margin="10,0,0,0"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                IsChecked="{Binding IsFactory,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                <Button
+                                    Width="30"
+                                    Height="30"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    ToolTip="{x:Static res:LanguageResource.ToolTip_Factory}">
+
+                                    <Image
+                                        Width="20"
+                                        Height="20"
+                                        Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/Factory.png" />
+                                </Button>
+                            </CheckBox>
+                            <CheckBox
+                                Name="rdoCustom"
+                                Margin="10,0,0,0"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                IsChecked="{Binding IsCustom,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                <Button
+                                    Width="30"
+                                    Height="30"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    ToolTip="{x:Static res:LanguageResource.ToolTip_Custom}">
+                                    <Image
+                                        Width="21"
+                                        Height="23"
+                                        Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/Custom.png" />
+                                </Button>
+                            </CheckBox>
+                        </WrapPanel>
+                        <!-- 增强过滤 -->
+                        <WrapPanel
+                            Grid.Column="3"
+                            Margin="20,0,0,0"
+                            Visibility="Collapsed">
+                            <Label
+                                Width="auto"
+                                Height="34"
+                                Margin="10,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="Enhanced" />
+                            <CheckBox
+                                Name="rdoEnhanced"
+                                Margin="10,0,0,0"
+                                IsChecked="False">
+                                <Button
+                                    Width="20"
+                                    Height="20"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    Content=""
+                                    ToolTip="Enhanced" />
+                            </CheckBox>
+                        </WrapPanel>
+                        <!-- 急诊过滤 -->
+                            <WrapPanel
+                            Grid.Column="4"
+                            Margin="20,0,0,0"
+                            Visibility="Collapsed">
+                            <Label
+                                Width="auto"
+                                Height="34"
+                                Margin="10,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="Emergency" />
+                            <CheckBox
+                                Name="rdoEmergency"
+                                Margin="10,0,0,0"
+                                IsChecked="False">
+                                <Button
+                                    Width="20"
+                                    Height="20"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    Content=""
+                                    ToolTip="Emergency" />
+                            </CheckBox>
+                        </WrapPanel>
+                    </Grid>
+                </WrapPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,237 @@
+﻿<UserControl
+    x:Class="NV.CT.ProtocolManagement.Views.English.ProtocolOperationControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+    d:DesignHeight="50"
+    d:DesignWidth="400"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="imgStyle" TargetType="Image">
+            <Setter Property="Opacity" Value="0.3" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Opacity" Value="1" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle
+                            Margin="2"
+                            SnapsToDevicePixels="true"
+                            Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
+                            StrokeDashArray="1 2"
+                            StrokeThickness="1" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD" />
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070" />
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD" />
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1" />
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6" />
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B" />
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4" />
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5" />
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383" />
+    </UserControl.Resources>
+    <Grid
+        x:Name="grid_toolbar"
+        Grid.Row="1"
+        Margin="0,10,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="30" />
+        </Grid.ColumnDefinitions>
+        <Border
+            Grid.ColumnSpan="10"
+            Background="#2A2A47"
+            BorderBrush="#5A5A89"
+            BorderThickness="1,1,1,0"
+            CornerRadius="10,10,0,0" />
+        <TextBlock
+            Name="lblbodypartname"
+            MaxWidth="120"
+            Margin="10,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            ClipToBounds="True"
+            FontSize="15"
+            Foreground="White"
+            Text="{Binding NowSelectProtocol}"
+            TextTrimming="CharacterEllipsis"
+            ToolTip="{Binding ElementName=lblbodypartname, Path=Text}" />
+        <Button
+            x:Name="btn_Export"
+            Grid.Column="1"
+            Width="40"
+            Height="40"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="Transparent"
+            BorderThickness="0"
+            Command="{Binding Commands[OperationCommand]}"
+            CommandParameter="{Binding ElementName=btn_Export, Path=Name}"
+            ToolTip="{x:Static res:LanguageResource.ToolTip_ProtocolExport}">
+            <Image
+                Width="25"
+                Height="25"
+                Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/export.png"
+                Style="{StaticResource imgStyle}" />
+        </Button>
+        <Button
+            x:Name="btn_Import"
+            Grid.Column="2"
+            Width="40"
+            Height="40"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="Transparent"
+            BorderThickness="0"
+            Command="{Binding Commands[OperationCommand]}"
+            CommandParameter="{Binding ElementName=btn_Import, Path=Name}"
+            ToolTip="{x:Static res:LanguageResource.ToolTip_ProtocolImport}">
+            <Image
+                Width="25"
+                Height="25"
+                Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/import.png"
+                Style="{StaticResource imgStyle}" />
+        </Button>
+        <Button
+            x:Name="btn_Repeat"
+            Grid.Column="3"
+            Width="40"
+            Height="40"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="Transparent"
+            BorderThickness="0"
+            Command="{Binding Commands[OperationCommand]}"
+            CommandParameter="{Binding ElementName=btn_Repeat, Path=Name}"
+            ToolTip="{x:Static res:LanguageResource.ToolTip_ProtocolRepeat}">
+            <Image
+                Width="21"
+                Height="25"
+                Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/Repeat.png"
+                Style="{StaticResource imgStyle}" />
+        </Button>
+        <Button
+            x:Name="btn_Delete"
+            Grid.Column="4"
+            Width="40"
+            Height="40"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="Transparent"
+            BorderThickness="0"
+            Command="{Binding Commands[OperationCommand]}"
+            CommandParameter="{Binding ElementName=btn_Delete, Path=Name}"
+            ToolTip="{x:Static res:LanguageResource.ToolTip_ProtocolDelete}">
+            <Image
+                Width="25"
+                Height="25"
+                Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/Delete.png"
+                Style="{StaticResource imgStyle}" />
+        </Button>
+
+        <Button
+            x:Name="btn_Expand"
+            Grid.Column="5"
+            Width="40"
+            Height="40"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="Transparent"
+            BorderThickness="0"
+            Command="{Binding Commands[OperationCommand]}"
+            CommandParameter="{Binding ElementName=btn_Expand, Path=Name}"
+            ToolTip="{x:Static res:LanguageResource.ToolTip_ProtocolCollapsed}">
+            <Image
+                x:Name="imageadd"
+                Width="25"
+                Height="25"
+                Source="pack://application:,,,/NV.CT.UI.Controls;component/Images/Tvgrayadd.png"
+                Style="{StaticResource imgStyle}" />
+        </Button>
+
+        <Button
+            x:Name="btn_Collapsed"
+            Grid.Column="6"
+            Width="40"
+            Height="40"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="Transparent"
+            BorderThickness="0"
+            Command="{Binding Commands[OperationCommand]}"
+            CommandParameter="{Binding ElementName=btn_Collapsed, Path=Name}"
+            ToolTip="{x:Static res:LanguageResource.ToolTip_ProtocolExpand}">
+            <Image
+                Width="25"
+                Height="25"
+                Source="pack://application:,,,/NV.CT.UI.Controls;component/Images/Tvgraysub.png"
+                Style="{StaticResource imgStyle}" />
+        </Button>
+        <Button
+            x:Name="btn_Up"
+            Grid.Column="7"
+            Width="40"
+            Height="40"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="Transparent"
+            BorderThickness="0"
+            Command="{Binding Commands[OperationCommand]}"
+            CommandParameter="{Binding ElementName=btn_Up, Path=Name}"
+            ToolTip="{x:Static res:LanguageResource.ToolTip_ProtocolMoveUp}">
+            <Image
+                Width="25"
+                Height="25"
+                Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/up.png"
+                Style="{StaticResource imgStyle}" />
+        </Button>
+        <Button
+            x:Name="btn_Down"
+            Grid.Column="8"
+            Width="40"
+            Height="40"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="Transparent"
+            BorderThickness="0"
+            Command="{Binding Commands[OperationCommand]}"
+            CommandParameter="{Binding ElementName=btn_Down, Path=Name}"
+            ToolTip="{x:Static res:LanguageResource.ToolTip_ProtocolMoveDown}">
+            <Image
+                Width="25"
+                Height="25"
+                Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/down.png"
+                Style="{StaticResource imgStyle}" />
+        </Button>
+        <Button
+            x:Name="btn_MultiImport"
+            Grid.Column="9"
+            Width="40"
+            Height="40"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="Transparent"
+            BorderThickness="0"
+            Content=""
+            ToolTip="Collection Import" />
+    </Grid>
+</UserControl>

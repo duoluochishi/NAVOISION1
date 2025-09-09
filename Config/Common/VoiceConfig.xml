@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Voices Max="6">
+	<Voice Id="1" Name="en_US_Std_Breathe_In" Description="en_US_Std_Breathe_In" BodyPart="" Time="5000000" IsFront="true" Language="EN" IsFactory="true" IsDefault="false" IsValid="true" />
+	<Voice Id="2" Name="en_US_Std_Breathe_Out" Description="en_US_Std_Breathe_Out" BodyPart="" Time="5000000" IsFront="false" Language="EN" IsFactory="true" IsDefault="false" IsValid="true" />
+	<Voice Id="3" Name="Please_breathe" Description="Please_breathe" BodyPart="" Time="5000000" IsFront="false" Language="CN" IsFactory="true" IsDefault="false" IsValid="true" />
+	<Voice Id="4" Name="Take_a_deep_breath_in_and_hold_it" Description="Take_a_deep_breath_in_and_hold_it" BodyPart="" Time="5000000" IsFront="true" Language="CN" IsFactory="false" IsDefault="false" IsValid="true" />
+	<Voice Id="5" Name="zh_CH_Std_Breathe_In" Description="zh_CH_Std_Breathe_In" BodyPart="" Time="5000000" IsFront="true" Language="CN" IsFactory="true" IsDefault="true" IsValid="true" />
+	<Voice Id="6" Name="zh_CH_Std_Breathe_Out" Description="zh_CH_Std_Breathe_Out" BodyPart="" Time="5000000" IsFront="false" Language="CN" IsFactory="true" IsDefault="true" IsValid="true" />
+</Voices>

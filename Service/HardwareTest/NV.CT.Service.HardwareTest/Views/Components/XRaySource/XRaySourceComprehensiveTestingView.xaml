@@ -1,0 +1,462 @@
+﻿<Grid
+    x:Class="NV.CT.Service.HardwareTest.Views.Components.XRaySource.XRaySourceComprehensiveTestingView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ap="clr-namespace:NV.CT.Service.Common.AttachedProperty;assembly=NV.CT.Service.Common"
+    xmlns:commonconverters="clr-namespace:NV.CT.Service.Common.Converters;assembly=NV.CT.Service.Common"
+    xmlns:converters="clr-namespace:NV.CT.Service.HardwareTest.Attachments.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="clr-namespace:NV.CT.Service.HardwareTest.Attachments.Helpers"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mk="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableTextBox;assembly=MaterialDesignThemes.Wpf"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <Grid.Resources>
+
+        <converters:GroupBoxWidthAutoFitConverter x:Key="GroupBoxWidthAutoFitConverter" />
+        <commonconverters:DecimalPointConverter x:Key="DecimalPointConverter" />
+
+        <!--  ParameterGroupBoxStyle  -->
+        <Style
+            x:Key="ParameterGroupBoxStyle"
+            BasedOn="{StaticResource MaterialDesignGroupBox}"
+            TargetType="{x:Type GroupBox}">
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="Padding" Value="4,2" />
+            <Setter Property="Width" Value="145" />
+            <Setter Property="Height" Value="70" />
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock
+                            HorizontalAlignment="Left"
+                            Text="{Binding Header, RelativeSource={RelativeSource AncestorType=GroupBox}}" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--  IconButtonStyle  -->
+        <Style
+            x:Key="IconButtonStyle"
+            BasedOn="{StaticResource MaterialDesignRaisedButton}"
+            TargetType="{x:Type Button}">
+
+            <Setter Property="Width" Value="40" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Foreground" Value="White" />
+
+        </Style>
+        <!--  XRaySourceTabControlBorderStyle  -->
+        <Style
+            x:Key="XRaySourceTabControlBorderStyle"
+            TargetType="{x:Type Border}">
+            <Setter Property="Margin" Value="0,1,0,0" />
+            <Setter Property="Padding" Value="0" />
+        </Style>
+        <!--  StandardButtonStyle  -->
+        <Style
+            x:Key="StandardButtonStyle"
+            BasedOn="{StaticResource NanoButtonStyle}"
+            TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="80" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Margin" Value="10,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+
+        </Style>
+
+    </Grid.Resources>
+
+    <Grid.RowDefinitions>
+        <RowDefinition Height="0.688*" />
+        <RowDefinition Height="1" />
+        <RowDefinition Height="0.312*" />
+        <RowDefinition Height="1" />
+    </Grid.RowDefinitions>
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+
+            <Grid.Resources>
+
+                <Style
+                    BasedOn="{StaticResource ParameterGroupBoxStyle}"
+                    TargetType="{x:Type GroupBox}">
+                    <Setter Property="Width" Value="190" />
+                    <Setter Property="Margin" Value="1,1,0,0" />
+                </Style>
+
+            </Grid.Resources>
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+
+            <GroupBox
+                Header="Parameters"
+                Style="{DynamicResource StandardGroupBoxStyle}">
+
+                <StackPanel>
+
+                    <ScrollViewer
+                        Height="auto"
+                        VerticalAlignment="Top"
+                        VerticalScrollBarVisibility="Hidden">
+
+                        <StackPanel>
+
+                            <WrapPanel
+                                Margin="0,1,0,0"
+                                HorizontalAlignment="Left">
+
+                                <GroupBox Header="XRay Source">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.ExposureParameters.XRaySourceIndex, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Scan Option">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        IsEnabled="False"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.ExposureParameters.ScanOption, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Voltage (kV)">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.KVs[0], Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Current (mA)">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.MAs[0], Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Exposure Time (ms)">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedDecimal"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.ExposureTime, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Frame Time (ms)">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedDecimal"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.FrameTime, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Total Frames">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.TotalFrames, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Exposure Delay Time (ms)">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedDecimal"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.ExposureDelayTime, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Exposure Mode">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.ExposureParameters.ExposureMode, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Related Child Nodes">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                        Text="{Binding XDataAcquisitionParameters.ExposureParameters.ExposureRelatedChildNodesConfig, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Focus">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        SelectedItem="{Binding XDataAcquisitionParameters.ExposureParameters.Focus, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Test Mode">
+                                    <ComboBox
+                                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                                        IsEnabled="{Binding XRaySourceParameters.CanTestModeSwitch, Mode=TwoWay}"
+                                        SelectedItem="{Binding XRaySourceParameters.CurrentXRaySourceTestMode, Mode=TwoWay}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Cycle Count">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                        IsEnabled="{Binding XRaySourceParameters.IsCycleModeValid}"
+                                        Text="{Binding XRaySourceParameters.CycleCount, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Cycle Interval (s)">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                        IsEnabled="{Binding XRaySourceParameters.IsCycleModeValid}"
+                                        Text="{Binding XRaySourceParameters.CycleInterval, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Heat Capacity Lower Limit">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                        IsEnabled="{Binding XRaySourceParameters.IsCycleModeValid}"
+                                        Text="{Binding XRaySourceParameters.HeatCapacityLowerLimit, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                                <GroupBox Header="Heat Capacity Upper Limit">
+                                    <mk:MarkableTextBox
+                                        ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                                        IsEnabled="{Binding XRaySourceParameters.IsCycleModeValid}"
+                                        Text="{Binding XRaySourceParameters.HeatCapacityUpperLimit, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                                </GroupBox>
+
+                            </WrapPanel>
+
+                        </StackPanel>
+
+                    </ScrollViewer>
+
+                </StackPanel>
+
+            </GroupBox>
+
+            <StackPanel
+                Grid.Row="1"
+                Margin="0,1,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+
+                <Button
+                    Command="{Binding StartXRaySourceTestCommand}"
+                    Content="Start Test"
+                    Style="{StaticResource StandardButtonStyle}" />
+                <Button
+                    Command="{Binding StopXRaySourceTestCommand}"
+                    Content="Stop Test"
+                    Style="{StaticResource StandardButtonStyle}" />
+                <Button
+                    Width="160"
+                    Command="{Binding StopAllAnodeRotationCommand}"
+                    Content="Stop Anode Rotation"
+                    Style="{StaticResource StandardButtonStyle}" />
+
+            </StackPanel>
+
+        </Grid>
+
+        <Border
+            Grid.Column="1"
+            Margin="2,0,0,2"
+            BorderBrush="#3b3b5f"
+            BorderThickness="1"
+            CornerRadius="2">
+
+            <mk:MarkableTextBox
+                x:Name="feedbackConsole"
+                Grid.Column="1"
+                Height="675"
+                Margin="2"
+                Padding="5,10"
+                VerticalContentAlignment="Top"
+                Background="#111111"
+                IsReadOnly="True"
+                Text="{Binding ConsoleMessage, Mode=TwoWay}" />
+
+        </Border>
+
+        <Button
+            Grid.Column="1"
+            Margin="0,5,5,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Command="{Binding ClearConsoleMessageCommand}"
+            Style="{StaticResource IconButtonStyle}">
+            <Button.Content>
+                <md:PackIcon Kind="Refresh" />
+            </Button.Content>
+        </Button>
+
+    </Grid>
+
+    <Rectangle
+        Grid.Row="1"
+        Fill="{StaticResource BaseBackgroundColor}" />
+
+    <Border
+        Grid.Row="2"
+        Style="{StaticResource XRaySourceTabControlBorderStyle}">
+
+        <Grid>
+
+            <TabControl>
+
+                <TabControl.Resources>
+                    <DataTemplate x:Key="TabItemBoldHeaderTemplate">
+                        <TextBlock
+                            FontWeight="Bold"
+                            Text="{Binding Header, RelativeSource={RelativeSource AncestorType=TabItem}}" />
+                    </DataTemplate>
+                </TabControl.Resources>
+
+                <TabItem
+                    Header="XRaySource Status"
+                    HeaderTemplate="{StaticResource TabItemBoldHeaderTemplate}">
+
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock
+                            FontSize="11"
+                            FontWeight="Bold"
+                            Text="Format :  XRay Source - [Index]  [kV] - [mA] - [ms] - [Heat Capacity] - [Oil Temperature]"
+                            TextAlignment="Center" />
+
+                        <ScrollViewer Grid.Row="1">
+
+                            <ItemsControl
+                                VerticalAlignment="Center"
+                                ItemsSource="{Binding XRaySources}">
+
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border
+                                            Margin="5,0.5"
+                                            Background="{StaticResource BaseBackgroundColor}"
+                                            CornerRadius="5">
+
+                                            <Border.Resources>
+                                                <Style
+                                                    BasedOn="{StaticResource MaterialDesignChoiceChipOutlineToggleButton}"
+                                                    TargetType="{x:Type ToggleButton}">
+
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsChecked" Value="True">
+                                                            <Setter Property="Background" Value="Red" />
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Resources>
+
+                                            <StackPanel Orientation="Horizontal">
+
+                                                <TextBlock
+                                                    Width="130"
+                                                    Padding="5"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    FontWeight="Bold"
+                                                    Text="{Binding Name}" />
+
+                                                <TextBlock
+                                                    Width="280"
+                                                    Padding="10,5"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Text="{Binding RealtimeInfomation}" />
+
+                                                <ToggleButton
+                                                    Height="26"
+                                                    Margin="0,0,1,1"
+                                                    Padding="5,0"
+                                                    Command="{Binding DataContext.XRaySourceCalibrationSwitchCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                    CommandParameter="{Binding}"
+                                                    Content="Calibration"
+                                                    IsChecked="{Binding IsChecked, Mode=TwoWay}" />
+
+                                            </StackPanel>
+
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+
+                            </ItemsControl>
+
+                        </ScrollViewer>
+
+                    </Grid>
+
+                </TabItem>
+
+            </TabControl>
+
+            <StackPanel
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Orientation="Horizontal">
+
+                <Border
+                    Height="32"
+                    Margin="0,15,10,0"
+                    Padding="10,0"
+                    VerticalAlignment="Center"
+                    Background="{StaticResource BaseBackgroundColor}"
+                    CornerRadius="5">
+
+                    <StackPanel Orientation="Horizontal">
+
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            Text="XRay Source History Data Save Enable :" />
+
+                        <ToggleButton
+                            Margin="10,2,0,0"
+                            IsChecked="{Binding CanSaveXRaySourceHistoryData, Mode=TwoWay}"
+                            Style="{StaticResource MaterialDesignSwitchToggleButton}">
+
+                            <md:ToggleButtonAssist.SwitchTrackOnBackground>
+                                <SolidColorBrush
+                                    Opacity="1"
+                                    Color="Lime" />
+                            </md:ToggleButtonAssist.SwitchTrackOnBackground>
+                            <md:ToggleButtonAssist.SwitchTrackOffBackground>
+                                <SolidColorBrush
+                                    Opacity="1"
+                                    Color="Red" />
+                            </md:ToggleButtonAssist.SwitchTrackOffBackground>
+
+                        </ToggleButton>
+
+                    </StackPanel>
+
+                </Border>
+
+                <Button
+                    Width="177"
+                    Margin="0,15,5,0"
+                    Command="{Binding PlotXRaySourceChartCommand}"
+                    Content="Plot Chart" />
+
+            </StackPanel>
+
+        </Grid>
+
+    </Border>
+
+    <Rectangle
+        Grid.Row="3"
+        Fill="{StaticResource BaseBackgroundColor}" />
+
+</Grid>

@@ -1,0 +1,49 @@
+﻿<UserControl
+    x:Class="NV.CT.PatientManagement.View.English.MainControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:NV.CT.PatientManagement.View.English"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    Background="#05050f"
+    mc:Ignorable="d">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closed">
+            <i:InvokeCommandAction Command="{Binding Commands[ColsedCommand]}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <AdornerDecorator>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="0" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid Name="mainStackPanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <!--  study 列表  -->
+                    <local:StudyViewControl Margin="5,1,5,0" />
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="72*" />
+                            <ColumnDefinition Width="28*" />
+                        </Grid.ColumnDefinitions>
+                        <!--  series 列表  -->
+                        <local:SeriesViewControl Margin="5,0,5,0" />
+                        <!--  instance 列表  -->
+                        <local:InstanceViewControl x:Name="instanceViewList" Grid.Column="1" Margin="5,0,5,0" />
+                    </Grid>
+                </Grid>
+            </Grid>
+
+        </Grid>
+    </AdornerDecorator>
+</UserControl>

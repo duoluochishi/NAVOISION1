@@ -1,0 +1,317 @@
+﻿<UserControl
+	x:Class="NV.CT.NanoConsole.View.English.DynamicCardsControl"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+	xmlns:local="clr-namespace:NV.CT.NanoConsole.View.English"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+	d:DesignHeight="40"
+	d:DesignWidth="1000"
+	mc:Ignorable="d">
+	<UserControl.Resources>
+		<Style
+			x:Key="cardClose"
+			TargetType="{x:Type Image}">
+			<Setter Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Icons/close1.png" />
+			<Style.Triggers>
+				<Trigger Property="IsMouseOver" Value="True">
+					<Setter Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Icons/close2.png" />
+				</Trigger>
+				<Trigger Property="IsMouseOver" Value="False">
+					<Setter Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Icons/close1.png" />
+				</Trigger>
+				<DataTrigger
+					Binding="{Binding ItemName}"
+					Value="Examination">
+					<Setter Property="Visibility" Value="Collapsed" />
+				</DataTrigger>
+			</Style.Triggers>
+		</Style>
+	</UserControl.Resources>
+	<AdornerDecorator>
+		<Grid>
+			<StackPanel
+				HorizontalAlignment="Left"
+				Orientation="Horizontal">
+				<ListBox
+					HorizontalContentAlignment="Left"
+					ItemsSource="{Binding DynamicCardTabModelList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+					ScrollViewer.VerticalScrollBarVisibility="Hidden"
+					SelectedItem="{Binding CurrentCardTabModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+					SelectionMode="Single">
+					<ListBox.ItemContainerStyle>
+						<Style TargetType="ListBoxItem">
+							<Setter Property="Background" Value="#343453" />
+							<Setter Property="BorderThickness" Value="0" />
+							<Setter Property="Margin" Value="0,0,5,0" />
+							<Setter Property="Padding" Value="0,0,0,0" />
+							<Setter Property="HorizontalAlignment" Value="Center" />
+							<Setter Property="VerticalContentAlignment" Value="Center" />
+							<Setter Property="IsSelected" Value="False" />
+						</Style>
+					</ListBox.ItemContainerStyle>
+					<ListBox.ItemsPanel>
+						<ItemsPanelTemplate>
+							<WrapPanel
+								IsItemsHost="True"
+								Orientation="Horizontal" />
+						</ItemsPanelTemplate>
+					</ListBox.ItemsPanel>
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<Grid Width="auto">
+								<Grid.Style>
+									<Style TargetType="Grid">
+										<Setter Property="Background" Value="#2A2A47" />
+										<Style.Triggers>
+											<!--当前处于激活状态的卡片-->
+											<DataTrigger
+												Binding="{Binding ItemStatus, UpdateSourceTrigger=PropertyChanged}"
+												Value="1">
+												<Setter Property="Background" Value="#343453" />
+												<Setter Property="Opacity" Value="1"></Setter>
+											</DataTrigger>
+											<!--当前处于未激活状态的卡片-->
+											<DataTrigger
+												Binding="{Binding ItemStatus, UpdateSourceTrigger=PropertyChanged}"
+												Value="0">
+												<Setter Property="Background" Value="#343453" />
+												<Setter Property="Opacity" Value="0.4"></Setter>
+											</DataTrigger>
+										</Style.Triggers>
+									</Style>
+								</Grid.Style>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*" />
+									<ColumnDefinition Width="22" />
+								</Grid.ColumnDefinitions>
+								<Border
+									Grid.Column="0"
+									Width="auto"
+									Height="40"
+									Background="Transparent"
+									Cursor="Hand">
+									<Border.InputBindings>
+										<MouseBinding
+											Command="{Binding DataContext.Commands[OpenCommand], RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}}"
+											CommandParameter="{Binding DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBoxItem}}"
+											MouseAction="LeftClick" />
+									</Border.InputBindings>
+
+									<Grid
+										Width="auto"
+										Margin="0,0,10,0"
+										VerticalAlignment="Stretch"
+										IsHitTestVisible="False">
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="40" />
+											<ColumnDefinition Width="auto" />
+										</Grid.ColumnDefinitions>
+										<Grid.InputBindings>
+											<MouseBinding
+												Command="{Binding DataContext.Commands[OpenCommand], RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}}"
+												CommandParameter="{Binding DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBoxItem}}"
+												MouseAction="LeftClick" />
+										</Grid.InputBindings>
+
+										<Button
+											x:Name="btnIcon"
+											Grid.Column="0"
+											Width="25"
+											Margin="5,0,5,0"
+											HorizontalAlignment="Center"
+											VerticalAlignment="Center"
+											Background="Transparent"
+											BorderThickness="0"
+											Foreground="{StaticResource BaseForegroundColor}">
+											<Path
+												Width="20"
+												Height="20"
+												Fill="White"
+												Stretch="Fill">
+												<Path.Style>
+													<Style TargetType="Path">
+														<Style.Triggers>
+															<DataTrigger
+																Binding="{Binding ItemName}"
+																Value="Examination">
+																<Setter Property="Data" Value="{StaticResource ExamIcon}" />
+															</DataTrigger>
+															<DataTrigger
+																Binding="{Binding ItemName}"
+																Value="Recon">
+																<Setter Property="Data" Value="{StaticResource ReconIcon}" />
+															</DataTrigger>
+															<DataTrigger
+																Binding="{Binding ItemName}"
+																Value="Viewer">
+																<Setter Property="Data" Value="{StaticResource ViewerIcon}" />
+															</DataTrigger>
+															<DataTrigger
+																Binding="{Binding ItemName}"
+																Value="Print">
+																<Setter Property="Data" Value="{StaticResource PrintIcon}" />
+															</DataTrigger>
+															<DataTrigger
+																Binding="{Binding CardParameters}"
+																Value="ServiceTools">
+																<Setter Property="Data" Value="{StaticResource DailyAirCalibration}" />
+															</DataTrigger>
+															<DataTrigger
+																Binding="{Binding CardParameters}"
+																Value="UserConfig">
+																<Setter Property="Data" Value="{StaticResource UserManagement}" />
+															</DataTrigger>
+															<DataTrigger
+																Binding="{Binding ItemName}"
+																Value="ProtocolManagement">
+																<Setter Property="Data" Value="{StaticResource ProtocolManagement}" />
+															</DataTrigger>
+															<DataTrigger
+																Binding="{Binding CardParameters}"
+																Value="DoseConfig">
+																<Setter Property="Data" Value="{StaticResource DoseManagement}" />
+															</DataTrigger>
+															<DataTrigger
+																Binding="{Binding CardParameters}"
+																Value="SystemConfig">
+																<Setter Property="Data" Value="{StaticResource SystemManagement}" />
+															</DataTrigger>
+														</Style.Triggers>
+													</Style>
+												</Path.Style>
+											</Path>
+										</Button>
+										<TextBlock
+											Grid.Column="1"
+											Margin="0,0,0,0"
+											HorizontalAlignment="Center"
+											VerticalAlignment="Center"
+											Panel.ZIndex="2"
+											FontSize="14"
+											Foreground="White"
+											Text="{Binding ConfigName}">
+											<TextBlock.Style>
+												<Style TargetType="TextBlock">
+													<Setter Property="Visibility" Value="Collapsed" />
+													<Style.Triggers>
+														<DataTrigger
+															Binding="{Binding IsConfig}"
+															Value="True">
+															<Setter Property="Visibility" Value="Visible" />
+														</DataTrigger>
+													</Style.Triggers>
+												</Style>
+											</TextBlock.Style>
+										</TextBlock>
+										<Grid
+											Grid.Column="1"
+											Margin="0,0,5,0">
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="auto" />
+												<ColumnDefinition Width="45" />
+											</Grid.ColumnDefinitions>
+											<Grid.RowDefinitions>
+												<RowDefinition Height="5*" />
+												<RowDefinition Height="4*" />
+											</Grid.RowDefinitions>
+											<TextBlock
+												Grid.Row="0"
+												Grid.Column="0"
+												MinWidth="90"
+												HorizontalAlignment="Left"
+												VerticalAlignment="Center"
+												FontFamily="Microsoft YaHei"
+												FontSize="14"
+												FontWeight="Bold"
+												Foreground="White"
+												Opacity="0.8"
+												Text="{Binding Path=PatientName, UpdateSourceTrigger=PropertyChanged}"
+												TextTrimming="CharacterEllipsis"
+												ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
+
+											<StackPanel
+												Grid.Row="0"
+												Grid.Column="1"
+												Margin="5,0,-10,0"
+												HorizontalAlignment="Right"
+												VerticalAlignment="Top"
+												Orientation="Horizontal">
+												<TextBlock
+													Margin="0,0,3,0"
+													HorizontalAlignment="Stretch"
+													VerticalAlignment="Center"
+													FontFamily="Microsoft YaHei"
+													FontSize="8"
+													Foreground="White"
+													Opacity="0.8"
+													Text="{Binding Age, UpdateSourceTrigger=PropertyChanged}">
+													<TextBlock.Style>
+														<Style TargetType="TextBlock">
+															<Style.Triggers>
+																<DataTrigger
+																	Binding="{Binding IsConfig}"
+																	Value="True">
+																	<Setter Property="Width" Value="0" />
+																</DataTrigger>
+															</Style.Triggers>
+														</Style>
+													</TextBlock.Style>
+												</TextBlock>
+												<TextBlock
+													HorizontalAlignment="Stretch"
+													VerticalAlignment="Center"
+													FontFamily="Microsoft YaHei"
+													FontSize="8"
+													Foreground="White"
+													Opacity="0.8"
+													Text="{Binding AgeType, UpdateSourceTrigger=PropertyChanged}" />
+											</StackPanel>
+
+											<TextBlock
+												Grid.Row="1"
+												Grid.Column="0"
+												Grid.ColumnSpan="2"
+												HorizontalAlignment="Left"
+												VerticalAlignment="Center"
+												FontFamily="Microsoft YaHei"
+												FontSize="8"
+												Foreground="White"
+												Opacity="0.8"
+												Text="{Binding Path=PatientId, UpdateSourceTrigger=PropertyChanged}"
+												TextTrimming="CharacterEllipsis"
+												ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" />
+										</Grid>
+									</Grid>
+								</Border>
+								<Border Grid.Column="1">
+									<!--右侧关闭按钮-->
+									<StackPanel
+										Width="16"
+										HorizontalAlignment="Left"
+										VerticalAlignment="Center"
+										Cursor="Hand">
+										<Image
+											Width="16"
+											Cursor="Hand"
+											Style="{StaticResource cardClose}"
+											ToolTip="{x:Static res:LanguageResource.Content_Close}">
+											<Image.InputBindings>
+												<MouseBinding
+													Command="{Binding DataContext.Commands[CloseCommand], RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}}"
+													CommandParameter="{Binding DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBoxItem}}"
+													MouseAction="LeftClick" />
+											</Image.InputBindings>
+										</Image>
+									</StackPanel>
+								</Border>
+							</Grid>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</StackPanel>
+		</Grid>
+	</AdornerDecorator>
+</UserControl>

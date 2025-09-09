@@ -1,0 +1,22 @@
+{
+	"LogLevelsConfig": [
+					 {"Name": "Debug", "ShortName": "DBG"},
+					 {"Name": "Trace", "ShortName": "TRC"},
+					 {"Name": "Information", "ShortName": "INF"},
+					 {"Name": "Warning", "ShortName": "WRN"},
+					 {"Name": "Error", "ShortName": "ERR"},
+					 {"Name": "Fatal", "ShortName": "FTL"}
+	            ],
+	"ModuleNamesConfig": [
+				   {"Name": "LoggingServer"},
+				   {"Name": "PatientBrowser"},
+				   {"Name": "PatientManagement"},
+				   {"Name": "NanoConsole"},
+				   {"Name": "AppService"},
+				   {"Name": "JobService"},
+				   {"Name": "Examination"},
+				   {"Name": "DataService"},
+				   {"Name": "WorkflowService"},
+				   {"Name": "SyncService"},
+			  ]				
+}

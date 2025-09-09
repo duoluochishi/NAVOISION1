@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GantryConfig>
+	<Gantry>
+		<Angle Min="6000" Max="52300" DefaultMin="6000" DefaultMax="52300" />
+		<FirstTubeOffset Value="6000" Default="6000"/>
+		<MaxRotationSpeed Value="5000" Default="5000" />
+		<RotationAcceleration Value="2700" Default="2700" />
+		<RotationSpeedAccuracy Value="100" Default="100"/>
+		<RotationPositioningAccuracy Value="100" Default="100" />
+		<ResetSpeed Value="100" Default="100" />
+		<ManualRotationSpeed Value="500" Default="500" />
+		<MaxRotationAcceleration Value="3000" Default="3000" /> 
+	</Gantry>
+</GantryConfig>

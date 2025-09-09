@@ -1,0 +1,85 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="CommandLineParser" Version="2.9.1" />
+    <PackageVersion Include="Fody" Version="6.9.2" PrivateAssets="All" />
+    <PackageVersion Include="MethodTimer.Fody" Version="3.2.3" PrivateAssets="All" />
+    <PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageVersion Include="MySql.Data" Version="9.3.0" />
+    <PackageVersion Include="Dapper" Version="2.1.66" />
+    <PackageVersion Include="fo-dicom" Version="5.2.1" />
+    <PackageVersion Include="fo-dicom.Codecs" Version="5.16.1" />
+    <PackageVersion Include="System.Text.Json" Version="9.0.3" />
+    <PackageVersion Include="AspectInjector" Version="2.8.2" />
+    <PackageVersion Include="CalcBinding" Version="2.5.2" />
+    <PackageVersion Include="NLog" Version="5.4.0" />
+    <PackageVersion Include="Serilog" Version="4.2.0" />
+    <PackageVersion Include="Serilog.Extensions.Logging" Version="9.0.1" />
+    <PackageVersion Include="Serilog.Settings.Configuration" Version="9.0.0" />
+    <PackageVersion Include="Serilog.Sinks.Async" Version="2.1.0" />
+    <PackageVersion Include="Serilog.Sinks.Console" Version="6.0.0" />
+    <PackageVersion Include="Serilog.Sinks.File" Version="6.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.3" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration" Version="9.0.3" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.3" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="9.0.3" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.3" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="9.0.3" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.3" />
+    <PackageVersion Include="Microsoft.Extensions.Logging" Version="9.0.3" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Configuration" Version="9.0.3" />
+    <PackageVersion Include="Microsoft.Extensions.Options" Version="9.0.3" />
+    <PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.3" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.3" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="9.0.3" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyModel" Version="9.0.3" />
+    <PackageVersion Include="Microsoft.Extensions.Caching.Abstractions" Version="9.0.3" />
+    <PackageVersion Include="Microsoft.Extensions.Caching.Memory" Version="9.0.3" />
+    <PackageVersion Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
+    <PackageVersion Include="SharpZipLib" Version="1.4.2" />
+    <PackageVersion Include="System.Threading.Channels" Version="9.0.4" />
+    <PackageVersion Include="System.Management" Version="9.0.4" />
+    <PackageVersion Include="System.IO.Pipes" Version="4.3.0" />
+    <PackageVersion Include="System.Drawing.Common" Version="8.0.15" />
+    <PackageVersion Include="Autofac" Version="8.2.1" />
+    <PackageVersion Include="Autofac.Configuration" Version="7.0.0" />
+    <PackageVersion Include="Autofac.Extensions.DependencyInjection" Version="10.0.0" />
+    <PackageVersion Include="Moq" Version="4.20.72" />
+    <PackageVersion Include="Autofac.Extras.Moq" Version="7.0.0" />
+    <PackageVersion Include="AutoMapper" Version="14.0.0" />
+    <PackageVersion Include="AutoMapper.Extensions.EnumMapping" Version="4.1.0" />
+    <PackageVersion Include="Google.Protobuf" Version="3.30.2" />
+    <PackageVersion Include="Grpc" Version="2.46.6" />
+    <PackageVersion Include="Grpc.Core" Version="2.46.6" />
+    <PackageVersion Include="Grpc.Core.Testing" Version="2.46.6" />
+    <PackageVersion Include="Grpc.Tools" Version="2.71.0" PrivateAssets="All" />
+    <PackageVersion Include="Grpc.Net.Client" Version="2.70.0" />
+    <PackageVersion Include="NSubstitute" Version="5.3.0" />
+    <PackageVersion Include="NUnit" Version="4.3.2" />
+    <PackageVersion Include="NUnit3TestAdapter" Version="5.0.0" />
+    <PackageVersion Include="NUnit.Analyzers" Version="4.7.0" />
+    <PackageVersion Include="DynamicExpresso.Core" Version="2.18.0" />
+    <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageVersion Include="JsonConverter.Abstractions" Version="0.7.1" />
+    <PackageVersion Include="MSTest.TestAdapter" Version="3.8.3" />
+    <PackageVersion Include="MSTest.TestFramework" Version="3.8.3" />
+    <PackageVersion Include="coverlet.collector" Version="6.0.4" />
+    <PackageVersion Include="Prism.Core" Version="9.0.537" />
+    <PackageVersion Include="OxyPlot.Wpf" Version="2.2.0" />
+    <PackageVersion Include="Panuon.WPF.UI" Version="1.3.0.2" />
+    <PackageVersion Include="SharpVectors.Wpf" Version="1.8.4.2" />
+    <PackageVersion Include="WpfAnimatedGif" Version="2.0.2" />
+    <PackageVersion Include="MiniExcel" Version="1.40.0" />
+    <PackageVersion Include="MathNet.Numerics" Version="5.0.0" />
+    <PackageVersion Include="CsvHelper" Version="33.0.1" />
+    <PackageVersion Include="EPPlus" Version="8.0.1" />
+    <PackageVersion Include="Tftp.Net" Version="1.3.0" />
+    <PackageVersion Include="Telnet" Version="0.13.1" />
+    <PackageVersion Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-rc3" />
+    <PackageVersion Include="ThoughtWorks.QRCode.Standard" Version="1.0.1.6" />
+  </ItemGroup>
+</Project>

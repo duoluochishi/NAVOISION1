@@ -1,0 +1,67 @@
+using System;
+using System.Linq;
+using System.Windows;
+using System.Windows.Documents;
+
+namespace MaterialDesignThemes.Wpf
+{
+    /// <summary>
+    /// This is a simple utility to add and remove a single adorner to an element
+    /// since there is no built-in way to do that in xaml.
+    /// <a href="https://docs.microsoft.com/en-us/dotnet/framework/wpf/controls/adorners-overview">See here</a>
+    /// </summary>
+    internal static class UIElementExtensions
+    {
+        public static void AddAdorner<TAdorner>(this UIElement element, TAdorner adorner) where TAdorner : Adorner
+        {
+            if (adorner is null)
+            {
+                throw new ArgumentNullException(nameof(adorner));
+            }
+
+            var adornerLayer = AdornerLayer.GetAdornerLayer(element)
+                ?? throw new InvalidOperationException("This element has no adorner layer.");
+
+            adornerLayer.Add(adorner);
+        }
+
+        public static void RemoveAdorners<TAdorner>(this UIElement element) where TAdorner : Adorner
+        {
+            var adornerLayer = AdornerLayer.GetAdornerLayer(element);
+            var adorners = adornerLayer?.GetAdorners(element);
+
+            if (adorners is null)
+            {
+                return;
+            }
+
+            foreach (var adorner in adorners.OfType<TAdorner>())
+            {
+                adornerLayer!.Remove(adorner);
+            }
+        }
+
+        public static Adorner? GetOrAddAdorner(this UIElement uIElement, System.Type type)
+        {
+            AdornerLayer adornerLayer = AdornerLayer.GetAdornerLayer(uIElement);
+            if (adornerLayer == null)
+            {
+                return null;
+                //throw new Exception("VisualParents Must have AdornerDecorator!");
+            }
+            var adorner = adornerLayer.GetAdorners(uIElement)?.FirstOrDefault(x => x?.GetType() == type);
+            if (adorner == null)
+            {
+                lock (uIElement)
+                {
+                    if (adorner == null)
+                    {
+                        adorner = (Adorner)Activator.CreateInstance(type, new object[] { uIElement });
+                        adornerLayer.Add(adorner);
+                    }
+                }
+            }
+            return adorner;
+        }
+    }
+}

@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Common\CTS\NV.CT.CTS.csproj" />
+    <ProjectReference Include="..\..\..\..\SystemService\ClientProxy\NV.CT.ClientProxy.csproj" />
+  </ItemGroup>
+	<ItemGroup>
+		<Reference Include="NV.MPS.Configuration">
+			<HintPath>..\..\..\..\bin\NV.MPS.Configuration.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+</Project>

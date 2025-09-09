@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Autofac" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\SystemService\ClientProxy\NV.CT.ClientProxy.csproj" />
+		<ProjectReference Include="..\ApplicationService.Contract\NV.CT.ConfigManagement.ApplicationService.Contract.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<Reference Include="NV.MPS.Configuration">
+			<HintPath>..\..\..\..\bin\NV.MPS.Configuration.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.MPS.Exception">
+		  <HintPath>..\..\..\..\bin\NV.MPS.Exception.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.MPS.Environment">
+			<HintPath>..\..\..\..\bin\NV.MPS.Environment.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+</Project>

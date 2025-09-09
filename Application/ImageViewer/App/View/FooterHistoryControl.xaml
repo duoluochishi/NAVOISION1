@@ -1,0 +1,116 @@
+﻿<UserControl x:Class="NV.CT.ImageViewer.View.FooterHistoryControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NV.CT.ImageViewer.View"
+             mc:Ignorable="d" 
+             xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+             d:DesignHeight="450" d:DesignWidth="800">
+	<UserControl.Resources>
+		<Style
+            x:Key="ProtocolButtonStyle"
+            BasedOn="{StaticResource MaterialDesignRaisedButton}"
+            TargetType="{x:Type Button}">
+			<Setter Property="Height" Value="40" />
+			<Setter Property="Width" Value="90" />
+			<Setter Property="HorizontalAlignment" Value="Left" />
+			<Setter Property="Background" Value="{StaticResource BaseBackgroundColor}" />
+			<Setter Property="wpf:ButtonAssist.IsEnable" Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled, Mode=TwoWay}" />
+		</Style>
+	</UserControl.Resources>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="1*" />
+			<ColumnDefinition Width="100" />
+			<ColumnDefinition Width="20" />
+			<ColumnDefinition Width="100" />
+			<ColumnDefinition Width="1*" />
+		</Grid.ColumnDefinitions>
+		<Grid Grid.Column="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="10" />
+			</Grid.ColumnDefinitions>
+			<Button
+                x:Name="btnPrint"
+                Grid.Column="0"
+                Content="{x:Static res:LanguageResource.Content_Print}"
+                Style="{StaticResource ProtocolButtonStyle}"/>
+			<Label
+                x:Name="labelPrint"
+                Grid.Column="1"
+                Margin="3,0,0,10"
+                VerticalAlignment="Bottom"
+                MouseLeftButtonDown="LabelPrint_OnMouseLeftButtonDown">
+				<Label.Content>
+					<Path
+                        Width="6"
+                        Height="6"
+                        Fill="{StaticResource TextBoxBrush}"
+                        Stretch="Fill"
+                        Style="{StaticResource Down}" />
+				</Label.Content>
+				<Label.ContextMenu>
+					<ContextMenu x:Name="menuPrint" Placement="MousePoint">
+						<MenuItem
+                            Command="{Binding Commands[PrintCommand]}"
+                            CommandParameter="Selectedseries"
+                            Header=" Selected series " />
+						<Separator Height="1" />
+						<MenuItem
+                            Command="{Binding Commands[PrintCommand]}"
+                            CommandParameter="Selectedimages"
+                            Header=" Selected images " />
+					</ContextMenu>
+				</Label.ContextMenu>
+			</Label>
+		</Grid>
+
+		<Grid Grid.Column="3">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="10" />
+			</Grid.ColumnDefinitions>
+			<Button
+                x:Name="btnArchive"
+                Grid.Column="0"
+                Content="{x:Static res:LanguageResource.Content_Archive}"
+                Style="{StaticResource ProtocolButtonStyle}"/>
+			<Label
+                x:Name="labelArchive"
+                Grid.Column="1"
+                Margin="3,0,0,10"
+                VerticalAlignment="Bottom"
+                MouseLeftButtonDown="LabelArchive_OnMouseLeftButtonDown">
+				<Label.Content>
+					<Path
+                        Width="6"
+                        Height="6"
+                        Fill="{StaticResource TextBoxBrush}"
+                        Stretch="Fill"
+                        Style="{StaticResource Down}" />
+				</Label.Content>
+				<Label.ContextMenu>
+					<ContextMenu x:Name="menuArchive" Placement="MousePoint">
+						<MenuItem
+                            Command="{Binding Commands[ArchiveCommand]}"
+                            CommandParameter="remote"
+                            Header=" Export to remote " />
+						<Separator Height="1" />
+						<MenuItem
+                            Command="{Binding Commands[ArchiveCommand]}"
+                            CommandParameter="local"
+                            Header=" Export to local " />
+					</ContextMenu>
+				</Label.ContextMenu>
+			</Label>
+		</Grid>
+
+		<!--<TextBlock
+            Grid.Column="4"
+            Text="{Binding SelectedTabIndex}" />-->
+
+	</Grid>
+</UserControl>

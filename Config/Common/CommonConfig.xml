@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommonConfig>
+	<IsDevelopment Value="true"/>
+	<IsCustomDicomTagSupported Value="true"/>
+	<!-- LogLevel: Trace | Debug | Information | Warning | Error | Critical | None -->
+	<!-- LogLevel: 建议使用Trace 或 Information -->
+	<LogLevel Value="Trace" />
+	<ConnectionString Value="Server=localhost;Database=db_mcs;Uid=root;Pwd=NV123456;pooling=true;charset='utf8mb4'" />
+	<MCSVersion Value="V2.0.1.20250506" />
+	<OfflineMachine Value="127.0.0.1" />
+	<MasterMachine Value="127.0.0.1" />
+	<MRSServices>
+		<DeviceServer IP="127.0.0.1" Port="30030" />
+		<ReconCommandServer IP="127.0.0.1" Port="30052" />
+		<ReconStatusServer IP="127.0.0.1" Port="30053" />
+		<ReconDataServer IP="127.0.0.1" Port="30054" />
+		<!-- 78.86.100.3 -->
+		<OfflineCommandServer IP="127.0.0.1" Port="30055" />
+		<OfflineStatusServer IP="127.0.0.1" Port="30056" />
+	</MRSServices>
+	<MCSServices>
+		<SystemService IP="127.0.0.1" Port="30040" />
+		<JobService IP="127.0.0.1" Port="30041" />
+		<SyncService IP="127.0.0.1" Port="30042" />
+		<PrintConfigService IP="127.0.0.1" Port="30043" />
+	</MCSServices>
+</CommonConfig>

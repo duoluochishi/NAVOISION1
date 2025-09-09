@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Archives>
+	<Archive Id="13912345679" ClientAETitle="Test_ImageClient" ServerAETitle="WEB3D" IP="10.0.0.10" Port="85" IncludesDoseReportingByAuto="false" Remark=""/>
+	<Archive Id="13912345678" ClientAETitle="Test_ImageClient" ServerAETitle="STORESCP" IP="172.31.3.113" Port="5104" IncludesDoseReportingByAuto="false" Remark=""/>
+</Archives>

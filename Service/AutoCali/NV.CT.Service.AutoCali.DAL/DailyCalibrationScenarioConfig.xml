@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Config AutoConfirmResult="true" AutoDeleteHandler="None|BySoftware|ByEmbedded" ScatteringDetectorGain="Fix16Pc">
+  <!--ScatteringDetectorGain, value: Fix1Pc,Fix2Pc,Fix3Pc,Fix4Pc,Fix5Pc,Fix6Pc,Fix7Pc,Fix8Pc,Fix9Pc,Fix10Pc,Fix11Pc,Fix12Pc,Fix13Pc,Fix14Pc,Fix15Pc,Fix16Pc,-->
+  <CalibrationScenarioGroup>
+    <CalibrationScenario Name="Daily" Description="" ID="1">
+      
+      <CalibrationItemReferenceGroup>
+        <string>AfterGlow</string>
+        <string>Gain</string>
+        <string>Air</string>
+        <string>AirBowtie</string>
+      </CalibrationItemReferenceGroup>
+    </CalibrationScenario>
+  </CalibrationScenarioGroup>
+</Config>

@@ -1,0 +1,60 @@
+﻿//-----------------------------------------------------------------------
+// <copyright company="纳米维景">
+// 版权所有 (C)2022,纳米维景(上海)医疗科技有限公司
+// </copyright>
+//-----------------------------------------------------------------------
+
+namespace NV.CT.DicomUtility.DoseReportSR
+{
+    public class DoseCheckAlert
+    {
+        public bool DLPAlertConfigured
+        {
+            get;set;
+        }
+
+        public bool CTDIvolAlertConfigured
+        {
+            get;set;
+        }
+
+        public double DLPAlertValue
+        {
+            get;set;
+        }
+
+        public double CTDIvolAlertValue
+        {
+            get;set;
+        }
+
+        public double AccumulatedDLPForwardEstimate
+        {
+            get;set;
+        }
+
+        public double AccumulatedCTDIvolForwardEstimate
+        {
+            get;set;
+        }
+
+        public string ReasonForProceeding
+        {
+            get;set;
+        }
+
+
+        public string PersonName
+        {
+            get;set;
+        }
+
+        public int PersonRole
+        {
+            get;set;
+        }
+
+
+
+    }
+}

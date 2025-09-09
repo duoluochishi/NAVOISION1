@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PatientConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DisplayItems>
+    <Item ItemName="Last name" CheckState="true" IsFixed="true" />
+    <Item ItemName="First name" CheckState="true" IsFixed="false" />
+    <Item ItemName="Patient id" CheckState="true" IsFixed="true" />
+    <Item ItemName="Date of birth" CheckState="true" IsFixed="true" />
+    <Item ItemName="Age" CheckState="true" IsFixed="true" />
+    <Item ItemName="Gender" CheckState="true" IsFixed="false" />
+    <Item ItemName="Height" CheckState="true" IsFixed="false" />
+    <Item ItemName="Weight" CheckState="true" IsFixed="false" />
+    <Item ItemName="Admitting diagnosis" CheckState="true" IsFixed="false" />
+    <Item ItemName="Ward" CheckState="true" IsFixed="false" />
+    <Item ItemName="Referring phsician" CheckState="true" IsFixed="false" />
+    <Item ItemName="Performing physician" CheckState="false" IsFixed="false" />
+    <Item ItemName="Description" CheckState="true" IsFixed="false" />
+    <Item ItemName="Accession no" CheckState="true" IsFixed="false" />
+    <Item ItemName="ID" CheckState="true" IsFixed="false" />
+    <Item ItemName="Accession ID" CheckState="true" IsFixed="false" />
+    <Item ItemName="Comments" CheckState="true" IsFixed="false" />
+    <Item ItemName="Institution name" CheckState="true" IsFixed="false" />
+    <Item ItemName="Institution address" CheckState="true" IsFixed="false" />
+  </DisplayItems>
+  <ChildrenAge UpperLimit="12" />
+  <RefreshTime Interval="30" />
+  <PatientIdConfig Prefix="PID" Infix="01" SuffixType="TimeFormat" />
+  <PatientQueryConfig PatientQueryTimeType="All" />
+</PatientConfig>

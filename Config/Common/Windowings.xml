@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Windowings>
+	<Windowing Id="13912345678" BodyPart="Brain" Shortcut="F5" IsFactory="true" Description="Brain">
+		<Width Value="80" Default="80"/>
+		<Level Value="40" Default="40" />
+	</Windowing>
+	<Windowing Id="13912345679" BodyPart="Med" Shortcut="F6" IsFactory="true" Description="Med">
+		<Width Value="400" Default="400"/>
+		<Level Value="40" Default="40" />
+	</Windowing>
+		<Windowing Id="13912345680" BodyPart="Lung" Shortcut="F7" IsFactory="true" Description="Lung">
+		<Width Value="1200" Default="1200"/>
+		<Level Value="-600" Default="-600" />
+	</Windowing>
+		<Windowing Id="13912345681" BodyPart="Pelvis" Shortcut="F8" IsFactory="true" Description="Pelvis">
+		<Width Value="350" Default="350"/>
+		<Level Value="40" Default="40" />
+	</Windowing>
+		<Windowing Id="13912345682" BodyPart="Abdomen" Shortcut="F9" IsFactory="true" Description="Abdomen">
+		<Width Value="320" Default="320"/>
+		<Level Value="60" Default="60" />
+	</Windowing>
+		<Windowing Id="13912345683" BodyPart="Bone" Shortcut="F10" IsFactory="true" Description="Bone">
+		<Width Value="1200" Default="1200"/>
+		<Level Value="300" Default="300" />
+	</Windowing>
+	<Windowing Id="13912345684" BodyPart="Spine" Shortcut="F11" IsFactory="true" Description="Spine">
+		<Width Value="1500" Default="1500"/>
+		<Level Value="300" Default="300" />
+	</Windowing>
+</Windowings>

@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>$(TargetFramework)-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="Autofac" />
+	  <PackageReference Include="Autofac.Extensions.DependencyInjection" />
+	  <PackageReference Include="AutoMapper" />
+	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+	  <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
+	  <PackageReference Include="Newtonsoft.Json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\SystemInterface\MCSRuntime.Contract\NV.CT.SystemInterface.MCSRuntime.Contract.csproj" />
+    <ProjectReference Include="..\..\..\SystemInterface\MRSIntegration.Contract\NV.CT.SystemInterface.MRSIntegration.Contract.csproj" />
+    <ProjectReference Include="..\..\..\SystemService\SyncService.Contract\NV.CT.SyncService.Contract.csproj" />
+    <ProjectReference Include="..\..\Examination\ApplicationService.Contract\NV.CT.Examination.ApplicationService.Contract.csproj" />
+    <ProjectReference Include="..\..\Examination\ApplicationService.Impl\NV.CT.Examination.ApplicationService.Impl.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="NV.CT.FacadeProxy.Common">
+      <HintPath>..\..\..\bin\NV.CT.FacadeProxy.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

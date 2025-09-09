@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="NV.CT.Print.View.PrinterSettings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NV.CT.Print.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="400">
+    <Border Style="{StaticResource GroupedBorder}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/> <!-- 0 // SelectPrinterView-->
+                <RowDefinition Height="20"/> <!-- 1 //seperate line -->
+                <RowDefinition Height="*"/> <!-- 2 // OperateCommandsView-->
+                <RowDefinition Height="auto"/> <!-- 3 //SelectPagesView -->
+                <RowDefinition Height="20"/> <!-- 4 //seperate line -->
+                <RowDefinition Height="82"/> <!-- 5 //PrintCommandsView-->
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                <local:SelectPrinterView />
+            </Grid>
+            <Grid Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                <local:OperateCommandsView />
+            </Grid>
+            <Grid Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                <local:SelectPagesView />
+            </Grid>
+            <Grid Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                <local:PrintCommandsView />
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

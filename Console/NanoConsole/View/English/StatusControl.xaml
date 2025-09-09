@@ -1,0 +1,330 @@
+﻿<UserControl
+	x:Class="NV.CT.NanoConsole.View.English.StatusControl"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+	xmlns:local="clr-namespace:NV.CT.NanoConsole.View.English"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+	d:DesignHeight="40"
+	d:DesignWidth="260"
+	mc:Ignorable="d">
+	<UserControl.Resources>
+		<Style
+			x:Key="StyleStatusIcon"
+			TargetType="Grid">
+			<Setter Property="Width" Value="24" />
+			<Setter Property="Height" Value="16" />
+			<Setter Property="Margin" Value="0,0,15,0" />
+		</Style>
+		<Style
+			x:Key="StyleOpenDoor"
+			TargetType="{x:Type Image}">
+			<Style.Triggers>
+				<DataTrigger
+					Binding="{Binding IsOpenDoor}"
+					Value="True">
+					<Setter Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Icons/opendoor.png" />
+					<Setter Property="ToolTip" Value="Door opened" />
+					<Setter Property="ToolTipService.InitialShowDelay" Value="0"/>
+					<Setter Property="ToolTipService.BetweenShowDelay" Value="0"/>
+				</DataTrigger>
+				<DataTrigger
+					Binding="{Binding IsOpenDoor}"
+					Value="False">
+					<Setter Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Icons/closedoor.png" />
+					<Setter Property="ToolTip" Value="Door closed" />
+					<Setter Property="ToolTipService.InitialShowDelay" Value="0"/>
+					<Setter Property="ToolTipService.BetweenShowDelay" Value="0"/>
+				</DataTrigger>
+			</Style.Triggers>
+		</Style>
+		<Style
+			x:Key="StyleTubeStatusLevel"
+			TargetType="{x:Type Image}">
+			<Style.Triggers>
+				<DataTrigger
+					Binding="{Binding TubeStatusLevel}"
+					Value="0">
+					<Setter Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Images/raw_green.png" />
+					<!--<Setter Property="ToolTip" Value="Tube normal"></Setter>-->
+				</DataTrigger>
+				<DataTrigger
+					Binding="{Binding TubeStatusLevel}"
+					Value="1">
+					<Setter Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Images/raw_orange.png" />
+					<!--<Setter Property="ToolTip" Value="Tube waring"></Setter>-->
+				</DataTrigger>
+				<DataTrigger
+					Binding="{Binding TubeStatusLevel}"
+					Value="2">
+					<Setter Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Images/raw_red.png" />
+					<!--<Setter Property="ToolTip" Value="Tube error"></Setter>-->
+				</DataTrigger>
+			</Style.Triggers>
+		</Style>
+		<!--  Mcs磁盘空间状态  -->
+		<Style
+			x:Key="McsHardFreeSpaceTip"
+			TargetType="{x:Type Image}">
+			<Style.Triggers>
+				<DataTrigger
+					Binding="{Binding McsFreeSpaceWarnLevel}"
+					Value="0">
+					<Setter Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Icons/hard_green.png" />
+				</DataTrigger>
+				<DataTrigger
+					Binding="{Binding McsFreeSpaceWarnLevel}"
+					Value="1">
+					<Setter Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Icons/hard_orange.png" />
+				</DataTrigger>
+				<DataTrigger
+					Binding="{Binding McsFreeSpaceWarnLevel}"
+					Value="2">
+					<Setter Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Icons/hard_red.png" />
+				</DataTrigger>
+			</Style.Triggers>
+		</Style>
+		<Style
+			x:Key="StyleRawFreeSpaceTip"
+			TargetType="{x:Type Image}">
+			<Style.Triggers>
+				<DataTrigger
+					Binding="{Binding RawFreeSpaceTip}"
+					Value="0">
+					<Setter Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Icons/raw_green.png" />
+				</DataTrigger>
+				<DataTrigger
+					Binding="{Binding RawFreeSpaceTip}"
+					Value="1">
+					<Setter Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Icons/raw_orange.png" />
+				</DataTrigger>
+				<DataTrigger
+					Binding="{Binding RawFreeSpaceTip}"
+					Value="2">
+					<Setter Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Icons/raw_red.png" />
+				</DataTrigger>
+			</Style.Triggers>
+		</Style>
+		<Style
+			x:Key="StyleIpadConnectStatus"
+			TargetType="{x:Type Image}">
+			<Style.Triggers>
+				<DataTrigger
+					Binding="{Binding IpadConnectStatus}"
+					Value="False">
+					<Setter Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Icons/Ipad_Disconnected.png" />
+					<Setter Property="ToolTip" Value="RGT disconnected" />
+					<Setter Property="ToolTipService.InitialShowDelay" Value="0"/>
+					<Setter Property="ToolTipService.BetweenShowDelay" Value="0"/>
+				</DataTrigger>
+				<DataTrigger
+					Binding="{Binding IpadConnectStatus}"
+					Value="True">
+					<Setter Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Icons/Ipad_Connected.png" />
+					<Setter Property="ToolTip" Value="RGT connected" />
+					<Setter Property="ToolTipService.InitialShowDelay" Value="0"/>
+					<Setter Property="ToolTipService.BetweenShowDelay" Value="0"/>
+				</DataTrigger>
+			</Style.Triggers>
+		</Style>
+		<Style
+			x:Key="StyleMrsConnectStatus"
+			TargetType="{x:Type Image}">
+			<Style.Triggers>
+				<DataTrigger
+					Binding="{Binding MrsConnectStatus}"
+					Value="False">
+					<Setter Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Icons/MRS_Disconnected.png" />
+					<Setter Property="ToolTip" Value="MRS disconnected" />
+					<Setter Property="ToolTipService.InitialShowDelay" Value="0"/>
+					<Setter Property="ToolTipService.BetweenShowDelay" Value="0"/>
+				</DataTrigger>
+				<DataTrigger
+					Binding="{Binding MrsConnectStatus}"
+					Value="True">
+					<Setter Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Icons/MRS_connected.png" />
+					<Setter Property="ToolTip" Value="MRS connected" />
+					<Setter Property="ToolTipService.InitialShowDelay" Value="0"/>
+					<Setter Property="ToolTipService.BetweenShowDelay" Value="0"/>
+				</DataTrigger>
+			</Style.Triggers>
+		</Style>
+		<Style
+			x:Key="StyleControlBoxConnectStatus"
+			TargetType="{x:Type Image}">
+			<Style.Triggers>
+				<DataTrigger
+					Binding="{Binding ControlBoxConnectStatus}"
+					Value="False">
+					<Setter Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Icons/Controlbox_DisConnected.png" />
+					<Setter Property="ToolTip" Value="ControlBox disconnected" />
+					<Setter Property="ToolTipService.InitialShowDelay" Value="0"/>
+					<Setter Property="ToolTipService.BetweenShowDelay" Value="0"/>
+				</DataTrigger>
+				<DataTrigger
+					Binding="{Binding ControlBoxConnectStatus}"
+					Value="True">
+					<Setter Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Icons/Controlbox_Connected.png" />
+					<Setter Property="ToolTip" Value="ControlBox connected" />
+					<Setter Property="ToolTipService.InitialShowDelay" Value="0"/>
+					<Setter Property="ToolTipService.BetweenShowDelay" Value="0"/>
+				</DataTrigger>
+			</Style.Triggers>
+		</Style>
+		<Style
+			x:Key="StylePanelConnectStatus"
+			TargetType="{x:Type Image}">
+			<Style.Triggers>
+				<DataTrigger
+					Binding="{Binding PanelConnectStatus}"
+					Value="False">
+					<Setter Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Icons/Panel_DisConnected.png" />
+					<Setter Property="ToolTip" Value="Panel disconnected" />
+					<Setter Property="ToolTipService.InitialShowDelay" Value="0"/>
+					<Setter Property="ToolTipService.BetweenShowDelay" Value="0"/>
+				</DataTrigger>
+				<DataTrigger
+					Binding="{Binding PanelConnectStatus}"
+					Value="True">
+					<Setter Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Icons/Panel_Connected.png" />
+					<Setter Property="ToolTip" Value="Panel connected" />
+					<Setter Property="ToolTipService.InitialShowDelay" Value="0"/>
+					<Setter Property="ToolTipService.BetweenShowDelay" Value="0"/>
+				</DataTrigger>
+			</Style.Triggers>
+		</Style>
+	</UserControl.Resources>
+	<Grid
+		Width="380"
+		HorizontalAlignment="Right">
+		<StackPanel Orientation="Horizontal">
+
+			<!--消息-->
+			<Grid Style="{StaticResource StyleStatusIcon}">
+				<Image
+					Height="16"
+					Source="{Binding MessageIconSource}">
+					<Image.InputBindings>
+						<MouseBinding
+							Command="{Binding Commands[ShowMessageWindowCommand]}"
+							MouseAction="LeftClick" />
+					</Image.InputBindings>
+				</Image>
+			</Grid>
+
+			<!--  门的状态  -->
+			<Grid
+				Style="{StaticResource StyleStatusIcon}">
+				<Image
+					Height="16"
+					Style="{StaticResource StyleOpenDoor}" />
+			</Grid>
+
+			<!--  球管状态  -->
+			<Grid Style="{StaticResource StyleStatusIcon}">
+				<Image
+					Height="16"
+					VerticalAlignment="Top"
+					Stretch="Uniform"
+					ToolTipService.InitialShowDelay="0"
+					ToolTipService.BetweenShowDelay="0"
+					Style="{StaticResource StyleTubeStatusLevel}"
+					ToolTip="{Binding TubeToolTip}" />
+			</Grid>
+
+			<!--  MCS硬盘空间状态  -->
+			<Grid Style="{StaticResource StyleStatusIcon}">
+				<Image
+					Height="16"
+					Stretch="Uniform"
+					Style="{StaticResource McsHardFreeSpaceTip}"
+					ToolTipService.InitialShowDelay="0"
+					ToolTipService.BetweenShowDelay="0"
+					ToolTip="{Binding McsHardFreeSpace}">
+					<i:Interaction.Triggers>
+						<i:EventTrigger EventName="MouseEnter">
+							<i:InvokeCommandAction Command="{Binding Commands[MCSEnter]}" />
+						</i:EventTrigger>
+					</i:Interaction.Triggers>
+				</Image>
+			</Grid>
+
+			<!--  MRS硬盘空间状态  -->
+			<Grid Style="{StaticResource StyleStatusIcon}">
+				<Image
+					Height="16"
+					Stretch="Uniform"
+					Style="{StaticResource StyleRawFreeSpaceTip}"
+					ToolTipService.InitialShowDelay="0"
+					ToolTipService.BetweenShowDelay="0"
+					ToolTip="{Binding MrsFreeSpace}">
+					<i:Interaction.Triggers>
+						<i:EventTrigger EventName="MouseEnter">
+							<i:InvokeCommandAction Command="{Binding Commands[MRSEnter]}" />
+						</i:EventTrigger>
+					</i:Interaction.Triggers>
+				</Image>
+			</Grid>
+
+			<!--  平板连接状态  -->
+			<Grid Style="{StaticResource StyleStatusIcon}">
+				<Image
+					Height="16"
+					Stretch="Uniform"
+					Style="{StaticResource StyleIpadConnectStatus}" />
+			</Grid>
+
+			<!--  MRS连接状态  -->
+			<Grid Style="{StaticResource StyleStatusIcon}">
+				<Image
+					Height="16"
+					Stretch="Uniform"
+					Style="{StaticResource StyleMrsConnectStatus}" />
+			</Grid>
+
+			<!--  ControlBox连接状态  -->
+			<Grid Style="{StaticResource StyleStatusIcon}">
+				<Image
+					Height="16"
+					Stretch="Uniform"
+					Style="{StaticResource StyleControlBoxConnectStatus}" />
+			</Grid>
+
+			<!--  手持Panel连接状态  -->
+			<Grid Style="{StaticResource StyleStatusIcon}">
+				<Image
+					Height="16"
+					Stretch="Uniform"
+					Style="{StaticResource StylePanelConnectStatus}" />
+			</Grid>
+
+			<!--<Grid Width="24" Height="16" Margin="0,0,50,0">
+                <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/Injection_Disconnected.png" Height="16" x:Name="InjectionDisconnected" ToolTip="Injection System disconnected" Stretch="Uniform"></Image>
+                <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/Injection_Connected.png" Height="16" x:Name="InjectionConnected" Visibility="Collapsed" ToolTip="Injection System connected" Stretch="Uniform"></Image>
+            </Grid>-->
+
+			<Grid Width="90">
+				<StackPanel
+					VerticalAlignment="Center"
+					Orientation="Vertical">
+					<TextBlock
+						Height="18"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						FontSize="12"
+						Foreground="White"
+						Text="{Binding LocalCurrentTime}" />
+					<TextBlock
+						Height="18"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						FontSize="12"
+						Foreground="White"
+						Text="{Binding LocalCurrentDate}" />
+				</StackPanel>
+			</Grid>
+		</StackPanel>
+	</Grid>
+</UserControl>

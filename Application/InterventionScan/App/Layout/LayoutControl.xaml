@@ -1,0 +1,365 @@
+﻿<UserControl
+    x:Class="NV.CT.InterventionScan.Layout.LayoutControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:markableComboBox="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableComboBox;assembly=MaterialDesignThemes.Wpf"
+    xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language" 
+    xmlns:view="clr-namespace:NV.CT.InterventionalScan.View"
+    d:DesignHeight="450" d:DesignWidth="800" mc:Ignorable="d" Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Image}">
+            <Setter Property="Height" Value="28" />
+            <Setter Property="Width" Value="34" />
+            <Setter Property="Stretch" Value="Fill" />
+        </Style>
+        <Style x:Key="ComplexGrid" TargetType="{x:Type Grid}">
+            <Setter Property="Width" Value="34" />
+            <Setter Property="Height" Value="28" />
+            <Setter Property="Margin" Value="8,0,3,0" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+        <Style TargetType="{x:Type ToolTip}">
+            <Setter Property="HorizontalOffset" Value="5" />
+            <Setter Property="VerticalOffset" Value="5" />
+            <Setter Property="Background" Value="Black" />
+            <Setter Property="Placement" Value="Right" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+        <Style x:Key="PackIconStyle30" TargetType="materialDesign:PackIcon">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="30"/>
+        </Style>
+        <Style x:Key="PackIconStyle36" TargetType="materialDesign:PackIcon">
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="Width" Value="36"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style x:Key="NeedleOptIconButtonStyle" BasedOn="{StaticResource MaterialDesignIconButton}" TargetType="{x:Type Button}">
+            <Setter Property="Command" Value="{Binding Commands[NeedleOptCommand]}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="DirectionIconButtonStyle" BasedOn="{StaticResource MaterialDesignIconButton}" TargetType="{x:Type Button}">
+            <Setter Property="Command" Value="{Binding Commands[SeriesMoveCommand]}"/>
+        </Style>
+        <Style x:Key="LayoutMenuItemStyle" BasedOn="{StaticResource MaterialDesignMenuItem}" TargetType="{x:Type MenuItem}">
+            <Setter Property="Command" Value="{Binding Commands[SetLayoutCommand]}"/>
+        </Style>
+        <Style x:Key="WwWlMenuItemStyle" BasedOn="{StaticResource MaterialDesignMenuItem}" TargetType="{x:Type MenuItem}">
+            <Setter Property="Command" Value="{Binding Commands[SetWwWlCommand]}"/>
+        </Style>
+        <Style x:Key="ROIMenuItemStyle" BasedOn="{StaticResource MaterialDesignMenuItem}" TargetType="{x:Type MenuItem}">
+            <Setter Property="Command" Value="{Binding Commands[SetROICommand]}"/>
+        </Style>
+        <Style x:Key="DownPathStyle" BasedOn="{StaticResource Down}" TargetType="{x:Type Path}">
+            <Setter Property="Width" Value="6"/>
+            <Setter Property="Height" Value="6"/>
+            <Setter Property="Fill" Value="{StaticResource TextBoxBrush}"/>
+            <Setter Property="Stretch" Value="Fill"/>
+        </Style>
+        <Style x:Key="StackPanelStyle" TargetType="{x:Type StackPanel}">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="Background" Value="{StaticResource MaterialDesignPaper}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Height" Value="32"/>
+        </Style>
+        <Style x:Key="LayoutLabelStyle" BasedOn="{StaticResource NanoLabelStyle}" TargetType="{x:Type Label}">
+            <Setter Property="Margin" Value="0,0,0,7"/>
+            <Setter Property="Background" Value="{StaticResource MaterialDesignPaper}"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+        </Style>
+        <Style x:Key="LayoutTextBlockStyle" BasedOn="{StaticResource NanoTextBlockStyle}" TargetType="{x:Type TextBlock}">
+            <Setter Property="Tag" Value="0"/>
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="Width" Value="28"/>
+        </Style>
+    </UserControl.Resources>
+    <AdornerDecorator>
+        <Border Style="{StaticResource WindowsBorder}" BorderThickness="0">
+            <Grid x:Name="grdIcon">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="38"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel  Grid.Row="0" Style="{StaticResource StackPanelStyle}" >
+                    <markableComboBox:MarkableComboBox Width="350"                     
+                        VerticalAlignment="Center"
+                        DisplayMemberPath="Name"                      
+                        SelectedValuePath="ID"
+                        MaxHeight="400"
+                        ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                        ItemsSource="{Binding SeriesList}"           
+                        SelectedItem="{Binding Path=SelectedSeries, Mode=TwoWay}"
+                        Style="{StaticResource MarkableComboBox}">
+                    </markableComboBox:MarkableComboBox>
+                    <Grid Style="{StaticResource ComplexGrid}" ToolTip="{x:Static res:LanguageResource.ToolTip_Layout}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="6" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Name="txtLayout" Tag="0" >
+                            <TextBlock.Background>
+                                <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/stack 2x1_0.png" />
+                            </TextBlock.Background>
+                        </TextBlock>
+                        <Label x:Name="labelLayout"
+                            Grid.Column="1"
+                            Style="{StaticResource LayoutLabelStyle}"
+                            MouseLeftButtonDown="LabelLayout_OnMouseLeftButtonDown">
+                            <Label.Content>
+                                <Path Style="{StaticResource DownPathStyle}" />
+                            </Label.Content>
+                            <Label.ContextMenu>
+                                <ContextMenu x:Name="popLayout">
+                                    <MenuItem Style="{StaticResource LayoutMenuItemStyle}" CommandParameter="1*2" Header="  1x2  " />
+                                    <Separator Height="1"/>
+                                    <MenuItem Style="{StaticResource LayoutMenuItemStyle}" CommandParameter="1*3" Header="  1x3  " />
+                                </ContextMenu>
+                            </Label.ContextMenu>
+                        </Label>
+                    </Grid>
+
+                    <TextBlock ToolTip="{x:Static res:LanguageResource.ToolTip_Move}" Style="{StaticResource LayoutTextBlockStyle}">
+                        <TextBlock.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_move_0.png" />
+                        </TextBlock.Background>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseLeftButtonDown">
+                                <i:InvokeCommandAction Command="{Binding Commands[MoveCommand]}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </TextBlock>
+
+                    <TextBlock ToolTip="{x:Static res:LanguageResource.ToolTip_Zoom}" Style="{StaticResource LayoutTextBlockStyle}">
+                        <TextBlock.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_zoom_0.png" />
+                        </TextBlock.Background>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseLeftButtonDown">
+                                <i:InvokeCommandAction Command="{Binding Commands[ZoomCommand]}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </TextBlock>
+
+                    <!--<Grid Style="{StaticResource ComplexGrid}" ToolTip="{x:Static res:LanguageResource.Content_WWWL}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="6" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Name="txtWWWL" Tag="0" >
+                            <TextBlock.Background>
+                                <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_window_0.png" />
+                            </TextBlock.Background>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseLeftButtonDown">
+                                <i:InvokeCommandAction Command="{Binding Commands[SetWWWL]}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        </TextBlock>
+                        <Label x:Name="labelWwWl"
+                            Grid.Column="1"
+                            Style="{StaticResource LayoutLabelStyle}"                        
+                            MouseLeftButtonDown="LabelWwWl_OnMouseLeftButtonDown">
+                            <Label.Content>
+                                <Path Style="{StaticResource DownPathStyle}" />
+                            </Label.Content>
+                            <Label.ContextMenu>
+                                <ContextMenu x:Name="menuWwWl">
+                                    <MenuItem Header="{x:Static res:LanguageResource.Header_CustomMenu}" Style="{StaticResource WwWlMenuItemStyle}"/>
+                                    <Separator Height="1"/>
+                                    <MenuItem Header="100,200" Style="{StaticResource WwWlMenuItemStyle}" CommandParameter="100*200" />
+                                    <Separator Height="1"/>
+                                    <MenuItem Header="300,400" Style="{StaticResource WwWlMenuItemStyle}" CommandParameter="300*400" />
+                                    <Separator Height="1"/>
+                                    <MenuItem Header="500,600" Style="{StaticResource WwWlMenuItemStyle}" CommandParameter="500*600" />
+                                    <Separator Height="1"/>
+                                    <MenuItem Header="144,43" Style="{StaticResource WwWlMenuItemStyle}" CommandParameter="144*43" />
+                                    <Separator Height="1"/>
+                                    <MenuItem Header="1010,434" Style="{StaticResource WwWlMenuItemStyle}" CommandParameter="1010*434" />
+                                </ContextMenu>
+                            </Label.ContextMenu>
+                        </Label>
+                    </Grid>-->
+
+                    <!--  窗宽窗高 WW/WL  -->
+                    <Grid
+                    Grid.Column="1"
+                    Style="{StaticResource ComplexGrid}"
+                    ToolTip="{x:Static res:LanguageResource.ToolTip_WL}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="6" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            x:Name="txtWWWL"
+                            Tag="0">
+                            <TextBlock.Background>
+                                <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_window_0.png" />
+                            </TextBlock.Background>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseLeftButtonDown">
+                                <i:InvokeCommandAction
+                                    Command="{Binding Commands[SetWwWlCommand]}"
+                                    CommandParameter="" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        </TextBlock>
+                        <Label
+                            x:Name="labelWwWl"
+                            Grid.Column="1"
+                            Margin="0,0,0,7"
+                            VerticalAlignment="Bottom"
+                            MouseLeftButtonDown="LabelWwWl_OnMouseLeftButtonDown">
+                            <Label.Content>
+                                <Path
+                                    Width="6"
+                                    Height="6"
+                                    Fill="{StaticResource TextBoxBrush}"
+                                    Stretch="Fill"
+                                    Style="{StaticResource Down}" />
+                            </Label.Content>
+                            <Label.ContextMenu>
+                                <ContextMenu
+                                    x:Name="menuWwWl"
+                                    ItemsSource="{Binding WWWLItems}"
+                                    Placement="MousePoint">
+                                    <ContextMenu.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
+                                            MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"
+                                            Tag="{Binding}"
+                                            Text="{Binding BodyPart}" />                                           
+                                        </DataTemplate>
+                                    </ContextMenu.ItemTemplate>
+                                </ContextMenu>
+                            </Label.ContextMenu>
+                        </Label>
+                    </Grid>
+
+                    <Grid Style="{StaticResource ComplexGrid}" ToolTip="{x:Static res:LanguageResource.ToolTip_ROI}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="6" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Name="txtRotate" Tag="0">
+                            <TextBlock.Background>
+                                <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_measuring_distance_0.png" />
+                            </TextBlock.Background>
+                        </TextBlock>
+                        <Label
+                            x:Name="labelROI"
+                            Grid.Column="1"
+                            Style="{StaticResource LayoutLabelStyle}"
+                            MouseLeftButtonDown="LabelRotate_OnMouseLeftButtonDown">
+                            <Label.Content>
+                                <Path Style="{StaticResource DownPathStyle}" />
+                            </Label.Content>
+                            <Label.ContextMenu>
+                                <ContextMenu x:Name="menuROI">
+                                    <MenuItem Style="{StaticResource ROIMenuItemStyle}" CommandParameter="Distance" >
+                                        <MenuItem.Header>
+                                            <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_measuring_distance_1.png" />
+                                        </MenuItem.Header>
+                                    </MenuItem>
+                                    <Separator Height="1"/>
+                                    <MenuItem Style="{StaticResource ROIMenuItemStyle}" CommandParameter="Angle" >
+                                        <MenuItem.Header>
+                                            <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_angle_1.png" />
+                                        </MenuItem.Header>
+                                    </MenuItem>
+                                    <Separator Height="1"/>
+                                    <MenuItem Style="{StaticResource ROIMenuItemStyle}" CommandParameter="Circle" >
+                                        <MenuItem.Header>
+                                            <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_circle_ROI_1.png" />
+                                        </MenuItem.Header>
+                                    </MenuItem>
+                                    <Separator Height="1"/>
+                                    <MenuItem Style="{StaticResource ROIMenuItemStyle}" CommandParameter="Rectangle" >
+                                        <MenuItem.Header>
+                                            <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i__rectangle_ROI_1.png" />
+                                        </MenuItem.Header>
+                                    </MenuItem>
+                                    <Separator Height="1"/>
+                                    <MenuItem Style="{StaticResource ROIMenuItemStyle}" CommandParameter="Arrow" >
+                                        <MenuItem.Header>
+                                            <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_arrow_1.png" />
+                                        </MenuItem.Header>
+                                    </MenuItem>
+                                </ContextMenu>
+                            </Label.ContextMenu>
+                        </Label>
+                    </Grid>
+
+                    <TextBlock ToolTip="{x:Static res:LanguageResource.ToolTip_Rework}" Style="{StaticResource LayoutTextBlockStyle}">
+                        <TextBlock.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_rework_0.png" />
+                        </TextBlock.Background>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseLeftButtonDown">
+                                <i:InvokeCommandAction Command="{Binding Commands[ResetCommand]}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </TextBlock>
+
+                    <TextBlock Text="{x:Static res:LanguageResource.Text_Needle}" Margin="20 0 0 0" VerticalAlignment="Center"/>
+                    <markableComboBox:MarkableComboBox Width="80"                     
+                        VerticalAlignment="Center"
+                        DisplayMemberPath="Name"                      
+                        SelectedValuePath="ID"
+                        ItemsSource="{Binding NeedleModelList}"           
+                        SelectedItem="{Binding Path=SelectedNeedleModel, Mode=TwoWay}"
+                        Style="{StaticResource MarkableComboBox}">
+                    </markableComboBox:MarkableComboBox>
+
+                    <materialDesign:PackIcon Margin="5 0 5 0" Width="30" Height="30" Kind="SelectColor" Foreground="{Binding SelectedNeedleModel.NeedleColor}"/>
+                    
+                    <Button CommandParameter="Add" Style="{StaticResource NeedleOptIconButtonStyle}" ToolTip="{x:Static res:LanguageResource.ToolTip_AddNeedle}">
+                        <materialDesign:PackIcon Style="{StaticResource PackIconStyle30}" Kind="Plus" />
+                    </Button>
+                    <Button CommandParameter="Delete" Style="{StaticResource NeedleOptIconButtonStyle}" ToolTip="{x:Static res:LanguageResource.ToolTip_DeleteNeddle}">
+                        <materialDesign:PackIcon Style="{StaticResource PackIconStyle30}" Kind="Delete" />
+                    </Button>
+                </StackPanel>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="45"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="45"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Style="{StaticResource WindowsBorder}" BorderThickness="0">
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0" CommandParameter="Last" Style="{StaticResource DirectionIconButtonStyle}"  VerticalAlignment="Top" >
+                                <materialDesign:PackIcon Style="{StaticResource PackIconStyle36}" Kind="FolderArrowUpOutline" />
+                            </Button>
+
+                            <Button Grid.Row="1" CommandParameter="Back" Style="{StaticResource DirectionIconButtonStyle}"  VerticalAlignment="Center">
+                                <materialDesign:PackIcon Style="{StaticResource PackIconStyle36}" Kind="ArrowLeftDropCircle" />
+                            </Button>
+
+                            <Button Grid.Row="2" CommandParameter="Next" Style="{StaticResource DirectionIconButtonStyle}" VerticalAlignment="Bottom" >
+                                <materialDesign:PackIcon Style="{StaticResource PackIconStyle36}" Kind="FolderArrowDownOutline" />
+                            </Button>
+                        </Grid>
+                    </Border>
+
+                    <Border Grid.Column="1">
+                        <view:LoadStaticDicomControl />
+                    </Border>
+                    <Border Grid.Column="2" Style="{StaticResource WindowsBorder}" BorderThickness="0">
+                        <Button CommandParameter="Forward" Style="{StaticResource DirectionIconButtonStyle}">
+                            <materialDesign:PackIcon Style="{StaticResource PackIconStyle36}" Kind="ArrowRightDropCircle" />
+                        </Button>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Border>
+    </AdornerDecorator>
+</UserControl>

@@ -1,0 +1,231 @@
+﻿<UserControl
+    x:Class="NV.CT.Service.TubeWarmUp.Views.WarmUpView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ap="clr-namespace:NV.CT.Service.Common.AttachedProperty;assembly=NV.CT.Service.Common"
+    xmlns:calc="clr-namespace:CalcBinding;assembly=CalcBinding"
+    xmlns:controls="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableTextBox;assembly=MaterialDesignThemes.Wpf"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:NV.CT.Service.TubeWarmUp.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:res="clr-namespace:NV.CT.Service.Common.Resources;assembly=NV.CT.Service.Common"
+    x:Name="control"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Unloaded">
+            <i:InvokeCommandAction Command="{Binding UnloadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <UserControl.Resources>
+        <Thickness
+            x:Key="ButtonMargin"
+            Bottom="0"
+            Left="0"
+            Right="10"
+            Top="0" />
+
+        <Style BasedOn="{StaticResource MaterialDesignOutlinedButton}" TargetType="Button">
+            <Setter Property="Margin" Value="{StaticResource ButtonMargin}" />
+        </Style>
+        <Style BasedOn="{StaticResource MaterialDesignDataGrid}" TargetType="DataGrid">
+            <Setter Property="IsReadOnly" Value="True" />
+            <Setter Property="CanUserAddRows" Value="False" />
+            <Setter Property="CanUserResizeRows" Value="False" />
+            <Setter Property="CanUserResizeColumns" Value="False" />
+            <Setter Property="CanUserReorderColumns" Value="False" />
+            <Setter Property="SelectionMode" Value="Single" />
+            <Setter Property="CanUserSortColumns" Value="False" />
+            <Setter Property="AutoGenerateColumns" Value="False" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.8*" />
+            <RowDefinition Height="4.2*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition MinWidth="200" MaxWidth="450" />
+        </Grid.ColumnDefinitions>
+
+        <!--<GroupBox
+            Grid.Row="0"
+            Grid.Column="0"
+            Header="{x:Static res:Warmup_Lang.Warmup_ScanTask}">
+            <local:WarmUpTaskView DataContext="{Binding WarmUpTaskViewModel}" />
+        </GroupBox>-->
+        <!--  提示信息  -->
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="5*" />
+            </Grid.ColumnDefinitions>
+            <Image
+                Width="80"
+                Height="80"
+                Margin="20,0"
+                Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/DoseWarning.png" />
+            <WrapPanel
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                Orientation="Vertical">
+                <WrapPanel.Resources>
+                    <SolidColorBrush x:Key="hintColor" Color="#FFC000" />
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="{StaticResource hintColor}" />
+                        <Setter Property="FontSize" Value="16" />
+                    </Style>
+                </WrapPanel.Resources>
+                <TextBlock Text="{x:Static res:Warmup_Lang.Warmup_HintTitle}" TextWrapping="Wrap" />
+                <TextBlock Text="{x:Static res:Warmup_Lang.Warmup_Hint1}" />
+                <TextBlock Text="{x:Static res:Warmup_Lang.Warmup_Hint2}" />
+            </WrapPanel>
+        </Grid>
+        <!--  运行日志  -->
+        <!--<GroupBox
+            Grid.Row="1"
+            Grid.Column="0"
+            Header="{x:Static res:Common_Lang.Common_HistoryRecord}">-->
+        <Border
+            Grid.Row="1"
+            Margin="5"
+            Background="Black"
+            CornerRadius="10"
+            Style="{StaticResource WindowsBorder}">
+            <ItemsControl
+                Margin="0"
+                Padding="0"
+                ItemsSource="{Binding Histories, Mode=OneWay}"
+                ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <ItemsControl.Template>
+                    <ControlTemplate TargetType="ItemsControl">
+                        <ScrollViewer
+                            x:Name="scrollViewer"
+                            Margin="10"
+                            VerticalScrollBarVisibility="Auto">
+                            <ItemsPresenter />
+                        </ScrollViewer>
+                    </ControlTemplate>
+                </ItemsControl.Template>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="0,0,10,0" Text="{Binding DateTime, StringFormat=yyyy-MM-dd HH:mm:ss}" />
+                            <TextBlock Text="{Binding Message}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+        <!--</GroupBox>-->
+        <!--  球管信息  -->
+        <!--<GroupBox
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            Grid.Column="1"
+            Header="{x:Static res:Warmup_Lang.Warmup_TubeStatus}">-->
+        <DataGrid
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            Grid.Column="1"
+            Background="Transparent"
+            GridLinesVisibility="None"
+            ItemsSource="{Binding Devices.Tubes}">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding Id, Mode=OneWay}"
+                    Header="{x:Static res:Warmup_Lang.Warmup_TubeNumber}" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding OilTemp, Mode=OneWay, StringFormat={}{0:F2}}"
+                    Header="{x:Static res:Warmup_Lang.Warmup_OilTemperature}" />
+                <DataGridTextColumn
+                    Width="1.2*"
+                    Binding="{Binding HeatCap, Mode=OneWay, StringFormat={}{0:F2}}"
+                    Header="{x:Static res:Warmup_Lang.Warmup_ThermalCapacity}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <!--</GroupBox>-->
+
+        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <local:WarmUpProgressView DataContext="{Binding ProgressViewModel}" />
+
+            <!--  临时配置  -->
+            <WrapPanel
+                Grid.Row="1"
+                Margin="0,10"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="20,5"
+                        VerticalAlignment="Center"
+                        Text="{x:Static res:Warmup_Lang.Warmup_PreheatGoal}" />
+                    <controls:MarkableTextBox
+                        MinWidth="500"
+                        VerticalAlignment="Center"
+                        ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                        IsReadOnly="{calc:Binding WarmUpDoing}"
+                        Text="{Binding ThermalCapValue}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="20,5"
+                        VerticalAlignment="Center"
+                        Text="{x:Static res:Warmup_Lang.Warmup_PreheatCount}" />
+                    <controls:MarkableTextBox
+                        MinWidth="500"
+                        VerticalAlignment="Center"
+                        ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                        IsReadOnly="{calc:Binding WarmUpDoing}"
+                        Text="{Binding PreheatCount}" />
+                </StackPanel>
+            </WrapPanel>
+
+            <WrapPanel
+                Grid.Row="1"
+                Grid.ColumnSpan="4"
+                Margin="0,10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center">
+                <Button
+                    Margin="10,0"
+                    Content="{x:Static res:Common_Lang.Common_Start}"
+                    IsEnabled="{calc:Binding !WarmUpDoing,
+                                             Mode=OneWay}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding StartCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+                <Button
+                    Margin="10,0"
+                    VerticalAlignment="Center"
+                    Content="{x:Static res:Common_Lang.Common_Stop}"
+                    IsEnabled="{calc:Binding WarmUpDoing,
+                                             Mode=OneWay}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding StopCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+
+            </WrapPanel>
+        </Grid>
+    </Grid>
+</UserControl>

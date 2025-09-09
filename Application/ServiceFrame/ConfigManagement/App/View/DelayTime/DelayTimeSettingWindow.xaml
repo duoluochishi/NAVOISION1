@@ -1,0 +1,82 @@
+﻿<Window
+    x:Class="NV.CT.ConfigManagement.View.DelayTimeSettingWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"   
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"    
+    xmlns:md="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableTextBox;assembly=MaterialDesignThemes.Wpf"
+    xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+    Width="650" Height="375" Background="Transparent" AllowsTransparency="True" ResizeMode="NoResize"
+    WindowStyle="None"  mc:Ignorable="d">
+    <Grid>
+        <Border BorderThickness="1" CornerRadius="10" BorderBrush="#5A5A89" Background="Transparent" Margin="0,0,0,0"></Border>
+        <Grid Margin="10,30,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />              
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <!-- Alert设置 -->
+            <Grid Grid.Row="0" Height="50" VerticalAlignment="Top" Margin="20,0,0,0">
+                <Label x:Name="lblAlertTab" 
+                   FontSize="15" 
+                   FontWeight="Bold" 
+                   Margin="0,8,0,10" 
+                   Content="Delay time setting" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center" 
+                   Height="34" 
+                   Foreground="#FFC6C6EC" />
+                <Rectangle VerticalAlignment="Bottom"  
+                       Grid.Column="0" 
+                       Stroke="#3044D9" 
+                       Height="3" 
+                       StrokeThickness="3" 
+                       Width="{Binding ElementName=lblAlertTab,Path=ActualWidth}" 
+                       HorizontalAlignment="Left" 
+                       Margin="0,10,0,10" 
+                       SnapsToDevicePixels="True" />
+            </Grid>
+            <Grid Grid.Row="2" HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"></ColumnDefinition>
+                    <ColumnDefinition Width="120"></ColumnDefinition>
+                    <ColumnDefinition Width="80"></ColumnDefinition>
+                    <ColumnDefinition Width="120"></ColumnDefinition>
+                    <ColumnDefinition Width="120"></ColumnDefinition>
+                    <ColumnDefinition Width="80"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="FrameTime" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="35,0,10,0"></TextBlock>
+                <md:MarkableTextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource MarkableTextBox}" InputMethod.IsInputMethodEnabled="False" Text="{Binding FrameTime,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TextType="Decimal"  Minimum="0" Maximum="1000000"  Height="30" VerticalContentAlignment="Center"></md:MarkableTextBox>
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="ms" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="White"></TextBlock>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="RDelay" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="35,0,10,0"></TextBlock>
+                <md:MarkableTextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource MarkableTextBox}" InputMethod.IsInputMethodEnabled="False" Text="{Binding RDelay,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TextType="Decimal"  Minimum="0" Maximum="1000000" Height="30" VerticalContentAlignment="Center"></md:MarkableTextBox>
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="ms" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="White"></TextBlock>
+
+                <TextBlock Grid.Row="1" Grid.Column="3" Text="TDelay" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="35,0,10,0"></TextBlock>
+                <md:MarkableTextBox Grid.Row="1" Grid.Column="4" Style="{StaticResource MarkableTextBox}" InputMethod.IsInputMethodEnabled="False" Text="{Binding TDelay,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="30" TextType="Decimal"  Minimum="0" Maximum="1000000" VerticalContentAlignment="Center"></md:MarkableTextBox>
+                <TextBlock Grid.Row="1" Grid.Column="5" Text="ms" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="White"></TextBlock>
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="CorlDelay" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="35,0,10,0"></TextBlock>
+                <md:MarkableTextBox Grid.Row="2" Grid.Column="1" Style="{StaticResource MarkableTextBox}" InputMethod.IsInputMethodEnabled="False" Text="{Binding CollimatorSpotDelay,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="30" TextType="Decimal"  Minimum="0" Maximum="1000000" VerticalContentAlignment="Center"></md:MarkableTextBox>
+                <TextBlock Grid.Row="2" Grid.Column="2" Text="ms" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="White"></TextBlock>
+
+                <TextBlock Grid.Row="2" Grid.Column="3" Text="SpotDelay" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="35,0,10,0"></TextBlock>
+                <md:MarkableTextBox Grid.Row="2" Grid.Column="4" Style="{StaticResource MarkableTextBox}" InputMethod.IsInputMethodEnabled="False" Text="{Binding SpotDelay,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="30" TextType="Decimal"  Minimum="0" Maximum="1000000" VerticalContentAlignment="Center"></md:MarkableTextBox>
+                <TextBlock Grid.Row="2" Grid.Column="5" Text="ms" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="White"></TextBlock>
+
+                <Button Grid.Row="3" Grid.Column="4" Height="40" Content="{x:Static res:LanguageResource.Content_Save}" Command="{Binding Commands[SaveCommand]}"></Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

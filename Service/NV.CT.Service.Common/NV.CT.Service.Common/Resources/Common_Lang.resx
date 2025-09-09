@@ -1,0 +1,456 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Common_Add" xml:space="preserve">
+    <value>Add</value>
+    <comment>增加</comment>
+  </data>
+  <data name="Common_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>取消</comment>
+  </data>
+  <data name="Common_Close" xml:space="preserve">
+    <value>Close</value>
+    <comment>关闭</comment>
+  </data>
+  <data name="Common_Confirm" xml:space="preserve">
+    <value>Confirm</value>
+    <comment>确认</comment>
+  </data>
+  <data name="Common_Delete" xml:space="preserve">
+    <value>Delete</value>
+    <comment>删除</comment>
+  </data>
+  <data name="Common_Edit" xml:space="preserve">
+    <value>Edit</value>
+    <comment>编辑</comment>
+  </data>
+  <data name="Common_Export" xml:space="preserve">
+    <value>Export</value>
+    <comment>导出</comment>
+  </data>
+  <data name="Common_Go" xml:space="preserve">
+    <value>Go</value>
+    <comment>开始</comment>
+  </data>
+  <data name="Common_HistoryRecord" xml:space="preserve">
+    <value>History Record</value>
+    <comment>历史记录</comment>
+  </data>
+  <data name="Common_Information" xml:space="preserve">
+    <value>Information</value>
+    <comment>信息</comment>
+  </data>
+  <data name="Common_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>名称</comment>
+  </data>
+  <data name="Common_Number" xml:space="preserve">
+    <value>Number</value>
+  </data>
+  <data name="Common_OK" xml:space="preserve">
+    <value>OK</value>
+    <comment>确定</comment>
+  </data>
+  <data name="Common_Progress" xml:space="preserve">
+    <value>Progress</value>
+    <comment>进度</comment>
+  </data>
+  <data name="Common_Progress1" xml:space="preserve">
+    <value>Progress:</value>
+    <comment>进度：</comment>
+  </data>
+  <data name="Common_Result" xml:space="preserve">
+    <value>Result</value>
+    <comment>结果</comment>
+  </data>
+  <data name="Common_Save" xml:space="preserve">
+    <value>Save</value>
+    <comment>保存</comment>
+  </data>
+  <data name="Common_Select" xml:space="preserve">
+    <value>Select</value>
+    <comment>选择</comment>
+  </data>
+  <data name="Common_Start" xml:space="preserve">
+    <value>Start</value>
+    <comment>开始</comment>
+  </data>
+  <data name="Common_Status" xml:space="preserve">
+    <value>Status</value>
+    <comment>状态</comment>
+  </data>
+  <data name="Common_Stop" xml:space="preserve">
+    <value>Stop</value>
+    <comment>停止</comment>
+  </data>
+  <data name="Common_Update" xml:space="preserve">
+    <value>Update</value>
+    <comment>更新</comment>
+  </data>
+  <data name="MapUI_ECGRWaveDelayTime" xml:space="preserve">
+    <value>ECG R Wave Delay (ms)</value>
+  </data>
+  <data name="MapUI_Recon_AirCorrectionMode" xml:space="preserve">
+    <value>Air Correction Mode</value>
+  </data>
+  <data name="MapUI_Recon_BoneAritifactEnable" xml:space="preserve">
+    <value>Bone Aritifact</value>
+  </data>
+  <data name="MapUI_Recon_Bowtie" xml:space="preserve">
+    <value>Bowtie</value>
+  </data>
+  <data name="MapUI_Recon_ConeAngleArtifactReduceEnable" xml:space="preserve">
+    <value>Cone Angle Artifact Reduce</value>
+  </data>
+  <data name="MapUI_Recon_FilterType" xml:space="preserve">
+    <value>Filter Type</value>
+  </data>
+  <data name="MapUI_Recon_FOV" xml:space="preserve">
+    <value>Fov (mm)</value>
+  </data>
+  <data name="MapUI_Recon_ImageIncrement" xml:space="preserve">
+    <value>Image Increment (mm)</value>
+  </data>
+  <data name="MapUI_Recon_ImageMatrix" xml:space="preserve">
+    <value>Image Matrix</value>
+  </data>
+  <data name="MapUI_Recon_InterpType" xml:space="preserve">
+    <value>Interp Type</value>
+  </data>
+  <data name="MapUI_Recon_IsHDRecon" xml:space="preserve">
+    <value>HD Recon</value>
+  </data>
+  <data name="MapUI_Recon_IsTargetRecon" xml:space="preserve">
+    <value>Target Recon</value>
+  </data>
+  <data name="MapUI_Recon_IVRTVCoef" xml:space="preserve">
+    <value>IVR_TV Coef</value>
+  </data>
+  <data name="MapUI_Recon_MetalAritifactEnable" xml:space="preserve">
+    <value>Metal Aritifact</value>
+  </data>
+  <data name="MapUI_Recon_PatientPosition" xml:space="preserve">
+    <value>Patient Position</value>
+  </data>
+  <data name="MapUI_Recon_PostDenoiseCoef" xml:space="preserve">
+    <value>Post Denoise Coef</value>
+  </data>
+  <data name="MapUI_Recon_PostDenoiseType" xml:space="preserve">
+    <value>Post Denoise Type</value>
+  </data>
+  <data name="MapUI_Recon_PreBinning" xml:space="preserve">
+    <value>Pre Binning</value>
+  </data>
+  <data name="MapUI_Recon_PreDenoiseCoef" xml:space="preserve">
+    <value>Pre Denoise Coef</value>
+  </data>
+  <data name="MapUI_Recon_PreDenoiseType" xml:space="preserve">
+    <value>Pre Denoise Type</value>
+  </data>
+  <data name="MapUI_Recon_ReconBodyPart" xml:space="preserve">
+    <value>Recon Body Part</value>
+  </data>
+  <data name="MapUI_Recon_ReconID" xml:space="preserve">
+    <value>Recon ID</value>
+  </data>
+  <data name="MapUI_Recon_ReconType" xml:space="preserve">
+    <value>Recon Type</value>
+  </data>
+  <data name="MapUI_Recon_RingAritifactEnable" xml:space="preserve">
+    <value>Ring Aritifact</value>
+  </data>
+  <data name="MapUI_Recon_ScatterAlgorithm" xml:space="preserve">
+    <value>Scatter Algorithm</value>
+  </data>
+  <data name="MapUI_Recon_SliceThickness" xml:space="preserve">
+    <value>Slice Thickness (mm)</value>
+  </data>
+  <data name="MapUI_Recon_SmoothZEnable" xml:space="preserve">
+    <value>Smooth Z</value>
+  </data>
+  <data name="MapUI_Recon_TwoPassEnable" xml:space="preserve">
+    <value>Two Pass</value>
+  </data>
+  <data name="MapUI_Recon_WindmillArtifactReduceEnable" xml:space="preserve">
+    <value>Windmill Artifact Reduce</value>
+  </data>
+  <data name="MapUI_Recon_WindowCenter" xml:space="preserve">
+    <value>Window Center</value>
+  </data>
+  <data name="MapUI_Recon_WindowWidth" xml:space="preserve">
+    <value>Window Width</value>
+  </data>
+  <data name="MapUI_Scan_AllowErrorXRaySourceCount" xml:space="preserve">
+    <value>Allow Error XRay Source Count</value>
+  </data>
+  <data name="MapUI_Scan_AutoDeleteNum" xml:space="preserve">
+    <value>Auto Delete Number</value>
+  </data>
+  <data name="MapUI_Scan_AutoScan" xml:space="preserve">
+    <value>Auto Scan</value>
+  </data>
+  <data name="MapUI_Scan_BodyCategory" xml:space="preserve">
+    <value>Body Category</value>
+  </data>
+  <data name="MapUI_Scan_BodyPart" xml:space="preserve">
+    <value>Body Part</value>
+  </data>
+  <data name="MapUI_Scan_Bowtie" xml:space="preserve">
+    <value>Bowtie</value>
+  </data>
+  <data name="MapUI_Scan_CollimatorOffsetEnable" xml:space="preserve">
+    <value>Collimator Offset</value>
+  </data>
+  <data name="MapUI_Scan_CollimatorOpenMode" xml:space="preserve">
+    <value>Collimator Open Mode</value>
+  </data>
+  <data name="MapUI_Scan_CollimatorZ" xml:space="preserve">
+    <value>Collimator Z</value>
+  </data>
+  <data name="MapUI_Scan_CTDIvol" xml:space="preserve">
+    <value>CTDIvol</value>
+  </data>
+  <data name="MapUI_Scan_Current" xml:space="preserve">
+    <value>Current (mA)</value>
+  </data>
+  <data name="MapUI_Scan_DisplayFrames" xml:space="preserve">
+    <value>Display Frames</value>
+  </data>
+  <data name="MapUI_Scan_EffectiveFrames" xml:space="preserve">
+    <value>Effective Frames</value>
+  </data>
+  <data name="MapUI_Scan_ExposureDelayTime" xml:space="preserve">
+    <value>Exposure Delay (s)</value>
+  </data>
+  <data name="MapUI_Scan_ExposureMode" xml:space="preserve">
+    <value>Exposure Mode</value>
+  </data>
+  <data name="MapUI_Scan_ExposureTime" xml:space="preserve">
+    <value>Exposure Time (ms)</value>
+  </data>
+  <data name="MapUI_Scan_ExposureTriggerMode" xml:space="preserve">
+    <value>Exposure Trigger Mode</value>
+  </data>
+  <data name="MapUI_Scan_Focal" xml:space="preserve">
+    <value>Focal</value>
+  </data>
+  <data name="MapUI_Scan_FramesPerCycle" xml:space="preserve">
+    <value>Frame Per Cycle</value>
+  </data>
+  <data name="MapUI_Scan_FrameTime" xml:space="preserve">
+    <value>Frame Time (ms)</value>
+  </data>
+  <data name="MapUI_Scan_FunctionMode" xml:space="preserve">
+    <value>Function Mode</value>
+  </data>
+  <data name="MapUI_Scan_Gain" xml:space="preserve">
+    <value>Gain</value>
+  </data>
+  <data name="MapUI_Scan_GantryAcceleration" xml:space="preserve">
+    <value>Gantry Acceleration (°/s²)</value>
+  </data>
+  <data name="MapUI_Scan_GantryAccelerationTime" xml:space="preserve">
+    <value>Gantry Acceleration Time (ms)</value>
+  </data>
+  <data name="MapUI_Scan_GantryDirection" xml:space="preserve">
+    <value>Gantry Direction</value>
+  </data>
+  <data name="MapUI_Scan_GantryEnd" xml:space="preserve">
+    <value>Gantry End (°)</value>
+  </data>
+  <data name="MapUI_Scan_GantrySpeed" xml:space="preserve">
+    <value>Gantry Speed (°/s)</value>
+  </data>
+  <data name="MapUI_Scan_GantryStart" xml:space="preserve">
+    <value>Gantry Start (°)</value>
+  </data>
+  <data name="MapUI_Scan_mAs" xml:space="preserve">
+    <value>mAs</value>
+  </data>
+  <data name="MapUI_Scan_ObjectFov" xml:space="preserve">
+    <value>Object Fov (mm)</value>
+  </data>
+  <data name="MapUI_Scan_Pitch" xml:space="preserve">
+    <value>Pitch</value>
+  </data>
+  <data name="MapUI_Scan_PostDeleteLength" xml:space="preserve">
+    <value>Post Delete Length (mm)</value>
+  </data>
+  <data name="MapUI_Scan_PostOffset" xml:space="preserve">
+    <value>Post Offset</value>
+  </data>
+  <data name="MapUI_Scan_PreOffset" xml:space="preserve">
+    <value>Pre Offset</value>
+  </data>
+  <data name="MapUI_Scan_RDelay" xml:space="preserve">
+    <value>R Delay (ms)</value>
+  </data>
+  <data name="MapUI_Scan_ReconVolumeEndPosition" xml:space="preserve">
+    <value>Recon Volume End (mm)</value>
+  </data>
+  <data name="MapUI_Scan_ReconVolumeStartPosition" xml:space="preserve">
+    <value>Recon Volume Start (mm)</value>
+  </data>
+  <data name="MapUI_Scan_ScanBinning" xml:space="preserve">
+    <value>Scan Binning</value>
+  </data>
+  <data name="MapUI_Scan_ScanFOV" xml:space="preserve">
+    <value>Scan Fov (mm)</value>
+  </data>
+  <data name="MapUI_Scan_ScanLength" xml:space="preserve">
+    <value>Scan Length (mm)</value>
+  </data>
+  <data name="MapUI_Scan_ScanMode" xml:space="preserve">
+    <value>Scan Mode</value>
+  </data>
+  <data name="MapUI_Scan_ScanOption" xml:space="preserve">
+    <value>Scan Option</value>
+  </data>
+  <data name="MapUI_Scan_ScanUID" xml:space="preserve">
+    <value>Scan UID</value>
+  </data>
+  <data name="MapUI_Scan_TableAcceleration" xml:space="preserve">
+    <value>Table Acceleration (mm/s²)</value>
+  </data>
+  <data name="MapUI_Scan_TableAccelerationTime" xml:space="preserve">
+    <value>Table Acceleration Time (ms)</value>
+  </data>
+  <data name="MapUI_Scan_TableDirection" xml:space="preserve">
+    <value>Table Direction</value>
+  </data>
+  <data name="MapUI_Scan_TableFeed" xml:space="preserve">
+    <value>Table Feed (mm)</value>
+  </data>
+  <data name="MapUI_Scan_TableHeight" xml:space="preserve">
+    <value>Table Height (mm)</value>
+  </data>
+  <data name="MapUI_Scan_TableSpeed" xml:space="preserve">
+    <value>Table Speed (mm/s)</value>
+  </data>
+  <data name="MapUI_Scan_TDelay" xml:space="preserve">
+    <value>T Delay (ms)</value>
+  </data>
+  <data name="MapUI_Scan_TubePositions" xml:space="preserve">
+    <value>Tube Positions</value>
+  </data>
+  <data name="MapUI_Scan_Voltage" xml:space="preserve">
+    <value>Voltage (kV)</value>
+  </data>
+</root>

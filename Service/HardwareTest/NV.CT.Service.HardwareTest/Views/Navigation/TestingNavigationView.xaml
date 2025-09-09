@@ -1,0 +1,92 @@
+﻿<Grid
+    x:Class="NV.CT.Service.HardwareTest.Views.Navigation.NavigationView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:NV.CT.Service.HardwareTest.ViewModels.Navigation"
+    mc:Ignorable="d"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    d:DataContext="{d:DesignInstance Type=vm:NavigationViewModel}"
+    Loaded="TestingNavigationView_Loaded">
+    <Grid.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/NV.CT.Service.HardwareTest;component/Attachments/Themes/Generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Grid.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="34" />
+            <ColumnDefinition Width="1" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="2" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="2" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <!--  左侧列表显隐控制  -->
+        <ToggleButton
+            x:Name="LeftMenuVisibilityToggleButton"
+            Width="30"
+            Height="30"
+            Margin="0,9,4,0"
+            VerticalAlignment="Top"
+            md:ToggleButtonAssist.OnContent="{md:PackIcon Kind=ChevronTripleRight}"
+            Content="{md:PackIcon Kind=ChevronTripleLeft}"
+            Foreground="White"
+            Style="{StaticResource MaterialDesignActionToggleButton}" />
+
+        <!--  部件/系统功能 列表  -->
+        <GroupBox
+            x:Name="ComponentGroupBox"
+            Grid.Column="2"
+            Width="216"
+            Header="Component | System"
+            Style="{StaticResource StandardGroupBoxStyle}">
+            <ListView
+                DisplayMemberPath="Name"
+                ItemsSource="{Binding NavigationComponents}"
+                SelectedIndex="0">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction
+                            Command="{Binding DataContext.NavigateSelectedComponentCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                            CommandParameter="{Binding Path=SelectedItem, RelativeSource={RelativeSource AncestorType=ListView}}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ListView>
+        </GroupBox>
+
+        <!--  测试项 列表  -->
+        <GroupBox
+            x:Name="TestItemGroupBox"
+            Grid.Column="4"
+            Width="216"
+            Header="Test Items"
+            Style="{StaticResource StandardGroupBoxStyle}">
+            <ListView
+                DisplayMemberPath="Name"
+                ItemsSource="{Binding CurrentNavigationComponent.ComponentTestItemMenu}"
+                SelectedIndex="{Binding CurrentTestItemIndex}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction
+                            Command="{Binding DataContext.NavigateSelectedTestingItemCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                            CommandParameter="{Binding Path=SelectedItem, RelativeSource={RelativeSource AncestorType=ListView}}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ListView>
+        </GroupBox>
+
+        <!--  被选中测试项内容  -->
+        <Grid Grid.Column="6">
+            <ContentControl Content="{Binding CurrentNavigationView}" />
+        </Grid>
+    </Grid>
+</Grid>

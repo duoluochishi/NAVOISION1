@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>$(TargetFramework)-windows</TargetFramework>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>enable</Nullable>
+	  <UseWindowsForms>true</UseWindowsForms>
+	  <UseWPF>true</UseWPF>
+	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<ProjectReference Include="..\CTS\NV.CT.CTS.csproj" />
+    <ProjectReference Include="..\DicomUtility\NV.CT.DicomUtility.csproj" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Autofac" />
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" />
+		<PackageReference Include="fo-dicom" />
+		<PackageReference Include="fo-dicom.Codecs" />
+		<PackageReference Include="MathNet.Numerics" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="NV.MPS.Exception">
+			<HintPath>..\..\bin\NV.MPS.Exception.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.CT.FacadeProxy.Common">
+			<HintPath>..\..\bin\NV.CT.FacadeProxy.Common.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.CT.SystemInterface.MCSDVDCDBurner">
+			<HintPath>..\..\bin\NV.CT.SystemInterface.MCSDVDCDBurner.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+</Project>

@@ -1,0 +1,16 @@
+﻿global using Autofac;
+global using AutoMapper;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Hosting;
+global using Newtonsoft.Json;
+global using NV.CT.CTS.Enums;
+global using NV.CT.CTS.Extensions;
+global using NV.CT.CTS.Helpers;
+global using NV.CT.DatabaseService.Contract;
+global using NV.CT.Examination.ApplicationService.Contract.Interfaces;
+global using NV.CT.Examination.ApplicationService.Contract.Models;
+global using NV.CT.Examination.ApplicationService.Impl.ProtocolExtension;
+global using NV.CT.Protocol;
+global using NV.CT.Protocol.Interfaces;
+global using NV.CT.Protocol.Models;
+global using NV.CT.SystemInterface.MRSIntegration.Contract.Models;

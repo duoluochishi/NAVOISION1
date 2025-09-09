@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <OutputType>Library</OutputType>
+	  <TargetFramework>$(TargetFramework)-windows</TargetFramework>
+	  <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" />
+    <PackageReference Include="Microsoft.Extensions.Logging" />
+	  <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\SystemService\ConfigService.Contract\NV.CT.ConfigService.Contract.csproj" />
+    <ProjectReference Include="..\CTS\NV.CT.CTS.csproj" />
+    <ProjectReference Include="..\Protocol\NV.CT.Protocol.csproj" />
+  </ItemGroup>
+	<ItemGroup>
+		<Reference Include="NV.MPS.Environment">
+			<HintPath>..\..\bin\NV.MPS.Environment.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.CT.ImageViewer.Interop">
+			<HintPath>..\..\bin\NV.CT.ImageViewer.Interop.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+</Project>

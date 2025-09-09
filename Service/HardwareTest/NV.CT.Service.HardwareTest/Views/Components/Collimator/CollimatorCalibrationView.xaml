@@ -1,0 +1,1297 @@
+﻿<Grid
+    x:Class="NV.CT.Service.HardwareTest.Views.Components.Collimator.CollimatorCalibrationView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ap="clr-namespace:NV.CT.Service.Common.AttachedProperty;assembly=NV.CT.Service.Common"
+    xmlns:commonconverters="clr-namespace:NV.CT.Service.Common.Converters;assembly=NV.CT.Service.Common"
+    xmlns:converters="clr-namespace:NV.CT.Service.HardwareTest.Attachments.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="clr-namespace:NV.CT.Service.HardwareTest.Attachments.Helpers"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mk="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableTextBox;assembly=MaterialDesignThemes.Wpf"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding ViewLoadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid.Resources>
+
+        <converters:CollimatorStatusWidthAutoFitConverter x:Key="CollimatorStatusWidthAutoFitConverter" />
+        <converters:UniversalMultiBindingConverter x:Key="UniversalMultiBindingConverter" />
+        <converters:BooleanToDisplayConverter x:Key="BooleanToDisplayConverter" />
+        <commonconverters:DecimalPointConverter x:Key="DecimalPointConverter" />
+
+        <!--  ParameterGroupBoxStyle  -->
+        <Style
+            x:Key="ParameterGroupBoxStyle"
+            BasedOn="{StaticResource MaterialDesignGroupBox}"
+            TargetType="{x:Type GroupBox}">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="Padding" Value="4,2" />
+            <Setter Property="Width" Value="145" />
+            <Setter Property="Height" Value="70" />
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock
+                            HorizontalAlignment="Left"
+                            Foreground="White"
+                            Text="{Binding Header, RelativeSource={RelativeSource AncestorType=GroupBox}}" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--  IconButtonStyle  -->
+        <Style
+            x:Key="IconButtonStyle"
+            BasedOn="{StaticResource MaterialDesignRaisedButton}"
+            TargetType="{x:Type Button}">
+
+            <Setter Property="Width" Value="40" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Foreground" Value="White" />
+
+        </Style>
+
+        <!--  CollimatorBorderStyle  -->
+        <Style
+            x:Key="CollimatorBorderStyle"
+            TargetType="{x:Type Border}">
+            <Setter Property="Margin" Value="2,2,0,2" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="CornerRadius" Value="5" />
+            <Setter Property="Background" Value="{StaticResource BaseBackgroundColor}" />
+        </Style>
+
+        <DataTemplate x:Key="BoldExpanderHeaderTemplate">
+            <TextBlock
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                FontWeight="Bold"
+                Foreground="{StaticResource BaseForegroundColor}"
+                Text="{Binding Header, RelativeSource={RelativeSource AncestorType=Expander}}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="TabItemBoldHeaderTemplate">
+            <TextBlock
+                FontWeight="Bold"
+                Text="{Binding Header, RelativeSource={RelativeSource AncestorType=TabItem}}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="BoldGroupBoxHeaderTemplate">
+            <TextBlock
+                HorizontalAlignment="Center"
+                FontWeight="Bold"
+                Text="{Binding Header, RelativeSource={RelativeSource AncestorType=GroupBox}}" />
+        </DataTemplate>
+
+    </Grid.Resources>
+
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="380" />
+        <ColumnDefinition />
+    </Grid.ColumnDefinitions>
+
+    <GroupBox
+        Header="Parameters"
+        Style="{DynamicResource StandardGroupBoxStyle}">
+
+        <GroupBox.Resources>
+
+            <Style
+                BasedOn="{StaticResource ParameterGroupBoxStyle}"
+                TargetType="{x:Type GroupBox}">
+                <Setter Property="Width" Value="180" />
+                <Setter Property="Margin" Value="1,1,0,0" />
+            </Style>
+
+            <Style
+                BasedOn="{StaticResource NanoButtonStyle}"
+                TargetType="{x:Type Button}">
+                <Setter Property="Margin" Value="2,4" />
+                <Setter Property="Width" Value="350" />
+            </Style>
+
+        </GroupBox.Resources>
+
+        <StackPanel>
+
+            <!--  Scan Parameters  -->
+            <StackPanel
+                Margin="0,-2,0,5"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal">
+
+                <Line
+                    VerticalAlignment="Center"
+                    Stroke="#666"
+                    StrokeThickness="3"
+                    X2="155" />
+
+                <TextBlock
+                    Margin="5,0"
+                    VerticalAlignment="Center"
+                    FontWeight="Bold"
+                    Text="Scan Parameters" />
+
+                <Line
+                    VerticalAlignment="Center"
+                    Stroke="#666"
+                    StrokeThickness="3"
+                    X2="155" />
+
+            </StackPanel>
+
+            <WrapPanel
+                Margin="0,1,0,0"
+                HorizontalAlignment="Left">
+
+                <GroupBox Header="XRay Source Index">
+                    <ComboBox
+                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                        SelectedItem="{Binding ScanParameters.ExposureParameters.XRaySourceIndex, Mode=TwoWay}" />
+                </GroupBox>
+
+                <GroupBox Header="Scan Option">
+                    <ComboBox
+                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                        IsEnabled="False"
+                        SelectedItem="{Binding ScanParameters.ExposureParameters.ScanOption, Mode=TwoWay}" />
+                </GroupBox>
+
+                <GroupBox Header="kV">
+                    <mk:MarkableTextBox
+                        ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                        Text="{Binding ScanParameters.ExposureParameters.KVs[0], Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                </GroupBox>
+
+                <GroupBox Header="mA">
+                    <mk:MarkableTextBox
+                        ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                        Text="{Binding ScanParameters.ExposureParameters.MAs[0], Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                </GroupBox>
+
+                <GroupBox Header="Exposure Time (ms)">
+                    <mk:MarkableTextBox
+                        ap:TextBoxAttachedProperty.InputType="UnsignedDecimal"
+                        Text="{Binding ScanParameters.ExposureParameters.ExposureTime, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                </GroupBox>
+
+                <GroupBox Header="Frame Time (ms)">
+                    <mk:MarkableTextBox
+                        ap:TextBoxAttachedProperty.InputType="UnsignedDecimal"
+                        Text="{Binding ScanParameters.ExposureParameters.FrameTime, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                </GroupBox>
+
+                <GroupBox Header="Exposure Delay (ms)">
+                    <mk:MarkableTextBox
+                        ap:TextBoxAttachedProperty.InputType="UnsignedDecimal"
+                        Text="{Binding ScanParameters.ExposureParameters.ExposureDelayTime, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                </GroupBox>
+
+                <GroupBox Header="Total Frames">
+                    <mk:MarkableTextBox
+                        ap:TextBoxAttachedProperty.InputType="UnsignedInteger"
+                        Text="{Binding ScanParameters.ExposureParameters.TotalFrames, Mode=TwoWay, Converter={StaticResource DecimalPointConverter}}" />
+                </GroupBox>
+
+            </WrapPanel>
+
+            <!--  Calibration Control  -->
+            <StackPanel
+                Margin="0,5"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal">
+
+                <Line
+                    VerticalAlignment="Center"
+                    Stroke="#666"
+                    StrokeThickness="3"
+                    X2="155" />
+
+                <TextBlock
+                    Margin="5,0"
+                    VerticalAlignment="Center"
+                    FontWeight="Bold"
+                    Text="Collimator Calibration Control" />
+
+                <Line
+                    VerticalAlignment="Center"
+                    Stroke="#666"
+                    StrokeThickness="3"
+                    X2="155" />
+
+            </StackPanel>
+
+            <StackPanel>
+
+                <GroupBox
+                    Width="360"
+                    Header="Collimator Calibration Open Type">
+
+                    <ComboBox
+                        DisplayMemberPath="Name"
+                        ItemsSource="{Binding CollimatorOpeningTypes}"
+                        SelectedIndex="{Binding CurrentCalibrationOpeningTypeIndex, Mode=TwoWay}" />
+
+                </GroupBox>
+
+                <CheckBox
+                    Margin="0,2,0,0"
+                    HorizontalAlignment="Center"
+                    Content="Configure After Calibration"
+                    IsChecked="{Binding IsConfigureAfterCalibration}" />
+
+            </StackPanel>
+
+            <WrapPanel
+                Margin="0,3,0,0"
+                HorizontalAlignment="Center">
+
+                <WrapPanel.Resources>
+
+                    <Style
+                        BasedOn="{StaticResource NanoButtonStyle}"
+                        TargetType="{x:Type Button}">
+                        <Setter Property="Margin" Value="6,5" />
+                        <Setter Property="Width" Value="105" />
+                    </Style>
+
+                </WrapPanel.Resources>
+
+                <Button
+                    Command="{Binding StartCalibrationCommand}"
+                    Content="Start" />
+
+                <Button
+                    Command="{Binding StopCalibrationCommand}"
+                    Content="Stop" />
+
+                <Button
+                    Command="{Binding ResetCalibrationCommand}"
+                    Content="Reset" />
+
+            </WrapPanel>
+
+            <!--  Configure Calibration Table  -->
+            <StackPanel
+                Margin="0,5"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal">
+
+                <Line
+                    VerticalAlignment="Center"
+                    Stroke="#666"
+                    StrokeThickness="3"
+                    X2="155" />
+
+                <TextBlock
+                    Margin="5,0"
+                    VerticalAlignment="Center"
+                    FontWeight="Bold"
+                    Text="Configure Calibration Table" />
+
+                <Line
+                    VerticalAlignment="Center"
+                    Stroke="#666"
+                    StrokeThickness="3"
+                    X2="155" />
+
+            </StackPanel>
+
+            <Button
+                Command="{Binding ConfigureCalibrationTableCommand}"
+                Content="Configure Calibration Table" />
+
+            <!--  Move By Calibration Table (Move Steps)  -->
+            <StackPanel
+                Margin="0,5"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal">
+
+                <Line
+                    VerticalAlignment="Center"
+                    Stroke="#666"
+                    StrokeThickness="3"
+                    X2="155" />
+
+                <TextBlock
+                    Margin="5,0"
+                    VerticalAlignment="Center"
+                    FontWeight="Bold"
+                    Text="Move By Calibration Table" />
+
+                <Line
+                    VerticalAlignment="Center"
+                    Stroke="#666"
+                    StrokeThickness="3"
+                    X2="155" />
+
+            </StackPanel>
+
+            <Button
+                Command="{Binding MoveBySelectedCalibrationTableCommand}"
+                Content="Move By Selected Calibration Table" />
+
+            <!--  Move By Open Width & Open Type  -->
+            <StackPanel
+                Margin="0,5"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal">
+
+                <Line
+                    VerticalAlignment="Center"
+                    Stroke="#666"
+                    StrokeThickness="3"
+                    X2="155" />
+
+                <TextBlock
+                    Margin="5,0"
+                    VerticalAlignment="Center"
+                    FontWeight="Bold"
+                    Text="Move By Open Width &amp; Open Type" />
+
+                <Line
+                    VerticalAlignment="Center"
+                    Stroke="#666"
+                    StrokeThickness="3"
+                    X2="155" />
+
+            </StackPanel>
+
+            <StackPanel>
+
+                <GroupBox
+                    Width="360"
+                    Header="Bowtie Move Option">
+
+                    <ComboBox
+                        helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                        SelectedItem="{Binding CurrentBowtieMoveOption, Mode=TwoWay}" />
+
+                </GroupBox>
+
+                <GroupBox
+                    Width="360"
+                    Header="Collimator Application Open Type">
+
+                    <ComboBox
+                        DisplayMemberPath="Name"
+                        ItemsSource="{Binding CollimatorOpeningTypes}"
+                        SelectedIndex="{Binding CurrentApplicationOpeningTypeIndex, Mode=TwoWay}" />
+
+                </GroupBox>
+
+                <Button
+                    Margin="0,10"
+                    Command="{Binding MoveBySelectedOpeningCommand}"
+                    Content="Move By Selected Opening Mode &amp; Width" />
+
+            </StackPanel>
+
+        </StackPanel>
+
+    </GroupBox>
+
+    <Grid Grid.Column="1">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.35*" />
+            <RowDefinition Height="0.35*" />
+            <RowDefinition Height="0.3*" />
+        </Grid.RowDefinitions>
+
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <Border
+                Margin="2,0,0,0"
+                BorderBrush="#3b3b5f"
+                BorderThickness="1"
+                CornerRadius="2">
+
+                <mk:MarkableTextBox
+                    x:Name="feedbackConsole"
+                    Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Border}}"
+                    Padding="5,10"
+                    VerticalContentAlignment="Top"
+                    Background="#111111"
+                    IsReadOnly="True"
+                    Style="{StaticResource MarkableTextBox}"
+                    Text="{Binding ConsoleMessage, Mode=TwoWay}"
+                    TextChanged="FeedbackConsole_TextChanged"
+                    TextWrapping="Wrap"
+                    VerticalScrollBarVisibility="Auto" />
+
+            </Border>
+
+            <Button
+                Margin="0,7,7,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Command="{Binding ClearConsoleMessageCommand}"
+                Style="{StaticResource IconButtonStyle}">
+                <Button.Content>
+                    <md:PackIcon Kind="Refresh" />
+                </Button.Content>
+            </Button>
+
+            <Border
+                Grid.Column="1"
+                Width="260"
+                Margin="2,0,0,0"
+                Background="{StaticResource BaseBackgroundColor}"
+                BorderThickness="1">
+
+                <Grid>
+
+                    <Grid.Resources>
+
+                        <Style
+                            BasedOn="{StaticResource ParameterGroupBoxStyle}"
+                            TargetType="{x:Type GroupBox}">
+                            <Setter Property="Width" Value="auto" />
+                            <Setter Property="Margin" Value="1,0" />
+                            <Setter Property="Height" Value="67" />
+                        </Style>
+
+                        <Style
+                            BasedOn="{StaticResource NanoTextBlockStyle}"
+                            TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="FontSize" Value="14" />
+                        </Style>
+
+                    </Grid.Resources>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <GroupBox
+                        Grid.Row="0"
+                        Header="Calibrating Status"
+                        HeaderTemplate="{StaticResource BoldGroupBoxHeaderTemplate}">
+                        <TextBlock Text="{Binding CurrentCalibrationStatus}" />
+                    </GroupBox>
+
+                    <GroupBox
+                        Grid.Row="1"
+                        Header="Calibrating Iteration Round"
+                        HeaderTemplate="{StaticResource BoldGroupBoxHeaderTemplate}">
+                        <TextBlock Text="{Binding CurrentIterationRound}" />
+                    </GroupBox>
+
+                    <GroupBox
+                        Grid.Row="2"
+                        Header="Calibrating Motor Type"
+                        HeaderTemplate="{StaticResource BoldGroupBoxHeaderTemplate}">
+                        <TextBlock Text="{Binding CurrentCalibratingMotorType, Mode=OneWay}" />
+                    </GroupBox>
+
+                    <GroupBox
+                        Grid.Row="3"
+                        Header="Calibrating Open Mode"
+                        HeaderTemplate="{StaticResource BoldGroupBoxHeaderTemplate}">
+                        <TextBlock Text="{Binding SelectedCalibrationOpeningType.OpenMode}" />
+                    </GroupBox>
+
+                    <GroupBox
+                        Grid.Row="4"
+                        Header="Calibrating Open Width"
+                        HeaderTemplate="{StaticResource BoldGroupBoxHeaderTemplate}">
+                        <TextBlock Text="{Binding SelectedCalibrationOpeningType.OpenWidth}" />
+                    </GroupBox>
+
+                </Grid>
+
+            </Border>
+
+        </Grid>
+
+        <TabControl Grid.Row="1">
+
+            <TabItem
+                Header="Collimator Calibration Process Information"
+                HeaderTemplate="{StaticResource TabItemBoldHeaderTemplate}">
+
+                <Border Style="{StaticResource CollimatorBorderStyle}">
+
+                    <StackPanel Orientation="Horizontal">
+
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="1" />
+                                <RowDefinition />
+                                <RowDefinition Height="1" />
+                                <RowDefinition />
+                                <RowDefinition Height="1" />
+                                <RowDefinition />
+                                <RowDefinition Height="1" />
+                                <RowDefinition />
+                                <RowDefinition Height="1" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="1" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.Resources>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="TextAlignment" Value="Center" />
+                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter Property="FontSize" Value="12" />
+                                    <Setter Property="Width" Value="125" />
+                                    <Setter Property="FontWeight" Value="SemiBold" />
+
+                                </Style>
+                            </Grid.Resources>
+
+                            <TextBlock
+                                Grid.Row="0"
+                                Text="Collimator Index" />
+                            <Rectangle
+                                Grid.Row="1"
+                                Height="1"
+                                Fill="White" />
+                            <TextBlock
+                                Grid.Row="2"
+                                Text="Collimator Position" />
+                            <Rectangle
+                                Grid.Row="3"
+                                Height="1"
+                                Fill="White" />
+                            <TextBlock
+                                Grid.Row="4"
+                                Text="Detector Position" />
+                            <Rectangle
+                                Grid.Row="5"
+                                Height="1"
+                                Fill="White" />
+                            <TextBlock
+                                Grid.Row="6"
+                                Text="Offset" />
+                            <Rectangle
+                                Grid.Row="7"
+                                Height="1"
+                                Fill="White" />
+                            <TextBlock
+                                Grid.Row="8"
+                                Text="Complete" />
+                            <Rectangle
+                                Grid.Row="9"
+                                Height="1"
+                                Fill="White" />
+
+                            <Rectangle
+                                Grid.RowSpan="9"
+                                Grid.Column="1"
+                                Width="1"
+                                Fill="White" />
+
+                        </Grid>
+
+                        <ItemsControl ItemsSource="{Binding IterativeResultsCache}">
+
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel
+                                        Orientation="Horizontal"
+                                        VirtualizingPanel.IsVirtualizing="True"
+                                        VirtualizingPanel.ScrollUnit="Pixel" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+
+                                    <Grid>
+
+                                        <Grid.Resources>
+
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                <Setter Property="VerticalAlignment" Value="Center" />
+                                                <Setter Property="Width">
+                                                    <Setter.Value>
+                                                        <MultiBinding Converter="{StaticResource CollimatorStatusWidthAutoFitConverter}">
+                                                            <Binding
+                                                                Path="ActualWidth"
+                                                                RelativeSource="{RelativeSource AncestorType=TabControl}" />
+                                                            <Binding
+                                                                Path="Children[0].ActualWidth"
+                                                                RelativeSource="{RelativeSource AncestorType=StackPanel}" />
+                                                        </MultiBinding>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Setter Property="Foreground" Value="White" />
+                                                <Setter Property="FontSize" Value="11" />
+                                                <Setter Property="TextAlignment" Value="Center" />
+                                            </Style>
+
+                                        </Grid.Resources>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition Height="1" />
+                                            <RowDefinition />
+                                            <RowDefinition Height="1" />
+                                            <RowDefinition />
+                                            <RowDefinition Height="1" />
+                                            <RowDefinition />
+                                            <RowDefinition Height="1" />
+                                            <RowDefinition />
+                                            <RowDefinition Height="1" />
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock
+                                            Grid.Row="0"
+                                            FontWeight="Bold"
+                                            Text="{Binding CollimatorName}" />
+                                        <Rectangle
+                                            Grid.Row="1"
+                                            Height="1"
+                                            Fill="White" />
+                                        <TextBlock
+                                            Grid.Row="2"
+                                            Text="{Binding IterativceCollimatorPosition}" />
+                                        <Rectangle
+                                            Grid.Row="3"
+                                            Height="1"
+                                            Fill="White" />
+                                        <TextBlock
+                                            Grid.Row="4"
+                                            Text="{Binding IterativceDetectorPosition, StringFormat={}{0:F2}}" />
+                                        <Rectangle
+                                            Grid.Row="5"
+                                            Height="1"
+                                            Fill="White" />
+                                        <TextBlock
+                                            Grid.Row="6"
+                                            Text="{Binding Offset, StringFormat={}{0:F2}}" />
+                                        <Rectangle
+                                            Grid.Row="7"
+                                            Height="1"
+                                            Fill="White" />
+                                        <md:PackIcon
+                                            x:Name="FinishFlag"
+                                            Grid.Row="8"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Kind="{Binding CalibrationCompleted, Converter={StaticResource BooleanToDisplayConverter}}" />
+                                        <Rectangle
+                                            Grid.Row="9"
+                                            Height="1"
+                                            Fill="White" />
+                                    </Grid>
+
+                                    <DataTemplate.Triggers>
+
+                                        <DataTrigger
+                                            Binding="{Binding CalibrationCompleted}"
+                                            Value="True">
+                                            <Setter TargetName="FinishFlag" Property="Foreground" Value="LimeGreen" />
+                                        </DataTrigger>
+
+                                    </DataTemplate.Triggers>
+
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+
+                        </ItemsControl>
+
+                    </StackPanel>
+
+                </Border>
+
+            </TabItem>
+
+        </TabControl>
+
+        <TabControl Grid.Row="2">
+
+            <TabItem
+                Header="Collimator Status"
+                HeaderTemplate="{StaticResource TabItemBoldHeaderTemplate}">
+
+                <Border Style="{StaticResource CollimatorBorderStyle}">
+
+                    <Border.Resources>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="TextAlignment" Value="Center" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="FontSize" Value="13" />
+                        </Style>
+                    </Border.Resources>
+
+                    <StackPanel Orientation="Horizontal">
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="1" />
+                                <RowDefinition />
+                                <RowDefinition Height="1" />
+                                <RowDefinition />
+                                <RowDefinition Height="1" />
+                                <RowDefinition />
+                                <RowDefinition Height="1" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="1" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.Resources>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="TextAlignment" Value="Center" />
+                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter Property="FontSize" Value="12" />
+                                    <Setter Property="Width" Value="130" />
+                                    <Setter Property="FontWeight" Value="SemiBold" />
+                                </Style>
+                            </Grid.Resources>
+
+                            <TextBlock
+                                Grid.Row="0"
+                                Text="Collimator Index" />
+                            <Rectangle
+                                Grid.Row="1"
+                                Height="1"
+                                Fill="White" />
+                            <TextBlock
+                                Grid.Row="2"
+                                Text="Bowtie Position" />
+                            <Rectangle
+                                Grid.Row="3"
+                                Height="1"
+                                Fill="White" />
+                            <TextBlock
+                                Grid.Row="4"
+                                Text="Front Blade Position" />
+                            <Rectangle
+                                Grid.Row="5"
+                                Height="1"
+                                Fill="White" />
+                            <TextBlock
+                                Grid.Row="6"
+                                Text="Rear Blade Position" />
+                            <Rectangle
+                                Grid.Row="7"
+                                Height="1"
+                                Fill="White" />
+                            <Rectangle
+                                Grid.RowSpan="7"
+                                Grid.Column="1"
+                                Width="1"
+                                Fill="White" />
+
+                        </Grid>
+
+                        <ItemsControl ItemsSource="{Binding CollimatorSources}">
+
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel
+                                        Orientation="Horizontal"
+                                        VirtualizingPanel.IsVirtualizing="True"
+                                        VirtualizingPanel.ScrollUnit="Pixel" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+
+                                        <Grid.Resources>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                <Setter Property="VerticalAlignment" Value="Center" />
+                                                <Setter Property="Width">
+                                                    <Setter.Value>
+                                                        <MultiBinding Converter="{StaticResource CollimatorStatusWidthAutoFitConverter}">
+                                                            <Binding
+                                                                Path="ActualWidth"
+                                                                RelativeSource="{RelativeSource AncestorType=TabControl}" />
+                                                            <Binding
+                                                                Path="Children[0].ActualWidth"
+                                                                RelativeSource="{RelativeSource AncestorType=StackPanel}" />
+                                                        </MultiBinding>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Setter Property="Foreground" Value="White" />
+                                                <Setter Property="FontSize" Value="11" />
+                                                <Setter Property="TextAlignment" Value="Center" />
+                                            </Style>
+                                        </Grid.Resources>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition Height="1" />
+                                            <RowDefinition />
+                                            <RowDefinition Height="1" />
+                                            <RowDefinition />
+                                            <RowDefinition Height="1" />
+                                            <RowDefinition />
+                                            <RowDefinition Height="1" />
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock
+                                            FontWeight="Bold"
+                                            Text="{Binding Name}" />
+                                        <Rectangle
+                                            Grid.Row="1"
+                                            Height="1"
+                                            Fill="White" />
+                                        <TextBlock
+                                            Grid.Row="2"
+                                            Text="{Binding BowtieMoveStep}" />
+                                        <Rectangle
+                                            Grid.Row="3"
+                                            Height="1"
+                                            Fill="White" />
+                                        <TextBlock
+                                            Grid.Row="4"
+                                            Text="{Binding FrontBladeMoveStep}" />
+                                        <Rectangle
+                                            Grid.Row="5"
+                                            Height="1"
+                                            Fill="White" />
+                                        <TextBlock
+                                            Grid.Row="6"
+                                            Text="{Binding RearBladeMoveStep}" />
+                                        <Rectangle
+                                            Grid.Row="7"
+                                            Height="1"
+                                            Fill="White" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+
+                        </ItemsControl>
+
+                    </StackPanel>
+
+                </Border>
+
+            </TabItem>
+
+            <TabItem
+                Header="Collimator Control"
+                HeaderTemplate="{StaticResource TabItemBoldHeaderTemplate}">
+
+                <Grid
+                    Margin="10"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top">
+
+                    <Grid.Resources>
+                        <Style
+                            BasedOn="{StaticResource ParameterGroupBoxStyle}"
+                            TargetType="{x:Type GroupBox}">
+
+                            <Setter Property="Margin" Value="1,0,1,0" />
+                            <Setter Property="Width" Value="260" />
+
+                        </Style>
+
+                        <Style
+                            BasedOn="{StaticResource NanoButtonStyle}"
+                            TargetType="{x:Type Button}">
+                            <Setter Property="Width" Value="80" />
+                            <Setter Property="Margin" Value="5,1,0,0" />
+                        </Style>
+                    </Grid.Resources>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <GroupBox
+                        Grid.Column="0"
+                        Header="Collimator Index">
+                        <ComboBox
+                            Margin="1,0,1,2"
+                            helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                            SelectedItem="{Binding SelectedCollimatorSourceIndex, Mode=TwoWay}" />
+                    </GroupBox>
+
+                    <GroupBox
+                        Grid.Column="1"
+                        Header="Front Blade Motor Control">
+                        <StackPanel Orientation="Horizontal">
+
+                            <mk:MarkableTextBox
+                                Width="165"
+                                VerticalAlignment="Center"
+                                Text="{Binding FrontBladeTargetPosition, Mode=TwoWay}" />
+
+                            <Button
+                                Command="{Binding MoveCollimatorSpecificMotorToTargetPositionCommand}"
+                                CommandParameter="FrontBlade"
+                                Content="Move" />
+
+                        </StackPanel>
+                    </GroupBox>
+
+                    <GroupBox
+                        Grid.Column="2"
+                        Header="Rear Blade Motor Control">
+                        <StackPanel Orientation="Horizontal">
+
+                            <mk:MarkableTextBox
+                                Width="165"
+                                VerticalAlignment="Center"
+                                Text="{Binding RearBladeTargetPosition, Mode=TwoWay}" />
+
+                            <Button
+                                Command="{Binding MoveCollimatorSpecificMotorToTargetPositionCommand}"
+                                CommandParameter="RearBlade"
+                                Content="Move" />
+
+                        </StackPanel>
+                    </GroupBox>
+
+                    <GroupBox
+                        Grid.Column="3"
+                        Header="Bowtie Motor Control">
+                        <StackPanel Orientation="Horizontal">
+
+                            <mk:MarkableTextBox
+                                Width="165"
+                                VerticalAlignment="Center"
+                                Text="{Binding BowtieTargetPosition, Mode=TwoWay}" />
+
+                            <Button
+                                Command="{Binding MoveCollimatorSpecificMotorToTargetPositionCommand}"
+                                CommandParameter="Bowtie"
+                                Content="Move" />
+
+                        </StackPanel>
+                    </GroupBox>
+
+                </Grid>
+
+                <!--<Grid>
+
+                    <Grid.Resources>
+
+                        <DataTemplate x:Key="SmallHeaderTemplate">
+                            <TextBlock
+                                Padding="0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="12"
+                                Foreground="{StaticResource BaseForegroundColor}"
+                                Text="{Binding Header, RelativeSource={RelativeSource AncestorType=GroupBox}}" />
+                        </DataTemplate>
+
+                        <Style
+                            BasedOn="{StaticResource MarkableTextBox}"
+                            TargetType="{x:Type mk:MarkableTextBox}">
+                            <Setter Property="Width" Value="50" />
+                            <Setter Property="Height" Value="28" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="TextAlignment" Value="Center" />
+                        </Style>
+
+                        <Style
+                            BasedOn="{StaticResource NanoButtonStyle}"
+                            TargetType="{x:Type Button}">
+                            <Setter Property="Height" Value="26" />
+                            <Setter Property="Padding" Value="10,0" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="Margin" Value="5,2,0,0" />
+                        </Style>
+
+                        <Style
+                            x:Key="CollimatorControlBorderStyle"
+                            TargetType="{x:Type Border}">
+                            <Setter Property="Margin" Value="0,0,0,1" />
+                            <Setter Property="Padding" Value="5,8" />
+                            <Setter Property="BorderBrush" Value="White" />
+                            <Setter Property="BorderThickness" Value="0,0,0,1" />
+                            <Setter Property="Background" Value="{StaticResource BaseBackgroundColor}" />
+                        </Style>
+
+                        <Style
+                            x:Key="CollimatorHeaderTextBlockStyle"
+                            TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="TextAlignment" Value="Center" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                        </Style>
+
+                    </Grid.Resources>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Border
+                        Grid.Column="0"
+                        Margin="2,2,1,4"
+                        BorderBrush="White"
+                        BorderThickness="0,1">
+
+                        <StackPanel Background="{StaticResource BaseBackgroundColor}">
+
+                            <Border Style="{StaticResource CollimatorControlBorderStyle}">
+                                <StackPanel
+                                    HorizontalAlignment="Center"
+                                    Orientation="Horizontal">
+                                    <TextBlock
+                                        Style="{StaticResource CollimatorHeaderTextBlockStyle}"
+                                        Text="All Collimators" />
+                                    <Button
+                                        Height="14"
+                                        Margin="10,0,0,0"
+                                        Command="{Binding SynchronizeCollimatorStatusCommand}">
+                                        <md:PackIcon
+                                            Width="10"
+                                            Height="10"
+                                            Kind="Sync" />
+                                    </Button>
+                                </StackPanel>
+                            </Border>
+
+                            <GroupBox
+                                Header="Front Blade Position"
+                                HeaderTemplate="{StaticResource SmallHeaderTemplate}">
+
+                                <StackPanel
+                                    HorizontalAlignment="Center"
+                                    Orientation="Horizontal">
+                                    <mk:MarkableTextBox
+                                        Width="90"
+                                        Text="{Binding IntegratedFrontBladeTargetPosition, Mode=TwoWay}" />
+                                    <Button
+                                        Command="{Binding DataContext.SetIntegratedFrontBladeTargetPositionCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                        Content="Set" />
+                                </StackPanel>
+
+                            </GroupBox>
+
+                            <GroupBox
+                                Header="Rear Blade Position"
+                                HeaderTemplate="{StaticResource SmallHeaderTemplate}">
+
+                                <StackPanel
+                                    HorizontalAlignment="Center"
+                                    Orientation="Horizontal">
+                                    <mk:MarkableTextBox
+                                        Width="90"
+                                        Text="{Binding IntegratedRearBladeTargetPosition, Mode=TwoWay}" />
+                                    <Button
+                                        Command="{Binding DataContext.SetIntegratedRearBladeTargetPositionCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                        Content="Set" />
+                                </StackPanel>
+
+                            </GroupBox>
+
+                            <GroupBox
+                                Header="Bowtie Position"
+                                HeaderTemplate="{StaticResource SmallHeaderTemplate}">
+
+                                <StackPanel
+                                    HorizontalAlignment="Center"
+                                    Orientation="Horizontal">
+                                    <mk:MarkableTextBox
+                                        Width="90"
+                                        Text="{Binding IntegratedBowtieTargetPosition, Mode=TwoWay}" />
+                                    <Button
+                                        Command="{Binding DataContext.SetIntegratedBowtieTargetPositionCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                        Content="Set" />
+                                </StackPanel>
+
+                            </GroupBox>
+
+                        </StackPanel>
+
+                    </Border>
+
+                    <Border
+                        Grid.Column="1"
+                        Margin="0,2"
+                        HorizontalAlignment="Stretch"
+                        Background="Transparent"
+                        CornerRadius="5">
+
+                        <ScrollViewer>
+
+                            <ItemsControl ItemsSource="{Binding CollimatorSources}">
+
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel
+                                            Orientation="Horizontal"
+                                            VirtualizingPanel.IsVirtualizing="True"
+                                            VirtualizingPanel.ScrollUnit="Pixel" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+
+                                        <Border
+                                            Width="127"
+                                            Background="{StaticResource BaseBackgroundColor}"
+                                            BorderBrush="White"
+                                            BorderThickness="0,1,0,0">
+
+                                            <StackPanel Margin="1,0,1,1">
+
+                -->
+                <!--  Name  -->
+                <!--
+                                                <Border Style="{StaticResource CollimatorControlBorderStyle}">
+                                                    <TextBlock
+                                                        Style="{StaticResource CollimatorHeaderTextBlockStyle}"
+                                                        Text="{Binding Name, StringFormat=Collimator {0}}" />
+                                                </Border>
+                -->
+                <!--  Front Blade  -->
+                <!--
+                                                <GroupBox
+                                                    Header="Front Blade"
+                                                    HeaderTemplate="{StaticResource SmallHeaderTemplate}">
+
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <mk:MarkableTextBox
+                                                            x:Name="frontValue"
+                                                            Text="{Binding FrontBladeMoveStep, Mode=OneWay}" />
+                                                        <Button
+                                                            Command="{Binding DataContext.SetFrontBladeMoveStepCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                            Content="Set">
+
+                                                            <Button.CommandParameter>
+                                                                <MultiBinding Converter="{StaticResource UniversalMultiBindingConverter}">
+                                                                    <Binding Path="Name" />
+                                                                    <Binding
+                                                                        ElementName="frontValue"
+                                                                        Path="Text" />
+                                                                </MultiBinding>
+                                                            </Button.CommandParameter>
+                                                        </Button>
+                                                    </StackPanel>
+
+                                                </GroupBox>
+                -->
+                <!--  Rear Blade  -->
+                <!--
+                                                <GroupBox
+                                                    Header="Rear Blade"
+                                                    HeaderTemplate="{StaticResource SmallHeaderTemplate}">
+
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <mk:MarkableTextBox
+                                                            x:Name="rearValue"
+                                                            Text="{Binding RearBladeMoveStep, Mode=OneWay}" />
+                                                        <Button
+                                                            Command="{Binding DataContext.SetRearBladeMoveStepCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                            Content="Set">
+
+                                                            <Button.CommandParameter>
+                                                                <MultiBinding Converter="{StaticResource UniversalMultiBindingConverter}">
+                                                                    <Binding Path="Name" />
+                                                                    <Binding
+                                                                        ElementName="rearValue"
+                                                                        Path="Text" />
+                                                                </MultiBinding>
+                                                            </Button.CommandParameter>
+
+                                                        </Button>
+                                                    </StackPanel>
+
+                                                </GroupBox>
+                -->
+                <!--  Bowtie  -->
+                <!--
+                                                <GroupBox
+                                                    Header="Bowtie"
+                                                    HeaderTemplate="{StaticResource SmallHeaderTemplate}">
+
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <mk:MarkableTextBox
+                                                            x:Name="bowtieValue"
+                                                            Text="{Binding BowtieMoveStep, Mode=OneWay}" />
+                                                        <Button
+                                                            Command="{Binding DataContext.SetBowtieMoveStepCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                            Content="Set">
+
+                                                            <Button.CommandParameter>
+                                                                <MultiBinding Converter="{StaticResource UniversalMultiBindingConverter}">
+                                                                    <Binding Path="Name" />
+                                                                    <Binding
+                                                                        ElementName="bowtieValue"
+                                                                        Path="Text" />
+                                                                </MultiBinding>
+                                                            </Button.CommandParameter>
+
+                                                        </Button>
+                                                    </StackPanel>
+
+                                                </GroupBox>
+
+                                            </StackPanel>
+
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+
+                            </ItemsControl>
+
+                        </ScrollViewer>
+
+                    </Border>
+
+                </Grid>-->
+
+            </TabItem>
+
+        </TabControl>
+
+    </Grid>
+
+</Grid>

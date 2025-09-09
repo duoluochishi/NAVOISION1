@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PrintProtocols xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PrintProtocol Id="acf197ae-0b1a-49c0-a315-5d1efcd4122d" Name="Head 5x5" BodyPart="Head" IsSystem="true" IsDefault="true" Row="5" Column="5" />
+  <PrintProtocol Id="5c14e35b-4cbb-4ada-b4d3-b17c10587462" Name="Spine 5x5" BodyPart="Spine" IsSystem="true" IsDefault="true" Row="5" Column="5" />
+  <PrintProtocol Id="c244179e-de12-44b1-a257-6b8be18530e7" Name="Shuolder 5x5" BodyPart="Shoulder" IsSystem="true" IsDefault="true" Row="5" Column="5" />
+  <PrintProtocol Id="d08ad52b-25c7-4f66-9fd1-f01bc052329e" Name="Peivis 5x5" BodyPart="Pelvis" IsSystem="true" IsDefault="true" Row="5" Column="5" />
+  <PrintProtocol Id="a40898d3-5a01-4762-a4f8-1ad2d731fc2e" Name="Neck 5x5" BodyPart="Neck" IsSystem="true" IsDefault="true" Row="5" Column="5" />
+  <PrintProtocol Id="80402f8a-de40-4155-b7f5-1dbeb3fa4ec6" Name="Leg 5x5" BodyPart="Leg" IsSystem="true" IsDefault="true" Row="5" Column="5" />
+  <PrintProtocol Id="4cdc786f-9204-4df5-a8fb-99b9e3aba62d" Name="Arm 5x5" BodyPart="Arm" IsSystem="true" IsDefault="true" Row="5" Column="5" />
+  <PrintProtocol Id="e990b058-5ee1-454e-b64f-201888ff5c27" Name="Abdomen 5x5" BodyPart="Abdomen" IsSystem="true" IsDefault="true" Row="5" Column="5" />
+  <PrintProtocol Id="6e6b7883-b6d6-4c93-9ad9-4e449b549e80" Name="Breast 5x5" BodyPart="Breast" IsSystem="true" IsDefault="true" Row="5" Column="5" />
+  <PrintProtocol Id="395243d0-2b66-4f13-a3db-3cd46996303c" Name="Abdomen 4x4" BodyPart="Abdomen" IsSystem="false" IsDefault="false" Row="4" Column="4" />
+  <PrintProtocol Id="7ui07899-2b66-4f13-a3db-567jki42446g" Name="Abdomen 3x3" BodyPart="Abdomen" IsSystem="false" IsDefault="false" Row="3" Column="3" />
+  <PrintProtocol Id="90a026ab-fb07-4954-ad37-402bdbb597c9" Name="2x2" BodyPart="Abdomen" IsSystem="false" IsDefault="false" Row="2" Column="2" />
+  <PrintProtocol Id="61e96af3-92fe-49da-9a5b-40532ea9bd5b" Name="11" BodyPart="Abdomen" IsSystem="false" IsDefault="false" Row="1" Column="1" />
+</PrintProtocols>

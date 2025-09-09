@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" />
+    <PackageReference Include="AutoMapper" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Infrastructure\Logging\NV.CT.Logging.csproj" />
+    <ProjectReference Include="..\..\..\SystemService\ClientProxy\NV.CT.ClientProxy.csproj" />
+    <ProjectReference Include="..\..\..\SystemService\DatabaseService.Contract\NV.CT.DatabaseService.Contract.csproj" />
+    <ProjectReference Include="..\ApplicationService.Contract\NV.CT.Print.ApplicationService.Contract.csproj" />
+  </ItemGroup>
+
+</Project>

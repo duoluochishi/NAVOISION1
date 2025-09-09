@@ -1,0 +1,275 @@
+﻿<UserControl
+	x:Class="NV.CT.UI.Exam.View.ScanPanelControl"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
+	x:Name="RTDPanelContainer"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	mc:Ignorable="d">
+    <UserControl.Resources>
+        <SolidColorBrush
+			x:Key="BaseCoverBrush"
+			Opacity="0.8"
+			Color="#FFFFFF" />
+        <DrawingBrush
+			x:Key="BorderBrush"
+			TileMode="Tile"
+			Viewport="0 0 8 8"
+			ViewportUnits="Absolute">
+            <DrawingBrush.Drawing>
+                <DrawingGroup>
+                    <GeometryDrawing Brush="{StaticResource BaseCoverBrush}">
+                        <GeometryDrawing.Geometry>
+                            <GeometryGroup>
+                                <RectangleGeometry Rect="0 0 60 60" />
+                                <RectangleGeometry Rect="60 60 60 60" />
+                            </GeometryGroup>
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                </DrawingGroup>
+            </DrawingBrush.Drawing>
+        </DrawingBrush>
+        <DrawingBrush
+			x:Key="BorderBrushSelected"
+			TileMode="Tile"
+			Viewport="0 0 8 8"
+			ViewportUnits="Absolute">
+            <DrawingBrush.Drawing>
+                <DrawingGroup>
+                    <GeometryDrawing Brush="#FFA63F">
+                        <GeometryDrawing.Geometry>
+                            <GeometryGroup>
+                                <RectangleGeometry Rect="0 0 60 60" />
+                                <RectangleGeometry Rect="60 60 60 60" />
+                            </GeometryGroup>
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                </DrawingGroup>
+            </DrawingBrush.Drawing>
+        </DrawingBrush>
+        <Style
+			x:Key="BorderStyle"
+			TargetType="Border">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Width" Value="60" />
+            <Setter Property="Height" Value="55" />
+            <Setter Property="Margin" Value="-8,-2,-8,0" />
+        </Style>
+        <Style
+			x:Key="RDTMaterialDesignListBoxItem"
+			TargetType="{x:Type ListViewItem}">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+            <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="wpf:ListBoxItemAssist.ShowSelection" Value="{Binding Path=(wpf:ListBoxItemAssist.ShowSelection), RelativeSource={RelativeSource AncestorType=ListBox}}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border
+							Margin="{TemplateBinding Margin}"
+							Background="{TemplateBinding Background}"
+							BorderBrush="{TemplateBinding BorderBrush}"
+							BorderThickness="{TemplateBinding BorderThickness}"
+							ClipToBounds="{TemplateBinding ClipToBounds}">
+                            <Grid>
+                                <Border
+									x:Name="BorderStyle"
+									BorderBrush="{StaticResource BorderBrush}"
+									Style="{StaticResource BorderStyle}" />
+                                <Border
+									x:Name="MouseOverBorder"
+									Background="Transparent"
+									Opacity="0" />
+                                <Border
+									x:Name="SelectedBorder"
+									Background="Transparent"
+									Opacity="0" />
+                                <wpf:Ripple
+									x:Name="Ripple"
+									Padding="{TemplateBinding Padding}"
+									HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+									VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+									Content="{TemplateBinding Content}"
+									ContentTemplate="{TemplateBinding ContentTemplate}"
+									ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+									Feedback="Transparent"
+									Focusable="False"
+									RecognizesAccessKey="False"
+									SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value=".56" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="BorderStyle" Property="BorderBrush" Value="{StaticResource BorderBrushSelected}" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="False">
+                                <Setter TargetName="BorderStyle" Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+                            </Trigger>
+                            <DataTrigger
+								Binding="{Binding RelativeSource={RelativeSource Self}, Path=(wpf:ListBoxItemAssist.ShowSelection)}"
+								Value="False">
+                                <Setter TargetName="MouseOverBorder" Property="Visibility" Value="Collapsed" />
+                                <Setter TargetName="SelectedBorder" Property="Visibility" Value="Collapsed" />
+                                <!--<Setter TargetName="Ripple" Property="Feedback" Value="Transparent" />-->
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style
+			x:Key="TaskListBoxItemStyle"
+			BasedOn="{StaticResource RDTMaterialDesignListBoxItem}"
+			TargetType="{x:Type ListViewItem}">
+            <Setter Property="Margin" Value="8,2,8,2" />
+            <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}" />
+        </Style>
+        <Style
+			x:Key="ListBoxStyle"
+			BasedOn="{StaticResource MaterialDesignListView}"
+			TargetType="{x:Type ListView}">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="SelectionMode" Value="Single" />
+            <Setter Property="MaxHeight" Value="180"/>
+            <Setter Property="ItemContainerStyle" Value="{StaticResource TaskListBoxItemStyle}" />
+        </Style>
+        <Style
+			x:Key="ContextMenuStyle"
+			BasedOn="{StaticResource MaterialDesignMenuItem}"
+			TargetType="MenuItem">
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+        <Style
+			x:Key="ImageStyle"
+			TargetType="Image">
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="Width" Value="50" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Margin" Value="4,2,4,0" />
+        </Style>
+        <Style
+			x:Key="TextBlockStyle"
+			BasedOn="{StaticResource MaterialDesignTextBlock}"
+			TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Height" Value="22" />
+            <Setter Property="MaxWidth" Value="58" />
+            <Setter Property="Foreground" Value="{StaticResource BaseForegroundColor}" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />            
+        </Style>
+    </UserControl.Resources>
+    <ListView
+		IsSynchronizedWithCurrentItem="True"
+		ItemsSource="{Binding Path=ScanReconModelList, Mode=TwoWay}"
+		PreviewMouseRightButtonDown="UIElement_OnPreviewMouseRightButtonDown"
+		ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+		SelectedItem="{Binding Path=SelectScanReconModel, Mode=TwoWay}"
+		Style="{StaticResource ListBoxStyle}">
+        <ListView.ContextMenu>
+            <ContextMenu
+				x:Name="WapContextMenu"
+				x:Uid="WapContextMenu"
+				Height="135"
+				Placement="RelativePoint">
+                <MenuItem
+					x:Name="miScanReconOn"
+					x:Uid="miScanReconOn"
+					Command="{Binding Commands[ReconOnCommand]}"
+					Header="Recon"
+					Style="{StaticResource ContextMenuStyle}">
+                    <MenuItem.Icon>
+                        <Path
+							Fill="{StaticResource TextBoxBrush}"
+							Stretch="Fill"
+							Style="{StaticResource RScan}" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem
+					x:Name="miScanReconCut"
+					x:Uid="miScanReconCut"
+					Command="{Binding Commands[ReconCutCommand]}"
+					Header="Cut"
+					Style="{StaticResource ContextMenuStyle}">
+                    <MenuItem.Icon>
+                        <Path
+							Fill="{StaticResource TextBoxBrush}"
+							Stretch="Fill"
+							Style="{StaticResource IconCut}" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem
+					x:Name="miScanReconRepeat"
+					x:Uid="miScanReconRepeat"
+					Command="{Binding Commands[ReconRepeatCommand]}"
+					Header="Repeat"
+					Style="{StaticResource ContextMenuStyle}">
+                    <MenuItem.Icon>
+                        <Path
+							Fill="{StaticResource TextBoxBrush}"
+							Stretch="Fill"
+							Style="{StaticResource IconPaste}" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem
+					x:Name="miScanReconCancel"
+					x:Uid="miScanReconCancel"
+					Command="{Binding Commands[ReconCancelCommand]}"
+					Header="Cancel"
+					Style="{StaticResource ContextMenuStyle}">
+                    <MenuItem.Icon>
+                        <Path
+							Fill="{StaticResource TextBoxBrush}"
+							Stretch="Fill"
+							Style="{StaticResource UnDo}" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </ContextMenu>
+        </ListView.ContextMenu>
+        <ListView.ItemsPanel>
+            <ItemsPanelTemplate>
+                
+                <WrapPanel Orientation="Horizontal" />
+            </ItemsPanelTemplate>
+        </ListView.ItemsPanel>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <WrapPanel
+					Background="Transparent"
+					Orientation="Vertical" ToolTip="{Binding ToolTipMessage}">
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="MouseUp">
+                            <b:InvokeCommandAction Command="{Binding DataContext.Commands[ReconItemClicked], ElementName=RTDPanelContainer}" />
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
+                    <Border Background="Black">
+                        <Image
+							Source="{Binding Path=Image, Mode=TwoWay}"
+							Style="{StaticResource ImageStyle}"/>
+                    </Border>
+                    <TextBlock
+						Grid.Row="1"
+						IsEnabled="{Binding Path=IsRTD}"
+						Style="{StaticResource TextBlockStyle}"
+						Text="{Binding Path=Content, Mode=TwoWay}" />
+                </WrapPanel>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</UserControl>

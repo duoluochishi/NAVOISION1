@@ -1,0 +1,238 @@
+﻿<UserControl
+	x:Class="NV.CT.NanoConsole.View.English.ScanListControl"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+	d:DesignHeight="36"
+	d:DesignWidth="100"
+	mc:Ignorable="d">
+	<i:Interaction.Triggers>
+		<i:EventTrigger EventName="Loaded">
+			<i:CallMethodAction
+				MethodName="ViewModel_Loaded"
+				TargetObject="{Binding}" />
+		</i:EventTrigger>
+	</i:Interaction.Triggers>
+	<Grid>
+		<StackPanel
+			Name="ScanPanel"
+			Margin="0,0,0,0"
+			Cursor="Hand"
+			Opacity="0.8"
+			MouseLeave="ScanPanel_OnMouseLeave" MouseEnter="ScanPanel_OnMouseEnter"
+			Orientation="Horizontal">
+			<Button
+				x:Name="scanIcon"
+				Padding="5,0,5,0"
+				HorizontalAlignment="Left"
+				Background="Transparent"
+				BorderThickness="0"
+				Cursor="Arrow">
+				<Path
+					Width="15"
+					Height="20"
+					Data="{StaticResource BtnIcon}"
+					Fill="#5A5A89"
+					Stretch="Fill" />
+			</Button>
+			<TextBlock
+				Margin="5,0,0,0"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Center"
+				Background="Transparent"
+				Foreground="White"
+				Text="{Binding Total, StringFormat=Scan {0}, Mode=TwoWay}" />
+		</StackPanel>
+		<Popup
+			x:Name="PopupScan"
+			Width="auto"
+			Height="auto"
+			AllowsTransparency="True"
+			HorizontalOffset="345"
+			MouseEnter="PopupScan_OnMouseEnter"
+			MouseLeave="PopupScan_OnMouseLeave"
+			Opacity="0.8"
+			Placement="Absolute"
+			PlacementTarget="{Binding ElementName=ScanPanel}"
+			StaysOpen="True"
+			VerticalOffset="40">
+			<Border
+				x:Name="scanContainer"
+				Background="#14142B"
+				BorderBrush="#5A5A89"
+				BorderThickness="1"
+				CornerRadius="10,10,10,10">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="42" />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="10" />
+						<ColumnDefinition />
+						<ColumnDefinition Width="10" />
+					</Grid.ColumnDefinitions>
+					<Border
+						Grid.ColumnSpan="3"
+						Background="#2A2A47"
+						BorderBrush="#5A5A89"
+						BorderThickness="0,0,0,1"
+						CornerRadius="10,10,0,0" />
+					<Border
+						Grid.ColumnSpan="3"
+						Background="#5A5A89"
+						BorderThickness="1"
+						CornerRadius="0,0,0,0"
+						Opacity="0.3" />
+					<Label
+						Grid.ColumnSpan="3"
+						Margin="10,0,0,0"
+						HorizontalAlignment="Left"
+						VerticalAlignment="Center"
+						Content="{x:Static res:LanguageResource.Content_Scheduler}"
+						FontSize="15" />
+
+					<DataGrid
+						Name="grdScanPatient"
+						Grid.Row="1"
+						Grid.ColumnSpan="3"
+						Margin="0,0,0,10"
+						HorizontalAlignment="Stretch"
+						AutoGenerateColumns="False"
+						BorderThickness="0"
+						ColumnHeaderHeight="40"
+						GridLinesVisibility="Horizontal"
+						HorizontalScrollBarVisibility="Auto"
+						IsEnabled="{Binding TaskListEnable}"
+						IsReadOnly="True"
+						ItemsSource="{Binding PatientModels}"
+						RowHeight="42"
+						SelectedItem="{Binding SelectedModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+						SelectionUnit="FullRow"
+						VerticalScrollBarVisibility="Auto">
+						<!--  MouseDoubleClick="GrdScanPatient_MouseDoubleClick"  -->
+						<i:Interaction.Triggers>
+							<i:EventTrigger EventName="MouseDoubleClick">
+								<i:InvokeCommandAction
+									Command="{Binding Commands[ScanPatientSelectCommand]}"
+									CommandParameter="{Binding SelectedItem, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}" />
+							</i:EventTrigger>
+						</i:Interaction.Triggers>
+						<DataGrid.Columns>
+							<DataGridTemplateColumn
+								Width="80"
+								Header="{x:Static res:LanguageResource.Header_Sex}">
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+										<Border>
+											<TextBlock
+												Text="{Binding PatientSex, StringFormat={}{0:G}}"
+												ToolTip="{Binding PatientSex, StringFormat={}{0:G}}" />
+										</Border>
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+
+							<DataGridTemplateColumn
+								Width="auto"
+								MinWidth="150"
+								Header="{x:Static res:LanguageResource.Header_PatientName}">
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+										<TextBlock
+											HorizontalAlignment="Left"
+											VerticalAlignment="Center"
+											Text="{Binding PatientName}" />
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+
+							<DataGridTemplateColumn
+								Width="auto"
+								MinWidth="120"
+								Header="{x:Static res:LanguageResource.Header_Birthday}">
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+										<TextBlock
+											HorizontalAlignment="Left"
+											VerticalAlignment="Center"
+											Text="{Binding Birthday, StringFormat='yyyy/MM/dd'}" />
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+
+							<DataGridTemplateColumn
+								Width="auto"
+								MinWidth="160"
+								Header="{x:Static res:LanguageResource.Header_PatientId}">
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+										<TextBlock
+											HorizontalAlignment="Left"
+											VerticalAlignment="Center"
+											Text="{Binding PatientId}" />
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+
+							<DataGridTemplateColumn
+								Width="auto"
+								MinWidth="100"
+								Header="{x:Static res:LanguageResource.Header_BodyPartExamined}">
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+										<TextBlock
+											HorizontalAlignment="Left"
+											VerticalAlignment="Center"
+											Text="{Binding BodyPart}" />
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+
+							<!--<DataGridTemplateColumn
+								Width="auto"
+								MinWidth="100"
+								Header="{x:Static res:LanguageResource.Header_Delete}">
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+										<StackPanel HorizontalAlignment="Left">
+											<Button
+												x:Name="btn_Delete"
+												HorizontalAlignment="Center"
+												VerticalAlignment="Center"
+												Background="Transparent"
+												BorderThickness="0"
+												Opacity="0.7"
+												ToolTip="{x:Static res:LanguageResource.ToolTip_Delete}">
+												<Path
+													Width="18"
+													Height="20"
+													Data="{StaticResource DeleteIcon}"
+													Fill="#5a5a89"
+													Stretch="Fill" />
+												<Button.InputBindings>
+													<MouseBinding
+														Command="{Binding DataContext.Commands[DeleteStudyCommand], RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
+														CommandParameter="{Binding StudyId}"
+														MouseAction="LeftClick" />
+												</Button.InputBindings>
+											</Button>
+										</StackPanel>
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>-->
+
+						</DataGrid.Columns>
+
+					</DataGrid>
+					<Border
+						Grid.Row="2"
+						Height="10" />
+				</Grid>
+			</Border>
+		</Popup>
+	</Grid>
+</UserControl>

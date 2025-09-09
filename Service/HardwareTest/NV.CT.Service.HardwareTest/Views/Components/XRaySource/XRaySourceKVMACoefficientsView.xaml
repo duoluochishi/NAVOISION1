@@ -1,0 +1,283 @@
+﻿<Grid
+    x:Class="NV.CT.Service.HardwareTest.Views.Components.XRaySource.XRaySourceKVMACoefficientsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:calcBinding="clr-namespace:CalcBinding;assembly=CalcBinding"
+    xmlns:res="clr-namespace:NV.CT.Service.Common.Resources;assembly=NV.CT.Service.Common"
+    xmlns:helpers="clr-namespace:NV.CT.Service.HardwareTest.Attachments.Helpers"
+    xmlns:model="clr-namespace:NV.CT.Service.HardwareTest.Models.Components.XRaySource.Coefficients"
+    xmlns:universal="clr-namespace:NV.CT.Service.HardwareTest.UserControls.Universal"
+    xmlns:vm="clr-namespace:NV.CT.Service.HardwareTest.ViewModels.Components.XRaySource"
+    mc:Ignorable="d"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    d:DataContext="{d:DesignInstance Type=vm:XRaySourceKVMACoefficientsViewModel}"
+    x:Name="Root">
+    <Grid.Resources>
+        <Style
+            x:Key="IconButtonStyle"
+            BasedOn="{StaticResource MaterialDesignIconButton}"
+            TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="auto" />
+            <Setter Property="Height" Value="auto" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+    </Grid.Resources>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="auto" />
+        <ColumnDefinition Width="2" />
+        <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <Grid Grid.Column="0" IsHitTestVisible="{calcBinding:Binding !IsBusy}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <GroupBox
+            Grid.Row="0"
+            Style="{DynamicResource StandardGroupBoxStyle}"
+            Header="{x:Static res:HardwareTest_Lang.Hardware_Parameters}">
+            <GroupBox.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="/NV.CT.Service.HardwareTest;component/Attachments/Themes/Generic.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                    <Style BasedOn="{StaticResource ParameterGroupBoxStyle}" TargetType="{x:Type GroupBox}" />
+                    <Style
+                        TargetType="{x:Type Rectangle}">
+                        <Setter Property="Stroke" Value="#666" />
+                        <Setter Property="StrokeThickness" Value="3" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                    </Style>
+                </ResourceDictionary>
+            </GroupBox.Resources>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Rectangle Grid.Column="0" />
+                    <TextBlock
+                        Grid.Column="1"
+                        Margin="5 0"
+                        FontWeight="Bold"
+                        VerticalAlignment="Center"
+                        Text="{x:Static res:HardwareTest_Lang.Hardware_XRaySource_KVMACoefficients_SourceAndGantryBase}" />
+                    <Rectangle Grid.Column="2" />
+                </Grid>
+                <UniformGrid Grid.Row="2" Columns="2">
+                    <GroupBox Header="{x:Static res:HardwareTest_Lang.Hardware_XRaySource_SourceId}">
+                        <TextBox Text="{Binding BaseParam.SourceId, Mode=TwoWay}" />
+                    </GroupBox>
+                    <GroupBox Header="{x:Static res:HardwareTest_Lang.Hardware_GantryAngle}">
+                        <TextBox Text="{Binding BaseParam.GantryAngle, Mode=TwoWay}" />
+                    </GroupBox>
+                </UniformGrid>
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Rectangle Grid.Column="0" />
+                    <TextBlock
+                        Grid.Column="1"
+                        Margin="5 0"
+                        FontWeight="Bold"
+                        VerticalAlignment="Center"
+                        Text="{x:Static res:HardwareTest_Lang.Hardware_XRaySource_KVMACoefficients_ExposureParam}" />
+                    <Rectangle Grid.Column="2" />
+                </Grid>
+                <UniformGrid Grid.Row="6" Columns="2">
+                    <GroupBox Header="{x:Static res:HardwareTest_Lang.Hardware_ExposureTime}">
+                        <TextBox Text="{Binding ScanParam.ExposureTime, Mode=TwoWay}" />
+                    </GroupBox>
+                    <GroupBox Header="{x:Static res:HardwareTest_Lang.Hardware_FrameTime}">
+                        <TextBox Text="{Binding ScanParam.FrameTime, Mode=TwoWay}" />
+                    </GroupBox>
+                    <GroupBox Header="{x:Static res:HardwareTest_Lang.Hardware_TotalFrames}">
+                        <TextBox Text="{Binding ScanParam.FramesCount, Mode=TwoWay}" />
+                    </GroupBox>
+                    <GroupBox Header="{x:Static res:HardwareTest_Lang.Hardware_XRayFocus}">
+                        <ComboBox
+                            helpers:EnumItemSourceHelper.EnumValuesToItemsSourceProperty="True"
+                            SelectedItem="{Binding ScanParam.Focus, Mode=TwoWay}" />
+                    </GroupBox>
+                </UniformGrid>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Row="2" Style="{DynamicResource StandardGroupBoxStyle}">
+            <GroupBox.HeaderTemplate>
+                <DataTemplate>
+                    <DockPanel LastChildFill="False">
+                        <TextBlock
+                            DockPanel.Dock="Left"
+                            FontSize="16"
+                            FontWeight="Bold"
+                            Text="{x:Static res:HardwareTest_Lang.Hardware_XRaySource_KVMACoefficients_KVMAPairs}" />
+                        <Button
+                            DockPanel.Dock="Right"
+                            Style="{StaticResource IconButtonStyle}"
+                            Command="{Binding DataContext.AddCommand, ElementName=Root}">
+                            <Button.Content>
+                                <md:PackIcon Kind="AddCircle" />
+                            </Button.Content>
+                        </Button>
+                    </DockPanel>
+                </DataTemplate>
+            </GroupBox.HeaderTemplate>
+            <ListBox
+                HorizontalContentAlignment="Stretch"
+                SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                ItemsSource="{Binding Items}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type model:CoefficientModel}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Text="{Binding}" />
+                            <Button
+                                Grid.Column="1"
+                                Style="{StaticResource IconButtonStyle}"
+                                Command="{Binding DataContext.DeleteCommand, ElementName=Root}"
+                                CommandParameter="{Binding}">
+                                <Button.Content>
+                                    <md:PackIcon Kind="DeleteCircle" />
+                                </Button.Content>
+                            </Button>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </GroupBox>
+    </Grid>
+    <Grid Grid.Column="2" Margin="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="300" />
+        </Grid.RowDefinitions>
+        <GroupBox
+            Grid.Row="0"
+            Style="{DynamicResource StandardGroupBoxStyle}"
+            Header="{x:Static res:HardwareTest_Lang.Hardware_XRaySource_KVMACoefficients_Coefficients}">
+            <ListBox
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch"
+                IsHitTestVisible="{calcBinding:Binding !IsBusy}"
+                SelectedItem="{Binding SelectedSourceItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                ItemsSource="{Binding SelectedItem.Sources, FallbackValue={x:Null}}">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="6" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type model:SourceCoefficientModel}">
+                        <Border BorderThickness="1" BorderBrush="{StaticResource BaseTabBackBrush}">
+                            <Grid Margin="10 5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition Height="5" />
+                                    <RowDefinition />
+                                    <RowDefinition Height="5" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <TextBlock
+                                    Grid.Column="0"
+                                    Grid.Row="0"
+                                    Grid.ColumnSpan="3"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Text="{Binding Id, StringFormat='Source {0,2}'}" />
+                                <TextBlock
+                                    Grid.Column="0"
+                                    Grid.Row="2"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    Text="kV" />
+                                <TextBox
+                                    Grid.Column="2"
+                                    Grid.Row="2"
+                                    MinWidth="60"
+                                    VerticalAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    GotFocus="TextBox_GotFocus"
+                                    Text="{Binding KVFactor}" />
+                                <TextBlock
+                                    Grid.Column="0"
+                                    Grid.Row="4"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    Text="mA" />
+                                <TextBox
+                                    Grid.Column="2"
+                                    Grid.Row="4"
+                                    MinWidth="60"
+                                    VerticalAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    GotFocus="TextBox_GotFocus"
+                                    Text="{Binding MAFactor}" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </GroupBox>
+        <StackPanel
+            Grid.Row="2"
+            Orientation="Horizontal"
+            HorizontalAlignment="Right">
+            <Button
+                Padding="5 0"
+                MinWidth="100"
+                Content="{x:Static res:HardwareTest_Lang.Hardware_XRaySource_KVMACoefficients_StartExposure}"
+                Command="{Binding StartCommand}" />
+            <Button
+                Padding="5 0"
+                Margin="10 0 0 0"
+                MinWidth="100"
+                Content="{x:Static res:HardwareTest_Lang.Hardware_XRaySource_KVMACoefficients_StopExposure}"
+                Command="{Binding StopCommand}" />
+            <Button
+                Padding="5 0"
+                Margin="10 0 0 0"
+                MinWidth="100"
+                Content="{x:Static res:Common_Lang.Common_Save}"
+                Command="{Binding SaveCommand}" />
+        </StackPanel>
+        <universal:ConsoleControl
+            Grid.Row="4"
+            ConsoleMessage="{Binding ConsoleMessage, Mode=OneWay}"
+            ClearCommand="{Binding ClearConsoleMessageCommand}"/>
+    </Grid>
+</Grid>

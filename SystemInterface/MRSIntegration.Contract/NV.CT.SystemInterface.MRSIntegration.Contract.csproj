@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\CTS\NV.CT.CTS.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="NV.CT.FacadeProxy">
+      <HintPath>..\..\bin\NV.CT.FacadeProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.CT.FacadeProxy.Common">
+      <HintPath>..\..\bin\NV.CT.FacadeProxy.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.MPS.Configuration">
+      <HintPath>..\..\bin\NV.MPS.Configuration.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

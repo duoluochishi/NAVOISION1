@@ -1,0 +1,147 @@
+﻿<UserControl
+    x:Class="NV.CT.UI.Exam.View.ProtocolPatientInfoControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+    d:DesignHeight="250"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style
+            x:Key="ProtocolPatientInfoTitleLabelStyle"
+            BasedOn="{StaticResource MaterialDesignLabel}"
+            TargetType="{x:Type Label}">
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="19,8,0,2" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Foreground" Value="#FFC6C6EC" />
+        </Style>
+        <Style
+            x:Key="ProtocolPatientInfoTitleRectangleStyle"
+            TargetType="{x:Type Rectangle}">
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="Stroke" Value="#3044D9" />
+            <Setter Property="Height" Value="3" />
+            <Setter Property="StrokeThickness" Value="3" />
+            <Setter Property="Width" Value="50" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Margin" Value="19,0,0,10" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+        </Style>
+        <Style
+            x:Key="ProtocolPatientInfoLabelStyle"
+            BasedOn="{StaticResource MaterialDesignLabel}"
+            TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Foreground" Value="{StaticResource BaseForegroundColor}" />
+            <Setter Property="Margin" Value="20,5,0,0" />
+        </Style>
+        <Style
+            x:Key="ProtocolPatientInfoLabelUnitStyle"
+            BasedOn="{StaticResource MaterialDesignLabel}"
+            TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Foreground" Value="{StaticResource BaseForegroundColor}" />
+            <Setter Property="Margin" Value="5,5,0,0" />
+        </Style>
+        <Style
+            x:Key="ProtocolPatientInfoTextBoxStyle"
+            BasedOn="{StaticResource MaterialDesignOutlinedTextBox}"
+            TargetType="{x:Type TextBox}">
+            <Setter Property="Foreground" Value="{StaticResource BaseForegroundColor}" />
+            <Setter Property="Height" Value="28" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="IsReadOnly" Value="True" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="IsEnabled" Value="False" />
+        </Style>
+    </UserControl.Resources>
+    <Border
+        Background="{StaticResource MaterialDesignPaper}"
+        BorderBrush="{StaticResource BaseTabBackBrush}"
+        BorderThickness="1"
+        CornerRadius="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="6*" />
+                <ColumnDefinition Width="8*" />
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="6*" />
+                <ColumnDefinition Width="8*" />
+                <ColumnDefinition Width="4*" />
+            </Grid.ColumnDefinitions>
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                Content="{x:Static res:LanguageResource.Content_PatientInfoTitle}"
+                Style="{StaticResource ProtocolPatientInfoTitleLabelStyle}" />
+            <Rectangle
+                Grid.Column="0"
+                Style="{StaticResource ProtocolPatientInfoTitleRectangleStyle}" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="0"
+                Content="{x:Static res:LanguageResource.Content_PatientInfoAge}"
+                Style="{StaticResource ProtocolPatientInfoLabelStyle}" />
+            <TextBox
+                Grid.Row="1"
+                Grid.Column="1"
+                Style="{StaticResource ProtocolPatientInfoTextBoxStyle}"
+                Text="{Binding PatientAge}" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="2"
+                Content="{Binding PatientAgeType}"
+                Style="{StaticResource ProtocolPatientInfoLabelUnitStyle}" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="3"
+                Content="{x:Static res:LanguageResource.Content_PatientInfoWeight}"
+                Style="{StaticResource ProtocolPatientInfoLabelStyle}" />
+            <TextBox
+                Grid.Row="1"
+                Grid.Column="4"
+                Style="{StaticResource ProtocolPatientInfoTextBoxStyle}"
+                Text="{Binding PatientWeight}" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="5"
+                Content="{x:Static res:LanguageResource.Content_PatientInfoWeightUnit}"
+                Style="{StaticResource ProtocolPatientInfoLabelUnitStyle}" />
+            <Label
+                Grid.Row="2"
+                Grid.Column="0"
+                Content="{x:Static res:LanguageResource.Content_PatientInfoSex}"
+                Style="{StaticResource ProtocolPatientInfoLabelStyle}" />
+            <TextBox
+                Grid.Row="2"
+                Grid.Column="1"
+                Style="{StaticResource ProtocolPatientInfoTextBoxStyle}"
+                Text="{Binding PatientGender}" />
+            <Label
+                Grid.Row="2"
+                Grid.Column="3"
+                Content="{x:Static res:LanguageResource.Content_PatientInfoHeight}"
+                Style="{StaticResource ProtocolPatientInfoLabelStyle}" />
+            <TextBox
+                Grid.Row="2"
+                Grid.Column="4"
+                Style="{StaticResource ProtocolPatientInfoTextBoxStyle}"
+                Text="{Binding PatientHeight}" />
+            <Label
+                Grid.Row="2"
+                Grid.Column="5"
+                Content="{x:Static res:LanguageResource.Content_PatientInfoHeightUnit}"
+                Style="{StaticResource ProtocolPatientInfoLabelUnitStyle}" />
+        </Grid>
+    </Border>
+</UserControl>

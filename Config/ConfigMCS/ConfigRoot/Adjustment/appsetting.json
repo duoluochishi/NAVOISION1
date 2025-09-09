@@ -1,0 +1,311 @@
+{
+  "Items": [
+    {
+      "Title": "Daily",
+      "CommonAssembly": "NV.CT.Service.Common.dll",
+      "Children": [
+        {
+          "Category": "Warm Up",
+          "AppAssemblyPath": "NV.CT.Service.TubeWarmUp.dll",
+          "ControlName": "NV.CT.Service.TubeWarmUp.TubeWarmUpWarpper"
+        },      
+        {
+          "Category": "Daily Calibration",
+          "AppAssemblyPath": "NV.CT.Service.AutoCali.UI.dll",
+          "ControlName": "NV.CT.Service.AutoCali.UI.DailyCaliWrapper"
+        }
+      ]
+    },
+    {
+      "Title": "ServiceTools",
+      "CommonAssembly": "NV.CT.Service.Common.dll",
+      "Children": [
+        {
+          "Category": "Warm Up",
+          "AppAssemblyPath": "NV.CT.Service.TubeWarmUp.dll",
+          "ControlName": "NV.CT.Service.TubeWarmUp.TubeWarmUpWarpper"
+        },
+        {
+          "Category": "Tube Calibration",
+          "AppAssemblyPath": "NV.CT.Service.TubeCali.dll",
+          "ControlName": "NV.CT.Service.TubeCali.TubeCaliWrapper"
+        },
+        {
+          "Category": "Auto Calibration",
+          "AppAssemblyPath": "NV.CT.Service.AutoCali.UI.dll",
+          "ControlName": "NV.CT.Service.AutoCali.UI.AutoCaliWrapper"
+        },
+        {
+          "Category": "Daily Calibration",
+          "AppAssemblyPath": "NV.CT.Service.AutoCali.UI.dll",
+          "ControlName": "NV.CT.Service.AutoCali.UI.DailyCaliWrapper"
+        },
+        {
+          "Category": "Firmware Upgrade",
+          "AppAssemblyPath": "NV.CT.Service.Upgrade.dll",
+          "ControlName": "NV.CT.Service.Upgrade.UpgradeWrapper"
+        },
+        {
+          "Category": "Hardware Test",
+          "AppAssemblyPath": "NV.CT.Service.HardwareTest.dll",
+          "ControlName": "NV.CT.Service.HardwareTest.HardwareTestWrapper"
+        },
+        {
+          "Category": "Quality Test",
+          "AppAssemblyPath": "NV.CT.Service.QualityTest.dll",
+          "ControlName": "NV.CT.Service.QualityTest.QTWrapper"
+        },
+        {
+          "Category": "Component History",
+          "AppAssemblyPath": "NV.CT.Service.ComponentHistory.dll",
+          "ControlName": "NV.CT.Service.ComponentHistory.ComponentHistoryWrapper"
+        },
+        {
+          "Category": "Tube Log",
+          "AppAssemblyPath": "NV.CT.Service.TubeHistory.dll",
+          "ControlName": "NV.CT.Service.TubeHistory.TubeHistoryWrapper"
+        }
+      ]
+    },
+    {
+      "Title": "UserConfig",
+      "CommonAssembly": "",
+      "Children": [
+		{
+          "ControlName": "NV.CT.ConfigManagement.View.ProductControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "Product"
+        },
+        {
+          "ControlName": "NV.CT.ConfigManagement.View.VoiceListControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "Voice"
+        },
+        {
+          "ControlName": "NV.CT.ConfigManagement.View.ArchiveNodesControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "Pacs"
+        },
+        {
+          "ControlName": "NV.CT.ConfigManagement.View.WindowingListControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "WL"
+        },
+        {
+          "ControlName": "NV.CT.ConfigManagement.View.PrintNodesControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "Print"
+        },
+		{
+          "ControlName": "NV.CT.ConfigManagement.View.LocalDicomNodeControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "Local Dicom"
+        },		
+		{
+          "ControlName": "NV.CT.ConfigManagement.View.FilmSettingsControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "Film settings"
+        },
+        {
+          "ControlName": "NV.CT.ConfigManagement.View.WorkListControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "Worklist"
+        },
+        {
+          "ControlName": "NV.CT.UserConfig.View.English.ImageTextSettingControl",
+          "AppAssemblyPath": "NV.CT.UserConfig.dll",
+          "Category": "Image text"
+        },
+		{
+          "ControlName": "NV.CT.UserConfig.View.English.PatientSettingControl",
+          "AppAssemblyPath": "NV.CT.UserConfig.dll",
+          "Category": "Patient setting"
+        },        
+        {
+          "ControlName": "NV.CT.ConfigManagement.View.TabletListControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "Tablet"
+        },
+		{
+		 "ControlName": "NV.CT.ConfigManagement.View.DiskSpaceManagementControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "Disk space"
+		},
+		{
+		 "ControlName": "NV.CT.ConfigManagement.View.DoseSettingControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "DoseConfig"
+		},
+		{
+		 "ControlName": "NV.CT.ConfigManagement.View.HospitalSettingControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "Hospital"
+		},
+		{
+		 "ControlName": "NV.CT.ConfigManagement.View.EquipmentControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "Equipment"
+		},
+		{
+          "ControlName": "NV.CT.ConfigManagement.View.PrintProtocolControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "PrintProtocol"
+        }
+      ]
+    },
+    {
+      "Title": "SystemConfig",
+      "CommonAssembly": "",
+      "Children": [
+         {
+          "ControlName": "NV.CT.ConfigManagement.View.SystemSettingControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "System setting"
+        },
+		 {
+          "ControlName": "NV.CT.ConfigManagement.View.LoginSettingControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "Login setting"
+        },
+		{
+          "ControlName": "NV.CT.ConfigManagement.View.UserListControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "User"
+        },
+        {
+          "ControlName": "NV.CT.ConfigManagement.View.RoleListControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "Role"
+        },
+		{
+          "ControlName": "NV.CT.ConfigManagement.View.CollimatorSettingControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "Collimator"
+        },{
+		 "ControlName": "NV.CT.ConfigManagement.View.SourceComponentControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "Source component"
+		},
+		{
+          "ControlName": "NV.CT.ConfigManagement.View.AcquisitionControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "Acquisition"
+        },
+		{
+          "ControlName": "NV.CT.ConfigManagement.View.DetectorControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "Detector"
+        },
+		{
+          "ControlName": "NV.CT.ConfigManagement.View.GantryControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "Gantry"
+        },		
+		{
+          "ControlName": "NV.CT.ConfigManagement.View.TableControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "Table"
+        },
+		{
+          "ControlName": "NV.CT.ConfigManagement.View.AutoPositioningControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "Auto positioning"
+        },
+		{
+          "ControlName": "NV.CT.ConfigManagement.View.ScanningParamControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "Scanning param"
+        },
+		{
+          "ControlName": "NV.CT.ConfigManagement.View.RTDReconParamControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "RTD recon param"
+        },
+		{
+          "ControlName": "NV.CT.ConfigManagement.View.OfflineReconParamControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "Offline recon param"
+        },
+		{
+          "ControlName": "NV.CT.ConfigManagement.View.KvMaCoefficientControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "Voltage Current Coefficient"
+        },
+		{
+          "ControlName": "NV.CT.ConfigManagement.View.LaserControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "Laser"
+        },		
+        {
+          "ControlName": "NV.CT.ConfigManagement.View.ErrorCodeListControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "CodeInfo"
+        }
+      ]
+    },   
+	{
+      "Title": "LogManagement",
+      "CommonAssembly": "",
+      "Children": [
+        {
+          "ControlName": "NV.CT.LogManagement.View.English.LogViewer",
+          "AppAssemblyPath": "NV.CT.LogManagement.dll",
+          "Category": "View log"
+        },
+		{
+          "ControlName": "NV.CT.LogManagement.View.English.LogConfig",
+          "AppAssemblyPath": "NV.CT.LogManagement.dll",
+          "Category": "Config log"
+        },
+		{
+          "ControlName": "NV.CT.LogManagement.View.English.LogSave",
+          "AppAssemblyPath": "NV.CT.LogManagement.dll",
+          "Category": "Save log"
+        },
+		{
+          "ControlName": "NV.CT.LogManagement.View.English.AuditLogViewer",
+          "AppAssemblyPath": "NV.CT.LogManagement.dll",
+          "Category": "View audit log"
+        }
+      ]
+    },
+	{
+      "Title": "BackupRestore",
+      "CommonAssembly": "",
+      "Children": [
+        {
+          "ControlName": "NV.CT.BackupRestore.View.BackupControl",
+          "AppAssemblyPath": "NV.CT.BackupRestore.dll",
+          "Category": "Backup"
+        },
+		{
+          "ControlName": "NV.CT.BackupRestore.View.RestoreControl",
+          "AppAssemblyPath": "NV.CT.BackupRestore.dll",
+          "Category": "Restore"
+        }      
+		]
+    },
+	{
+      "Title": "UserTool",
+      "CommonAssembly": "",
+      "Children": [
+        {
+          "ControlName": "NV.CT.UserTool.MainControl",
+          "AppAssemblyPath": "NV.CT.UserTool.dll",
+          "Category": "main"
+        }      
+		]
+    },
+	{
+      "Title": "Cloud",
+      "CommonAssembly": "",
+      "Children": [
+        {
+          "ControlName": "NV.CT.Cloud.MainControl",
+          "AppAssemblyPath": "NV.CT.Cloud.dll",
+          "Category": "main"
+        }      
+		]
+    }
+  ]
+}

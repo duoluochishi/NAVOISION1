@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Model\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\SystemService\ConfigService.Contract\NV.CT.ConfigService.Contract.csproj" />
+    <ProjectReference Include="..\..\..\..\SystemService\DatabaseService.Contract\NV.CT.DatabaseService.Contract.csproj" />
+  </ItemGroup>
+
+</Project>

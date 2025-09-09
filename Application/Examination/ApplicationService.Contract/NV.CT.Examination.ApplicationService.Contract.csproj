@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Interfaces\AdjustTomoScanReconLengthByTopo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\CTS\NV.CT.CTS.csproj" />
+    <ProjectReference Include="..\..\..\Common\Protocol\NV.CT.Protocol.csproj" />
+    <ProjectReference Include="..\..\..\SystemInterface\MRSIntegration.Contract\NV.CT.SystemInterface.MRSIntegration.Contract.csproj" />
+    <ProjectReference Include="..\..\..\SystemService\AppService.Contract\NV.CT.AppService.Contract.csproj" />
+    <ProjectReference Include="..\..\..\SystemService\DatabaseService.Contract\NV.CT.DatabaseService.Contract.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="NV.CT.FacadeProxy.Common">
+      <HintPath>..\..\..\bin\NV.CT.FacadeProxy.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

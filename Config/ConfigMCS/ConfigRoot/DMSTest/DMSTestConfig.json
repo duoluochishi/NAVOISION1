@@ -1,0 +1,160 @@
+{
+    "TestItemInfoList": [
+      {
+        "TestItemName": "ModuleConsistencyTest",
+        "CoreScanParamList": [
+          {
+            "Kv": 120,
+            "Ma": 100000,
+            "ExpTime": 5000,
+            "FrameTime": 10000,
+            "Gain": 3,
+            "AutoDelFrame": 48,
+            "TotalFrame": 1080,
+            "PreOffset": 1,
+            "XRaySourceIndex": 0,
+            "RawDataPath": "",
+            "RawDataType": 1
+          },
+          {
+            "Kv": 80,
+            "Ma": 100000,
+            "ExpTime": 5000,
+            "FrameTime": 10000,
+            "Gain": 3,
+            "AutoDelFrame": 48,
+            "TotalFrame": 1080,
+            "PreOffset": 1,
+            "XRaySourceIndex": 0,
+            "RawDataPath": "",
+            "RawDataType": 2
+          }
+        ],
+    		"ItemThreshold": {
+    			"UpperLimit": 1.005,
+    			"LowLimit": 0.995,
+    			"PixelNumber": 0
+    		}
+      },
+      {
+        "TestItemName": "SignalLinearityTest",
+        "CoreScanParamList": [
+          {
+            "Kv": 120,
+            "Ma": 100000,
+            "ExpTime": 5000,
+            "FrameTime": 10000,
+            "Gain": 3,
+            "AutoDelFrame": 48,
+            "TotalFrame": 1080,
+            "PreOffset": 1,
+            "XRaySourceIndex": 0,
+            "RawDataPath": "",
+            "RawDataType": 3
+          },
+          {
+            "Kv": 120,
+            "Ma": 30000,
+            "ExpTime": 5000,
+            "FrameTime": 10000,
+            "Gain": 3,
+            "AutoDelFrame": 48,
+            "TotalFrame": 1080,
+            "PreOffset": 1,
+            "XRaySourceIndex": 0,
+            "RawDataPath": "",
+            "RawDataType": 4
+          }
+        ],
+    		"ItemThreshold": {
+    			"UpperLimit": 0.02,
+    			"LowLimit": 0,
+    			"PixelNumber": 6
+    		}
+      },
+      {
+        "TestItemName": "ShortTermStabilityTest",
+        "CoreScanParamList": [
+          {
+            "Kv": 0,
+            "Ma": 100000,
+            "ExpTime": 2000,
+            "FrameTime": 5000,
+            "Gain": 3,
+            "AutoDelFrame": 0,
+            "TotalFrame": 12000,
+            "PreOffset": 0,
+            "XRaySourceIndex": 0,
+            "RawDataPath": "",
+            "RawDataType": 5
+          },
+          {
+            "Kv": 120,
+            "Ma": 20000,
+            "ExpTime": 5000,
+            "FrameTime": 100000,
+            "Gain": 3,
+            "AutoDelFrame": 48,
+            "TotalFrame": 600,
+            "PreOffset": 0,
+            "XRaySourceIndex": 1,
+             "RawDataPath": "",
+            "RawDataType": 6
+          },
+          {
+            "Kv": 120,
+            "Ma": 20000,
+            "ExpTime": 5000,
+            "FrameTime": 100000,
+            "Gain": 3,
+            "AutoDelFrame": 48,
+            "TotalFrame": 600,
+            "PreOffset": 0,
+            "XRaySourceIndex": 7,
+            "RawDataPath": "",
+            "RawDataType": 7
+          },
+          {
+            "Kv": 120,
+            "Ma": 20000,
+            "ExpTime": 5000,
+            "FrameTime": 100000,
+            "Gain": 3,
+            "AutoDelFrame": 48,
+            "TotalFrame": 600,
+            "PreOffset": 0,
+            "XRaySourceIndex": 13,
+            "RawDataPath": "",
+            "RawDataType": 8
+          },
+          {
+            "Kv": 120,
+            "Ma": 20000,
+            "ExpTime": 5000,
+            "FrameTime": 100000,
+            "Gain": 3,
+            "AutoDelFrame": 48,
+            "TotalFrame": 600,
+            "PreOffset": 0,
+            "XRaySourceIndex": 19,
+            "RawDataPath": "",
+            "RawDataType": 9
+          }
+        ],
+    		"ItemThreshold": {
+    			"UpperLimit": 0.02,
+    			"LowLimit": 0,
+    			"PixelNumber": 0
+    		}
+      },
+      {
+        "TestItemName": "AfterglowTest",
+        "CoreScanParamList": [],
+    		"ItemThreshold": {
+    			"UpperLimit": 0.02,
+    			"LowLimit": 0,
+    			"PixelNumber": 0
+    		}
+      }
+    ]
+  }

@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="NV.CT.AuxConsole.View.English.BackendFixedItemsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NV.CT.AuxConsole.View.English"
+             xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="100">
+    <Grid>
+
+        <Button ToolTip="{x:Static res:LanguageResource.ToolTip_JobViewer}" BorderThickness="0" Margin="10,0,0,0"  Command="{Binding Commands[OpenCommand]}" CommandParameter="JobViewer"
+                        Background="Transparent" Opacity="1" HorizontalAlignment="Right" 
+                        Visibility="Visible">
+            <Path Width="22" Height="20" Stretch="Fill"
+                  Data="{StaticResource JobIcon}">
+                <Path.Style>
+                    <Style TargetType="Path">
+                        <Setter Property="Fill" Value="{StaticResource IconNormalColor}" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Fill" Value="{StaticResource IconActiveColor}" />
+                            </Trigger>
+                            <DataTrigger
+                                Binding="{Binding JobViewerCardActive}"
+                                Value="true">
+                                <Setter Property="Fill" Value="{StaticResource IconActiveColor}" />
+                            </DataTrigger>
+                            <DataTrigger
+                                Binding="{Binding JobViewerCardActive}"
+                                Value="false">
+                                <Setter Property="Fill" Value="{StaticResource IconNormalColor}" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Path.Style>
+            </Path>
+        </Button>
+
+    </Grid>
+</UserControl>

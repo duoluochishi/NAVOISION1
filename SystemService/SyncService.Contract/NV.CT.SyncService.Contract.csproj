@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Protocol\NV.CT.Protocol.csproj" />
+    <ProjectReference Include="..\..\SystemInterface\MRSIntegration.Contract\NV.CT.SystemInterface.MRSIntegration.Contract.csproj" />
+    <ProjectReference Include="..\AppService.Contract\NV.CT.AppService.Contract.csproj" />
+    <ProjectReference Include="..\DatabaseService.Contract\NV.CT.DatabaseService.Contract.csproj" />
+  </ItemGroup>
+
+</Project>

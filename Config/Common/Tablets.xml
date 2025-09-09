@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Tablets>
+	<Tablet Id="13912345678" SerialNumber="SN1" IP="172.168.1.5" />
+	<Tablet Id="13912345679" SerialNumber="SN2" IP="172.168.1.6" />
+</Tablets>

@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>$(TargetFramework)-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="NV.CT.ServiceFramework">
+      <HintPath>..\..\..\..\bin\NV.CT.ServiceFramework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

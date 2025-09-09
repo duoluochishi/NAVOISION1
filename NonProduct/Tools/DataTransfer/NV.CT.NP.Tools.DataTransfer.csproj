@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<UseWPF>true</UseWPF>
+	<Platforms>AnyCPU</Platforms>
+	<!--<UseWindowsForms>true</UseWindowsForms>-->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" />
+    <PackageReference Include="Microsoft.Extensions.Logging" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" />
+    <PackageReference Include="Prism.Core" />
+    <PackageReference Include="Serilog" />
+    <PackageReference Include="Serilog.Sinks.File" />
+    <PackageReference Include="System.Data.SQLite" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\CTS\NV.CT.CTS.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="NV.CT.DatabaseService.Contract">
+      <HintPath>..\..\..\bin\NV.CT.DatabaseService.Contract.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.CT.DatabaseService.Impl">
+      <HintPath>..\..\..\bin\NV.CT.DatabaseService.Impl.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.CT.Logging">
+      <HintPath>..\..\..\bin\NV.CT.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.CT.UI.Controls">
+      <HintPath>..\..\..\bin\NV.CT.UI.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.CT.UI.ViewModel">
+      <HintPath>..\..\..\bin\NV.CT.UI.ViewModel.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="@Rem call &quot;PostBuildEvent.bat&quot; &quot;$(TargetDir)&quot;&#xD;&#xA;" />
+  </Target>
+
+</Project>

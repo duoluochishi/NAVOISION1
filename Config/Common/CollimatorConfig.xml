@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CollimatorConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CollimatorSetting>
+    <Collimator Min="0" Max="288" DefaultMin="0" DefaultMax="288" />
+    <CollimatorMode Ranges="CenterOpening" />
+	<ModuleCount Value="24" Default="24"/>
+	<MaxFrontBladeMoveStep Value="4000" Default="4000" />
+	<MaxRearBladeMoveStep Value="4533" Default="4533" />
+	<MaxBowtieMoveStep Value="3733" Default="3733" />
+	<CollimatorOpening Ranges="128 144 192 242 256" />
+  </CollimatorSetting>
+</CollimatorConfig>

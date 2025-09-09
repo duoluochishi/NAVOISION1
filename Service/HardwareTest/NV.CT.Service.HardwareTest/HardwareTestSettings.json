@@ -1,0 +1,51 @@
+{
+  "HardwareTestConfigOptions": {
+    "DataDirectoryPath": "E:\\AppData\\DataMRS\\HardwareTest",
+    "ImageCutXmlConfigPath": "E:\\nvImgCut.xml"
+  },
+  "XRaySourceConfigOptions": {
+    "TubeInterfaceCount": 6,
+    "XRaySourceCountPerTubeInterface": 4,
+    "Voltage": 100,
+    "Current": 80,
+    "ExposureTime": 5,
+    "FrameTime": 240,
+    "SeriesLength": 100,
+    "DelayExposureTime": 10000,
+    "ExposureRelatedChildNodesConfig": 1,
+    "CycleCount": 50,
+    "CycleInterval": 10,
+    "HeatCapacityUpperLimit": 100,
+    "HeatCapacityLowerLimit": 10
+  },
+  "XRaySourceKVMACoefficientConfigOptions": {
+    "ExposureTime": 10,
+    "FrameTime": 240,
+    "Focus": "Small",
+    "FramesCount": 1
+  },
+  "DataAcquisitionConfigOptions": {
+    "RawDataReadInterval": 24,
+    "XRaySourceCount": 24,
+    "CollimatorSourceCount": 24,
+    "DetectorSourceCount": 16,
+    "GrayLevelCalculateWidth": 256,
+    "GrayLevelCalculateHeight": 100
+  },
+  "CollimatorConfigOptions": {
+    "CollimatorSourceCount": 24,
+    "FullOpeningWidth": 288,
+    "MinMoveStep": 0,
+    "MaxFrontBladeMoveStep": 4000,
+    "MaxRearBladeMoveStep": 4533,
+    "MaxBowtie": 3733,
+    "WaitForArriving": 10000,
+    "IterationInterval": 20000
+  },
+  "ComponentStatusConfigOptions": {
+    "TubeInterfaceCount": 6,
+    "XRaySourceCount": 24,
+    "DetectorSourceCount": 16,
+    "CollimatorSourceCount": 24
+  }
+}

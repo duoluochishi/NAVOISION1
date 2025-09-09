@@ -1,0 +1,15 @@
+﻿<Window x:Class="TaskProcessor.WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TaskProcessor.WpfApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Button Name="btnStart" Content="Start" HorizontalAlignment="Left" Margin="127,69,0,0" VerticalAlignment="Top" Click="StartButton_Click"/>
+        <Button Name="btnStop" Content="Stop" HorizontalAlignment="Left" Margin="258,69,0,0" VerticalAlignment="Top" Click="StopButton_Click"/>
+        <TextBox Name="outputText" HorizontalAlignment="Left" Margin="127,135,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="602" Height="275" TextChanged="TextBox_TextChanged"/>
+
+    </Grid>
+</Window>

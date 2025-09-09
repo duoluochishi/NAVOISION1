@@ -1,0 +1,72 @@
+﻿<Window
+	x:Class="NV.CT.AuxConsole.View.English.MainWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:gif="http://wpfanimatedgif.codeplex.com"
+	xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+	xmlns:local="clr-namespace:NV.CT.AuxConsole.View.English"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:uc="clr-namespace:NV.CT.AuxConsole.View.English"
+	Title="AuxiliaryConsole"
+	d:DesignHeight="900"
+	d:DesignWidth="1800"
+	ResizeMode="NoResize"
+	WindowState="Maximized"
+	WindowStyle="None"
+	Background="#16162B"
+	mc:Ignorable="d">
+	<AdornerDecorator>
+		<Grid>
+
+			<Grid x:Name="MainScreen">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="40" />
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+
+				<Border x:Name="BorderHeader"
+				        Grid.Row="0"
+				        Background="#16162B"
+				        CornerRadius="0">
+					<uc:HeaderControl />
+				</Border>
+
+				<Border
+					Name="BorderContent"
+					Grid.Row="1"
+					Background="#05050F"
+					CornerRadius="0">
+					<Grid
+						Name="grdContent"
+						Margin="3,3,3,3"
+						HorizontalAlignment="Stretch"
+						VerticalAlignment="Stretch">
+
+						<ContentControl
+							Name="controlContainer"
+							HorizontalContentAlignment="Stretch"
+							VerticalContentAlignment="Stretch"
+							Background="#05050F"
+							BorderBrush="DarkRed"
+							BorderThickness="5"
+							Content="{Binding NewControl, Mode=TwoWay}" />
+
+						<!--<Image
+			x:Name="imgLoading"
+			Height="150"
+			HorizontalAlignment="Center"
+			VerticalAlignment="Center"
+			gif:ImageBehavior.AnimatedSource="pack://application:,,,/NV.CT.UI.Controls;component/Icons/loading.gif"
+			Visibility="Collapsed" />-->
+
+					</Grid>
+				</Border>
+			</Grid>
+
+			<Grid x:Name="LockScreen" Visibility="Collapsed">
+				<local:LockControl></local:LockControl>
+			</Grid>
+		</Grid>
+	</AdornerDecorator>
+</Window>

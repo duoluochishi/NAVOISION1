@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ScanningParamConfig>
+	<ScanningParam>
+		<AvailableVoltages Min="70" Max="140" DefaultMin="70" DefaultMax="140" />
+		<TubeCurrent Max="250000" Min="20000" DefaultMin="20000" DefaultMax="250000" />
+		<SmallFocal Min="0" Max="25" DefaultMin="0" DefaultMax="25" />
+		<LargeFocal Min="0" Max="35" DefaultMin="0" DefaultMax="35" />
+		<AxialScanFeed Value="42240" Default="42240" />
+		<AxialScanDetectorWidth Value="47520" Default="47520" />
+		<Pitch Min="10" Max="200" DefaultMin="10" DefaultMax="200" />
+		<ScanFOV Ranges="253440 337920 506880" />
+		<TopoLength Max="1500000" Min="10000" DefaultMax="1000000" DefaultMin="0"/>
+		<AxialLength Max="1500000" Min="0" DefaultMax="1000000" DefaultMin="0"/>
+		<SpiralLength Max="1500000" Min="10000" DefaultMax="1000000" DefaultMin="0"/>
+		<CombinedScanIntervalTime Max="120000000" Min="10000000" DefaultMax="120000000" DefaultMin="10000000"/>
+		<MinExposureDelayTime Value="3000000" Default="3000000" />
+	</ScanningParam>
+</ScanningParamConfig>

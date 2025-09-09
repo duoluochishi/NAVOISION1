@@ -1,0 +1,105 @@
+syntax = "proto3"; //指定版本
+// 定义命名空间
+option csharp_namespace = "NV.CT.SmartPositioning.Common";
+// 指定包名，避免冲突
+package NV.CT.SmartPositioning.Common;
+
+import "google/protobuf/empty.proto";
+
+//定义人体部位枚举
+enum BodyPart {
+    Head = 0;                   //头
+    Neck = 1;                   //脖子
+    Shoulder = 2;               //肩膀
+    Pelvis = 3;                 //骨盆
+    Leg = 4;                    //脚（下肢）
+    Arm = 5;                    //手（上肢）
+    Abdomen = 6;                //腹部
+    Breast = 7;                 //胸部
+    Spine = 8;                  //脊柱   
+}
+
+//定义病人扫描体位信息枚举
+enum PatientPosition {
+	NONE = 0;					//无法识别
+    HFS = 1;                    //头先进，仰卧位(Head First Supine)
+    HFP = 2;                    //头先进，俯卧位(Head First Prone)
+    HFDR = 3;                   //头先进，向右侧卧(Head First Decubitus Right)
+    HFDL = 4;                   //头先进，向左侧卧(Head First Decubitus Left)
+    FFDR = 5;                   //脚先进，向右侧卧(Feet First Decubitus Right)
+    FFDL = 6;                   //脚先进，向左侧卧(Feet First Decubitus Left)
+    FFP = 7;                    //脚先进，俯卧位(Feet First Prone)
+    FFS = 8;                    //脚先进，仰卧位(Feet First Supine) 
+}
+
+// 定义AutoPositioning的Message类型
+message SmartPositioningRequest {
+    string Query = 1;                 //请求号
+	BodyPart BodyPart = 2;            //人体部位
+}
+
+//点的坐标
+message Point{
+    double X=1;                        //点的X坐标
+    double Y=2;                        //点的Y坐标
+    double Z=3;                        //点的Z坐标
+}
+
+//人体部位坐标值
+message BodyPositionInfo {
+	BodyPart BodyPart = 1;          //人体部位
+    Point LeftTop=2;                //左上点的坐标（图的坐标系）
+    Point RightTop=3;               //右上点的坐标（图的坐标系）
+    Point RightBottom=4;            //右下点的坐标（图的坐标系）
+    Point LeftBottom=5;             //左下点的坐标（图的坐标系）
+    double RangeBegin = 6;          //床码起点位置（床的坐标系）
+    double RangeEnd = 7;            //床码结束位置（床的坐标系）
+    string ExtendedField=8;         //扩展字段，保留
+}
+
+//通讯数据结构
+message SmartPositioningResponse {
+	bool Result = 1;                                    //是否正常
+	string Query = 2;                                   //请求号
+    string Image=3;                                     //图片字符串（base64编码）
+    uint32 ImageMatrixLength=4;                         //图片的长度（X轴向的长度）
+    uint32 ImageMatrixHeight=5;                         //图片的高度（Y轴向的长度）
+   
+    double TableHeight=10;                              //床高
+    PatientPosition PatientPosition=11;                 //病人体位    
+    repeated BodyPositionInfo BodyPositions=12;         //识别的九大人体坐标列表
+
+    string ExtendedField=13;                            //扩展字段，保留
+	bool IsValidated=14;								//无法识别
+    
+    double TopBedCode=15;                                //整个图上点相对于床的位置
+    double BottomBedCode=16;                             //整个图下点相对于床的位置
+
+    double PPixel=17;                                    //0点到P点的像素值
+    double PLength=18;                                   //0点到P点的长度
+}
+
+enum Command{                                               //下参命令枚举
+    TableHeight=0;                                          //下床高：参数（{"TableHeight":XX}）
+    TablePosition=1;                                        //下床位：参数（{"TablePosition":XX}）  
+    EnableIntelligentIdentify=2;                            //开启智能识别：参数（{"EnableIntelligentIdentify":true/false}）
+}
+
+message RequestCommand{                                     //下参命令
+    uint32 RequestID=1;                                     //下参命令ID
+    Command Command=2;                                      //下参命令枚举
+    string Parameter=3;                                     //下参参数
+}
+
+message CommandResult{                                      //下参返回结果ID
+    uint32 ResultID=1;                                      //下参返回结果（True/False）
+    bool Result=2;                                          //下参返回结果信息
+    string ResultInfo=3;                                    //返回信息，建议使用json格式字符串
+    RequestCommand SourceCommand=4;                         //下参命令
+}
+
+// 约定需要提供的服务方法
+service SmartPositioningService{
+	rpc UploadPositioning(SmartPositioningResponse) returns (google.protobuf.Empty);	              //上传摆位位置跟智能识别人体部位坐标	
+    rpc SendCommand(RequestCommand) returns (CommandResult);                                          //发送命令
+}

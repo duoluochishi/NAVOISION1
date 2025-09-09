@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="NV.CT.Print.View.MainPrintControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:local="clr-namespace:NV.CT.Print.View"
+             mc:Ignorable="d" 
+             Background="#05050f"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"></BooleanToVisibilityConverter>
+    </UserControl.Resources>
+    <AdornerDecorator>
+        <Grid x:Name="gridMain">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="334"/>  <!--// 0 Left-->
+                <ColumnDefinition Width="6"/>   <!--// 1 seperate line-->
+                <ColumnDefinition Width="*"/>    <!--// 2 Center-->
+                <ColumnDefinition Width="6"/>   <!--// 3 seperate line-->
+                <ColumnDefinition Width="310"/>  <!--// 4 Right-->
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="gridPrinterSettings" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                <local:PrinterSettings />                
+            </Grid>            
+            <Grid x:Name="gridImageView" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid x:Name="gridImageOverviewView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                      Visibility="{Binding IsOverviewMode, Converter={StaticResource booleanToVisibilityConverter}}">
+                    <local:ImageOverviewView />
+                </Grid>
+                <Grid x:Name="gridImageBrowserView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                      Visibility="{Binding IsBrowserMode, Converter={StaticResource booleanToVisibilityConverter}}">
+                    <local:ImageOperationView  />
+                </Grid>
+            </Grid>
+            <Grid x:Name="gridStudyInfo" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Border Style="{StaticResource GroupedBorder}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="220"/>  <!-- 0 //StudyList Section-->
+                            <RowDefinition Height="10"/> <!-- 1 //seperate line -->
+                            <RowDefinition Height="*"/>  <!-- 2 //SeriesList Section-->
+                        </Grid.RowDefinitions>
+                        <Grid x:Name="gridStudy" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                            <local:StudyListView />
+                        </Grid>
+                        <Grid x:Name="gridSeries" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                            <local:SeriesListView />
+                        </Grid>
+                    </Grid>
+                </Border>                
+            </Grid>
+        </Grid>
+    </AdornerDecorator>
+</UserControl>

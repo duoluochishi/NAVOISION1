@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DetectorTemperatures FloatRange="50">
+	<DetectorModule Index="1" Channel1Temperature="260" Channel2Temperature="260" Channel3Temperature="260" Channel4Temperature="260" />
+	<DetectorModule Index="2" Channel1Temperature="260" Channel2Temperature="260" Channel3Temperature="260" Channel4Temperature="260" />
+	<DetectorModule Index="3" Channel1Temperature="260" Channel2Temperature="260" Channel3Temperature="260" Channel4Temperature="260" />
+	<DetectorModule Index="4" Channel1Temperature="260" Channel2Temperature="260" Channel3Temperature="260" Channel4Temperature="260" />
+	<DetectorModule Index="5" Channel1Temperature="260" Channel2Temperature="260" Channel3Temperature="260" Channel4Temperature="260" />
+	<DetectorModule Index="6" Channel1Temperature="260" Channel2Temperature="260" Channel3Temperature="260" Channel4Temperature="260" />
+	<DetectorModule Index="7" Channel1Temperature="260" Channel2Temperature="260" Channel3Temperature="260" Channel4Temperature="260" />
+	<DetectorModule Index="8" Channel1Temperature="260" Channel2Temperature="260" Channel3Temperature="260" Channel4Temperature="260" />
+	<DetectorModule Index="9" Channel1Temperature="260" Channel2Temperature="260" Channel3Temperature="260" Channel4Temperature="260" />
+	<DetectorModule Index="10" Channel1Temperature="260" Channel2Temperature="260" Channel3Temperature="260" Channel4Temperature="260" />
+	<DetectorModule Index="11" Channel1Temperature="260" Channel2Temperature="260" Channel3Temperature="260" Channel4Temperature="260" />
+	<DetectorModule Index="12" Channel1Temperature="260" Channel2Temperature="260" Channel3Temperature="260" Channel4Temperature="260" />
+	<DetectorModule Index="13" Channel1Temperature="260" Channel2Temperature="260" Channel3Temperature="260" Channel4Temperature="260" />
+	<DetectorModule Index="14" Channel1Temperature="260" Channel2Temperature="260" Channel3Temperature="260" Channel4Temperature="260" />
+	<DetectorModule Index="15" Channel1Temperature="260" Channel2Temperature="260" Channel3Temperature="260" Channel4Temperature="260" />
+	<DetectorModule Index="16" Channel1Temperature="260" Channel2Temperature="260" Channel3Temperature="260" Channel4Temperature="260" />
+</DetectorTemperatures>

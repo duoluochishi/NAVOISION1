@@ -1,0 +1,66 @@
+﻿<Grid
+    x:Class="NV.CT.Service.HardwareTest.Views.Integrations.ComponentEnablement.ComponentEnablementView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:NV.CT.Service.HardwareTest.Models.Integrations.ComponentEnablement"
+    xmlns:vm="clr-namespace:NV.CT.Service.HardwareTest.ViewModels.Integrations.ComponentEnablement"
+    mc:Ignorable="d"
+    x:Name="Root"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    d:DataContext="{d:DesignInstance Type=vm:ComponentEnablementViewModel}">
+    <GroupBox Header="Set Component Enablement" Style="{DynamicResource StandardGroupBoxStyle}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <ItemsControl ItemsSource="{Binding Components}" d:ItemsSource="{d:SampleData ItemCount=3}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type models:ComponentModel}">
+                        <GroupBox Margin="0 0 0 5">
+                            <GroupBox.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        Text="{Binding Name}" />
+                                    <CheckBox
+                                        Margin="10 0 0 0"
+                                        Content="All"
+                                        IsChecked="{Binding IsAllEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        Command="{Binding DataContext.AllEnableCheckCommand, ElementName=Root}"
+                                        CommandParameter="{Binding}" />
+                                </StackPanel>
+                            </GroupBox.Header>
+                            <ItemsControl ItemsSource="{Binding DetailedItems}" d:ItemsSource="{d:SampleData ItemCount=24}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.Resources>
+                                    <DataTemplate DataType="{x:Type models:DetailedEnableModel}">
+                                        <CheckBox
+                                            Margin="5"
+                                            Content="{Binding Index}"
+                                            IsChecked="{Binding IsEnabled}"
+                                            Command="{Binding DataContext.EnableCheckCommand, ElementName=Root}"
+                                            CommandParameter="{Binding}" />
+                                    </DataTemplate>
+                                </ItemsControl.Resources>
+                            </ItemsControl>
+                        </GroupBox>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Button
+                Grid.Row="1"
+                Content="Set"
+                HorizontalAlignment="Left"
+                Style="{StaticResource ServiceCommonButton}"
+                Command="{Binding SetCommand}" />
+        </Grid>
+    </GroupBox>
+</Grid>

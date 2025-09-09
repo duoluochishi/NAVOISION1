@@ -1,0 +1,88 @@
+﻿<UserControl
+    x:Class="NV.CT.Examination.Layout.ProtocolSelectionControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:commonView="clr-namespace:NV.CT.UI.Exam.View.CommonView;assembly=NV.CT.UI.Exam"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:view="clr-namespace:NV.CT.UI.Exam.View;assembly=NV.CT.UI.Exam"
+    xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+    d:DesignHeight="950"
+    d:DesignWidth="1800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style
+            x:Key="SelectButtonPathStyle"
+            BasedOn="{StaticResource IconFolder}"
+            TargetType="{x:Type Path}">
+            <Setter Property="Height" Value="38" />
+            <Setter Property="Width" Value="48" />
+            <Setter Property="Fill" Value="#5A5A89" />
+            <Setter Property="Stretch" Value="Fill" />
+        </Style>
+        <Style
+            x:Key="SelectButtonStyle"
+            BasedOn="{StaticResource MaterialDesignRaisedButton}"
+            TargetType="{x:Type Button}">
+            <Setter Property="Height" Value="80" />
+            <Setter Property="Width" Value="90" />
+            <Setter Property="FontSize" Value="8" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Background" Value="{StaticResource MaterialDesignPaper}" />
+        </Style>
+        <Style
+            x:Key="BorderStyle" BasedOn="{StaticResource WindowsBorder}"
+            TargetType="{x:Type Border}">
+            <Setter Property="BorderBrush" Value="#5A5A89" />
+            <Setter Property="Margin" Value="0,0,5,0" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="{StaticResource MaterialDesignBackground}"/>
+        </Style>
+    </UserControl.Resources>
+    <AdornerDecorator>
+        <Grid VerticalAlignment="Stretch" Margin="10 0 0 5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="730" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <view:ProtocolPatientInfoControl Grid.Row="0" Grid.Column="0" Margin="0,5,5,5" />
+            <!--  人体模拟图方案选择  -->
+            <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource BorderStyle}">
+                <TabControl
+                            x:Name="TabControl"
+                            Margin="5,0,0,0"
+                            HorizontalContentAlignment="Left"
+                            wpf:ColorZoneAssist.Mode="PrimaryLight"
+                            Background="{StaticResource MaterialDesignPaper}"
+                            FontSize="14"
+                            SelectedIndex="{Binding SelectAdultChildTabIndex, Mode=TwoWay}">
+                    <TabItem
+                                x:Name="tabAdult"
+                                Header="{x:Static res:LanguageResource.Header_ProtocolAdult}">
+                        <StackPanel Margin="180,25,0,0" Orientation="Horizontal">
+                            <commonView:AdultNormalControl Margin="25,90,0,53" />
+                            <commonView:AdultVeinControl Margin="25,90,0,53" />
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem
+                                x:Name="tabChild"
+                                Header="{x:Static res:LanguageResource.Header_ProtocolChild}">
+                        <StackPanel Margin="180,25,0,0" Orientation="Horizontal">
+                            <commonView:ChildNormalControl Margin="25,103,0,62" />
+                            <commonView:ChildVeinControl Margin="25,103,0,62" />
+                        </StackPanel>
+                    </TabItem>
+                </TabControl>
+            </Border>
+            <view:SelectProtocolControl Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" />
+        </Grid>
+    </AdornerDecorator>
+</UserControl>

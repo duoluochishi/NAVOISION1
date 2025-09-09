@@ -1,0 +1,225 @@
+﻿<UserControl
+    x:Class="NV.CT.ProtocolManagement.Views.English.ProtocolTreeControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:convert="clr-namespace:NV.CT.UI.Controls.Converter;assembly=NV.CT.UI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="clr-namespace:NV.CT.ProtocolManagement.ViewModels.Models"
+    xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <convert:TreeNodeParameterConvert x:Key="treeNodeParameterConvert" />
+        <ContextMenu x:Key="menu" x:Name="tMenu">
+            <MenuItem x:Name="repeat" Header="{x:Static res:LanguageResource.Header_Repeat}">
+                <MenuItem.Icon>
+                    <Path
+                        Fill="{StaticResource TextBoxBrush}"
+                        Stretch="Fill"
+                        Style="{StaticResource IconRepeat}" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem x:Name="delete" Header="{x:Static res:LanguageResource.Header_Delete}">
+                <MenuItem.Icon>
+                    <Image
+                        Width="20"
+                        Height="20"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Opacity="0.8"
+                        Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/Delete.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <!--  TODO：暂不开放  -->
+            <!--<MenuItem x:Name="cut" Header="Cut">
+                <MenuItem.Icon>
+                    <Path
+                        Fill="{StaticResource TextBoxBrush}"
+                        Stretch="Fill"
+                        Style="{StaticResource IconCut}" />
+                </MenuItem.Icon>
+            </MenuItem>-->
+            <!--<MenuItem x:Name="copy" Header="Copy">
+                <MenuItem.Icon>
+                    <Path
+                        Fill="{StaticResource TextBoxBrush}"
+                        Stretch="Fill"
+                        Style="{StaticResource IconCopy}" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem x:Name="paste" Header="Paste">
+                <MenuItem.Icon>
+                    <Path
+                        Fill="{StaticResource TextBoxBrush}"
+                        Stretch="Fill"
+                        Style="{StaticResource IconPaste}" />
+                </MenuItem.Icon>
+            </MenuItem>-->
+            <!--<MenuItem x:Name="moveUp" Header="Up">
+                <MenuItem.Icon>
+                    <Path
+                        Fill="{StaticResource TextBoxBrush}"
+                        Stretch="Fill"
+                        Style="{StaticResource IconUp}" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem x:Name="moveDown" Header="Down">
+                <MenuItem.Icon>
+                    <Path
+                        Fill="{StaticResource TextBoxBrush}"
+                        Stretch="Fill"
+                        Style="{StaticResource Down}" />
+                </MenuItem.Icon>
+            </MenuItem>-->
+            <!--<MenuItem x:Name="autoScan" Header="AutoScan">
+                <MenuItem.Icon>
+                    <Path
+                        Fill="{StaticResource TextBoxBrush}"
+                        Stretch="Fill"
+                        Data="M512 403.2L454.4 533.333333h115.2L512 403.2z m36.266667-125.866667l2.133333 4.266667 170.666667 384c10.666667 21.333333 0 46.933333-21.333334 55.466667-21.333333 8.533333-44.8 0-55.466666-19.2l-2.133334-2.133334-36.266666-83.2c-2.133333 2.133333-4.266667 2.133333-8.533334 2.133334h-170.666666c-4.266667 0-6.4 0-10.666667-2.133334l-36.266667 83.2c-8.533333 21.333333-32 29.866667-53.333333 23.466667l-2.133333-2.133333c-21.333333-8.533333-29.866667-32-23.466667-53.333334l2.133333-2.133333 170.666667-384c12.8-32 57.6-34.133333 74.666667-4.266667zM512 149.333333C311.466667 149.333333 149.333333 311.466667 149.333333 512s162.133333 362.666667 362.666667 362.666667 362.666667-162.133333 362.666667-362.666667S712.533333 149.333333 512 149.333333z m0-85.333333c247.466667 0 448 200.533333 448 448s-200.533333 448-448 448S64 759.466667 64 512 264.533333 64 512 64z" />
+                </MenuItem.Icon>
+            </MenuItem>-->
+        </ContextMenu>
+        <Geometry x:Key="AudltIcon">
+            M 86.5,14.5 C 98.2929,13.9015 109.96,14.7348 121.5,17C 139.664,23.7994 149.164,36.9661 150,56.5C 151.815,89.2859 137.981,112.453 108.5,126C 110.979,129.313 113.645,132.48 116.5,135.5C 119.585,131 122.418,126.333 125,121.5C 127.403,118.798 130.403,117.131 134,116.5C 150.45,123.475 166.283,131.642 181.5,141C 192.141,150.256 195.974,161.756 193,175.5C 191.167,178.667 188.667,181.167 185.5,183C 129.558,184.654 73.558,184.988 17.5,184C 6.99332,180.162 2.82665,172.662 5,161.5C 7.12746,152.724 11.6275,145.557 18.5,140C 33.0078,130.995 48.1744,123.162 64,116.5C 68.0209,116.844 71.3542,118.51 74,121.5C 76.5966,126.369 79.4299,131.036 82.5,135.5C 85.1667,132.167 87.8333,128.833 90.5,125.5C 64.2805,113.254 50.2805,92.5871 48.5,63.5C 47.8668,36.5026 60.5334,20.1692 86.5,14.5 Z M 88.5,25.5 C 129.27,21.3634 145.436,39.3634 137,79.5C 132.035,96.7947 121.202,108.628 104.5,115C 100.095,115.696 95.7612,115.363 91.5,114C 75.5137,105.901 65.3471,93.068 61,75.5C 58.2163,62.5402 59.8829,50.2068 66,38.5C 71.9269,31.2642 79.4269,26.9309 88.5,25.5 Z M 134.5,127.5 C 148.46,134.48 162.127,141.98 175.5,150C 179.628,155.033 182.628,160.7 184.5,167C 183.896,169.468 182.562,171.468 180.5,173C 127.545,174.649 74.5452,174.982 21.5,174C 15.9411,172.542 14.1077,169.042 16,163.5C 17.5139,158.971 19.6806,154.805 22.5,151C 35.5122,143.159 48.8456,135.826 62.5,129C 63.7839,128.316 64.9505,128.483 66,129.5C 70,136.833 74,144.167 78,151.5C 81.2769,157.109 86.1103,158.942 92.5,157C 98.8065,151.574 99.1399,145.741 93.5,139.5C 95.2219,136.58 97.5553,134.747 100.5,134C 102.167,135.667 103.833,137.333 105.5,139C 101.9,143.434 101.067,148.267 103,153.5C 108.667,158.833 114.333,158.833 120,153.5C 124.592,144.645 129.425,135.978 134.5,127.5 Z
+        </Geometry>
+        <Geometry x:Key="ChildIcon">
+            M 48.5,49.5 C 51.9783,49.1842 55.3117,49.6842 58.5,51C 66.1667,58.6667 73.8333,66.3333 81.5,74C 93.5,74.6667 105.5,74.6667 117.5,74C 125.167,66.3333 132.833,58.6667 140.5,51C 148.969,47.4794 154.303,50.1461 156.5,59C 155.863,61.245 155.03,63.4117 154,65.5C 144.333,75.1667 134.667,84.8333 125,94.5C 124.984,123.586 124.317,152.586 123,181.5C 119.257,185.259 114.757,186.426 109.5,185C 106.667,183.5 104.5,181.333 103,178.5C 102.5,164.837 102.333,151.171 102.5,137.5C 100.5,137.5 98.5,137.5 96.5,137.5C 96.9666,152.264 96.4666,166.93 95,181.5C 89.6223,186.244 83.789,186.744 77.5,183C 76.7894,181.745 75.956,180.579 75,179.5C 74.6667,151.167 74.3333,122.833 74,94.5C 63.6365,84.4706 53.6365,74.1373 44,63.5C 41.992,57.6909 43.492,53.0242 48.5,49.5 Z
+        </Geometry>
+        <GeometryGroup x:Key="ChildIcon2">
+            <PathGeometry Figures="M 93.5,27.5 C 113.312,26.4785 122.479,35.8119 121,55.5C 116.236,68.3024 107.069,73.4691 93.5,71C 80.6976,66.2357 75.5309,57.0691 78,43.5C 80.685,35.6498 85.8517,30.3165 93.5,27.5 Z" />
+            <PathGeometry Figures="M 48.5,49.5 C 51.9783,49.1842 55.3117,49.6842 58.5,51C 66.1667,58.6667 73.8333,66.3333 81.5,74C 93.5,74.6667 105.5,74.6667 117.5,74C 125.167,66.3333 132.833,58.6667 140.5,51C 148.969,47.4794 154.303,50.1461 156.5,59C 155.863,61.245 155.03,63.4117 154,65.5C 144.333,75.1667 134.667,84.8333 125,94.5C 124.984,123.586 124.317,152.586 123,181.5C 119.257,185.259 114.757,186.426 109.5,185C 106.667,183.5 104.5,181.333 103,178.5C 102.5,164.837 102.333,151.171 102.5,137.5C 100.5,137.5 98.5,137.5 96.5,137.5C 96.9666,152.264 96.4666,166.93 95,181.5C 89.6223,186.244 83.789,186.744 77.5,183C 76.7894,181.745 75.956,180.579 75,179.5C 74.6667,151.167 74.3333,122.833 74,94.5C 63.6365,84.4706 53.6365,74.1373 44,63.5C 41.992,57.6909 43.492,53.0242 48.5,49.5 Z" />
+        </GeometryGroup>
+        <Geometry x:Key="ScanIcon">
+            M21,22.3138838 C21,22.9187397 20.6948437,23.4634268 20.0845312,23.9479449 C19.4742187,24.4324631 18.6571875,24.8188109 17.6367187,25.1133219 C16.61625,25.4078329 15.4973437,25.6295079 14.28,25.77518 C13.0626562,25.9240189 11.8026563,26.0000218 10.5,26.0000218 C9.19734375,26.0000218 7.93734375,25.9240189 6.72,25.77518 C5.50265625,25.6263411 4.38375,25.4046661 3.36328125,25.1133219 C2.3428125,24.8219777 1.5290625,24.4324631 0.91546875,23.9479449 C0.30515625,23.4634268 0,22.9187397 0,22.3138838 C0,21.8451995 0.1640625,21.4176835 0.4921875,21.0408361 C0.8203125,20.6608219 1.273125,20.3409766 1.850625,20.0844669 C2.428125,19.8247906 3.01546875,19.6126159 3.609375,19.4416095 C4.2065625,19.2737699 4.85625,19.1312646 5.565,19.0172603 C5.8209375,18.9697585 6.06046875,19.0204271 6.2803125,19.169266 C6.50015625,19.3181049 6.628125,19.5176124 6.67078125,19.7646216 C6.72,20.0116309 6.6675,20.245973 6.51328125,20.4549808 C6.3590625,20.6671554 6.15234375,20.7906601 5.89640625,20.8318283 C5.31890625,20.9299986 4.790625,21.0408361 4.31484375,21.1706743 C3.8390625,21.3005125 3.4584375,21.4208503 3.17296875,21.5380214 C2.89078125,21.6520256 2.64796875,21.7660299 2.4478125,21.8768674 C2.2509375,21.9845381 2.113125,22.0795416 2.03765625,22.1587113 C1.9621875,22.2347141 1.9228125,22.2917163 1.91296875,22.3297177 C1.94578125,22.4342216 2.07703125,22.5640598 2.31328125,22.7097319 C2.5528125,22.8585708 2.91703125,23.0169101 3.40265625,23.1847497 C3.88828125,23.3525893 4.4559375,23.5077618 5.10234375,23.6534339 C5.74875,23.799106 6.54609375,23.9162771 7.494375,24.0144474 C8.4459375,24.1126178 9.44671875,24.1601195 10.5,24.1601195 C11.5532812,24.1601195 12.5540625,24.1126178 13.505625,24.0144474 C14.4571875,23.9162771 15.2545312,23.799106 15.8976562,23.6534339 C16.5407812,23.5077618 17.1117187,23.3494225 17.5973437,23.1784161 C18.0829687,23.0074097 18.4471875,22.8459037 18.6867187,22.6970648 C18.92625,22.5482259 19.0607812,22.4152209 19.0870312,22.3012166 C19.0771875,22.2632152 19.0345312,22.2093798 18.9623437,22.1428774 C18.886875,22.0763749 18.7523437,21.9845381 18.5521875,21.8705338 C18.3553125,21.7565296 18.1125,21.6425253 17.8270313,21.5316878 C17.5448437,21.4240171 17.1609375,21.3005125 16.6851563,21.1706743 C16.209375,21.0408361 15.6810938,20.9299986 15.1035937,20.8318283 C14.8476562,20.7938268 14.6409375,20.6671554 14.4867188,20.4549808 C14.3325,20.2428062 14.28,20.0116309 14.3292188,19.7646216 C14.3685938,19.5176124 14.4998438,19.3181049 14.7196875,19.169266 C14.9395313,19.0204271 15.1790625,18.9697585 15.435,19.0172603 C16.1404688,19.1312646 16.7934375,19.2737699 17.390625,19.4416095 C17.9878125,19.6094492 18.571875,19.8216238 19.149375,20.0844669 C19.726875,20.3441433 20.1796875,20.6639886 20.5078125,21.0408361 C20.8359375,21.4208503 21,21.8420328 21,22.3138838 L21,22.3138838 Z M16,8.87220222 L16,14.4984106 C16,14.7497532 15.9003094,14.9720948 15.7043658,15.1589906 C15.5084221,15.3426641 15.2712272,15.436112 14.9996562,15.436112 L13.9993125,15.436112 L13.9993125,21.0623204 C13.9993125,21.313663 13.8996219,21.5360046 13.7036782,21.7229004 C13.5077346,21.9097962 13.2705397,22.0000218 12.9989687,22.0000218 L9.00103128,22.0000218 C8.7328979,22.0000218 8.49570299,21.9065739 8.29632176,21.7229004 C8.10037814,21.5392269 8.00068752,21.3201077 8.00068752,21.0623204 L8.00068752,15.4328897 L7.00034376,15.4328897 C6.73221038,15.4328897 6.49501547,15.3394418 6.29563424,15.1557683 C6.09969062,14.9720948 6,14.7497532 6,14.4951883 L6,8.87220222 C6,8.35340523 6.19250602,7.91516678 6.58439326,7.54781984 C6.97628051,7.1804729 7.44379512,7.00002177 7.99724991,7.00002177 L13.9993125,7.00002177 C14.5527673,7.00002177 15.0202819,7.1804729 15.4121691,7.54781984 C15.807494,7.91516678 16,8.35340523 16,8.87220222 Z M12.9788802,0.875286231 C13.6630648,1.46172808 14,2.16899463 14,3.00003282 C14,3.83107102 13.6596267,4.53833757 12.9788802,5.12477942 C12.2946955,5.71122127 11.4695481,6.00002177 10.5,6.00002177 C9.53045187,6.00002177 8.70530452,5.70827432 8.02111984,5.12477942 C7.33693517,4.53833757 7,3.83107102 7,3.00003282 C7,2.16899463 7.34037328,1.46172808 8.02111984,0.875286231 C8.70530452,0.288844383 9.53045187,2.1773422e-05 10.5,2.1773422e-05 C11.4695481,-0.00290306846 12.2946955,0.288844383 12.9788802,0.875286231 Z
+        </Geometry>
+        <Geometry x:Key="ReconIcon">
+            M47.2857143,0.999927422 C50.0558518,0.990250527 52.4134157,1.96274203 54.368229,3.91754819 C56.3230424,5.87235435 57.2857143,8.22990952 57.2857143,11.0000368 C57.2857143,13.7701642 56.3132192,16.1277193 54.368229,18.0825255 C52.4134157,20.0373316 50.0558518,21 47.2857143,21 C44.5155768,21 42.1580129,20.0275085 40.2031996,18.0825255 C38.2483862,16.1277193 37.2857143,13.7701642 37.2857143,11.0000368 C37.2857143,8.22990952 38.2582094,5.87235435 40.2031996,3.91754819 C42.1580129,1.96274203 44.5155768,0.999927422 47.2857143,0.999927422 Z M49.6851643,8 L44.8835142,8 C44.4407504,8 44.0667387,8.12030075 43.7532289,8.36519871 C43.4789078,8.57948443 43.3267078,8.82995435 43.292944,9.12092592 L43.2857143,9.2481203 L43.2857143,12.9967777 C43.2857143,13.1664876 43.3654668,13.3147154 43.5222217,13.4371643 C43.6498257,13.5351235 43.7967903,13.5945865 43.9602994,13.6144533 L44.0859893,13.6219119 L44.8862643,13.6219119 L44.8862643,17.3748657 C44.8862643,17.546724 44.9660168,17.6928034 45.1227717,17.8152524 C45.2503757,17.9132116 45.3973403,17.9726745 45.5608494,17.9925414 L45.6865393,18 L48.8848893,18 C49.102146,18 49.291902,17.9398496 49.4486569,17.8152524 C49.5740608,17.7155747 49.6501832,17.6007734 49.675616,17.4730483 L49.6851643,17.3748657 L49.6851643,13.6240602 L50.4854393,13.6240602 C50.7026961,13.6240602 50.892452,13.5617615 51.0492069,13.4393126 C51.1746108,13.3396348 51.2507332,13.2248335 51.276166,13.0971085 L51.2857143,12.9989259 L51.2857143,9.2481203 C51.2857143,8.90225564 51.1317095,8.61009667 50.8154496,8.36519871 C50.5467269,8.15528617 50.2335539,8.03691444 49.8707349,8.00737788 L49.6851643,8 Z M47.2857143,2.99998548 C46.7316868,2.99998548 46.260174,3.19254841 45.8692113,3.58350964 C45.4802133,3.97447087 45.2857143,4.4459819 45.2857143,5 C45.2857143,5.55403283 45.4782487,6.02554386 45.8692113,6.4165051 C46.260174,6.8055017 46.7316868,7 47.2857143,7 C47.8397418,7 48.3112546,6.80746633 48.7022172,6.4165051 C49.0912153,6.02554386 49.2857143,5.55403283 49.2857143,5 C49.2857143,4.4459819 49.0931799,3.97447087 48.7022172,3.58350964 C48.3112546,3.19254841 47.8397418,2.99805011 47.2857143,2.99998548 Z
+        </Geometry>
+    </UserControl.Resources>
+
+    <TreeView
+        x:Name="protocolTreeView"
+        Grid.Row="2"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        Background="Transparent"
+        BorderBrush="#5A5A89"
+        BorderThickness="0,1,0,0"
+        ItemsSource="{Binding NodeList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+        MouseLeftButtonUp="ProtocolTreeView_OnMouseLeftButtonUp"
+        MouseRightButtonDown="TreeViewMouseRightButtonDown">
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="SelectedItemChanged">
+                <i:InvokeCommandAction Command="{Binding Commands[ProtocolTreeSelectedChangedCommand]}">
+                    <i:InvokeCommandAction.CommandParameter>
+                        <MultiBinding Converter="{StaticResource treeNodeParameterConvert}">
+                            <Binding ElementName="protocolTreeView" Path="SelectedItem.NodeType" />
+                            <Binding ElementName="protocolTreeView" Path="SelectedItem.ProtocolTemplateId" />
+                            <Binding ElementName="protocolTreeView" Path="SelectedItem.NodeId" />
+                        </MultiBinding>
+                    </i:InvokeCommandAction.CommandParameter>
+                </i:InvokeCommandAction>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <TreeView.Resources>
+            <HierarchicalDataTemplate DataType="{x:Type md:Node}" ItemsSource="{Binding Children, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <StackPanel Orientation="Horizontal">
+                    <Border BorderThickness="0">
+                        <Path
+                            Width="16"
+                            Height="16"
+                            Stretch="Fill">
+                            <Path.Style>
+                                <Style TargetType="Path">
+                                    <Setter Property="Fill" Value="White" />
+                                    <Style.Triggers>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding NodeType}" Value="ProtocolNode" />
+                                                <Condition Binding="{Binding IsAudlt}" Value="True" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Data" Value="{StaticResource AudltIcon}" />
+                                        </MultiDataTrigger>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding NodeType}" Value="ProtocolNode" />
+                                                <Condition Binding="{Binding IsAudlt}" Value="False" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Data" Value="{StaticResource ChildIcon2}" />
+                                        </MultiDataTrigger>
+                                        <!--<DataTrigger Binding="{Binding NodeType}" Value="ProtocolNode">
+                                            <Setter Property="Data" Value="{StaticResource ProtocolManagement}"></Setter>
+                                        </DataTrigger>-->
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding NodeType}" Value="ProtocolNode" />
+                                                <Condition Binding="{Binding IsFactory}" Value="True" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Fill" Value="#5A5A89" />
+                                        </MultiDataTrigger>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding NodeType}" Value="ProtocolNode" />
+                                                <Condition Binding="{Binding IsFactory}" Value="False" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Fill" Value="White" />
+                                        </MultiDataTrigger>
+                                        <DataTrigger Binding="{Binding NodeType}" Value="ScanNode">
+                                            <Setter Property="Data" Value="{StaticResource ScanIcon}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding NodeType}" Value="ReconNode">
+                                            <Setter Property="Data" Value="{StaticResource ReconIcon}" />
+                                        </DataTrigger>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding NodeType}" Value="ReconNode" />
+                                                <Condition Binding="{Binding IsRTD}" Value="True" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Fill" Value="Orange" />
+                                        </MultiDataTrigger>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding NodeType}" Value="ReconNode" />
+                                                <Condition Binding="{Binding IsRTD}" Value="False" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Fill" Value="White" />
+                                        </MultiDataTrigger>
+                                        <!--<DataTrigger Binding="{Binding IsRTD}" Value="True">
+                                            <Setter Property="Fill" Value="Orange"></Setter>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsRTD}" Value="False">
+                                            <Setter Property="Fill" Value="White"></Setter>
+                                        </DataTrigger>-->
+                                    </Style.Triggers>
+                                </Style>
+                            </Path.Style>
+                        </Path>
+                    </Border>
+
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        FontFamily="Microsoft YaHei"
+                        FontSize="16"
+                        Foreground="White"
+                        Text="{Binding NodeName}" />
+                </StackPanel>
+            </HierarchicalDataTemplate>
+        </TreeView.Resources>
+        <TreeView.ItemContainerStyle>
+            <Style BasedOn="{StaticResource MaterialDesignTreeViewItem}" TargetType="TreeViewItem">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                        <Setter Property="IsSelected" Value="True" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding IsSelected}" Value="False">
+                        <Setter Property="IsSelected" Value="False" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </TreeView.ItemContainerStyle>
+    </TreeView>
+</UserControl>

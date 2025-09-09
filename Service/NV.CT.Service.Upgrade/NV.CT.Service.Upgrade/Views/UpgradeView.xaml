@@ -1,0 +1,475 @@
+﻿<UserControl
+    x:Class="NV.CT.Service.Upgrade.Views.UpgradeView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:calcBinding="clr-namespace:CalcBinding;assembly=CalcBinding"
+    xmlns:markableTextBox="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableTextBox;assembly=MaterialDesignThemes.Wpf"
+    xmlns:framework="clr-namespace:NV.CT.Service.Common.Framework;assembly=NV.CT.Service.Common"
+    xmlns:res="clr-namespace:NV.CT.Service.Common.Resources;assembly=NV.CT.Service.Common"
+    xmlns:enums="clr-namespace:NV.CT.Service.Upgrade.Enums"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    xmlns:upgrade="clr-namespace:NV.CT.FacadeProxy.Models.Upgrade;assembly=NV.CT.FacadeProxy"
+    xmlns:models="clr-namespace:NV.CT.Service.Upgrade.Models"
+    mc:Ignorable="d"
+    x:Name="Root"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    Loaded="Root_Loaded"
+    Unloaded="Root_Unloaded">
+    <UserControl.Resources>
+        <framework:ProxyData x:Key="RootDataContext" Data="{Binding DataContext, ElementName=Root}" />
+        <CollectionViewSource x:Key="CvsItems" Source="{Binding FirmwareList}" Filter="CollectionViewSource_Filter" />
+        <Style x:Key="CenterStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="WaitPath" TargetType="{x:Type Path}">
+            <Setter Property="Width" Value="20" />
+            <Setter Property="Fill" Value="Gray" />
+            <Setter Property="Stretch" Value="Uniform" />
+            <Setter Property="Data" Value="M12 19C13.1 19 14 19.9 14 21S13.1 23 12 23 10 22.1 10 21 10.9 19 12 19M12 1C13.1 1 14 1.9 14 3S13.1 5 12 5 10 4.1 10 3 10.9 1 12 1M6 16C7.1 16 8 16.9 8 18S7.1 20 6 20 4 19.1 4 18 4.9 16 6 16M3 10C4.1 10 5 10.9 5 12S4.1 14 3 14 1 13.1 1 12 1.9 10 3 10M6 4C7.1 4 8 4.9 8 6S7.1 8 6 8 4 7.1 4 6 4.9 4 6 4M18 16C19.1 16 20 16.9 20 18S19.1 20 18 20 16 19.1 16 18 16.9 16 18 16M21 10C22.1 10 23 10.9 23 12S22.1 14 21 14 19 13.1 19 12 19.9 10 21 10M18 4C19.1 4 20 4.9 20 6S19.1 8 18 8 16 7.1 16 6 16.9 4 18 4Z" />
+        </Style>
+        <Style x:Key="WarnPath" TargetType="{x:Type Path}">
+            <Setter Property="Width" Value="20" />
+            <Setter Property="Fill" Value="Yellow" />
+            <Setter Property="Stretch" Value="Uniform" />
+            <Setter Property="Data" Value="M13,13H11V7H13M13,17H11V15H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        
+        <!--#region 2025.7.24 根据产品化要求，不再允许随意选择文件夹进行升级。此处使用Visibility="Collapsed"隐藏，而不是直接删除相关代码，是有可能未来再开放 -->
+        <Grid Grid.Row="0" Margin="0 0 0 10" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Text="{x:Static res:Upgrade_Lang.Upgrade_Info_Path}" />
+            <markableTextBox:MarkableTextBox
+                Grid.Column="2"
+                IsReadOnly="True"
+                Style="{StaticResource MarkableTextBox}"
+                Text="{Binding UpgradeFolder, UpdateSourceTrigger=PropertyChanged}" />
+            <Button
+                Grid.Column="4"
+                Style="{StaticResource ServiceCommonButton}"
+                IsEnabled="{calcBinding:Binding !IsUpgrading}"
+                Content="{x:Static res:Common_Lang.Common_Select}"
+                Click="ButtonSelectFolder_Click" />
+        </Grid>
+        <!--#endregion-->
+        
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition />
+                <RowDefinition Height="10" />
+                <RowDefinition />
+                <RowDefinition Height="10" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <ItemsControl
+                Grid.Column="0"
+                Grid.Row="0"
+                ItemsSource="{Binding FirmwareTypes}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox
+                            Margin="0 0 20 0"
+                            IsThreeState="True"
+                            IsHitTestVisible="{calcBinding:Binding !DataContext.IsUpgrading, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+                            IsEnabled="{Binding IsEnabled, UpdateSourceTrigger=PropertyChanged}"
+                            IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Content="{Binding DisplayName}"
+                            Command="{Binding DataContext.FirmwareTypeClickedCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+                            CommandParameter="{Binding}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <ListBox
+                x:Name="ListBox1"
+                Grid.Column="0"
+                Grid.Row="2"
+                BorderThickness="1"
+                BorderBrush="{DynamicResource BaseTabBackBrush}"
+                ItemsSource="{Binding FirmwareTree}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox
+                                IsThreeState="True"
+                                IsHitTestVisible="{calcBinding:Binding !DataContext.IsUpgrading, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+                                IsEnabled="{Binding IsEnabled, UpdateSourceTrigger=PropertyChanged}"
+                                IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                Command="{Binding DataContext.FirmwareClickedCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+                                CommandParameter="{Binding}" />
+                            <TextBlock
+                                Margin="5 0 0 0"
+                                Text="{Binding DisplayName}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <ListBox
+                x:Name="ListBox2"
+                Grid.Column="0"
+                Grid.Row="4"
+                BorderThickness="1"
+                BorderBrush="{DynamicResource BaseTabBackBrush}"
+                ItemsSource="{Binding SelectedItem.Children, ElementName=ListBox1}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox
+                                IsThreeState="True"
+                                IsHitTestVisible="{calcBinding:Binding !DataContext.IsUpgrading, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+                                IsEnabled="{Binding IsEnabled, UpdateSourceTrigger=PropertyChanged}"
+                                IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                Command="{Binding DataContext.FirmwareClickedCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+                                CommandParameter="{Binding}" />
+                            <TextBlock
+                                Margin="5 0 0 0"
+                                Text="{Binding DisplayName}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <ListBox
+                Grid.Column="0"
+                Grid.Row="6"
+                BorderThickness="1"
+                BorderBrush="{DynamicResource BaseTabBackBrush}"
+                ItemsSource="{Binding SelectedItem.Children, ElementName=ListBox2}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox
+                                IsThreeState="True"
+                                IsHitTestVisible="{calcBinding:Binding !DataContext.IsUpgrading, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+                                IsEnabled="{Binding IsEnabled, UpdateSourceTrigger=PropertyChanged}"
+                                IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                Command="{Binding DataContext.FirmwareClickedCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+                                CommandParameter="{Binding}" />
+                            <TextBlock
+                                Margin="5 0 0 0"
+                                Text="{Binding DisplayName}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <GridSplitter
+                Grid.Column="1"
+                Grid.Row="0"
+                Grid.RowSpan="7"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Stretch"
+                ShowsPreview="False"
+                Width="2" />
+            <DataGrid
+                x:Name="DataGridItems"
+                Grid.Column="2"
+                Grid.Row="0"
+                Grid.RowSpan="7"
+                AutoGenerateColumns="False"
+                CanUserReorderColumns="False"
+                CanUserAddRows="False"
+                CanUserDeleteRows="False"
+                CanUserResizeRows="False"
+                CanUserSortColumns="True"
+                IsReadOnly="True"
+                Grid.IsSharedSizeScope="True"
+                ItemsSource="{Binding Source={StaticResource CvsItems}}">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style
+                        TargetType="{x:Type DataGridColumnHeader}"
+                        BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn CanUserSort="False">
+                        <DataGridTemplateColumn.Header>
+                            <CheckBox
+                                IsHitTestVisible="{calcBinding:Binding !Data.IsUpgrading, Source={StaticResource RootDataContext}}"
+                                IsChecked="{Binding Data.IsAllChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Source={StaticResource RootDataContext}}"
+                                Command="{Binding Data.AllClickedCommand, Source={StaticResource RootDataContext}}" />
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox
+                                    IsHitTestVisible="{calcBinding:Binding !DataContext.IsUpgrading, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+                                    IsEnabled="{Binding IsEnabled, UpdateSourceTrigger=PropertyChanged}"
+                                    IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    HorizontalAlignment="Center"
+                                    Command="{Binding DataContext.FirmwareClickedCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+                                    CommandParameter="{Binding}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Binding="{Binding DisplayName}">
+                        <DataGridTextColumn.Header>
+                            <StackPanel Orientation="Horizontal" Cursor="">
+                                <TextBlock Text="{x:Static res:Common_Lang.Common_Name}" />
+                                <ContentControl
+                                    x:Name="TypeFilter"
+                                    Margin="3 0 0 0"
+                                    Cursor="Hand"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    MouseDown="TypeFilter_MouseDown">
+                                    <Border Background="Transparent">
+                                        <Path
+                                            Width="13"
+                                            Stretch="Uniform"
+                                            Data="M14,12V19.88C14.04,20.18 13.94,20.5 13.71,20.71C13.32,21.1 12.69,21.1 12.3,20.71L10.29,18.7C10.06,18.47 9.96,18.16 10,17.87V12H9.97L4.21,4.62C3.87,4.19 3.95,3.56 4.38,3.22C4.57,3.08 4.78,3 5,3V3H19V3C19.22,3 19.43,3.08 19.62,3.22C20.05,3.56 20.13,4.19 19.79,4.62L14.03,12H14Z" />
+                                    </Border>
+                                </ContentControl>
+                            </StackPanel>
+                        </DataGridTextColumn.Header>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style
+                                TargetType="{x:Type TextBlock}"
+                                BasedOn="{StaticResource CenterStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsEnabled}" Value="false">
+                                        <Setter Property="Opacity" Value="0.5" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn
+                        Header="{x:Static res:Upgrade_Lang.Upgrade_Info_SuperiorName}"
+                        CanUserSort="False"
+                        ElementStyle="{StaticResource CenterStyle}"
+                        Binding="{Binding Parent.DisplayName, FallbackValue={x:Static system:String.Empty}}" />
+                    <DataGridTemplateColumn Header="{x:Static res:Upgrade_Lang.Upgrade_Info_UpgradableStatus}" SortMemberPath="IsCanUpgrade">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ContentControl HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <i:Interaction.Triggers>
+                                        <i:DataTrigger Binding="{Binding IsCanUpgrade}" Value="true">
+                                            <i:ChangePropertyAction PropertyName="Content">
+                                                <i:ChangePropertyAction.Value>
+                                                    <Path Style="{StaticResource RightPath}" />
+                                                </i:ChangePropertyAction.Value>
+                                            </i:ChangePropertyAction>
+                                        </i:DataTrigger>
+                                        <i:DataTrigger Binding="{Binding IsCanUpgrade}" Value="false">
+                                            <i:ChangePropertyAction PropertyName="Content">
+                                                <i:ChangePropertyAction.Value>
+                                                    <Path Style="{StaticResource WrongPath}" ToolTip="{Binding CanUpgradeMsg}" />
+                                                </i:ChangePropertyAction.Value>
+                                            </i:ChangePropertyAction>
+                                        </i:DataTrigger>
+                                    </i:Interaction.Triggers>
+                                </ContentControl>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="{x:Static res:Upgrade_Lang.Upgrade_Info_CurrentVersion}" CanUserSort="False">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ContentControl HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <i:Interaction.Triggers>
+                                        <i:DataTrigger Binding="{Binding GetVerStatus}" Value="{x:Static enums:GetVersionStatusType.None}">
+                                            <i:ChangePropertyAction PropertyName="Content" Value="{x:Null}" />
+                                        </i:DataTrigger>
+                                        <i:DataTrigger Binding="{Binding GetVerStatus}" Value="{x:Static enums:GetVersionStatusType.Success}">
+                                            <i:ChangePropertyAction PropertyName="Content">
+                                                <i:ChangePropertyAction.Value>
+                                                    <TextBlock Text="{Binding CurrentVersion}" Style="{StaticResource CenterStyle}" />
+                                                </i:ChangePropertyAction.Value>
+                                            </i:ChangePropertyAction>
+                                        </i:DataTrigger>
+                                        <i:DataTrigger Binding="{Binding GetVerStatus}" Value="{x:Static enums:GetVersionStatusType.Warning}">
+                                            <i:ChangePropertyAction PropertyName="Content">
+                                                <i:ChangePropertyAction.Value>
+                                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch">
+                                                        <TextBlock Text="{Binding CurrentVersion}" Style="{StaticResource CenterStyle}" />
+                                                        <Path Margin="5 0 0 0" Style="{StaticResource WarnPath}" ToolTip="{Binding GetVerMsg}" />
+                                                    </StackPanel>
+                                                </i:ChangePropertyAction.Value>
+                                            </i:ChangePropertyAction>
+                                        </i:DataTrigger>
+                                        <i:DataTrigger Binding="{Binding GetVerStatus}" Value="{x:Static enums:GetVersionStatusType.Error}">
+                                            <i:ChangePropertyAction PropertyName="Content">
+                                                <i:ChangePropertyAction.Value>
+                                                    <Path Style="{StaticResource WrongPath}" ToolTip="{Binding GetVerMsg}" />
+                                                </i:ChangePropertyAction.Value>
+                                            </i:ChangePropertyAction>
+                                        </i:DataTrigger>
+                                    </i:Interaction.Triggers>
+                                </ContentControl>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn
+                        Header="{x:Static res:Upgrade_Lang.Upgrade_Info_UpgradeVersion}"
+                        CanUserSort="False"
+                        ElementStyle="{StaticResource CenterStyle}"
+                        Binding="{Binding UpgradeVersion}" />
+                    <DataGridTemplateColumn Header="{x:Static res:Upgrade_Lang.Upgrade_Info_UpgradeStatus}" SortMemberPath="UpgradeStatus">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate DataType="{x:Type models:FirmwareModel}">
+                                <ContentControl HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <i:Interaction.Triggers>
+                                        <i:DataTrigger Binding="{Binding UpgradeStatus}" Value="{x:Static upgrade:UpgradeStatusType.None}">
+                                            <i:ChangePropertyAction PropertyName="Content" Value="{x:Null}" />
+                                        </i:DataTrigger>
+                                        <i:DataTrigger Binding="{Binding UpgradeStatus}" Value="{x:Static upgrade:UpgradeStatusType.Upgrading}">
+                                            <i:ChangePropertyAction PropertyName="Content">
+                                                <i:ChangePropertyAction.Value>
+                                                    <Path Style="{StaticResource WaitPath}" />
+                                                </i:ChangePropertyAction.Value>
+                                            </i:ChangePropertyAction>
+                                        </i:DataTrigger>
+                                        <i:DataTrigger Binding="{Binding UpgradeStatus}" Value="{x:Static upgrade:UpgradeStatusType.UpgradeCompletedAndWaitRestart}">
+                                            <i:ChangePropertyAction PropertyName="Content">
+                                                <i:ChangePropertyAction.Value>
+                                                    <Path Style="{StaticResource WaitPath}" />
+                                                </i:ChangePropertyAction.Value>
+                                            </i:ChangePropertyAction>
+                                        </i:DataTrigger>
+                                        <i:DataTrigger Binding="{Binding UpgradeStatus}" Value="{x:Static upgrade:UpgradeStatusType.Success}">
+                                            <i:ChangePropertyAction PropertyName="Content">
+                                                <i:ChangePropertyAction.Value>
+                                                    <Path Style="{StaticResource RightPath}" />
+                                                </i:ChangePropertyAction.Value>
+                                            </i:ChangePropertyAction>
+                                        </i:DataTrigger>
+                                        <i:DataTrigger Binding="{Binding UpgradeStatus}" Value="{x:Static upgrade:UpgradeStatusType.Fail}">
+                                            <i:ChangePropertyAction PropertyName="Content">
+                                                <i:ChangePropertyAction.Value>
+                                                    <Path Style="{StaticResource WrongPath}" ToolTip="{Binding UpgradeMsg}" />
+                                                </i:ChangePropertyAction.Value>
+                                            </i:ChangePropertyAction>
+                                        </i:DataTrigger>
+                                    </i:Interaction.Triggers>
+                                </ContentControl>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="{x:Static res:Upgrade_Lang.Upgrade_Info_Progress}" CanUserSort="False" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ProgressBar
+                                    IsIndeterminate="False"
+                                    Minimum="0"
+                                    Maximum="100"
+                                    Background="#FF3A3B5F"
+                                    Foreground="#FFFAAA4E"
+                                    VerticalAlignment="Stretch"
+                                    VerticalContentAlignment="Stretch"
+                                    Height="auto"
+                                    Value="{Binding Progress, UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Popup
+                x:Name="TypeFilterPopup"
+                Grid.Column="2"
+                Grid.Row="0"
+                PlacementTarget="{Binding ElementName=TypeFilter}"
+                Placement="MousePoint"
+                HorizontalOffset="-5"
+                VerticalOffset="-5"
+                StaysOpen="False">
+                <Border Background="{StaticResource BaseBackgroundColor}">
+                    <ItemsControl ItemsSource="{Binding FilterFirmwareTypes}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Vertical" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox
+                                    x:Name="CheckBoxFilter"
+                                    IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    Content="{Binding FirmwareType}"
+                                    Click="CheckBoxFilter_Click" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Border>
+            </Popup>
+        </Grid>
+        <Grid Grid.Row="2" Margin="0 10 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <ProgressBar
+                Grid.Column="0"
+                Height="auto"
+                Minimum="0"
+                Maximum="100"
+                IsIndeterminate="False"
+                Background="#FF3A3B5F"
+                Foreground="#FFFAAA4E"
+                Value="{Binding TotalProgress, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock
+                Grid.Column="0"
+                Margin="10 0 0 0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{x:Static res:Upgrade_Lang.Upgrade_Info_CountInfo}">
+                        <Binding Path="TotalCount" UpdateSourceTrigger="PropertyChanged" />
+                        <Binding Path="CheckedCount" UpdateSourceTrigger="PropertyChanged" />
+                        <Binding Path="SucceededCount" UpdateSourceTrigger="PropertyChanged" />
+                        <Binding Path="FailedCount" UpdateSourceTrigger="PropertyChanged" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+            <TextBlock
+                Grid.Column="0"
+                Margin="0 0 10 0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Text="{Binding StepMessage, UpdateSourceTrigger=PropertyChanged}" />
+            <Button
+                Grid.Column="2"
+                Style="{StaticResource ServiceCommonButton}"
+                IsEnabled="{calcBinding:Binding !IsUpgrading}"
+                Content="{x:Static res:Upgrade_Lang.Upgrade_Info_Upgrade}"
+                Command="{Binding UpgradeCommand}" />
+            <CheckBox
+                Grid.Column="4"
+                IsHitTestVisible="{calcBinding:Binding !IsUpgrading}"
+                IsChecked="{Binding IsNotUpgradeWhenSameVer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Content="{x:Static res:Upgrade_Lang.Upgrade_Info_NotWhenSameVer}" />
+        </Grid>
+    </Grid>
+</UserControl>

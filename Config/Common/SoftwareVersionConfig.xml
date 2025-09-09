@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoftwareVersionConfig>
+	<SoftwareVersionSetting
+	Version="V2.0.3" 
+	BuildVersion="V2.0.3.10450"
+	MCSVersion=""
+	MRSVersion=""
+	ALGVersion=""
+	FWVersion=""
+	/>
+</SoftwareVersionConfig>

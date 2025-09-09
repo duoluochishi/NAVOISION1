@@ -1,0 +1,154 @@
+﻿<UserControl
+	x:Class="NV.CT.Recon.Layout.ScanDefaultControl"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:normal="clr-namespace:NV.CT.UI.Exam.DynamicParameters.Templates.Default;assembly=NV.CT.UI.Exam"
+	xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+	xmlns:view="clr-namespace:NV.CT.UI.Exam.View;assembly=NV.CT.UI.Exam"
+	d:DesignHeight="950"
+	d:DesignWidth="1950"
+	mc:Ignorable="d">
+	<UserControl.Resources>
+		<Style
+			x:Key="BaseLiftMargin"
+			TargetType="{x:Type Control}">
+			<Setter Property="Margin" Value="5,0,0,0" />
+		</Style>
+		<Style
+			x:Key="BaseRightStackPanel"
+			TargetType="{x:Type StackPanel}">
+			<Setter Property="Orientation" Value="Vertical" />
+			<Setter Property="HorizontalAlignment" Value="Stretch" />
+			<Setter Property="VerticalAlignment" Value="Stretch" />
+			<Style.Triggers>
+				<Trigger Property="IsEnabled" Value="True">
+					<Setter Property="Visibility" Value="Visible" />
+				</Trigger>
+				<Trigger Property="IsEnabled" Value="False">
+					<Setter Property="Visibility" Value="Collapsed" />
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+		<Style
+			x:Key="BorderStyle"
+			TargetType="{x:Type Border}">
+			<Style.Triggers>
+				<Trigger Property="IsEnabled" Value="True">
+					<Setter Property="Visibility" Value="Visible" />
+				</Trigger>
+				<Trigger Property="IsEnabled" Value="False">
+					<Setter Property="Visibility" Value="Collapsed" />
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+		<Style
+			x:Key="ContentControlStyle"
+			TargetType="{x:Type ContentControl}">
+			<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+			<Setter Property="VerticalContentAlignment" Value="Stretch" />
+		</Style>
+	</UserControl.Resources>
+	<AdornerDecorator>
+		<Grid Background="#05050F">
+
+			<StackPanel
+				Margin="10,0,0,0"
+				Style="{StaticResource BaseRightStackPanel}">
+				<Border
+					CornerRadius="10"
+					Style="{StaticResource WindowsBorder}">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="10" />
+							<RowDefinition Height="813" />
+							<RowDefinition Height="203" />
+							<RowDefinition Height="5" />
+						</Grid.RowDefinitions>
+						<StackPanel
+							Grid.Row="1"
+							Margin="10,0,0,0"
+							Orientation="Horizontal">
+							<Border Visibility="Visible">
+								<!--  Dicom图像控件  -->
+								<view:LoadStaticDicomControl />
+							</Border>
+							<view:ImageScrollBarControl />
+							<!--  右边的工具条控件  -->
+							<view:ToolsControl Style="{StaticResource BaseLiftMargin}" />
+						</StackPanel>
+						<Grid
+							Grid.Row="2"
+							Margin="10,5,0,0">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="1100" />
+								<ColumnDefinition Width="40" />
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="10" />
+							</Grid.ColumnDefinitions>
+
+							<!--  Scan和Recon 简单参数面板Tab控件区域  -->
+							<TabControl
+								Grid.Column="0"
+								SelectedIndex="{Binding Path=ActiveParameterPanelIndex}"
+								TabStripPlacement="Left">
+								<TabItem Header="{x:Static res:LanguageResource.Header_CommanParmsS}">
+									<Border Style="{StaticResource BorderStyle}">
+										<ContentControl
+											x:Name="ScanParameterContentHolder"
+											Style="{StaticResource ContentControlStyle}" />
+									</Border>
+								</TabItem>
+								<TabItem Header="{x:Static res:LanguageResource.Header_CommanParmsR}">
+									<Border Style="{StaticResource BorderStyle}">
+										<ContentControl
+											x:Name="ReconParameterContentHolder"
+											Style="{StaticResource ContentControlStyle}" />
+									</Border>
+								</TabItem>
+							</TabControl>
+
+
+							<StackPanel
+								Grid.Column="1"
+								Orientation="Horizontal">
+								<!--  显示详细参数的 按钮  -->
+								<Button
+									VerticalAlignment="Top"
+									Command="{Binding Commands[ShowParameterDetail]}"
+									Cursor="Hand"
+									Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+									ToolTip="{x:Static res:LanguageResource.ToolTip_ParameterDetail}">
+									<Path
+										Width="20"
+										Height="20"
+										Fill="{StaticResource TextBoxBrush}"
+										Stretch="Fill"
+										Style="{StaticResource List01}" />
+								</Button>
+							</StackPanel>
+							<Border
+								Grid.Column="2"
+								Margin="15,15,0,15">
+								<!--  Recon操作面板  -->
+								<view:ScanPanelControl />
+							</Border>
+						</Grid>
+					</Grid>
+				</Border>
+
+				<!--  Timeline控件  -->
+				<!--
+                <Border
+                    Height="auto"
+                    Margin="0,10,0,10"
+                    CornerRadius="10"
+                    Style="{StaticResource WindowsBorder}">
+                    <view:Timeline MinHeight="85" />
+                </Border>-->
+
+			</StackPanel>
+		</Grid>
+	</AdornerDecorator>
+</UserControl>

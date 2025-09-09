@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="NV.CT.Print.View.ImageOperationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NV.CT.Print.View"
+             mc:Ignorable="d" 
+             xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+    </UserControl.Resources>    
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="18"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+        <Border Style="{StaticResource GroupedBorder}" Background="#353530" BorderBrush="#353530" Grid.Column="0"
+                Width="{Binding ImageAreaWidth}" Height="{Binding ImageAreaHeight}" >
+                <ContentControl  BorderThickness="1" Margin="8,8,8,8" AllowDrop="True" Background="Transparent"
+                                HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+                                Content="{Binding ImageViewer.WindowsFormsHost}">
+                </ContentControl>
+            </Border>
+            <ScrollBar x:Name="scrollBarPage" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4,0,0,0" SmallChange="1"
+                       Style="{StaticResource MaterialDesignScrollBar}" 
+                       Maximum="{Binding MaxPageNumber, Mode=TwoWay}" Minimum="{Binding MinPageNumber, Mode=TwoWay}" ViewportSize="{Binding ViewPortValue, Mode=TwoWay}" Value="{Binding ScrollBarValue, Mode=TwoWay}" >
+            </ScrollBar>
+        </Grid>
+
+</UserControl>

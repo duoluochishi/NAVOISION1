@@ -1,0 +1,575 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Errors xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ErrorInfo Code="MCS001000001" Level="Error" Module="Infrastructure(基础服务)&#xA;（001）" Description="数据库无法连接" Reason="1.数据库是否安装；&#xA;2.访问端口是否开通;&#xA;3.账号和密码是否正确" Solution="1.没有安装，则安装指定版本数据库;&#xA;2.未开通，则通过防火墙开通端口;&#xA;3.错误，检查账号和密码配置" Exception="" />
+  <ErrorInfo Code="MCS001000002" Level="Error" Module="Infrastructure(基础服务)&#xA;（001）" Description="GRPC通信失败" Reason="1.GRPC端口是否开通;&#xA;2.GRPC服务是否启动;" Solution="1.未开通，则通过防火墙开通端口;&#xA;2.未启动，则检查服务进程异常;" Exception="" />
+  <ErrorInfo Code="MCS001000003" Level="Error" Module="Infrastructure(基础服务)&#xA;（001）" Description="MRS扫描代理通信失败" Reason="1.代理端口是否开通;&#xA;2.通信断联" Solution="1.未开通，则通过防火墙开通端口;&#xA;2.心跳检查;" Exception="" />
+  <ErrorInfo Code="MCS001000004" Level="Warning" Module="Infrastructure(基础服务)&#xA;（001）" Description="图像数据缺失" Reason="MRS图像保存数据缺失" Solution="MRS排查" Exception="" />
+  <ErrorInfo Code="MCS001000005" Level="Warning" Module="Infrastructure(基础服务)&#xA;（001）" Description="日志写入异常" Reason="1.磁盘空间不足;&#xA;2.日志服务进程是否启动" Solution="1.检查磁盘空间&#xA;1.1.调整日志写入磁盘&#xA;2.检查进程启动情况" Exception="" />
+  <ErrorInfo Code="MCS001000006" Level="Error" Module="Infrastructure(基础服务)&#xA;（001）" Description="配置加载异常" Reason="1.配置文件目录是否设置正确;&#xA;2.配置文件是否存在;&#xA;3.配置文件格式是否正确;" Solution="1.运行环境正常设置;&#xA;2.文件是否在指定目录下;&#xA;3.检查文件内容格式;" Exception="" />
+  <ErrorInfo Code="MCS002000001" Level="Error" Module="Configuration+License（配置+授权）&#xA;（002）" Description="配置文件不存在" Reason="1. 配置文件缺失.&#xA;2. 配置文件路径错误." Solution="1. 尝试恢复出厂设置.&#xA;2. 联系厂家服务工程师解决；" Exception="" />
+  <ErrorInfo Code="MCS002000002" Level="Error" Module="Configuration+License（配置+授权）&#xA;（002）" Description="配置文件格式/版本错误" Reason="1、配置文件格式错误；&#xA;2、配置文件版本不匹配；" Solution="" Exception="" />
+  <ErrorInfo Code="MCS002000003" Level="Error" Module="Configuration+License（配置+授权）&#xA;（002）" Description="配置内容加载失败" Reason="配置内容加载失败" Solution="" Exception="" />
+  <ErrorInfo Code="MCS002000004" Level="Error" Module="Configuration+License（配置+授权）&#xA;（002）" Description="配置内容写入失败" Reason="配置内容保存失败，参数异常" Solution="" Exception="" />
+  <ErrorInfo Code="MCS002000006" Level="Error" Module="Configuration+License（配置+授权）&#xA;（002）" Description="许可证不存在" Reason="" Solution="联系厂家服务工程师解决；" Exception="" />
+  <ErrorInfo Code="MCS002000007" Level="Error" Module="Configuration+License（配置+授权）&#xA;（002）" Description="许可证格式/版本错误" Reason="" Solution="联系厂家服务工程师解决；" Exception="" />
+  <ErrorInfo Code="MCS002000008" Level="Error" Module="Configuration+License（配置+授权）&#xA;（002）" Description="许可证内容加载失败" Reason="" Solution="联系厂家服务工程师解决；" Exception="" />
+  <ErrorInfo Code="MCS002000009" Level="Error" Module="Configuration+License（配置+授权）&#xA;（002）" Description="指定许可证无效" Reason="" Solution="联系厂家服务工程师解决；" Exception="" />
+  <ErrorInfo Code="MCS002000010" Level="Warning" Module="Configuration+License（配置+授权）&#xA;（002）" Description="许可证更新失败" Reason="" Solution="联系厂家服务工程师解决；" Exception="" />
+  <ErrorInfo Code="MCS003000001" Level="Error" Module="Start/End process（启动）&#xA;（003）" Description="启动进程失败" Reason="1.句柄错误" Solution="" Exception="传递正确的主进程句柄" />
+  <ErrorInfo Code="MCS003000002" Level="Error" Module="Start/End process（启动）&#xA;（003）" Description="进程异常退出" Reason="1.子进程内部异常未捕获" Solution="重启计算机." Exception="修改子进程异常代码并添加捕获异常代码" />
+  <ErrorInfo Code="MCS003000003" Level="Error" Module="Start/End process（启动）&#xA;（003）" Description="GRPC通讯失败" Reason="1.GRPC端口关闭；&#xA;2.GRPC服务未启动" Solution="重启计算机." Exception="1、找到端口非正常关闭原因并处理&#xA;2、找到GRPC服务非正常关闭原因并处理" />
+  <ErrorInfo Code="MCS004000001" Level="Error" Module="Console（主控台）&#xA;（004）" Description="主控台卡死" Reason="1.进程管理服务卡住；&#xA;2.GRPC服务卡住；" Solution="重启计算机." Exception="1、找到进程管理服务卡住原因并处理；&#xA;2、找到GRPC服务卡住原因并处理" />
+  <ErrorInfo Code="MCS005000001" Level="Error" Module="PatientBrowser（患者注册）&#xA;（005）" Description="登记患者失败" Reason="1、网络断开；&#xA;2、数据库断开；" Solution="1、请检查网络连接；&#xA;2、请重启计算机；" Exception="" />
+  <ErrorInfo Code="MCS005000002" Level="Error" Module="PatientBrowser（患者注册）&#xA;（005）" Description="查询患者失败" Reason="1、网络断开；&#xA;2、数据库断开；" Solution="1、请检查网络连接；&#xA;2、请重启计算机；" Exception="" />
+  <ErrorInfo Code="MCS005000003" Level="Error" Module="PatientBrowser（患者注册）&#xA;（005）" Description="患者进入检查失败" Reason="1、网络断开；&#xA;2、数据库断开；&#xA;3、GRPC服务是否启动;" Solution="1、请检查网络连接；&#xA;2、请重启计算机；&#xA;3、未启动，则检查服务进程异常;" Exception="" />
+  <ErrorInfo Code="MCS005000004" Level="Error" Module="PatientBrowser（患者注册）&#xA;（005）" Description="患者进入急诊检查失败" Reason="1、缺乏急诊协议；&#xA;2、网络断开；&#xA;3、数据库断开；&#xA;4、GRPC服务是否启动;" Solution="1、请确认是急诊协议是否配置；&#xA;2、请检查网络连接；&#xA;3、请重启计算机；&#xA;3、未启动，则检查服务进程异常;" Exception="" />
+  <ErrorInfo Code="MCS006000001" Level="Error" Module="PatientManagement（患者管理）&#xA;（006）" Description="导入数据不支持" Reason="导入文件不是DICOM图像数据" Solution="" Exception="" />
+  <ErrorInfo Code="MCS006000002" Level="Error" Module="PatientManagement（患者管理）&#xA;（006）" Description="导入数据DICOM解析错误" Reason="导入DICOM图像数据解析错误" Solution="" Exception="" />
+  <ErrorInfo Code="MCS006000003" Level="Warning" Module="PatientManagement（患者管理）&#xA;（006）" Description="1、导出本地磁盘空间不足&#xA;2、导出USB磁盘空间不足&#xA;3、导出光盘磁盘空间不足" Reason="1、导出本地磁盘空间不足&#xA;2、导出USB磁盘空间不足&#xA;3、导出光盘磁盘空间不足" Solution="请检查磁盘空间" Exception="" />
+  <ErrorInfo Code="MCS006000004" Level="Error" Module="PatientManagement（患者管理）&#xA;（006）" Description="Dose 报告为空" Reason="生成Dose报告失败" Solution="联系厂家服务工程师解决；" Exception="" />
+  <ErrorInfo Code="MCS006000005" Level="Error" Module="PatientManagement（患者管理）&#xA;（006）" Description="SR 报告为空" Reason="生成SR报告失败" Solution="联系厂家服务工程师解决；" Exception="" />
+  <ErrorInfo Code="MCS006000006" Level="Warning" Module="PatientManagement（患者管理）&#xA;（006）" Description="确认是否删除检查数据" Reason="删除检查数据做二次确认警告" Solution="请用户再次确认" Exception="" />
+  <ErrorInfo Code="MCS006000007" Level="Warning" Module="PatientManagement（患者管理）&#xA;（006）" Description="确认删除原始数据" Reason="删除原始数据做二次确认警告" Solution="请用户再次确认" Exception="" />
+  <ErrorInfo Code="MCS007000001" Level="Warning" Module="Exam（检查）&#xA;（007）" Description="球管热熔低于10%" Reason="球管热熔不足" Solution="请预热球管" Exception="" />
+  <ErrorInfo Code="MCS007000002" Level="Warning" Module="Exam（检查）&#xA;（007）" Description="本地数据磁盘空间不足" Reason="本地磁盘空间不足" Solution="请检查磁盘空间" Exception="" />
+  <ErrorInfo Code="MCS007000003" Level="Warning" Module="Exam（检查）&#xA;（007）" Description="原始数据磁盘空间不足" Reason="原始数据磁盘空间不足" Solution="请检查磁盘空间" Exception="" />
+  <ErrorInfo Code="MCS007000004" Level="Warning" Module="Exam（检查）&#xA;（007）" Description="检查室门打开！" Reason="曝光中检查室门不能打开" Solution="请关闭检查门" Exception="" />
+  <ErrorInfo Code="MCS007000005" Level="Warning" Module="Exam（检查）&#xA;（007）" Description="检查床目标位置不在有效位置范围内！" Reason="预设目标位置超出检查床移动范围" Solution="请调整检查床位置，请退床/请进床；" Exception="" />
+  <ErrorInfo Code="MCS007000006" Level="Warning" Module="Exam（检查）&#xA;（007）" Description="患者体位和定位像体位不匹配！" Reason="患者实际体位和用户选择体位不匹配" Solution="请检查患者体位" Exception="" />
+  <ErrorInfo Code="MCS007000007" Level="Warning" Module="Exam（检查）&#xA;（007）" Description="剂量值已超过阈值！" Reason="剂量超出设置阈值" Solution="请确认患者扫描参数" Exception="" />
+  <ErrorInfo Code="MCS007000008" Level="Warning" Module="Exam（检查）&#xA;（007）" Description="还有任务未扫描完成，是否关闭当前患者？" Reason="还有任务未扫描完成，是否关闭当前患者？" Solution="请确认是否关闭" Exception="" />
+  <ErrorInfo Code="MCS007000009" Level="Warning" Module="Exam（检查）&#xA;（007）" Description="已重建任务不可以删除！" Reason="已重建任务不可以删除！" Solution="" Exception="" />
+  <ErrorInfo Code="MCS007000010" Level="Error" Module="Exam（检查）&#xA;（007）" Description="下参超时" Reason="1、网络断开；&#xA;2、MRS断开；" Solution="请重新下参" Exception="" />
+  <ErrorInfo Code="MCS007000011" Level="Error" Module="Exam（检查）&#xA;（007）" Description="曝光超时" Reason="1、曝光时间超出计划曝光时间" Solution="" Exception="" />
+  <ErrorInfo Code="MCS007000012" Level="Error" Module="Exam（检查）&#xA;（007）" Description="SQL语句执行错误" Reason="" Solution="" Exception="" />
+  <ErrorInfo Code="MCS007000013" Level="Error" Module="Exam（检查）&#xA;（007）" Description="写入协议参数异常" Reason="协议格式错误" Solution="请检查协议参数" Exception="" />
+  <ErrorInfo Code="MCS007000014" Level="Error" Module="Exam（检查）&#xA;（007）" Description="获取协议参数异常" Reason="确认参数范围、类型" Solution="请检查协议参数" Exception="" />
+  <ErrorInfo Code="MCS007000015" Level="Error" Module="Exam（检查）&#xA;（007）" Description="加载病人信息失败" Reason="1、网络断开；&#xA;2、数据库断开；" Solution="1、请检查网络；&#xA;2、请重启计算机；" Exception="" />
+  <ErrorInfo Code="MCS007000016" Level="Error" Module="Exam（检查）&#xA;（007）" Description="协议另存为失败" Reason="1、协议另存内容信息错误；&#xA;2、协议名称重复" Solution="请确认另存协议名称，需要重新命名" Exception="" />
+  <ErrorInfo Code="MCS007000017" Level="Error" Module="Exam（检查）&#xA;（007）" Description="扫描图像加载失败（空文件夹、文件无法识别）" Reason="1、MRS断开连接，图像获取失败；&#xA;2、磁盘空间不足，图像存储失败" Solution="1、请检查MRS连接；&#xA;2、请检查网络连接；&#xA;3、请检查磁盘空间；" Exception="" />
+  <ErrorInfo Code="MCS007000018" Level="Error" Module="Exam（检查）&#xA;（007）" Description="扫描参数下参失败" Reason="1、MRS连接断开&#xA;2、参数验证失败；" Solution="1、请检查网络连接；&#xA;2、联系厂家服务工程师解决；" Exception="" />
+  <ErrorInfo Code="MCS004000001" Level="Error" Module="Dicom Communication&#xA;（008）" Description="无法获取本地Dicom节点信息" Reason="1. 无法从配置信息中获取到Dicom节点信息." Solution="1. 检查并更正本地Dicom节点配置信息.&#xA;2. 重启计算机." Exception="" />
+  <ErrorInfo Code="MCS004000002" Level="Error" Module="Dicom Communication&#xA;（008）" Description="本地Dicom服务开启失败" Reason="1. 节点配置信息错误&#xA;2. 端口被占用" Solution="1. 确认并修改本地Dicom节点配置信息.&#xA;2. 重启计算机." Exception="" />
+  <ErrorInfo Code="MCS004000003" Level="Error" Module="Dicom Communication&#xA;（008）" Description="远程Dicom节点不存在" Reason="1. 远程Dicom节点IP/端口等信息错误,或网络环境出现问题,导致无法建立连接" Solution="1. 检查本地/远程Dicom节点配置.&#xA;2. 检查网络环境." Exception="" />
+  <ErrorInfo Code="MCS004000004" Level="Error" Module="Dicom Communication&#xA;（008）" Description="远程Dicom节点连接被拒绝" Reason="1. 远程Dicom节点能够建立连接, 但因为节点信息配置错误等原因,连接被拒绝." Solution="1. 检查本地/远程Dicom节点配置.&#xA;2. 联系厂家服务工程师解决；" Exception="" />
+  <ErrorInfo Code="MCS004000005" Level="Error" Module="Dicom Communication&#xA;（008）" Description="Worklist请求信息解析失败." Reason="1. 接收的Worklist数据信息缺少必要信息数据,或数据格式与要求不符.&#xA;2. 数据字符集不符." Solution="1. 重试.&#xA;2. 联系厂家服务工程师解决；" Exception="1. 提供调试模式,能够抓取原始数据进行分析." />
+  <ErrorInfo Code="MCS004000006" Level="Error" Module="Dicom Communication&#xA;（008）" Description="Dicom传输中断" Reason="1. 数据传输过程中出现未预料的网络问题,无法完成传输过程, 导致超时." Solution="1. 重试.&#xA;2. 检查当前网络环境.&#xA;3. 请重启计算机" Exception="1. 当前传输过程(比如图像传输)会被标记为存档失败,并通知用户.&#xA;2. 重试." />
+  <ErrorInfo Code="MCS004000007" Level="Error" Module="Dicom Communication&#xA;（008）" Description="影像模块加载失败" Reason="1.进程管理服务卡住；&#xA;2.GRPC服务卡住；" Solution="重启计算机；" Exception="" />
+  <ErrorInfo Code="MCS004000008" Level="Error" Module="Dicom Communication&#xA;（008）" Description="图像数据加载失败" Reason="磁盘空间不足，图像不存在" Solution="检查磁盘空间" Exception="" />
+  <ErrorInfo Code="MCS004000009" Level="Error" Module="Dicom Communication&#xA;（008）" Description="图像格式不规范" Reason="不符合DICOM图像规范格式" Solution="联系厂家服务工程师解决" Exception="" />
+  <ErrorInfo Code="MCS004000010" Level="Error" Module="Dicom Communication&#xA;（008）" Description="图像信息加载失败" Reason="图像传输不完整，信息不全" Solution="联系厂家服务工程师解决" Exception="" />
+  <ErrorInfo Code="MCS004000011" Level="Error" Module="Dicom Communication&#xA;（008）" Description="图像位置信息不符合预期" Reason="1、写入图像信息位置错误；&#xA;2、图像控件方位标识错误；" Solution="联系厂家服务工程师解决" Exception="" />
+  <ErrorInfo Code="MCS009000001" Level="Error" Module="FacadeProxy（硬件通讯接口）&#xA;（009）" Description="MRS断开连接" Reason="断开网络" Solution="请检查网络" Exception="" />
+  <ErrorInfo Code="MCS009000002" Level="Error" Module="FacadeProxy（硬件通讯接口）&#xA;（009）" Description="RGT断开连接" Reason="1、断开网络；&#xA;2、RGT是关机状态；" Solution="1、请检查网络；&#xA;2、请重启计算机；&#xA;3、请确认RGT开机状态；" Exception="" />
+  <ErrorInfo Code="MCS010000001" Level="Error" Module="AdminPortal（系统管理）&#xA;（010）" Description="Worklist设置失败" Reason="1、断开网络；&#xA;2、找不到服务器" Solution="请确认网络连接是否正常" Exception="" />
+  <ErrorInfo Code="MCS010000002" Level="Error" Module="AdminPortal（系统管理）&#xA;（010）" Description="打印机设置失败" Reason="1、断开网络；&#xA;2、找不到服务器" Solution="请确认网络连接是否正常" Exception="" />
+  <ErrorInfo Code="MCS010000003" Level="Error" Module="AdminPortal（系统管理）&#xA;（010）" Description="归档服务器设置失败" Reason="1、断开网络；&#xA;2、找不到服务器" Solution="请确认网络连接是否正常" Exception="" />
+  <ErrorInfo Code="MCS010000004" Level="Error" Module="AdminPortal（系统管理）&#xA;（010）" Description="远程配置连接失败" Reason="1、断开网络；&#xA;2、找不到服务器" Solution="请确认网络连接是否正常" Exception="" />
+  <ErrorInfo Code="MCS010000005" Level="Error" Module="AdminPortal（系统管理）&#xA;（010）" Description="Pad连接失败" Reason="1、断开网络；&#xA;2、找不到服务器" Solution="请确认网络连接是否正常" Exception="" />
+  <ErrorInfo Code="MCS012000001" Level="Error" Module="Print（打印）&#xA;（011）" Description="打印机连接失败" Reason="1、断开网络；&#xA;2、找不到服务器" Solution="请确认网络连接是否正常" Exception="" />
+  <ErrorInfo Code="MCS012000002" Level="Error" Module="Print（打印）&#xA;（011）" Description="打印序列图像加载失败" Reason="1、序列图格式异常；&#xA;2、网路断开；" Solution="1、确认图像格式；&#xA;2、请确认网络连接是否正常；" Exception="" />
+  <ErrorInfo Code="MCS012000003" Level="Error" Module="Print（打印）&#xA;（011）" Description="打印序列图像保存失败" Reason="1、磁盘空间不足；&#xA;2、网络断开；" Solution="1、请检查磁盘空间；&#xA;2、请确认网络连接是否正常；" Exception="" />
+  <ErrorInfo Code="MCS013000001" Level="Error" Module="ImageView（图像浏览）&#xA;（012）" Description="图像加载失败" Reason="图像格式不不支持" Solution="1、确认图像格式&#xA;2、联系厂家服务工程师解决；" Exception="" />
+  <ErrorInfo Code="MCS013000002" Level="Error" Module="ImageView（图像浏览）&#xA;（012）" Description="图像发送打印页面失败" Reason="断开网络" Solution="请确认网络连接是否正常" Exception="" />
+  <ErrorInfo Code="MCS013000003" Level="Error" Module="ImageView（图像浏览）&#xA;（012）" Description="图像保存失败" Reason="1、磁盘空间不足；&#xA;2、网络断开；" Solution="1、请检查磁盘空间；&#xA;2、请确认网络连接是否正常；" Exception="" />
+  <ErrorInfo Code="MCS014000001" Level="Error" Module="JobViewer+JobManagement（任务管理）&#xA;（013）" Description="图像传输失败" Reason="1、断开网络；&#xA;2、重建服务断开；" Solution="1、请检查网络连接；&#xA;2、请重启计算机；" Exception="" />
+  <ErrorInfo Code="MCS015000001" Level="Error" Module="Recon（重建）&#xA;（014）" Description="重建失败" Reason="1、重建机连接断开；&#xA;2、网络断开；&#xA;3、磁盘空间不足；" Solution="1、请确认重建服务连接；&#xA;2、请检查网络连接是否正常；&#xA;3、请检查磁盘空间；&#xA;4、联系厂家服务工程师解决；" Exception="" />
+  <ErrorInfo Code="MCS015000002" Level="Error" Module="Recon（重建）&#xA;（014）" Description="重建超时" Reason="1、重建机连接断开；&#xA;2、网络断开；&#xA;3、磁盘空间不足；" Solution="1、请确认重建服务连接；&#xA;2、请检查网络连接是否正常；&#xA;3、请检查磁盘空间；&#xA;4、联系厂家服务工程师解决；" Exception="" />
+  <ErrorInfo Code="MCS016000001" Level="Error" Module="ProtocolManagement（协议管理模块）&#xA;（015）" Description="导出协议失败" Reason="1、网络断开；&#xA;2、磁盘空间不足；" Solution="1、请确认网络连接是否正常；&#xA;2、请检查磁盘空间；&#xA;3、联系厂家服务工程师解决；" Exception="" />
+  <ErrorInfo Code="MCS016000002" Level="Error" Module="ProtocolManagement（协议管理模块）&#xA;（015）" Description="导入协议失败" Reason="1、导入协议格式错误；&#xA;2、导入协议必须内容缺失；" Solution="1、请检查协议格式；&#xA;2、XX、XX协议信息缺失，请确认；&#xA;3、联系厂家服务工程师解决；" Exception="" />
+  <ErrorInfo Code="MCS017000001" Level="Error" Module="AI Positioning（智能摆位）&#xA;（016）" Description="定位模块服务加载失败" Reason="" Solution="" Exception="" />
+  <ErrorInfo Code="MCS017000002" Level="Error" Module="AI Positioning（智能摆位）&#xA;（016）" Description="相机设备连接丢失" Reason="" Solution="1、请确认网络连接是否正常；&#xA;3、联系厂家服务工程师解决；" Exception="" />
+  <ErrorInfo Code="MCS017000003" Level="Error" Module="AI Positioning（智能摆位）&#xA;（016）" Description="相机参数异常" Reason="" Solution="" Exception="" />
+  <ErrorInfo Code="MCS017000004" Level="Error" Module="AI Positioning（智能摆位）&#xA;（016）" Description="相机设备视频流异常" Reason="磁盘空间不足" Solution="1、请检查磁盘空间；" Exception="" />
+  <ErrorInfo Code="MCS017000005" Level="Error" Module="AI Positioning（智能摆位）&#xA;（016）" Description="无法正常检测到人体" Reason="" Solution="1、请重启计算机；&#xA;2、请联系厂家服务工程师解决；" Exception="" />
+  <ErrorInfo Code="MCS023000001" Level="Error" Module="Firmware Upgrade（固件升级）&#xA;（023）" Description="固件无法连接" Reason="1.GRPC服务未启动；&#xA;2.硬件设备未启动；&#xA;3.硬件设备故障；" Solution="1.检查服务进程异常；&#xA;2.检查硬件设备状态；&#xA;3.联系厂家服务工程师解决；" Exception="" />
+  <ErrorInfo Code="MCS023000002" Level="Error" Module="Firmware Upgrade（固件升级）&#xA;（023）" Description="下述升级包MD5校验失败：{0}" Reason="1.MD5文件不存在；&#xA;2.MD5文件内容格式错误；&#xA;3.MD5校验不匹配；" Solution="1.检查MD5文件是否被系统误删；&#xA;2.升级包可能被篡改，请从官方地址重新下载；" Exception="" />
+  <ErrorInfo Code="REC000000001" Level="Error" Module="MRS" Description="离线重建计算机掉线" Reason="1,离线重建计算机控制进程崩溃或卡死.&#xA;2,Host计算机与离线重建计算机网线掉落.&#xA;3,线缆损坏.&#xA;4,网卡损坏.&#xA;5,显卡没被识别" Solution="1,检查网线,确保网线已经链接;&#xA;2,重启计算机;&#xA;3,上述2步依然不能解决问题,考虑更换网线;&#xA;4,上述3步依然不能解决问题,考虑更换网卡;&#xA;5,请联系厂家服务工程师解决.&#xA;6.确定该环境是否支持独立显卡&#xA;7.检查GPU卡槽与电源线" Exception="1,尝试Ping命令;&#xA;2,尝试3次链接离线重建控制控制进程;&#xA;3,停止算法重建的相关动作;&#xA;4,给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000002" Level="Error" Module="MRS" Description="GPU显存不足" Reason="1.GPU显存配置低&#xA;2,显存泄露.&#xA;3,同时的重建任务过多." Solution="1.根据配置需求，跟换GPU" Exception="1.停止算法重建的相关动作，&#xA;给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000003" Level="Error" Module="MRS" Description="算法协议参数无效" Reason="1.上游服务程序传参错误" Solution="1.上游服务下发有效的协议地址参数" Exception="1.停止算法重建的相关动作，&#xA;给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000004" Level="Error" Module="MRS" Description="图像参数无效" Reason="1.内存传参错误&#xA;2.图像字段内容错误" Solution="1.上游服务下发有效的图像地址参数" Exception="1.停止算法重建的相关动作，&#xA;给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000006" Level="Error" Module="MRS" Description="离线重建的路径无效" Reason="1.重建的数据路径不存在或错误" Solution="1.上游服务下发有效的离线重建的路径" Exception="1.停止算法重建的相关动作，&#xA;给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000007" Level="Error" Module="MRS" Description="重建任务的id无效" Reason="1.使用无效的任务ID进行图像重建" Solution="1.申请pipeline接口调用的资源id" Exception="1.停止算法重建的相关动作，&#xA;给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000008" Level="Error" Module="MRS" Description="申请重建的任务资源失败" Reason="1.资源使用完毕，未释放&#xA;2.同时进行的重建任务过多" Solution="1.pipeline接口调用的资源id不足，请检查&#xA;之前申请的资源是否正常释放" Exception="1.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000009" Level="Error" Module="MRS" Description="重建参数验证失败" Reason="1.重建的配置文件或校准数据不存在" Solution="1.配置pipeline重建依赖的config信息与校准&#xA;模板信息" Exception="&quot;1.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC00000000a" Level="Error" Module="MRS" Description="协议路径字段无效" Reason="1.协议里的路径字段地址为空" Solution="1.下发有效的协议里的路径字段地址" Exception="&quot;1.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC00000000b" Level="Error" Module="MRS" Description="图像参数的球馆信息不对" Reason="1.曝光的球馆编号无效" Solution="1.依据曝光的模式，设置有效的球馆编号" Exception="&quot;1.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC00000000c" Level="Error" Module="MRS" Description="pipeline自检失败" Reason="1.校准路径里缺少基础的校准模板" Solution="1.添加校准路径里基础的校准模板" Exception="&quot;1.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC00000000d" Level="Error" Module="MRS" Description="pipeline自检入参无效" Reason="1.校准入参的地址无效" Solution="1.上游下发有效的自检校准参数" Exception="&quot;1.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC00000000e" Level="Error" Module="MRS" Description="算法的文件配置根路径未找到" Reason="算法的文件配置根路径未找到" Solution="添加有效的算法文件配置根路径" Exception="&quot;2.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC00000000f" Level="Error" Module="MRS" Description="算法文件的config文件夹找不到" Reason="算法文件的config文件夹找不到" Solution="添加算法依赖的config目录及文件" Exception="&quot;3.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC000000010" Level="Error" Module="MRS" Description="算法config目录里的ReconParam文件未找到" Reason="算法config目录里的ReconParam文件未找到" Solution="添加算法config目录里的ReconParam文件" Exception="&quot;4.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC000000011" Level="Error" Module="MRS" Description="算法config目录里的ReconParamBHC文件未找到" Reason="算法config目录里的ReconParamBHC文件未找到" Solution="添加算法config目录里的ReconParamBHC文件" Exception="&quot;5.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC000000012" Level="Error" Module="MRS" Description="算法config目录里的pipeline文件未找到" Reason="算法config目录里的pipeline文件未找到" Solution="添加算法config目录里的pipeline文件" Exception="&quot;6.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC000000013" Level="Error" Module="MRS" Description="算法config目录里的imgCut.xml文件未找到" Reason="算法config目录里的imgCut.xml文件未找到" Solution="添加算法config目录里的imgCut.xml文件" Exception="&quot;7.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC000000014" Level="Error" Module="MRS" Description="算法校正设置被关闭" Reason="算法校正设置被关闭" Solution="修改pipeline.xml文件，开启校正" Exception="&quot;8.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC000000015" Level="Error" Module="MRS" Description="算法config目录里的CorrectPipeline文件未找到" Reason="算法config目录里的CorrectPipeline文件未找到" Solution="添加算法config目录里的CorrectPipeline文件" Exception="&quot;9.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC000000016" Level="Error" Module="MRS" Description="校正的OffsetH模板未找到" Reason="校正的OffsetH模板未找到" Solution="生成校正的OffsetH模板" Exception="&quot;10.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC000000017" Level="Error" Module="MRS" Description="校正的OffsetL模板未找到" Reason="校正的OffsetL模板未找到" Solution="生成校正的OffsetL模板" Exception="&quot;11.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC000000018" Level="Error" Module="MRS" Description="校正的OffsetRatio模板未找到" Reason="校正的OffsetRatio模板未找到" Solution="生成校正的OffsetRatio模板" Exception="&quot;12.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC000000019" Level="Error" Module="MRS" Description="校正的BackgroudScatter模板未找到" Reason="校正的BackgroudScatter模板未找到" Solution="生成校正的BackgroudScatter模板" Exception="&quot;13.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC00000001a" Level="Error" Module="MRS" Description="校正的Gain模板未找到" Reason="校正的Gain模板未找到" Solution="生成校正的Gain模板" Exception="&quot;14.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC00000001b" Level="Error" Module="MRS" Description="校正的ScatterData模板未找到" Reason="校正的ScatterData模板未找到" Solution="生成校正的ScatterData模板" Exception="&quot;15.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC00000001c" Level="Error" Module="MRS" Description="校正的Air模板未找到" Reason="校正的Air模板未找到" Solution="生成校正的Air模板" Exception="&quot;16.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC00000001d" Level="Error" Module="MRS" Description="校正的AirBowtie模板未找到" Reason="校正的AirBowtie模板未找到" Solution="生成校正的AirBowtie模板" Exception="&quot;17.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC00000001e" Level="Error" Module="MRS" Description="校正的Defect模板未找到" Reason="校正的Defect模板未找到" Solution="生成校正的Defect模板" Exception="&quot;18.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC00000001f" Level="Error" Module="MRS" Description="校正的Harden模板未找到" Reason="校正的Harden模板未找到" Solution="生成校正的Harden模板" Exception="&quot;19.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC000000020" Level="Error" Module="MRS" Description="校正的Nonlinear模板未找到" Reason="校正的Nonlinear模板未找到" Solution="生成校正的Nonlinear模板" Exception="&quot;20.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC000000021" Level="Error" Module="MRS" Description="自检失败" Reason="校正路径下缺少必要的模板" Solution="请先做校准，生成校正模板后，再进行扫描重建" Exception="&quot;21.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC000000022" Level="Error" Module="MRS" Description="算法的校正模板根路径未找到" Reason="算法的校正模板根路径未找到" Solution="设置有效的算法的校正模板根路径" Exception="&quot;22.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC000000023" Level="Error" Module="MRS" Description="校正路径下的data目录及模板未找到" Reason="校正路径下的data目录及模板未找到" Solution="添加校正路径下的data目录及模板" Exception="&quot;23.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值&quot;" />
+  <ErrorInfo Code="REC000000101" Level="Error" Module="MRS" Description="Air校正初始化失败" Reason="1.校准的模板数据未找到" Solution="1.下发有效的扫描参数或进行相关参数的校准" Exception="1.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000102" Level="Error" Module="MRS" Description="BackScatter校正初始化失败" Reason="1.校准的模板数据不存在" Solution="1.下发有效的扫描参数或进行相关参数的校准" Exception="1.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000103" Level="Error" Module="MRS" Description="Defect校正初始化失败" Reason="1.校准的模板数据不存在" Solution="1.下发有效的扫描参数或进行相关参数的校准" Exception="1.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000104" Level="Error" Module="MRS" Description="DoseFeedBack校正初始化失败" Reason="1.校准的模板数据不存在" Solution="1.下发有效的扫描参数或进行相关参数的校准" Exception="1.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000105" Level="Error" Module="MRS" Description="Gain校正初始化失败" Reason="1.校准的模板数据不存在" Solution="1.下发有效的扫描参数或进行相关参数的校准" Exception="1.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000106" Level="Error" Module="MRS" Description="Imagecut校正初始化失败" Reason="1.校准的模板数据不存在" Solution="1.下发有效的扫描参数或进行相关参数的校准" Exception="1.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000107" Level="Error" Module="MRS" Description="Nonlinear校正初始化失败" Reason="1.校准的模板数据不存在" Solution="1.下发有效的扫描参数或进行相关参数的校准" Exception="1.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000108" Level="Error" Module="MRS" Description="Offset校正初始化失败" Reason="1.校准的模板数据不存在" Solution="1.下发有效的扫描参数或进行相关参数的校准" Exception="1.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000109" Level="Error" Module="MRS" Description="Harden校正初始化失败" Reason="1.校准的模板数据不存在" Solution="1.下发有效的扫描参数或进行相关参数的校准" Exception="1.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC00000010a" Level="Error" Module="MRS" Description="Scatter校正初始化失败" Reason="1.校准的模板数据不存在" Solution="1.下发有效的扫描参数或进行相关参数的校准" Exception="1.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC00000010b" Level="Error" Module="MRS" Description="Stitch校正初始化失败" Reason="1.校准的模板数据不存在" Solution="1.下发有效的扫描参数或进行相关参数的校准" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC00000010c" Level="Error" Module="MRS" Description="读取校正依赖的文件失败" Reason="未找到校正依赖的文件路径" Solution="设置有效的校正依赖的文件路径" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC00000010d" Level="Error" Module="MRS" Description="余晖校正依赖的PreOffsetH模板未找到" Reason="余晖校正依赖的PreOffsetH模板未找到" Solution="指定有效的或生成PreOffsetH模板" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC00000010e" Level="Error" Module="MRS" Description="余晖校正依赖的PostOffsetH模板未找到" Reason="余晖校正依赖的PostOffsetH模板未找到" Solution="指定有效的或生成PostOffsetH模板" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC00000010f" Level="Error" Module="MRS" Description="余晖校正的CoefImagePath未找到" Reason="余晖校正的CoefImagePath未找到" Solution="配置文件，设置有效的余晖校正的CoefImagePath" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000110" Level="Error" Module="MRS" Description="加载Air的校准模板数据失败" Reason="加载Air的校准模板数据未找到" Solution="生成有效的Air的校准模板数据" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000111" Level="Error" Module="MRS" Description="ImageCut的配置文件未找到" Reason="ImageCut的配置文件未找到" Solution="添加ImageCut的配置文件未" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000112" Level="Error" Module="MRS" Description="空气校正的图像入参的宽度与高度不合法" Reason="空气校正的图像入参的宽度与高度，与协议&#xA;参数的不一致" Solution="空气校正的图像入参的宽度与高度与协议&#xA;参数保持一致" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000113" Level="Error" Module="MRS" Description="背景散射模板加载失败" Reason="背景散射模板未找到" Solution="指定有效的路径或生成有效背景散射模板" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000114" Level="Error" Module="MRS" Description="DEFECT模板加载失败" Reason="DEFECT模板未找到" Solution="指定有效的路径或生成有效DEFECT模板" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000115" Level="Error" Module="MRS" Description="GAIN模板加载失败" Reason="GAIN模板未找到" Solution="指定有效的路径或生成有效GAIN模板" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000116" Level="Error" Module="MRS" Description="NONLINEAR模板加载失败" Reason="NONLINEAR模板未找到" Solution="指定有效的路径或生成有效NONLINEAR模板" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000117" Level="Error" Module="MRS" Description="ScatterDiffCoeff.dat加载失败" Reason="ScatterDiffCoeff.dat未找到" Solution="指定有效的路径或生成有效ScatterDiffCoeff.dat数据" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000118" Level="Error" Module="MRS" Description="OffsetH加载失败" Reason="OffsetH未找到" Solution="指定有效的路径或生成有效的OffsetH模板" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000119" Level="Error" Module="MRS" Description="OffsetL加载失败" Reason="OffsetL未找到" Solution="指定有效的路径或生成有效的OffsetL模板" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC00000011a" Level="Error" Module="MRS" Description="OffsetRatio加载失败" Reason="OffsetRatio未找到" Solution="指定有效的路径或生成有效的OffsetRatio模板" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC00000011b" Level="Error" Module="MRS" Description="Offset加载失败" Reason="Offset未找到" Solution="指定有效的路径或生成有效的Offset模板" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC00000011c" Level="Error" Module="MRS" Description="单个Harden模板加载失败" Reason="单个Harden模板未找到" Solution="指定有效的路径或生成有效的单个Harden模板" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC00000011d" Level="Error" Module="MRS" Description="多个Harden模板加载失败" Reason="多个Harden模板未找到" Solution="指定有效的路径或生成有效的多个Harden模板" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC00000011e" Level="Error" Module="MRS" Description="ScatterDiffFile加载失败" Reason="ScatterDiffFile路径无效" Solution="指定有效的ScatterDiffFile路径" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000120" Level="Error" Module="MRS" Description="曝光模式不支持" Reason="下发曝光模式不支持的参数" Solution="下发曝光模式支持的参数" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000121" Level="Error" Module="MRS" Description="Scatter模板加载失败" Reason="Scatter模板未找到" Solution="指定有效的路径或生成有效的Scatter模板" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000122" Level="Error" Module="MRS" Description="加载ShapeFunction模板失败" Reason="设置的ShapeFunctionpath无效或不存在" Solution="指定有效的路径或生成有效的ShapeFunction模板" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000123" Level="Error" Module="MRS" Description="加载Stitch的Reserve.dat失败" Reason="设置的Reserve.dat无效或不存在" Solution="指定有效的路径或生成有效的Reserve.dat模板" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000210" Level="Error" Module="MRS" Description="重建类型不支持" Reason="下发的重建类型参数，目前不支持" Solution="下发有效的重建类型参数" Exception="1.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000212" Level="Error" Module="MRS" Description="重建BinningType类型不支持" Reason="重建BinningType类型不支持" Solution="下发有效的重建BinningType类型" Exception="1.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000213" Level="Error" Module="MRS" Description="重建BM3D的PreDenoiseCoeff参数无效" Reason="重建BM3D的PreDenoiseCoeff参数无效" Solution="下发或配置有效的BM3D的PreDenoiseCoeff参数" Exception="1.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000214" Level="Error" Module="MRS" Description="重建BoneHarden的ReconProcessInit失败" Reason="cuda使用问题" Solution="需要足够的cuda使用资源" Exception="1.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000215" Level="Error" Module="MRS" Description="重建BoneHarden的CudaMemcpy出现问题" Reason="重建BoneHarden的CudaMemcpy出现问题" Solution="指定有效的GPU拷贝地址或拷贝长度" Exception="1.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000216" Level="Error" Module="MRS" Description="重建BoneHarden的Polynomial运算出现问题" Reason="重建BoneHarden的Polynomial运算出现问题" Solution="指定有效的显存操作地址" Exception="1.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000217" Level="Error" Module="MRS" Description="重建ReconAll的Geometry参数无效" Reason="重建ReconAll的Geometry参数无效" Solution="下发有效的Geometry参数无效" Exception="1.停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000218" Level="Error" Module="MRS" Description="重建ReconAll的FOV_U与V不相等" Reason="重建ReconAll的FOV_U与V不相等" Solution="设置FOV_U与V相等" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000219" Level="Error" Module="MRS" Description="重建ReconAll的FOV超出范围" Reason="重建ReconAll的FOV超出范围" Solution="设置有效的FOV范围为100-500" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC00000021a" Level="Error" Module="MRS" Description="重建ReconAll的FOV超出范围且水校正模式不对" Reason="重建ReconAll的FOV超出范围且水校正模式不对" Solution="设置有效FOV范围和水校正模式" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC00000021b" Level="Error" Module="MRS" Description="重建ReconAll的FOV值小于100" Reason="重建ReconAll的FOV值小于100" Solution="设置有效的FOV范围为100-500" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC00000021c" Level="Error" Module="MRS" Description="重建ReconAll需要PreBinning" Reason="重建ReconAll需要PreBinning" Solution="在重建前，进行PreBinning" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC00000021d" Level="Error" Module="MRS" Description="重建ReconAll的重建图像大小超过3072" Reason="重建ReconAll的重建图像大小超过3072" Solution="设置重建图像大小范围0-3072" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC00000021e" Level="Error" Module="MRS" Description="重建ReconAll的重建Z长度无效" Reason="重建ReconAll的重建Z长度无效" Solution="重建Z长度要小于一个轴扫的长度" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000220" Level="Error" Module="MRS" Description="重建ReconAll里的算法不支持" Reason="重建ReconAll里的算法不支持" Solution="指定有效重建ReconAll里支持的算法" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000221" Level="Error" Module="MRS" Description="重建TVDenoise参数设置无效" Reason="重建TVDenoise参数设置无效" Solution="lambda&gt;=0.0且IterNum&gt;=0" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000222" Level="Error" Module="MRS" Description="重建TwoPass的ReconProcessInit失败" Reason="cuda使用问题" Solution="需要足够的cuda使用资源" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000223" Level="Error" Module="MRS" Description="重建TwoPass的CudaMemcpy出现问题" Reason="重建BoneHarden的CudaMemcpy出现问题" Solution="指定有效的GPU拷贝地址或拷贝长度" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000224" Level="Error" Module="MRS" Description="重建TwoPass的ProjImages为空" Reason="重建TwoPass的ProjImages为空" Solution="确认重建步骤" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000225" Level="Error" Module="MRS" Description="重建ForwardProj的SliceSize跟文件配置不一致" Reason="重建ForwardProj的SliceSize跟文件配置不一致" Solution="重建ForwardProj的SliceSize跟文件配置一致" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000226" Level="Error" Module="MRS" Description="重建ForwardProj的SliceSize或AngleNum继承错误" Reason="重建ForwardProj的SliceSize或AngleNum继承错误" Solution="确认重建步骤" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000227" Level="Error" Module="MRS" Description="重建ForwardProj的CudaMemcpy出现问题" Reason="重建ForwardProj的CudaMemcpy出现问题" Solution="指定有效的GPU拷贝地址或拷贝长度" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000228" Level="Error" Module="MRS" Description="重建ForwardProj的ReconProcessInit失败" Reason="cuda使用问题" Solution="需要足够的cuda使用资源" Exception="停止当前算法重建的相关动作&#xA;，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000501" Level="Error" Module="MRS" Description="校准类型错误" Reason="1.传入类型参数不存在" Solution="传入正确的校准类型" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000508" Level="Error" Module="MRS" Description="校准参数无效" Reason="1.接口传入的参数为空" Solution="传入有效的校准参数地址" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000510" Level="Error" Module="MRS" Description="主动操作了停止校准，校准失败" Reason="校准失败，因为主动操作了停止校准" Solution="" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000511" Level="Error" Module="MRS" Description="校准入参无效" Reason="校准入参无效" Solution="传入正确的校准入参" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000512" Level="Error" Module="MRS" Description="余晖校准传入的生数据不够" Reason="余晖校准传入的生数据不够" Solution="余晖校准需传入16组生数据" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000513" Level="Error" Module="MRS" Description="余晖校准484offset失败" Reason="余晖校准484offset失败" Solution="传入的生数据无效" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000514" Level="Error" Module="MRS" Description="余晖校准484PostOffset失败" Reason="余晖校准484PostOffset失败" Solution="传入的生数据无效" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000515" Level="Error" Module="MRS" Description="余晖校准490offset失败" Reason="余晖校准490offset失败" Solution="传入的生数据无效" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000516" Level="Error" Module="MRS" Description="余晖校准490PostOffset失败" Reason="余晖校准490PostOffset失败" Solution="传入的生数据无效" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000517" Level="Error" Module="MRS" Description="余晖校准496offset失败" Reason="余晖校准496offset失败" Solution="传入的生数据无效" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000518" Level="Error" Module="MRS" Description="余晖校准496PostOffset失败" Reason="余晖校准496PostOffset失败" Solution="传入的生数据无效" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000519" Level="Error" Module="MRS" Description="余晖校准502offset失败" Reason="余晖校准502offset失败" Solution="传入的生数据无效" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC00000051a" Level="Error" Module="MRS" Description="余晖校准502PostOffset失败" Reason="余晖校准502PostOffset失败" Solution="传入的生数据无效" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC00000051b" Level="Error" Module="MRS" Description="余晖校准依赖的配置文件未找到" Reason="余晖校准依赖的配置文件未找到" Solution="添加余晖校准依赖的配置文件" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC00000051c" Level="Error" Module="MRS" Description="余晖校准依赖的imageCut.xml未找到" Reason="余晖校准依赖的imageCut.xml未找到" Solution="添加余晖校准依赖的imageCut.xml" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC00000051d" Level="Error" Module="MRS" Description="余晖校准依赖的ratio数据未找到" Reason="余晖校准依赖的ratio数据未找到" Solution="生成余晖校准依赖的ratio数据" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000520" Level="Error" Module="MRS" Description="余晖校准生数据少于100" Reason="余晖校准生数据少于100" Solution="余晖校准生数据&gt;=100" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000522" Level="Error" Module="MRS" Description="余晖校准依赖的PreOffsetL未找到" Reason="余晖校准依赖的PreOffsetL未找到" Solution="生成余晖校准依赖的PreOffsetL" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000523" Level="Error" Module="MRS" Description="余晖校准依赖的PostOffset未找到" Reason="余晖校准依赖的PostOffset未找到" Solution="生成余晖校准依赖的PostOffset" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000524" Level="Error" Module="MRS" Description="依赖的空气校准模板路径未找到" Reason="依赖的空气校准模板路径未找到" Solution="设置有效的空气校准模板路径" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000525" Level="Error" Module="MRS" Description="硬校准依赖WaterHardenData未找到" Reason="硬校准依赖WaterHardenData未找到" Solution="设置有效的硬校准依赖WaterHardenData路径" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000526" Level="Error" Module="MRS" Description="硬校准依赖的calibration.xml文件未找到" Reason="calibration.xml文件未找到" Solution="添加calibration.xml文件" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000527" Level="Error" Module="MRS" Description="硬校准依赖的配置文件路径未找到" Reason="硬校准依赖的配置文件路径未找到" Solution="设置有效的硬校准依赖的配置文件路径" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000528" Level="Error" Module="MRS" Description="硬校准依赖的FileSpectrum加载失败" Reason="硬校准依赖的FileSpectrum加载失败" Solution="添加硬校准依赖的FileSpectrum文件" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000529" Level="Error" Module="MRS" Description="硬校准依赖的Air_attn.raw加载失败" Reason="硬校准依赖的Air_attn.raw加载失败" Solution="添加硬校准依赖的Air_attn.raw文件" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC00000052a" Level="Error" Module="MRS" Description="硬校准依赖的Aluminum_attn.raw加载失败" Reason="硬校准依赖的Aluminum_attn.raw加载失败" Solution="添加硬校准依赖的Aluminum_attn.raw文件" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC00000052b" Level="Error" Module="MRS" Description="硬校准依赖的Water_attn.raw加载失败" Reason="硬校准依赖的Water_attn.raw加载失败" Solution="添加硬校准依赖的Water_attn.raw文件" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC00000052c" Level="Error" Module="MRS" Description="硬校准依赖的FilterMaterial.raw加载失败" Reason="硬校准依赖的FilterMaterial.raw加载失败" Solution="添加硬校准依赖的FilterMaterial.raw文件" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC00000052d" Level="Error" Module="MRS" Description="硬校准依赖的Bone_attn.raw加载失败" Reason="硬校准依赖的Bone_attn.raw加载失败" Solution="添加硬校准依赖的Bone_attn.raw文件" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC00000052e" Level="Error" Module="MRS" Description="硬校准依赖的空气校正模板加载失败" Reason="硬校准依赖的空气校正模板加载失败" Solution="添加硬校准依赖的空气校正模板" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000530" Level="Error" Module="MRS" Description="保存硬校正模板数据失败" Reason="保存硬校正模板数据失败" Solution="设置有效的模板数据保存路径" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000531" Level="Error" Module="MRS" Description="ReconParam配置文件加载失败" Reason="ReconParam配置文件加载失败" Solution="添加ReconParam配置文件" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000532" Level="Error" Module="MRS" Description="Pipeline.xml读取失败" Reason="Pipeline.xml读取失败" Solution="添加Pipeline.xml" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000533" Level="Error" Module="MRS" Description="校正模板的根路径未找到" Reason="校正模板的根路径未找到" Solution="设置有效的校正模板的根路径" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000534" Level="Error" Module="MRS" Description="非线性校准依赖的生数据少于3组" Reason="非线性校准依赖的生数据少于3组" Solution="非线性校准依赖的生数据&gt;=3组" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000535" Level="Error" Module="MRS" Description="非线性校准的生数据为空" Reason="生数据为空" Solution="设置有效的生数据路径" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000536" Level="Error" Module="MRS" Description="非线性校准的每组生数据不够" Reason="非线性校准的每组生数据不够" Solution="深数据要大于m_nAngle*m_nSource/2-300的公式" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000537" Level="Error" Module="MRS" Description="球馆个数不支持" Reason="球馆个数不支持" Solution="设置有效的球馆个数" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000538" Level="Error" Module="MRS" Description="偏心校准的offvalue不正确" Reason="偏心校准的offvalue不正确" Solution="偏心校准的offvalue范围0-10240" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000539" Level="Error" Module="MRS" Description="偏心校准的offvalue保存失败" Reason="偏心校准的offvalue保存失败" Solution="设置有效的偏心校准的offvalue保存路径" Exception="停止校准，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000601" Level="Error" Module="MRS" Description="定位片拼接失败" Reason="1.传入的参数无效" Solution="传入有效的参数地址" Exception="停止拼接，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000602" Level="Error" Module="MRS" Description="定位片Arc2FlatMap_gpu执行失败" Reason="定位片Binding texture执行失败" Solution="需要足够GPU资源" Exception="停止拼接，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000603" Level="Error" Module="MRS" Description="定位片CutTooMuchOrOverlapNoEnough" Reason="定位片CutTooMuchOrOverlapNoEnough" Solution="传入有效的拼接参数" Exception="停止拼接，给上层抛出错误返回值" />
+  <ErrorInfo Code="REC000000900" Level="Error" Module="MRS" Description="算法接口输入的参数无效" Reason="指针为空" Solution="输入有效的参数地址" Exception="返回明确的错误值" />
+  <ErrorInfo Code="REC000000901" Level="Error" Module="MRS" Description="zmtf的dicom路径里没有重建数据" Reason="zmtf的dicom路径无效" Solution="输入有效DICOM存放的路径" Exception="返回明确的错误值" />
+  <ErrorInfo Code="REC000000902" Level="Error" Module="MRS" Description="ZMTF的矩形参数无效" Reason="ZMTF的矩形参数不在DICOM的区域内" Solution="输入有效的ZMTF的矩形参数" Exception="返回明确的错误值" />
+  <ErrorInfo Code="REC000000903" Level="Error" Module="MRS" Description="ZMTF算法未找到目标物体" Reason="矩形参数错误或图片里没有目标物体" Solution="输入有效的参数或有效的DICOM图" Exception="返回明确的错误值" />
+  <ErrorInfo Code="REC000000904" Level="Error" Module="MRS" Description="XY_MTF的矩形参数无效" Reason="XY_MTF的矩形参数无效" Solution="输入有效的XY_MTF的矩形参数" Exception="返回明确的错误值" />
+  <ErrorInfo Code="REC000000905" Level="Error" Module="MRS" Description="矩形参数无效" Reason="矩形参数无效" Solution="输入有效的矩形参数" Exception="返回明确的错误值" />
+  <ErrorInfo Code="REC000000906" Level="Error" Module="MRS" Description="未找到小球" Reason="参数无效或DICOM图片无效" Solution="输入有效的图片或DICOM图片" Exception="返回明确的错误值" />
+  <ErrorInfo Code="MRS001001001" Level="Error" Module="MRS" Description="没有对应的重建流程控制" Reason="" Solution="" Exception="" />
+  <ErrorInfo Code="MRS001001002" Level="Error" Module="MRS" Description="Dicom保存异常" Reason="" Solution="" Exception="" />
+  <ErrorInfo Code="MRS001001003" Level="Error" Module="MRS" Description="DICOM必填字段检测没有通过" Reason="" Solution="" Exception="" />
+  <ErrorInfo Code="MRS001001004" Level="Warning" Module="MRS" Description="实时重建重复准备资源" Reason="" Solution="" Exception="" />
+  <ErrorInfo Code="MRS001001005" Level="Error" Module="MRS" Description="重建停止后准备资源" Reason="" Solution="" Exception="" />
+  <ErrorInfo Code="MRS001001006" Level="Error" Module="MRS" Description="重建停止后开始重建" Reason="" Solution="" Exception="" />
+  <ErrorInfo Code="MRS001001007" Level="Error" Module="MRS" Description="重建内部错误" Reason="" Solution="" Exception="" />
+  <ErrorInfo Code="MRS001001008" Level="Error" Module="MRS" Description="重建进程崩溃" Reason="" Solution="" Exception="" />
+  <ErrorInfo Code="MRS000000001" Level="Error" Module="MRS" Description="CTDI配置文件未找到" Reason="" Solution="设置有效的CTDI文件路径" Exception="给上层抛出错误返回值" />
+  <ErrorInfo Code="MRS000000002" Level="Error" Module="MRS" Description="CTDI配置文件格式内容无效" Reason="" Solution="保存有效XML文档格式" Exception="给上层抛出错误返回值" />
+  <ErrorInfo Code="MRS000000003" Level="Error" Module="MRS" Description="CTDI输入参数在配置文件里未匹配成功" Reason="" Solution="添加要计算CTDI的基础数据" Exception="给上层抛出错误返回值" />
+  <ErrorInfo Code="MRS000000004" Level="Error" Module="MRS" Description="CTDI的计算不支持该扫描的模式" Reason="" Solution="设置有效的扫描模式参数" Exception="给上层抛出错误返回值" />
+  <ErrorInfo Code="MRS001002001" Level="Error" Module="MRS" Description="任务不存在" Reason="任务不存在" Solution="" Exception="无" />
+  <ErrorInfo Code="MRS001002002" Level="Error" Module="MRS" Description="创建离线重建失败" Reason="重建任务已经存在" Solution="" Exception="无" />
+  <ErrorInfo Code="MRS001002003" Level="Error" Module="MRS" Description="创建离线重建失败" Reason="生数据不存在" Solution="" Exception="无" />
+  <ErrorInfo Code="MRS001002004" Level="Error" Module="MRS" Description="开始任务失败" Reason="重建任务处于错误状态" Solution="" Exception="无" />
+  <ErrorInfo Code="MRS004003001" Level="Warning" Module="MRS" Description="球馆热熔校验失败" Reason="球馆热熔过低" Solution="球管需要预热" Exception="" />
+  <ErrorInfo Code="MRS004003002" Level="Warning" Module="MRS" Description="球馆热熔校验失败" Reason="球馆热熔过高" Solution="等待热熔降低" Exception="" />
+  <ErrorInfo Code="MRS004003003" Level="Warning" Module="MRS" Description="球馆热熔预测失败" Reason="球馆热熔预测值过低" Solution="" Exception="" />
+  <ErrorInfo Code="MRS004003004" Level="Warning" Module="MRS" Description="球馆热熔预测失败" Reason="球馆热熔预测值过高" Solution="" Exception="" />
+  <ErrorInfo Code="MRS004001001" Level="Error" Module="MRS" Description="扫描开始失败" Reason="实时状态不是Standby" Solution="当实时状态为Standby时开始扫描" Exception="" />
+  <ErrorInfo Code="MRS023001001" Level="Error" Module="MRS" Description="GRPC通信失败" Reason="1.GRPC端口是否开通&#xA;2.GRPC服务是否启动" Solution="1.未开通，则通过防火墙开通端口&#xA;2.未启动，则检查服务进程异常" Exception="给上层抛出错误返回值" />
+  <ErrorInfo Code="MRS023001002" Level="Error" Module="MRS" Description="未知异常" Reason="未知异常" Solution="1.重试&#xA;2.联系厂家服务工程师解决" Exception="给上层抛出错误返回值" />
+  <ErrorInfo Code="MRS023002001" Level="Error" Module="MRS" Description="未知异常" Reason="未知异常" Solution="1.重试&#xA;2.联系厂家服务工程师解决" Exception="" />
+  <ErrorInfo Code="MRS023002002" Level="Error" Module="MRS" Description="不支持的固件类型" Reason="1.不支持的固件类型&#xA;2.配置文件错误" Solution="1.检查配置文件，设置为正确支持的固件类型&#xA;2.联系厂家提供支持" Exception="" />
+  <ErrorInfo Code="MRS023002003" Level="Error" Module="MRS" Description="不支持的通讯类型" Reason="1.特定固件不支持的通讯类型&#xA;2.程序不支持的通讯类型" Solution="检查配置文件，设置为支持的通讯类型" Exception="" />
+  <ErrorInfo Code="MRS023002101" Level="Error" Module="MRS" Description="命令响应超时" Reason="获取版本号命令响应超时" Solution="1.重试&#xA;2.检查硬件&#xA;3.联系厂家服务工程师解决" Exception="" />
+  <ErrorInfo Code="MRS023002102" Level="Error" Module="MRS" Description="命令响应错误" Reason="获取版本号命令返回值不正确" Solution="1.重试&#xA;2.联系厂家服务工程师解决" Exception="" />
+  <ErrorInfo Code="MRS023002301" Level="Error" Module="MRS" Description="升级包解压缩失败" Reason="升级包解压缩失败，未知异常" Solution="1.检查升级包&#xA;2.重试" Exception="" />
+  <ErrorInfo Code="MRS023002302" Level="Error" Module="MRS" Description="升级包格式不正确" Reason="升级包格式不正确，仅支持zip格式" Solution="1.检查升级包&#xA;2.重试" Exception="" />
+  <ErrorInfo Code="MRS023002303" Level="Error" Module="MRS" Description="升级包不存在" Reason="升级包不存在" Solution="1.检查升级包&#xA;2.重试" Exception="" />
+  <ErrorInfo Code="MRS023002304" Level="Error" Module="MRS" Description="升级文件数量为0" Reason="升级文件数量为0" Solution="1.检查升级包&#xA;2.重试" Exception="" />
+  <ErrorInfo Code="MRS023002305" Level="Error" Module="MRS" Description="升级文件不存在" Reason="升级文件不存在" Solution="1.检查升级包解压缩文件&#xA;2.重试" Exception="" />
+  <ErrorInfo Code="MRS023002306" Level="Error" Module="MRS" Description="下载文件超时" Reason="下载文件超时" Solution="重试" Exception="" />
+  <ErrorInfo Code="MRS023002307" Level="Error" Module="MRS" Description="命令响应超时" Reason="升级时命令响应超时" Solution="1.重试&#xA;2.检查硬件&#xA;3.联系厂家服务工程师解决" Exception="" />
+  <ErrorInfo Code="MRS023002308" Level="Error" Module="MRS" Description="命令响应错误" Reason="升级时命令返回值不正确" Solution="1.重试&#xA;2.联系厂家服务工程师解决" Exception="" />
+  <ErrorInfo Code="MRS023002309" Level="Error" Module="MRS" Description="硬件反馈升级失败进度" Reason="硬件返回了失败的进度信息（F）" Solution="1.重试&#xA;2.联系厂家服务工程师解决" Exception="" />
+  <ErrorInfo Code="MRS023002310" Level="Error" Module="MRS" Description="硬件反馈升级进度多次未更新" Reason="硬件反馈升级进度多次未更新，硬件可能出现故障" Solution="1.重试&#xA;2.联系厂家服务工程师解决" Exception="" />
+  <ErrorInfo Code="MRS023002321" Level="Error" Module="MRS" Description="TFTP服务启动失败" Reason="TFTP服务启动失败，未知异常" Solution="重试" Exception="" />
+  <ErrorInfo Code="MRS023002322" Level="Error" Module="MRS" Description="TFTP服务错误" Reason="TFTP服务发生错误" Solution="重试" Exception="" />
+  <ErrorInfo Code="MRS023002323" Level="Error" Module="MRS" Description="TFTP请求升级文件不存在" Reason="TFTP接收到的请求文件不存在" Solution="1.检查升级包解压缩文件&#xA;2.重试" Exception="" />
+  <ErrorInfo Code="MRS023002324" Level="Error" Module="MRS" Description="TFTP发送文件失败" Reason="TFTP发送文件失败" Solution="重试" Exception="" />
+  <ErrorInfo Code="MRS023002325" Level="Error" Module="MRS" Description="Telnet连接失败" Reason="Telnet连接失败" Solution="1.检查硬件&#xA;2.重试" Exception="" />
+  <ErrorInfo Code="MRS023002326" Level="Error" Module="MRS" Description="Telnet登录失败" Reason="Telnet登录失败" Solution="1.检查硬件&#xA;2.重试" Exception="" />
+  <ErrorInfo Code="MRS023002327" Level="Error" Module="MRS" Description="Telnet发送命令失败" Reason="Telnet发送命令失败，未知异常" Solution="重试" Exception="" />
+  <ErrorInfo Code="MRS023002328" Level="Error" Module="MRS" Description="Telnet读取信息超时" Reason="1.命令尚未执行完毕，超出指定的等待时间&#xA;2.超出指定的等待时间时仍未读取到指定的结束符" Solution="1.修改相关配置项后重试&#xA;2.联系厂家服务工程师解决" Exception="" />
+  <ErrorInfo Code="MRS023002329" Level="Error" Module="MRS" Description="Telnet读取信息失败" Reason="Telnet读取信息失败，未知异常" Solution="重试" Exception="" />
+  <ErrorInfo Code="MRS023002330" Level="Error" Module="MRS" Description="重新连接失败" Reason="TelnetHandler Reboot后重连失败" Solution="1.检查硬件&#xA;2.重试" Exception="" />
+  <ErrorInfo Code="MRS023002331" Level="Error" Module="MRS" Description="ACQ/Detector不支持此固件" Reason="配置为ACQHandle但固件不属于ACQ或Detector" Solution="修改配置项后重试" Exception="" />
+  <ErrorInfo Code="MRS023002332" Level="Error" Module="MRS" Description="Num配置错误，无法匹配" Reason="ACQHandle固件Num配置项错误，无法匹配" Solution="修改配置项后重试" Exception="" />
+  <ErrorInfo Code="MRS023002501" Level="Error" Module="MRS" Description="电源重上电命令响应超时" Reason="电源重上电命令响应超时" Solution="1.重试&#xA;2.检查PDU&#xA;3.联系厂家服务工程师解决" Exception="" />
+  <ErrorInfo Code="MRS023002502" Level="Error" Module="MRS" Description="电源重上电命令响应错误" Reason="电源重上电命令返回值不正确" Solution="1.重试&#xA;2.联系厂家服务工程师解决" Exception="" />
+  <ErrorInfo Code="MRS023002503" Level="Error" Module="MRS" Description="电源重上电命令响应值解析失败" Reason="电源重上电命令返回错误码解析失败" Solution="1.重试&#xA;2.联系厂家服务工程师解决" Exception="" />
+  <ErrorInfo Code="ACC000000001" Level="Error" Module="Acquisition card" Description="SDK初始化失败" Reason="未调用初始化函数" Solution="" Exception="给上层直接返回错误返回值，停止相关操作。" />
+  <ErrorInfo Code="ACC000000002" Level="Error" Module="Acquisition card" Description="采集卡1未就绪" Reason="采集卡1设备或驱动未安装" Solution="1检查采集卡设备指示灯是否正常。&#xA;2通过设备管理器查看驱动是否安装正常" Exception="给上层直接返回错误返回值，停止相关操作。" />
+  <ErrorInfo Code="ACC000000003" Level="Error" Module="Acquisition card" Description="采集卡2未就绪" Reason="采集卡2设备或驱动未安装" Solution="1检查采集卡设备指示灯是否正常。&#xA;2通过设备管理器查看驱动是否安装正常" Exception="给上层直接返回错误返回值，停止相关操作。" />
+  <ErrorInfo Code="ACC000000004" Level="Error" Module="Acquisition card" Description="内存不足" Reason="" Solution="" Exception="给上层直接返回错误返回值，停止相关操作。" />
+  <ErrorInfo Code="ACC000000005" Level="Error" Module="Acquisition card" Description="磁盘不足" Reason="" Solution="" Exception="给上层直接返回错误返回值，停止相关操作。" />
+  <ErrorInfo Code="ACC000000006" Level="Error" Module="Acquisition card" Description="参数错误" Reason="" Solution="" Exception="给上层直接返回错误返回值，停止相关操作。" />
+  <ErrorInfo Code="ACC000000007" Level="Error" Module="Acquisition card" Description="传入的参数错误" Reason="" Solution="" Exception="给上层返回错误码，上层主动调&#xA;用接口读取详细错误信息" />
+  <ErrorInfo Code="ACC000000008" Level="Error" Module="Acquisition card" Description="探测器参数设置失败" Reason="" Solution="" Exception="给上层返回错误码，上层主动调&#xA;用接口读取详细错误信息" />
+  <ErrorInfo Code="ACC000000009" Level="Error" Module="Acquisition card" Description="测试数据不存在" Reason="" Solution="" Exception="给上层直接返回错误返回值，停止相关操作。" />
+  <ErrorInfo Code="ACC000000010" Level="Error" Module="Acquisition card" Description="数据保存路径不存在" Reason="" Solution="" Exception="给上层直接返回错误返回值，停止相关操作。" />
+  <ErrorInfo Code="ACC000000011" Level="Error" Module="Acquisition card" Description="探测器未结束采集" Reason="" Solution="结束当前采集" Exception="给上层直接返回错误返回值，停止相关操作。" />
+  <ErrorInfo Code="ACC000000012" Level="Error" Module="Acquisition card" Description="SDK重复初始化" Reason="" Solution="" Exception="给上层直接返回错误返回值，停止相关操作。" />
+  <ErrorInfo Code="REC000000001" Level="Error" Module="UPS" Description="离线重建计算机掉线" Reason="1,离线重建计算机控制进程崩溃或卡死.&#xA;2,Host计算机与离线重建计算机网线掉落.&#xA;3,线缆损坏.&#xA;4,网卡损坏." Solution="1,检查网线,确保网线已经链接;&#xA;2,重启计算机;&#xA;3,上述2步依然不能解决问题,考虑更换网线;&#xA;4,上述3步依然不能解决问题,考虑更换网卡;&#xA;5,请联系厂家服务工程师解决." Exception="1,尝试Ping命令&#xA;2,尝试3次链接离线重建控制控制进程;" />
+  <ErrorInfo Code="REC000000001" Level="Error" Module="ExtBoard" Description="离线重建计算机掉线" Reason="1,离线重建计算机控制进程崩溃或卡死.&#xA;2,Host计算机与离线重建计算机网线掉落.&#xA;3,线缆损坏.&#xA;4,网卡损坏." Solution="1,检查网线,确保网线已经链接;&#xA;2,重启计算机;&#xA;3,上述2步依然不能解决问题,考虑更换网线;&#xA;4,上述3步依然不能解决问题,考虑更换网卡;&#xA;5,请联系厂家服务工程师解决." Exception="1,尝试Ping命令&#xA;2,尝试3次链接离线重建控制控制进程;" />
+  <ErrorInfo Code="DMS100000001" Level="Error" Module="DMS" Description="与处理板1断连" Reason="1,物理连线接触问题.&#xA;2,物理器件损坏.&#xA;3,程序版本不匹配." Solution="1,重新给整个探测器模组上电，等待一分钟左右再次查看有无报错&#xA;2,如果方法1没有作用，查看传输板背部连线是否出现问题。&#xA;3,若方法1、2都无效果，查看传输板和处理板程序版本是否匹配（具体程序版本匹配由实际情况决定）" Exception="1,持续通过串口命令尝试连接处理板" />
+  <ErrorInfo Code="DMS100000002" Level="Error" Module="DMS" Description="与处理板2断连" Reason="1,物理连线接触问题.&#xA;2,物理器件损坏.&#xA;3,程序版本不匹配." Solution="1,重新给整个探测器模组上电，等待一分钟左右再次查看有无报错&#xA;2,如果方法1没有作用，查看传输板背部连线是否出现问题。&#xA;3,若方法1、2都无效果，查看传输板和处理板程序版本是否匹配（具体程序版本匹配由实际情况决定）" Exception="1,持续通过串口命令尝试连接处理板" />
+  <ErrorInfo Code="DMS100000003" Level="Error" Module="DMS" Description="与处理板3断连" Reason="1,物理连线接触问题.&#xA;2,物理器件损坏.&#xA;3,程序版本不匹配." Solution="1,重新给整个探测器模组上电，等待一分钟左右再次查看有无报错&#xA;2,如果方法1没有作用，查看传输板背部连线是否出现问题。&#xA;3,若方法1、2都无效果，查看传输板和处理板程序版本是否匹配（具体程序版本匹配由实际情况决定）" Exception="1,持续通过串口命令尝试连接处理板" />
+  <ErrorInfo Code="DMS100000004" Level="Error" Module="DMS" Description="与处理板4断连" Reason="1,物理连线接触问题.&#xA;2,物理器件损坏.&#xA;3,程序版本不匹配." Solution="1,重新给整个探测器模组上电，等待一分钟左右再次查看有无报错&#xA;2,如果方法1没有作用，查看传输板背部连线是否出现问题。&#xA;3,若方法1、2都无效果，查看传输板和处理板程序版本是否匹配（具体程序版本匹配由实际情况决定）" Exception="1,持续通过串口命令尝试连接处理板" />
+  <ErrorInfo Code="DMS100000005" Level="Error" Module="DMS" Description="与采集卡网络连接中断" Reason="1,物理连线问题." Solution="1.检查传输板地板上的光纤模块是否连接正常" Exception="1,周期性向上层发送网络包尝试重新连接网络" />
+  <ErrorInfo Code="DMS100000005" Level="Error" Module="DMS" Description="温控板掉线" Reason="1,物理连线问题." Solution="1.检查温控板与处理板连线是否正常&#xA;2.检查处理板与传输板连线是否正常" Exception="1,持续向处理板发送，请求温控板的状态" />
+  <ErrorInfo Code="DMS100000006" Level="Error" Module="DMS" Description="采集完成后，实际采集张数与&#xA;上传张数不等" Reason="1,采集流程开始前切换Binning参数" Solution="1.保证Binning不变化再次进行采集" Exception="1,无" />
+  <ErrorInfo Code="DMS100000007" Level="Error" Module="DMS" Description="参数下发错误" Reason="上位机下发参数数值错误" Solution="重新输入正确的参数" Exception="不进行参数修改，向上突发错误" />
+  <ErrorInfo Code="DMS400000001" Level="Error" Module="DMS" Description="sht35温湿度传感器异常" Reason="1,sht35温湿度传感器硬件损坏" Solution="1.温控板断电拆卸，修复或更换sht35温湿度传感器" Exception="1.无" />
+  <ErrorInfo Code="DMS400000002" Level="Error" Module="DMS" Description="sht20温湿度传感器异常" Reason="1,sht20温湿度传感器硬件损坏" Solution="1.温控板断电拆卸，修复或更换sht20温湿度传感器" Exception="1.无" />
+  <ErrorInfo Code="DMS400000003" Level="Warning" Module="DMS" Description="温控调节失控" Reason="1.制冷片功率已调节至最大，制冷片发热严重，检出板反馈温度不降" Solution="1.MRS界面关闭制冷模式并让探测器模组散热达到正常温度后再启动制冷模式" Exception="1.温控板关闭制冷模式" />
+  <ErrorInfo Code="DMS400000004" Level="Error" Module="DMS" Description="检出板反馈温度异常为0或大于100" Reason="1.检出板温度传感器硬件异常&#xA;2.处理板与温控板串口通信被干扰" Solution="1.检查处理板与温控板串口通信是否有干扰源，如果有，屏蔽干扰源&#xA;2.如果方法1没有作用，检查修复或更换检出板温度传感器" Exception="1.温控板对检出板反馈温度作滑动窗口平滑处理" />
+  <ErrorInfo Code="DMS400000005" Level="Error" Module="DMS" Description="检出板温度反馈中断，温控板超过1分钟接收不到温度反馈" Reason="1.检出板与处理板接口处不稳定&#xA;2.处理板与温控板串口通信断开" Solution="1.检查检出板和处理板接口处是否连接稳定&#xA;2.如果方法1没有作用，检查处理板与温控板串口通信是否正常" Exception="1.温控板关闭制冷模式" />
+  <ErrorInfo Code="REC000000001" Level="Error" Module="ControlBox" Description="离线重建计算机掉线" Reason="1,离线重建计算机控制进程崩溃或卡死.&#xA;2,Host计算机与离线重建计算机网线掉落.&#xA;3,线缆损坏.&#xA;4,网卡损坏." Solution="1,检查网线,确保网线已经链接;&#xA;2,重启计算机;&#xA;3,上述2步依然不能解决问题,考虑更换网线;&#xA;4,上述3步依然不能解决问题,考虑更换网卡;&#xA;5,请联系厂家服务工程师解决." Exception="1,尝试Ping命令&#xA;2,尝试3次链接离线重建控制控制进程;" />
+  <ErrorInfo Code="COB000000001" Level="Fatal" Module="ControlBox" Description="通讯断联" Reason="CtrlBox与CTbox的CAN心跳掉线" Solution="1. 确定CTbox到CtrlBox之间的CAN线正常&#xA;2. 确定CTbox是否还在发送心跳帧" Exception="" />
+  <ErrorInfo Code="COB000000002" Level="Fatal" Module="ControlBox" Description="通讯断联" Reason="CtrlBox与Audio板的CAN心跳掉线" Solution="1. 确定CtrlBox到Audio板之间的CAN线正常&#xA;2. 确定Audio板是否还在发送心跳帧" Exception="" />
+  <ErrorInfo Code="COB000000003" Level="NormalError" Module="ControlBox" Description="多个按键同时按下" Reason="CtrlBox上多个按键被同时按下" Solution="一次按下一个案件，完成按键操作事件&#xA;后再按下下个操作按键" Exception="" />
+  <ErrorInfo Code="COB000000004" Level="NormalError" Module="ControlBox" Description="音量已经最大" Reason="CtrlBox音量已经调到最大值" Solution="音量已经最大值，不能继续增大音量" Exception="" />
+  <ErrorInfo Code="COB000000005" Level="NormalError" Module="ControlBox" Description="音量已经最小" Reason="CtrlBox音量已经调到最小值" Solution="音量已经最小值，不能继续减小音量" Exception="" />
+  <ErrorInfo Code="REC000000001" Level="Error" Module="Panel" Description="离线重建计算机掉线" Reason="1,离线重建计算机控制进程崩溃或卡死.&#xA;2,Host计算机与离线重建计算机网线掉落.&#xA;3,线缆损坏.&#xA;4,网卡损坏." Solution="1,检查网线,确保网线已经链接;&#xA;2,重启计算机;&#xA;3,上述2步依然不能解决问题,考虑更换网线;&#xA;4,上述3步依然不能解决问题,考虑更换网卡;&#xA;5,请联系厂家服务工程师解决." Exception="1,尝试Ping命令&#xA;2,尝试3次链接离线重建控制控制进程;" />
+  <ErrorInfo Code="REC000000001" Level="Error" Module="AuxBoard" Description="离线重建计算机掉线" Reason="1,离线重建计算机控制进程崩溃或卡死.&#xA;2,Host计算机与离线重建计算机网线掉落.&#xA;3,线缆损坏.&#xA;4,网卡损坏." Solution="1,检查网线,确保网线已经链接;&#xA;2,重启计算机;&#xA;3,上述2步依然不能解决问题,考虑更换网线;&#xA;4,上述3步依然不能解决问题,考虑更换网卡;&#xA;5,请联系厂家服务工程师解决." Exception="1,尝试Ping命令&#xA;2,尝试3次链接离线重建控制控制进程;" />
+  <ErrorInfo Code="REC000000001" Level="Error" Module="Couch" Description="离线重建计算机掉线" Reason="1,离线重建计算机控制进程崩溃或卡死.&#xA;2,Host计算机与离线重建计算机网线掉落.&#xA;3,线缆损坏.&#xA;4,网卡损坏." Solution="1,检查网线,确保网线已经链接;&#xA;2,重启计算机;&#xA;3,上述2步依然不能解决问题,考虑更换网线;&#xA;4,上述3步依然不能解决问题,考虑更换网卡;&#xA;5,请联系厂家服务工程师解决." Exception="1,尝试Ping命令&#xA;2,尝试3次链接离线重建控制控制进程;" />
+  <ErrorInfo Code="PHS000000001" Level="Fatal" Module="Couch" Description="通讯断联" Reason="扫描床板与CTbox的CAN心跳掉线" Solution="1. 确定CTbox到扫描床之间的CAN线正常&#xA;2. 确定CTbox是否还在发送心跳帧" Exception="1. 禁止移床" />
+  <ErrorInfo Code="PHS000000002" Level="Fatal" Module="Couch" Description="编码器错误" Reason="编码器接触不良或损坏" Solution="检查编码器接插件" Exception="" />
+  <ErrorInfo Code="PHS000000003" Level="Fatal" Module="Couch" Description="伺服电机线接触不良" Reason="" Solution="" Exception="" />
+  <ErrorInfo Code="PHS000000008" Level="NormalError" Module="Couch" Description="下参的目标位置大于2100mm" Reason="" Solution="" Exception="" />
+  <ErrorInfo Code="PHS000000009" Level="NormalError" Module="Couch" Description="下参的目标速度大于200mm/s" Reason="" Solution="" Exception="" />
+  <ErrorInfo Code="PHS000000010" Level="NormalError" Module="Couch" Description="下参的目标位置不在限位范围内" Reason="" Solution="" Exception="" />
+  <ErrorInfo Code="PHS000000011" Level="NormalError" Module="Couch" Description="床板伸入到机架内，禁止上下移动" Reason="" Solution="" Exception="" />
+  <ErrorInfo Code="MTC000000001" Level="Error" Module="MtCtrl" Description="CAN异常" Reason="1.mtctrl与ctbox CAN交互出现异常" Solution="1.检查mtctrl的CAN总线收发数量，确保收发正常&#xA;2. 查看mtctrl是否正常连接，是否正常上电运行" Exception="" />
+  <ErrorInfo Code="MTC000000002" Level="Error" Module="MtCtrl" Description="网络模块异常" Reason="1.mtctrl与上位机的网线连接异常" Solution="1.检查网线&#xA;2.上位机ping测试mtctrl（ping 78.86.65.21）" Exception="" />
+  <ErrorInfo Code="MTC000000003" Level="Error" Module="MtCtrl" Description="PL未成功加载" Reason="1. 开启启动过程PL未成功加载" Solution="1.检查开机启动脚本&#xA;2.检查文件系统是否有PL文件" Exception="" />
+  <ErrorInfo Code="MTC000000004" Level="Error" Module="MtCtrl" Description="固件升级错误" Reason="固件升级出错" Solution="1.检查升级文件（文件类型、大小、名称）" Exception="" />
+  <ErrorInfo Code="MTC000000005" Level="Error" Module="MtCtrl" Description="伺服驱动器工作过程中报警" Reason="1、驱动器故障" Solution="1、读取驱动器错误代码，检查驱动器" Exception="" />
+  <ErrorInfo Code="MTC000000006" Level="Error" Module="MtCtrl" Description="速度设定值与运行值不一致错误" Reason="运动状态已经为匀速运动状态，经过一定的延时，比较磁栅尺反馈的实时运动速度值（PL FPGA程序写入寄存器）与设置的运动速度值偏差超出阈值则报错" Solution="检查驱动器" Exception="" />
+  <ErrorInfo Code="MTC000000007" Level="Error" Module="MtCtrl" Description="电机堵转错误" Reason="控制伺服的指令脉冲数量ControlOutPLS与伺服电机编码器反馈数量CountMotor（PL FPGA程序写入寄存器）进行比较，超出阈值则报错" Solution="检查驱动器，机架状态" Exception="" />
+  <ErrorInfo Code="MTC000000008" Level="Error" Module="MtCtrl" Description="传动机构错误" Reason="没有发生电机堵转错误，磁栅尺反馈计数值增量CountPos与电机编码器反馈计数值增量CountMotor（PL FPGA程序写入寄存器）超出阈值则报错" Solution="检查驱动器，皮带" Exception="" />
+  <ErrorInfo Code="MTC000000009" Level="Error" Module="MtCtrl" Description="运动超时错误" Reason="已发送运动停止指令，经过设置的延时后速度还未减小到0则报错" Solution="检查驱动器，皮带" Exception="" />
+  <ErrorInfo Code="MTC000000010" Level="Error" Module="MtCtrl" Description="位置开关错误" Reason="1）正向限位，进入正向限位区，正向限位使能，这时遮挡住第一个光电限位开关，FPGA最大限位生效，在限位开关遮挡区间正向运动减速到停止，反向运动正常，当遮挡住第二个光电开关时伺服正向限位生效，伺服驱动器控制正向运动减速到停止；&#xA;2）反向限位，进入反向限位区，反向限位使能，这时遮挡住第一个光电限位开关，FPGA最小限位生效，在限位开关遮挡区间反向运动减速到停止，正向运动正常，当遮挡住第二个光电开关时伺服反向限位生效，伺服驱动器控制反向运动减速到停止；" Solution="检查限位开关" Exception="" />
+  <ErrorInfo Code="MTC000000011" Level="Error" Module="MtCtrl" Description="光电开关错误状态" Reason="1,0位光电开关处赋值60°（自检时赋的值，60度对应的计数值）；&#xA;2,当角度值经过59-70及395-415时，光电开关OPT0应有跳变，否则报错；&#xA;3,当角度值经过29-42时及367-387，光电开关OPT1应有跳变，否则报错；&#xA;4,当角度值经过43-56时及381-401，光电开关OPT2应有跳变，否则报错；&#xA;5,当角度值经过167-187时及526-540，光电开关OPT3应有跳变，否则报错；&#xA;6,当角度值经过181-201时及540-554，光电开关OPT4应有跳变，否则报错；" Solution="检查光电开关" Exception="" />
+  <ErrorInfo Code="MTC000000012" Level="Error" Module="MtCtrl" Description="电机错误状态" Reason="自由临界区（运动一定距离后应消失，否则进入故障状态）" Solution="检测电机" Exception="" />
+  <ErrorInfo Code="MTC000000013" Level="Error" Module="MtCtrl" Description="磁栅尺错误状态" Reason="自由区（同时磁栅尺编码值为自由区数值，否则未故障状态）" Solution="检测磁栅尺" Exception="" />
+  <ErrorInfo Code="MTC000000014" Level="Error" Module="MtCtrl" Description="伺服驱动器参数错误" Reason="1、RS485协议数据块错误&#xA;2、发送接收超时" Solution="检测驱动器" Exception="" />
+  <ErrorInfo Code="MTC000000015" Level="Error" Module="MtCtrl" Description="伺服驱动器掉线" Reason="1、mtctrl和伺服之间485通信异常&#xA;2、伺服断电" Solution="1、检测485总线总线&#xA;2、检测机架供电" Exception="" />
+  <ErrorInfo Code="IFB000000002" Level="Error" Module="IFBox" Description="CAN异常" Reason="1.ifbox与ctbox CAN交互出现异常" Solution="1.检测ifbox的CAN收到ctbox心跳周期是否正常&#xA;2.检查程序是否有打印报错，共享内存初始化失败等醒目打印" Exception="" />
+  <ErrorInfo Code="IFB000000003" Level="Error" Module="IFBox" Description="网络模块异常" Reason="1.ifbox与上位机的网线连接异常" Solution="1.检查网线&#xA;2.上位机ping测试ifbox（ping 78.86.65.17）" Exception="" />
+  <ErrorInfo Code="IFB000000004" Level="Error" Module="IFBox" Description="PL未成功加载" Reason="1. 开启启动过程PL未成功加载" Solution="1.检查开机启动脚本&#xA;2.检查文件系统是否有PL文件" Exception="" />
+  <ErrorInfo Code="IFB000000005" Level="Error" Module="IFBox" Description="ECG心电信号断连" Reason="1. 物理连线问题&#xA;2. 信号传输出错" Solution="1.检查链路是否完整" Exception="" />
+  <ErrorInfo Code="IFB000000006" Level="Error" Module="IFBox" Description="高压注射器断连" Reason="1. 物理连线问题" Solution="1.检查链路是否完整" Exception="" />
+  <ErrorInfo Code="IFB000000007" Level="Error" Module="IFBox" Description="nvsync与mtctrl断连" Reason="1. 物理连线问题" Solution="1.检查链路是否完整" Exception="" />
+  <ErrorInfo Code="IFB000000008" Level="Error" Module="IFBox" Description="门控灯无法控制" Reason="1. 门控灯损坏" Solution="1.检查链路是否完整" Exception="" />
+  <ErrorInfo Code="IFB000000009" Level="Error" Module="IFBox" Description="nvsync与采集卡断连" Reason="1. 采集卡出现问题" Solution="1.检查链路是否完整" Exception="" />
+  <ErrorInfo Code="IFB000000010" Level="Error" Module="IFBox" Description="1号线束器AD芯片busy信号错误" Reason="AD芯片busy信号错误" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000011" Level="Error" Module="IFBox" Description="1号线束器flash芯片损坏，读写失效" Reason="flash芯片损坏，读写失效" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000012" Level="Error" Module="IFBox" Description="1号线束器计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Reason="计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000013" Level="Error" Module="IFBox" Description="1号线束器电机运动位置和下发位置不相符" Reason="电机运动位置和下发位置不相符" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000014" Level="Error" Module="IFBox" Description="1号线束器编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Reason="编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000015" Level="Error" Module="IFBox" Description="1号线束器找0失败，6秒钟之内，没有找0成功（光电）" Reason="找0失败，6秒钟之内，没有找0成功（光电）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000016" Level="Error" Module="IFBox" Description="2号线束器AD芯片busy信号错误" Reason="AD芯片busy信号错误" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000017" Level="Error" Module="IFBox" Description="2号线束器flash芯片损坏，读写失效" Reason="flash芯片损坏，读写失效" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000018" Level="Error" Module="IFBox" Description="2号线束器计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Reason="计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000019" Level="Error" Module="IFBox" Description="2号线束器电机运动位置和下发位置不相符" Reason="电机运动位置和下发位置不相符" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000020" Level="Error" Module="IFBox" Description="2号线束器编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Reason="编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000021" Level="Error" Module="IFBox" Description="2号线束器找0失败，6秒钟之内，没有找0成功（光电）" Reason="找0失败，6秒钟之内，没有找0成功（光电）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000022" Level="Error" Module="IFBox" Description="3号线束器AD芯片busy信号错误" Reason="AD芯片busy信号错误" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000023" Level="Error" Module="IFBox" Description="3号线束器flash芯片损坏，读写失效" Reason="flash芯片损坏，读写失效" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000024" Level="Error" Module="IFBox" Description="3号线束器计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Reason="计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000025" Level="Error" Module="IFBox" Description="3号线束器电机运动位置和下发位置不相符" Reason="电机运动位置和下发位置不相符" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000026" Level="Error" Module="IFBox" Description="3号线束器编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Reason="编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000027" Level="Error" Module="IFBox" Description="3号线束器找0失败，6秒钟之内，没有找0成功（光电）" Reason="找0失败，6秒钟之内，没有找0成功（光电）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000028" Level="Error" Module="IFBox" Description="4号线束器AD芯片busy信号错误" Reason="AD芯片busy信号错误" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000029" Level="Error" Module="IFBox" Description="4号线束器flash芯片损坏，读写失效" Reason="flash芯片损坏，读写失效" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000030" Level="Error" Module="IFBox" Description="4号线束器计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Reason="计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000031" Level="Error" Module="IFBox" Description="4号线束器电机运动位置和下发位置不相符" Reason="电机运动位置和下发位置不相符" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000032" Level="Error" Module="IFBox" Description="4号线束器编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Reason="编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000033" Level="Error" Module="IFBox" Description="4号线束器找0失败，6秒钟之内，没有找0成功（光电）" Reason="找0失败，6秒钟之内，没有找0成功（光电）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000034" Level="Error" Module="IFBox" Description="5号线束器AD芯片busy信号错误" Reason="AD芯片busy信号错误" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000035" Level="Error" Module="IFBox" Description="5号线束器flash芯片损坏，读写失效" Reason="flash芯片损坏，读写失效" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000036" Level="Error" Module="IFBox" Description="5号线束器计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Reason="计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000037" Level="Error" Module="IFBox" Description="5号线束器电机运动位置和下发位置不相符" Reason="电机运动位置和下发位置不相符" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000038" Level="Error" Module="IFBox" Description="5号线束器编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Reason="编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000039" Level="Error" Module="IFBox" Description="5号线束器找0失败，6秒钟之内，没有找0成功（光电）" Reason="找0失败，6秒钟之内，没有找0成功（光电）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000040" Level="Error" Module="IFBox" Description="6号线束器AD芯片busy信号错误" Reason="AD芯片busy信号错误" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000041" Level="Error" Module="IFBox" Description="6号线束器flash芯片损坏，读写失效" Reason="flash芯片损坏，读写失效" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000042" Level="Error" Module="IFBox" Description="6号线束器计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Reason="计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000043" Level="Error" Module="IFBox" Description="6号线束器电机运动位置和下发位置不相符" Reason="电机运动位置和下发位置不相符" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000044" Level="Error" Module="IFBox" Description="6号线束器编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Reason="编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000045" Level="Error" Module="IFBox" Description="6号线束器找0失败，6秒钟之内，没有找0成功（光电）" Reason="找0失败，6秒钟之内，没有找0成功（光电）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000046" Level="Error" Module="IFBox" Description="7号线束器AD芯片busy信号错误" Reason="AD芯片busy信号错误" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000047" Level="Error" Module="IFBox" Description="7号线束器flash芯片损坏，读写失效" Reason="flash芯片损坏，读写失效" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000048" Level="Error" Module="IFBox" Description="7号线束器计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Reason="计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000049" Level="Error" Module="IFBox" Description="7号线束器电机运动位置和下发位置不相符" Reason="电机运动位置和下发位置不相符" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000050" Level="Error" Module="IFBox" Description="7号线束器编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Reason="编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000051" Level="Error" Module="IFBox" Description="7号线束器找0失败，6秒钟之内，没有找0成功（光电）" Reason="找0失败，6秒钟之内，没有找0成功（光电）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000052" Level="Error" Module="IFBox" Description="8号线束器AD芯片busy信号错误" Reason="AD芯片busy信号错误" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000053" Level="Error" Module="IFBox" Description="8号线束器flash芯片损坏，读写失效" Reason="flash芯片损坏，读写失效" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000054" Level="Error" Module="IFBox" Description="8号线束器计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Reason="计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000055" Level="Error" Module="IFBox" Description="8号线束器电机运动位置和下发位置不相符" Reason="电机运动位置和下发位置不相符" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000056" Level="Error" Module="IFBox" Description="8号线束器编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Reason="编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000057" Level="Error" Module="IFBox" Description="8号线束器找0失败，6秒钟之内，没有找0成功（光电）" Reason="找0失败，6秒钟之内，没有找0成功（光电）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000058" Level="Error" Module="IFBox" Description="9号线束器AD芯片busy信号错误" Reason="AD芯片busy信号错误" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000059" Level="Error" Module="IFBox" Description="9号线束器flash芯片损坏，读写失效" Reason="flash芯片损坏，读写失效" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000060" Level="Error" Module="IFBox" Description="9号线束器计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Reason="计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000061" Level="Error" Module="IFBox" Description="9号线束器电机运动位置和下发位置不相符" Reason="电机运动位置和下发位置不相符" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000062" Level="Error" Module="IFBox" Description="9号线束器编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Reason="编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000063" Level="Error" Module="IFBox" Description="9号线束器找0失败，6秒钟之内，没有找0成功（光电）" Reason="找0失败，6秒钟之内，没有找0成功（光电）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000064" Level="Error" Module="IFBox" Description="10号线束器AD芯片busy信号错误" Reason="AD芯片busy信号错误" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000065" Level="Error" Module="IFBox" Description="10号线束器flash芯片损坏，读写失效" Reason="flash芯片损坏，读写失效" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000066" Level="Error" Module="IFBox" Description="10号线束器计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Reason="计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000067" Level="Error" Module="IFBox" Description="10号线束器电机运动位置和下发位置不相符" Reason="电机运动位置和下发位置不相符" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000068" Level="Error" Module="IFBox" Description="10号线束器编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Reason="编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000069" Level="Error" Module="IFBox" Description="10号线束器找0失败，6秒钟之内，没有找0成功（光电）" Reason="找0失败，6秒钟之内，没有找0成功（光电）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000070" Level="Error" Module="IFBox" Description="11号线束器AD芯片busy信号错误" Reason="AD芯片busy信号错误" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000071" Level="Error" Module="IFBox" Description="11号线束器flash芯片损坏，读写失效" Reason="flash芯片损坏，读写失效" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000072" Level="Error" Module="IFBox" Description="11号线束器计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Reason="计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000073" Level="Error" Module="IFBox" Description="11号线束器电机运动位置和下发位置不相符" Reason="电机运动位置和下发位置不相符" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000074" Level="Error" Module="IFBox" Description="11号线束器编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Reason="编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000075" Level="Error" Module="IFBox" Description="11号线束器找0失败，6秒钟之内，没有找0成功（光电）" Reason="找0失败，6秒钟之内，没有找0成功（光电）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000076" Level="Error" Module="IFBox" Description="12号线束器AD芯片busy信号错误" Reason="AD芯片busy信号错误" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000077" Level="Error" Module="IFBox" Description="12号线束器flash芯片损坏，读写失效" Reason="flash芯片损坏，读写失效" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000078" Level="Error" Module="IFBox" Description="12号线束器计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Reason="计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000079" Level="Error" Module="IFBox" Description="12号线束器电机运动位置和下发位置不相符" Reason="电机运动位置和下发位置不相符" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000080" Level="Error" Module="IFBox" Description="12号线束器编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Reason="编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000081" Level="Error" Module="IFBox" Description="12号线束器找0失败，6秒钟之内，没有找0成功（光电）" Reason="找0失败，6秒钟之内，没有找0成功（光电）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000082" Level="Error" Module="IFBox" Description="13号线束器AD芯片busy信号错误" Reason="AD芯片busy信号错误" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000083" Level="Error" Module="IFBox" Description="13号线束器flash芯片损坏，读写失效" Reason="flash芯片损坏，读写失效" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000084" Level="Error" Module="IFBox" Description="13号线束器计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Reason="计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000085" Level="Error" Module="IFBox" Description="13号线束器电机运动位置和下发位置不相符" Reason="电机运动位置和下发位置不相符" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000086" Level="Error" Module="IFBox" Description="13号线束器编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Reason="编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000087" Level="Error" Module="IFBox" Description="13号线束器找0失败，6秒钟之内，没有找0成功（光电）" Reason="找0失败，6秒钟之内，没有找0成功（光电）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000088" Level="Error" Module="IFBox" Description="14号线束器AD芯片busy信号错误" Reason="AD芯片busy信号错误" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000089" Level="Error" Module="IFBox" Description="14号线束器flash芯片损坏，读写失效" Reason="flash芯片损坏，读写失效" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000090" Level="Error" Module="IFBox" Description="14号线束器计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Reason="计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000091" Level="Error" Module="IFBox" Description="14号线束器电机运动位置和下发位置不相符" Reason="电机运动位置和下发位置不相符" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000092" Level="Error" Module="IFBox" Description="14号线束器编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Reason="编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000093" Level="Error" Module="IFBox" Description="14号线束器找0失败，6秒钟之内，没有找0成功（光电）" Reason="找0失败，6秒钟之内，没有找0成功（光电）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000094" Level="Error" Module="IFBox" Description="15号线束器AD芯片busy信号错误" Reason="AD芯片busy信号错误" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000095" Level="Error" Module="IFBox" Description="15号线束器flash芯片损坏，读写失效" Reason="flash芯片损坏，读写失效" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000096" Level="Error" Module="IFBox" Description="15号线束器计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Reason="计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000097" Level="Error" Module="IFBox" Description="15号线束器电机运动位置和下发位置不相符" Reason="电机运动位置和下发位置不相符" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000098" Level="Error" Module="IFBox" Description="15号线束器编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Reason="编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000099" Level="Error" Module="IFBox" Description="15号线束器找0失败，6秒钟之内，没有找0成功（光电）" Reason="找0失败，6秒钟之内，没有找0成功（光电）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000100" Level="Error" Module="IFBox" Description="16号线束器AD芯片busy信号错误" Reason="AD芯片busy信号错误" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000101" Level="Error" Module="IFBox" Description="16号线束器flash芯片损坏，读写失效" Reason="flash芯片损坏，读写失效" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000102" Level="Error" Module="IFBox" Description="16号线束器计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Reason="计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000103" Level="Error" Module="IFBox" Description="16号线束器电机运动位置和下发位置不相符" Reason="电机运动位置和下发位置不相符" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000104" Level="Error" Module="IFBox" Description="16号线束器编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Reason="编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000105" Level="Error" Module="IFBox" Description="16号线束器找0失败，6秒钟之内，没有找0成功（光电）" Reason="找0失败，6秒钟之内，没有找0成功（光电）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000106" Level="Error" Module="IFBox" Description="17号线束器AD芯片busy信号错误" Reason="AD芯片busy信号错误" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000107" Level="Error" Module="IFBox" Description="17号线束器flash芯片损坏，读写失效" Reason="flash芯片损坏，读写失效" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000108" Level="Error" Module="IFBox" Description="17号线束器计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Reason="计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000109" Level="Error" Module="IFBox" Description="17号线束器电机运动位置和下发位置不相符" Reason="电机运动位置和下发位置不相符" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000110" Level="Error" Module="IFBox" Description="17号线束器编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Reason="编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000111" Level="Error" Module="IFBox" Description="17号线束器找0失败，6秒钟之内，没有找0成功（光电）" Reason="找0失败，6秒钟之内，没有找0成功（光电）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000112" Level="Error" Module="IFBox" Description="18号线束器AD芯片busy信号错误" Reason="AD芯片busy信号错误" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000113" Level="Error" Module="IFBox" Description="18号线束器flash芯片损坏，读写失效" Reason="flash芯片损坏，读写失效" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000114" Level="Error" Module="IFBox" Description="18号线束器计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Reason="计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000115" Level="Error" Module="IFBox" Description="18号线束器电机运动位置和下发位置不相符" Reason="电机运动位置和下发位置不相符" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000116" Level="Error" Module="IFBox" Description="18号线束器编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Reason="编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000117" Level="Error" Module="IFBox" Description="18号线束器找0失败，6秒钟之内，没有找0成功（光电）" Reason="找0失败，6秒钟之内，没有找0成功（光电）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000118" Level="Error" Module="IFBox" Description="19号线束器AD芯片busy信号错误" Reason="AD芯片busy信号错误" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000119" Level="Error" Module="IFBox" Description="19号线束器flash芯片损坏，读写失效" Reason="flash芯片损坏，读写失效" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000120" Level="Error" Module="IFBox" Description="19号线束器计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Reason="计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000121" Level="Error" Module="IFBox" Description="19号线束器电机运动位置和下发位置不相符" Reason="电机运动位置和下发位置不相符" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000122" Level="Error" Module="IFBox" Description="19号线束器编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Reason="编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000123" Level="Error" Module="IFBox" Description="19号线束器找0失败，6秒钟之内，没有找0成功（光电）" Reason="找0失败，6秒钟之内，没有找0成功（光电）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000124" Level="Error" Module="IFBox" Description="20号线束器AD芯片busy信号错误" Reason="AD芯片busy信号错误" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000125" Level="Error" Module="IFBox" Description="20号线束器flash芯片损坏，读写失效" Reason="flash芯片损坏，读写失效" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000126" Level="Error" Module="IFBox" Description="20号线束器计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Reason="计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000127" Level="Error" Module="IFBox" Description="20号线束器电机运动位置和下发位置不相符" Reason="电机运动位置和下发位置不相符" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000128" Level="Error" Module="IFBox" Description="20号线束器编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Reason="编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000129" Level="Error" Module="IFBox" Description="20号线束器找0失败，6秒钟之内，没有找0成功（光电）" Reason="找0失败，6秒钟之内，没有找0成功（光电）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000130" Level="Error" Module="IFBox" Description="21号线束器AD芯片busy信号错误" Reason="AD芯片busy信号错误" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000131" Level="Error" Module="IFBox" Description="21号线束器flash芯片损坏，读写失效" Reason="flash芯片损坏，读写失效" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000132" Level="Error" Module="IFBox" Description="21号线束器计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Reason="计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000133" Level="Error" Module="IFBox" Description="21号线束器电机运动位置和下发位置不相符" Reason="电机运动位置和下发位置不相符" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000134" Level="Error" Module="IFBox" Description="21号线束器编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Reason="编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000135" Level="Error" Module="IFBox" Description="21号线束器找0失败，6秒钟之内，没有找0成功（光电）" Reason="找0失败，6秒钟之内，没有找0成功（光电）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000136" Level="Error" Module="IFBox" Description="22号线束器AD芯片busy信号错误" Reason="AD芯片busy信号错误" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000137" Level="Error" Module="IFBox" Description="22号线束器flash芯片损坏，读写失效" Reason="flash芯片损坏，读写失效" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000138" Level="Error" Module="IFBox" Description="22号线束器计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Reason="计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000139" Level="Error" Module="IFBox" Description="22号线束器电机运动位置和下发位置不相符" Reason="电机运动位置和下发位置不相符" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000140" Level="Error" Module="IFBox" Description="22号线束器编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Reason="编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000141" Level="Error" Module="IFBox" Description="22号线束器找0失败，6秒钟之内，没有找0成功（光电）" Reason="找0失败，6秒钟之内，没有找0成功（光电）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000142" Level="Error" Module="IFBox" Description="23号线束器AD芯片busy信号错误" Reason="AD芯片busy信号错误" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000143" Level="Error" Module="IFBox" Description="23号线束器flash芯片损坏，读写失效" Reason="flash芯片损坏，读写失效" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000144" Level="Error" Module="IFBox" Description="23号线束器计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Reason="计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000145" Level="Error" Module="IFBox" Description="23号线束器电机运动位置和下发位置不相符" Reason="电机运动位置和下发位置不相符" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000146" Level="Error" Module="IFBox" Description="23号线束器编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Reason="编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000147" Level="Error" Module="IFBox" Description="23号线束器找0失败，6秒钟之内，没有找0成功（光电）" Reason="找0失败，6秒钟之内，没有找0成功（光电）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000148" Level="Error" Module="IFBox" Description="24号线束器AD芯片busy信号错误" Reason="AD芯片busy信号错误" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000149" Level="Error" Module="IFBox" Description="24号线束器flash芯片损坏，读写失效" Reason="flash芯片损坏，读写失效" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000150" Level="Error" Module="IFBox" Description="24号线束器计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Reason="计量反馈数值相同，饱和（超出范围，32768，相同，大于30000）" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000151" Level="Error" Module="IFBox" Description="24号线束器电机运动位置和下发位置不相符" Reason="电机运动位置和下发位置不相符" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000152" Level="Error" Module="IFBox" Description="24号线束器编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Reason="编码器机械卡顿FPGA识别，区域时间段内（100ms）编码器数值不变" Solution="" Exception="" />
+  <ErrorInfo Code="IFB000000153" Level="Error" Module="IFBox" Description="24号线束器找0失败，6秒钟之内，没有找0成功（光电）" Reason="找0失败，6秒钟之内，没有找0成功（光电）" Solution="" Exception="" />
+  <ErrorInfo Code="REC000000001" Level="Error" Module="PDU" Description="离线重建计算机掉线" Reason="1,离线重建计算机控制进程崩溃或卡死.&#xA;2,Host计算机与离线重建计算机网线掉落.&#xA;3,线缆损坏.&#xA;4,网卡损坏." Solution="1,检查网线,确保网线已经链接;&#xA;2,重启计算机;&#xA;3,上述2步依然不能解决问题,考虑更换网线;&#xA;4,上述3步依然不能解决问题,考虑更换网卡;&#xA;5,请联系厂家服务工程师解决." Exception="1,尝试Ping命令&#xA;2,尝试3次链接离线重建控制控制进程;" />
+  <ErrorInfo Code="PDU000000001" Level="Error" Module="PDU" Description="0x0003A054" Reason="CAN异常" Solution="1.pdux与ctbox的CAN交互出现异常" Exception="1.检查PDU的CAN总线收发数量，确保收发正常&#xA;2. 查看是否正常上电运行" />
+  <ErrorInfo Code="PDU000000002" Level="Error" Module="PDU" Description="0x0003A054" Reason="网络模块异常" Solution="1.pdu与上位机的网线连接异常" Exception="1.检查网线&#xA;2.上位机ping测试PDU（ping 78.86.65.26）" />
+  <ErrorInfo Code="PDU000000003" Level="Error" Module="PDU" Description="0x0003A054" Reason="PL未成功加载" Solution="1. 开启启动过程PL未成功加载" Exception="1.检查开机启动脚本&#xA;2.检查文件系统是否有PL文件" />
+  <ErrorInfo Code="PDU000000004" Level="Error" Module="PDU" Description="0x0003A054" Reason="固件升级错误" Solution="固件升级出错" Exception="1.检查升级文件（文件类型、大小、名称）" />
+  <ErrorInfo Code="PDU000000004" Level="Error" Module="PDU" Description="0x0003A054" Reason="急停按下" Solution="检查故障，故障消除后进行开关机重启" Exception="" />
+  <ErrorInfo Code="REC000000001" Level="Error" Module="CT-Box" Description="离线重建计算机掉线" Reason="1,离线重建计算机控制进程崩溃或卡死.&#xA;2,Host计算机与离线重建计算机网线掉落.&#xA;3,线缆损坏.&#xA;4,网卡损坏." Solution="1,检查网线,确保网线已经链接;&#xA;2,重启计算机;&#xA;3,上述2步依然不能解决问题,考虑更换网线;&#xA;4,上述3步依然不能解决问题,考虑更换网卡;&#xA;5,请联系厂家服务工程师解决." Exception="1,尝试Ping命令&#xA;2,尝试3次链接离线重建控制控制进程;" />
+  <ErrorInfo Code="CTB000000001" Level="Error" Module="CT-Box" Description="CAN异常" Reason="1.ctbox与子节点CAN交互出现异常" Solution="1.检查ctbox的CAN总线收发数量，确保收发正常&#xA;2. 查看子节点是否正常连接，是否正常上电运行" Exception="" />
+  <ErrorInfo Code="CTB000000002" Level="Error" Module="CT-Box" Description="网络模块异常" Reason="1.ctbox与上位机的网线连接异常" Solution="1.检查网线&#xA;2.上位机ping测试ctbox（ping 78.86.65.11）" Exception="" />
+  <ErrorInfo Code="CTB000000003" Level="Error" Module="CT-Box" Description="PL未成功加载" Reason="1. 开启启动过程PL未成功加载" Solution="1.检查开机启动脚本&#xA;2.检查文件系统是否有PL文件" Exception="" />
+  <ErrorInfo Code="CTB000000004" Level="Error" Module="CT-Box" Description="固件升级错误" Reason="固件升级出错" Solution="1.检查升级文件（文件类型、大小、名称）" Exception="" />
+  <ErrorInfo Code="CTB000000005" Level="Error" Module="CT-Box" Description="扫描参数校验失败" Reason="1. 上位机下发扫描参数不符合扫描规则" Solution="1. 检查参数，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000006" Level="Error" Module="CT-Box" Description="上位机参数配置超时" Reason="1.扫描过程中上位机配置扫面描参数超时" Solution="1. 检查上位机连接状态&#xA;2. 上位机监测采集卡及探测器状态" Exception="" />
+  <ErrorInfo Code="CTB000000007" Level="Error" Module="CT-Box" Description="Prepare超时" Reason="1. 扫面流程中子节点未能支持曝光状态" Solution="1. 查看统计信息，监测未准备好曝光状态的子节点状态" Exception="" />
+  <ErrorInfo Code="CTB000000008" Level="Error" Module="CT-Box" Description="Spot超时（一段时间内，没有出线）" Reason="1. 曝光出线未能正常停止" Solution="1. 检测ctbox扫描参数&#xA;2. 检测ifbox状态" Exception="" />
+  <ErrorInfo Code="CTB000000009" Level="Error" Module="CT-Box" Description="剂量反馈超时" Reason="1. 计量反馈未在规定时间内反回" Solution="1 查看tubeintfx状态" Exception="" />
+  <ErrorInfo Code="CTB000000010" Level="Error" Module="CT-Box" Description="开门" Reason="门开启" Solution="应当关闭门" Exception="" />
+  <ErrorInfo Code="CTB000000011" Level="Error" Module="CT-Box" Description="曝光间歇超时" Reason="1.机架未到位&#xA;2. 床未到位" Solution="" Exception="" />
+  <ErrorInfo Code="CTB000000012" Level="Error" Module="CT-Box" Description="MOVE按键超时" Reason="MOVE按键超时间未按下" Solution="" Exception="" />
+  <ErrorInfo Code="CTB000000013" Level="Error" Module="CT-Box" Description="START按键超时" Reason="START按键超时间未按下" Solution="" Exception="" />
+  <ErrorInfo Code="CTB000000015" Level="Error" Module="CT-Box" Description="上位机多序列扫描参数组数过多" Reason="上位机下发多序列扫描参数超过九组" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="参数无效" />
+  <ErrorInfo Code="CTB000000016" Level="Error" Module="CT-Box" Description="public_idx_kV0 参数错误" Reason="public_idx_kV0 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000017" Level="Error" Module="CT-Box" Description="public_idx_kV1 参数错误" Reason="public_idx_kV1 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000018" Level="Error" Module="CT-Box" Description="public_idx_kV2 参数错误" Reason="public_idx_kV2 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000019" Level="Error" Module="CT-Box" Description="public_idx_kV3 参数错误" Reason="public_idx_kV3 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000020" Level="Error" Module="CT-Box" Description="public_idx_kV4 参数错误" Reason="public_idx_kV4 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000021" Level="Error" Module="CT-Box" Description="public_idx_kV5 参数错误" Reason="public_idx_kV5 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000022" Level="Error" Module="CT-Box" Description="public_idx_kV6 参数错误" Reason="public_idx_kV6 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000023" Level="Error" Module="CT-Box" Description="public_idx_kV7 参数错误" Reason="public_idx_kV7 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000024" Level="Error" Module="CT-Box" Description="public_idx_mA0 参数错误" Reason="public_idx_mA0 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000025" Level="Error" Module="CT-Box" Description="public_idx_mA1 参数错误" Reason="public_idx_mA1 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000026" Level="Error" Module="CT-Box" Description="public_idx_mA2 参数错误" Reason="public_idx_mA2 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000027" Level="Error" Module="CT-Box" Description="public_idx_mA3 参数错误" Reason="public_idx_mA3 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000028" Level="Error" Module="CT-Box" Description="public_idx_mA4 参数错误" Reason="public_idx_mA4 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000029" Level="Error" Module="CT-Box" Description="public_idx_mA5 参数错误" Reason="public_idx_mA5 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000030" Level="Error" Module="CT-Box" Description="public_idx_mA6 参数错误" Reason="public_idx_mA6 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000031" Level="Error" Module="CT-Box" Description="public_idx_mA7 参数错误" Reason="public_idx_mA7 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000032" Level="Error" Module="CT-Box" Description="public_exposure_time 参数错误" Reason="public_exposure_time 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000033" Level="Error" Module="CT-Box" Description="public_frame_time 参数错误" Reason="public_frame_time 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000034" Level="Error" Module="CT-Box" Description="public_frames_per_cycle 参数错误" Reason="public_frames_per_cycle 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000035" Level="Error" Module="CT-Box" Description="public_scan_option 参数错误" Reason="public_scan_option 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000036" Level="Error" Module="CT-Box" Description="public_scan_mode 参数错误" Reason="public_scan_mode 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000037" Level="Error" Module="CT-Box" Description="public_trigger_mode 参数错误" Reason="public_trigger_mode 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000038" Level="Error" Module="CT-Box" Description="ctbox_trigger_begin 参数错误" Reason="ctbox_trigger_begin 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000039" Level="Error" Module="CT-Box" Description="ctbox_trigger_end 参数错误" Reason="ctbox_trigger_end 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000040" Level="Error" Module="CT-Box" Description="public_exposure_mode 参数错误" Reason="public_exposure_mode 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000041" Level="Error" Module="CT-Box" Description="ctbox_pitch 参数错误" Reason="ctbox_pitch 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000042" Level="Error" Module="CT-Box" Description="ctbox_scan_start_pos 参数错误" Reason="ctbox_scan_start_pos 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000043" Level="Error" Module="CT-Box" Description="ctbox_scan_end_pos 参数错误" Reason="ctbox_scan_end_pos 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000044" Level="Error" Module="CT-Box" Description="ctbox_scan_length 参数错误" Reason="ctbox_scan_length 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000045" Level="Error" Module="CT-Box" Description="ctbox_scan_direction 参数错误" Reason="ctbox_scan_direction 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000046" Level="Error" Module="CT-Box" Description="table_horizontal_speed 参数错误" Reason="table_horizontal_speed 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000047" Level="Error" Module="CT-Box" Description="table_feed 参数错误" Reason="table_feed 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000048" Level="Error" Module="CT-Box" Description="ctbox_voice_id 参数错误" Reason="ctbox_voice_id 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000049" Level="Error" Module="CT-Box" Description="public_delay_exp_time 参数错误" Reason="public_delay_exp_time 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000050" Level="Error" Module="CT-Box" Description="public_collimitor_z 参数错误" Reason="public_collimitor_z 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000051" Level="Error" Module="CT-Box" Description="public_binning 参数错误" Reason="public_binning 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000052" Level="Error" Module="CT-Box" Description="public_gain 参数错误" Reason="public_gain 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000053" Level="Error" Module="CT-Box" Description="mtctrl_tube_zero_offset 参数错误" Reason="mtctrl_tube_zero_offset 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000054" Level="Error" Module="CT-Box" Description="public_tube_position 参数错误" Reason="public_tube_position 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000055" Level="Error" Module="CT-Box" Description="public_scan_uid0 参数错误" Reason="public_scan_uid0 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000056" Level="Error" Module="CT-Box" Description="public_scan_uid1 参数错误" Reason="public_scan_uid1 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000057" Level="Error" Module="CT-Box" Description="public_scan_uid2 参数错误" Reason="public_scan_uid2 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000058" Level="Error" Module="CT-Box" Description="public_scan_uid3 参数错误" Reason="public_scan_uid3 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000059" Level="Error" Module="CT-Box" Description="public_bowtie_enable 参数错误" Reason="public_bowtie_enable 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000060" Level="Error" Module="CT-Box" Description="table_vertical_aim_pos 参数错误" Reason="table_vertical_aim_pos 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000061" Level="Error" Module="CT-Box" Description="public_auto_scan_flag 参数错误" Reason="public_auto_scan_flag 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000062" Level="Error" Module="CT-Box" Description="public_multi_param_info 参数错误" Reason="public_multi_param_info 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000063" Level="Error" Module="CT-Box" Description="ctbox_warm_up 参数错误" Reason="ctbox_warm_up 参数错误" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000064" Level="Error" Module="CT-Box" Description="" Reason="" Solution="用户查看多序列扫描参数格式，重新下发扫描参数" Exception="" />
+  <ErrorInfo Code="CTB000000079" Level="Fatal" Module="CT-Box" Description="ifbox      disconnect" Reason="ifbox      disconnect" Solution="检查ctbox心跳和ifbox      节点" Exception="" />
+  <ErrorInfo Code="CTB000000080" Level="Fatal" Module="CT-Box" Description="pdu        disconnect" Reason="pdu        disconnect" Solution="检查ctbox心跳和pdu        节点" Exception="" />
+  <ErrorInfo Code="CTB000000081" Level="Fatal" Module="CT-Box" Description="mtctrl     disconnect" Reason="mtctrl     disconnect" Solution="检查ctbox心跳和mtctrl     节点" Exception="" />
+  <ErrorInfo Code="CTB000000082" Level="Fatal" Module="CT-Box" Description="table      disconnect" Reason="table      disconnect" Solution="检查ctbox心跳和table      节点" Exception="" />
+  <ErrorInfo Code="CTB000000083" Level="Fatal" Module="CT-Box" Description="tubeintf1  disconnect" Reason="tubeintf1  disconnect" Solution="检查ctbox心跳和tubeintf1  节点" Exception="" />
+  <ErrorInfo Code="CTB000000084" Level="Fatal" Module="CT-Box" Description="tubeintf2  disconnect" Reason="tubeintf2  disconnect" Solution="检查ctbox心跳和tubeintf2  节点" Exception="" />
+  <ErrorInfo Code="CTB000000085" Level="Fatal" Module="CT-Box" Description="tubeintf3  disconnect" Reason="tubeintf3  disconnect" Solution="检查ctbox心跳和tubeintf3  节点" Exception="" />
+  <ErrorInfo Code="CTB000000086" Level="Fatal" Module="CT-Box" Description="tubeintf4  disconnect" Reason="tubeintf4  disconnect" Solution="检查ctbox心跳和tubeintf4  节点" Exception="" />
+  <ErrorInfo Code="CTB000000087" Level="Fatal" Module="CT-Box" Description="tubeintf5  disconnect" Reason="tubeintf5  disconnect" Solution="检查ctbox心跳和tubeintf5  节点" Exception="" />
+  <ErrorInfo Code="CTB000000088" Level="Fatal" Module="CT-Box" Description="tubeintf6  disconnect" Reason="tubeintf6  disconnect" Solution="检查ctbox心跳和tubeintf6  节点" Exception="" />
+  <ErrorInfo Code="CTB000000089" Level="Fatal" Module="CT-Box" Description="auxboard   disconnect" Reason="auxboard   disconnect" Solution="检查ctbox心跳和auxboard   节点" Exception="" />
+  <ErrorInfo Code="CTB000000090" Level="Fatal" Module="CT-Box" Description="extboard   disconnect" Reason="extboard   disconnect" Solution="检查ctbox心跳和extboard   节点" Exception="" />
+  <ErrorInfo Code="CTB000000091" Level="Fatal" Module="CT-Box" Description="wkstation  disconnect" Reason="wkstation  disconnect" Solution="检查ctbox心跳和wkstation  节点" Exception="" />
+  <ErrorInfo Code="CTB000000095" Level="Fatal" Module="CT-Box" Description="急停开关触发" Reason="急停开关触发" Solution="急停开关触发" Exception="" />
+</Errors>

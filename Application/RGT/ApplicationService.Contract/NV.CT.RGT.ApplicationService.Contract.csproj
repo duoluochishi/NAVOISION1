@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Prism.Core" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Common\CTS\NV.CT.CTS.csproj" />
+		<ProjectReference Include="..\..\..\SystemService\DatabaseService.Contract\NV.CT.DatabaseService.Contract.csproj" />
+		<ProjectReference Include="..\..\..\SystemService\SyncService.Contract\NV.CT.SyncService.Contract.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="NV.CT.FacadeProxy.Common">
+			<HintPath>..\..\..\bin\NV.CT.FacadeProxy.Common.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+</Project>

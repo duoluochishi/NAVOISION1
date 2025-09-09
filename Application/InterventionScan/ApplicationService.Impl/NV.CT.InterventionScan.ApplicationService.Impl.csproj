@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Examination\ApplicationService.Contract\NV.CT.Examination.ApplicationService.Contract.csproj" />
+    <ProjectReference Include="..\ApplicationService.Contract\NV.CT.InterventionScan.ApplicationService.Contract.csproj" />
+  </ItemGroup>
+
+</Project>

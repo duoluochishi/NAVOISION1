@@ -1,0 +1,10 @@
+﻿using NV.CT.Examination.ApplicationService.Impl.ScanControl;
+
+namespace NV.CT.Examination.ApplicationService.Impl.Recon;
+
+public class ReconUIControlStatusService : UIControlStatusService
+{
+	public ReconUIControlStatusService(GoButtonControlEnableService goButtonControlEnableService, CancelButtonControlEnableService cancelButtonControlEnableService, ReconAllButtonControlEnableService reconAllButtonControlEnableService, ConfirmButtonControlEnableService confirmButtonControlEnableService) : base(goButtonControlEnableService, cancelButtonControlEnableService, reconAllButtonControlEnableService, confirmButtonControlEnableService)
+	{
+	}
+}

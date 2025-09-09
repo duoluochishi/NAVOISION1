@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<KernelTypes>
+	<KernelType Id="1" Kernel="None" Shortcut="F5" IsFactory="true" Description="None"/>
+	<KernelType Id="2" Kernel="Sharp" Shortcut="F6" IsFactory="true" Description="Sharp"/>
+	<KernelType Id="3" Kernel="Sharp+" Shortcut="F7" IsFactory="true" Description="Sharp+"/>
+	<KernelType Id="4" Kernel="Smooth" Shortcut="F8" IsFactory="true" Description="Smooth"/>
+	<KernelType Id="5" Kernel="Smooth+" Shortcut="F9" IsFactory="true" Description="Smooth"/>
+</KernelTypes>

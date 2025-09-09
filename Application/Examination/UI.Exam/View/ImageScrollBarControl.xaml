@@ -1,0 +1,25 @@
+﻿<UserControl
+    x:Class="NV.CT.UI.Exam.View.ImageScrollBarControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"   
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"   
+    d:DesignHeight="450" d:DesignWidth="45" mc:Ignorable="d">
+    <ScrollBar SmallChange="{Binding SmallChange}" ViewportSize="10" Margin="2 0 -2 0"  Value="{Binding CurrentIndex,Mode=TwoWay}" Maximum="{Binding Maximum}" Minimum="{ Binding Minimum}" Background="{StaticResource PrimaryHueMidForegroundBrush}">
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                <i:InvokeCommandAction Command="{Binding Commands[PreviewMouseLeftButtonDown]}" />
+            </i:EventTrigger>
+            <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
+                <i:InvokeCommandAction Command="{Binding Commands[PreviewMouseLeftButtonUp]}" />
+            </i:EventTrigger>
+            <i:EventTrigger EventName="ValueChanged">
+                <i:InvokeCommandAction Command="{Binding Commands[ValueChanged]}" />
+            </i:EventTrigger>
+            <i:EventTrigger EventName="MouseLeave">
+                <i:InvokeCommandAction Command="{Binding Commands[MouseLeave]}" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+    </ScrollBar>
+</UserControl>

@@ -1,0 +1,244 @@
+﻿<Window
+    x:Class="NV.CT.ConfigManagement.View.WorklistNodeWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:md="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableTextBox;assembly=MaterialDesignThemes.Wpf"
+    xmlns:mdControl="clr-namespace:MaterialDesignThemes.Wpf.Controls;assembly=MaterialDesignThemes.Wpf"
+    xmlns:comboBox="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableComboBox;assembly=MaterialDesignThemes.Wpf"
+    xmlns:control="clr-namespace:NV.CT.UI.Controls.Controls;assembly=NV.CT.UI.Controls"
+    xmlns:converter="clr-namespace:NV.CT.UI.Controls.Converter;assembly=NV.CT.UI.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"    
+    Width="600" Height="550" Background="Transparent" AllowsTransparency="True" ResizeMode="NoResize" WindowStyle="None" mc:Ignorable="d">
+    <Window.Resources>
+        <converter:ReverseBooleanToVisibilityConverter x:Key="ReverseBooleanToVisibilityConverter"/>
+        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        
+        <Style x:Key="BorderStyle" TargetType="{x:Type Border}">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="TitleBorderStyle" TargetType="{x:Type Border}">
+            <Setter Property="Opacity" Value="0.3"/>
+            <Setter Property="Background" Value="{StaticResource BaseTabBackBrush}"/>
+            <Setter Property="CornerRadius" Value="5 5 0 0" />
+        </Style>
+        <Style x:Key="TitlePathStyle" BasedOn="{StaticResource IconSavea}" TargetType="{x:Type Path}">
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Stretch" Value="Fill"/>
+            <Setter Property="Fill" Value="{StaticResource TextBoxBrush}"/>
+        </Style>
+        <Style x:Key="CloseButtonStyle" TargetType="Button" BasedOn="{StaticResource  MaterialDesignIconButton}">
+            <Setter Property="Width" Value="22"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="SuffTextBlockStyle" BasedOn="{StaticResource NanoTextBlockStyle}" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="#FFA63F" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="ProtocolLabelStyle" BasedOn="{StaticResource MaterialDesignLabel}" TargetType="Label">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="{DynamicResource BaseForegroundColor}"/>
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Label}">
+                        <Border>
+                            <StackPanel Orientation="Horizontal" 
+                                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}" 
+                                        VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                                <TextBlock x:Name="tbMark" Text="*" Style="{StaticResource SuffTextBlockStyle}"/>
+                                <TextBlock x:Name="tbContent" 
+                                           FontSize="{TemplateBinding FontSize}"
+                                           FontFamily="{TemplateBinding FontFamily}"
+                                           Foreground="{TemplateBinding Foreground}"
+                                           Text="{Binding Content, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                           />
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ProtocolStackPanelStyle" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="SaveButtonStyle" TargetType="Button" BasedOn="{StaticResource  NanoButtonStyle}">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="0,0,15,0"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+        </Style>
+        <Style x:Key="CancelButtonStyle" TargetType="Button" BasedOn="{StaticResource  NanoButtonStyle}">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="15,0,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style x:Key="LoadingControlStyle" TargetType="{x:Type control:LoadingControl}">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0 0 5 0"/>
+        </Style>
+        <Style x:Key="ResultContentSwitchStyle" TargetType="{x:Type ContentControl}">
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0 0 5 0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ContentControl}">
+                        <Grid VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                            <materialDesign:PackIcon x:Name="PassIcon" Kind="Check" Foreground="Green" Visibility="Collapsed"
+                                                     Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" />
+                            <materialDesign:PackIcon x:Name="FailIcon" Kind="Close" Foreground="Red" Visibility="Collapsed"
+                                                     Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <DataTrigger Binding="{Binding ConnectionResult}" Value="{x:Static materialDesign:PackIconKind.Close}">
+                                <Setter TargetName="PassIcon" Property="Visibility" Value="Collapsed"/>
+                                <Setter TargetName="FailIcon" Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ConnectionResult}" Value="{x:Static materialDesign:PackIconKind.Check}">
+                                <Setter TargetName="PassIcon" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="FailIcon" Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Border Style="{StaticResource WindowsBorder}" CornerRadius="10" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="36" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="55" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Border  Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource TitleBorderStyle}"/>
+                <Path  Grid.Column="0" Style="{StaticResource TitlePathStyle}" />
+                <Label  Grid.Column="1" Grid.ColumnSpan="2" Content="Worklist node" FontSize="16" Style="{StaticResource TitleLabelStyle}" />
+                <Button  Grid.Column="2" Command="{Binding Commands[CloseCommand]}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Style="{StaticResource CloseButtonStyle}">
+                    <Path Style="{StaticResource TileClosePathStyle}" />
+                </Button>
+            </Grid>
+            <StackPanel Grid.Row="1" Orientation="Vertical" Margin="20 0 0 0">
+                <StackPanel Orientation="Vertical">
+                    <Label Grid.ColumnSpan="2" Name="lblTabTitle" 
+                        FontSize="16" FontWeight="Bold" 
+                        Margin="0,8,0,0" 
+                        Content="Worklist node info"
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Center" 
+                        Height="34" 
+                        Foreground="#FFC6C6EC" />
+                    <Rectangle Grid.Column="0" 
+                        VerticalAlignment="Bottom" Stroke="#3044D9" 
+                        Height="3" StrokeThickness="3" 
+                        Width="{Binding ElementName=lblTabTitle,Path=ActualWidth}" HorizontalAlignment="Left"
+                        Margin="0,0,0,-5" 
+                        SnapsToDevicePixels="True" Visibility="Visible" />
+                </StackPanel>
+                <Grid Margin="0 15 0 0" Height="42">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="80" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="1" Style="{StaticResource ProtocolLabelStyle}" Content="ServerAE" VerticalAlignment="Center"/>
+                    <md:MarkableTextBox  Grid.Column="2" FontSize="14px"  VerticalContentAlignment="Center"   Margin="0 0 5 0" Text="{Binding CurrentNode.ServerAE,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsEdit}"/>
+                </Grid>
+                <Grid Margin="0 15 0 0" Height="42">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="80" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="1" Content="IP" Style="{StaticResource ProtocolLabelStyle}"/>
+                    <mdControl:IPAddressControl Grid.Column="2" FontSize="14px"  VerticalContentAlignment="Center"   Margin="0 0 5 0" IPAddress="{Binding CurrentNode.IP,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                </Grid>
+                <Grid Margin="0 15 0 0" Height="42">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="80" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="1" Content="Port" Style="{StaticResource ProtocolLabelStyle}"/>
+                    <md:MarkableTextBox TextType="Decimal" Maximum="65535" Minimum="0" Grid.Column="2" FontSize="14px"  VerticalContentAlignment="Center"   Margin="0 0 5 0" Text="{Binding CurrentNode.Port,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+                <Grid Margin="0 15 0 0" Height="42">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="80" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="1" Content="Server name"/>
+                    <md:MarkableTextBox  Grid.Column="2"  FontSize="14px" VerticalContentAlignment="Center" Margin="0 0 5 0" Text="{Binding CurrentNode.ServerName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                </Grid>
+
+                <Grid Margin="0 15 0 0" Height="42">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="80" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <CheckBox  Content="Default" Margin="0,0,20,0" IsChecked="{Binding CurrentNode.IsDefault ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" >
+                        </CheckBox>
+                        <CheckBox  Content="EnableMPPS" Margin="0,0,0,0" IsChecked="{Binding CurrentNode.EnableMPPS,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" >
+                        </CheckBox>
+                    </StackPanel>
+                </Grid>
+                <Grid Margin="0 15 0 0" Height="92">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="80" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="1" Content="Remark"/>
+                    <md:MarkableTextBox  Grid.Column="2" Height="80" FontSize="14px" TextWrapping="Wrap" VerticalContentAlignment="Center" Margin="0 0 5 0" Text="{Binding CurrentNode.Remark,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                </Grid>
+
+            </StackPanel>
+            <StackPanel Grid.Row="2" Style="{StaticResource ProtocolStackPanelStyle}">
+                <Grid Width="35">
+                    <control:LoadingControl Visibility="{Binding IsShowLoading, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                            Style="{StaticResource LoadingControlStyle}"/>
+                    <ContentControl Visibility="{Binding IsShowLoading, Converter={StaticResource ReverseBooleanToVisibilityConverter}}" Style="{StaticResource ResultContentSwitchStyle}"/>
+                </Grid>
+                <Button Style="{StaticResource SaveButtonStyle}" Command="{Binding Commands[ServerTestCommand]}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Content="{x:Static res:LanguageResource.Content_ConnectionCheck}"/>
+                <Button Style="{StaticResource SaveButtonStyle}" Command="{Binding Commands[SaveCommand]}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Content="{x:Static res:LanguageResource.Content_Save}" />
+                <Button Style="{StaticResource CancelButtonStyle}" Command="{Binding Commands[CloseCommand]}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Content="{x:Static res:LanguageResource.Content_Close}"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

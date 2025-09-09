@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "NV.MPS.UI.Config/1.0.0": {
+        "runtime": {
+          "NV.MPS.UI.Config.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "NV.MPS.UI.Config/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

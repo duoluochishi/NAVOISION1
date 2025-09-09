@@ -1,0 +1,143 @@
+﻿<UserControl
+    x:Class="NV.CT.ConfigManagement.View.RoleListControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableTextBox;assembly=MaterialDesignThemes.Wpf"
+    xmlns:markableComboBox="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableComboBox;assembly=MaterialDesignThemes.Wpf"
+    xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"   
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="DataGridCell">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        <Style x:Key="IconFactoryPathStyle" BasedOn="{StaticResource IconFactory}" TargetType="{x:Type Path}">
+            <Setter Property="Width" Value="15" />
+            <Setter Property="Height" Value="18" />
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Stretch" Value="Fill" />
+            <Setter Property="ToolTip" Value="{x:Static res:LanguageResource.ToolTip_Factory}" />
+            <Setter Property="Fill" Value="{StaticResource PatOrderIconFillBrush}" />
+        </Style>
+        <Style x:Key="LoginPathStyle" BasedOn="{StaticResource Login}" TargetType="{x:Type Path}">
+            <Setter Property="Width" Value="15" />
+            <Setter Property="Height" Value="18" />
+            <Setter Property="Stretch" Value="Fill" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="ToolTip" Value="{x:Static res:LanguageResource.ToolTip_Custom}" />
+            <Setter Property="Fill" Value="{StaticResource PatOrderIconFillBrush}" />
+        </Style>
+        <Style x:Key="RoleButtonStyle" BasedOn="{StaticResource NanoButtonStyle}" TargetType="Button">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="{StaticResource BaseBackgroundColor}" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="Background" Value="{StaticResource ButtonBackground}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Border Background="Transparent"  Margin="0,2,0,0" CornerRadius="10,10,10,10" BorderThickness="1,1,1,1" BorderBrush="#5A5A89" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Margin="10,0,0,0" >
+                <Label Grid.ColumnSpan="2" 
+                       Name="lblTabTitle" 
+                       FontSize="16" FontWeight="Bold" 
+                       Margin="0,0,0,0" 
+                       Content="Role list"
+                       HorizontalAlignment="Left" 
+                       VerticalAlignment="Center" 
+                       Height="34" 
+                       Foreground="#FFC6C6EC" />
+                <Rectangle Grid.Column="0" 
+                     VerticalAlignment="Bottom" Stroke="#3044D9" 
+                     Height="3" StrokeThickness="3" 
+                     Width="{Binding ElementName=lblTabTitle,Path=ActualWidth}" HorizontalAlignment="Left"
+                     Margin="-3,0,0,8" 
+                     SnapsToDevicePixels="True" Visibility="Visible" />
+            </Grid>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button  Height="40" Width="120" Opacity="1" Margin="0,0,10,0" 
+                      Command="{Binding Commands[RoleAddCommand]}" 
+                      Content="{x:Static res:LanguageResource.Content_Add}" Style="{StaticResource RoleButtonStyle}"/>
+                <Button  Height="40" Width="120" Opacity="1" Margin="0,0,10,0" 
+                      Command="{Binding Commands[RoleEditCommand]}"                      
+                      Content="{x:Static res:LanguageResource.Content_Edit}" IsEnabled="{Binding IsFactory}" Style="{StaticResource RoleButtonStyle}"/>
+                <Button  Height="40" Width="120" Opacity="1" Margin="0,0,10,0" 
+                      Command="{Binding Commands[RoleDeleteCommand]}"                      
+                      Content="{x:Static res:LanguageResource.Content_Delete}" IsEnabled="{Binding IsFactory}" Style="{StaticResource RoleButtonStyle}"/>
+            </StackPanel>
+            <!--  study列表组件 DataGrid  -->
+            <DataGrid Grid.Row="2" ItemsSource="{Binding RoleList}" SelectedItem="{Binding SelectedRole, Mode=TwoWay}" SelectionMode="Single"
+                      Style="{StaticResource CommonDataGrid}" Margin="0 5 5 5">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Name" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" HorizontalAlignment="Left" Margin="10,0,0,0" Style="{StaticResource DataGridContentTextBlock}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="100" Header="Is factory" MinWidth="100">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ContentControl Background="Transparent" HorizontalAlignment="Center" Cursor="Arrow" Focusable="False" IsEnabled="{Binding IsFactory,Mode=TwoWay}">
+                                    <ContentControl.Style>
+                                        <Style TargetType="ContentControl">
+                                            <Style.Triggers>
+                                                <Trigger Property="IsEnabled" Value="True">
+                                                    <Setter Property="Content">
+                                                        <Setter.Value>
+                                                            <Path Style="{StaticResource IconFactoryPathStyle}" />
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Trigger>
+                                                <Trigger Property="IsEnabled" Value="False">
+                                                    <Setter Property="Content">
+                                                        <Setter.Value>
+                                                            <Path Style="{StaticResource LoginPathStyle}" />
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ContentControl.Style>
+                                </ContentControl>                               
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="120" MinWidth="100" Header="User count">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding UserCount}" HorizontalAlignment="Center" Style="{StaticResource DataGridContentTextBlock}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="350" MinWidth="100" Header="Description">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Description}" HorizontalAlignment="Left" Margin="10,0,0,0" Style="{StaticResource DataGridContentTextBlock}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Border>
+</UserControl>

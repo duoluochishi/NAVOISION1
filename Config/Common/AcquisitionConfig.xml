@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AcquisitionConfig>
+	<Acquisition>
+		<ExposureMode Ranges="Single Dual Three Six" />
+		<FrameTime Max="600000" Min="3000" DefaultMax="600000" DefaultMin="3000" />
+		<FramesPerCycle Ranges="1 24 168 180 192 200 216 240 270 288 360 408 540 672 720 1080" />
+		<ExposureTime Max="30000" Min="2500" DefaultMax="6000" DefaultMin="2500" />
+		<ExposureInterval Value="1" Default="1" />
+		<ExposureIntervalTime Max="600000" Min="1000" DefaultMax="600000" DefaultMin="1000" />
+		<TopoOffsetFrameTime Value="10000" Default="10000" />
+		<PostPreVoiceDelayTime Value="1000000" Default="1000000" />
+	</Acquisition>
+</AcquisitionConfig>

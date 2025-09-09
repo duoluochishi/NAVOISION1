@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Preset3D>
+	<GradientOpacity>
+		<dict>
+			<X>0</X>
+			<gradientOpacity>1</gradientOpacity>
+		</dict>
+		<dict>
+			<X>255</X>
+			<gradientOpacity>1</gradientOpacity>
+		</dict>		
+	</GradientOpacity>
+	
+	<ScalarOpacity>
+		<dict>
+			<X>-742.113037109375</X>
+			<scalarOpacity>0</scalarOpacity>
+		</dict>
+		<dict>
+			<X>-682.990966796875</X>
+			<scalarOpacity>0.049316491931676865</scalarOpacity>
+		</dict>		
+		<dict>
+			<X>-480.99169921875</X>
+			<scalarOpacity>0.24969108402729034</scalarOpacity>
+		</dict>
+		<dict>
+			<X>-333.48757934570312</X>
+			<scalarOpacity>0</scalarOpacity>
+		</dict>			
+	</ScalarOpacity>
+
+	<ColorTransfer>
+		<dict>
+			<X>-3024</X>
+			<red>0</red>				
+			<green>0.60537117719650269</green>
+			<blue>0.70577555894851685</blue>		
+		</dict>
+		<dict>
+			<X>-500.0</X>
+			<red>0</red>				
+			<green>0.60537117719650269</green>
+			<blue>0.70577555894851685</blue>		
+		</dict>		
+		<dict>
+			<X>3071</X>
+			<red>0</red>				
+			<green>0.60537117719650269</green>
+			<blue>0.70577555894851685</blue>		
+		</dict>						
+	</ColorTransfer>
+	<shade>1</shade>
+	<specularPower>10</specularPower>
+	<specular>0.2</specular>
+	<ambient>0.1</ambient>
+	<diffuse>0.9</diffuse>
+	<interpolation>1</interpolation>
+	<wl>-537.80029296875</wl>
+	<ww>408.62545776367188</ww>
+</Preset3D>
+

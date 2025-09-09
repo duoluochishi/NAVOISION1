@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="NV.CT.LogManagement.View.English.LogViewerSearchCriteria"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:md="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableTextBox;assembly=MaterialDesignThemes.Wpf"
+             xmlns:local="clr-namespace:NV.CT.LogManagement.View.English"
+             xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="120"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="124"></ColumnDefinition>
+                <ColumnDefinition Width="140"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="135"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="160"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="130"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Begin date:" Style="{StaticResource InputLabelTextBlock}" Margin="8,0,0,0" HorizontalAlignment="Left" />
+            <DatePicker x:Name="dtpBeginDate" Grid.Column="1" Style="{StaticResource MaterialDesignOutlinedDatePicker}" >
+                <DatePicker.SelectedDate>
+                    <Binding Path="BeginDate" ValidatesOnDataErrors="True" />
+                </DatePicker.SelectedDate>
+            </DatePicker>
+            <TextBlock Grid.Column="2" Text="End date:" Style="{StaticResource InputLabelTextBlock}" Margin="0,0,4,0" HorizontalAlignment="Right" />
+            <DatePicker x:Name="dtpEndDate" Grid.Column="3" Style="{StaticResource MaterialDesignOutlinedDatePicker}">
+                <DatePicker.SelectedDate>
+                    <Binding Path="EndDate" ValidatesOnDataErrors="True" />
+                </DatePicker.SelectedDate>
+            </DatePicker>
+            <TextBlock Grid.Column="4" Text="Log level:" Style="{StaticResource InputLabelTextBlock}" Margin="0,0,4,0" HorizontalAlignment="Right"/>
+            <ComboBox x:Name="cbbLogLevel" Grid.Column="5"
+                      ItemsSource="{Binding LogLevelList, Mode=TwoWay}" Text="{Binding SelectedLogLevelText}" IsEditable="True">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Content="{Binding DisplayText}" IsChecked="{Binding IsSelected, Mode=TwoWay}"></CheckBox>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <TextBlock Grid.Column="6" Text="Module:" Style="{StaticResource InputLabelTextBlock}" Margin="0,0,4,0" HorizontalAlignment="Right"/>
+            <ComboBox x:Name="cbbModuleName" Grid.Column="7"
+                      ItemsSource="{Binding ModuleList, Mode=TwoWay}" Text="{Binding SelectedModuleText}" IsEditable="True">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Content="{Binding DisplayText}" IsChecked="{Binding IsSelected, Mode=TwoWay}"></CheckBox>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <TextBlock Grid.Column="8" Text="Thread ID:" Style="{StaticResource InputLabelTextBlock}" Margin="0,0,4,0" HorizontalAlignment="Right" />
+            <ComboBox Grid.Column="9" Style="{StaticResource MaterialDesignOutlinedComboBox}">
+            </ComboBox>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="124"></ColumnDefinition>
+                <ColumnDefinition Width="400"></ColumnDefinition>
+                <ColumnDefinition Width="130"></ColumnDefinition>
+                <ColumnDefinition Width="400"></ColumnDefinition>
+                <ColumnDefinition Width="340"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Including words:" Style="{StaticResource InputLabelTextBlock}" Margin="0,0,4,0" HorizontalAlignment="Right"/>
+            <md:MarkableTextBox Grid.Column="1" Style="{StaticResource MarkableTextBox}" HorizontalAlignment="Stretch" Text="{Binding IncludingWords, Mode=TwoWay}">
+            </md:MarkableTextBox>
+            <TextBlock Grid.Column="2" Text="Excluding words:" Style="{StaticResource InputLabelTextBlock}" Margin="8,0,4,0" />
+            <md:MarkableTextBox Grid.Column="3" Width="400" Style="{StaticResource MarkableTextBox}" HorizontalAlignment="Stretch"  Text="{Binding ExcludingWords, Mode=TwoWay}">
+            </md:MarkableTextBox>
+            <TextBlock Grid.Column="4" Text="(Use ; to split multiple key words)" Style="{StaticResource InputLabelTextBlock}"/>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Button Content="Search" Style="{StaticResource CommonButton}" Command="{Binding Commands[SearchCommand]}" IsEnabled="{Binding IsSearchCommandEnabled, Mode=TwoWay}"
+                    Width="100" Height="60" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="2,2,10,2"/>
+        </Grid>
+    </Grid>
+</UserControl>

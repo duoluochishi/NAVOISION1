@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="NV.CT.AuxConsole.View.English.LockControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+               xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:controls="clr-namespace:NV.CT.UI.Controls.Controls;assembly=NV.CT.UI.Controls"
+			 d:DesignHeight="450" d:DesignWidth="800">
+	<UserControl.Resources>
+	</UserControl.Resources>
+
+	<Border>
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="200" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="200" />
+			</Grid.RowDefinitions>
+
+			<Border Width="500" HorizontalAlignment="Center"
+					 VerticalAlignment="Center" Padding="20"
+				      Height="400" Grid.Row="1" BorderBrush="Green" BorderThickness="0">
+				<StackPanel Orientation="Vertical">
+
+					<Image
+						Source="pack://application:,,,/NV.CT.UI.Controls;component/icons/lock.png"
+						Width="190" Height="210" Margin="0 10 0 30"/>
+
+					<controls:LogoControl></controls:LogoControl>
+				</StackPanel>
+			</Border>
+
+		</Grid>
+	</Border>
+</UserControl>

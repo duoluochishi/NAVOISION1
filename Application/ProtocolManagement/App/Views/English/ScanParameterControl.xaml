@@ -1,0 +1,776 @@
+﻿<UserControl
+    x:Class="NV.CT.ProtocolManagement.Views.English.ScanParameterControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:NV.CT.UI.Controls.Behavior;assembly=NV.CT.UI.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+    d:DesignHeight="950"
+    d:DesignWidth="1470"
+    mc:Ignorable="d">
+    <AdornerDecorator>
+        <Grid Name="scangrid">
+            <Border
+                Background="#14142B"
+                BorderBrush="#5A5A89"
+                BorderThickness="1,1,1,1"
+                CornerRadius="10,10,10,10">
+                <Grid IsEnabled="{Binding ScanIsEnabled, UpdateSourceTrigger=PropertyChanged}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0" />
+                        <RowDefinition Height="0" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="10" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0" />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="0" />
+                    </Grid.ColumnDefinitions>
+                    <ScrollViewer
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        HorizontalScrollBarVisibility="Disabled"
+                        VerticalScrollBarVisibility="Auto">
+                        <Grid Name="grdForm">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="{Binding HightOfLoopsRow}" />
+                                <RowDefinition Height="{Binding HightOfAutoScanRow}" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="180" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="180" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="100" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.BindingGroup>
+                                <BindingGroup x:Name="bg" />
+                            </Grid.BindingGroup>
+                            <Grid
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Grid.ColumnSpan="3">
+                                <Label
+                                    x:Name="lblTitle"
+                                    Grid.ColumnSpan="2"
+                                    Height="34"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Content="{x:Static res:LanguageResource.Content_ScanParameters}"
+                                    FontSize="15"
+                                    FontWeight="Bold"
+                                    Foreground="#FFC6C6EC" />
+                                <Rectangle
+                                    Grid.Column="0"
+                                    Width="{Binding ElementName=lblTitle, Path=ActualWidth}"
+                                    Height="3"
+                                    Margin="0,5,0,10"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    SnapsToDevicePixels="True"
+                                    Stroke="#3044D9"
+                                    StrokeThickness="3" />
+                            </Grid>
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_ScanName}" />
+                            <TextBox
+                                Grid.Row="2"
+                                Grid.Column="2"
+                                Height="30"
+                                InputMethod.IsInputMethodEnabled="False"
+                                Text="{Binding ScanParameter.ScanName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                <i:Interaction.Behaviors>
+                                    <local:RestrictedInputBehavior />
+                                </i:Interaction.Behaviors>
+                            </TextBox>
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="5"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_ScanOption}" />
+                            <ComboBox
+                                Grid.Row="2"
+                                Grid.Column="6"
+                                Height="30"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding ScanOptionList, Mode=TwoWay}"
+                                SelectedItem="{Binding SelectedScanOption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedValuePath="Key" />
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_mA}" />
+                            <TextBox
+                                Grid.Row="3"
+                                Grid.Column="2"
+                                Height="30"
+                                Text="{Binding ScanParameter.MA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                Grid.Row="4"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_kV}" />
+                            <ComboBox
+                                Name="cbbKV"
+                                Grid.Row="4"
+                                Grid.Column="2"
+                                Height="30"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding KvValueList, Mode=TwoWay}"
+                                SelectedItem="{Binding Path=SelectedKv, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedValuePath="Key" />
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="5"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_CTDIthreshold}" />
+                            <TextBox
+                                Grid.Row="3"
+                                Grid.Column="6"
+                                Height="30"
+                                Text="{Binding ScanParameter.DoseNotification_CTDI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                Grid.Row="4"
+                                Grid.Column="5"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_DLPthreshold}" />
+                            <TextBox
+                                Grid.Row="4"
+                                Grid.Column="6"
+                                Height="30"
+                                Text="{Binding ScanParameter.DoseNotification_DLP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                Grid.Row="5"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_ScanLength}" />
+                            <TextBox
+                                Name="cbbScanLength"
+                                Grid.Row="5"
+                                Grid.Column="2"
+                                Height="30"
+                                Text="{Binding ScanParameter.ScanLength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                Grid.Row="5"
+                                Grid.Column="2"
+                                Margin="0,0,-35,0"
+                                HorizontalAlignment="Right"
+                                Content="mm" />
+                            <Label
+                                Grid.Row="5"
+                                Grid.Column="5"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_Delay}" />
+                            <TextBox
+                                Grid.Row="5"
+                                Grid.Column="6"
+                                Height="30"
+                                MaxLength="3"
+                                Text="{Binding ScanParameter.ExposureDelayTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                Grid.Row="5"
+                                Grid.Column="6"
+                                Margin="0,0,-15,0"
+                                HorizontalAlignment="Right"
+                                Content="s" />
+                            <Label
+                                Grid.Row="6"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="Tube positions" />
+                            <ComboBox
+                                Grid.Row="6"
+                                Grid.Column="2"
+                                Width="180"
+                                Height="30"
+                                Margin="0,0,0,0"
+                                HorizontalAlignment="Left"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding TubePositionsList, Mode=TwoWay}"
+                                SelectedItem="{Binding SelectedTubePositions0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedValuePath="Key" />
+                            <Label
+                                Grid.Row="6"
+                                Grid.Column="2"
+                                Margin="200,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="/" />
+                            <ComboBox
+                                Grid.Row="6"
+                                Grid.Column="2"
+                                Width="180"
+                                Height="30"
+                                Margin="228,0,0,0"
+                                HorizontalAlignment="Left"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding TubePositionsList, Mode=TwoWay}"
+                                SelectedItem="{Binding SelectedTubePositions1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedValuePath="Key" />
+                            <Label
+                                Grid.Row="6"
+                                Grid.Column="5"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="Binning" />
+                            <ComboBox
+                                Grid.Row="6"
+                                Grid.Column="6"
+                                Height="30"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding ScanBinningList, Mode=TwoWay}"
+                                SelectedItem="{Binding SelectedScanBinning, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedValuePath="Key" />
+                            <Label
+                                Grid.Row="7"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="Exposure time" />
+                            <TextBox
+                                Name="txtExposureTime"
+                                Grid.Row="7"
+                                Grid.Column="2"
+                                Height="30"
+                                Text="{Binding ScanParameter.ExposureTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                Grid.Row="7"
+                                Grid.Column="2"
+                                Margin="0,0,-35,0"
+                                HorizontalAlignment="Right"
+                                Content="ms" />
+                            <Label
+                                Grid.Row="7"
+                                Grid.Column="5"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="Frame time" />
+                            <TextBox
+                                Grid.Row="7"
+                                Grid.Column="6"
+                                Height="30"
+                                Text="{Binding ScanParameter.FrameTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                Grid.Row="7"
+                                Grid.Column="6"
+                                Margin="0,0,-35,0"
+                                HorizontalAlignment="Right"
+                                Content="ms" />
+                            <Label
+                                Grid.Row="8"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="Frames per cycle" />
+                            <TextBox
+                                Name="txtFramesPerCycle"
+                                Grid.Row="8"
+                                Grid.Column="2"
+                                Height="30"
+                                Text="{Binding ScanParameter.FramesPerCycle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                Grid.Row="8"
+                                Grid.Column="5"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="Scan mode" />
+                            <ComboBox
+                                Grid.Row="8"
+                                Grid.Column="6"
+                                Height="30"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding ScanModeList, Mode=TwoWay}"
+                                SelectedItem="{Binding SelectedScanMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedValuePath="Key" />
+                            <Label
+                                Grid.Row="9"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="Raw data type" />
+                            <ComboBox
+                                Grid.Row="9"
+                                Grid.Column="2"
+                                Height="30"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding RawDataTypeList, Mode=TwoWay}"
+                                SelectedItem="{Binding SelectedRawDataType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedValuePath="Key" />
+                            <Label
+                                Grid.Row="9"
+                                Grid.Column="5"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="Exposure mode" />
+                            <ComboBox
+                                Grid.Row="9"
+                                Grid.Column="6"
+                                Height="30"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding ExposureModeList, Mode=TwoWay}"
+                                SelectedItem="{Binding SelectedExposureMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedValuePath="Key" />
+                            <Label
+                                Grid.Row="10"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="Table direction" />
+                            <ComboBox
+                                Name="cbbTableDirection"
+                                Grid.Row="10"
+                                Grid.Column="2"
+                                Height="30"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding TableDirectionList, Mode=TwoWay}"
+                                SelectedItem="{Binding Path=SelectedTableDirection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedValuePath="Key" />
+                            <Label
+                                Grid.Row="10"
+                                Grid.Column="5"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="CollimitorZ" />
+                            <TextBox
+                                Name="txtCollimitorZ"
+                                Grid.Row="10"
+                                Grid.Column="6"
+                                Height="30"
+                                Text="{Binding ScanParameter.CollimitorZ, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                x:Name="lable_BowtieEnable"
+                                Grid.Row="11"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Content="Bowtie enabled" />
+                            <CheckBox
+                                x:Name="chkBowtieEnable"
+                                Grid.Row="11"
+                                Grid.Column="2"
+                                VerticalAlignment="Center"
+                                IsChecked="{Binding ScanParameter.IsBowtieEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                Grid.Row="11"
+                                Grid.Column="5"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="Slice width" />
+                            <TextBox
+                                x:Name="txtCollimitorSliceWidth"
+                                Grid.Row="11"
+                                Grid.Column="6"
+                                Height="30"
+                                Text="{Binding ScanParameter.CollimitorSliceWidth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                Grid.Row="11"
+                                Grid.Column="6"
+                                Margin="0,0,-35,0"
+                                HorizontalAlignment="Right"
+                                Content="mm" />
+                            <Label
+                                Grid.Row="12"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="Gain" />
+                            <ComboBox
+                                Grid.Row="12"
+                                Grid.Column="2"
+                                Height="30"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding GainList, Mode=TwoWay}"
+                                SelectedItem="{Binding SelectedGain, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedValuePath="Key" />
+                            <Label
+                                Grid.Row="12"
+                                Grid.Column="5"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="Body part" />
+                            <ComboBox
+                                Grid.Row="12"
+                                Grid.Column="6"
+                                Height="30"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding BodyPartList, Mode=TwoWay}"
+                                SelectedItem="{Binding SelectedBodyPart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedValuePath="Key" />
+                            <Label
+                                Grid.Row="13"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="Table acceleration" />
+                            <TextBox
+                                Grid.Row="13"
+                                Grid.Column="2"
+                                Height="30"
+                                Text="{Binding ScanParameter.TableAcceleration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                Grid.Row="13"
+                                Grid.Column="2"
+                                Margin="0,0,-45,0"
+                                HorizontalAlignment="Right"
+                                Content="mm/s²" />
+                            <Label
+                                Grid.Row="13"
+                                Grid.Column="5"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="Table feed"
+                                Visibility="{Binding TableFeedShow}" />
+                            <TextBox
+                                Grid.Row="13"
+                                Grid.Column="6"
+                                Height="30"
+                                Text="{Binding ScanParameter.TableFeed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                Visibility="{Binding TableFeedShow}" />
+                            <Label
+                                Grid.Row="13"
+                                Grid.Column="6"
+                                Margin="0,0,-35,0"
+                                HorizontalAlignment="Right"
+                                Content="mm"
+                                Visibility="{Binding TableFeedShow}" />
+                            <Label
+                                Grid.Row="14"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="XRay focus" />
+                            <ComboBox
+                                Grid.Row="14"
+                                Grid.Column="2"
+                                Height="30"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding XRayFocusList, Mode=TwoWay}"
+                                SelectedItem="{Binding SelectedXRayFocus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedValuePath="Key" />
+                            <Label
+                                Grid.Row="14"
+                                Grid.Column="5"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="Gantry acceleration" />
+                            <TextBox
+                                Grid.Row="14"
+                                Grid.Column="6"
+                                Height="30"
+                                Text="{Binding ScanParameter.GantryAcceleration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                Grid.Row="14"
+                                Grid.Column="6"
+                                Margin="0,0,-25,0"
+                                HorizontalAlignment="Right"
+                                Content="°/s²" />
+                            <Label
+                                Grid.Row="15"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="PreOffset frames" />
+                            <TextBox
+                                Grid.Row="15"
+                                Grid.Column="2"
+                                Height="30"
+                                Text="{Binding ScanParameter.PreOffsetFrames, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                Grid.Row="15"
+                                Grid.Column="5"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="PostOffset frames" />
+                            <TextBox
+                                Grid.Row="15"
+                                Grid.Column="6"
+                                Height="30"
+                                Text="{Binding ScanParameter.PostOffsetFrames, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                Grid.Row="16"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="Auto delete num" />
+                            <TextBox
+                                Grid.Row="16"
+                                Grid.Column="2"
+                                Height="30"
+                                Text="{Binding ScanParameter.AutoDeleteNum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                Grid.Row="16"
+                                Grid.Column="5"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="Scan FOV" />
+                            <TextBox
+                                Grid.Row="16"
+                                Grid.Column="6"
+                                Height="30"
+                                IsEnabled="False"
+                                Text="{Binding ScanParameter.ScanFOV, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                Grid.Row="16"
+                                Grid.Column="6"
+                                Margin="0,0,-35,0"
+                                HorizontalAlignment="Right"
+                                Content="mm" />
+                            <Label
+                                Grid.Row="17"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="Loops" />
+                            <TextBox
+                                Grid.Row="17"
+                                Grid.Column="2"
+                                Height="30"
+                                Text="{Binding ScanParameter.Loops, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                Grid.Row="17"
+                                Grid.Column="5"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="Loop time" />
+                            <TextBox
+                                Grid.Row="17"
+                                Grid.Column="6"
+                                Height="30"
+                                MaxLength="3"
+                                Text="{Binding ScanParameter.LoopTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                Grid.Row="17"
+                                Grid.Column="6"
+                                Margin="0,0,-35,0"
+                                HorizontalAlignment="Right"
+                                Content="ms" />
+                            <Label
+                                x:Name="lable_autoScan"
+                                Grid.Row="18"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_AutoScan}" />
+                            <CheckBox
+                                x:Name="autoScan"
+                                Grid.Row="18"
+                                Grid.Column="2"
+                                VerticalAlignment="Center"
+                                IsChecked="{Binding SelectedAutoScan, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                x:Name="lable_Enhanced"
+                                Grid.Row="18"
+                                Grid.Column="5"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_Enhanced}" />
+                            <CheckBox
+                                x:Name="cbxEnhanced"
+                                Grid.Row="18"
+                                Grid.Column="6"
+                                VerticalAlignment="Center"
+                                IsChecked="{Binding SelectedIsEnhanced, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                Grid.Row="19"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_Pitch}"
+                                Visibility="{Binding PitchShow}" />
+                            <TextBox
+                                x:Name="txtPitch"
+                                Grid.Row="19"
+                                Grid.Column="2"
+                                Height="30"
+                                Text="{Binding ScanParameter.Pitch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                Visibility="{Binding PitchShow}" />
+                            <Label
+                                Grid.Row="19"
+                                Grid.Column="5"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="Object FOV" />
+                            <ComboBox
+                                x:Name="cbbObjectFov"
+                                Grid.Row="19"
+                                Grid.Column="6"
+                                Height="30"
+                                Text="{Binding ScanParameter.ObjectFov, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                <ComboBoxItem>150</ComboBoxItem>
+                                <ComboBoxItem>300</ComboBoxItem>
+                            </ComboBox>
+                            <Label
+                                x:Name="lable_IsVoiceSupported"
+                                Grid.Row="20"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Content="Voice Supported" />
+                            <CheckBox
+                                x:Name="CB_IsVoiceSupported"
+                                Grid.Row="20"
+                                Grid.Column="2"
+                                VerticalAlignment="Center"
+                                IsChecked="{Binding ScanParameter.IsVoiceSupported, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Checked">
+                                        <i:InvokeCommandAction Command="{Binding Commands[CheckedCommand]}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </CheckBox>
+                            <Label
+                                Grid.Row="23"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="PreVoiceDelayTime" />
+                            <TextBox
+                                Grid.Row="23"
+                                Grid.Column="2"
+                                Height="30"
+                                MaxLength="3"
+                                Text="{Binding ScanParameter.PreVoiceDelayTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                Grid.Row="23"
+                                Grid.Column="5"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="Exposure Source Count" />
+                            <TextBox
+                                Grid.Row="23"
+                                Grid.Column="6"
+                                Height="30"
+                                MaxLength="2"
+                                Text="{Binding ScanParameter.ActiveExposureSourceCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                Grid.Row="23"
+                                Grid.Column="2"
+                                Margin="0,0,-15,0"
+                                HorizontalAlignment="Right"
+                                Content="s" />
+                            <Label
+                                Grid.Row="21"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_VoiceId}" />
+                            <ComboBox
+                                Grid.Row="21"
+                                Grid.Column="2"
+                                Height="30"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding PreVoiceist, Mode=TwoWay}"
+                                SelectedItem="{Binding SelectedPreVoice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedValuePath="Key" />
+                            <Label
+                                Grid.Row="20"
+                                Grid.Column="5"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="PostDeleteLength" />
+                            <TextBox
+                                Grid.Row="20"
+                                Grid.Column="6"
+                                Height="30"
+                                MaxLength="3"
+                                Text="{Binding ScanParameter.PostDeleteLength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <!--<Label Grid.Row="21" Grid.Column="2" Content="s" HorizontalAlignment="Right" Margin="0,0,-15,0"/>-->
+                            <Label
+                                x:Name="lable_AllowErrorTubeCount"
+                                Grid.Row="21"
+                                Grid.Column="5"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_AllowErrorTubeCount}" />
+                            <TextBox
+                                x:Name="CB_AllowErrorTubeCount"
+                                Grid.Row="21"
+                                Grid.Column="6"
+                                VerticalAlignment="Center"
+                                MaxLength="2"
+                                Text="{Binding ScanParameter.AllowErrorTubeCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                x:Name="lable_ExposuserIntervalTime"
+                                Grid.Row="22"
+                                Grid.Column="5"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_ExposureIntervalTime}" />
+                            <TextBox
+                                x:Name="TB_ExposuerIntervalTime"
+                                Grid.Row="22"
+                                Grid.Column="6"
+                                VerticalAlignment="Center"
+                                MaxLength="2"
+                                Text="{Binding ScanParameter.ExposureIntervalTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                Grid.Row="24"
+                                Grid.Column="5"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="CollimatorOpenMode" />
+                            <ComboBox
+                                Grid.Row="24"
+                                Grid.Column="6"
+                                Height="30"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding CollimatorOpenModeList, Mode=TwoWay}"
+                                SelectedItem="{Binding SelectedCollimatorOpenMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedValuePath="Key" />
+                        </Grid>
+                    </ScrollViewer>
+                    <Button
+                        x:Name="btn_Save"
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Width="120"
+                        Height="40"
+                        Margin="0,0,100,0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Command="{Binding Commands[SaveCommand]}"
+                        Content="{x:Static res:LanguageResource.Content_Save}" />
+                </Grid>
+            </Border>
+        </Grid>
+    </AdornerDecorator>
+</UserControl>

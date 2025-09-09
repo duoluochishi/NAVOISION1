@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>$(TargetFramework)-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <OutDir>..\..\..\Bin</OutDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NV.CT.Service.TubeCali\NV.CT.Service.TubeCali.csproj" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="MaterialDesignColors">
+			<HintPath>..\..\..\Bin\MaterialDesignColors.dll</HintPath>
+		</Reference>
+		<Reference Include="MaterialDesignThemes.Wpf">
+			<HintPath>..\..\..\Bin\MaterialDesignThemes.Wpf.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.CT.ServiceFrameWork">
+			<HintPath>..\..\..\Bin\NV.CT.ServiceFrameWork.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.CT.UI.Controls">
+			<HintPath>..\..\..\Bin\NV.CT.UI.Controls.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+	
+</Project>

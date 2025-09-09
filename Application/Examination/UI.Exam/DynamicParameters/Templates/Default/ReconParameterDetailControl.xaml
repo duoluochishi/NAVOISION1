@@ -1,0 +1,232 @@
+﻿<UserControl
+    x:Class="NV.CT.UI.Exam.DynamicParameters.Templates.Default.ReconParameterDetailControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"   
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:NV.CT.UI.Exam.DynamicParameters.Parameters.Recon"   
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+    d:DesignHeight="700"
+    d:DesignWidth="1000"
+    Background="Transparent"
+    FontSize="14"
+    mc:Ignorable="d" x:Name="DefaultReconParameterDetailControl" x:Uid="DefaultReconParameterDetailControl">
+    <UserControl.Resources>      
+        <Style
+            x:Key="StackPanelGrid"
+            TargetType="{x:Type Grid}">
+            <Setter Property="Width" Value="470" />
+            <Setter Property="Margin" Value="15,5,0,5" />
+        </Style>
+        <Style
+            x:Key="WrapPanelGrid"
+            TargetType="{x:Type Grid}">
+            <Setter Property="Width" Value="470" />
+            <Setter Property="Margin" Value="5,5,0,5" />
+        </Style>
+        <Style x:Key="ConfigPathStyle" BasedOn="{StaticResource Config}" TargetType="{x:Type Path}">
+            <Setter Property="Width" Value="20" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Fill" Value="{StaticResource TextBoxBrush}" />
+            <Setter Property="Stretch" Value="Fill" />
+        </Style>
+        <Style x:Key="WImagePathStyle" BasedOn="{StaticResource WImage}" TargetType="{x:Type Path}">
+            <Setter Property="Width" Value="20" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Fill" Value="{StaticResource TextBoxBrush}" />
+            <Setter Property="Stretch" Value="Fill" />
+        </Style>
+        <Style x:Key="ReconPathStyle" BasedOn="{StaticResource Recon}" TargetType="{x:Type Path}">
+            <Setter Property="Width" Value="20" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Fill" Value="{StaticResource TextBoxBrush}" />
+            <Setter Property="Stretch" Value="Fill" />
+        </Style>
+        <Style x:Key="PQueryPathStyle" BasedOn="{StaticResource PQuery}" TargetType="{x:Type Path}">
+            <Setter Property="Width" Value="20" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Fill" Value="{StaticResource TextBoxBrush}" />
+            <Setter Property="Stretch" Value="Fill" />
+        </Style>       
+        <Style BasedOn="{StaticResource NanoCheckBoxStyle}" TargetType="{x:Type CheckBox}">
+            <Setter Property="Width" Value="17" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>     
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="12*" />
+            <RowDefinition Height="5" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="10*" />
+        </Grid.ColumnDefinitions>
+        <!--  General  -->
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="1"
+            Orientation="Vertical">
+            <Grid VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="32" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Path Style="{StaticResource ConfigPathStyle}" />
+                <Label
+                    Grid.Column="1"
+                    Content="{x:Static res:LanguageResource.Content_GeneralTitle}"
+                    Style="{StaticResource BoldLabelStyle}" />
+                <Rectangle
+                    Grid.ColumnSpan="2"
+                    Width="89"
+                    Style="{StaticResource StressLineStyle}" />
+            </Grid>
+            <!--  SeriesDescription  -->
+            <Grid Style="{StaticResource StackPanelGrid}">
+                <local:SeriesDescription />
+            </Grid>
+            <!--  Slice thickness  -->
+            <Grid Style="{StaticResource StackPanelGrid}">
+                <local:SliceThickness />
+            </Grid>
+            <!--  Recon Increment  -->
+            <Grid Style="{StaticResource StackPanelGrid}">
+                <local:ReconIncrement />
+            </Grid>
+            <!--  No of images  -->
+            <Grid Style="{StaticResource StackPanelGrid}">
+                <local:ImageCount />
+            </Grid>
+        </StackPanel>
+
+        <!--  Recon  -->
+        <StackPanel
+            Grid.Row="1"           
+            Grid.Column="3"
+            Orientation="Vertical">
+            <Grid VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="32" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Path Style="{StaticResource ReconPathStyle}" />
+                <Label
+                    Grid.Column="1"
+                    Content="{x:Static res:LanguageResource.Content_ReconTitle}"
+                    Style="{StaticResource BoldLabelStyle}" />
+                <Rectangle
+                    Grid.ColumnSpan="2"
+                    Width="80"
+                    Style="{StaticResource StressLineStyle}" />
+            </Grid>
+            <!--  Recon Method  -->
+            <Grid Style="{StaticResource StackPanelGrid}">
+                <local:ReconMethodShow />
+            </Grid>          
+            <!--  Kernel  -->
+            <Grid Style="{StaticResource StackPanelGrid}">
+                <local:Kernel />
+            </Grid>
+            <!--  Window  -->
+            <Grid Style="{StaticResource StackPanelGrid}">
+                <local:Window />
+            </Grid>
+            <!--  WW/WL  -->
+            <Grid Style="{StaticResource StackPanelGrid}">
+                <local:WW_WL />
+            </Grid>
+            <Grid Style="{StaticResource StackPanelGrid}">
+                <local:IsMetalAritifact/>
+            </Grid>            
+            <!--  HD recon  -->
+            <Grid Style="{StaticResource StackPanelGrid}">
+                <local:IsHDRecon/>
+            </Grid>
+        </StackPanel>
+
+        <!--  General  -->
+        <StackPanel
+           Grid.Row="3"
+           Grid.Column="1"
+           Orientation="Vertical">
+            <Grid VerticalAlignment="Center" Margin="0 5 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="32" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Path Style="{StaticResource WImagePathStyle}" />
+                <Label
+                 Grid.Column="1"
+                 Content="{x:Static res:LanguageResource.Content_ImageTitle}"
+                 Style="{StaticResource BoldLabelStyle}" />
+                <Rectangle
+                 Grid.ColumnSpan="2"
+                 Width="81"
+                 Style="{StaticResource StressLineStyle}" />
+            </Grid>
+            <Grid Style="{StaticResource StackPanelGrid}">
+                <local:TestFOV />
+            </Grid>
+            <!--  Recon matrix  -->
+            <Grid Style="{StaticResource StackPanelGrid}">
+                <local:ReconMatrix />
+            </Grid>
+            <!--  Image Order  -->
+            <Grid Style="{StaticResource StackPanelGrid}">
+                <local:ImageOrder />
+            </Grid>           
+            <!--  CenterX  -->
+            <Grid Style="{StaticResource StackPanelGrid}">
+                <local:CenterXY />
+            </Grid>
+            <Grid Style="{StaticResource StackPanelGrid}">
+                <local:StartEndRange />
+            </Grid>
+        </StackPanel>
+
+        <StackPanel
+           Grid.Row="3"           
+           Grid.Column="3"
+           Orientation="Vertical">
+            <Grid VerticalAlignment="Center" Margin="0 5 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="32" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Path Style="{StaticResource PQueryPathStyle}" />
+                <Label
+                    Grid.Column="1"
+                    Content="{x:Static res:LanguageResource.Content_TransferTitle}"
+                    Style="{StaticResource BoldLabelStyle}" />
+                <Label
+                    Grid.Column="1"
+                    Margin="65,0,0,0"
+                    Content=""
+                    Foreground="Green"
+                    Style="{StaticResource BoldLabelStyle}" />
+                <Rectangle
+                    Grid.ColumnSpan="2"
+                    Width="95"
+                    Style="{StaticResource StressLineStyle}" />
+            </Grid>
+            <!--  Auto storage  -->
+            <Grid Style="{StaticResource StackPanelGrid}" Visibility="Collapsed">
+                <local:IsAutoStorage />
+            </Grid>
+            <!--  Auto film  -->
+            <Grid Style="{StaticResource StackPanelGrid}" Visibility="Collapsed">
+                <local:IsAutoFilm/>
+            </Grid> 
+            <!--  Auto recon  -->
+            <Grid Style="{StaticResource StackPanelGrid}">
+                <local:IsAutoRecon/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

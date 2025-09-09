@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>$(TargetFramework)-windows</TargetFramework>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>enable</Nullable>
+	  <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Autofac" />
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" />
+		<PackageReference Include="AutoMapper" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" />
+		<PackageReference Include="Microsoft.Extensions.Options" />
+		<PackageReference Include="Newtonsoft.Json" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\Common\CTS\NV.CT.CTS.csproj" />
+		<ProjectReference Include="..\..\Infrastructure\Logging\NV.CT.Logging.csproj" />
+		<ProjectReference Include="..\..\SystemInterface\MRSIntegration.Contract\NV.CT.SystemInterface.MRSIntegration.Contract.csproj" />
+		<ProjectReference Include="..\..\SystemService\AppService.Contract\NV.CT.AppService.Contract.csproj" />
+		<ProjectReference Include="..\..\SystemService\ClientProxy\NV.CT.ClientProxy.csproj" />
+		<ProjectReference Include="..\..\SystemService\DatabaseService.Contract\NV.CT.DatabaseService.Contract.csproj" />
+		<ProjectReference Include="..\..\SystemService\WorkflowService.Contract\NV.CT.WorkflowService.Contract.csproj" />
+		<ProjectReference Include="..\ApplicationService.Contract\NV.CT.Console.ApplicationService.Contract.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Reference Include="NV.CT.FacadeProxy.Common">
+	    <HintPath>..\..\bin\NV.CT.FacadeProxy.Common.dll</HintPath>
+	  </Reference>
+	  <Reference Include="NV.TP.NamedPipeWrapper">
+	    <HintPath>..\..\bin\NV.TP.NamedPipeWrapper.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Services\" />
+	</ItemGroup>
+</Project>

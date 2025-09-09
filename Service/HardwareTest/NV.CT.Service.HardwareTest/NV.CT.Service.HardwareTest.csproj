@@ -1,0 +1,82 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>$(TargetFramework)-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <OutDir>..\..\..\Bin</OutDir>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="HardwareTestSettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" />
+    <PackageReference Include="OxyPlot.Wpf" />
+    <PackageReference Include="Panuon.WPF.UI" />
+    <PackageReference Include="System.Threading.Channels" />
+    <PackageReference Include="CalcBinding" />
+    <PackageReference Include="MiniExcel" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\NV.CT.Service.Common\NV.CT.Service.Common.Controls\NV.CT.Service.Common.Controls.csproj" />
+    <ProjectReference Include="..\..\NV.CT.Service.Common\NV.CT.Service.Common\NV.CT.Service.Common.csproj" />
+    <ProjectReference Include="..\NV.CT.Service.HardwareTest.Share\NV.CT.Service.HardwareTest.Share.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MaterialDesignColors">
+      <HintPath>..\..\..\Bin\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf">
+      <HintPath>..\..\..\Bin\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.CT.FacadeProxy">
+      <HintPath>..\..\..\Bin\NV.CT.FacadeProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.CT.FacadeProxy.Common">
+      <HintPath>..\..\..\Bin\NV.CT.FacadeProxy.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.CT.RawDataViewer.Interop">
+      <HintPath>..\..\..\Bin\NV.CT.RawDataViewer.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.CT.ServiceFramework">
+      <HintPath>..\..\..\Bin\NV.CT.ServiceFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.CT.ServiceFramework">
+      <HintPath>..\..\..\Bin\NV.CT.Alg.ScanReconCalculation.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.MPS.Configuration">
+      <HintPath>..\..\..\Bin\NV.MPS.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.MPS.Environment">
+      <HintPath>..\..\..\Bin\NV.MPS.Environment.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.MPS.Environment">
+      <HintPath>..\..\..\Bin\NV.MPS.Native.dll</HintPath>
+    </Reference>
+    <Reference Include="NV.MPS.Environment">
+      <HintPath>..\..\..\Bin\NV.MPS.RawDataHelperWrapper.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="HardwareTestSettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

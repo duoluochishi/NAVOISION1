@@ -1,0 +1,408 @@
+﻿<UserControl
+    x:Class="NV.CT.UI.Exam.View.ToolsControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"   
+    xmlns:local="clr-namespace:NV.CT.UI.Exam.Model"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
+    d:DesignHeight="750" d:DesignWidth="45" mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style
+            x:Key="ToolsRadioButton"
+            BasedOn="{StaticResource MaterialDesignChoiceChipOutlineRadioButton}"
+            TargetType="{x:Type RadioButton}">
+            <Setter Property="Margin" Value="10,0,0,15" />
+            <Setter Property="BorderBrush" Value="{DynamicResource BaseBackgroundColor}" />
+            <Setter Property="BorderThickness" Value="0.5" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Command" Value="{Binding Commands[ToolsCommand]}" />
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Height" Value="38" />
+            <Setter Property="Width" Value="44" />
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="true">
+                    <Setter Property="Opacity" Value="1" />
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                </Trigger>
+                <Trigger Property="IsChecked" Value="False">
+                    <Setter Property="Opacity" Value="0.5" />
+                    <Setter Property="BorderBrush" Value="White" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type Image}">
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Stretch" Value="Fill" />
+        </Style>
+        <Style x:Key="ArrowPathStyle" BasedOn="{StaticResource Arrow}" TargetType="{x:Type Path}">
+            <Setter Property="Width" Value="18" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Stretch" Value="Fill" />
+            <Setter Property="Fill" Value="White" />
+        </Style>
+        <Style x:Key="MovePathStyle" BasedOn="{StaticResource Move}" TargetType="{x:Type Path}">
+            <Setter Property="Width" Value="18" />
+            <Setter Property="Height" Value="18" />
+            <Setter Property="Stretch" Value="Fill" />
+            <Setter Property="Fill" Value="White" />
+        </Style>
+        <Style x:Key="FovPathStyle" BasedOn="{StaticResource Fov}" TargetType="{x:Type Path}">
+            <Setter Property="Width" Value="18" />
+            <Setter Property="Height" Value="18" />
+            <Setter Property="Stretch" Value="Fill" />
+            <Setter Property="Fill" Value="White" />
+        </Style>
+    </UserControl.Resources>
+    <StackPanel Orientation="Vertical">
+        <RadioButton CommandParameter="{Binding Source={x:Static local:CommandParameters.IMAGE_OPERATE_SELECT}}"
+            GroupName="ScanChoiceTools"
+            IsChecked="{Binding IsSelected,Mode=TwoWay}"
+            ToolTip="{x:Static res:LanguageResource.ToolTip_Select}">
+            <RadioButton.Style>
+                <Style BasedOn="{StaticResource ToolsRadioButton}"
+                    TargetType="RadioButton">
+                    <Style.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Path Fill="White"  Style="{StaticResource ArrowPathStyle}" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Path Fill="#5A5A89" Style="{StaticResource ArrowPathStyle}" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </RadioButton.Style>
+        </RadioButton>
+        <RadioButton GroupName="ScanChoiceTools"  CommandParameter="{Binding Source={x:Static local:CommandParameters.IMAGE_OPERATE_HU}}" ToolTip="{x:Static res:LanguageResource.ToolTip_HU}">
+            <RadioButton.Style>
+                <Style BasedOn="{StaticResource ToolsRadioButton}"
+                    TargetType="RadioButton">
+                    <Style.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_pixel_len_1.png" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_pixel_len_0.png" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </RadioButton.Style>
+        </RadioButton>
+        <RadioButton CommandParameter="{Binding Source={x:Static local:CommandParameters.IMAGE_OPERATE_ZOOM}}"
+            GroupName="ScanChoiceTools"
+            ToolTip="{x:Static res:LanguageResource.ToolTip_Zoom}">
+            <RadioButton.Style>
+                <Style BasedOn="{StaticResource ToolsRadioButton}"
+                    TargetType="RadioButton">
+                    <Style.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_zoom_1.png" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_zoom_0.png" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </RadioButton.Style>
+        </RadioButton>
+        <RadioButton CommandParameter="{Binding Source={x:Static local:CommandParameters.IMAGE_OPERATE_MOVE}}"
+            GroupName="ScanChoiceTools"
+            ToolTip="{x:Static res:LanguageResource.ToolTip_Move}">
+            <RadioButton.Style>
+                <Style
+                    BasedOn="{StaticResource ToolsRadioButton}"
+                    TargetType="RadioButton">
+                    <Style.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Path Fill="White" Style="{StaticResource MovePathStyle}" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Path Fill="#5A5A89" Style="{StaticResource MovePathStyle}" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </RadioButton.Style>
+        </RadioButton>
+        <RadioButton CommandParameter="{Binding Source={x:Static local:CommandParameters.IMAGE_OPERATE_WL}}"
+            GroupName="ScanChoiceTools"
+            ToolTip="{x:Static res:LanguageResource.ToolTip_WL}">
+            <RadioButton.Style>
+                <Style
+                    BasedOn="{StaticResource ToolsRadioButton}"
+                    TargetType="RadioButton">
+                    <Style.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Path Fill="White" Style="{StaticResource FovPathStyle}" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Path Fill="#5A5A89" Style="{StaticResource FovPathStyle}" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </RadioButton.Style>
+        </RadioButton>
+        <RadioButton CommandParameter="{Binding Source={x:Static local:CommandParameters.IMAGE_OPERATE_ROI}}"
+            GroupName="ScanChoiceTools"
+            ToolTip="{x:Static res:LanguageResource.ToolTip_ROI}">
+            <RadioButton.Style>
+                <Style BasedOn="{StaticResource ToolsRadioButton}"
+                    TargetType="RadioButton">
+                    <Style.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_circle_roi_1.png" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_circle_roi_0.png" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </RadioButton.Style>
+        </RadioButton>
+        <RadioButton CommandParameter="{Binding Source={x:Static local:CommandParameters.IMAGE_OPERATE_LENGTH}}"
+            GroupName="ScanChoiceTools"
+            ToolTip="{x:Static res:LanguageResource.ToolTip_Length}">
+            <RadioButton.Style>
+                <Style BasedOn="{StaticResource ToolsRadioButton}"
+                    TargetType="RadioButton">
+                    <Style.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_measuring_distance_1.png" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_measuring_distance_0.png" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </RadioButton.Style>
+        </RadioButton>
+        <RadioButton CommandParameter="{Binding Source={x:Static local:CommandParameters.IMAGE_OPERATE_ANGLE}}"
+            GroupName="ScanChoiceTools"
+            ToolTip="{x:Static res:LanguageResource.ToolTip_Angle}">
+            <RadioButton.Style>
+                <Style BasedOn="{StaticResource ToolsRadioButton}"
+                    TargetType="RadioButton">
+                    <Style.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_angle_1.png" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_angle_0.png" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </RadioButton.Style>
+        </RadioButton>
+        <RadioButton CommandParameter="{Binding Source={x:Static local:CommandParameters.IMAGE_OPERATE_ARROW}}"
+            GroupName="ScanChoiceTools"
+            ToolTip="{x:Static res:LanguageResource.ToolTip_Arrow}">
+            <RadioButton.Style>
+                <Style BasedOn="{StaticResource ToolsRadioButton}"
+                    TargetType="RadioButton">
+                    <Style.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_arrow_1.png" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_arrow_0.png" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </RadioButton.Style>
+        </RadioButton>
+        <RadioButton GroupName="ScanChoiceTools" CommandParameter="{Binding Source={x:Static local:CommandParameters.IMAGE_OPERATE_REVERSE}}" IsChecked="{Binding IsReverse,Mode=TwoWay}" ToolTip="{x:Static res:LanguageResource.ToolTip_Reverse}">
+            <RadioButton.Style>
+                <Style BasedOn="{StaticResource ToolsRadioButton}"
+                    TargetType="RadioButton">
+                    <Style.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_reverse_sequence_1.png" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_reverse_sequence_0.png" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </RadioButton.Style>
+        </RadioButton>
+        <RadioButton CommandParameter="{Binding Source={x:Static local:CommandParameters.IMAGE_OPERATE_REWORK}}"
+            GroupName="ScanChoiceTools"
+            ToolTip="{x:Static res:LanguageResource.ToolTip_Rework}">
+            <RadioButton.Style>
+                <Style BasedOn="{StaticResource ToolsRadioButton}"
+                    TargetType="RadioButton">
+                    <Style.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_rework_1.png" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Icons/i_rework_0.png" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </RadioButton.Style>
+        </RadioButton>
+        <RadioButton  CommandParameter="{Binding Source={x:Static local:CommandParameters.IMAGE_OPERATE_CROP}}"
+            GroupName="ScanChoiceTools"
+            ToolTip="{x:Static res:LanguageResource.ToolTip_Crop}"
+            Visibility="Collapsed">
+            <RadioButton.Style>
+                <Style BasedOn="{StaticResource ToolsRadioButton}"
+                    TargetType="RadioButton">
+                    <Style.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Images/CutimagePress.png" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Image Source="pack://application:,,,/NV.CT.UI.Controls;component/Images/Cutimage.png" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </RadioButton.Style>
+        </RadioButton>
+        <ToggleButton ToolTip="{x:Static res:LanguageResource.ToolTip_SwitchViews}" Command="{Binding Commands[SwitchViews]}" IsEnabled="{Binding IsSwitchViewsEnabled}">
+            <ToggleButton.Style>
+                <Style BasedOn="{StaticResource NanoToggleButtonStyle}" TargetType="ToggleButton">
+                    <Style.Triggers>
+                        <Trigger Property="IsEnabled" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ToggleButton.Style>
+        </ToggleButton>
+        <RadioButton Command="{Binding Commands[SetCenterPosition]}" CommandParameter="SetCenterPosition" Margin="10 15 0 0" IsChecked="{Binding IsSetCenterPosition,Mode=TwoWay}"
+            GroupName="SetCenterPosition" ToolTip="{x:Static res:LanguageResource.ToolTip_SetCenterPosition}"
+             IsEnabled="{Binding IsSetCenterPositionEnabled}"        >
+            <RadioButton.Style>
+                <Style BasedOn="{StaticResource ToolsRadioButton}"
+                    TargetType="RadioButton">
+                    <Style.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <materialDesign:PackIcon Kind="Adjust" Foreground="White" />
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="BorderBrush" Value="White" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <materialDesign:PackIcon Kind="Adjust"  Foreground="White"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="BorderBrush" Value="#5A5A89" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </RadioButton.Style>
+        </RadioButton>
+    </StackPanel>
+</UserControl>

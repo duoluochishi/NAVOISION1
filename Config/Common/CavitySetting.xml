@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CavitySetting>
+	<AuxBoard IsMonitoring="true" />
+	<AuxBoard_Humidity Max="999" Min="1" DefaultMax="999" DefaultMin="1" />
+	<AuxBoard_Top_Temperature Max="999" Min="1" DefaultMax="999" DefaultMin="1" />
+	<AuxBoard_Bottom_Temperature Max="999" Min="1" DefaultMax="999" DefaultMin="1" />
+	<AuxBoard_Left_Temperature Max="999" Min="1" DefaultMax="999" DefaultMin="1" />
+	<AuxBoard_Right_Temperature Max="999" Min="1" DefaultMax="999" DefaultMin="1" />
+	<PDU IsMonitoring="true" />
+	<PDU_Temperature Max="999" Min="1" DefaultMax="999" DefaultMin="1" />
+</CavitySetting>

@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" />
+		<PackageReference Include="AutoMapper" />
+		<PackageReference Include="AutoMapper.Extensions.EnumMapping" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" />
+		<PackageReference Include="Microsoft.Extensions.Options" />
+		<PackageReference Include="Microsoft.Extensions.Logging" />
+		<PackageReference Include="Newtonsoft.Json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Common\Protocol\NV.CT.Protocol.csproj" />
+	  <ProjectReference Include="..\..\Infrastructure\Logging\NV.CT.Logging.csproj" />
+	  <ProjectReference Include="..\ProtocolService.Contract\NV.CT.ProtocolService.Contract.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="NV.MPS.Environment">
+			<HintPath>..\..\bin\NV.MPS.Environment.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.MPS.Exception">
+			<HintPath>..\..\bin\NV.MPS.Exception.dll</HintPath>
+		</Reference>
+		<Reference Include="NV.CT.FacadeProxy.Common">
+	    <HintPath>..\..\bin\NV.CT.FacadeProxy.Common.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
+</Project>

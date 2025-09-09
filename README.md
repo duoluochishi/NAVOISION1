@@ -1,0 +1,66 @@
+## MCS 2.0 代码介绍
+**MCS 2.0**为**InsightVision V2.0**一部分，提供用户界面操作。**InsightVision V2.0**还包含**MRS**/**嵌入式**/**算法**等部分。
+### 运行环境
+ - .Net 8.0
+ - C++ redist X64
+ - MySQL 8.0.30
+### 编译环境
+ - dotnet build/publish
+### 代码
+ - Compiling Manager 系统编译用
+ - **Config 系统配置**
+    - Common 通用配置
+    - ConfigMCS MCS配置
+ - **Infrastructure 基础框架**
+    - Daemon 启动守护进程
+    - Logging 日志库
+    - Logging Server 日志服务
+ - **Common 公共库及组件**
+    - CommonAttribute 内部AOP库
+    - CTS 通用类型系统
+    - Dicom Utility DICOM库
+    - Controls 界面控件库
+    - Protocol 协议库
+ - Skin 样式库和多语言
+    - Material Design 设计库
+    - Language 多语言
+    - Error Code 错误码
+ - System Service 系统服务
+    - Core Service 核心服务
+    - Job Service 任务服务
+    - Sync Service 同步服务
+ - System Interface 系统接口
+    - MRS Integration 底层业务集成库
+    - MCS Runtime 运行时库
+ - Service 服务工具
+    - Auto Calibration 校准
+    - Hardware Test 硬件测试
+    - Quality Test 质量测试
+    - Tube History 球管历史
+    - Upgrade 固件升级
+    - Tube Calibration 球管校准（灯丝校准）
+    - Tube Warm Up 热管
+ - Console 主控台和副控台
+ - Alg 检查控制计算算法
+ - Application 业务应用
+    - Examination 检查
+    - Recon 离线重建
+    - ImageViewer 图像浏览
+    - Intervention 介入扫描
+    - Patient Browser 患者登记
+    - Patient Management 患者检查管理
+    - Job Viewer 任务管理
+    - Print 打印
+    - Protocol Management 协议管理
+    - RGT 平板
+### 第三方库
+ - fo-dicom
+ - AspectInjector
+ - MySQL + Dapper
+ - GRPC + NamedPipeWrapper
+ - Autofac
+ - AutoMapper
+ - Newtonsoft.Json
+ - Prism
+ - Serilog
+ - LiveCharts
