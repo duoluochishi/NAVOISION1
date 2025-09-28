@@ -1,64 +1,41 @@
-//-----------------------------------------------------------------------
-// <copyright company="纳米维景">
-// 版权所有(C) 2024, 纳米维景(上海)医疗科技有限公司
-// </copyright>
-//-----------------------------------------------------------------------
-// <summary>
-//     修改日期           版本号       创建人
-// 2024/4/22 13:45:36    V1.0.0       朱正广
-// </summary>
-//-----------------------------------------------------------------------
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NV.CT.CTS.Enums;
 using NV.CT.Job.Contract.Model;
 using NV.CT.JobService.Interfaces;
 using NV.CT.JobService.JobHandlers;
+using System.Collections.Concurrent;
 
 namespace NV.CT.JobService
 {
-    public class JobManagementService : IJobManagementService
+    public class JobManagementService : IJobManagementService, IHostedService, IDisposable
     {
         private readonly ILogger<JobManagementService> _logger;
         private readonly IJobQueueHandler _jobQueueHandler;
         private readonly IServiceProvider _serviceProvider;
+        private readonly IEnumerable<IJobHandler> _jobHandlers;
+        private readonly ConcurrentDictionary<string, CancellationTokenSource> _runningJobs = new();
+        private Task _executingTask;
+        private readonly CancellationTokenSource _stoppingCts = new();
 
-        private readonly List<IJobHandler> _jobHandlers;
-
-        public event EventHandler<JobTaskInfo>? NewJobEnqueued;
-
-        public event EventHandler<JobTaskInfo>? CancelRunningJob;
-
-        public JobManagementService(ILogger<JobManagementService> logger,
-                                    IJobQueueHandler jobQueueHandler,
-                                    IServiceProvider serviceProvider)
+        public JobManagementService(
+            ILogger<JobManagementService> logger,
+            IJobQueueHandler jobQueueHandler,
+            IServiceProvider serviceProvider,
+            IEnumerable<IJobHandler> jobHandlers)
         {
             _logger = logger;
             _jobQueueHandler = jobQueueHandler;
-            _jobHandlers = new List<IJobHandler>();
             _serviceProvider = serviceProvider;
-
-            this.Init();
-        }
-
-        private void Init()
-        {
-            _jobHandlers.Add(_serviceProvider.GetRequiredService<ArchiveJobHandler>());
-            _jobHandlers.Add(_serviceProvider.GetRequiredService<ExportJobHandler>());
-            _jobHandlers.Add(_serviceProvider.GetRequiredService<ImportJobHandler>());
-            _jobHandlers.Add(_serviceProvider.GetRequiredService<PrintJobHandler>());
-            _jobHandlers.Add(_serviceProvider.GetRequiredService<WorkListJobHandler>());
+            _jobHandlers = jobHandlers;
         }
 
         public bool EnqueueJob(BaseJobRequest jobRequest)
         {
-            if (jobRequest is null)
-            {
-                return false;
-            }
+            if (jobRequest is null) return false;
 
-            // TODO 后续补充幂等性验证逻辑：判断是否是同1个请求，如果是则不予处理。
-            var jobTaskInfo = new JobTaskInfo()
+            var jobTaskInfo = new JobTaskInfo
             {
                 Id = jobRequest.Id,
                 WorkflowId = jobRequest.WorkflowId,
@@ -71,88 +48,135 @@ namespace NV.CT.JobService
                 Parameter = jobRequest.Parameter,
             };
 
-            //对于频次太高的任务类型不予打印跟踪日志，比如WorkListJob
             if (jobTaskInfo.JobType != JobTaskType.WorklistJob)
             {
-                this._logger.LogTrace($"JobManagementService EnqueueJob for jobId:{jobTaskInfo.Id} with jobType:{jobTaskInfo.JobType.ToString()}");
-            }           
-
-            foreach (var handler in _jobHandlers)
-            {
-                if (handler.CanAccept(jobTaskInfo))
-                {
-                    return handler.EnqueueJobRequest(jobTaskInfo);
-                }            
+                _logger.LogTrace($"Enqueueing job {jobTaskInfo.Id} of type {jobTaskInfo.JobType}");
             }
 
+            var handler = _jobHandlers.FirstOrDefault(h => h.CanAccept(jobTaskInfo));
+            if (handler != null)
+            {
+                return handler.EnqueueJobRequest(jobTaskInfo);
+            }
+
+            _logger.LogWarning($"No handler found for job type {jobTaskInfo.JobType}");
             return false;
-        }
-
-        public JobTaskInfo? FetchNextAvailableJob(JobTaskType jobType)
-        {
-           return _jobQueueHandler.FetchNextAvailableJob(jobType);
-        }
-
-        public JobTaskInfo? GetJobById(string jobId, JobTaskType jobType)
-        {
-            return _jobQueueHandler.GetJobById(jobId, jobType);
-        }
-
-        public JobTaskInfo? FetchAvailableJobById(string jobId, JobTaskType jobType)
-        {
-            return _jobQueueHandler.FetchAvailableJobById(jobId, jobType);
-        }
-
-        public bool DeleteJob(string jobId, JobTaskType jobType)
-        {
-           return _jobQueueHandler.DeleteJob(jobId, jobType);
         }
 
         public bool CancelJob(string jobId, JobTaskType jobTaskType)
         {
-            if (string.IsNullOrEmpty(jobId))
+            if (string.IsNullOrEmpty(jobId)) return false;
+
+            _logger.LogInformation($"Attempting to cancel job {jobId}");
+            if (_runningJobs.TryGetValue(jobId, out var cts))
             {
-                return false;
+                cts.Cancel();
+                _logger.LogInformation($"Cancellation requested for job {jobId}");
+                return true;
             }
 
-            var jobTaskInfo = new JobTaskInfo()
+            _logger.LogWarning($"Could not cancel job {jobId}: Not found in running jobs.");
+            return false;
+        }
+
+        public Task StartAsync(CancellationToken cancellationToken)
+        {
+            _logger.LogInformation("Job Management Service is starting.");
+            _executingTask = Task.Run(() => ExecuteAsync(_stoppingCts.Token), cancellationToken);
+            return _executingTask.IsCompleted ? _executingTask : Task.CompletedTask;
+        }
+
+        private async Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            while (!stoppingToken.IsCancellationRequested)
             {
-                Id = jobId,
-                WorkflowId = jobId,
-                JobType = jobTaskType,
+                try
+                {
+                    var job = _jobQueueHandler.FetchNextAvailableJob(JobTaskType.All);
+                    if (job != null)
+                    {
+                        var processor = GetProcessorForJob(job.JobType);
+                        if (processor != null)
+                        {
+                            var cts = new CancellationTokenSource();
+                            if (_runningJobs.TryAdd(job.Id, cts))
+                            {
+                                _logger.LogInformation($"Processing job {job.Id} of type {job.JobType}");
+                                await processor.ProcessJobAsync(job, cts.Token);
+                                _runningJobs.TryRemove(job.Id, out _);
+                            }
+                            else
+                            {
+                                _logger.LogWarning($"Job {job.Id} is already running.");
+                            }
+                        }
+                        else
+                        {
+                            _logger.LogWarning($"No processor found for job type {job.JobType}.");
+                        }
+                    }
+                    else
+                    {
+                        await Task.Delay(1000, stoppingToken); // Wait before polling again
+                    }
+                }
+                catch (OperationCanceledException)
+                {
+                    // This is expected on shutdown, no need to log an error.
+                    _logger.LogInformation("Job management service is stopping.");
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "An error occurred in the job management service execution loop.");
+                }
+            }
+        }
+
+        public async Task StopAsync(CancellationToken cancellationToken)
+        {
+            _logger.LogInformation("Job Management Service is stopping.");
+            if (_executingTask == null) return;
+
+            try
+            {
+                _stoppingCts.Cancel();
+            }
+            finally
+            {
+                await Task.WhenAny(_executingTask, Task.Delay(Timeout.Infinite, cancellationToken));
+            }
+        }
+
+        private IJobProcessor? GetProcessorForJob(JobTaskType jobType)
+        {
+            return jobType switch
+            {
+                JobTaskType.ArchiveJob => _serviceProvider.GetRequiredService<ArchiveJobProcessor>(),
+                JobTaskType.ExportJob => _serviceProvider.GetRequiredService<ExportJobProcessor>(),
+                JobTaskType.ImportJob => _serviceProvider.GetRequiredService<ImportJobProcessor>(),
+                JobTaskType.PrintJob => _serviceProvider.GetRequiredService<PrintJobProcessor>(),
+                JobTaskType.WorklistJob => _serviceProvider.GetRequiredService<WorklistJobProcessor>(),
+                _ => null
             };
-
-            this._logger.LogTrace($"JobManagementService CancelJob for jobId:{jobId}");
-            Task.Run(() => { this.CancelRunningJob?.Invoke(this, jobTaskInfo); }); 
-            
-            return true;
         }
 
-        public List<JobTaskInfo> GetJobsByTypeAndStatus(QueryJobRequest queryJobRequest)
+        public void Dispose()
         {
-            return _jobQueueHandler.GetJobsByTypeAndStatus(queryJobRequest);
+            _stoppingCts.Cancel();
+            _stoppingCts.Dispose();
         }
 
-        public int GetCountOfJobs(JobTaskType jobType, JobTaskStatus jobTaskStatus)
-        {
-            return _jobQueueHandler.GetCountOfJobs(jobType, jobTaskStatus);
-        }
-
-        public bool SetPrioirty(string jobId, JobTaskType jobType, PriorityType priorityType)
-        {
-            return _jobQueueHandler.SetPrioirty(jobId, jobType, priorityType);
-        }
-
-
-        public bool PauseJob(string jobId, JobTaskType jobType)
-        {
-            return _jobQueueHandler.PauseJob(jobId, jobType);
-        }
-
-        public bool RunJob(string jobId, JobTaskType jobType)
-        {
-            return _jobQueueHandler.RunJob(jobId, jobType);
-        }
-
+        #region Unchanged Methods
+        public JobTaskInfo? FetchNextAvailableJob(JobTaskType jobType) => _jobQueueHandler.FetchNextAvailableJob(jobType);
+        public JobTaskInfo? GetJobById(string jobId, JobTaskType jobType) => _jobQueueHandler.GetJobById(jobId, jobType);
+        public JobTaskInfo? FetchAvailableJobById(string jobId, JobTaskType jobType) => _jobQueueHandler.FetchAvailableJobById(jobId, jobType);
+        public bool DeleteJob(string jobId, JobTaskType jobType) => _jobQueueHandler.DeleteJob(jobId, jobType);
+        public List<JobTaskInfo> GetJobsByTypeAndStatus(QueryJobRequest queryJobRequest) => _jobQueueHandler.GetJobsByTypeAndStatus(queryJobRequest);
+        public int GetCountOfJobs(JobTaskType jobType, JobTaskStatus jobTaskStatus) => _jobQueueHandler.GetCountOfJobs(jobType, jobTaskStatus);
+        public bool SetPrioirty(string jobId, JobTaskType jobType, PriorityType priorityType) => _jobQueueHandler.SetPrioirty(jobId, jobType, priorityType);
+        public bool PauseJob(string jobId, JobTaskType jobType) => _jobQueueHandler.PauseJob(jobId, jobType);
+        public bool RunJob(string jobId, JobTaskType jobType) => _jobQueueHandler.RunJob(jobId, jobType);
+        #endregion
     }
 }

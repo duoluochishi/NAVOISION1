@@ -23,27 +23,27 @@ public static class ServiceCollectionExtension
 
         services.AddHostedService<OfflineTaskHandler>();
         services.AddHostedService<DicomFileHandler>();
-        services.AddHostedService<PrintJobProcessor>();
-        services.AddHostedService<ArchiveJobProcessor>();
-        services.AddHostedService<ImportJobProcessor>();
-        services.AddHostedService<ExportJobProcessor>();
-        services.AddHostedService<WorklistJobProcessor>();
+
+        // Register JobManagementService as a singleton for the interface and as the hosted service
+        services.AddSingleton<IJobManagementService, JobManagementService>();
+        services.AddHostedService(provider => provider.GetRequiredService<IJobManagementService>() as JobManagementService);
+
         services.AddHostedService<AutoFetchWorklistHostService>();
 
         services.AddSingleton<IOfflineConnection, OfflineConnectionService>();
         services.AddSingleton<IOfflineTaskService, OfflineTaskService>();
         services.AddSingleton<IDicomFileService, DicomFileService>();
         services.AddSingleton<IJobRequestService, JobRequestService>();
-        services.AddSingleton<IJobManagementService, JobManagementService>();
         services.AddSingleton<IJobQueueHandler, JobQueueHandler>();
 
+        // Register all job handlers
+        services.AddSingleton<IJobHandler, ArchiveJobHandler>();
+        services.AddSingleton<IJobHandler, ExportJobHandler>();
+        services.AddSingleton<IJobHandler, ImportJobHandler>();
+        services.AddSingleton<IJobHandler, PrintJobHandler>();
+        services.AddSingleton<IJobHandler, WorkListJobHandler>();
 
-        services.AddSingleton<ArchiveJobHandler>();
-        services.AddSingleton<ExportJobHandler>();
-        services.AddSingleton<ImportJobHandler>();
-        services.AddSingleton<PrintJobHandler>();
-        services.AddSingleton<WorkListJobHandler>();
-
+        // Register all job processors as singletons
         services.AddSingleton<ArchiveJobProcessor>();
         services.AddSingleton<ExportJobProcessor>();
         services.AddSingleton<ImportJobProcessor>();

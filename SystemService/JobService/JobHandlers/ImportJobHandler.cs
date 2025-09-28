@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using NV.CT.CTS.Enums;
+﻿using NV.CT.CTS.Enums;
 using NV.CT.Job.Contract.Model;
 using NV.CT.JobService.Interfaces;
 
@@ -7,28 +6,22 @@ namespace NV.CT.JobService.JobHandlers
 {
     public class ImportJobHandler : IJobHandler
     {
-        private readonly IServiceProvider _serviceProvider;
+        private readonly IJobQueueHandler _jobQueueHandler;
 
         public bool CanAccept(JobTaskInfo jobTaskInfo)
         {
             return jobTaskInfo.JobType is JobTaskType.ImportJob;
         }
 
-        public ImportJobHandler(IServiceProvider serviceProvider)
+        public ImportJobHandler(IJobQueueHandler jobQueueHandler)
         {
-            _serviceProvider = serviceProvider;
+            _jobQueueHandler = jobQueueHandler;
         }
 
         public bool EnqueueJobRequest(JobTaskInfo jobRequest)
         {
             //Save job request to DB
-            var result = _serviceProvider.GetRequiredService<IJobQueueHandler>().EnqueueJobRequest(jobRequest);
-            if (result)
-            {
-                Task.Run(() => { _serviceProvider.GetRequiredService<ImportJobProcessor>().EnqueueNewJob(jobRequest); });
-            }
-
-            return result;
+            return _jobQueueHandler.EnqueueJobRequest(jobRequest);
         }
     }
 }

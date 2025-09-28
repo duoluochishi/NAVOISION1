@@ -7,28 +7,22 @@ namespace NV.CT.JobService.JobHandlers
 {
     public class ArchiveJobHandler : IJobHandler
     {
-        private readonly IServiceProvider _serviceProvider;
+        private readonly IJobQueueHandler _jobQueueHandler;
 
         public bool CanAccept(JobTaskInfo jobTaskInfo)
         {
             return jobTaskInfo.JobType is JobTaskType.ArchiveJob;
         }
 
-        public ArchiveJobHandler(IServiceProvider serviceProvider)
+        public ArchiveJobHandler(IJobQueueHandler jobQueueHandler)
         {
-            _serviceProvider = serviceProvider;
+            _jobQueueHandler = jobQueueHandler;
         }
 
         public bool EnqueueJobRequest(JobTaskInfo jobRequest)
         {
             //Save job request to DB
-            var result = _serviceProvider.GetRequiredService<IJobQueueHandler>().EnqueueJobRequest(jobRequest);
-            if (result)
-            {
-                Task.Run(() => { _serviceProvider.GetRequiredService<ArchiveJobProcessor>().EnqueueNewJob(jobRequest); }); 
-            }
-
-            return result;
+            return _jobQueueHandler.EnqueueJobRequest(jobRequest);
         }
     }
 }
