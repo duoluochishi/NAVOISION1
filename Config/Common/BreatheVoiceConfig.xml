@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BreatheVoices xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" MaxGroups="10">
+  <BreatheVoiceGroup Id="1" Name="Breathing voice (Factory)" Description="For patient breathing training" IsFactory="true" IsDefault="true" MaxVoices="5">
+    <BreatheVoice Id="1" Name="en_US_Std_Breathe_In" FilePath="Factory\1.wav" Time="3" Language="EN" />
+    <BreatheVoice Id="2" Name="en_US_Std_Breathe_Out" FilePath="Factory\2.wav" Time="4" Language="EN" />
+    <BreatheVoice Id="3" Name="Please_breathe" FilePath="Factory\3.wav" Time="3" Language="CN" />
+    <BreatheVoice Id="4" Name="Take_a_deep_breath_in_and_hold_it" FilePath="Factory\4.wav" Time="4" Language="CN" />
+  </BreatheVoiceGroup>
+</BreatheVoices>
