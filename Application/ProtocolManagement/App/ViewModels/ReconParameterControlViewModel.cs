@@ -78,6 +78,12 @@ namespace NV.CT.ProtocolManagement.ViewModels
             get => _kernelList;
             set => SetProperty(ref _kernelList, value);
         }
+        private ObservableCollection<KeyValuePair<int, string>> _filterList;
+        public ObservableCollection<KeyValuePair<int, string>> FilterList
+        {
+            get => _filterList;
+            set => SetProperty(ref _filterList, value);
+        }
 
         private ObservableCollection<KeyValuePair<int, string>> _reconMethodList;
         public ObservableCollection<KeyValuePair<int, string>> ReconMethodList
@@ -167,6 +173,13 @@ namespace NV.CT.ProtocolManagement.ViewModels
         {
             get => _selectReconMethod;
             set => SetProperty(ref _selectReconMethod, value); 
+        }
+
+        private KeyValuePair<int, string> _selectFilter;
+        public KeyValuePair<int, string> SelectFilter
+        {
+            get => _selectFilter;
+            set => SetProperty(ref _selectFilter, value);
         }
 
         private KeyValuePair<int, string> _selectKernel;
@@ -366,7 +379,8 @@ namespace NV.CT.ProtocolManagement.ViewModels
         private void InitComboBoxItem()
         {
             ImageOrderList = EnumExtension.EnumToList(typeof(ImageOrders));
-            KernelList = EnumExtension.EnumToList(typeof(FilterType));
+            KernelList = EnumExtension.EnumToList(typeof(Kernel));
+            FilterList = EnumExtension.EnumToList(typeof(FilterType));
 
             ReconMethodList = EnumExtension.EnumToList(typeof(ReconType));
             ReconMethods = EnumExtension.EnumToList(typeof(ReconType)).ToList();
@@ -395,6 +409,7 @@ namespace NV.CT.ProtocolManagement.ViewModels
             SelectRemoveArtifact = RemoveArtifactList[0];
             SelectReconMethod = ReconMethodList[0];
             SelectKernel = KernelList[0];
+            SelectFilter = FilterList[0];
             SelectedReconBodyPart = ReconBodyPartList[0];
 
             if (WindowList.Count > 0)
@@ -521,7 +536,8 @@ namespace NV.CT.ProtocolManagement.ViewModels
             ProtocolHelper.SetParameter(reconModel, ProtocolParameterNames.RECON_METAL_ARITIFACT_ENABLE, this.IsMetalAritifacEnable.ToString(), true);
             ProtocolHelper.SetParameter(reconModel, ProtocolParameterNames.RECON_RING_ARITIFACT_ENABLE, this.IsRingAritifactEnable.ToString(), true);
             ProtocolHelper.SetParameter(reconModel, ProtocolParameterNames.RECON_RECON_TYPE, SelectReconMethod.Value, true);
-            ProtocolHelper.SetParameter(reconModel, ProtocolParameterNames.RECON_FILTER_TYPE, ((FilterType[])Enum.GetValues(typeof(FilterType)))[SelectKernel.Key].ToString(), true);
+            ProtocolHelper.SetParameter(reconModel, ProtocolParameterNames.RECON_FILTER_TYPE, ((FilterType[])Enum.GetValues(typeof(FilterType)))[SelectFilter.Key].ToString(), true);
+            ProtocolHelper.SetParameter(reconModel, ProtocolParameterNames.RECON_KERNEL, ((Kernel[])Enum.GetValues(typeof(Kernel)))[SelectKernel.Key].ToString(), true);
             ProtocolHelper.SetParameter(reconModel, ProtocolParameterNames.RECON_INTERP_TYPE, SelectedInterpType.Key.ToString(), true);
             ProtocolHelper.SetParameter(reconModel, ProtocolParameterNames.RECON_AIR_CORRECTION_MODE, SelectedAirCorrectionMode.Value.ToString(), true);
             ProtocolHelper.SetParameter(reconModel, ProtocolParameterNames.RECON_WINDOW_TYPE, SelectWindow.Value.ToString(), true);
@@ -655,9 +671,11 @@ namespace NV.CT.ProtocolManagement.ViewModels
             ReconParameter.PostDenoiseCoef = reconModel.PostDenoiseCoef.ToString();
             ReconParameter.ReconType = reconModel.ReconType.ToString();
             SelectReconMethod = ReconMethodList.Any(t => t.Value == ReconParameter.ReconType.Trim())?ReconMethodList.FirstOrDefault(t => t.Value == ReconParameter.ReconType.Trim()): ReconMethodList[0];
-            ReconParameter.FilterType = reconModel.Parameters.FirstOrDefault(r => r.Name == ProtocolParameterNames.RECON_FILTER_TYPE).Value;
+            ReconParameter.FilterType = reconModel.Parameters.FirstOrDefault(r => r.Name == ProtocolParameterNames.RECON_FILTER_TYPE)?.Value;
+            ReconParameter.Kernel = reconModel.Parameters.FirstOrDefault(r => r.Name == ProtocolParameterNames.RECON_KERNEL)?.Value;
             //SelectKernel = KernelList.Any(t=>t.Value== reconModel.FilterTypeDisplay.Trim())? KernelList.FirstOrDefault(t => t.Value == reconModel.FilterTypeDisplay.Trim()): KernelList[0];
-            SelectKernel = KernelList.FirstOrDefault(t => t.Value == ReconParameter.FilterType);
+            SelectKernel = string.IsNullOrEmpty(ReconParameter.Kernel) ?  KernelList[0]:  KernelList.FirstOrDefault(t => t.Value == ReconParameter.Kernel);
+            SelectFilter = string.IsNullOrEmpty(ReconParameter.FilterType) ?  FilterList[0] :  FilterList.FirstOrDefault(t => t.Value == ReconParameter.FilterType);
             ReconParameter.WindowType = reconModel.WindowType.ToString();
             var lowserWindowType = ReconParameter.WindowType.ToLower();
             SelectWindow = WindowList.Any(t => t.Value == ReconParameter.WindowType.Trim()) ? WindowList.FirstOrDefault(t => t.Value.ToLower() == lowserWindowType) : WindowList[0];

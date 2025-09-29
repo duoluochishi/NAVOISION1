@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FilterConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <StudyDateRange DateRangeType="All" BeginDate="" EndDate="" />
-  <SortedColumn ColumnName="CreateTime" IsAscending="false" />
+  <SortedColumn ColumnName="CreateTime" IsAscending="true" />
   <StudyStatus IsInProgressChecked="true" IsFinishedChecked="true" IsAbnormalChecked="true" />
   <PrintStatus IsNotyetChecked="true" IsFinishedChecked="true" IsFailedChecked="true" />
   <ArchiveStatus IsNotyetChecked="true" IsFinishedChecked="true" IsPartlyFinishedChecked="true" IsFailedChecked="true" />

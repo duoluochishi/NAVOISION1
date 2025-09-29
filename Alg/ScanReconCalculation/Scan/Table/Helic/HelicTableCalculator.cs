@@ -62,9 +62,9 @@ public class HelicTableCalculator : IScanTableCalculator
         var dataBeginPos = input.ReconVolumeBeginPos + preOffsetD2V;
         var dataEndPos = input.ReconVolumeEndPos + postOffsetD2V;
         var tableBeginPos = dataBeginPos + preOffsetT2D;
-        var tableEndPos = dataEndPos + postOffsetT2D;
+        var tableEndPos = dataEndPos + postOffsetT2D;		
 
-        result.ReconVolumeBeginPos = input.ReconVolumeBeginPos;
+		result.ReconVolumeBeginPos = input.ReconVolumeBeginPos;
         result.ReconVolumeEndPos = input.ReconVolumeEndPos;
         result.DataBeginPos = dataBeginPos;
         result.DataEndPos = dataEndPos;
@@ -74,7 +74,17 @@ public class HelicTableCalculator : IScanTableCalculator
         result.TableSpeed = GetHelicTableSpeed(input);
         result.TableEndPos = result.TableEndPos + result.TableSpeed * PostOffsetAcqTime * CommonCalHelper.GetTableDirectionFactor(input.TableDirection);
 
-        result.NumOfScan = 1;
+		TableInfo node = SystemConfig.TableConfig.Table;
+		if (node.MinZ.Value > result.TableEndPos)
+		{
+			result.TableEndPos = node.MinZ.Value;
+		}
+		if (node.MaxZ.Value < result.TableEndPos)
+		{
+			result.TableEndPos = node.MaxZ.Value;
+		}
+
+		result.NumOfScan = 1;
 
         result.TableAccTime = result.TableSpeed / input.TableAcc * IScanTableCalculator.TimeScaleSecToUS;
         result.TotalFrames = ((int)(Math.Abs(dataBeginPos - dataEndPos) / (input.CollimatedSliceWidth * input.Pitch) * input.FramesPerCycle) + input.PreIgnoredFrames) / input.ExpSourceCount;
@@ -94,6 +104,11 @@ public class HelicTableCalculator : IScanTableCalculator
         return input.ScanOption is ScanOption.Helical;
     }
 
+    /// <summary>
+    /// 获取扫描开始端曝光数据偏移
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
     public double GetPreOffsetD2V(TableControlInput input)
     {
         double offset = 0;
@@ -101,18 +116,18 @@ public class HelicTableCalculator : IScanTableCalculator
         var directionFactor = -1 * CommonCalHelper.GetTableDirectionFactor(input.TableDirection);
 
         //Offset
-        if (input.TableDirection is TableDirection.In) //进床，开始为大锥角方向
+        if (input.TableDirection is TableDirection.In) //进床，开始为大锥角方向,删除一个探测器后使用PreDeleteLength
         {
             offset += GetLargeSideOffsetD2V(input);
-            var largeDeleteLength = input.PostDeleteLegnth == 0 ?
-                CommonCalHelper.GetHelicPostDeleteLength(input.BodyPart, input.CollimatorZ, input.ObjectFov) : input.PostDeleteLegnth;
-            offset += largeDeleteLength;
+            var preDeleteLength = CommonCalHelper.GetHelicPreDeleteLength(input.CollimatorZ, input.ObjectFov, input.PreDeleteRatio);
+            offset += preDeleteLength;
         }
-        else                                          //出床，开始为小锥角方向
+        else                                          //出床，开始为小锥角方向,删除一个探测器后使用PostDeleteLength
         {
             offset += GetSmallSideOffsetD2V(input);
-            var smallDeleteLength = CommonCalHelper.GetHelicPreDeleteLength(input.CollimatorZ, input.ObjectFov, input.PreDeleteRatio);
-            offset -= smallDeleteLength;
+            var postDeleteLength = input.PostDeleteLegnth == 0 ?
+                CommonCalHelper.GetHelicPostDeleteLength(input.BodyPart,input.CollimatorZ, input.ObjectFov) : input.PostDeleteLegnth;
+            offset -= postDeleteLength;
         }
 
         offset += GetIgnoredND2V(input) * directionFactor;
@@ -122,6 +137,11 @@ public class HelicTableCalculator : IScanTableCalculator
     }
 
 
+    /// <summary>
+    /// 获取扫描结束端曝光数据偏移
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
     public double GetPostOffsetD2V(TableControlInput input)
     {
         double offset = 0;
@@ -129,19 +149,20 @@ public class HelicTableCalculator : IScanTableCalculator
         var directionFactor = CommonCalHelper.GetTableDirectionFactor(input.TableDirection);
 
 
-        if (input.TableDirection is TableDirection.In)      //进床，结束为小锥角方向
+        if (input.TableDirection is TableDirection.In)      //进床，结束为小锥角方向,删除一个探测器后使用PostDeleteLength
         {
             offset += GetSmallSideOffsetD2V(input);
-            var smallDeleteLength = CommonCalHelper.GetHelicPreDeleteLength(input.CollimatorZ, input.ObjectFov, input.PreDeleteRatio); 
-            
-            offset -= smallDeleteLength;
+            var postDeleteLength = input.PostDeleteLegnth == 0 ?
+                CommonCalHelper.GetHelicPostDeleteLength(input.BodyPart, input.CollimatorZ, input.ObjectFov) : input.PostDeleteLegnth;
+
+            offset -= postDeleteLength;
         }
-        else                         //出床，结束为大锥角方向
+        else                         //出床，结束为大锥角方向,删除一个探测器后使用PreDeleteLength
         {
             offset += GetLargeSideOffsetD2V(input);
-            var largeDeleteLength = input.PostDeleteLegnth == 0 ?
-                CommonCalHelper.GetHelicPostDeleteLength(input.BodyPart, input.CollimatorZ, input.ObjectFov) : input.PostDeleteLegnth;
-            offset += largeDeleteLength;
+            var preDeleteLength = CommonCalHelper.GetHelicPostDeleteLength(input.BodyPart, input.CollimatorZ, input.ObjectFov);
+
+            offset += preDeleteLength;
         }
 
         offset += HelicPostOffsetWeightD2V * input.CollimatedSliceWidth * directionFactor;

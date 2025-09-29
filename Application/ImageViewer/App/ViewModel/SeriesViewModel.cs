@@ -196,6 +196,7 @@ public class SeriesViewModel : BaseViewModel
         _viewerService.ViewerChanged += OnSeriesChanged;
 
         PostDenoiseTypeList = EnumExtension.EnumToList(typeof(PostDenoiseType));
+        SharpAlgTypeList = EnumExtension.EnumToList(typeof(SharpAlgType));
         InitKernelList();
 
         ResetPostProcessParameters();
@@ -910,6 +911,23 @@ public class SeriesViewModel : BaseViewModel
         }
     }
 
+    private ObservableCollection<KeyValuePair<int, string>> _sharpAlgTypeList = new();
+    public ObservableCollection<KeyValuePair<int, string>> SharpAlgTypeList
+    {
+        get => _sharpAlgTypeList;
+        set => SetProperty(ref _sharpAlgTypeList, value);
+    }
+
+    private KeyValuePair<int, string> _selectSharpAlgType;
+    public KeyValuePair<int, string> SelectSharpAlgType
+    {
+        get => _selectSharpAlgType;
+        set
+        {
+            SetProperty(ref _selectSharpAlgType, value);
+        }
+    }
+
     public void OnApplyPostProcessCommand(object parameter)
     {
         if (parameter is not Window window)
@@ -1156,6 +1174,7 @@ public class SeriesViewModel : BaseViewModel
                     Type = PostProcessType.Sharp,
                     Parameters = new List<ParameterModel>
                         {
+                            new ParameterModel { Name = ProtocolParameterNames.POST_PROCESS_ARGUMENT_SHARP_ALGORITHM_TYPE, Value = SelectSharpAlgType.Value.ToString() },
                             new ParameterModel { Name = ProtocolParameterNames.POST_PROCESS_ARGUMENT_SHARP_LEVEL, Value = SharpLevel.ToString() }
                         }
                 });
@@ -1227,6 +1246,7 @@ public class SeriesViewModel : BaseViewModel
     private void ResetPostProcessParameters()
     {
         SelectPostProcessDenoiseType = PostDenoiseTypeList[0];
+        SelectSharpAlgType = SharpAlgTypeList[0];
         DenoiseLevel = 1;
         SharpLevel = 1;
 

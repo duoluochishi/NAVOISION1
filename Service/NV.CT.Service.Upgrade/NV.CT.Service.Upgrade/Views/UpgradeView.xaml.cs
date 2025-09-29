@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -24,7 +22,7 @@ namespace NV.CT.Service.Upgrade.Views
             InitializeComponent();
         }
 
-        private async void Root_Loaded(object sender, RoutedEventArgs e)
+        private void Root_Loaded(object sender, RoutedEventArgs e)
         {
             if (_isFirstLoad)
             {
@@ -32,13 +30,11 @@ namespace NV.CT.Service.Upgrade.Views
                 _vm = Global.ServiceProvider.GetRequiredService<UpgradeViewModel>();
                 DataContext = _vm;
                 _isFirstLoad = false;
-                _vm.OnLoaded();
-                await Task.Yield();
-                _vm.OnContentRendered();
+                _vm.OnLoaded(true);
             }
             else
             {
-                _vm!.OnLoaded();
+                _vm!.OnLoaded(false);
             }
         }
 

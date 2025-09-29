@@ -59,6 +59,10 @@ public class ScanDefaultViewMode : BaseViewModel
     [UIRoute]
     private void SelectionManager_SelectionReconChanged(object? sender, CTS.EventArgs<ReconModel> e)
     {
+        if (e.Data is null || _selectionManager.IsSelectionScanChanged)
+        {
+            return;
+        }
         IsUIChange = false;
         IsShowScanPara = false;
         IsUIChange = true;
@@ -120,7 +124,7 @@ public class ScanDefaultViewMode : BaseViewModel
                     _selectionManager.SelectScan(frame.Descriptor.Id, measurement.Descriptor.Id, scan.Descriptor.Id);
                 }
             }
-            else if (value == 1)
+            else if (value == 1 )
             {
                 //recon
                 var currentRecon = _selectionManager.CurrentSelectionRecon;

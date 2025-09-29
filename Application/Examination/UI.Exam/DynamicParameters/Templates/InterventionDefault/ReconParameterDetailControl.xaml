@@ -130,18 +130,13 @@
                      Width="80"
                      Style="{StaticResource StressLineStyle}" />
             </Grid>
-            <!--  Remove Artifacts  -->
-            <Grid Style="{StaticResource StackPanelGrid}">
-                <local:RemoveArtifacts />
-            </Grid>
             <!--  Recon Method  -->
             <Grid Style="{StaticResource StackPanelGrid}">
                 <local:ReconMethodShow />
             </Grid>
-           
-            <!--  Kernel  -->
+            <!--  Filter  -->
             <Grid Style="{StaticResource StackPanelGrid}">
-                <local:Kernel />
+                <local:Filter />
             </Grid>
             <!--  Window  -->
             <Grid Style="{StaticResource StackPanelGrid}">
@@ -151,29 +146,16 @@
             <Grid Style="{StaticResource StackPanelGrid}">
                 <local:WW_WL />
             </Grid>
-
-            <Grid Style="{StaticResource StackPanelGrid}">
-                <local:PreDenoise />
-            </Grid>
-            <Grid Style="{StaticResource StackPanelGrid}">
-                <local:PostDenoise />
-            </Grid>
-            <Grid Style="{StaticResource StackPanelGrid}">
-                <local:AirCorrectionMode />
-            </Grid>
-            <Grid Style="{StaticResource StackPanelGrid}">
-                <local:RingCorrectionCoef />
-            </Grid>
-
-            <Grid Style="{StaticResource StackPanelGrid}">
-                <local:IsTwoPass/>
-            </Grid>
             <Grid Style="{StaticResource StackPanelGrid}">
                 <local:IsMetalAritifact/>
             </Grid>
             <!--  HD recon  -->
             <Grid Style="{StaticResource StackPanelGrid}">
                 <local:IsHDRecon/>
+            </Grid>
+            <!--  Kernel  -->
+            <Grid Style="{StaticResource StackPanelGrid}">
+                <local:Kernel/>
             </Grid>
         </StackPanel>
 

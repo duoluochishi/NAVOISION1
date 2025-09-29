@@ -11,7 +11,13 @@ namespace NV.CT.CTS.Enums
     /// </summary>
     public enum TaskType
     {
-        Scan,
-        Recon,
+        Unknow,
+        Reconstruction, 
+        PostProcess, 
+        Archive,
+        Import,
+        Export,
+        Print,
+        Worklist
     }
 }

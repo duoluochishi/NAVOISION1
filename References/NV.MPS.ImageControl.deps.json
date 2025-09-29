@@ -25,7 +25,7 @@
         "runtime": {
           "NV.MPS.UI.Config.dll": {
             "assemblyVersion": "1.0.0",
-            "fileVersion": "2.0.3.11004"
+            "fileVersion": "2.0.4.11448"
           }
         }
       },
@@ -33,7 +33,7 @@
         "runtime": {
           "NV.MPS.Annotations.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "2.0.3.11004"
+            "fileVersion": "2.0.4.11448"
           }
         }
       },
@@ -41,7 +41,7 @@
         "runtime": {
           "NV.MPS.DICOM.Toolkit.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "2.0.3.11004"
+            "fileVersion": "2.0.4.11448"
           }
         }
       },
@@ -49,7 +49,7 @@
         "runtime": {
           "NV.MPS.Environment.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "2.0.3.11004"
+            "fileVersion": "2.0.4.11448"
           }
         }
       },
@@ -57,7 +57,7 @@
         "runtime": {
           "NV.MPS.ImageIO.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "2.0.3.11004"
+            "fileVersion": "2.0.4.11448"
           }
         }
       },
@@ -65,7 +65,7 @@
         "runtime": {
           "NV.MPS.ImageRender.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "2.0.3.11004"
+            "fileVersion": "2.0.4.11448"
           }
         }
       },
@@ -73,7 +73,7 @@
         "runtime": {
           "NV.MPS.UI.Components.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "2.0.3.11004"
+            "fileVersion": "2.0.4.11448"
           }
         }
       },
@@ -81,7 +81,7 @@
         "runtime": {
           "NV.MPS.UI.Generic.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "2.0.3.11004"
+            "fileVersion": "2.0.4.11448"
           }
         }
       },

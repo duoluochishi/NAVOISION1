@@ -44,6 +44,8 @@ public static class ServiceCollectionExtension
         services.AddSingleton<PrintProtocolWindow>();
         services.AddSingleton<KvMaCoefficientWindow>();
         services.AddSingleton<FilmSettingsControl>();
+        services.AddSingleton<BreatheVoiceWindow>();
+        services.AddSingleton<AddBreatheVoiceWindow>();
     }
 
     private static void AddViewModel(IServiceCollection services)
@@ -92,5 +94,8 @@ public static class ServiceCollectionExtension
         services.AddSingleton<LaserViewModel>();
         services.AddSingleton<LoginSettingViewModel>();
         services.AddSingleton<SystemSettingViewModel>();
+        services.AddSingleton<BreatheVoiceListViewModel>();
+        services.AddSingleton<BreatheVoiceViewModel>();
+        services.AddSingleton<AddBreatheVoiceViewModel>();
     }
 }

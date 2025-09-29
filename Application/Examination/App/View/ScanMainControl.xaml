@@ -42,23 +42,35 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="5" />
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="0"  CornerRadius="10" Style="{StaticResource WindowsBorder}" Margin="0 5 0 5">
+            <Border CornerRadius="10" Style="{StaticResource WindowsBorder}" Margin="0 5 0 5">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="230" />
                         <RowDefinition Height="100" />
                         <RowDefinition Height="100" />
+                        <!--<RowDefinition Height="30" />-->
                     </Grid.RowDefinitions>
                     <view:TaskListControl Grid.Row="0" />
                     <view:BodyPositionControl Grid.Row="1"/>
-                    <view:MessageTooltipControl Grid.Row="2" />
+                    <!--<view:MessageTooltipControl Grid.Row="2" />-->
                     <view:ScanControlsControl Grid.Row="3" />
+                    <!--<StackPanel Grid.Row="4" Background="Red">
+                        <Button x:Name="btnShowPop" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="50" Click="Button_Click">
+                            pop
+                        </Button>
+                    </StackPanel>-->
                 </Grid>
             </Border>
-            <Border Grid.Column="2">
+            <Grid Grid.Column="2">
                 <ContentControl x:Name="LayoutContainer"  Style="{StaticResource ContentControlStyle}" />
-            </Border>
+                <Popup x:Name="MyPopup" IsOpen="{Binding Path=InfoPopShow, Mode=TwoWay}"  Width="400" Height="150" Placement="Center"  AllowsTransparency="True">
+                    <Border Background="#16162b" CornerRadius="10" BorderThickness="0">
+                        <view:MessageTooltipControl Margin="0,10" />
+                    </Border>
+                </Popup>
+                
+            </Grid>
         </Grid>
     </AdornerDecorator>
 </UserControl>

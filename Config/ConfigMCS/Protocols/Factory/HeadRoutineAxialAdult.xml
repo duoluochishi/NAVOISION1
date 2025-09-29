@@ -130,7 +130,7 @@
                   <Parameter Name="DoseNotificationOperator" Value="" />
                   <Parameter Name="DoseAlertMessage" Value="" />
                   <Parameter Name="DoseAlertOperator" Value="" />
-                  <Parameter Name="ScanLength" Value="200000" />
+                  <Parameter Name="ScanLength" Value="512000" />
                   <Parameter Name="CollimatorZ" Value="242" />
                   <Parameter Name="CollimatorSliceWidth" Value="39930" />
                   <Parameter Name="FuncMode" Value="Clinical" />
@@ -386,7 +386,7 @@
                     </Descriptor>
                     <Parameters>
                       <Parameter Name="ReconType" Value="IVR_TV" />
-                      <Parameter Name="FilterType" Value="Smooth" />
+                      <Parameter Name="FilterType" Value="None" />
                       <Parameter Name="InterpType" Value="0" />
                       <Parameter Name="MetalAritifactEnable" Value="False" />
                       <Parameter Name="SliceThickness" Value="5000" />

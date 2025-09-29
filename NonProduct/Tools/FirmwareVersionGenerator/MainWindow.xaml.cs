@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -13,6 +14,17 @@ public partial class MainWindow : Window
 	public MainWindow()
 	{
 		InitializeComponent();
+
+		Loaded += MainWindow_Loaded;
+	}
+
+	private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+	{
+		var configPath = File.ReadAllText("./path.txt");
+		if (!string.IsNullOrEmpty(configPath))
+		{
+			TxtFirmwareConfigFile.Text= configPath;
+		}
 	}
 
 	// 粘贴按钮：解析剪贴板的 Excel 数据
@@ -30,7 +42,12 @@ public partial class MainWindow : Window
 	{
 		var dict = ExtractDict();
 		//return;
-		UpdateXmlVersions(TxtFirmwareConfigFile.Text, dict);
+
+		var configFile = TxtFirmwareConfigFile.Text.Trim();
+
+		UpdateXmlVersions(configFile, dict);
+		//将当前路径存入记录文件
+		File.WriteAllText("path.txt",configFile);
 
 		MessageBox.Show("write to config file success");
 	}

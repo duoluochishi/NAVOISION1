@@ -39,7 +39,6 @@ internal class RawDataService : IRawDataService
 
     public bool Add(RawDataModel rawDataModel)
     {
-        _logger.LogInformation("Add RawDataModel");
         var rawDataEntity = _mapper.Map<RawDataEntity>(rawDataModel);
         var result = _rawDataRepository.Add(rawDataEntity);
         if (result)
@@ -51,7 +50,6 @@ internal class RawDataService : IRawDataService
 
     public bool Update(RawDataModel rawDataModel)
     {
-        _logger.LogInformation("Update RawDataModel");
         var rawDataEntity = _mapper.Map<RawDataEntity>(rawDataModel);
         var result = _rawDataRepository.Update(rawDataEntity);
         if (result)
@@ -63,7 +61,6 @@ internal class RawDataService : IRawDataService
 
     public bool Delete(string id)
     {
-        _logger.LogInformation("Delete RawDataModel");
         var result = _rawDataRepository.Delete(id);
         if (result)
         {

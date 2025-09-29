@@ -28,6 +28,7 @@ public interface ISelfCheckingProxyService
 
 	List<SelfCheckInfo> GetResults();
 
-	[Obsolete("这里的实现逻辑有问题")]
-	BaseCommandResult StartSelfChecking(SelfCheckPartType partType);
+	
+	//[Obsolete("这里的实现逻辑有问题")]
+	//BaseCommandResult StartSelfChecking(SelfCheckPartType partType);
 }

@@ -55,8 +55,8 @@ public class SpiralScanTaskViewModel : BaseViewModel
     /// <summary>
     /// 时间跟像素值的转换系数
     /// </summary>
-    private int _convertToScale = 10;
-    public int ConvertToScale
+    private double _convertToScale = 5;
+    public double ConvertToScale
     {
         get => _convertToScale;
         set => SetProperty(ref _convertToScale, value);

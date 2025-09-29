@@ -23,20 +23,20 @@ namespace NV.CT.DicomUtility.Graphic
             hfp[TubePosition.Angle270] = new double[] { 0, 1, 0, 0, 0, -1 };
 
             var ffs = new Dictionary<TubePosition, double[]>();
-            ffs[TubePosition.Angle0] = new double[] { -1, 0, 0, 0, 0, -1 };
-            ffs[TubePosition.Angle180] = new double[] { -1, 0, 0, 0, 0, -1 };
+            ffs[TubePosition.Angle0] = new double[] { 1, 0, 0, 0, 0, -1 };
+            ffs[TubePosition.Angle180] = new double[] { 1, 0, 0, 0, 0, -1 };
             ffs[TubePosition.Angle90] = new double[] { 0, 1, 0, 0, 0, -1 };
             ffs[TubePosition.Angle270] = new double[] { 0, 1, 0, 0, 0, -1 };
 
             var ffp = new Dictionary<TubePosition, double[]>();
-            ffp[TubePosition.Angle0] = new double[] { 1, 0, 0, 0, 0, -1 };
-            ffp[TubePosition.Angle180] = new double[] { 1, 0, 0, 0, 0, -1 };
+            ffp[TubePosition.Angle0] = new double[] { -1, 0, 0, 0, 0, -1 };
+            ffp[TubePosition.Angle180] = new double[] { -1, 0, 0, 0, 0, -1 };
             ffp[TubePosition.Angle90] = new double[] { 0, 1, 0, 0, 0, -1 };
             ffp[TubePosition.Angle270] = new double[] { 0, 1, 0, 0, 0, -1 };
 
             var hfdl = new Dictionary<TubePosition, double[]>();
-            hfdl[TubePosition.Angle0] = new double[] { 0, -1, 0, 0, 0, -1 };
-            hfdl[TubePosition.Angle180] = new double[] { 0, -1, 0, 0, 0, -1 };
+            hfdl[TubePosition.Angle0] = new double[] { 0, 1, 0, 0, 0, -1 };
+            hfdl[TubePosition.Angle180] = new double[] { 0, 1, 0, 0, 0, -1 };
             hfdl[TubePosition.Angle90] = new double[] { 1, 0, 0, 0, 0, -1 };
             hfdl[TubePosition.Angle270] = new double[] { 1, 0, 0, 0, 0, -1 };
 
@@ -47,8 +47,8 @@ namespace NV.CT.DicomUtility.Graphic
             hfdr[TubePosition.Angle270] = new double[] { 1, 0, 0, 0, 0, -1 };
 
             var ffdl = new Dictionary<TubePosition, double[]>();
-            ffdl[TubePosition.Angle0] = new double[] { 0, -1, 0, 0, 0, -1 };
-            ffdl[TubePosition.Angle180] = new double[] { 0, -1, 0, 0, 0, -1 };
+            ffdl[TubePosition.Angle0] = new double[] { 0, 1, 0, 0, 0, -1 };
+            ffdl[TubePosition.Angle180] = new double[] { 0, 1, 0, 0, 0, -1 };
             ffdl[TubePosition.Angle90] = new double[] { 1, 0, 0, 0, 0, -1 };
             ffdl[TubePosition.Angle270] = new double[] { 1, 0, 0, 0, 0, -1 };
 

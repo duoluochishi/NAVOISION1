@@ -9,5 +9,7 @@
 		<ExposureIntervalTime Max="600000" Min="1000" DefaultMax="600000" DefaultMin="1000" />
 		<TopoOffsetFrameTime Value="10000" Default="10000" />
 		<PostPreVoiceDelayTime Value="1000000" Default="1000000" />
+		<ECGDataSampleFrequency Value="1000" Default="1000" />
+		<MRSECGDataBufferInterval Value="600" Default="600" />
 	</Acquisition>
 </AcquisitionConfig>

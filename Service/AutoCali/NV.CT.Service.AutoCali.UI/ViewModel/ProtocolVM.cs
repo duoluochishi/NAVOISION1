@@ -1,6 +1,7 @@
 ﻿using NV.CT.FacadeProxy.Common.Enums;
 using NV.CT.FacadeProxy.Common.Enums.Collimator;
 using NV.CT.FacadeProxy.Common.Enums.ReconEnums;
+using NV.CT.FacadeProxy.Common.Enums.ScanEnums;
 using NV.CT.FacadeProxy.Common.Helpers;
 using NV.CT.FacadeProxy.Common.Models;
 using NV.CT.Service.AutoCali.Model;
@@ -219,7 +220,7 @@ namespace NV.CT.Service.AutoCali.Logic
 
         /// <summary>
         /// ifBox 发出的nvSync的Triger信号与其Spot 信号前沿的延时。
-        /// 单位：毫秒，默认值：0.5
+        /// 单位：毫秒，默认值：0.3
         /// </summary>
         public float TDelay { get; set; } = 0.3f;
 

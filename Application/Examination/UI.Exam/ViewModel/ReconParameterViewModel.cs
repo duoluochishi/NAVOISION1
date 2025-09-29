@@ -12,6 +12,7 @@ using NV.MPS.Configuration;
 using NV.MPS.Environment;
 using Type = System.Type;
 using NV.CT.Alg.ScanReconCalculation.Recon.FovMatrix;
+using NV.CT.Protocol.Models;
 
 namespace NV.CT.UI.Exam.ViewModel;
 
@@ -52,6 +53,7 @@ public class ReconParameterViewModel : BaseViewModel
 				{
 					IsAutoReconEnabled = false;
 				}
+				IsKernelEnabled = value & IsHDRecon;
 			}
 		}
 	}
@@ -271,7 +273,8 @@ public class ReconParameterViewModel : BaseViewModel
 			SetProperty(ref _seriesDescription, SeriesDescription, OnParameterChanged, ProtocolParameterNames.RECON_SERIES_DESCRIPTION);
 		}
 		SelectImageOrder = ImageOrderList.FirstOrDefault(t => t.Key == (int)reconModel.ImageOrder);
-		SelectKernel = KernelList.FirstOrDefault(t => t.Key == (int)reconModel.FilterType);
+		SelectFilter = FilterList.FirstOrDefault(t => t.Key == (int)reconModel.FilterType);
+		SelectKernel = KernelList.FirstOrDefault(t => t.Key == (int)reconModel.Kernel);
 		GetReconMethod(reconModel);
 		SelectPreDenoiseType = PreDenoiseTypeList.FirstOrDefault(t => t.Key == (int)reconModel.PreDenoiseType);
 		SelectPostDenoiseType = PostDenoiseTypeList.FirstOrDefault(t => t.Key == (int)reconModel.PostDenoiseType);
@@ -331,6 +334,7 @@ public class ReconParameterViewModel : BaseViewModel
 		ScatterAlgorithm = reconModel.ScatterAlgorithm.ToString();
 		IsWindmillArtifact = reconModel.WindmillArtifactEnable;
 		IsConeAngleArtifact = reconModel.ConeAngleArtifactEnable;
+		IsKernelEnabled = ReconPageEnable & IsHDRecon;
 		// load post process items parameters		
 		LoadPostProcessParameters(reconModel);
 	}
@@ -423,7 +427,8 @@ public class ReconParameterViewModel : BaseViewModel
 	private void ResetPostProcessParameters()
 	{
 		SelectPostProcessDenoiseType = PostDenoiseTypeList[0];
-		DenoiseLevel = 1;
+        SelectSharpAlgType = SharpAlgTypeList[0];
+        DenoiseLevel = 1;
 		SharpLevel = 1;
 
 		MotionArtifactReduceLevel = 5;
@@ -457,8 +462,8 @@ public class ReconParameterViewModel : BaseViewModel
 			{
 				if (p.Type == PostProcessType.ConeAngleArtifactReduce)
 				{
-					var kernel = KernelList.FirstOrDefault(t => t.Key.ToString() == p.Parameters[0].Value);
-					return new KeyValuePair<string, string>(p.Type.ToString(), kernel.Value);
+					var filter = FilterList.FirstOrDefault(t => t.Key.ToString() == p.Parameters[0].Value);
+					return new KeyValuePair<string, string>(p.Type.ToString(), filter.Value);
 				}
 				return new KeyValuePair<string, string>(
 					p.Type.ToString(),
@@ -532,7 +537,8 @@ public class ReconParameterViewModel : BaseViewModel
 	private void InitComboBoxItem()
 	{
 		ImageOrderList = Extensions.Extensions.EnumToItems(typeof(ImageOrders));
-		InitKernelList();
+		InitFilterList();
+		
 		InitReconMethodList();
 		ReconMethods = Extensions.Extensions.EnumToList(typeof(ReconType)).ToList();
 		RemoveArtifactList = Extensions.Extensions.EnumToItems(typeof(RemoveArtifacts));
@@ -541,7 +547,10 @@ public class ReconParameterViewModel : BaseViewModel
 		PostDenoiseTypeList = Extensions.Extensions.EnumToList(typeof(PostDenoiseType));
 
 		AirCorrectionModeList = Extensions.Extensions.EnumToList(typeof(AirCorrectionMode));
-		InitReconMatrix();
+		KernelList = Extensions.Extensions.EnumToList(typeof(Kernel));
+        SharpAlgTypeList = Extensions.Extensions.EnumToList(typeof(SharpAlgType));
+
+        InitReconMatrix();
 		InitSliceThickness();
 		InitReconIncrement();
 		WindowList = GetWindowList();
@@ -556,13 +565,15 @@ public class ReconParameterViewModel : BaseViewModel
 		SelectImageOrder = ImageOrderList[0];
 		SelectRemoveArtifact = RemoveArtifactList[0];
 		SelectReconMethod = ReconMethodList[0];
-		SelectKernel = KernelList[0];
+		SelectFilter = FilterList[0];
 		SelectWindow = WindowList[0];
 		SelectPreDenoiseType = PreDenoiseTypeList[0];
 		SelectPostDenoiseType = PostDenoiseTypeList[0];
 		SelectAirCorrectionMode = AirCorrectionModeList[0];
-		BinningList = Extensions.Extensions.EnumToList(typeof(PreBinning));
+        SelectSharpAlgType = SharpAlgTypeList[0];
+        BinningList = Extensions.Extensions.EnumToList(typeof(PreBinning));
 		SelectBinning = BinningList[0];
+		SelectKernel = KernelList[0];
 	}
 
 	private ObservableCollection<KeyValuePair<string, string>> GetWindowList()
@@ -595,7 +606,7 @@ public class ReconParameterViewModel : BaseViewModel
 		PostDenoiseCoefMarkStatus = MarkControlStatus.Default;
 		PreDenoiseTypeMarkStatus = MarkControlStatus.Default;
 		PostDenoiseTypeMarkStatus = MarkControlStatus.Default;
-		SelectKernelMarkStatus = MarkControlStatus.Default;
+		SelectFilterMarkStatus = MarkControlStatus.Default;
 		WwMarkStatus = MarkControlStatus.Default;
 		WlMarkStatus = MarkControlStatus.Default;
 		ReconIncrementMarkStatus = MarkControlStatus.Default;
@@ -605,6 +616,7 @@ public class ReconParameterViewModel : BaseViewModel
 		IVRTVCoefMarkStatus = MarkControlStatus.Default;
 		RingCorrectionCoefMarkStatus = MarkControlStatus.Default;
 		PostProcessMarkStatus = MarkControlStatus.Default;
+		SelectKernelMarkStatus = MarkControlStatus.Default;
 		ParameterDirty.Keys?.ForEach(item =>
 		{
 			ParameterDirty[item] = false;
@@ -675,8 +687,8 @@ public class ReconParameterViewModel : BaseViewModel
 			case nameof(SelectPostDenoiseType):
 				PostDenoiseTypeMarkStatus = MarkControlStatus.Modified;
 				break;
-			case nameof(SelectKernel):
-				SelectKernelMarkStatus = MarkControlStatus.Modified;
+			case nameof(SelectFilter):
+				SelectFilterMarkStatus = MarkControlStatus.Modified;
 				break;
 			case nameof(SelectFov):
 				SelectFovMarkStatus = MarkControlStatus.Modified;
@@ -696,6 +708,9 @@ public class ReconParameterViewModel : BaseViewModel
 			case nameof(RingCorrectionCoef):
 				RingCorrectionCoefMarkStatus = MarkControlStatus.Modified;
 				break;
+			case nameof(SelectKernel):
+				SelectKernelMarkStatus = MarkControlStatus.Modified;
+				break;
 		}
 	}
 
@@ -704,6 +719,13 @@ public class ReconParameterViewModel : BaseViewModel
 	{
 		get => _selectKernelMarkStatus;
 		set => SetProperty(ref _selectKernelMarkStatus, value);
+	}
+
+	private MarkControlStatus _selectFilterMarkStatus;
+	public MarkControlStatus SelectFilterMarkStatus
+	{
+		get => _selectFilterMarkStatus;
+		set => SetProperty(ref _selectFilterMarkStatus, value);
 	}
 
 	private MarkControlStatus _selectFovMarkStatus;
@@ -880,6 +902,13 @@ public class ReconParameterViewModel : BaseViewModel
 		set => SetProperty(ref _imageOrderList, value);
 	}
 
+	private ObservableCollection<KeyValuePair<int, string>> _filterList = new();
+	public ObservableCollection<KeyValuePair<int, string>> FilterList
+	{
+		get => _filterList;
+		set => SetProperty(ref _filterList, value);
+	}
+
 	private ObservableCollection<KeyValuePair<int, string>> _kernelList = new();
 	public ObservableCollection<KeyValuePair<int, string>> KernelList
 	{
@@ -887,7 +916,7 @@ public class ReconParameterViewModel : BaseViewModel
 		set => SetProperty(ref _kernelList, value);
 	}
 
-	private ObservableCollection<KeyValuePair<int, string>> _reconMatrixList = new();
+    private ObservableCollection<KeyValuePair<int, string>> _reconMatrixList = new();
 	public ObservableCollection<KeyValuePair<int, string>> ReconMatrixeList
 	{
 		get => _reconMatrixList;
@@ -950,7 +979,14 @@ public class ReconParameterViewModel : BaseViewModel
 		set => SetProperty(ref _postDenoiseTypeList, value);
 	}
 
-	private ObservableCollection<KeyValuePair<int, string>> _airCorrectionModeList = new();
+    private ObservableCollection<KeyValuePair<int, string>> _sharpAlgTypeList = new();
+    public ObservableCollection<KeyValuePair<int, string>> SharpAlgTypeList
+    {
+        get => _sharpAlgTypeList;
+        set => SetProperty(ref _sharpAlgTypeList, value);
+    }
+
+    private ObservableCollection<KeyValuePair<int, string>> _airCorrectionModeList = new();
 	public ObservableCollection<KeyValuePair<int, string>> AirCorrectionModeList
 	{
 		get => _airCorrectionModeList;
@@ -1032,7 +1068,11 @@ public class ReconParameterViewModel : BaseViewModel
 		//            {
 		//                newFov = minFov;
 		//            }
-		newFov = (int)ReconFovMatrixHelper.GetSuitableFOVTemp(newFov);
+		//newFov = (int)ReconFovMatrixHelper.GetSuitableFOVTemp(newFov);
+
+		var minFov = ReconFovMatrixHelper.GetMinFov();
+		var newFOV = recon.FOVLengthHorizontal > minFov ? recon.FOVLengthHorizontal : minFov;
+
 		FilterReconMatrix(newFov, recon);
 		var oriMatrix = recon.ImageMatrixHorizontal;
 		var newMatrix = ReconFovMatrixHelper.GetSuitableMatrix(newFov, oriMatrix, isHDRecon);
@@ -1059,10 +1099,12 @@ public class ReconParameterViewModel : BaseViewModel
 					Name = ProtocolParameterNames.RECON_IMAGE_MATRIX_VERTICAL,
 					Value =newMatrix.ToString(CultureInfo.InvariantCulture)
 				},
-				new ParameterModel{Name = ProtocolParameterNames.RECON_CENTER_FIRST_X,Value = 0.ToString()},		//临时0724
-                new ParameterModel{Name = ProtocolParameterNames.RECON_CENTER_FIRST_Y,Value = 0.ToString()},		//临时0724
-                new ParameterModel{Name = ProtocolParameterNames.RECON_CENTER_LAST_X,Value =  0.ToString()},		//临时0724
-                new ParameterModel{Name = ProtocolParameterNames.RECON_CENTER_LAST_Y,Value = 0.ToString()},			//临时0724
+				
+				//20250912测试版，先注释掉
+				//new ParameterModel{Name = ProtocolParameterNames.RECON_CENTER_FIRST_X,Value = 0.ToString()},		//临时0724
+				//new ParameterModel{Name = ProtocolParameterNames.RECON_CENTER_FIRST_Y,Value = 0.ToString()},		//临时0724
+				//new ParameterModel{Name = ProtocolParameterNames.RECON_CENTER_LAST_X,Value =  0.ToString()},		//临时0724
+				//new ParameterModel{Name = ProtocolParameterNames.RECON_CENTER_LAST_Y,Value = 0.ToString()},		//临时0724
             };
 		_protocolHostService.SetParameters(recon, parameterModels);
 	}
@@ -1078,14 +1120,14 @@ public class ReconParameterViewModel : BaseViewModel
 		ReconMatrixeList = list;
 	}
 
-	private void InitKernelList()
+	private void InitFilterList()
 	{
 		ObservableCollection<KeyValuePair<int, string>> list = new ObservableCollection<KeyValuePair<int, string>>();
 		foreach (var item in Extensions.Extensions.EnumToList(typeof(FilterType)))
 		{
 			list.Add(new KeyValuePair<int, string>(item.Key, item.Value.Replace("Plus", "+")));
 		}
-		KernelList = list;
+		FilterList = list;
 	}
 
 	private void InitReconMatrix()
@@ -1214,13 +1256,13 @@ public class ReconParameterViewModel : BaseViewModel
 		set => SetProperty(ref _reconMethod, value);
 	}
 
-	private KeyValuePair<int, string> _selectKernel;
-	public KeyValuePair<int, string> SelectKernel
+	private KeyValuePair<int, string> _selectFilter;
+	public KeyValuePair<int, string> SelectFilter
 	{
-		get => _selectKernel;
+		get => _selectFilter;
 		set
 		{
-			if (SetProperty(ref _selectKernel, value) && IsUIChange && _selectionManager.CurrentSelectionRecon is ReconModel recon)
+			if (SetProperty(ref _selectFilter, value) && IsUIChange && _selectionManager.CurrentSelectionRecon is ReconModel recon)
 			{
 				_protocolHostService.SetParameter(recon, ProtocolParameterNames.RECON_FILTER_TYPE, value.Value.Replace("+", "Plus"));
 				if (recon.Status == PerformStatus.Unperform)
@@ -1230,6 +1272,22 @@ public class ReconParameterViewModel : BaseViewModel
 			}
 		}
 	}
+
+	private KeyValuePair<int, string> _selectKernel;
+	public KeyValuePair<int, string> SelectKernel
+	{
+		get => _selectKernel;
+		set
+		{
+			if (SetProperty(ref _selectKernel, value) && IsUIChange && _selectionManager.CurrentSelectionRecon is ReconModel recon)
+			{
+				_protocolHostService.SetParameter(recon, ProtocolParameterNames.RECON_KERNEL, value.Value);
+			}
+		}
+	}
+
+	private bool _isKernelEnabled;
+	public bool IsKernelEnabled { get => _isKernelEnabled; set { SetProperty(ref _isKernelEnabled, value); } }
 
 	private bool _windowTypeEnable = true;
 	public bool WindowTypeEnable
@@ -1372,12 +1430,18 @@ public class ReconParameterViewModel : BaseViewModel
 		{
 			if (SetProperty(ref _isHDRecon, value) && CurrentReconModel is ReconModel recon && IsUIChange)
 			{
+				IsKernelEnabled = value & ReconPageEnable;
 				_protocolHostService.SetParameter(recon, ProtocolParameterNames.RECON_IS_HD_RECON, value);
 				FilterFovAndMatrix(UnitConvert.Micron2Millimeter(recon.FOVLengthHorizontal), value, recon);
 
 				if (recon.Status == PerformStatus.Unperform)
 				{
 					SeriesDescription = recon.DefaultSeriesDescription;
+				}
+				if (!value)
+				{
+					SelectKernel = KernelList.FirstOrDefault(t => t.Key == (int)Kernel.None);
+					_protocolHostService.SetParameter(recon, ProtocolParameterNames.RECON_KERNEL, Kernel.None.ToString());
 				}
 			}
 		}
@@ -1770,7 +1834,7 @@ public class ReconParameterViewModel : BaseViewModel
 			CurrentPostProcessModelList = new List<PostProcessModel>();
 		}
 		var modifiedList = CurrentPostProcessModelList;
-		var filterType = SelectKernel.Key.ToString();
+		var filterType = SelectFilter.Key.ToString();
 		switch (postProcessType)
 		{
 			case PostProcessType.MotionArtifactReduce:
@@ -1804,7 +1868,8 @@ public class ReconParameterViewModel : BaseViewModel
 					Type = PostProcessType.Sharp,
 					Parameters = new List<ParameterModel>
 						{
-							new ParameterModel { Name = ProtocolParameterNames.POST_PROCESS_ARGUMENT_SHARP_LEVEL, Value = SharpLevel.ToString() }
+                            new ParameterModel { Name = ProtocolParameterNames.POST_PROCESS_ARGUMENT_SHARP_ALGORITHM_TYPE, Value = SelectSharpAlgType.Value.ToString() },
+                            new ParameterModel { Name = ProtocolParameterNames.POST_PROCESS_ARGUMENT_SHARP_LEVEL, Value = SharpLevel.ToString() }
 						}
 				});
 				break;
@@ -1921,7 +1986,17 @@ public class ReconParameterViewModel : BaseViewModel
 		}
 	}
 
-	private const int MaxPostProcessCount = 8;
+    private KeyValuePair<int, string> _selectSharpAlgType;
+    public KeyValuePair<int, string> SelectSharpAlgType
+    {
+        get => _selectSharpAlgType;
+        set
+        {
+            SetProperty(ref _selectSharpAlgType, value);
+        }
+    }
+
+    private const int MaxPostProcessCount = 8;
 	private PostProcessSettingWindow? _postProcessSettingWindow;
 
 	public void ShowPostProcessSettingWindow()

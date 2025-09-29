@@ -1,11 +1,11 @@
 use db_mcs;
 
-INSERT INTO `t_voices` VALUES (uuid(), '1', 'en_US_Std_Breathe_In', 'en_US_Std_Breathe_In', '', 'Factory\\1.wav', 1, '3','2.94', 'EN', 1, 0, 1, '', current_timestamp());
-INSERT INTO `t_voices` VALUES (uuid(), '2', 'en_US_Std_Breathe_Out', 'en_US_Std_Breathe_Out', '', 'Factory\\2.wav', 0, '2','1.67', 'EN', 1, 0, 1, '', current_timestamp());
-INSERT INTO `t_voices` VALUES (uuid(), '3', 'Please_breathe', 'Please_breathe', '', 'Factory\\3.wav', 0, '2','1.83', 'CN', 1, 0, 1, '', current_timestamp());
-INSERT INTO `t_voices` VALUES (uuid(), '4', 'Take_a_deep_breath_in_and_hold_it', 'Take_a_deep_breath_in_and_hold_it', '', 'Factory\\4.wav', 1, '3','2.94', 'CN', 0, 0, 1, '', current_timestamp());
-INSERT INTO `t_voices` VALUES (uuid(), '5', 'zh_CH_Std_Breathe_In', 'zh_CH_Std_Breathe_In', '', 'Factory\\5.wav', 1, '3','2.97', 'CN', 1, 1, 1, '', current_timestamp());
-INSERT INTO `t_voices` VALUES (uuid(), '6', 'zh_CH_Std_Breathe_Out', 'zh_CH_Std_Breathe_Out', '', 'Factory\\6.wav', 0, '2','1.64', 'CN', 1, 1, 1, '', current_timestamp());
+INSERT INTO `t_voices` VALUES (uuid(), '1', '2', 'en_US_Std_Breathe_In', 'en_US_Std_Breathe_In', '', 'Factory\\1.wav', 1, '3','2.94', 'EN', 1, 0, 1, '', current_timestamp());
+INSERT INTO `t_voices` VALUES (uuid(), '2', '1', 'en_US_Std_Breathe_Out', 'en_US_Std_Breathe_Out', '', 'Factory\\2.wav', 0, '2','1.67', 'EN', 1, 0, 1, '', current_timestamp());
+INSERT INTO `t_voices` VALUES (uuid(), '3', '4', 'Please_breathe', 'Please_breathe', '', 'Factory\\3.wav', 0, '2','1.83', 'CN', 1, 0, 1, '', current_timestamp());
+INSERT INTO `t_voices` VALUES (uuid(), '4', '3', 'Take_a_deep_breath_in_and_hold_it', 'Take_a_deep_breath_in_and_hold_it', '', 'Factory\\4.wav', 1, '3','2.94', 'CN', 1, 0, 1, '', current_timestamp());
+INSERT INTO `t_voices` VALUES (uuid(), '5', '6', 'zh_CH_Std_Breathe_In', 'zh_CH_Std_Breathe_In', '', 'Factory\\5.wav', 1, '3','2.97', 'CN', 1, 1, 1, '', current_timestamp());
+INSERT INTO `t_voices` VALUES (uuid(), '6', '5', 'zh_CH_Std_Breathe_Out', 'zh_CH_Std_Breathe_Out', '', 'Factory\\6.wav', 0, '2','1.64', 'CN', 1, 1, 1, '', current_timestamp());
 
 INSERT INTO `t_permissions` VALUES (uuid(), 'UserManagement', 'UserManagement', 'User management', 'SecuritySetting', '0', '\0', '', current_timestamp());
 INSERT INTO `t_permissions` VALUES (uuid(), 'ImageTextConfig', 'ImageTextConfig', 'Image text config', 'ClinicalTools', '0', '\0', '', current_timestamp());
@@ -48,6 +48,7 @@ INSERT INTO `t_permissions` VALUES (uuid(), 'ExceedAlertScan', 'ExceedAlertScan'
 INSERT INTO `t_permissions` VALUES (uuid(), 'OfflineRecon', 'OfflineRecon', 'Offline recon', 'Exam', '0', '\0', '', current_timestamp());
 INSERT INTO `t_permissions` VALUES (uuid(), 'Archive', 'Archive', 'Archive', 'PatientManagement', '0', '\0', '', current_timestamp());
 INSERT INTO `t_permissions` VALUES (uuid(), 'DeviceMaintain', 'DeviceMaintain', 'Device maintain', 'DeviceMaintain', '1', '\0', '', current_timestamp());
+
 
 INSERT INTO `t_roles` VALUES (uuid(), 'ServiceEngineer', 'Service engineer', '1', '', '\0', '', current_timestamp());
 INSERT INTO `t_roles` VALUES (uuid(), 'Administrator', 'Administrator', '2', '', '\0', '', current_timestamp());
@@ -114,7 +115,7 @@ AND p.Code in ('FilmConfig', 'AutoArchiveConfig', 'AutoPrintConfig', 'AutoDelele
 INSERT INTO `t_role_permission`(Id, RoleId, PermissionId, PermissionCode, Creator, CreateTime)
 SELECT uuid(), r.ID, p.ID, p.Code, '', CURRENT_TIMESTAMP()
 FROM t_roles r, t_permissions p
-WHERE r.Name in ('ServiceEngineer', 'Administrator', 'Engineer', 'Senior', 'DeviceManager')
+WHERE r.Name in ('ServiceEngineer', 'Administrator','Operator', 'Engineer', 'Senior', 'DeviceManager')
 AND p.Code = 'DailyCalibration';
 
 INSERT INTO `t_role_permission`(Id, RoleId, PermissionId, PermissionCode, Creator, CreateTime)

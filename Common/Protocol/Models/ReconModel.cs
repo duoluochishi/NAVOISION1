@@ -31,6 +31,9 @@ namespace NV.CT.Protocol.Models
         public FilterType FilterType => GetParameterValue<FilterType>(ProtocolParameterNames.RECON_FILTER_TYPE);
 
         [XmlIgnore, JsonIgnore]
+        public Kernel Kernel => GetParameterValue<Kernel>(ProtocolParameterNames.RECON_KERNEL);
+
+		[XmlIgnore, JsonIgnore]
         public string FilterTypeDisplay => $"{FilterType.ToString().Replace("Plus", "+")}";
 
         [XmlIgnore, JsonIgnore]

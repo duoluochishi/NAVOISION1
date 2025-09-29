@@ -21,7 +21,9 @@ public class Global
 
     public static Global Instance => _instance.Value;
 
-    private Global()
+   
+
+	private Global()
     {
     }
 
@@ -156,6 +158,7 @@ public class Global
 		CTS.Global.ServiceProvider?.GetRequiredService<TimeDensityViewModel>();
 		CTS.Global.ServiceProvider?.GetRequiredService<ProtocolHostServiceExtension>();
 		CTS.Global.ServiceProvider?.GetRequiredService<EnhancedScanExtension>();
+		//CTS.Global.ServiceProvider?.GetRequiredService<PerformedMeasurementExtension>();
 
 		CTS.Global.ServiceProvider?.GetRequiredService<UIRelatedStatusServiceExtension>();
 	}

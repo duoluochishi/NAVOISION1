@@ -68,6 +68,8 @@ namespace NV.CT.DicomUtility.Graphic
         /// <returns></returns>
         public static double[] GetDefaultTomoReconOrientation(PatientPosition pp)
         {
+            return TomoDirectionSpecification.GetTomoDirection(pp);
+            /*
             var horizontalVecDevice = new Vector3D(1, 0, 0);
             var verticalVecDevice = new Vector3D(0, 1, 0);
 
@@ -81,6 +83,7 @@ namespace NV.CT.DicomUtility.Graphic
                 verticalVecPatient.X,
                 verticalVecPatient.Y,
                 verticalVecPatient.Z};
+            */
         }
 
         public static double[] GetTomoDefaultFirstLastCenterByScanRange(PatientPosition pp, ImageOrders imageOrder, double pos1, double pos2)

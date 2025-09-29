@@ -130,7 +130,7 @@
                   <Parameter Name="DoseNotificationOperator" Value="" />
                   <Parameter Name="DoseAlertMessage" Value="" />
                   <Parameter Name="DoseAlertOperator" Value="" />
-                  <Parameter Name="ScanLength" Value="500000" />
+                  <Parameter Name="ScanLength" Value="512000" />
                   <Parameter Name="CollimatorZ" Value="242" />
                   <Parameter Name="CollimatorSliceWidth" Value="39930" />
                   <Parameter Name="FuncMode" Value="Clinical" />
@@ -418,7 +418,7 @@
                       <Parameter Name="ImageIncrement" Value="2000" />
                       <Parameter Name="IsRTD" Value="True" />
                       <Parameter Name="ImagePath" Value="" />
-                      <Parameter Name="ImageOrder" Value="HeadFoot" />
+                      <Parameter Name="ImageOrder" Value="FootHead" />
                       <Parameter Name="SeriesDescription" Value="" />
                       <Parameter Name="SeriesNumber" Value="0" />
                       <Parameter Name="AirCorrectionMode" Value="None" />
@@ -573,6 +573,7 @@
                       </PostProcess>
                       <PostProcess Index="1" Type="Sharp">
                         <Parameters>
+						  <Parameter Name="SharpAlgType" Value="Algo1" />
                           <Parameter Name="SharpLevel" Value="3" />
                         </Parameters>
                       </PostProcess>

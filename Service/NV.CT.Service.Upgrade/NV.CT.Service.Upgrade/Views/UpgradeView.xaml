@@ -13,10 +13,12 @@
     xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:upgrade="clr-namespace:NV.CT.FacadeProxy.Models.Upgrade;assembly=NV.CT.FacadeProxy"
     xmlns:models="clr-namespace:NV.CT.Service.Upgrade.Models"
+    xmlns:viewModels="clr-namespace:NV.CT.Service.Upgrade.ViewModels"
     mc:Ignorable="d"
     x:Name="Root"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    d:DataContext="{d:DesignInstance Type=viewModels:UpgradeViewModel}"
     Loaded="Root_Loaded"
     Unloaded="Root_Unloaded">
     <UserControl.Resources>
@@ -200,7 +202,7 @@
                 CanUserAddRows="False"
                 CanUserDeleteRows="False"
                 CanUserResizeRows="False"
-                CanUserSortColumns="True"
+                CanUserSortColumns="False"
                 IsReadOnly="True"
                 Grid.IsSharedSizeScope="True"
                 ItemsSource="{Binding Source={StaticResource CvsItems}}">
@@ -233,14 +235,16 @@
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Binding="{Binding DisplayName}">
                         <DataGridTextColumn.Header>
-                            <StackPanel Orientation="Horizontal" Cursor="">
+                            <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="{x:Static res:Common_Lang.Common_Name}" />
+                                <!-- 筛选按钮几乎无人使用，还可能造成误触，隐藏掉 -->
                                 <ContentControl
                                     x:Name="TypeFilter"
                                     Margin="3 0 0 0"
                                     Cursor="Hand"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
+                                    Visibility="Collapsed"
                                     MouseDown="TypeFilter_MouseDown">
                                     <Border Background="Transparent">
                                         <Path
@@ -401,8 +405,9 @@
                 Placement="MousePoint"
                 HorizontalOffset="-5"
                 VerticalOffset="-5"
+                MaxHeight="500"
                 StaysOpen="False">
-                <Border Background="{StaticResource BaseBackgroundColor}">
+                <ScrollViewer Background="{StaticResource BaseBackgroundColor}">
                     <ItemsControl ItemsSource="{Binding FilterFirmwareTypes}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -419,12 +424,14 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                </Border>
+                </ScrollViewer>
             </Popup>
         </Grid>
         <Grid Grid.Row="2" Margin="0 10 0 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="10" />
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="10" />
@@ -463,10 +470,16 @@
                 Grid.Column="2"
                 Style="{StaticResource ServiceCommonButton}"
                 IsEnabled="{calcBinding:Binding !IsUpgrading}"
+                Content="{x:Static res:Upgrade_Lang.Upgrade_Info_Refresh}"
+                Command="{Binding RefreshCommand}" />
+            <Button
+                Grid.Column="4"
+                Style="{StaticResource ServiceCommonButton}"
+                IsEnabled="{calcBinding:Binding !IsUpgrading}"
                 Content="{x:Static res:Upgrade_Lang.Upgrade_Info_Upgrade}"
                 Command="{Binding UpgradeCommand}" />
             <CheckBox
-                Grid.Column="4"
+                Grid.Column="6"
                 IsHitTestVisible="{calcBinding:Binding !IsUpgrading}"
                 IsChecked="{Binding IsNotUpgradeWhenSameVer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Content="{x:Static res:Upgrade_Lang.Upgrade_Info_NotWhenSameVer}" />

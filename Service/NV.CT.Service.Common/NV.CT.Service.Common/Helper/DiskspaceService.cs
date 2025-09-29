@@ -1,4 +1,6 @@
-﻿using NV.MPS.Configuration;
+﻿using Microsoft.Extensions.DependencyInjection;
+using NV.CT.Service.Common.Interfaces;
+using NV.MPS.Configuration;
 using System;
 using System.IO;
 using System.Linq;
@@ -7,11 +9,24 @@ namespace NV.CT.Service.Common.Helper
 {
     public class DiskspaceService
     {
+        #region private fields
+
         private static readonly Lazy<DiskspaceService> _lazyInstance = new Lazy<DiskspaceService>(() => new DiskspaceService());
+
+        private readonly ILogService _logService;
+
+        #endregion
+
+
+        #region Init
+
         private DiskspaceService()
         {
+            _logService = LogService.Instance;
             _diskspaceSetting = UserConfig.DiskspaceSettingConfig.DiskspaceSetting;
         }
+
+        #endregion
 
         public static readonly string RawDataDriveName = @"F:\";
         public static readonly string ImageDataDriveName = @"E:\";
@@ -46,8 +61,9 @@ namespace NV.CT.Service.Common.Helper
         {
             bool result = true;
 
-            var thresholdValue = _diskspaceSetting.RawDataWarningThreshold.Value;
-            
+            var thresholdValue = _diskspaceSetting.RawDataErrorThreshold.Value;
+            _logService.Debug(ServiceCategory.Common, $"Got the config value 'RawDataErrorThreshold' is '{thresholdValue}'");
+
             result = ValidateFreeSpace(RawDataDrive, thresholdValue);
             return result;
         }
@@ -56,13 +72,13 @@ namespace NV.CT.Service.Common.Helper
             bool result = true;
             var expectedFreeSpacePercent = 100 - maxUsedThresholdValue;
             double? currentFreeSapcePercent = GetFreeSpacePercent(driveInfo);
-            Console.WriteLine($"The percent of available free space on the drive '{RawDataDriveName}' is '{currentFreeSapcePercent}%', " +
-                $"and the expected value from config is less than '{expectedFreeSpacePercent}'.");
+            _logService.Debug(ServiceCategory.Common, $"The percent of available free space on the drive '{RawDataDriveName}' is '{currentFreeSapcePercent:f2}%', " +
+                $"and the expected value from config is less than '{expectedFreeSpacePercent}%'.");
 
             if (currentFreeSapcePercent < expectedFreeSpacePercent)
             {
                 result = false;
-                Console.WriteLine($"Not matched the expected value!");
+                _logService.Error(ServiceCategory.Common, $"Not matched the expected value!");
             }
 
             return result;
@@ -73,7 +89,7 @@ namespace NV.CT.Service.Common.Helper
             double? freeSapceRate = null;
             if (dirve is not null && dirve.IsReady)
             {
-                freeSapceRate = (dirve.AvailableFreeSpace * 1.0 / dirve.TotalSize)*100;
+                freeSapceRate = (dirve.AvailableFreeSpace * 1.0 / dirve.TotalSize) * 100;
             }
             return freeSapceRate;
         }

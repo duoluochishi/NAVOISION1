@@ -91,6 +91,12 @@ namespace NV.CT.ProtocolManagement.ViewModels.Models
             get => _filterType;
             set => SetProperty(ref _filterType, value);
         }
+        private string _kernel;//4
+        public string Kernel
+        {
+            get => _kernel;
+            set => SetProperty(ref _kernel, value);
+        }
         private string _binningXY;//5
         public string Binning
         {

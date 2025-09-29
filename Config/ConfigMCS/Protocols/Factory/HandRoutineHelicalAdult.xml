@@ -130,7 +130,7 @@
                   <Parameter Name="DoseNotificationOperator" Value="" />
                   <Parameter Name="DoseAlertMessage" Value="" />
                   <Parameter Name="DoseAlertOperator" Value="" />
-                  <Parameter Name="ScanLength" Value="300000" />
+                  <Parameter Name="ScanLength" Value="512000" />
                   <Parameter Name="CollimatorZ" Value="242" />
                   <Parameter Name="CollimatorSliceWidth" Value="39930" />
                   <Parameter Name="FuncMode" Value="Clinical" />
@@ -512,6 +512,7 @@
                       </PostProcess>
                       <PostProcess Index="1" Type="Sharp">
                         <Parameters>
+						  <Parameter Name="SharpAlgType" Value="Algo1" />
                           <Parameter Name="SharpLevel" Value="3" />
                         </Parameters>
                       </PostProcess>

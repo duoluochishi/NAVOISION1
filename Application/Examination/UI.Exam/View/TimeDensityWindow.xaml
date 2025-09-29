@@ -65,8 +65,8 @@
                 </Grid.ColumnDefinitions>
                 <lvc:CartesianChart Grid.Column="0" AnimationsSpeed="0" Series="{Binding Series}" LegendPosition="Top" LegendTextPaint="{Binding LegendTextPaintB}" XAxes="{Binding XAxis}" YAxes="{Binding YAxis}" TooltipPosition="Hidden"></lvc:CartesianChart>
                 <Line X1="10" Y1="342" X2="650" Y2="342" Stroke="#1976D2" StrokeThickness="1" Grid.Column="0" />
-                
-                <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
+
+                <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center" IsEnabled="{Binding IsOptEnabled}">
                     <Button Command="{Binding Commands[AddCommand]}" Background="Transparent" BorderBrush="Transparent">
                         <materialDesign:PackIcon Kind="PlusCircle" Style="{StaticResource TimeDensityButtonStyle}"/>
                     </Button>

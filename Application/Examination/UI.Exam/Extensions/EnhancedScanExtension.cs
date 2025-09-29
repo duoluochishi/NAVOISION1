@@ -46,9 +46,9 @@ public class EnhancedScanExtension
 			&& e.Data.baseModel is ScanModel scan
 			&& scan.Status == PerformStatus.Unperform
 			&& (scan.ScanOption == ScanOption.Helical
-				|| scan.ScanOption == ScanOption.NVTestBolusBase
-				|| scan.ScanOption == ScanOption.TestBolus
-				|| scan.ScanOption == ScanOption.NVTestBolus
+				//	|| scan.ScanOption == ScanOption.NVTestBolusBase
+				//	|| scan.ScanOption == ScanOption.TestBolus
+				//	|| scan.ScanOption == ScanOption.NVTestBolus
 				|| scan.Parent.Children.Count > 1)
 			&& (e.Data.list.FirstOrDefault(t => t.Equals(ProtocolParameterNames.SCAN_RECON_VOLUME_START_POSITION)) is not null
 			|| e.Data.list.FirstOrDefault(t => t.Equals(ProtocolParameterNames.SCAN_RECON_VOLUME_END_POSITION)) is not null
@@ -87,13 +87,13 @@ public class EnhancedScanExtension
 				{
 					continue;
 				}
-				if (tomo.Status == PerformStatus.Unperform)
+				if (tomo.Status == PerformStatus.Unperform && !(tomo.ScanOption == ScanOption.NVTestBolus || tomo.ScanOption == ScanOption.NVTestBolusBase || tomo.ScanOption == ScanOption.TestBolus))
 				{
 					uint scanLength = baseTomoScan.ScanLength;
-					if (baseTomoScan.ScanOption == ScanOption.NVTestBolus || baseTomoScan.ScanOption == ScanOption.NVTestBolusBase || baseTomoScan.ScanOption == ScanOption.TestBolus)
-					{
-						scanLength = tomo.ScanLength;
-					}
+					//if (baseTomoScan.ScanOption == ScanOption.NVTestBolus || baseTomoScan.ScanOption == ScanOption.NVTestBolusBase || baseTomoScan.ScanOption == ScanOption.TestBolus)
+					//{
+					//	scanLength = tomo.ScanLength;
+					//}
 					foreach (var item in AdjustTomoScanByPreScanParameters(tomo, baseTomoScan.TableDirection, baseTomoScan.ReconVolumeStartPosition, scanLength, baseTomoScan.Parent.Parent.PatientPosition, imageOrders))
 					{
 						resultDic.Add(item.Key, item.Value);
@@ -111,13 +111,13 @@ public class EnhancedScanExtension
 				for (int i = index + 1; i < measurement.Children.Count; i++)
 				{
 					var tomo = measurement.Children[i];
-					if (tomo.Status == PerformStatus.Unperform)
+					if (tomo.Status == PerformStatus.Unperform && !(tomo.ScanOption == ScanOption.NVTestBolus || tomo.ScanOption == ScanOption.NVTestBolusBase || tomo.ScanOption == ScanOption.TestBolus))
 					{
 						uint scanLength = baseTomoScan.ScanLength;
-						if (baseTomoScan.ScanOption == ScanOption.NVTestBolus || baseTomoScan.ScanOption == ScanOption.NVTestBolusBase || baseTomoScan.ScanOption == ScanOption.TestBolus)
-						{
-							scanLength = tomo.ScanLength;
-						}
+						//if (baseTomoScan.ScanOption == ScanOption.NVTestBolus || baseTomoScan.ScanOption == ScanOption.NVTestBolusBase || baseTomoScan.ScanOption == ScanOption.TestBolus)
+						//{
+						//	scanLength = tomo.ScanLength;
+						//}
 						foreach (var item in AdjustTomoScanByPreScanParameters(tomo, baseTomoScan.TableDirection, baseTomoScan.ReconVolumeStartPosition, scanLength, baseTomoScan.Parent.Parent.PatientPosition, imageOrders))
 						{
 							resultDic.Add(item.Key, item.Value);

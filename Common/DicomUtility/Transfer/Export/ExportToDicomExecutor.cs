@@ -146,7 +146,7 @@ namespace NV.CT.DicomUtility.Transfer.Export
                 else
                 {
                     _logger.LogError($"[ExportToDicomExecutor] The source folder does not exist:{srcPath}");
-                    throw new DirectoryNotFoundException(srcPath);
+                    //throw new DirectoryNotFoundException(srcPath);
                 }
             }
         }

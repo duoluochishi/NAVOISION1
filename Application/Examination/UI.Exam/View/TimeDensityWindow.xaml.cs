@@ -7,6 +7,7 @@ public partial class TimeDensityWindow
     public TimeDensityWindow()
     {
         InitializeComponent();
+        WindowStartupLocation = WindowStartupLocation.CenterOwner;
         MouseDown += (_, _) =>
         {
             if (Mouse.LeftButton == MouseButtonState.Pressed)

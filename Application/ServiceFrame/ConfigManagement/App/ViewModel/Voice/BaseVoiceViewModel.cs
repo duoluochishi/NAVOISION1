@@ -30,6 +30,8 @@ public class BaseVoiceViewModel : BaseViewModel
         set => SetProperty(ref _internalId, value);
     }
 
+    public int PairId { get; set; }
+
     private string _name = string.Empty;
     public string Name
     {
@@ -84,6 +86,13 @@ public class BaseVoiceViewModel : BaseViewModel
         set => SetProperty(ref _voiceLength, value);
     }
 
+    private decimal _realVoiceLength = 0.00M;
+    public decimal RealVoiceLength
+    {
+        get => _realVoiceLength;
+        set => SetProperty(ref _realVoiceLength, value);
+    }
+
     private bool _isFactory = false;
     public bool IsFactory
     {
@@ -110,5 +119,19 @@ public class BaseVoiceViewModel : BaseViewModel
     {
         get => _isValid;
         set => SetProperty(ref _isValid, value);
+    }
+
+    private VoicePlayStatus _playStatus = VoicePlayStatus.None;
+    public VoicePlayStatus PlayStatus
+    {
+        get => _playStatus;
+        set => SetProperty(ref _playStatus, value);
+    }
+
+    private string _pairedVoiceName = string.Empty;
+    public string PairedVoiceName
+    {
+        get => _pairedVoiceName;
+        set => SetProperty(ref _pairedVoiceName, value);
     }
 }

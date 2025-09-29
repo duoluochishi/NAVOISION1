@@ -21,12 +21,12 @@
             VerticalAlignment="Center"
             Content="{x:Static res:LanguageResource.Content_Kernel}" />
         <markableComboBox:MarkableComboBox
-             x:Name="mcbDetailKernel"
+            x:Name="mcbDetailKernel"
             x:Uid="mcbDetailKernel"
             Grid.Column="1"
             VerticalAlignment="Center"
             DisplayMemberPath="Value"
-            IsEnabled="{Binding Path=ReconPageEnable}"
+            IsEnabled="{Binding Path=IsKernelEnabled}"
             ItemsSource="{Binding KernelList}"
             MarkStatus="{Binding Path=SelectKernelMarkStatus}"
             SelectedItem="{Binding Path=SelectKernel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"

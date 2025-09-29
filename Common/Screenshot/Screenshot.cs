@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic.Logging;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Net.Sockets;
@@ -12,7 +11,6 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using ThoughtWorks.QRCode.Codec;
 using Size = System.Drawing.Size;
-using System.Runtime.Serialization;
 
 namespace NV.CT.Screenshot;
 
@@ -58,7 +56,7 @@ public class _Screenshot
         using var bitmap = new Bitmap((int)rect.Width, (int)rect.Height, PixelFormat.Format32bppArgb);
         var graphics = Graphics.FromImage(bitmap);
         graphics.CopyFromScreen((int)rect.X, (int)rect.Y, 0, 0, new Size((int)rect.Size.Width, (int)rect.Size.Height), CopyPixelOperation.SourceCopy);
-        return bitmap.ToBitmapSource();
+        return bitmap.ToBitmapSource();        
     }
 
     /// <summary>
@@ -69,7 +67,7 @@ public class _Screenshot
     public static BitmapSource? CaptureRegion(ScreenshotOptions? options = null)
     {
         BitmapSource? bitmapSource = null;
-        options = options ?? new ScreenshotOptions();
+        options = options ?? new ScreenshotOptions();       
         var bitmap = CaptureAllScreens();
         var left = SystemParameters.VirtualScreenLeft;
         var top = SystemParameters.VirtualScreenTop;
@@ -110,27 +108,12 @@ public class _Screenshot
             if (window.SelectedRegion == new Rect(0.1, 0.1, 0.1, 0.1))
             {
                 bitmapSource = bitmap;
-                if (bitmapSource != null)
-                {
-                    System.Windows.Clipboard.SetImage(bitmapSource);
-                    //ReturnScreenShotEvent?.BeginInvoke(bitmapSource, null, null);
-                    ReturnScreenShotEvent?.Invoke(bitmapSource);
-                }
             }
             else
             {
-                // bitmapSource = GetBitmapRegion(bitmap, window.SelectedRegion.Value);
                 bitmapSource = CaptureRegion(window.SelectedRegion.Value);
-
-                if (bitmapSource != null)
-                {
-                    System.Windows.Clipboard.SetImage(bitmapSource);
-                    //ReturnScreenShotEvent?.BeginInvoke(bitmapSource, null, null);
-                    ReturnScreenShotEvent?.Invoke(bitmapSource);
-                }
             }
         }
-
         return bitmapSource;
     }
 
@@ -168,23 +151,41 @@ public class _Screenshot
     }
     public static Bitmap BitmapFromSource(BitmapSource bitmapsource)
     {
-        Bitmap bitmap;
         using (var outStream = new MemoryStream())
         {
-            BitmapEncoder enc = new PngBitmapEncoder();
-            enc.Frames.Add(BitmapFrame.Create(bitmapsource));
+            // 创建 BitmapFrame 时明确忽略元数据
+            BitmapFrame frame = BitmapFrame.Create(
+                bitmapsource,
+                null, // 缩略图
+                null, // 明确设置为 null，不包含元数据
+                null  // 颜色上下文
+            );
+
+            PngBitmapEncoder enc = new PngBitmapEncoder();
+            enc.Frames.Add(frame);
             enc.Save(outStream);
-            bitmap = new Bitmap(outStream);
+
+            outStream.Position = 0; // 重置流位置
+            return new System.Drawing.Bitmap(outStream);
         }
-        return bitmap;
     }
     public static Bitmap ConvertViaStream(BitmapImage bitmapImage)
     {
         using (var stream = new MemoryStream())
         {
+            // 创建不包含元数据的 BitmapFrame
+            BitmapFrame frame = BitmapFrame.Create(
+                bitmapImage,
+                null, // 缩略图
+                null, // 明确设置为 null，不包含元数据
+                null  // 颜色上下文
+            );
+
             var encoder = new BmpBitmapEncoder();
-            encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
+            encoder.Frames.Add(frame);
             encoder.Save(stream);
+
+            stream.Position = 0; // 重置流位置
             return new System.Drawing.Bitmap(stream);
         }
     }

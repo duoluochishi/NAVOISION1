@@ -16,7 +16,6 @@
 using NV.CT.DatabaseService.Contract;
 using NV.CT.FacadeProxy.Common.Enums;
 using NV.CT.UI.Exam.ViewModel.Timeline;
-using NV.MPS.Configuration;
 using NV.MPS.Environment;
 using System.Windows.Media;
 
@@ -157,7 +156,7 @@ public class TimelineViewModel : BaseViewModel
                 measurementViewModel.MeasurementStatus = measurement.Status;
                 measurementViewModel.IsVoiceEnable = false;
                 measurementViewModel.IsEnhance = false;
-                int index = 1;
+                int index = 0;
                 foreach (var scan in measurement.Children)
                 {
                     if (scan.IsVoiceSupported)
@@ -180,35 +179,10 @@ public class TimelineViewModel : BaseViewModel
                     scanTaskViewModel.IsAutoScan = scan.AutoScan;
 
                     scanTaskViewModel.AwaitTime = 0;
-                    scanTaskViewModel.ExposureDelayTime = GetExposureDelayTime(measurementViewModel, UnitConvert.Microsecond2Second((double)scan.ExposureDelayTime));
+                    scanTaskViewModel.ExposureDelayTime = CorrectDelayTimeMeasurement(scan, index);
                     scanTaskViewModel.ExposureTime = Math.Round((double)ScanTimeHelper.GetScanTime(scan), 1);
 
-                    //扫描结束的时间如果没有后语音，默认设置为2秒
-                    scanTaskViewModel.TableAccelerationTime = 2;
-                    if (scan.IsVoiceSupported && scan.PostVoiceId > 0)
-                    {
-                        var model = _voiceService.GetVoiceInfo(scan.PostVoiceId.ToString());
-                        if (model is not null)
-                        {
-                            scanTaskViewModel.TableAccelerationTime = model.VoiceLength;
-                        }
-                    }
-                    //TODO:时间间隔计算扫描结束后时间长度
-                    if ((scan.AutoScan || measurement.Children.Count > 1) && index >= 1 && index < measurement.Children.Count)
-                    {
-                        int preTime = 0;
-                        ScanModel nextScan = measurement.Children[index];
-                        if (nextScan.IsVoiceSupported && nextScan.PreVoiceId > 0)
-                        {
-                            var model = _voiceService.GetVoiceInfo(nextScan.PreVoiceId.ToString());
-                            if (model is not null)
-                            {
-                                preTime += UnitConvert.Second2Microsecond(model.VoiceLength) + SystemConfig.AcquisitionConfig.Acquisition.PostPreVoiceDelayTime.Value;
-                            }
-                        }
-                        //preTime += (int)nextScan.PreVoiceDelayTime;
-                        scanTaskViewModel.TableAccelerationTime = Math.Abs(UnitConvert.Microsecond2Second((double)nextScan.ExposureIntervalTime - preTime));
-                    }
+                    scanTaskViewModel.TableAccelerationTime = GetLastTableAccelerationTime(scan);
 
                     if (scan.Status != PerformStatus.Performed && scan.Loops > 0 && scan.LoopTime > 0)
                     {
@@ -246,20 +220,39 @@ public class TimelineViewModel : BaseViewModel
         {
             SelectScan = selectPerformed;
         }
-        IsArrowEnable = GetTotalWidth();
+        IsArrowEnable = GetTotalWidth();        
     }
 
-    private double GetExposureDelayTime(MeasurementViewModel measurement, double exposureDelayTime)
+    private double CorrectDelayTimeMeasurement(ScanModel scanModel, int index)
     {
-        double dt = 0;
-        if (measurement.ScanChildren is not null && measurement.ScanChildren.Count > 0)
+        var measurementModel = scanModel.Parent;
+        double lastExposureDelayTime = 0;
+        if (index == 0) //第一个扫描任务,判断扫描延迟时间
         {
-            foreach (var item in measurement.ScanChildren)
+            lastExposureDelayTime = UnitConvert.Microsecond2Second(scanModel.ExposureDelayTime);
+        }
+        if (index > 0)  //对于非第一个扫描任务判断扫描时间间隔
+        {
+            double intervalTime = UnitConvert.Microsecond2Second(scanModel.ExposureIntervalTime);
+            ScanModel preScan = measurementModel.Children[index - 1];
+            double lastScanTime = GetLastTableAccelerationTime(preScan);
+            lastExposureDelayTime = intervalTime - lastScanTime;
+        }
+        return Math.Round(lastExposureDelayTime, 2);
+    }
+
+    private double GetLastTableAccelerationTime(ScanModel scanModel)
+    {
+        double minScanIntervalTime = 2;
+        if (scanModel.IsVoiceSupported && scanModel.PostVoiceId > 0)  //0:表示不播放语音
+        {
+            var model = _voiceService.GetVoiceInfo(scanModel.PostVoiceId.ToString());
+            if (model is not null)
             {
-                dt += item.ScanTime;
+                minScanIntervalTime += model.VoiceLength;
             }
         }
-        return exposureDelayTime - dt;
+        return minScanIntervalTime;
     }
 
     //处理多圈扫描的曝光进度条的数据
@@ -289,11 +282,39 @@ public class TimelineViewModel : BaseViewModel
     public bool GetTotalWidth()
     {
         double totalWidth = 0;
+        double scale = SetTimelineScale();
         foreach (var item in ScanList)
         {
-            totalWidth += item.TotalScanTime * 10 + 22 + 16;       //20:时间转换成像素的转换率，单位秒；22是图标的宽度，16是布局宽度值双边
+            totalWidth += item.TotalScanTime * scale + 22 + 16;       //时间转换成像素的转换率，单位秒；22是图标的宽度，16是布局宽度值双边
         }
-        return totalWidth > 1500;      //1500表示最多的默认宽度
+        return totalWidth > 1300;      //1300表示最多的默认宽度
+    }
+
+    private double SetTimelineScale()
+    {
+        double totalTimes = 0;
+        foreach (var item in ScanList)
+        {
+            totalTimes += item.TotalScanTime;
+        }
+        double scale = 10;
+        if (totalTimes > 0)
+        {
+            scale = (1300 / totalTimes);
+        }
+        foreach (var item in ScanList)
+        {
+            item.ConvertToScale = scale;
+            foreach (var ss in item.ScanChildren)
+            {
+                ss.ConvertToScale = scale;
+                foreach (var tt in ss.SpiralScanTaskList)
+                {
+                    tt.ConvertToScale = scale;
+                }
+            }
+        }
+        return scale;
     }
 
     [UIRoute]
@@ -329,7 +350,7 @@ public class TimelineViewModel : BaseViewModel
                 var scan = measurement.ScanChildren.FirstOrDefault(t => t.ScanID == e.Data.ScanId);
                 if (measurement.ScanChildren.FirstOrDefault(t => t.ScanID == e.Data.ScanId) is ScanTaskViewModel scanTaskView)
                 {
-                    if (scanTaskView.AutoScanIndex > 1) //大于1表示非第一个的连扫
+                    if (scanTaskView.AutoScanIndex > 0) //大于1表示非第一个的连扫
                     {
                         measurement.IsStarting = false;
                     }
@@ -376,6 +397,8 @@ public class TimelineViewModel : BaseViewModel
                 }
                 measurement.MeasurementStatus = e.Data.NewStatus;
             }
+
+            _logger.LogInformation($"（{measurementModel.Descriptor.Id}）MeasurementModel status is:{e.Data.NewStatus}");
         }
     }
 

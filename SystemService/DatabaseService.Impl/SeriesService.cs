@@ -35,7 +35,6 @@ internal class SeriesService : ISeriesService
 
     public bool Add(SeriesModel seriesModel)
     {
-        _logger.LogInformation("InsertMany series");
         var seriesEntity = _mapper.Map<SeriesEntity>(seriesModel);
         var result = _seriesRepository.Add(seriesEntity);
 
@@ -48,7 +47,6 @@ internal class SeriesService : ISeriesService
 
     public  bool Delete(SeriesModel seriesModel)
     {
-        _logger.LogInformation("Delete series");
         var seriesEntity = _mapper.Map<SeriesEntity>(seriesModel);
         var savedResult = _seriesRepository.Delete(seriesEntity);
         //_seriesRepository.DeleteDicomSeries(seriesEntity);
@@ -89,7 +87,6 @@ internal class SeriesService : ISeriesService
 
     public bool UpdateArchiveStatus(List<SeriesModel> seriesModels)
     {
-        _logger.LogInformation("UpdateSeriesArchiveStatus");
         var seriesEntities = _mapper.Map<List<SeriesModel>, List<SeriesEntity>>(seriesModels);
         var savedResult = _seriesRepository.UpdateArchiveStatus(seriesEntities);
         if (savedResult)
@@ -104,7 +101,6 @@ internal class SeriesService : ISeriesService
 
     public bool UpdatePrintStatus(List<SeriesModel> seriesModels)
     {
-        _logger.LogInformation("UpdateSeriesPrintStatus");
         var seriesEntities = _mapper.Map<List<SeriesModel>, List<SeriesEntity>>(seriesModels);
         var savedResult = _seriesRepository.UpdatePrintStatus(seriesEntities);
         if (savedResult)

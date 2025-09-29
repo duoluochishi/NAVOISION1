@@ -11,6 +11,8 @@ public class ParameterDetailViewModel : BaseViewModel
 {
     private IDynamicTemplateService _dynamicTemplateService;
     private IAuthorization _authorization;
+    private ISelectionManager _selectionManager;
+
     private string _detailTitle = LanguageResource.Content_ScanParametersWindowTitle;
 
     public string DetailTitle
@@ -92,6 +94,7 @@ public class ParameterDetailViewModel : BaseViewModel
     {
         _dynamicTemplateService = dynamicTemplateService;
         _authorization = authorization;
+        _selectionManager = selectionManager;
 
         Commands.Add(CommandParameters.COMMAND_CLOSE, new DelegateCommand<object>(Close, _ => true));
 
@@ -136,6 +139,10 @@ public class ParameterDetailViewModel : BaseViewModel
     [UIRoute]
     private void SelectionManager_SelectionReconChanged(object? sender, EventArgs<ReconModel> e)
     {
+        if (e.Data is null || _selectionManager.IsSelectionScanChanged)
+        {
+            return;
+        }
         IsShowScan = false;
     }
 

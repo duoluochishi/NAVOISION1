@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using NV.CT.Alg.ScanReconCalculation.Scan.Gantry;
 using NV.CT.Alg.ScanReconCalculation.Scan.Gantry.Helic;
 using NV.CT.Alg.ScanReconCalculation.Scan.Table;
@@ -8,6 +9,7 @@ using NV.CT.Alg.ScanReconCalculation.Scan.Table.Helic;
 using NV.CT.FacadeProxy;
 using NV.CT.FacadeProxy.Common.Arguments;
 using NV.CT.FacadeProxy.Common.Enums;
+using NV.CT.FacadeProxy.Common.Enums.ScanEnums;
 using NV.CT.FacadeProxy.Common.Helpers;
 using NV.CT.FacadeProxy.Common.Models;
 using NV.CT.FacadeProxy.Extensions;
@@ -630,6 +632,9 @@ namespace NV.CT.Service.AutoCali.Logic
                             throw new SystemAbortException();//取消剩余未执行的任务
                         }
 
+                        //更新扫描参数DetectorEncodeMode，来自校准项配置的参数DetectorEncodeMode
+                        TryUpdateDetectorEncodeMode(caliItem, scanReconParam.ScanParameter);
+
                         scanReconParam.Study.StudyInstanceUID = studyInstanceUID;//同一组校准的多个扫描统一studyInstanceUID
                         scanReconParamList.Add(scanReconParam);
                         _lastScanReconParam = scanReconParam;
@@ -978,15 +983,15 @@ namespace NV.CT.Service.AutoCali.Logic
                                 ClearRawImages();//DLT的原始数据太大了，所以在计算之前需要从界面上清空图像，避免在同一个机器上计算时内存不够
                             }
 
-                            //[ToDo]有配置开关控制请求离线机校准 或者 主控机校准
-                            if (ComputingMachineType.MasterMachine == caliItem.ComputingMachineType)
+                            //有配置开关控制请求离线机校准 或者 主控机校准
+                            if (ComputingMachineType.MasterControlMachine == caliItem.ComputingMachineType)
                             {
-                                PrintMessage($"Calibration Computing on the Master Machine");
+                                PrintMessage($"Calibration Computing on the Master Control Machine");
                                 await Calibration(protocolNameWithProject, caliProtocolTaskViewModel, scanReconParamList);
                             }
                             else
                             {
-                                PrintMessage($"Calibration Computing on the Recon Machine");
+                                PrintMessage($"Calibration Computing on the Offline Recon Machine");
                                 await RequestOfflineCalibration(caliItemName, caliItemTaskViewModel,
                                     (CaliProtocolTaskViewModel)caliProtocolTaskViewModel, studyInstanceUID,
                                     scanReconParamList);
@@ -1782,6 +1787,32 @@ namespace NV.CT.Service.AutoCali.Logic
             }
         }
 
+        /// <summary>
+        /// 更新扫描参数DetectorEncodeMode
+        /// </summary>
+        /// <param name="detectorEncodeMode"></param>
+        /// <param name="scanParam"></param>
+        private void TryUpdateDetectorEncodeMode(CalibrationItem calibrationItem, ScanParam scanParam)
+        {
+            logWrapper.Debug($"[{nameof(TryUpdateDetectorEncodeMode)}] Entered ...");
+
+            DetectorEncodeMode? detectorEncodeMode = calibrationItem.DetectorEncodeMode;
+
+            var oldValue = scanParam.EncodeMode;
+            if (detectorEncodeMode.HasValue)
+            {
+                var newValue = detectorEncodeMode.Value;
+                scanParam.EncodeMode = newValue;
+                logWrapper.Info($"Updated ScanParam.DetectorEncodeMode from '{oldValue}' to '{newValue}' for Calibration Item '{calibrationItem.Name}', source from 'CalibrationConfig.CalibrationItem'");
+            }
+            else
+            {
+                var newValue = (DetectorEncodeMode)SystemConfig.DetectorConfig.Param.EncodeMode.Value;
+                scanParam.EncodeMode = newValue;
+                logWrapper.Info($"Updated ScanParam.DetectorEncodeMode from '{oldValue}' to '{newValue}' for Calibration Item '{calibrationItem.Name}', source from 'SystemConfig.DetectorConfig'");
+            }
+        }
+
         private void TryChangePostOffsetFrames(ScanParam scanParam)
         {
             //if (scanParam.PostOffsetFrames < 1)
@@ -1790,7 +1821,12 @@ namespace NV.CT.Service.AutoCali.Logic
                 OffsetHelper.ChangePostOffsetFrames(scanParam);
                 logWrapper.Info($"Changed for PostOffsetFrames by OffsetCalculator, from '{original} to '{scanParam.PostOffsetFrames}'");
 
-                scanParam.PostOffsetFrames += 2;//额外增加2张，避免计算库动态计算的小于实际需要的
+                scanParam.PostOffsetFrames += 2;//额外增加2张，避免计算库动态计算的小于算法端安全检查需要的
+                //【todo】采集程序架构设计Bug：采集卡和剂量值过来的数据时间不同步，同步关系目前看postoffset缓存队列来同步的，如果postoffset数量过少，存下来的数据slope没有打进去
+                if (scanParam.PostOffsetFrames < 20)
+                {
+                    scanParam.PostOffsetFrames = 20;
+                }
                 logWrapper.Info($"Changed PostOffsetFrames by manually, from '{original} to '{scanParam.PostOffsetFrames}'");
             }
             //else
@@ -3163,6 +3199,14 @@ namespace NV.CT.Service.AutoCali.Logic
             if (scanParam.ExposureMode == ExposureMode.Twelve)
             {
                 freeScan.XDataAcquisitionParameters.ExposureParams.TwelveExposureModeXRaySourceStartIndex = protocolVM.TwelveExposureModeXRaySourceStartIndex;
+            }
+
+            //给探测器配参EncodeMode
+            var detectorEncodeMode = scanParam.EncodeMode;
+            if (detectorEncodeMode.HasValue)
+            {
+                freeScan.XDataAcquisitionParameters.DetectorParams.EncodeMode = detectorEncodeMode.Value;
+                _logger.Info(ServiceCategory.AutoCali, $"Used the param 'EncodeMode' as '{detectorEncodeMode.Value}' for '{scanParam.FunctionMode}'");
             }
 
             UpdateTotalScanCount(scanReconParam);

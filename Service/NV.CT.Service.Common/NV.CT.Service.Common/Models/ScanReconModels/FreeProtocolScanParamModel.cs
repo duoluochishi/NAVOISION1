@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 using NV.CT.FacadeProxy.Common.Enums;
+using NV.CT.FacadeProxy.Common.Enums.ScanEnums;
 using NV.CT.FacadeProxy.Models.DataAcquisition;
 using NV.CT.Service.Common.Enums;
 using NV.CT.ServiceFramework;

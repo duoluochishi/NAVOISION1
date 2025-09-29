@@ -82,6 +82,11 @@
           "Category": "Voice"
         },
         {
+          "ControlName": "NV.CT.ConfigManagement.View.BreatheVoiceListControl",
+          "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
+          "Category": "Breathe Voice"
+        },
+        {
           "ControlName": "NV.CT.ConfigManagement.View.ArchiveNodesControl",
           "AppAssemblyPath": "NV.CT.ConfigManagement.dll",
           "Category": "Pacs"

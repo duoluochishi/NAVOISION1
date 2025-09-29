@@ -67,7 +67,7 @@ public class ScanParameterViewModel : BaseViewModel
 		_tablePositionService = tablePositionService;
 		_doseEstimateService = doseEstimateService;
 
-		_selectionManager.SelectionScanChanged -= SelectScanChanged;
+		_selectionManager.SelectionScanChanged -= SelectScanChanged; 
 		_selectionManager.SelectionScanChanged += SelectScanChanged;
 		_protocolHostService.PerformStatusChanged -= PerformStatusChanged;
 		_protocolHostService.PerformStatusChanged += PerformStatusChanged;
@@ -426,7 +426,7 @@ public class ScanParameterViewModel : BaseViewModel
 		SelectedKv = KvValueList.FirstOrDefault(n => n.Key == Kilovolt);
 
 		ScanOptionString = scanModel.ScanOption.ToString();
-		TriggerMode = $"{scanModel.TriggerMode}";
+		TriggerMode = $"{scanModel.ExposureTrigger}";
 		SelectedTriggerMode = TriggerModeList.FirstOrDefault(n => n.Value == TriggerMode);
 		SelectedXRayFocusType = XRayFocusTypeList.FirstOrDefault(t => t.Value.Equals(scanModel.FocalType.ToString()));
 		switch (scanModel.TubePositionType)
@@ -509,8 +509,11 @@ public class ScanParameterViewModel : BaseViewModel
 	{
 		if (performStatus == PerformStatus.Performed)
 		{
-			EffectiveKv = Math.Round(scanModel.DoseEffectiveKVP, 2).ToString();
-			Milliampere = (uint)scanModel.DoseEffectiveMeanMA;
+			//EffectiveKv = Math.Round(scanModel.DoseEffectiveKVP, 2).ToString();
+			//Milliampere = (uint)scanModel.DoseEffectiveMeanMA;
+
+			EffectiveKv = scanModel.Kilovolt.FirstOrDefault().ToString();
+			Milliampere = scanModel.Milliampere.FirstOrDefault();
 			ScanLength = Math.Round(UnitConvert.Micron2Millimeter((float)scanModel.ActualScanLength), 2);
 		}
 	}

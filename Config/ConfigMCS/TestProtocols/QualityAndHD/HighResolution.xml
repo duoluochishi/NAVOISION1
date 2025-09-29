@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ProtocolTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Descriptor>
-    <Id>f322fa7b-12c1-49bc-980f-5a1b267d6e09</Id>
+    <Id>c8b0019b-d6b4-435e-9584-4bdaa163de0d</Id>
     <Name>HighResolution</Name>
     <Type>ProtocolTemplate</Type>
   </Descriptor>
   <Parameters />
   <Protocol>
     <Descriptor>
-      <Id>4fdbfcce-980a-4146-9922-0631b0e9fd06</Id>
+      <Id>d93845a0-2af9-40a4-aefa-6190e21ad981</Id>
       <Name>HighResolution</Name>
       <Type>Protocol</Type>
     </Descriptor>
@@ -26,7 +26,7 @@
     <FrameOfReferences>
       <FrameOfReference>
         <Descriptor>
-          <Id>def09efb-6ec8-4c9d-a5a8-c86e1f4a184e</Id>
+          <Id>5481aeb5-7808-436b-807c-21ba9a117d71</Id>
           <Name>FrameOfReference</Name>
           <Type>FrameOfReference</Type>
         </Descriptor>
@@ -36,7 +36,7 @@
         <Measurements>
           <Measurement>
             <Descriptor>
-              <Id>e3820bec-42be-4658-8e6e-122838c13c4d</Id>
+              <Id>e5af6540-666b-4805-9332-1927a18a77de</Id>
               <Name>Measurement</Name>
               <Type>Measurement</Type>
             </Descriptor>
@@ -44,7 +44,7 @@
             <Scans>
               <Scan>
                 <Descriptor>
-                  <Id>03199bcc-384c-4c6c-9371-c0d2defde2a4</Id>
+                  <Id>a993d138-7258-43f8-b0b5-60036118d4e7</Id>
                   <Name>Topogram</Name>
                   <Type>Scan</Type>
                 </Descriptor>
@@ -145,7 +145,7 @@
                 <Recons>
                   <Recon>
                     <Descriptor>
-                      <Id>c677271f-2d1d-439a-961e-8be3c3221d81</Id>
+                      <Id>5568cf71-7666-4dea-873b-0c5a2979b7b6</Id>
                       <Name>Recon</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -210,7 +210,7 @@
           </Measurement>
           <Measurement>
             <Descriptor>
-              <Id>a1fdfd7b-2853-4edd-ad93-af74423fef7b</Id>
+              <Id>325169ec-a289-4743-a340-660f6b44de27</Id>
               <Name>Measurement</Name>
               <Type>Measurement</Type>
             </Descriptor>
@@ -218,7 +218,7 @@
             <Scans>
               <Scan>
                 <Descriptor>
-                  <Id>5c6ba279-8434-4cd6-9950-b8910aa6b1b0</Id>
+                  <Id>15cf2ad5-27ff-4f2c-a044-2b31f2ec5b6d</Id>
                   <Name>High Resolution</Name>
                   <Type>Scan</Type>
                 </Descriptor>
@@ -319,7 +319,7 @@
                 <Recons>
                   <Recon>
                     <Descriptor>
-                      <Id>6e5ad1a0-99dc-4d61-a147-2cb32ffd6977</Id>
+                      <Id>989e93a2-a5b6-4757-a87b-9fb00624b8e8</Id>
                       <Name>Recon</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -380,7 +380,7 @@
                   </Recon>
                   <Recon>
                     <Descriptor>
-                      <Id>833489c2-4a31-46c8-a20c-fd00175ed397</Id>
+                      <Id>682badb0-5578-4d1d-b2ef-f11faa6d35e3</Id>
                       <Name>HighResolution1mmSharpPlus</Name>
                       <Type>Recon</Type>
                     </Descriptor>

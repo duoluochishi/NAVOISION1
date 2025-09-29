@@ -34,7 +34,6 @@ public class ScanTaskService : IScanTaskService
     public bool Insert(ScanTaskModel model)
     {
         //TODO:操作多个表的时候，尽量使用事务封装
-        _logger.LogInformation("InsertMany scan task");
         var scanTaskEntity = _mapper.Map<ScanTaskEntity>(model);
 
         var savedResult = _scanTaskRepository.Insert(scanTaskEntity);
@@ -48,7 +47,6 @@ public class ScanTaskService : IScanTaskService
     public bool InsertMany(List<ScanTaskModel> list)
     {
         //TODO:操作多个表的时候，尽量使用事务封装
-        _logger.LogInformation("InsertMany scan task");
         List<ScanTaskEntity> scanTaskEntities = new List<ScanTaskEntity>();
 
         foreach (var model in list)
@@ -83,7 +81,6 @@ public class ScanTaskService : IScanTaskService
 
     public bool Update(ScanTaskModel model)
     {
-        _logger.LogInformation("Update scan task");
         var scanTaskEntity = _mapper.Map<ScanTaskEntity>(model);
         var savedResult = _scanTaskRepository.Update(scanTaskEntity);
         if (savedResult)
@@ -95,7 +92,6 @@ public class ScanTaskService : IScanTaskService
 
     public bool UpdateStatus(ScanTaskModel model)
     {
-        _logger.LogInformation("Update scan task status");
         var scanTaskEntity = _mapper.Map<ScanTaskEntity>(model);
         var savedResult = _scanTaskRepository.UpdateStatus(scanTaskEntity);
         if (savedResult)
@@ -107,7 +103,6 @@ public class ScanTaskService : IScanTaskService
 
     public bool Delete(ScanTaskModel model)
     {
-        _logger.LogInformation("Delete scan task");
         var scanTaskEntity = _mapper.Map<ScanTaskEntity>(model);
         var savedResult = _scanTaskRepository.Delete(scanTaskEntity);
         if (savedResult)

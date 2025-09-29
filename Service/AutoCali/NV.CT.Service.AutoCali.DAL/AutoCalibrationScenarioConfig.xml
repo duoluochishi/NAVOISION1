@@ -48,14 +48,14 @@
         <string>AfterGlow_Test</string>
         <string>Air_Test</string>
         <string>Gain_Test</string>
+
+        <!--用于多源校准的背景散射，需要在多源的AirBowtie之前执行-->
+        <string>BackgroundScatter</string>
         <string>AirBowtie_Test</string>
         <string>Harden_Test</string>
 
-        <string>BackgroundScatter</string>
         <string>NonLinear_Test</string>
-        <string>WaterValue_Test</string>
-        
-        <string>SourceXZ_Old</string>
+        <string>WaterValue_Test</string>        
       </CalibrationItemReferenceGroup>
     </CalibrationScenario>
 

@@ -129,28 +129,78 @@ public class ScanStatusService : IScanStatusService
         {
             var statusInfo = parameters as CTS.Models.SystemStatusInfo;
             ScanStarted?.Invoke(this, new CTS.EventArgs<string>(statusInfo?.ScanId));
+
+            //20250924 -增加记录扫描开始的状态信息
+            _logger.LogInformation("ScanStatusService Start Scanning Log :{0}", string.Format("ScanID:{0}", statusInfo?.ScanId));
+
         });
         stateMachine.Configure(ScanTriggerType.Cancelled, (preview, current, command, parameters) =>
         {
             var statusInfo = parameters as CTS.Models.SystemStatusInfo;
             var isUserCancelled = _cancelledScans.Contains(statusInfo.ScanId);
             ScanCancelled?.Invoke(this, new CTS.EventArgs<(string, string, bool)>((CurrentMeasurement.Descriptor.Id, statusInfo?.ScanId, isUserCancelled)));
+
+
+            //20250924 -增加记录扫描取消的状态信息
+            _logger.LogInformation("ScanStatusService Cancel Log :{0}", string.Format("ScanID:{0}", statusInfo?.ScanId));
+
         });
         stateMachine.Configure(ScanTriggerType.Done, (preview, current, command, parameters) =>
         {
             var statusInfo = parameters as CTS.Models.SystemStatusInfo;
             var isUserCancelled = _cancelledScans.Contains(statusInfo?.ScanId);
             ScanDone?.Invoke(this, new CTS.EventArgs<(string, RealDoseInfo, bool)>((statusInfo?.ScanId, statusInfo?.DoseInfo, isUserCancelled)));
+
+
+            //20250924 -增加记录扫描扫描结束的状态信息
+            _logger.LogInformation("ScanStatusService Done Log: ScanID:{ScanId}, TotalExposureTime:{TotalExposureTime}, ExposureLength:{ExposureLength}, ScanLength:{ScanLength}, mAs:{mAs}",
+                  statusInfo?.ScanId,
+                  statusInfo?.DoseInfo?.TotalExposureTime,
+                  statusInfo?.DoseInfo?.ExposureLength,
+                  statusInfo?.DoseInfo?.ScanLength,
+                  statusInfo?.DoseInfo?.mAs);
+
         });
         stateMachine.Configure(ScanTriggerType.Aborted, (preview, current, command, parameters) =>
         {
             var statusInfo = parameters as CTS.Models.SystemStatusInfo;
             var isUserCancelled = _cancelledScans.Contains(statusInfo.ScanId);
             ScanAborted?.Invoke(this, new CTS.EventArgs<(string, RealDoseInfo, bool, bool)>((statusInfo?.ScanId, statusInfo?.DoseInfo, current == SystemStatus.EmergencyStopped, isUserCancelled)));
+
+            //20250924 -增加记录扫描Abort的状态信息
+            _logger.LogInformation("ScanStatusService Abort Log :{0}", string.Format("ScanID:{0}", statusInfo?.ScanId));
+
         });
         stateMachine.Configure(ScanTriggerType.Ready, (preview, current, command, parameters) =>
         {
-            CurrentScan = null;
+            if (CurrentMeasurement is null) return;
+
+            if (CurrentMeasurement.Children.Count == 1)
+            {
+                CurrentScan = null;
+                CurrentMeasurement = null;
+                _cancelledScans.Clear();
+                return;
+            }
+
+            var statusInfo = parameters as CTS.Models.SystemStatusInfo;
+
+            var currentScanId = statusInfo?.ScanId;
+
+            if (string.IsNullOrEmpty(currentScanId))
+            {
+                CurrentScan = null;
+            }
+
+            //多期连扫，上一期和下一期间隔期取消，需处理后续期扫描状态
+            if (CurrentScan is null)
+            {
+                ScanCancelled?.Invoke(this, new CTS.EventArgs<(string, string, bool)>((CurrentMeasurement.Descriptor.Id, null, true)));
+            }
+            else
+            {
+                CurrentScan = null;
+            }
             CurrentMeasurement = null;
             _cancelledScans.Clear();
         });

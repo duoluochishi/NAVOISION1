@@ -26,6 +26,10 @@ using NV.CT.DatabaseService.Contract;
 using NV.MPS.Configuration;
 using NV.CT.FacadeProxy.Common.Enums.Collimator;
 using System.Windows.Controls;
+using NV.CT.ProtocolManagement.ApplicationService.Impl;
+using Google.Protobuf.WellKnownTypes;
+using System.Runtime.CompilerServices;
+using System.ComponentModel;
 
 namespace NV.CT.ProtocolManagement.ViewModels
 {
@@ -329,7 +333,12 @@ namespace NV.CT.ProtocolManagement.ViewModels
             get => _selectedTubePositions1;
             set => SetProperty(ref _selectedTubePositions1, value);
         }
-
+        private string _patientPosition;
+        public string PatientPosition
+        {
+            get => _patientPosition;
+            set => SetProperty(ref _patientPosition, value);
+        }
         #endregion
 
         #region Constructor
@@ -349,7 +358,7 @@ namespace NV.CT.ProtocolManagement.ViewModels
             CollectCommand();
             InitDynamicPara();
 
-            this.HightOfAutoScanRow = ScanParameter.ScanName == ProtocolParameterNames.SCAN_OPTION_TOPOGRAM ? HEIGHT_HIDE : HEIGHT_SHOW;
+            this.HightOfAutoScanRow = ScanParameter.ScanName == ProtocolParameterNames.SCAN_OPTION_TOPOGRAM ? HEIGHT_HIDE : HEIGHT_SHOW;         
         }
 
         #endregion
@@ -413,12 +422,23 @@ namespace NV.CT.ProtocolManagement.ViewModels
         {
             Commands.Add(Constants.COMMAND_SAVE, new DelegateCommand(Save));
             Commands.Add(Constants.COMMAND_CHECKED, new DelegateCommand(UpdateVoiceId));
+            Commands.Add(Constants.COMMAND_SELECTIONCHANGED, new DelegateCommand(ScanOptionSelectionChanged));
+        }
+        [UIRoute]
+        private void ScanOptionSelectionChanged()
+        {
+            if (SelectedScanOption.Value==ScanOption.DualScout.ToString())
+            {
+                SelectedTubePositions0 = TubePositionsList[0];
+                SelectedTubePositions1 = TubePositionsList[3];
+            }
         }
         [UIRoute]
         private void UpdateVoiceId()
         {
             SelectedPreVoice = PreVoiceist.FirstOrDefault(r=>r.Key==4);
             SelectedPostVoice = PostVoiceist.FirstOrDefault(r=>r.Key==3);
+            this.CheckDelay(SelectedPreVoice.Key);
         }
 
         [UIRoute]
@@ -430,7 +450,9 @@ namespace NV.CT.ProtocolManagement.ViewModels
             {
                 scanModel.Descriptor.Name = ScanParameter.ScanName;
                 scanModel=UpdateScanParameters(scanModel);
-            }else
+                scanModel=ProtocolHelper.UpdateImageOrder(PatientPosition,scanModel);
+            }
+            else
             {
                 return;
             }
@@ -491,7 +513,9 @@ namespace NV.CT.ProtocolManagement.ViewModels
             ProtocolHelper.SetParameter(scanModel, ProtocolParameterNames.SCAN_MODE, SelectedScanMode.Value, true);
             ProtocolHelper.SetParameter(scanModel, ProtocolParameterNames.SCAN_RAW_DATA_TYPE, SelectedRawDataType.Value, true);
             ProtocolHelper.SetParameter(scanModel, ProtocolParameterNames.SCAN_EXPOSURE_MODE, SelectedExposureMode.Value, true);
+
             ProtocolHelper.SetParameter(scanModel, ProtocolParameterNames.SCAN_TABLE_DIRECTION, SelectedTableDirection.Value, true);
+
             var collimatorz = int.TryParse(ScanParameter.CollimitorZ, out int outCollimatorz) ? outCollimatorz : 242;
             ProtocolHelper.SetParameter(scanModel, ProtocolParameterNames.SCAN_COLLIMATOR_Z, collimatorz.ToString(), true);
             ProtocolHelper.SetParameter(scanModel, ProtocolParameterNames.SCAN_BOWTIE_ENABLE, ScanParameter.IsBowtieEnabled.ToString(), true);
@@ -551,6 +575,10 @@ namespace NV.CT.ProtocolManagement.ViewModels
                 var exposureSourceCount = (int.TryParse(ScanParameter.ActiveExposureSourceCount, out int outExposureSourceCount) ? outExposureSourceCount : 24) ;
                 exposureSourceCount= exposureSourceCount==0 ? 24 : exposureSourceCount;
                 ProtocolHelper.SetParameter(scanModel, ProtocolParameterNames.SCAN_ACTIVE_EXPOSURE_SOURCE_COUNT, exposureSourceCount.ToString(), true);
+                if (exposureSourceCount==24)
+                {
+                    ProtocolHelper.SetParameter(scanModel, ProtocolParameterNames.SCAN_ALLOW_ERROR_TUBE_COUNT, "1", true);
+                }
             }
             if (collimatorz==288)
             {
@@ -587,7 +615,7 @@ namespace NV.CT.ProtocolManagement.ViewModels
             Global.Instance.SelectNodeID = ScanID;
             var protocolTemplate = _protocolApplicationService.GetProtocolTemplate(TemplateID);
             ProtocolHelper.ResetParent(protocolTemplate.Protocol);
-
+            PatientPosition = protocolTemplate.Protocol.Children[0].PatientPosition.ToString();
             var scan = (from f in protocolTemplate.Protocol.Children
                         from m in f.Children
                         from s in m.Children
@@ -722,12 +750,22 @@ namespace NV.CT.ProtocolManagement.ViewModels
             var selectedVoiceValue = PreVoiceist.First(v => v.Key == preVoiceId).Value;
             int indexOfLastSpace = selectedVoiceValue.LastIndexOf(' ');
             int voiceLength = int.Parse(selectedVoiceValue.Substring(indexOfLastSpace));
-
             int.TryParse(ScanParameter.ExposureDelayTime, out int expouseDelayTime);
-            if (expouseDelayTime < voiceLength)
+            int postPreVoiceDelayTime = SystemConfig.AcquisitionConfig.Acquisition.PostPreVoiceDelayTime.Value;
+            int configMinExposureDelayTime = SystemConfig.ScanningParamConfig.ScanningParam.MinExposureDelayTime.Value;
+            int minExpousureDelayTime=UnitConvert.Microsecond2Second(configMinExposureDelayTime);
+            //不能小于最小的曝光延迟时间
+            if (expouseDelayTime< minExpousureDelayTime)
             {
-                ScanParameter.ExposureDelayTime = voiceLength.ToString();
+                ScanParameter.ExposureDelayTime = minExpousureDelayTime.ToString();
             }
+            int minDelayTime = voiceLength + UnitConvert.Microsecond2Second(postPreVoiceDelayTime);
+            //不能小于语音时长加上前语音后延迟1秒的总时间
+            if (expouseDelayTime < minDelayTime)
+            {
+                ScanParameter.ExposureDelayTime = minDelayTime.ToString();
+            }
+
         }
 
         private void RefreshVisibility()
@@ -735,8 +773,9 @@ namespace NV.CT.ProtocolManagement.ViewModels
             this.HightOfAutoScanRow = SelectedScanOption.Value.IndexOf( ProtocolParameterNames.SCAN_OPTION_TOPOGRAM, 0, StringComparison.InvariantCultureIgnoreCase) >= 0 ? HEIGHT_HIDE : HEIGHT_SHOW;
             this.HightOfLoopsRow = (SelectedScanOption.Value.IndexOf(STRING_BOLUS, 0, StringComparison.InvariantCultureIgnoreCase) >= 0) ? HEIGHT_SHOW : HEIGHT_HIDE;
 
-            PitchShow = (SelectedScanOption.Value.IndexOf(ProtocolParameterNames.SCAN_OPTION_TOPOGRAM, 0, StringComparison.InvariantCultureIgnoreCase) >= 0
-                          || SelectedScanOption.Value.IndexOf(ScanOption.Axial.ToString(), 0, StringComparison.InvariantCultureIgnoreCase) >= 0) ? Visibility.Collapsed : Visibility.Visible;
+            PitchShow = (SelectedScanOption.Value.IndexOf(ScanOption.Surview.ToString(), 0, StringComparison.InvariantCultureIgnoreCase) >= 0
+                          || SelectedScanOption.Value.IndexOf(ScanOption.Axial.ToString(), 0, StringComparison.InvariantCultureIgnoreCase) >= 0
+                          || SelectedScanOption.Value.IndexOf(ScanOption.DualScout.ToString(), 0, StringComparison.InvariantCultureIgnoreCase) >= 0) ? Visibility.Collapsed : Visibility.Visible;
 
             TableFeedShow = SelectedScanOption.Value.IndexOf(ScanOption.Helical.ToString(), 0, StringComparison.InvariantCultureIgnoreCase) >= 0 ? Visibility.Collapsed : Visibility.Visible;
         }

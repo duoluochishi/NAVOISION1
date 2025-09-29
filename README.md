@@ -1,13 +1,30 @@
 ## MCS 2.0 代码介绍
-**MCS 2.0**为**InsightVision V2.0**一部分，提供用户界面操作。**InsightVision V2.0**还包含**MRS**/**嵌入式**/**算法**等部分。
+**MCS 2.0**为**InsightVision V2.0**一部分，提供用户界面操作。**InsightVision V2.0**还包含**MRS**/**Pipeline**/**嵌入式**/**算法**等部分。
+```mermaid
+graph LR
+MCS <--> MRSProxy[MRS Proxy]
+MRSProxy[MRS Proxy] <--> ScanReconEngine[Scan & Recon Engine]
+MRSProxy[MRS Proxy] <--> DeviceDaemon[Device Daemon]
+ScanReconEngine[Scan & Recon Engine] <--> LocalPipeline[Pipeline]
+ScanReconEngine[Scan & Recon Engine] <--> AcqCard
+LocalPipeline[Pipeline] <--> LocalAlgorithm[Algorithm]
+DeviceDaemon[Device Daemon] <--> CTBox
+DeviceDaemon[Device Daemon] <--> AcqCard
+MRSProxy[MRS Proxy] <--> OfflineMRS[Offline Task Engine]
+OfflineMRS[Offline Task Engine] <--> OfflinePipeline[Pipeline] 
+OfflinePipeline[Pipeline] <--> OfflineAlgorithm[Algorithm]
+```
 ### 运行环境
  - .Net 8.0
  - C++ redist X64
  - MySQL 8.0.30
+### 内部依赖库
+ - Platform 平台库
+ - MRS FacadeProxy MRS代理库
 ### 编译环境
  - dotnet build/publish
 ### 代码
- - Compiling Manager 系统编译用
+ - **Compiling Manager** 系统编译用
  - **Config 系统配置**
     - Common 通用配置
     - ConfigMCS MCS配置
@@ -21,18 +38,18 @@
     - Dicom Utility DICOM库
     - Controls 界面控件库
     - Protocol 协议库
- - Skin 样式库和多语言
+ - **Skin** 样式库和多语言
     - Material Design 设计库
     - Language 多语言
     - Error Code 错误码
- - System Service 系统服务
+ - **System Service** 系统服务
     - Core Service 核心服务
     - Job Service 任务服务
     - Sync Service 同步服务
- - System Interface 系统接口
+ - **System Interface** 系统接口
     - MRS Integration 底层业务集成库
     - MCS Runtime 运行时库
- - Service 服务工具
+ - **Service** 服务工具
     - Auto Calibration 校准
     - Hardware Test 硬件测试
     - Quality Test 质量测试
@@ -40,9 +57,9 @@
     - Upgrade 固件升级
     - Tube Calibration 球管校准（灯丝校准）
     - Tube Warm Up 热管
- - Console 主控台和副控台
- - Alg 检查控制计算算法
- - Application 业务应用
+ - **Console** 主控台和副控台
+ - **Alg** 检查控制计算算法
+ - **Application** 业务应用
     - Examination 检查
     - Recon 离线重建
     - ImageViewer 图像浏览

@@ -96,8 +96,10 @@ public class UIRelatedStatusServiceExtension
 			{
 				scanSW.Stop();
 				double scanTime = ScanTimeHelper.GetScanTime(scan);
-				_logger.LogInformation($"PerformStatusChanged a scanning task {scan.Descriptor.Id} type {scan.ScanOption.ToString()} took {scanSW.ElapsedMilliseconds} ms,Estimated time is:{scanTime} s");
-			}
+                 
+                //_logger.LogInformation($"PerformStatusChanged a scanning task {scan.Descriptor.Id} type {scan.ScanOption.ToString()} took {scanSW.ElapsedMilliseconds} ms,Estimated time is:{scanTime} s");
+                _logger.LogInformation($"PerformStatusChanged a scanning task {scan.Descriptor.Id} type {scan.ScanOption.ToString()} took {scanSW.ElapsedMilliseconds} ms,Estimated time is:{scanTime} s ,Sanlength is {scan.ScanLength}");
+            }
 			PerformScanID = scan.Descriptor.Id;
 		}
 	}

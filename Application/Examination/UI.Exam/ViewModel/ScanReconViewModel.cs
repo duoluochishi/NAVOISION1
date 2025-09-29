@@ -26,6 +26,21 @@ public class ScanReconViewModel : BaseViewModel
 	private readonly IImageOperationService _imageOperationService;
 	private readonly IOfflineConnectionService _offlineConnectionService;
 	private readonly IRawDataService _rawDataService;
+	private readonly IUIRelatedStatusService _uIRelatedStatusService;
+
+	private bool _scanReconPageEnable = true;
+
+	/// <summary>
+	/// Recon页面是否可用 单独为Recon页面定义的
+	/// </summary>
+	public bool ScanReconPageEnable
+	{
+		get => _scanReconPageEnable;
+		set
+		{
+			SetProperty(ref _scanReconPageEnable, value);
+		}
+	}
 
 	private ObservableCollection<ScanReconModel> _scanReconModelList = new();
 	public ObservableCollection<ScanReconModel> ScanReconModelList
@@ -41,7 +56,6 @@ public class ScanReconViewModel : BaseViewModel
 		set
 		{
 			SetProperty(ref _selectScanReconModel, value);
-
 			FlushedCommandStatus();
 		}
 	}
@@ -75,7 +89,8 @@ public class ScanReconViewModel : BaseViewModel
 		IImageOperationService imageOperationService,
 		IDialogService dialogService,
 		IOfflineConnectionService offlineConnectionService,
-		IRawDataService rawDataService)
+		IRawDataService rawDataService,
+		IUIRelatedStatusService uIRelatedStatusService)
 	{
 		_logger = logger;
 		_selectionManager = scanSelectManager;
@@ -88,6 +103,7 @@ public class ScanReconViewModel : BaseViewModel
 		_offlineConnectionService = offlineConnectionService;
 		_rawDataService = rawDataService;
 		_dialogService = dialogService;
+		_uIRelatedStatusService = uIRelatedStatusService;
 
 		Commands.Add(CommandParameters.COMMAND_RECON_ON, new DelegateCommand(ReconOn, IsCanRecon));
 		Commands.Add(CommandParameters.COMMAND_RECON_CUT, new DelegateCommand(ReconCut, IsCanCut));
@@ -111,6 +127,29 @@ public class ScanReconViewModel : BaseViewModel
 		_imageOperationService.SwitchViewsChanged += ImageOperationService_SwitchViewsChanged;
 		_imageOperationService.OnSelectionReconIDChanged -= ImageOperationService_OnSelectionReconIDChanged;
 		_imageOperationService.OnSelectionReconIDChanged += ImageOperationService_OnSelectionReconIDChanged;
+
+		_uIRelatedStatusService.RealtimeStatusChanged -= UIRelatedStatusService_RealtimeStatusChanged;
+		_uIRelatedStatusService.RealtimeStatusChanged += UIRelatedStatusService_RealtimeStatusChanged;
+	}
+
+	private void UIRelatedStatusService_RealtimeStatusChanged(object? sender, EventArgs<RealtimeInfo> e)
+	{
+		if (e is null || e.Data is null)
+		{
+			return;
+		}
+		switch (e.Data.Status)
+		{
+			case RealtimeStatus.None:
+			case RealtimeStatus.Init:
+			case RealtimeStatus.Standby:
+			case RealtimeStatus.Error:
+				ScanReconPageEnable = true;
+				break;
+			default:
+				ScanReconPageEnable = false;
+				break;
+		}
 	}
 
 	[UIRoute]
@@ -320,8 +359,10 @@ public class ScanReconViewModel : BaseViewModel
 	/// </summary>
 	public void ReconItemClicked()
 	{
-		_logger.LogInformation($"recon item clicked");
-		_selectionManager.SelectRecon(SelectScanReconModel.ReconModel);
+		if (SelectScanReconModel is ScanReconModel scanRecon)
+		{
+			_selectionManager.SelectRecon(scanRecon.ReconModel);
+		}
 	}
 
 	[UIRoute]

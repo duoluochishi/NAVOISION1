@@ -557,7 +557,7 @@ public class TaskListViewModel : BaseViewModel
 
 		if (isWorking)
 		{
-            _dialogService.ShowDialog(true, MessageLeveles.Warning, LanguageResource.Message_Confirm_Title, "There are tasks currently in progress. Please wait.", arg => { }, ConsoleSystemHelper.WindowHwnd);
+            _dialogService.ShowDialog(false, MessageLeveles.Info, LanguageResource.Message_Info_CloseWarningTitle, "There are tasks currently in progress. Please wait.", arg => { }, ConsoleSystemHelper.WindowHwnd);
             return;
 		}
 

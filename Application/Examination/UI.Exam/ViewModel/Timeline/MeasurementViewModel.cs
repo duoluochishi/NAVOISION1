@@ -45,7 +45,7 @@ public class MeasurementViewModel : BaseViewModel
             if (value is PerformStatus.Performed or PerformStatus.Unperform)
             {
                 ScanTimeRect = new Rect(0, 0, 0, 52);
-				timer.Enabled = false;
+                timer.Enabled = false;
             }
         }
     }
@@ -98,8 +98,8 @@ public class MeasurementViewModel : BaseViewModel
     /// <summary>
     /// 
     /// </summary>
-    private int _convertToScale = 10;
-    public int ConvertToScale
+    private double _convertToScale = 5;
+    public double ConvertToScale
     {
         get => _convertToScale;
         set => SetProperty(ref _convertToScale, value);
@@ -139,7 +139,7 @@ public class MeasurementViewModel : BaseViewModel
 
     private void Timer_Elapsed(object? sender, System.Timers.ElapsedEventArgs e)
     {
-        Application.Current?.Dispatcher?.Invoke(DispatcherPriority.Normal, () =>
+        Application.Current?.Dispatcher?.Invoke(DispatcherPriority.Render, () =>
         {
             lock (_startTimeLock)
             {

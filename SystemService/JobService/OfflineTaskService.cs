@@ -11,6 +11,7 @@ using NV.CT.CTS.Models;
 using NV.CT.DatabaseService.Contract;
 using NV.CT.DatabaseService.Contract.Models;
 using NV.CT.FacadeProxy.Common.Enums;
+using NV.CT.FacadeProxy.Common.Enums.PostProcessEnums;
 using NV.CT.FacadeProxy.Common.Models;
 using NV.CT.FacadeProxy.Common.Models.PostProcess;
 using NV.CT.FacadeProxy.Common.Models.PostProcess.Abstract;
@@ -711,6 +712,7 @@ public class OfflineTaskService : IOfflineTaskService
         reconInfo.ProtocolName = protocolName;
         reconInfo.SeriesNumber = reconModel.SeriesNumber;
         reconInfo.IsHDRecon = reconModel.IsHDRecon;
+        reconInfo.Kernel = reconModel.Kernel;
 
         if (!reconModel.IsRTD)
         {
@@ -757,6 +759,7 @@ public class OfflineTaskService : IOfflineTaskService
                 case FacadeProxy.Common.Enums.PostProcessEnums.PostProcessType.Sharp:
                     var sharpProcess = new SharpPostProcessInfo();
                     sharpProcess.SharpLevel = GetPostProcessParameter<int>(itemProcess.Parameters, ProtocolParameterNames.POST_PROCESS_ARGUMENT_SHARP_LEVEL);
+                    sharpProcess.SharpAlgType = GetPostProcessParameter<SharpAlgType>(itemProcess.Parameters, ProtocolParameterNames.POST_PROCESS_ARGUMENT_SHARP_ALGORITHM_TYPE);
                     processes.Add(sharpProcess);
                     break;
                 case FacadeProxy.Common.Enums.PostProcessEnums.PostProcessType.MotionArtifactReduce:

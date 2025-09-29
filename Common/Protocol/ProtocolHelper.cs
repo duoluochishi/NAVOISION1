@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using NV.CT.CTS.Extensions;
 using NV.CT.CTS.Helpers;
+using NV.CT.FacadeProxy.Common.Enums;
 using NV.CT.Protocol.Models;
 
 namespace NV.CT.Protocol;
@@ -414,5 +415,38 @@ public static class ProtocolHelper
                 });
             }
         }
+    }
+    public static ScanModel UpdateImageOrder(string PatientPosition, ScanModel scanModel)
+    {
+        foreach (var reconModel in scanModel.Children)
+        {
+            if (reconModel is not null)
+            {
+                if (PatientPosition == "HFS" || PatientPosition == "HFP" || PatientPosition == "HFDL" || PatientPosition == "HFDR")
+                {
+                    if (scanModel.TableDirection == TableDirection.In)
+                    {
+                        SetParameter(reconModel, ProtocolParameterNames.RECON_IMAGE_ORDER, "HeadFoot", true);
+                    }
+                    else
+                    {
+                        SetParameter(reconModel, ProtocolParameterNames.RECON_IMAGE_ORDER, "FootHead", true);
+                    }
+                }
+                else
+                {
+                    if (scanModel.TableDirection == TableDirection.In)
+                    {
+                        SetParameter(reconModel, ProtocolParameterNames.RECON_IMAGE_ORDER, "FootHead", true);
+                    }
+                    else
+                    {
+                        SetParameter(reconModel, ProtocolParameterNames.RECON_IMAGE_ORDER, "HeadFoot", true);
+                    }
+                }
+            }          
+        }
+        return scanModel;
+
     }
 }

@@ -301,9 +301,11 @@ public class PatientInfoViewModel : BaseViewModel
 			_mapper.Map(e.Data.studyModel, vStudyModel);
 
 			vStudyModel.PatientId = e.Data.patientModel.PatientId;
-            vStudyModel.PatientName = e.Data.patientModel.PatientName.Trim();;
+            vStudyModel.PatientName = e.Data.patientModel.PatientName.Trim();
             SelectedVStudyEntity = vStudyModel;
-		}
+            SelectedVStudyEntity.Birthday= SelectedVStudyEntity.PatientBirthDate;
+
+        }
 		else
 		{
 			string patientID = SelectedVStudyEntity.PatientId;

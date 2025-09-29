@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using NV.CT.FacadeProxy.Common.Enums;
+using NV.CT.FacadeProxy.Common.Enums.ScanEnums;
 using NV.CT.FacadeProxy.Models.DataAcquisition;
 using NV.CT.Service.HardwareTest.Share.Enums;
 

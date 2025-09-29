@@ -115,5 +115,10 @@ public class NAudioRecorder : ISpeechRecorder
         }
     }
 
+    public bool HasAvailableRecordingDevice()
+    {
+        return WaveInEvent.DeviceCount > 0;
+    }
+
     #endregion Methods
 }

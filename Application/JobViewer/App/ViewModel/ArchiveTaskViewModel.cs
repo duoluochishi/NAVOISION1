@@ -164,21 +164,21 @@ public class ArchiveTaskViewModel : BaseViewModel
         var jobParameter = JsonConvert.DeserializeObject<ArchiveJobRequest>(jobTaskInfo.Parameter);
         if (jobParameter is null)
         {
-            this._logger.LogError($"Parameter of job is null with jobId:{jobTaskInfo.Id}");
+            this._logger.LogWarning($"Parameter of job is null with jobId:{jobTaskInfo.Id}");
             return archiveTaskInfo;
         }
 
         var studies = this._studyService.GetStudiesByIds(new string[] { jobParameter.StudyId });
         if (studies is null || studies.Length == 0)
         {
-            this._logger.LogError($"Failed to fetch study with StudyId:{jobParameter.StudyId}");
+            this._logger.LogWarning($"Failed to fetch study with StudyId:{jobParameter.StudyId}");
             return archiveTaskInfo;
         }
 
         var patient = this._patientService.GetPatientById(studies[0].InternalPatientId);
         if (patient is null)
         {
-            this._logger.LogError($"Failed to fetch patient with PatientId:{studies[0].InternalPatientId}");
+            this._logger.LogWarning($"Failed to fetch patient with PatientId:{studies[0].InternalPatientId}");
             return archiveTaskInfo;
         }
     
@@ -196,7 +196,7 @@ public class ArchiveTaskViewModel : BaseViewModel
             var seriesList = this._seriesService.GetSeriesBySeriesIds(jobParameter.SeriesIdList.ToArray());
             if (seriesList is null || seriesList.Length == 0)
             {
-                this._logger.LogError($"Failed to fetch seriesList with StudyId:{JsonConvert.SerializeObject(jobParameter)}");
+                this._logger.LogWarning($"Failed to fetch seriesList with StudyId:{JsonConvert.SerializeObject(jobParameter)}");
                 return archiveTaskInfo;
             }
 

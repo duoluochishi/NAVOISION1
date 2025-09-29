@@ -31,5 +31,6 @@ public static class ContainerBuilderExtension
         builder.RegisterType<PrintProtocolApplicationService>().As<IPrintProtocolApplicationService>().SingleInstance();
         builder.RegisterType<KvMaCoefficientApplicationService>().As<IKvMaCoefficientApplicationService>().SingleInstance();
         builder.RegisterType<FilmSettingsApplicationService>().As<IFilmSettingsApplicationService>().SingleInstance();
+        builder.RegisterType<BreatheVoiceApplicationService>().As<IBreatheVoiceApplicationService>().SingleInstance();
     }
 }

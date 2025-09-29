@@ -9,6 +9,11 @@
             面向正式协议的扫描重建代理
             </summary>
         </member>
+        <member name="M:NV.CT.FacadeProxy.AcqReconProxy.#ctor">
+            <summary>
+            ctor
+            </summary>
+        </member>
         <member name="F:NV.CT.FacadeProxy.AcqReconProxy._lazyInstance">
             <summary>
             Lazy Instance
@@ -19,56 +24,82 @@
             Instance
             </summary>
         </member>
-        <member name="M:NV.CT.FacadeProxy.AcqReconProxy.#ctor">
-            <summary>
-            Ctor
-            </summary>
-        </member>
         <member name="F:NV.CT.FacadeProxy.AcqReconProxy._initializeLocker">
             <summary>
             初始化锁
             </summary>
         </member>
-        <member name="F:NV.CT.FacadeProxy.AcqReconProxy._firstInitialize">
+        <member name="F:NV.CT.FacadeProxy.AcqReconProxy._intialized">
             <summary>
-            初始化标志
+            是否已初始化
             </summary>
         </member>
         <member name="M:NV.CT.FacadeProxy.AcqReconProxy.Init(NV.CT.FacadeProxy.Common.Models.ServerInfo)">
             <summary>
-            初始化代理
+            初始化
             </summary>
-            <param name="info"></param>
-        </member>
-        <member name="F:NV.CT.FacadeProxy.AcqReconProxy._logger">
-            <summary>
-            日志接口
-            </summary>
-        </member>
-        <member name="F:NV.CT.FacadeProxy.AcqReconProxy._previewRealTimeStateCache">
-            <summary>
-            前一次的实时状态
-            </summary>
-        </member>
-        <member name="F:NV.CT.FacadeProxy.AcqReconProxy._cts">
-            <summary>
-            CancellationToken用于ParamConfig或StartScan的取消
-            </summary>
-        </member>
-        <member name="F:NV.CT.FacadeProxy.AcqReconProxy._ctdiHelper">
-            <summary>
-            CTDI(用于计算剂量) Helper
-            </summary>
+            <param name="serverInfo"></param>
         </member>
         <member name="F:NV.CT.FacadeProxy.AcqReconProxy.ClassName">
             <summary>
             类名
             </summary>
         </member>
+        <member name="F:NV.CT.FacadeProxy.AcqReconProxy._previousRealtimeStatus">
+            <summary>
+            前一次的实时状态
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.AcqReconProxy._flowCTS">
+            <summary>
+            取消令牌
+            </summary>
+        </member>
         <member name="P:NV.CT.FacadeProxy.AcqReconProxy.CurrentDeviceSystem">
             <summary>
             系统部件
             </summary>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.AcqReconProxy.ScanReconInternalProxy_OnConnectionStatusChanged(System.Boolean)">
+            <summary>
+            ScanReconEngine连接状态改变
+            </summary>
+            <param name="isConnected"></param>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.AcqReconProxy.HandleScanReconEngineDisconnected">
+            <summary>
+            处理ScanReconEngine断连
+            </summary>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.AcqReconProxy.ScanReconInternalProxy_OnAcqReconStatusChanged(NV.CT.FacadeProxy.Common.Arguments.AcqReconStatusArgs)">
+            <summary>
+            采集重建状态改变
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.AcqReconProxy.HandleAcqReconStatusChanged(NV.CT.FacadeProxy.Common.Arguments.AcqReconStatusArgs)">
+            <summary>
+            处理采集重建状态改变
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.AcqReconProxy.ScanReconInternalProxy_OnRawDataSaved(NV.CT.FacadeProxy.Common.Arguments.RawImageSavedEventArgs)">
+            <summary>
+            生数据保存事件
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.AcqReconProxy.ScanReconInternalProxy_OnDicomImageSaved(NV.CT.FacadeProxy.Common.Arguments.ImageSavedEventArgs)">
+            <summary>
+            实时重建Dicom保存事件
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.AcqReconProxy.ScanReconInternalProxy_OnErrorReceived(NV.CT.FacadeProxy.Common.Models.ErrorCodes)">
+            <summary>
+            采集重建错误
+            </summary>
+            <param name="errorCodes"></param>
         </member>
         <member name="E:NV.CT.FacadeProxy.AcqReconProxy.DeviceConnectionChanged">
             <summary>
@@ -125,71 +156,29 @@
             硬件错误发生事件
             </summary>
         </member>
-        <member name="M:NV.CT.FacadeProxy.AcqReconProxy.InvokeScanReconConnectionChangedEvent(System.Boolean)">
-            <summary>
-            触发扫描重建连接状态改变事件
-            </summary>
-        </member>
-        <member name="M:NV.CT.FacadeProxy.AcqReconProxy.InvokeAcqReconStatusChangedEvent(NV.CT.FacadeProxy.Common.Arguments.AcqReconStatusArgs)">
-            <summary>
-            触发采集重建状态改变事件
-            </summary>
-            <param name="acqReconStatusArgs"></param>
-        </member>
-        <member name="M:NV.CT.FacadeProxy.AcqReconProxy.InvokeRawImageSavedEvent(NV.CT.FacadeProxy.Common.Arguments.RawImageSavedEventArgs)">
-            <summary>
-            触发生数据保存事件
-            </summary>
-        </member>
-        <member name="M:NV.CT.FacadeProxy.AcqReconProxy.InvokeReconImageSavedEvent(NV.CT.FacadeProxy.Common.Arguments.ImageSavedEventArgs)">
-            <summary>
-            触发重建图像保存事件
-            </summary>
-        </member>
-        <member name="M:NV.CT.FacadeProxy.AcqReconProxy.InvokeScanReconErrorOccurredEvent(NV.CT.FacadeProxy.Common.Models.ErrorCodes)">
-            <summary>
-            触发临床流程错误发生事件
-            </summary>
-            <param name="errorCodes"></param>
-        </member>
-        <member name="M:NV.CT.FacadeProxy.AcqReconProxy.InvokeScanReconErrorOccurredEvent(System.String)">
-            <summary>
-            触发临床流程错误发生事件
-            </summary>
-            <param name="code"></param>
-        </member>
-        <member name="M:NV.CT.FacadeProxy.AcqReconProxy.InvokeDeviceConnectionChangedEvent(System.Boolean)">
-            <summary>
-            触发设备连接状态改变事件
-            </summary>
-        </member>
-        <member name="M:NV.CT.FacadeProxy.AcqReconProxy.InvokeDeviceErrorOccurredEvent(NV.CT.FacadeProxy.Common.Arguments.ErrorInfoEventArgs)">
-            <summary>
-            触发设备错误发生事件
-            </summary>
-        </member>
-        <member name="M:NV.CT.FacadeProxy.AcqReconProxy.InvokeSystemStatusChangedEvent(NV.CT.FacadeProxy.Common.Arguments.SystemStatusArgs)">
-            <summary>
-            触发系统状态改变事件
-            </summary>
-        </member>
-        <member name="M:NV.CT.FacadeProxy.AcqReconProxy.InvokeCycleStatusChangedEvent">
-            <summary>
-            触发周期状态改变事件
-            </summary>
-        </member>
-        <member name="M:NV.CT.FacadeProxy.AcqReconProxy.InvokeRealtimeStateChangedEvent(NV.CT.FacadeProxy.Common.Arguments.RealtimeEventArgs)">
-            <summary>
-            触发实时状态改变事件
-            </summary>
-            <param name="realtimeEventArgs"></param>
-        </member>
         <member name="M:NV.CT.FacadeProxy.AcqReconProxy.StartScan(System.Collections.Generic.List{NV.CT.FacadeProxy.Common.Models.ScanReconParam})">
             <summary>
             开始扫描
             </summary>
-            <param name="scanReconSeries"></param>
+            <param name="series"></param>
             <returns></returns>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.AcqReconProxy.Validate(System.Collections.Generic.List{NV.CT.FacadeProxy.Common.Models.ScanReconParam})">
+            <summary>
+            校验
+            </summary>
+            <param name="series"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.AcqReconProxy.CleanDicomTempFiles">
+            <summary>
+            清除Dicom临时文件
+            </summary>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.AcqReconProxy.UpdatePreOffsetFrameTimeByScanOption(System.Collections.Generic.List{NV.CT.FacadeProxy.Common.Models.ScanReconParam})">
+            <summary>
+            根据ScanOption更新PreOffsetFrameTime
+            </summary>
         </member>
         <member name="M:NV.CT.FacadeProxy.AcqReconProxy.AbortScan(NV.CT.FacadeProxy.Common.Models.AbortOperation)">
             <summary>
@@ -199,13 +188,6 @@
             <returns>命令执行结果</returns>
             <exception cref="T:NV.CT.FacadeProxy.Exceptions.BadNetworkExcption">网络未连接异常</exception>
             <exception cref="T:System.TimeoutException">超时异常</exception>
-        </member>
-        <member name="M:NV.CT.FacadeProxy.AcqReconProxy.ValidateScanReconSeries(System.Collections.Generic.List{NV.CT.FacadeProxy.Common.Models.ScanReconParam})">
-            <summary>
-            验证采集重建序列参数
-            </summary>
-            <param name="scanReconSeries"></param>
-            <returns></returns>
         </member>
         <member name="M:NV.CT.FacadeProxy.AcqReconProxy.SetCycleMessageInterval(System.UInt32)">
             <summary>
@@ -223,7 +205,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:NV.CT.FacadeProxy.AcqReconProxy.HandleRealTimeChanged(NV.CT.FacadeProxy.Common.Arguments.RealtimeEventArgs)">
+        <member name="M:NV.CT.FacadeProxy.AcqReconProxy.HandleRealtimeStatusChanged(NV.CT.FacadeProxy.Common.Arguments.RealtimeEventArgs)">
             <summary>
             处理实时状态改变
             </summary>
@@ -240,7 +222,7 @@
         </member>
         <member name="M:NV.CT.FacadeProxy.AcqReconProxy.TerminateScanReconFlow(System.String,NV.CT.FacadeProxy.Common.Models.CommandResult)">
             <summary>
-            终止临床流程 
+            终止临床流程
             </summary>
             <param name="scanUID"></param>
             <param name="failureResult"></param>
@@ -500,7 +482,7 @@
             系统状态
             </summary>
         </member>
-        <member name="E:NV.CT.FacadeProxy.Core.DeviceInteract.DeviceInteractInternalProxy.RealTimeStateReceived">
+        <member name="E:NV.CT.FacadeProxy.Core.DeviceInteract.DeviceInteractInternalProxy.RealtimeStatusChanged">
             <summary>
             实时状态接收事件
             </summary>
@@ -515,7 +497,7 @@
             CTBox连接状态改变
             </summary>
         </member>
-        <member name="E:NV.CT.FacadeProxy.Core.DeviceInteract.DeviceInteractInternalProxy.CycleStateReceived">
+        <member name="E:NV.CT.FacadeProxy.Core.DeviceInteract.DeviceInteractInternalProxy.CycleInfoReceived">
             <summary>
             周期状态接收事件
             </summary>
@@ -525,7 +507,7 @@
             EventData接收事件
             </summary>
         </member>
-        <member name="E:NV.CT.FacadeProxy.Core.DeviceInteract.DeviceInteractInternalProxy.ErrorCodeReceived">
+        <member name="E:NV.CT.FacadeProxy.Core.DeviceInteract.DeviceInteractInternalProxy.ErrorReceived">
             <summary>
             错误码接收事件
             </summary>
@@ -533,6 +515,11 @@
         <member name="E:NV.CT.FacadeProxy.Core.DeviceInteract.DeviceInteractInternalProxy.UpgradeReadyStatusReceived">
             <summary>
             升级准备状态接收事件
+            </summary>
+        </member>
+        <member name="E:NV.CT.FacadeProxy.Core.DeviceInteract.DeviceInteractInternalProxy.ECGReceived">
+            <summary>
+            ECG接收事件
             </summary>
         </member>
         <member name="M:NV.CT.FacadeProxy.Core.DeviceInteract.DeviceInteractInternalProxy.InvokeCycleStateInfoReceivedEvent(NV.CT.FacadeProxy.DeviceInteract.Models.CycleStateEventArgs)">
@@ -794,6 +781,17 @@
             在当前时间添加interval偏移
             </summary>
         </member>
+        <member name="M:NV.CT.FacadeProxy.Core.DeviceInteract.GrpcClients.ECGGrpcClient.InvokeECGReceivedEvent(NV.CT.Proto.DeviceScanCommon.ProtoECG)">
+            <summary>
+            触发ECG事件
+            </summary>
+            <param name="protoECG">ECG信息</param>
+        </member>
+        <member name="P:NV.CT.FacadeProxy.Core.DeviceInteract.GrpcClients.ECGGrpcClient.AddIntervalToCurrentDateTime">
+            <summary>
+            在当前时间添加interval偏移
+            </summary>
+        </member>
         <member name="T:NV.CT.FacadeProxy.Core.DeviceInteract.Models.EventDataInfo">
             <summary>
             EventData信息
@@ -849,6 +847,11 @@
             急停
             </summary>
         </member>
+        <member name="F:NV.CT.FacadeProxy.Core.DeviceInteract.Models.EventDataType.HeartRate">
+             <summary>
+            心率
+             </summary>
+        </member>
         <member name="M:NV.CT.FacadeProxy.Core.ScanRecon.GrpcClients.CalibrationFlowControlGrpcClient.EstablishAlgorithmCalculateStatusInfoLine">
             <summary>
             建立算法计算状态信息链路
@@ -882,20 +885,20 @@
             <param name="port"></param>
             <returns></returns>
         </member>
-        <member name="M:NV.CT.FacadeProxy.Core.ScanRecon.GrpcClients.ScanReconFlowControlGrpcClient.ValidateParameters(NV.CT.FacadeProxy.Common.Models.ScanReconParam,System.UInt32)">
+        <member name="M:NV.CT.FacadeProxy.Core.ScanRecon.GrpcClients.ScanReconFlowControlGrpcClient.ValidateParameters(System.Collections.Generic.IEnumerable{NV.CT.FacadeProxy.Common.Models.ScanReconParam},System.UInt32)">
             <summary>
             验证参数
             </summary>
-            <param name="scanReconParam"></param>
-            <param name="timeoutPeriod"></param>
+            <param name="series"></param>
+            <param name="timeout"></param>
             <returns></returns>
         </member>
-        <member name="M:NV.CT.FacadeProxy.Core.ScanRecon.GrpcClients.ScanReconFlowControlGrpcClient.PrepareScan(NV.CT.FacadeProxy.Common.Models.ScanReconParam,System.UInt32)">
+        <member name="M:NV.CT.FacadeProxy.Core.ScanRecon.GrpcClients.ScanReconFlowControlGrpcClient.PrepareScan(System.Collections.Generic.IEnumerable{NV.CT.FacadeProxy.Common.Models.ScanReconParam},System.UInt32)">
             <summary>
             扫描准备
             </summary>
-            <param name="scanReconParam"></param>
-            <param name="timeoutPeriod"></param>
+            <param name="series"></param>
+            <param name="timeout"></param>
             <returns></returns>
         </member>
         <member name="M:NV.CT.FacadeProxy.Core.ScanRecon.GrpcClients.ScanReconFlowControlGrpcClient.StartScan(System.String,System.UInt32)">
@@ -910,20 +913,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:NV.CT.FacadeProxy.Core.ScanRecon.GrpcClients.ScanReconFlowControlGrpcClient.AbortScan(NV.CT.FacadeProxy.Common.Models.AbortOperation,System.UInt32)">
-            <summary>
-            取消/中止 扫描
-            </summary>
-            <param name="operation"></param>
-            <param name="timeoutPeriod"></param>
-            <returns></returns>
-        </member>
         <member name="M:NV.CT.FacadeProxy.Core.ScanRecon.GrpcClients.ScanReconFlowControlGrpcClient.NotifyAcqCardExposureStarted(System.String,System.UInt32)">
             <summary>
             通知采集卡曝光开始
             </summary>
             <param name="scanUID"></param>
-            <param name="timeoutPeriod"></param>
+            <param name="timeout"></param>
         </member>
         <member name="M:NV.CT.FacadeProxy.Core.ScanRecon.GrpcClients.ScanReconFlowControlGrpcClient.NotifyAcqCardSequenceAcquisitionEnd(System.String,System.Int32,System.Int32,System.UInt32)">
             <summary>
@@ -932,7 +927,7 @@
             <param name="scanUID"></param>
             <param name="exposureCount"></param>
             <param name="postCount"></param>
-            <param name="timeoutPeriod"></param>
+            <param name="timeout"></param>
         </member>
         <member name="M:NV.CT.FacadeProxy.Core.ScanRecon.GrpcClients.ScanReconStatusNotifyGrpcClient.Connect(System.String,System.Int32)">
             <summary>
@@ -988,19 +983,19 @@
             <param name="port"></param>
             <returns></returns>
         </member>
-        <member name="M:NV.CT.FacadeProxy.Core.ScanRecon.Interfaces.IScanReconFlowControlGrpcClient.ValidateParameters(NV.CT.FacadeProxy.Common.Models.ScanReconParam,System.UInt32)">
+        <member name="M:NV.CT.FacadeProxy.Core.ScanRecon.Interfaces.IScanReconFlowControlGrpcClient.ValidateParameters(System.Collections.Generic.IEnumerable{NV.CT.FacadeProxy.Common.Models.ScanReconParam},System.UInt32)">
             <summary>
             参数校验
             </summary>
-            <param name="info"></param>
+            <param name="series"></param>
             <param name="timeoutPeriod"></param>
             <returns></returns>
         </member>
-        <member name="M:NV.CT.FacadeProxy.Core.ScanRecon.Interfaces.IScanReconFlowControlGrpcClient.PrepareScan(NV.CT.FacadeProxy.Common.Models.ScanReconParam,System.UInt32)">
+        <member name="M:NV.CT.FacadeProxy.Core.ScanRecon.Interfaces.IScanReconFlowControlGrpcClient.PrepareScan(System.Collections.Generic.IEnumerable{NV.CT.FacadeProxy.Common.Models.ScanReconParam},System.UInt32)">
             <summary>
             扫描准备
             </summary>
-            <param name="info"></param>
+            <param name="series"></param>
             <param name="timeoutPeriod"></param>
             <returns></returns>
         </member>
@@ -1014,14 +1009,6 @@
             <summary>
             扫描结束
             </summary>
-            <returns></returns>
-        </member>
-        <member name="M:NV.CT.FacadeProxy.Core.ScanRecon.Interfaces.IScanReconFlowControlGrpcClient.AbortScan(NV.CT.FacadeProxy.Common.Models.AbortOperation,System.UInt32)">
-            <summary>
-            扫描中止
-            </summary>
-            <param name="operation"></param>
-            <param name="timeoutPeriod"></param>
             <returns></returns>
         </member>
         <member name="M:NV.CT.FacadeProxy.Core.ScanRecon.Interfaces.IScanReconFlowControlGrpcClient.NotifyAcqCardExposureStarted(System.String,System.UInt32)">
@@ -1151,12 +1138,12 @@
             连接状态变化事件
             </summary>
         </member>
-        <member name="E:NV.CT.FacadeProxy.Core.ScanRecon.ScanReconInternalProxy.ErrorOccured">
+        <member name="E:NV.CT.FacadeProxy.Core.ScanRecon.ScanReconInternalProxy.ErrorReceived">
             <summary>
             异常事件
             </summary>
         </member>
-        <member name="E:NV.CT.FacadeProxy.Core.ScanRecon.ScanReconInternalProxy.ImageSaved">
+        <member name="E:NV.CT.FacadeProxy.Core.ScanRecon.ScanReconInternalProxy.DicomImageSaved">
             <summary>
             图像保存
             </summary>
@@ -1177,23 +1164,23 @@
             </summary>
             <param name="connected"></param>
         </member>
-        <member name="M:NV.CT.FacadeProxy.Core.ScanRecon.ScanReconInternalProxy.ValidateParameters(NV.CT.FacadeProxy.Common.Models.ScanReconParam,System.UInt32)">
+        <member name="M:NV.CT.FacadeProxy.Core.ScanRecon.ScanReconInternalProxy.ValidatePipelineProtocol(System.Collections.Generic.IEnumerable{NV.CT.FacadeProxy.Common.Models.ScanReconParam},System.UInt32)">
             <summary>
             参数校验
             </summary>
-            <param name="scanReconParam"></param>
+            <param name="series"></param>
             <param name="timeout"></param>
             <returns></returns>
         </member>
-        <member name="M:NV.CT.FacadeProxy.Core.ScanRecon.ScanReconInternalProxy.PrepareScan(NV.CT.FacadeProxy.Common.Models.ScanReconParam,System.UInt32)">
+        <member name="M:NV.CT.FacadeProxy.Core.ScanRecon.ScanReconInternalProxy.PrepareFlow(System.Collections.Generic.IEnumerable{NV.CT.FacadeProxy.Common.Models.ScanReconParam},System.UInt32)">
             <summary>
             扫描准备
             </summary>
-            <param name="scanReconParam"></param>
+            <param name="series"></param>
             <param name="timeout"></param>
             <returns></returns>
         </member>
-        <member name="M:NV.CT.FacadeProxy.Core.ScanRecon.ScanReconInternalProxy.StartFlow(NV.CT.FacadeProxy.Common.Models.ScanReconParam,System.UInt32)">
+        <member name="M:NV.CT.FacadeProxy.Core.ScanRecon.ScanReconInternalProxy.StartFlow(System.String,System.UInt32)">
             <summary>
             开始扫描
             </summary>
@@ -1203,14 +1190,6 @@
             <summary>
             扫描结束
             </summary>
-            <returns></returns>
-        </member>
-        <member name="M:NV.CT.FacadeProxy.Core.ScanRecon.ScanReconInternalProxy.AbortScan(NV.CT.FacadeProxy.Common.Models.AbortOperation,System.UInt32)">
-            <summary>
-            扫描中止
-            </summary>
-            <param name="operation"></param>
-            <param name="timeout"></param>
             <returns></returns>
         </member>
         <member name="M:NV.CT.FacadeProxy.Core.ScanRecon.ScanReconInternalProxy.NotifyAcqCardExposureStarted(System.String)">
@@ -1445,6 +1424,11 @@
             设备交互外部Proxy
             </summary>
         </member>
+        <member name="M:NV.CT.FacadeProxy.DeviceInteractProxy.#ctor">
+            <summary>
+            ctor
+            </summary>
+        </member>
         <member name="F:NV.CT.FacadeProxy.DeviceInteractProxy._lazyInstance">
             <summary>
             Lazy Instance
@@ -1455,9 +1439,14 @@
             Instance
             </summary>
         </member>
-        <member name="M:NV.CT.FacadeProxy.DeviceInteractProxy.#ctor">
+        <member name="P:NV.CT.FacadeProxy.DeviceInteractProxy.ECG">
             <summary>
-            ctor
+            ECG操作类
+            </summary>
+        </member>
+        <member name="E:NV.CT.FacadeProxy.DeviceInteractProxy.AudioPlaybackCompleted">
+            <summary>
+            播放完成事件
             </summary>
         </member>
         <member name="M:NV.CT.FacadeProxy.DeviceInteractProxy.SetDetectorTargetTemperature(NV.CT.FacadeProxy.Common.Models.DetectorTemperature.DetectorTargetTemperature)">
@@ -1486,6 +1475,65 @@
             获取部件屏蔽信息
             </summary>
             <param name="componentTypes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.DeviceInteractProxy.AddOrUpdateAudioFile(System.UInt16,System.String,NV.CT.FacadeProxy.Common.Enums.AudioFileEnums.AudioFileType)">
+            <summary>
+            增加或更新语音文件
+            </summary>
+            <param name="id"></param>
+            <param name="filePath"></param>
+            <param name="fileType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.DeviceInteractProxy.DeleteAudioFile(System.UInt16,NV.CT.FacadeProxy.Common.Enums.AudioFileEnums.AudioFileType)">
+            <summary>
+            删除语音文件
+            </summary>
+            <param name="id"></param>
+            <param name="fileType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.DeviceInteractProxy.GetAudioFiles(NV.CT.FacadeProxy.Common.Enums.AudioFileEnums.AudioFileType,System.UInt16[]@)">
+            <summary>
+            获取语音文件列表
+            </summary>
+            <param name="fileType"></param>
+            <param name="audioFileIDs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.DeviceInteractProxy.PlayAudioFile(System.UInt16,NV.CT.FacadeProxy.Common.Enums.AudioFileEnums.AudioFileType)">
+            <summary>
+            播放语音文件
+            </summary>
+            <param name="id"></param>
+            <param name="fileType"></param>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.DeviceInteractProxy.SetVolume(System.UInt32)">
+            <summary>
+            设置播放音量(0~100)
+            </summary>
+            <param name="volume"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.DeviceInteractProxy.SetBreathTrainingPlayList(System.Collections.Generic.IEnumerable{System.UInt16})">
+            <summary>
+            设置呼吸训练语音文件播放列表
+            </summary>
+            <param name="audioFileIDs">语音文件ID列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.DeviceInteractProxy.ClearBreathTrainingPlayList">
+            <summary>
+            清空呼吸训练语音文件播放列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.DeviceInteractProxy.GetBreathTrainingPlayList(System.UInt16[]@)">
+            <summary>
+            获取呼吸训练语音文件播放列表
+            </summary>
+            <param name="audioFileIDs">语音文件ID列表</param>
             <returns></returns>
         </member>
         <member name="T:NV.CT.FacadeProxy.Essentials.DesignPatterns.MatchOperation">
@@ -2166,6 +2214,11 @@
             Breath Panel 状态
             </summary>
         </member>
+        <member name="F:NV.CT.FacadeProxy.Essentials.RegisterAddresses.SecondLevelComponentRegisterAddresses.ECGStaus">
+            <summary>
+            ECG 状态
+            </summary>
+        </member>
         <member name="T:NV.CT.FacadeProxy.Essentials.RegisterAddresses.TableRegisterAddresses">
             <summary>
             扫描床控制寄存器地址
@@ -2716,43 +2769,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:NV.CT.FacadeProxy.Helpers.CTDICalculateHelper">
-            <summary>
-            CTDI计算帮助类
-            </summary>
-        </member>
-        <member name="M:NV.CT.FacadeProxy.Helpers.CTDICalculateHelper.#ctor">
-            <summary>
-            ctor
-            </summary>
-        </member>
-        <member name="M:NV.CT.FacadeProxy.Helpers.CTDICalculateHelper.CalculateTopoCTDI(NV.CT.FacadeProxy.Essentials.ThirdPartyLibraryCallers.CTDICalculate.TopogramAxialCTDIParameter,NV.CT.FacadeProxy.Essentials.ThirdPartyLibraryCallers.CTDICalculate.CTDICalculateResult@)">
-            <summary>
-            计算定位扫CTDI值
-            </summary>
-            <param name="inputParameter"></param>
-            <param name="calculateResult"></param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentException"></exception>
-        </member>
-        <member name="M:NV.CT.FacadeProxy.Helpers.CTDICalculateHelper.CalculateAxialCTDI(NV.CT.FacadeProxy.Essentials.ThirdPartyLibraryCallers.CTDICalculate.TopogramAxialCTDIParameter,NV.CT.FacadeProxy.Essentials.ThirdPartyLibraryCallers.CTDICalculate.CTDICalculateResult@)">
-            <summary>
-            计算轴扫CTDI值
-            </summary>
-            <param name="inputParameter"></param>
-            <param name="calculateResult"></param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentException"></exception>
-        </member>
-        <member name="M:NV.CT.FacadeProxy.Helpers.CTDICalculateHelper.CalculateHeliCTDI(NV.CT.FacadeProxy.Essentials.ThirdPartyLibraryCallers.CTDICalculate.HelicalCTDIParameter,NV.CT.FacadeProxy.Essentials.ThirdPartyLibraryCallers.CTDICalculate.CTDICalculateResult@)">
-            <summary>
-            计算螺旋扫CTDI值
-            </summary>
-            <param name="parameter"></param>
-            <param name="calculateResult"></param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentException"></exception>
-        </member>
         <member name="T:NV.CT.FacadeProxy.Helpers.CycleStateInfoHelper">
             <summary>
             周期状态信息帮助类
@@ -2894,6 +2910,11 @@
         <member name="T:NV.CT.FacadeProxy.Helpers.ProtoCommandResultHelper">
             <summary>
             协议CommandResult帮助类
+            </summary>
+        </member>
+        <member name="T:NV.CT.FacadeProxy.Helpers.ScanReconSeriesValidateHelper">
+            <summary>
+            扫描重建序列Validate帮助类
             </summary>
         </member>
         <member name="M:NV.CT.FacadeProxy.Helpers.SystemStatusCheckHelper.CheckSystemStatusBeforeStartScan(NV.CT.FacadeProxy.Common.Models.DeviceSystem,System.Boolean)">
@@ -3301,26 +3322,6 @@
             Disable
             </summary>
         </member>
-        <member name="T:NV.CT.FacadeProxy.Models.DataAcquisition.DetectorEncodeMode">
-            <summary>
-            探测器编码模式
-            </summary>
-        </member>
-        <member name="F:NV.CT.FacadeProxy.Models.DataAcquisition.DetectorEncodeMode.Origin">
-            <summary>
-            Origin
-            </summary>
-        </member>
-        <member name="F:NV.CT.FacadeProxy.Models.DataAcquisition.DetectorEncodeMode.Flag">
-            <summary>
-            Flag
-            </summary>
-        </member>
-        <member name="F:NV.CT.FacadeProxy.Models.DataAcquisition.DetectorEncodeMode.Log2">
-            <summary>
-            Log2
-            </summary>
-        </member>
         <member name="T:NV.CT.FacadeProxy.Models.DataAcquisition.DataAcquisitionParams">
             <summary>
             数据采集参数
@@ -3368,7 +3369,7 @@
         </member>
         <member name="P:NV.CT.FacadeProxy.Models.DataAcquisition.DetectorParams.CurrentDoubleRead">
             <summary>
-            双倍读取, fastread 0, doubleread 1 
+            双倍读取, fastread 0, doubleread 1
             </summary>
         </member>
         <member name="P:NV.CT.FacadeProxy.Models.DataAcquisition.DetectorParams.ImageFlip">
@@ -3418,7 +3419,7 @@
         </member>
         <member name="P:NV.CT.FacadeProxy.Models.DataAcquisition.DetectorParams.ReadDealyTime">
             <summary>
-            Read Delay 
+            Read Delay
             </summary>
         </member>
         <member name="P:NV.CT.FacadeProxy.Models.DataAcquisition.DetectorParams.HeartBeatTimeInterval">
@@ -3636,12 +3637,12 @@
         </member>
         <member name="P:NV.CT.FacadeProxy.Models.DataAcquisition.ExposureParams.ECGStartPosition">
             <summary>
-            ECG扫描相位位置
+            ECG起始位置
             </summary>
         </member>
         <member name="P:NV.CT.FacadeProxy.Models.DataAcquisition.ExposureParams.ECGStopPosition">
             <summary>
-            ECG扫描相位宽度
+            ECG终止位置
             </summary>
         </member>
         <member name="P:NV.CT.FacadeProxy.Models.DataAcquisition.ExposureParams.ExposureRelatedChildNodesConfig">
@@ -3929,6 +3930,77 @@
             <summary>
             曝光延时时间，探测器ready状态超时时间
             </summary>
+        </member>
+        <member name="T:NV.CT.FacadeProxy.Models.Device.ECGOperator">
+            <summary>
+            ECG操作类
+            </summary>
+        </member>
+        <member name="E:NV.CT.FacadeProxy.Models.Device.ECGOperator.ECGDataReceived">
+            <summary>
+            ECG数据接收事件
+            </summary>
+        </member>
+        <member name="E:NV.CT.FacadeProxy.Models.Device.ECGOperator.HeartRateChanged">
+            <summary>
+            心率变化事件
+            </summary>
+        </member>
+        <member name="E:NV.CT.FacadeProxy.Models.Device.ECGOperator.ErrorOccurred">
+            <summary>
+            错误事件
+            </summary>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Models.Device.ECGOperator.#ctor">
+            <summary>
+            ECG操作类构造函数
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Models.Device.ECGOperator._initializeLocker">
+            <summary>
+            初始化locker
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Models.Device.ECGOperator._initializeFlag">
+            <summary>
+            初始化标志（true代表仍未初始化）
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Models.Device.ECGOperator._cancelTokenSource">
+            <summary>
+            取消tokenSource
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Models.Device.ECGOperator.TimeoutPeriod">
+            <summary>
+            方法调用超时
+            </summary>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Models.Device.ECGOperator.InvokeECGReceivedEvent(NV.CT.FacadeProxy.Common.Arguments.ECGDataReceivedArgs)">
+            <summary>
+            触发ECG接收事件
+            </summary>
+            <param name="e"></param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Models.Device.ECGOperator.StartMonitoring">
+            <summary>
+            开始监控
+            </summary>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Models.Device.ECGOperator.StopMonitoring">
+            <summary>
+            结束监控
+            </summary>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Models.Device.ECGOperator.SaveECGData(System.DateTime,System.DateTime,System.String,System.String)">
+            <summary>
+            保存ECG数据
+            </summary>
+            <param name="startDatetime">第一帧数据的时间</param>
+            <param name="endDatetime">最后一帧数据的时间</param>
+            <param name="scanUid">扫描唯一标识</param>
+            <param name="studyInstanceUid">检查唯一标识</param>
         </member>
         <member name="T:NV.CT.FacadeProxy.Models.MotionControl.Collimator.CollimatorCalibrationTable">
             <summary>
@@ -4866,6 +4938,12 @@
             <param name="taskType"></param>
             <returns></returns>
         </member>
+        <member name="M:NV.CT.FacadeProxy.OfflineCalibrationTaskProxy.GetTaskType">
+            <summary>
+            获取任务类型
+            </summary>
+            <returns></returns>
+        </member>
         <member name="P:NV.CT.FacadeProxy.OfflineCalibrationTaskProxy.IsOfflineMachineConnected">
             <summary>
             离线机是否正常连接
@@ -5424,70 +5502,126 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:NV.CT.FacadeProxy.Services.ClinicalFlowCacheService">
+        <member name="F:NV.CT.FacadeProxy.Services.AudioFileServices.AudioFileDispatchService.ClassName">
             <summary>
-            临床流程缓存服务
+            类名
             </summary>
         </member>
-        <member name="F:NV.CT.FacadeProxy.Services.ClinicalFlowCacheService._lazyInstance">
+        <member name="F:NV.CT.FacadeProxy.Services.AudioFileServices.AudioFileDispatchService._playTimeoutMilliseconds">
             <summary>
-            Lazy Instance
+            播放超时时间（毫秒）
             </summary>
         </member>
-        <member name="P:NV.CT.FacadeProxy.Services.ClinicalFlowCacheService.Instance">
+        <member name="F:NV.CT.FacadeProxy.Services.AudioFileServices.AudioFileDispatchService._lock">
             <summary>
-            Instance
+            线程安全锁
             </summary>
         </member>
-        <member name="M:NV.CT.FacadeProxy.Services.ClinicalFlowCacheService.#ctor">
+        <member name="F:NV.CT.FacadeProxy.Services.AudioFileServices.AudioFileDispatchService._currentAudioFileID">
             <summary>
-            ctor
+            当前语音文件ID
             </summary>
         </member>
-        <member name="M:NV.CT.FacadeProxy.Services.ClinicalFlowCacheService.Cache(System.Collections.Generic.IEnumerable{NV.CT.FacadeProxy.Common.Models.ScanReconParam})">
+        <member name="F:NV.CT.FacadeProxy.Services.AudioFileServices.AudioFileDispatchService._currentAudioFileType">
             <summary>
-            缓存序列
-            </summary>
-            <param name="inputSeries"></param>
-        </member>
-        <member name="M:NV.CT.FacadeProxy.Services.ClinicalFlowCacheService.ClearExpiredCache">
-            <summary>
-            清除过期缓存
+            当前语音文件类型
             </summary>
         </member>
-        <member name="M:NV.CT.FacadeProxy.Services.ClinicalFlowCacheService.Contains(System.String)">
+        <member name="F:NV.CT.FacadeProxy.Services.AudioFileServices.AudioFileDispatchService._cts">
             <summary>
-            根据ScanUID判断是否包含ScanReconFlow
+            取消令牌
             </summary>
-            <param name="scanUID"></param>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Services.AudioFileServices.AudioFileDispatchService._isPlaying">
+            <summary>
+            是否正在播放
+            </summary>
+        </member>
+        <member name="P:NV.CT.FacadeProxy.Services.AudioFileServices.AudioFileDispatchService.PlayTimeoutMilliseconds">
+            <summary>
+            超时时间（毫秒）
+            </summary>
+        </member>
+        <member name="E:NV.CT.FacadeProxy.Services.AudioFileServices.AudioFileDispatchService.AudioPlaybackCompleted">
+            <summary>
+            播放完成事件
+            </summary>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Services.AudioFileServices.AudioFileDispatchService.ProcessPlaybackEndSignal(System.UInt16,NV.CT.FacadeProxy.Common.Enums.AudioFileEnums.AudioFileType)">
+            <summary>
+            处理语音文件播放结束信号
+            </summary>
+            <param name="id"></param>
+            <param name="fileType"></param>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Services.AudioFileServices.AudioFileDispatchService.StartMonitoringTimeoutAsync(System.UInt16,NV.CT.FacadeProxy.Common.Enums.AudioFileEnums.AudioFileType,System.Threading.CancellationToken)">
+            <summary>
+            启动超时监测
+            </summary>  
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Services.AudioFileServices.AudioFileDispatchService.ResetMonitoringFlags">
+            <summary>
+            重置监测Flags
+            </summary>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Services.AudioFileServices.AudioFileDispatchService.AddOrUpdateAudioFile(System.UInt16,System.String,NV.CT.FacadeProxy.Common.Enums.AudioFileEnums.AudioFileType)">
+            <summary>
+            增加或更新语音文件
+            </summary>
+            <param name="id"></param>
+            <param name="filePath"></param>
+            <param name="fileType"></param>
             <returns></returns>
         </member>
-        <member name="M:NV.CT.FacadeProxy.Services.ClinicalFlowCacheService.TryGetScanReconFlow(System.String,NV.CT.FacadeProxy.Models.ScanRecon.ScanReconFlowInfo@)">
+        <member name="M:NV.CT.FacadeProxy.Services.AudioFileServices.AudioFileDispatchService.DeleteAudioFile(System.UInt16,NV.CT.FacadeProxy.Common.Enums.AudioFileEnums.AudioFileType)">
             <summary>
-            尝试根据ScanUID获取扫描重建参数
+            删除语音文件
+            </summary>
+            <param name="id"></param>
+            <param name="fileType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Services.AudioFileServices.AudioFileDispatchService.GetAudioFiles(NV.CT.FacadeProxy.Common.Enums.AudioFileEnums.AudioFileType,System.UInt16[]@)">
+            <summary>
+            获取语音文件列表
+            </summary>
+            <param name="fileType"></param>
+            <param name="audioFileIDs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Services.AudioFileServices.AudioFileDispatchService.PlayAudioFile(System.UInt16,NV.CT.FacadeProxy.Common.Enums.AudioFileEnums.AudioFileType)">
+            <summary>
+            播放语音文件
+            </summary>
+            <param name="id"></param>
+            <param name="fileType"></param>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Services.AudioFileServices.AudioFileDispatchService.SetVolume(System.UInt32)">
+            <summary>
+            设置播放音量(0~100)
+            </summary>
+            <param name="volume"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Services.AudioFileServices.AudioFileDispatchService.SetBreathTrainingPlayList(System.Collections.Generic.IEnumerable{System.UInt16})">
+            <summary>
+            设置呼吸训练语音文件播放列表
+            </summary>
+            <param name="audioFileIDs">语音文件ID列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Services.AudioFileServices.AudioFileDispatchService.ClearBreathTrainingPlayList">
+            <summary>
+            清空呼吸训练语音文件播放列表
             </summary>
             <returns></returns>
         </member>
-        <member name="M:NV.CT.FacadeProxy.Services.ClinicalFlowCacheService.TryGetExecutingScanReconFlow(NV.CT.FacadeProxy.Models.ScanRecon.ScanReconFlowInfo@)">
+        <member name="M:NV.CT.FacadeProxy.Services.AudioFileServices.AudioFileDispatchService.GetBreathTrainingPlayList(System.UInt16[]@)">
             <summary>
-            获取正在执行的扫描重建流程
+            获取呼吸训练语音文件播放列表
             </summary>
-            <param name="scanReconFlowInfo"></param>
+            <param name="audioFileIDs"></param>
             <returns></returns>
-        </member>
-        <member name="M:NV.CT.FacadeProxy.Services.ClinicalFlowCacheService.TryUpdateScanReconInfoRealtimeStatus(System.String,NV.CT.FacadeProxy.Common.Enums.RealtimeStatus)">
-            <summary>
-            根据ScanUID更新扫描重建流程实时状态
-            </summary>
-            <param name="scanUID"></param>
-            <param name="realtimeStatus"></param>
-        </member>
-        <member name="M:NV.CT.FacadeProxy.Services.ClinicalFlowCacheService.TryUpdateScanReconFlowAcqReconStatus(System.String,NV.CT.FacadeProxy.Common.Enums.AcqReconStatus)">
-            <summary>
-            根据SeriesUID更新AcqReconStatus
-            </summary>
-            <param name="seriesUID"></param>
-            <param name="acqReconStatus"></param>
         </member>
         <member name="F:NV.CT.FacadeProxy.Services.CollimatorServices.CollimatorStatusSyncService._lazyInstance">
             <summary>
@@ -5561,7 +5695,7 @@
             Instance
             </summary>
         </member>
-        <member name="M:NV.CT.FacadeProxy.Services.CommandServices.AcquireReconFlowCommandService.AssembleAcquireReconPreparedCommand">
+        <member name="M:NV.CT.FacadeProxy.Services.CommandServices.AcquireReconFlowCommandService.AssembleAcquireReconReadyCommand">
             <summary>
             指令 - 采集重建准备完成
             </summary>
@@ -5780,6 +5914,122 @@
             CTBox急停恢复指令
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:NV.CT.FacadeProxy.Services.CTDISerivces.CTDICalculateService">
+            <summary>
+            CTDI计算帮助类
+            </summary>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Services.CTDISerivces.CTDICalculateService.#ctor">
+            <summary>
+            ctor
+            </summary>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Services.CTDISerivces.CTDICalculateService.CalculateTopoCTDI(NV.CT.FacadeProxy.Essentials.ThirdPartyLibraryCallers.CTDICalculate.TopogramAxialCTDIParameter,NV.CT.FacadeProxy.Essentials.ThirdPartyLibraryCallers.CTDICalculate.CTDICalculateResult@)">
+            <summary>
+            计算定位扫CTDI值
+            </summary>
+            <param name="inputParameter"></param>
+            <param name="calculateResult"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Services.CTDISerivces.CTDICalculateService.CalculateAxialCTDI(NV.CT.FacadeProxy.Essentials.ThirdPartyLibraryCallers.CTDICalculate.TopogramAxialCTDIParameter,NV.CT.FacadeProxy.Essentials.ThirdPartyLibraryCallers.CTDICalculate.CTDICalculateResult@)">
+            <summary>
+            计算轴扫CTDI值
+            </summary>
+            <param name="inputParameter"></param>
+            <param name="calculateResult"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Services.CTDISerivces.CTDICalculateService.CalculateHeliCTDI(NV.CT.FacadeProxy.Essentials.ThirdPartyLibraryCallers.CTDICalculate.HelicalCTDIParameter,NV.CT.FacadeProxy.Essentials.ThirdPartyLibraryCallers.CTDICalculate.CTDICalculateResult@)">
+            <summary>
+            计算螺旋扫CTDI值
+            </summary>
+            <param name="parameter"></param>
+            <param name="calculateResult"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="T:NV.CT.FacadeProxy.Services.CTDISerivces.Interfaces.ICTDICalculateService">
+            <summary>
+            CTDI计算服务
+            </summary>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Services.CTDISerivces.Interfaces.ICTDICalculateService.CalculateAxialCTDI(NV.CT.FacadeProxy.Essentials.ThirdPartyLibraryCallers.CTDICalculate.TopogramAxialCTDIParameter,NV.CT.FacadeProxy.Essentials.ThirdPartyLibraryCallers.CTDICalculate.CTDICalculateResult@)">
+            <summary>
+            计算轴扫CTDI
+            </summary>
+            <param name="inputParameter"></param>
+            <param name="calculateResult"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Services.CTDISerivces.Interfaces.ICTDICalculateService.CalculateHeliCTDI(NV.CT.FacadeProxy.Essentials.ThirdPartyLibraryCallers.CTDICalculate.HelicalCTDIParameter,NV.CT.FacadeProxy.Essentials.ThirdPartyLibraryCallers.CTDICalculate.CTDICalculateResult@)">
+            <summary>
+            计算螺旋扫CTDI
+            </summary>
+            <param name="parameter"></param>
+            <param name="calculateResult"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Services.CTDISerivces.Interfaces.ICTDICalculateService.CalculateTopoCTDI(NV.CT.FacadeProxy.Essentials.ThirdPartyLibraryCallers.CTDICalculate.TopogramAxialCTDIParameter,NV.CT.FacadeProxy.Essentials.ThirdPartyLibraryCallers.CTDICalculate.CTDICalculateResult@)">
+            <summary>
+            计算定位像CTDI
+            </summary>
+            <param name="inputParameter"></param>
+            <param name="calculateResult"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NV.CT.FacadeProxy.Services.FlowServices.FlowLifeCycleService">
+            <summary>
+            流程生命周期服务
+            </summary>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Services.FlowServices.FlowLifeCycleService.PushToCache(System.Collections.Generic.IEnumerable{NV.CT.FacadeProxy.Common.Models.ScanReconParam})">
+            <summary>
+            推送扫描重建序列至缓存
+            </summary>
+            <param name="series"></param>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Services.FlowServices.FlowLifeCycleService.ClearExpiredCache">
+            <summary>
+            清除过期缓存
+            </summary>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Services.FlowServices.FlowLifeCycleService.Contains(System.String)">
+            <summary>
+            是否有ScanUID对应的缓存
+            </summary>
+            <param name="scanUID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Services.FlowServices.FlowLifeCycleService.TryGetScanReconFlow(System.String,NV.CT.FacadeProxy.Models.ScanRecon.ScanReconFlowInfo@)">
+            <summary>
+            尝试根据ScanUID获取扫描重建参数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Services.FlowServices.FlowLifeCycleService.TryGetExecutingScanReconFlow(NV.CT.FacadeProxy.Models.ScanRecon.ScanReconFlowInfo@)">
+            <summary>
+            获取正在执行的扫描重建流程
+            </summary>
+            <param name="scanReconFlowInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Services.FlowServices.FlowLifeCycleService.TryUpdateScanReconInfoRealtimeStatus(System.String,NV.CT.FacadeProxy.Common.Enums.RealtimeStatus)">
+            <summary>
+            根据ScanUID更新扫描重建流程实时状态
+            </summary>
+            <param name="scanUID"></param>
+            <param name="realtimeStatus"></param>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Services.FlowServices.FlowLifeCycleService.TryUpdateScanReconFlowAcqReconStatus(System.String,NV.CT.FacadeProxy.Common.Enums.AcqReconStatus)">
+            <summary>
+            根据SeriesUID更新AcqReconStatus
+            </summary>
+            <param name="seriesUID"></param>
+            <param name="acqReconStatus"></param>
         </member>
         <member name="T:NV.CT.FacadeProxy.Services.GeneralServices.LinkStatusService">
             <summary>
@@ -6188,6 +6438,9 @@
         <member name="F:NV.CT.Proto.Common.ProtoErrorCodesInfo.ErrorCodesFieldNumber">
             <summary>Field number for the "ErrorCodes" field.</summary>
         </member>
+        <member name="F:NV.CT.Proto.Common.ProtoErrorCodesInfo.TypeFieldNumber">
+            <summary>Field number for the "Type" field.</summary>
+        </member>
         <member name="T:NV.CT.Proto.ScanReconService.ScanReconReflection">
             <summary>Holder for reflection information generated from ScanRecon.proto</summary>
         </member>
@@ -6215,7 +6468,7 @@
             <summary>Protected constructor to allow creation of configured clients.</summary>
             <param name="configuration">The client configuration.</param>
         </member>
-        <member name="M:NV.CT.Proto.ScanReconService.ScanReconService.ScanReconServiceClient.ValidateParameters(NV.CT.Proto.ScanReconCommon.ProtoScanReconParam,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+        <member name="M:NV.CT.Proto.ScanReconService.ScanReconService.ScanReconServiceClient.ValidateParameters(NV.CT.Proto.ScanReconCommon.ProtoScanReconSeries,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
              <summary>
             参数验证
              </summary>
@@ -6225,7 +6478,7 @@
              <param name="cancellationToken">An optional token for canceling the call.</param>
              <returns>The response received from the server.</returns>
         </member>
-        <member name="M:NV.CT.Proto.ScanReconService.ScanReconService.ScanReconServiceClient.ValidateParameters(NV.CT.Proto.ScanReconCommon.ProtoScanReconParam,Grpc.Core.CallOptions)">
+        <member name="M:NV.CT.Proto.ScanReconService.ScanReconService.ScanReconServiceClient.ValidateParameters(NV.CT.Proto.ScanReconCommon.ProtoScanReconSeries,Grpc.Core.CallOptions)">
              <summary>
             参数验证
              </summary>
@@ -6233,7 +6486,7 @@
              <param name="options">The options for the call.</param>
              <returns>The response received from the server.</returns>
         </member>
-        <member name="M:NV.CT.Proto.ScanReconService.ScanReconService.ScanReconServiceClient.ValidateParametersAsync(NV.CT.Proto.ScanReconCommon.ProtoScanReconParam,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+        <member name="M:NV.CT.Proto.ScanReconService.ScanReconService.ScanReconServiceClient.ValidateParametersAsync(NV.CT.Proto.ScanReconCommon.ProtoScanReconSeries,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
              <summary>
             参数验证
              </summary>
@@ -6243,7 +6496,7 @@
              <param name="cancellationToken">An optional token for canceling the call.</param>
              <returns>The call object.</returns>
         </member>
-        <member name="M:NV.CT.Proto.ScanReconService.ScanReconService.ScanReconServiceClient.ValidateParametersAsync(NV.CT.Proto.ScanReconCommon.ProtoScanReconParam,Grpc.Core.CallOptions)">
+        <member name="M:NV.CT.Proto.ScanReconService.ScanReconService.ScanReconServiceClient.ValidateParametersAsync(NV.CT.Proto.ScanReconCommon.ProtoScanReconSeries,Grpc.Core.CallOptions)">
              <summary>
             参数验证
              </summary>
@@ -6251,7 +6504,7 @@
              <param name="options">The options for the call.</param>
              <returns>The call object.</returns>
         </member>
-        <member name="M:NV.CT.Proto.ScanReconService.ScanReconService.ScanReconServiceClient.PrepareScan(NV.CT.Proto.ScanReconCommon.ProtoScanReconParam,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+        <member name="M:NV.CT.Proto.ScanReconService.ScanReconService.ScanReconServiceClient.PrepareScan(NV.CT.Proto.ScanReconCommon.ProtoScanReconSeries,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
              <summary>
             扫描准备
              </summary>
@@ -6261,7 +6514,7 @@
              <param name="cancellationToken">An optional token for canceling the call.</param>
              <returns>The response received from the server.</returns>
         </member>
-        <member name="M:NV.CT.Proto.ScanReconService.ScanReconService.ScanReconServiceClient.PrepareScan(NV.CT.Proto.ScanReconCommon.ProtoScanReconParam,Grpc.Core.CallOptions)">
+        <member name="M:NV.CT.Proto.ScanReconService.ScanReconService.ScanReconServiceClient.PrepareScan(NV.CT.Proto.ScanReconCommon.ProtoScanReconSeries,Grpc.Core.CallOptions)">
              <summary>
             扫描准备
              </summary>
@@ -6269,7 +6522,7 @@
              <param name="options">The options for the call.</param>
              <returns>The response received from the server.</returns>
         </member>
-        <member name="M:NV.CT.Proto.ScanReconService.ScanReconService.ScanReconServiceClient.PrepareScanAsync(NV.CT.Proto.ScanReconCommon.ProtoScanReconParam,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+        <member name="M:NV.CT.Proto.ScanReconService.ScanReconService.ScanReconServiceClient.PrepareScanAsync(NV.CT.Proto.ScanReconCommon.ProtoScanReconSeries,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
              <summary>
             扫描准备
              </summary>
@@ -6279,7 +6532,7 @@
              <param name="cancellationToken">An optional token for canceling the call.</param>
              <returns>The call object.</returns>
         </member>
-        <member name="M:NV.CT.Proto.ScanReconService.ScanReconService.ScanReconServiceClient.PrepareScanAsync(NV.CT.Proto.ScanReconCommon.ProtoScanReconParam,Grpc.Core.CallOptions)">
+        <member name="M:NV.CT.Proto.ScanReconService.ScanReconService.ScanReconServiceClient.PrepareScanAsync(NV.CT.Proto.ScanReconCommon.ProtoScanReconSeries,Grpc.Core.CallOptions)">
              <summary>
             扫描准备
              </summary>
@@ -6354,42 +6607,6 @@
         <member name="M:NV.CT.Proto.ScanReconService.ScanReconService.ScanReconServiceClient.StopScanAsync(NV.CT.Proto.ScanReconCommon.ProtoScanUID,Grpc.Core.CallOptions)">
              <summary>
             扫描结束
-             </summary>
-             <param name="request">The request to send to the server.</param>
-             <param name="options">The options for the call.</param>
-             <returns>The call object.</returns>
-        </member>
-        <member name="M:NV.CT.Proto.ScanReconService.ScanReconService.ScanReconServiceClient.AbortScan(NV.CT.Proto.ScanReconCommon.ProtoAbortInfo,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
-             <summary>
-            扫描中止
-             </summary>
-             <param name="request">The request to send to the server.</param>
-             <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
-             <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
-             <param name="cancellationToken">An optional token for canceling the call.</param>
-             <returns>The response received from the server.</returns>
-        </member>
-        <member name="M:NV.CT.Proto.ScanReconService.ScanReconService.ScanReconServiceClient.AbortScan(NV.CT.Proto.ScanReconCommon.ProtoAbortInfo,Grpc.Core.CallOptions)">
-             <summary>
-            扫描中止
-             </summary>
-             <param name="request">The request to send to the server.</param>
-             <param name="options">The options for the call.</param>
-             <returns>The response received from the server.</returns>
-        </member>
-        <member name="M:NV.CT.Proto.ScanReconService.ScanReconService.ScanReconServiceClient.AbortScanAsync(NV.CT.Proto.ScanReconCommon.ProtoAbortInfo,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
-             <summary>
-            扫描中止
-             </summary>
-             <param name="request">The request to send to the server.</param>
-             <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
-             <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
-             <param name="cancellationToken">An optional token for canceling the call.</param>
-             <returns>The call object.</returns>
-        </member>
-        <member name="M:NV.CT.Proto.ScanReconService.ScanReconService.ScanReconServiceClient.AbortScanAsync(NV.CT.Proto.ScanReconCommon.ProtoAbortInfo,Grpc.Core.CallOptions)">
-             <summary>
-            扫描中止
              </summary>
              <param name="request">The request to send to the server.</param>
              <param name="options">The options for the call.</param>
@@ -6971,9 +7188,6 @@
         <member name="F:NV.CT.Proto.ScanReconCommon.ProtoScanParameter.TableAccTimeFieldNumber">
             <summary>Field number for the "TableAccTime" field.</summary>
         </member>
-        <member name="F:NV.CT.Proto.ScanReconCommon.ProtoScanParameter.TableHorizontalFieldNumber">
-            <summary>Field number for the "TableHorizontal" field.</summary>
-        </member>
         <member name="F:NV.CT.Proto.ScanReconCommon.ProtoScanParameter.TableSpeedFieldNumber">
             <summary>Field number for the "TableSpeed" field.</summary>
         </member>
@@ -7123,6 +7337,15 @@
         </member>
         <member name="F:NV.CT.Proto.ScanReconCommon.ProtoScanParameter.ActiveExposureSourceCountFieldNumber">
             <summary>Field number for the "ActiveExposureSourceCount" field.</summary>
+        </member>
+        <member name="F:NV.CT.Proto.ScanReconCommon.ProtoScanParameter.ECGStartPositionFieldNumber">
+            <summary>Field number for the "ECGStartPosition" field.</summary>
+        </member>
+        <member name="F:NV.CT.Proto.ScanReconCommon.ProtoScanParameter.ECGStopPositionFieldNumber">
+            <summary>Field number for the "ECGStopPosition" field.</summary>
+        </member>
+        <member name="F:NV.CT.Proto.ScanReconCommon.ProtoScanParameter.EncodeModeFieldNumber">
+            <summary>Field number for the "EncodeMode" field.</summary>
         </member>
         <member name="T:NV.CT.Proto.ScanReconCommon.ProtoReconSeriesParam">
              <summary>
@@ -7345,6 +7568,9 @@
         <member name="F:NV.CT.Proto.ScanReconCommon.ProtoReconSeriesParam.ConeAngleArtifactReduceEnableFieldNumber">
             <summary>Field number for the "ConeAngleArtifactReduceEnable" field.</summary>
         </member>
+        <member name="F:NV.CT.Proto.ScanReconCommon.ProtoReconSeriesParam.KernelFieldNumber">
+            <summary>Field number for the "Kernel" field.</summary>
+        </member>
         <member name="F:NV.CT.Proto.ScanReconCommon.ProtoPostProcessInfo.DenoisePostProcessInfoFieldNumber">
             <summary>Field number for the "DenoisePostProcessInfo" field.</summary>
         </member>
@@ -7404,6 +7630,9 @@
         </member>
         <member name="F:NV.CT.Proto.ScanReconCommon.ProtoSharpPostProcessInfo.BaseInfoFieldNumber">
             <summary>Field number for the "BaseInfo" field.</summary>
+        </member>
+        <member name="F:NV.CT.Proto.ScanReconCommon.ProtoSharpPostProcessInfo.SharpAlgTypeFieldNumber">
+            <summary>Field number for the "SharpAlgType" field.</summary>
         </member>
         <member name="F:NV.CT.Proto.ScanReconCommon.ProtoSharpPostProcessInfo.SharpLevelFieldNumber">
             <summary>Field number for the "SharpLevel" field.</summary>
@@ -8098,6 +8327,22 @@
              <param name="options">The options for the call.</param>
              <returns>The call object.</returns>
         </member>
+        <member name="M:NV.CT.Proto.DeviceScanService.DeviceScanService.DeviceScanServiceClient.EstablishECGConnectionInfoLink(Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+             <summary>
+            建立ECG链路
+             </summary>
+             <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+             <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+             <param name="cancellationToken">An optional token for canceling the call.</param>
+             <returns>The call object.</returns>
+        </member>
+        <member name="M:NV.CT.Proto.DeviceScanService.DeviceScanService.DeviceScanServiceClient.EstablishECGConnectionInfoLink(Grpc.Core.CallOptions)">
+             <summary>
+            建立ECG链路
+             </summary>
+             <param name="options">The options for the call.</param>
+             <returns>The call object.</returns>
+        </member>
         <member name="M:NV.CT.Proto.DeviceScanService.DeviceScanService.DeviceScanServiceClient.SendCommand(NV.CT.Proto.DeviceScanCommon.ProtoCommand,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
              <summary>
             发送自定义命令
@@ -8350,6 +8595,114 @@
              <param name="options">The options for the call.</param>
              <returns>The call object.</returns>
         </member>
+        <member name="M:NV.CT.Proto.DeviceScanService.DeviceScanService.DeviceScanServiceClient.StartECGMonitoring(Google.Protobuf.WellKnownTypes.Empty,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+             <summary>
+            开始监控ECG
+             </summary>
+             <param name="request">The request to send to the server.</param>
+             <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+             <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+             <param name="cancellationToken">An optional token for canceling the call.</param>
+             <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:NV.CT.Proto.DeviceScanService.DeviceScanService.DeviceScanServiceClient.StartECGMonitoring(Google.Protobuf.WellKnownTypes.Empty,Grpc.Core.CallOptions)">
+             <summary>
+            开始监控ECG
+             </summary>
+             <param name="request">The request to send to the server.</param>
+             <param name="options">The options for the call.</param>
+             <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:NV.CT.Proto.DeviceScanService.DeviceScanService.DeviceScanServiceClient.StartECGMonitoringAsync(Google.Protobuf.WellKnownTypes.Empty,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+             <summary>
+            开始监控ECG
+             </summary>
+             <param name="request">The request to send to the server.</param>
+             <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+             <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+             <param name="cancellationToken">An optional token for canceling the call.</param>
+             <returns>The call object.</returns>
+        </member>
+        <member name="M:NV.CT.Proto.DeviceScanService.DeviceScanService.DeviceScanServiceClient.StartECGMonitoringAsync(Google.Protobuf.WellKnownTypes.Empty,Grpc.Core.CallOptions)">
+             <summary>
+            开始监控ECG
+             </summary>
+             <param name="request">The request to send to the server.</param>
+             <param name="options">The options for the call.</param>
+             <returns>The call object.</returns>
+        </member>
+        <member name="M:NV.CT.Proto.DeviceScanService.DeviceScanService.DeviceScanServiceClient.StopECGMonitoring(Google.Protobuf.WellKnownTypes.Empty,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+             <summary>
+            停止监控ECG
+             </summary>
+             <param name="request">The request to send to the server.</param>
+             <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+             <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+             <param name="cancellationToken">An optional token for canceling the call.</param>
+             <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:NV.CT.Proto.DeviceScanService.DeviceScanService.DeviceScanServiceClient.StopECGMonitoring(Google.Protobuf.WellKnownTypes.Empty,Grpc.Core.CallOptions)">
+             <summary>
+            停止监控ECG
+             </summary>
+             <param name="request">The request to send to the server.</param>
+             <param name="options">The options for the call.</param>
+             <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:NV.CT.Proto.DeviceScanService.DeviceScanService.DeviceScanServiceClient.StopECGMonitoringAsync(Google.Protobuf.WellKnownTypes.Empty,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+             <summary>
+            停止监控ECG
+             </summary>
+             <param name="request">The request to send to the server.</param>
+             <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+             <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+             <param name="cancellationToken">An optional token for canceling the call.</param>
+             <returns>The call object.</returns>
+        </member>
+        <member name="M:NV.CT.Proto.DeviceScanService.DeviceScanService.DeviceScanServiceClient.StopECGMonitoringAsync(Google.Protobuf.WellKnownTypes.Empty,Grpc.Core.CallOptions)">
+             <summary>
+            停止监控ECG
+             </summary>
+             <param name="request">The request to send to the server.</param>
+             <param name="options">The options for the call.</param>
+             <returns>The call object.</returns>
+        </member>
+        <member name="M:NV.CT.Proto.DeviceScanService.DeviceScanService.DeviceScanServiceClient.SaveECGData(NV.CT.Proto.DeviceScanCommon.ProtoECGPeriod,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+             <summary>
+            保存ECG数据
+             </summary>
+             <param name="request">The request to send to the server.</param>
+             <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+             <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+             <param name="cancellationToken">An optional token for canceling the call.</param>
+             <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:NV.CT.Proto.DeviceScanService.DeviceScanService.DeviceScanServiceClient.SaveECGData(NV.CT.Proto.DeviceScanCommon.ProtoECGPeriod,Grpc.Core.CallOptions)">
+             <summary>
+            保存ECG数据
+             </summary>
+             <param name="request">The request to send to the server.</param>
+             <param name="options">The options for the call.</param>
+             <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:NV.CT.Proto.DeviceScanService.DeviceScanService.DeviceScanServiceClient.SaveECGDataAsync(NV.CT.Proto.DeviceScanCommon.ProtoECGPeriod,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+             <summary>
+            保存ECG数据
+             </summary>
+             <param name="request">The request to send to the server.</param>
+             <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+             <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+             <param name="cancellationToken">An optional token for canceling the call.</param>
+             <returns>The call object.</returns>
+        </member>
+        <member name="M:NV.CT.Proto.DeviceScanService.DeviceScanService.DeviceScanServiceClient.SaveECGDataAsync(NV.CT.Proto.DeviceScanCommon.ProtoECGPeriod,Grpc.Core.CallOptions)">
+             <summary>
+            保存ECG数据
+             </summary>
+             <param name="request">The request to send to the server.</param>
+             <param name="options">The options for the call.</param>
+             <returns>The call object.</returns>
+        </member>
         <member name="M:NV.CT.Proto.DeviceScanService.DeviceScanService.DeviceScanServiceClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
             <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
         </member>
@@ -8446,6 +8799,12 @@
         </member>
         <member name="F:NV.CT.Proto.DeviceScanCommon.ProtoRealtimeInfo.ExposureInfoFieldNumber">
             <summary>Field number for the "ExposureInfo" field.</summary>
+        </member>
+        <member name="F:NV.CT.Proto.DeviceScanCommon.ProtoRealtimeInfo.TimestampTypeFieldNumber">
+            <summary>Field number for the "TimestampType" field.</summary>
+        </member>
+        <member name="F:NV.CT.Proto.DeviceScanCommon.ProtoRealtimeInfo.TimestampFieldNumber">
+            <summary>Field number for the "Timestamp" field.</summary>
         </member>
         <member name="T:NV.CT.Proto.DeviceScanCommon.ProtoRealtimeInfo.DataOneofCase">
             <summary>Enum of possible cases for the "data" oneof.</summary>
@@ -8550,6 +8909,15 @@
         </member>
         <member name="M:NV.CT.Proto.DeviceScanCommon.ProtoEventDataInfo.ClearUpgradeReadyStatusFromAcqCardAndDetector">
             <summary> Clears the value of the oneof if it's currently set to "UpgradeReadyStatusFromAcqCardAndDetector" </summary>
+        </member>
+        <member name="F:NV.CT.Proto.DeviceScanCommon.ProtoEventDataInfo.HeartRateFieldNumber">
+            <summary>Field number for the "HeartRate" field.</summary>
+        </member>
+        <member name="P:NV.CT.Proto.DeviceScanCommon.ProtoEventDataInfo.HasHeartRate">
+            <summary>Gets whether the "HeartRate" field is set</summary>
+        </member>
+        <member name="M:NV.CT.Proto.DeviceScanCommon.ProtoEventDataInfo.ClearHeartRate">
+            <summary> Clears the value of the oneof if it's currently set to "HeartRate" </summary>
         </member>
         <member name="T:NV.CT.Proto.DeviceScanCommon.ProtoEventDataInfo.OneOfDataOneofCase">
             <summary>Enum of possible cases for the "OneOfData" oneof.</summary>
@@ -8734,6 +9102,33 @@
         <member name="F:NV.CT.Proto.DeviceScanCommon.ProtoTubeDoseInfo.ExposureTimePerRotateFieldNumber">
             <summary>Field number for the "ExposureTimePerRotate" field.</summary>
         </member>
+        <member name="F:NV.CT.Proto.DeviceScanCommon.ProtoECG.FirstFrameTimestampFieldNumber">
+            <summary>Field number for the "FirstFrameTimestamp" field.</summary>
+        </member>
+        <member name="F:NV.CT.Proto.DeviceScanCommon.ProtoECG.ECGDatasFieldNumber">
+            <summary>Field number for the "ECGDatas" field.</summary>
+        </member>
+        <member name="F:NV.CT.Proto.DeviceScanCommon.ProtoECGData.ValueFieldNumber">
+            <summary>Field number for the "Value" field.</summary>
+        </member>
+        <member name="F:NV.CT.Proto.DeviceScanCommon.ProtoECGData.IsRWaveFieldNumber">
+            <summary>Field number for the "IsRWave" field.</summary>
+        </member>
+        <member name="F:NV.CT.Proto.DeviceScanCommon.ProtoECGData.IsGatedFieldNumber">
+            <summary>Field number for the "IsGated" field.</summary>
+        </member>
+        <member name="F:NV.CT.Proto.DeviceScanCommon.ProtoECGPeriod.FirstFrameDatetimeFieldNumber">
+            <summary>Field number for the "FirstFrameDatetime" field.</summary>
+        </member>
+        <member name="F:NV.CT.Proto.DeviceScanCommon.ProtoECGPeriod.LastFrameDatetimeFieldNumber">
+            <summary>Field number for the "LastFrameDatetime" field.</summary>
+        </member>
+        <member name="F:NV.CT.Proto.DeviceScanCommon.ProtoECGPeriod.PathFieldNumber">
+            <summary>Field number for the "path" field.</summary>
+        </member>
+        <member name="F:NV.CT.Proto.DeviceScanCommon.ProtoECGPeriod.ScanUidFieldNumber">
+            <summary>Field number for the "scanUid" field.</summary>
+        </member>
         <member name="T:NV.CT.Proto.DeviceDispatchService.DeviceDispatchReflection">
             <summary>Holder for reflection information generated from DeviceDispatch.proto</summary>
         </member>
@@ -8792,6 +9187,42 @@
         <member name="M:NV.CT.Proto.DeviceDispatchService.DeviceDispatchService.DeviceDispatchServiceClient.AddOrUpdateVoiceFileAsync(NV.CT.Proto.DeviceDispatchCommon.ProtoVoiceFile,Grpc.Core.CallOptions)">
              <summary>
             VoiceFile
+             </summary>
+             <param name="request">The request to send to the server.</param>
+             <param name="options">The options for the call.</param>
+             <returns>The call object.</returns>
+        </member>
+        <member name="M:NV.CT.Proto.DeviceDispatchService.DeviceDispatchService.DeviceDispatchServiceClient.PlayAudioFile(NV.CT.Proto.DeviceDispatchCommon.ProtoAudioFile,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+             <summary>
+            AudioFile
+             </summary>
+             <param name="request">The request to send to the server.</param>
+             <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+             <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+             <param name="cancellationToken">An optional token for canceling the call.</param>
+             <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:NV.CT.Proto.DeviceDispatchService.DeviceDispatchService.DeviceDispatchServiceClient.PlayAudioFile(NV.CT.Proto.DeviceDispatchCommon.ProtoAudioFile,Grpc.Core.CallOptions)">
+             <summary>
+            AudioFile
+             </summary>
+             <param name="request">The request to send to the server.</param>
+             <param name="options">The options for the call.</param>
+             <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:NV.CT.Proto.DeviceDispatchService.DeviceDispatchService.DeviceDispatchServiceClient.PlayAudioFileAsync(NV.CT.Proto.DeviceDispatchCommon.ProtoAudioFile,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+             <summary>
+            AudioFile
+             </summary>
+             <param name="request">The request to send to the server.</param>
+             <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+             <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+             <param name="cancellationToken">An optional token for canceling the call.</param>
+             <returns>The call object.</returns>
+        </member>
+        <member name="M:NV.CT.Proto.DeviceDispatchService.DeviceDispatchService.DeviceDispatchServiceClient.PlayAudioFileAsync(NV.CT.Proto.DeviceDispatchCommon.ProtoAudioFile,Grpc.Core.CallOptions)">
+             <summary>
+            AudioFile
              </summary>
              <param name="request">The request to send to the server.</param>
              <param name="options">The options for the call.</param>
@@ -9058,6 +9489,11 @@
         <member name="P:NV.CT.Proto.DeviceDispatchCommon.DeviceDispatchCommonReflection.Descriptor">
             <summary>File descriptor for DeviceDispatchCommon.proto</summary>
         </member>
+        <member name="T:NV.CT.Proto.DeviceDispatchCommon.ProtoAudioFileType">
+             <summary>
+            语音文件类型
+             </summary>
+        </member>
         <member name="T:NV.CT.Proto.DeviceDispatchCommon.ProtoSelfCheckStatus">
              <summary>
             自检状态
@@ -9106,6 +9542,44 @@
         </member>
         <member name="F:NV.CT.Proto.DeviceDispatchCommon.ProtoVoiceFile.FilePathFieldNumber">
             <summary>Field number for the "FilePath" field.</summary>
+        </member>
+        <member name="T:NV.CT.Proto.DeviceDispatchCommon.ProtoAudioFiles">
+             <summary>
+            语音文件列表
+             </summary>
+        </member>
+        <member name="F:NV.CT.Proto.DeviceDispatchCommon.ProtoAudioFiles.FilesFieldNumber">
+            <summary>Field number for the "Files" field.</summary>
+        </member>
+        <member name="T:NV.CT.Proto.DeviceDispatchCommon.ProtoAudioFile">
+             <summary>
+            语音文件
+             </summary>
+        </member>
+        <member name="F:NV.CT.Proto.DeviceDispatchCommon.ProtoAudioFile.IDFieldNumber">
+            <summary>Field number for the "ID" field.</summary>
+        </member>
+        <member name="F:NV.CT.Proto.DeviceDispatchCommon.ProtoAudioFile.FileTypeFieldNumber">
+            <summary>Field number for the "FileType" field.</summary>
+        </member>
+        <member name="F:NV.CT.Proto.DeviceDispatchCommon.ProtoAudioFile.FilePathFieldNumber">
+            <summary>Field number for the "FilePath" field.</summary>
+        </member>
+        <member name="T:NV.CT.Proto.DeviceDispatchCommon.ProtoAudioFilesGetRequest">
+             <summary>
+            获取语音文件列表Request
+             </summary>
+        </member>
+        <member name="F:NV.CT.Proto.DeviceDispatchCommon.ProtoAudioFilesGetRequest.FileTypeFieldNumber">
+            <summary>Field number for the "FileType" field.</summary>
+        </member>
+        <member name="T:NV.CT.Proto.DeviceDispatchCommon.ProtoVolumeSetRequest">
+             <summary>
+            设置音量Request
+             </summary>
+        </member>
+        <member name="F:NV.CT.Proto.DeviceDispatchCommon.ProtoVolumeSetRequest.VolumeFieldNumber">
+            <summary>Field number for the "Volume" field.</summary>
         </member>
         <member name="T:NV.CT.Proto.DeviceDispatchCommon.ProtoSelectedSelfCheckPartType">
              <summary>

@@ -174,6 +174,13 @@ BEGIN
 	ALTER TABLE `t_voices` 
 	ADD COLUMN `RealVoiceLength` decimal(10,2) NOT NULL DEFAULT '0' COMMENT '真实语音时长' AFTER VoiceLength;
   END IF;
+  
+  IF NOT EXISTS ( SELECT 1 FROM information_schema.COLUMNS
+			  WHERE COLUMN_NAME = 'PairId' AND TABLE_NAME = 't_voices' AND TABLE_SCHEMA = @schemaName ) 
+  THEN
+	ALTER TABLE `t_voices` 
+	ADD COLUMN `PairId` smallint NOT NULL DEFAULT '0' COMMENT '配对的语音InternalId' AFTER InternalId;
+  END IF;
   ########## End for t_voices  ##########
   
 END $$

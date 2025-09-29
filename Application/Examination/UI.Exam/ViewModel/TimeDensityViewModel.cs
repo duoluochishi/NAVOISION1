@@ -60,6 +60,16 @@ public class TimeDensityViewModel : BaseViewModel
     private List<ObservablePoint> mHu2 = new List<ObservablePoint>();
     private List<ObservablePoint> mHu3 = new List<ObservablePoint>();
 
+    private bool _isOptEnabled = true;
+    public bool IsOptEnabled
+    {
+        get => _isOptEnabled;
+        set
+        {
+            SetProperty(ref _isOptEnabled, value);
+        }
+    }
+
     public TimeDensityViewModel(IImageOperationService imageOperationService,
         IProtocolHostService protocolHostService,
         ISelectionManager selectionManager,
@@ -90,6 +100,8 @@ public class TimeDensityViewModel : BaseViewModel
 
         _imageOperationService.TimeDensityDeleteAllRoi -= ImageOperationService_TimeDensityDeleteAllRoi;
         _imageOperationService.TimeDensityDeleteAllRoi += ImageOperationService_TimeDensityDeleteAllRoi;
+
+        IsOptEnabled = AppDomain.CurrentDomain.FriendlyName.Contains(ApplicationParameterNames.PROCESSNAME_EXAMINATION);
     }
 
     [UIRoute]

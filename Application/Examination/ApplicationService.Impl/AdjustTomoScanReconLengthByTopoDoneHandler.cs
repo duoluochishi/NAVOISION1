@@ -16,20 +16,20 @@
 
 using NV.CT.DicomUtility.Graphic;
 using NV.CT.FacadeProxy.Common.Enums;
+using NV.CT.UI.Exam.Extensions;
 using NV.MPS.Environment;
 
 namespace NV.CT.Examination.ApplicationService.Contract.Interfaces
 {
     public class AdjustTomoScanReconLengthByTopoDoneHandler : IHostedService
-    {
-        // private const double DefaultAxialLength = 42200;
-       // private const double DefaultAxialLength = 0;    //将原先的默认值设置成0
+    {        
         private readonly IProtocolHostService _protocolHostService;
 
         public AdjustTomoScanReconLengthByTopoDoneHandler(IProtocolHostService protocolHostService)
         {
             _protocolHostService = protocolHostService;
-            _protocolHostService.PerformStatusChanged += PerformStatusService_PerformStatusChanged;
+			_protocolHostService.PerformStatusChanged -= PerformStatusService_PerformStatusChanged;
+			_protocolHostService.PerformStatusChanged += PerformStatusService_PerformStatusChanged;
         }
 
         private void PerformStatusService_PerformStatusChanged(object? sender, CTS.EventArgs<(BaseModel Model, PerformStatus OldStatus, PerformStatus NewStatus)> e)
@@ -78,100 +78,104 @@ namespace NV.CT.Examination.ApplicationService.Contract.Interfaces
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tomoScan"></param>
+        /// <param name="topoScan"></param>
         private void AdjustTomoScanByTopoRange(ScanModel tomoScan, ScanModel topoScan)
         {
-            //todo: 扫描长度联动接口修改完毕后，直接使用扫描长度修改接口。
+            //修正断层扫描在定位像完成后的范围自适应逻辑。
+            //1. 扫描开始位置定义：保证定位像Head方向范围与断层范围中头范围一致
+            //2. 长度在协议定义下进行微调，满足具体扫描参数
+            //3. 扫描开始位置根据扫描方向进行调整，保证扫描范围在定位像范围内。
+            //4. 根据扫描长度扫描开始位置，确定扫描结束位置。
+            //5. todo:根据床位限位，校正开始结束位置与长度
             Dictionary<BaseModel, List<ParameterModel>> resultDic = new Dictionary<BaseModel, List<ParameterModel>>();
-            var scanStart = topoScan.ReconVolumeStartPosition;
-            var scanLength = topoScan.ScanLength;
-            var tomoRTDRecon = tomoScan.Children.Single(x => x.IsRTD);
-            var topoRTDRecon = topoScan.Children.FirstOrDefault(x => x.IsRTD);
-            var currentFor = topoScan.Parent.Parent;
 
-            //校正扫描长度
-            //todo: 轴扫默认长度与定位像长度无关，固定为47.2.以后大概率更改。
-            var correctedLength = tomoScan.ScanOption is ScanOption.Axial ?
-                (int)tomoScan.ScanLength :
-                ScanLengthCorrectionHelper.GetCorrectedHelicalScanLength((int)scanLength, tomoRTDRecon.SliceThickness);
+            var topoSmallValue = topoScan.ReconVolumeEndPosition > topoScan.ReconVolumeStartPosition ? 
+                topoScan.ReconVolumeStartPosition : topoScan.ReconVolumeEndPosition;
+            var topoLargeValue = topoScan.ReconVolumeEndPosition < topoScan.ReconVolumeStartPosition ? 
+                topoScan.ReconVolumeStartPosition : topoScan.ReconVolumeEndPosition;
 
-            var topoScanDirection = ScanLengthCorrectionHelper.GetTableDirection(currentFor.PatientPosition, topoRTDRecon.ImageOrder);
+            int tomoScanStart, tomoScanEnd;
+            var tomoScanLength = ScanLengthHelper.GetCorrectedScanLength(tomoScan, (int)UnitConvert.Micron2Millimeter(tomoScan.ScanLength));
+            if (tomoScan.PatientPosition is PatientPosition.HFS or PatientPosition.HFP 
+                or PatientPosition.HFDL or PatientPosition.HFDR)    //头先进，进床为头->脚
+            {
+                if(tomoScan.TableDirection is TableDirection.In)    //头->脚
+                {
+                    tomoScanStart = topoLargeValue;
+                    tomoScanEnd = tomoScanStart - tomoScanLength;
+                }
+                else
+                {
+                    tomoScanEnd = topoLargeValue;
+                    tomoScanStart = tomoScanEnd - tomoScanLength;
+                }
+            }
+            else             //脚先进，进床为脚->头
+            {
+                if (tomoScan.TableDirection is TableDirection.Out)    //头->脚
+                {
+                    tomoScanStart = topoSmallValue;
+                    tomoScanEnd = tomoScanStart + tomoScanLength;
+                }
+                else
+                {
+                    tomoScanEnd = topoSmallValue;
+                    tomoScanStart = tomoScanEnd + tomoScanLength;
+                }
 
-            var correctedScanEnd = topoScanDirection is TableDirection.In ? scanStart - correctedLength : scanStart + correctedLength;
-
-            var tomoScanDirection = ScanLengthCorrectionHelper.GetTableDirection(topoScan.Parent.Parent.PatientPosition, tomoRTDRecon.ImageOrder);
+            }
 
             //设置的scan参数
             resultDic.Add(tomoScan, new List<ParameterModel>());
-            resultDic[tomoScan].Add(new ParameterModel() { Name = ProtocolParameterNames.SCAN_TABLE_DIRECTION, Value = tomoScanDirection.ToString() });
-
-            //小剂量基底扫描跟小剂量测试扫描的起始点位置在同一个点上
             if (tomoScan.ScanOption == ScanOption.NVTestBolusBase || tomoScan.ScanOption == ScanOption.NVTestBolus || tomoScan.ScanOption == ScanOption.TestBolus)
             {
                 resultDic[tomoScan].Add(new ParameterModel() { Name = ProtocolParameterNames.SCAN_LENGTH, Value = 0.ToString() });
-                if (tomoScanDirection == topoScanDirection)
-                {
-                    resultDic[tomoScan].Add(new ParameterModel() { Name = ProtocolParameterNames.SCAN_RECON_VOLUME_START_POSITION, Value = scanStart.ToString() });
-                    resultDic[tomoScan].Add(new ParameterModel() { Name = ProtocolParameterNames.SCAN_RECON_VOLUME_END_POSITION, Value = scanStart.ToString() });
-                }
-                else
-                {
-                    resultDic[tomoScan].Add(new ParameterModel() { Name = ProtocolParameterNames.SCAN_RECON_VOLUME_START_POSITION, Value = correctedScanEnd.ToString() });
-                    resultDic[tomoScan].Add(new ParameterModel() { Name = ProtocolParameterNames.SCAN_RECON_VOLUME_END_POSITION, Value = correctedScanEnd.ToString() });
-                }
+                resultDic[tomoScan].Add(new ParameterModel() { Name = ProtocolParameterNames.SCAN_RECON_VOLUME_START_POSITION, Value = tomoScanStart.ToString() });
+                resultDic[tomoScan].Add(new ParameterModel() { Name = ProtocolParameterNames.SCAN_RECON_VOLUME_END_POSITION, Value = tomoScanStart.ToString() });                
             }
             else
             {
-                resultDic[tomoScan].Add(new ParameterModel() { Name = ProtocolParameterNames.SCAN_LENGTH, Value = correctedLength.ToString() });
-                if (tomoScanDirection == topoScanDirection)
-                {
-                    resultDic[tomoScan].Add(new ParameterModel() { Name = ProtocolParameterNames.SCAN_RECON_VOLUME_START_POSITION, Value = scanStart.ToString() });
-                    resultDic[tomoScan].Add(new ParameterModel() { Name = ProtocolParameterNames.SCAN_RECON_VOLUME_END_POSITION, Value = correctedScanEnd.ToString() });
-                }
-                else
-                {
-                    resultDic[tomoScan].Add(new ParameterModel() { Name = ProtocolParameterNames.SCAN_RECON_VOLUME_START_POSITION, Value = correctedScanEnd.ToString() });
-                    resultDic[tomoScan].Add(new ParameterModel() { Name = ProtocolParameterNames.SCAN_RECON_VOLUME_END_POSITION, Value = scanStart.ToString() });
-                }
+                resultDic[tomoScan].Add(new ParameterModel() { Name = ProtocolParameterNames.SCAN_LENGTH, Value = tomoScanLength.ToString() });
+                resultDic[tomoScan].Add(new ParameterModel() { Name = ProtocolParameterNames.SCAN_RECON_VOLUME_START_POSITION, Value = tomoScanStart.ToString() });
+                resultDic[tomoScan].Add(new ParameterModel() { Name = ProtocolParameterNames.SCAN_RECON_VOLUME_END_POSITION, Value = tomoScanEnd.ToString() });               
             }
+
+
             //重建参数单位mm
-            var pos1 = UnitConvert.Micron2Millimeter((double)scanStart);
-            var pos2 = UnitConvert.Micron2Millimeter((double)correctedScanEnd); 
+            var currentFor = topoScan.Parent.Parent;
+
             //遍历修改重建参数：
             foreach (var recon in tomoScan.Children)
             {
                 resultDic.Add(recon, new List<ParameterModel>());
-                //todo:待调整
-                var posResult = ScanReconCoordinateHelper.GetTomoDefaultFirstLastCenterByScanRange(currentFor.PatientPosition, recon.ImageOrder, pos1, pos2);
-                resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_CENTER_FIRST_X, Value = ((int)UnitConvert.Millimeter2Micron(posResult[0])).ToString() });
-                resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_CENTER_FIRST_Y, Value = ((int)UnitConvert.Millimeter2Micron(posResult[1])).ToString() });
-                resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_CENTER_FIRST_Z, Value = ((int)UnitConvert.Millimeter2Micron(posResult[2])).ToString() });
-                resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_CENTER_LAST_X, Value = ((int)UnitConvert.Millimeter2Micron(posResult[3])).ToString() });
-                resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_CENTER_LAST_Y, Value = ((int)UnitConvert.Millimeter2Micron(posResult[4])).ToString() });
 
-                var dirResult = ScanReconCoordinateHelper.GetDefaultTomoReconOrientation(currentFor.PatientPosition);
-                resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_FOV_DIRECTION_HORIZONTAL_X, Value = ((int)dirResult[0]).ToString() });
-                resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_FOV_DIRECTION_HORIZONTAL_Y, Value = ((int)dirResult[1]).ToString() });
-                resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_FOV_DIRECTION_HORIZONTAL_Z, Value = ((int)dirResult[2]).ToString() });
-                resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_FOV_DIRECTION_VERTICAL_X, Value = ((int)dirResult[3]).ToString() });
-                resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_FOV_DIRECTION_VERTICAL_Y, Value = ((int)dirResult[4]).ToString() });
-                resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_FOV_DIRECTION_VERTICAL_Z, Value = ((int)dirResult[5]).ToString() });
+                var posResult = ScanReconCoordinateHelper.GetTomoDefaultFirstLastCenterByScanRange(currentFor.PatientPosition, recon.ImageOrder, tomoScanStart, tomoScanEnd);
+
+                resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_CENTER_FIRST_X, Value = posResult[0].ToString() });
+                resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_CENTER_FIRST_Y, Value = posResult[1].ToString() });
+                resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_CENTER_FIRST_Z, Value = posResult[2].ToString() });
+                resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_CENTER_LAST_X, Value = posResult[3].ToString() });
+                resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_CENTER_LAST_Y, Value = posResult[4].ToString() });
                 if (tomoScan.ScanOption == ScanOption.NVTestBolusBase || tomoScan.ScanOption == ScanOption.NVTestBolus || tomoScan.ScanOption == ScanOption.TestBolus)
                 {
-                    resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_CENTER_LAST_Z, Value = ((int)UnitConvert.Millimeter2Micron(posResult[2])).ToString() });
+                    resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_CENTER_LAST_Z, Value = posResult[2].ToString() });
                 }
                 else
                 {
-                    resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_CENTER_LAST_Z, Value = ((int)UnitConvert.Millimeter2Micron(posResult[5])).ToString() });
+                    resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_CENTER_LAST_Z, Value = posResult[5].ToString() });
                 }
-                //根据topo完成信息修改范围不涉及fov
-                //var fov = 506.88;           //默认为最大fov
-                //resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_FOV_LENGTH_HORIZONTAL, Value = fov.ToString() });
-                //resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_FOV_LENGTH_VERTICAL, Value = fov.ToString() });
 
-                //根据topo完成信息修改范围不涉及matrix
-                //var matrixSize = recon.IsRTD ? 512 : 1024;                
-                //resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_IMAGE_MATRIX_HORIZONTAL, Value = matrixSize.ToString() });
-                //resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_IMAGE_MATRIX_VERTICAL, Value = matrixSize.ToString() });
+                var dirResult = ScanReconCoordinateHelper.GetDefaultTomoReconOrientation(currentFor.PatientPosition);
+                resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_FOV_DIRECTION_HORIZONTAL_X, Value = dirResult[0].ToString() });
+                resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_FOV_DIRECTION_HORIZONTAL_Y, Value = dirResult[1].ToString() });
+                resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_FOV_DIRECTION_HORIZONTAL_Z, Value = dirResult[2].ToString() });
+                resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_FOV_DIRECTION_VERTICAL_X, Value = dirResult[3].ToString() });
+                resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_FOV_DIRECTION_VERTICAL_Y, Value = dirResult[4].ToString() });
+                resultDic[recon].Add(new ParameterModel() { Name = ProtocolParameterNames.RECON_FOV_DIRECTION_VERTICAL_Z, Value = dirResult[5].ToString() });
             }
             _protocolHostService.SetParameters(resultDic);
         }

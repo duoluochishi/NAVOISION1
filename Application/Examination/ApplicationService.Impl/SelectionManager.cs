@@ -4,9 +4,9 @@
 // </copyright>
 //-----------------------------------------------------------------------
 using NV.CT.CTS;
-using System.Collections.Generic;
-using NV.CT.Examination.ApplicationService.Contract.Interfaces;
 using NV.MPS.Exception;
+using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 
 namespace NV.CT.Examination.ApplicationService.Impl;
 
@@ -14,6 +14,7 @@ public class SelectionManager : ISelectionManager
 {
 	private readonly IProtocolHostService _protocolHostService;
 	public event EventHandler<EventArgs<(ReconModel Recon, string Image)>>? ReconImageLoaded;
+	private readonly ILogger<SelectionManager> _logger;
 	/// <summary>
 	/// 当前选中对象 (FOV,Measurement,Scan)
 	/// </summary>
@@ -29,6 +30,8 @@ public class SelectionManager : ISelectionManager
 	/// </summary>
 	public ScanModel LastSelectionTopoScan { get; private set; }
 
+	public bool IsSelectionScanChanged { get; private set; } = false;
+
 	/// <summary>
 	/// 当前选中 TomoScan
 	/// </summary>
@@ -38,9 +41,10 @@ public class SelectionManager : ISelectionManager
 	public event EventHandler<EventArgs<ReconModel>>? SelectionReconChanged;
 	public event EventHandler? SelectionCleared;
 
-	public SelectionManager(IProtocolHostService protocolHostService)
+	public SelectionManager(IProtocolHostService protocolHostService, ILogger<SelectionManager> logger)
 	{
 		_protocolHostService = protocolHostService;
+		_logger = logger;
 		_protocolHostService.StructureChanged += ProtocolHostService_StructureChanged;
 		_protocolHostService.PerformStatusChanged += ProtocolHostService_PerformStatusChanged;
 	}
@@ -209,12 +213,16 @@ public class SelectionManager : ISelectionManager
 			}
 		}
 
-		if (!CurrentSelection.Scan.Children.Contains(CurrentSelectionRecon))
+		if (CurrentSelection.Scan is not null && !CurrentSelection.Scan.Children.Contains(CurrentSelectionRecon))
 		{
+			IsSelectionScanChanged = true;
 			SelectRecon(CurrentSelection.Scan.Children.FirstOrDefault());
+			IsSelectionScanChanged = false;
 		}
-
-		SelectionScanChanged?.Invoke(this, new EventArgs<ScanModel>(CurrentSelection.Scan));
+		if (CurrentSelection.Scan is not null)
+		{
+			SelectionScanChanged?.Invoke(this, new EventArgs<ScanModel>(CurrentSelection.Scan));
+		}
 	}
 
 	/// <summary>
@@ -251,11 +259,16 @@ public class SelectionManager : ISelectionManager
 			SelectScan(selectionItem.Frame.Descriptor.Id, selectionItem.Measurement.Descriptor.Id, selectionItem.Scan.Descriptor.Id);
 			return;
 		}
+
 		// Clear Selection??
 		CurrentSelection = default;
 		LastSelectionTomoScan = null;
 		LastSelectionTopoScan = null;
 		CurrentSelectionRecon = null;
+
+		//测试3880
+		StackTrace stackTrace = new StackTrace();
+		_logger.LogInformation($"Time is {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff")}; CurrentSelectionRecon is null in SelectScan :" + stackTrace.ToString());
 
 		SelectionScanChanged?.Invoke(this, null);
 		ReconImageLoaded?.Invoke(this, null);
@@ -284,6 +297,9 @@ public class SelectionManager : ISelectionManager
 		CurrentSelectionRecon = null;
 		LastSelectionTopoScan = null;
 		LastSelectionTomoScan = null;
+		//测试3880
+		StackTrace stackTrace = new StackTrace();
+		_logger.LogInformation($"Time is {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff")}; CurrentSelectionRecon is null in Clear:" + stackTrace.ToString());
 
 		SelectionCleared?.Invoke(this, null);
 	}
@@ -291,5 +307,8 @@ public class SelectionManager : ISelectionManager
 	public void ClearSelectedRecon()
 	{
 		CurrentSelectionRecon = null;
+		//测试3880
+		StackTrace stackTrace = new StackTrace();
+		_logger.LogInformation($"Time is {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff")}; CurrentSelectionRecon is null in ClearSelectedRecon:" + stackTrace.ToString());
 	}
 }

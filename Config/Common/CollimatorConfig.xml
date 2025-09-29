@@ -7,6 +7,6 @@
 	<MaxFrontBladeMoveStep Value="4000" Default="4000" />
 	<MaxRearBladeMoveStep Value="4533" Default="4533" />
 	<MaxBowtieMoveStep Value="3733" Default="3733" />
-	<CollimatorOpening Ranges="128 144 192 242 256" />
+	<CollimatorOpening Ranges="128 144 192 242 256 288" />
   </CollimatorSetting>
 </CollimatorConfig>

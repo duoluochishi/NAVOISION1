@@ -67,26 +67,26 @@ public class EmbeddedSystemSelfCheckingExecutor : ISelfCheckingExecutor
 		SelfCheckStatusChanged?.Invoke(this, selfCheckResult);
 	}
 
-	public BaseCommandResult StartSelfChecking()
-	{
-		//_logger.LogInformation("embedded start self check");
-		var result = new BaseCommandResult
-		{
-			Status = CTS.Enums.CommandExecutionStatus.Success
-		};
+	//public BaseCommandResult StartSelfChecking()
+	//{
+	//	//_logger.LogInformation("embedded start self check");
+	//	var result = new BaseCommandResult
+	//	{
+	//		Status = CTS.Enums.CommandExecutionStatus.Success
+	//	};
 
-		foreach (var item in _checkingItems)
-		{
-			var checkingResult = _proxyService.StartSelfChecking(item.Key);
-			if (checkingResult.Status != CTS.Enums.CommandExecutionStatus.Success)
-			{
-				result.Status = checkingResult.Status;
-				result.Details.AddRange(checkingResult.Details);
-			}
-		}
-		//_logger.LogInformation($"Embedded self check with result {result.ToJson()}");
-		return result;
-	}
+	//	foreach (var item in _checkingItems)
+	//	{
+	//		var checkingResult = _proxyService.StartSelfChecking(item.Key);
+	//		if (checkingResult.Status != CTS.Enums.CommandExecutionStatus.Success)
+	//		{
+	//			result.Status = checkingResult.Status;
+	//			result.Details.AddRange(checkingResult.Details);
+	//		}
+	//	}
+	//	//_logger.LogInformation($"Embedded self check with result {result.ToJson()}");
+	//	return result;
+	//}
 
 	public List<SelfCheckResult> GetSelfCheckResults()
 	{

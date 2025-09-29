@@ -5,8 +5,7 @@
 	xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
-	x:Name="RTDPanelContainer"
+	xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"	
 	d:DesignHeight="450"
 	d:DesignWidth="800"
 	mc:Ignorable="d">
@@ -176,7 +175,9 @@
         </Style>
     </UserControl.Resources>
     <ListView
+        Name="RTDPanelContainer"
 		IsSynchronizedWithCurrentItem="True"
+        IsEnabled="{Binding ScanReconPageEnable}"
 		ItemsSource="{Binding Path=ScanReconModelList, Mode=TwoWay}"
 		PreviewMouseRightButtonDown="UIElement_OnPreviewMouseRightButtonDown"
 		ScrollViewer.HorizontalScrollBarVisibility="Disabled"

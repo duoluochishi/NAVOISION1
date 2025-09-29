@@ -16,6 +16,8 @@ public interface ISelectionManager
 
 	ScanModel LastSelectionTomoScan { get; }
 
+	bool IsSelectionScanChanged { get; }
+
 	/// <summary>
 	/// 默认方法
 	/// </summary>

@@ -2151,7 +2151,7 @@
     <value>Language</value>
   </data>
   <data name="Header_Operate" xml:space="preserve">
-    <value>Operate</value>
+    <value>Play</value>
   </data>
   <data name="Header_Path" xml:space="preserve">
     <value>Path</value>
@@ -3206,5 +3206,8 @@
   </data>
   <data name="ToolTip_MergeCells" xml:space="preserve">
     <value>Merge Cells</value>
+  </data>
+  <data name="Header_PairedVoice" xml:space="preserve">
+    <value>Paired voice name</value>
   </data>
 </root>

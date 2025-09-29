@@ -4,11 +4,18 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using NV.CT.CommonAttributeUI.AOPAttribute;
+using NV.CT.CTS;
+using NV.CT.CTS.Models;
+using NV.CT.FacadeProxy.Common.Enums;
+using NV.CT.Language;
+
 namespace NV.CT.Examination.ViewModel;
 
-public class ScanMainViewModel : BaseViewModel
+public class ScanMainViewModel : BaseViewModel, IDisposable
 {
     private readonly ISelectionManager _selectionManager;
+    private readonly IUIRelatedStatusService _uiRelatedStatusService;
 
     private bool _scanMainShow;
     public bool ScanMainShow
@@ -31,7 +38,7 @@ public class ScanMainViewModel : BaseViewModel
         set
         {
             if (SetProperty(ref _isScanMainShow, value))
-            {               
+            {
                 var vm = CTS.Global.ServiceProvider?.GetRequiredService<ScanControlsViewModel>();
 
                 if (value)
@@ -44,10 +51,18 @@ public class ScanMainViewModel : BaseViewModel
                 {
                     // 跳转到协议选择页面
                     ScanMainShow = false;
-                    SelectProtocolMainShow = true;                    
+                    SelectProtocolMainShow = true;
                 }
             }
         }
+    }
+
+    private bool _popShow = false;
+
+    public bool InfoPopShow
+    {
+        get => _popShow;
+        set => SetProperty(ref _popShow, value);
     }
 
     private bool _scanParameterShow = true;
@@ -87,11 +102,28 @@ public class ScanMainViewModel : BaseViewModel
         }
     }
 
-    public ScanMainViewModel(ISelectionManager selectionManager)
+    public ScanMainViewModel(ISelectionManager selectionManager, IUIRelatedStatusService uiRelatedStatusService)
     {
         Commands.Add("ShowParameterDetail", new DelegateCommand<object>(ShowParameterDetail, _ => true));
         _selectionManager = selectionManager;
         _selectionManager.SelectionReconChanged += SelectionManager_SelectionReconChanged;
+
+
+        try
+        {
+            //2025.09.18 增加Pop居中提示控制
+            _uiRelatedStatusService = uiRelatedStatusService;
+            
+            _uiRelatedStatusService.RealtimeStatusChanged -= ExamStatusChanged;
+            _uiRelatedStatusService.RealtimeStatusChanged += ExamStatusChanged;
+            _uiRelatedStatusService.EmergencyStopped += UIRelatedStatusService_EmergencyStopped;
+            _uiRelatedStatusService.ErrorStopped += UIRelatedStatusService_ErrorStopped;
+        }
+        catch (Exception ex)
+        {
+
+            throw ex;
+        }
     }
 
     private void SelectionManager_SelectionReconChanged(object? sender, CTS.EventArgs<ReconModel> e)
@@ -112,5 +144,57 @@ public class ScanMainViewModel : BaseViewModel
     {
         get => _scanTaskList;
         set => SetProperty(ref _scanTaskList, value);
+    }
+    [UIRoute]
+    private void ExamStatusChanged(object? sender, EventArgs<RealtimeInfo> e)
+    {
+        var realtimeInfo = e.Data;
+        if (realtimeInfo is null) return;
+        switch (realtimeInfo.Status)
+        {
+            case RealtimeStatus.None:
+            case RealtimeStatus.Init:
+            case RealtimeStatus.Standby:
+            case RealtimeStatus.ExposureFinished:
+            case RealtimeStatus.NormalScanStopped:
+            case RealtimeStatus.EmergencyScanStopped:
+            case RealtimeStatus.ExposureStarted:
+            case RealtimeStatus.Error:
+                InfoPopShow = false;
+                break;
+            case RealtimeStatus.MovingPartEnable:
+            case RealtimeStatus.ExposureEnable:
+            case RealtimeStatus.ExposureSpoting:
+            case RealtimeStatus.ExposureSpotingIdle:
+                InfoPopShow = true;
+                break;
+            default:
+                InfoPopShow = false;
+                break;
+        }
+    }
+    [UIRoute]
+    private void UIRelatedStatusService_ErrorStopped(object? sender, EventArgs<RealtimeInfo> e)
+    {
+        InfoPopShow = false;
+    }
+
+    [UIRoute]
+    private void UIRelatedStatusService_EmergencyStopped(object? sender, EventArgs<RealtimeInfo> e)
+    {
+        InfoPopShow = false;
+    }
+    public void Dispose()
+    {
+        // 显式解除事件订阅，并确保弹窗关闭
+        if (_uiRelatedStatusService != null)
+        {
+            _uiRelatedStatusService.RealtimeStatusChanged -= ExamStatusChanged;
+            _uiRelatedStatusService.EmergencyStopped -= UIRelatedStatusService_EmergencyStopped;
+            _uiRelatedStatusService.ErrorStopped -= UIRelatedStatusService_ErrorStopped;
+        }
+
+        // 强制关闭所有弹窗
+        InfoPopShow = false;
     }
 }

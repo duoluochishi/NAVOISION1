@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Timers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using NV.CT.FacadeProxy;
@@ -55,19 +54,9 @@ namespace NV.CT.Service.Upgrade.ViewModels
         private readonly UpgradeConfigModel _config;
 
         /// <summary>
-        /// 定时器，定时循环获取信息（版本号、是否可升级等）
-        /// </summary>
-        private readonly Timer _timer;
-
-        /// <summary>
         /// 真正进行升级的列表
         /// </summary>
         private List<FirmwareModel> _upgradeList = new();
-
-        /// <summary>
-        /// pdu重上电后，需要重新读取升级项目的版本号
-        /// </summary>
-        private volatile bool _isGetUpgradeItemsVersion;
 
         #endregion
 
@@ -76,8 +65,8 @@ namespace NV.CT.Service.Upgrade.ViewModels
             Log = logService;
             Dialog = dialogService;
             _config = configService.GetConfig();
-            _firmwareTypes = new ObservableCollection<FirmwareTypeModel>(configService.GetFwTypes());
-            _firmwareTree = new ObservableCollection<FirmwareModel>(configService.GetFws());
+            _firmwareTypes = [..configService.GetFwTypes()];
+            _firmwareTree = [..configService.GetFws()];
             var idValue = 0;
             var canUpgradeFileList = configService.GetFwCanUpgradeFiles().ToList();
             InitFirmwares(FirmwareTree, null, canUpgradeFileList, ref idValue);
@@ -90,7 +79,6 @@ namespace NV.CT.Service.Upgrade.ViewModels
                                                 })
                                                .ToList();
             UpgradeFolder = RuntimeConfig.Console.Firmware.Path;
-            _timer = new Timer(1000) { AutoReset = true, Enabled = false, };
         }
 
         #region Property
@@ -193,22 +181,22 @@ namespace NV.CT.Service.Upgrade.ViewModels
 
         #region Loaded/Close/Check
 
-        public void OnLoaded()
+        public void OnLoaded(bool isFirst)
         {
             UnRegisterAll();
             RegisterEvent();
-            _timer.Start();
-        }
 
-        public void OnContentRendered()
-        {
-            AnalyzeUpgradeFolder(UpgradeFolder);
+            if (isFirst)
+            {
+                AnalyzeUpgradeFolder(UpgradeFolder);
+                Log.Info(ServiceCategory.UpgradeFirmware, "[Upgrade] Initialization, get firmwares information");
+                Task.Run(GetFirmwareInfoAsync);
+            }
         }
 
         public void OnUnLoaded()
         {
             UnRegisterAll();
-            _timer.Stop();
         }
 
         public string OnMCSClosing()
@@ -279,6 +267,13 @@ namespace NV.CT.Service.Upgrade.ViewModels
         private void OnAllClicked()
         {
             UpdateAllIsChecked(IsAllChecked);
+        }
+
+        [RelayCommand]
+        private async Task OnRefresh()
+        {
+            Log.Info(ServiceCategory.UpgradeFirmware, "[Upgrade] Refresh firmwares information");
+            await GetFirmwareInfoAsync();
         }
 
         #endregion
@@ -413,11 +408,14 @@ namespace NV.CT.Service.Upgrade.ViewModels
             }
         }
 
-        private void SetUpgradeStatusAfterCompareVersion()
+        private async Task SetUpgradeStatusAfterPowerRestart()
         {
-            // 在 OnVersionReceived 中，已经实时对每一个板子比对了版本号并处理了状态，本方法只需根据状态判断最终升级结果即可
-            Log.Info(ServiceCategory.UpgradeFirmware, "[Upgrade] Set upgrade status after compare upgrade items version");
+            Log.Info(ServiceCategory.UpgradeFirmware, "[Upgrade] Get firmwares information after power restart");
+            await GetFirmwareInfoAsync();
+            TotalProgress = 90;
+            Log.Info(ServiceCategory.UpgradeFirmware, "[Upgrade] Get firmwares information completed, set upgrade status after compare upgrade items version");
 
+            // 在 OnVersionReceived 中，已经实时对每一个板子比对了版本号并处理了状态，本方法只需根据状态判断最终升级结果即可
             foreach (var item in _upgradeList)
             {
                 if (item.UpgradeStatus == UpgradeStatusType.Fail)
@@ -455,7 +453,6 @@ namespace NV.CT.Service.Upgrade.ViewModels
         private void BeforeUpgrade()
         {
             _upgradeList.Clear();
-            _isGetUpgradeItemsVersion = false;
             TotalProgress = 0;
             SucceededCount = 0;
             FailedCount = 0;
@@ -575,7 +572,6 @@ namespace NV.CT.Service.Upgrade.ViewModels
             IsUpgrading = false;
             StepMessage = stepMsg;
             _upgradeList.Clear();
-            _isGetUpgradeItemsVersion = false;
         }
 
         private void UpgradeEnd(string stepMsg, FacadeProxy.Common.Models.ErrorCodes errorCodes, string logInfo)
@@ -618,24 +614,6 @@ namespace NV.CT.Service.Upgrade.ViewModels
 
         #region Event Received
 
-        private void TimerElapsed(object? sender, ElapsedEventArgs e)
-        {
-            _timer.Stop();
-            var isGetUpgradeItemsVersion = _isGetUpgradeItemsVersion;
-            ConfirmCanUpgrade(FirmwareList).GetAwaiter().GetResult();
-            // var queryVersionList = FirmwareList.Where(i => i.IsCanUpgrade || (isGetUpgradeItemsVersion && _upgradeList.Contains(i)));
-            var queryVersionList = FirmwareList; //查询版本号的固件，不再进行筛选，如果返回的某个固件版本号有问题，找对应的硬件负责人解决
-            GetFirmwaresVersion(queryVersionList).GetAwaiter().GetResult();
-            _timer.Start();
-
-            if (isGetUpgradeItemsVersion)
-            {
-                _isGetUpgradeItemsVersion = false;
-                TotalProgress = 90;
-                SetUpgradeStatusAfterCompareVersion();
-            }
-        }
-
         private void OnVersionReceived(object? sender, VersionEventArgs e)
         {
             var item = FirmwareList.FirstOrDefault(i => i.ID == e.ID);
@@ -674,17 +652,6 @@ namespace NV.CT.Service.Upgrade.ViewModels
             if (item == null)
             {
                 return;
-            }
-
-            // 特殊情况下，当需要不检测可升级的状态时，解除这里的注释即可
-            // item.IsCanUpgrade = true;
-            // return;
-
-            if (!e.CanUpgrade)
-            {
-                item.CurrentVersion = string.Empty;
-                item.GetVerStatus = GetVersionStatusType.None;
-                item.GetVerMsg = string.Empty;
             }
 
             item.IsCanUpgrade = e.CanUpgrade;
@@ -763,10 +730,10 @@ namespace NV.CT.Service.Upgrade.ViewModels
             UnRegisterSelfCheckEvent();
             Log.Info(ServiceCategory.UpgradeFirmware, "[Upgrade] Get self check result completed, wait hardware synchronization version");
             await Task.Delay(15 * 1000);
-            Log.Info(ServiceCategory.UpgradeFirmware, "[Upgrade] Hardware synchronization version completed, wait compare version after power restart");
+            Log.Info(ServiceCategory.UpgradeFirmware, "[Upgrade] Hardware synchronization version completed");
             StepMessage = Upgrade_Lang.Upgrade_StepInfo_GetVersionAfterSelfCheck;
             TotalProgress = 80;
-            _isGetUpgradeItemsVersion = true; //在下一轮的TimerElapsed中获取版本号时进行判断
+            await SetUpgradeStatusAfterPowerRestart();
         }
 
         #endregion
@@ -859,14 +826,13 @@ namespace NV.CT.Service.Upgrade.ViewModels
 
             if (!string.IsNullOrWhiteSpace(str))
             {
-                Dialog.ShowErrorCode(Global.ErrorCode_MD5ValidateFail, str);
+                DispatcherWrapper.CurrentDispatcher.InvokeAsync(() => Dialog.ShowErrorCode(Global.ErrorCode_MD5ValidateFail, str), System.Windows.Threading.DispatcherPriority.Loaded);
             }
         }
 
         private void Init()
         {
             _upgradeList.Clear();
-            _isGetUpgradeItemsVersion = false;
             TotalCount = 0;
             SucceededCount = 0;
             FailedCount = 0;
@@ -914,7 +880,6 @@ namespace NV.CT.Service.Upgrade.ViewModels
             UpgradeProxy.Instance.VersionReceived += OnVersionReceived;
             UpgradeProxy.Instance.CanUpgradeReceived += OnCanUpgradeReceived;
             UpgradeProxy.Instance.ProgressChanged += OnProgressChanged;
-            _timer.Elapsed += TimerElapsed;
         }
 
         private void RegisterUpgradePrepareEvent()
@@ -938,7 +903,6 @@ namespace NV.CT.Service.Upgrade.ViewModels
             UpgradeProxy.Instance.VersionReceived -= OnVersionReceived;
             UpgradeProxy.Instance.CanUpgradeReceived -= OnCanUpgradeReceived;
             UpgradeProxy.Instance.ProgressChanged -= OnProgressChanged;
-            _timer.Elapsed -= TimerElapsed;
         }
 
         private void UnRegisterUpgradePrepareEvent()
@@ -1059,16 +1023,16 @@ namespace NV.CT.Service.Upgrade.ViewModels
 
         #region Method
 
-        private async Task ConfirmCanUpgrade(IEnumerable<FirmwareModel> items)
+        /// <summary>
+        /// 获取固件的信息，例如版本号、可升级状态等
+        /// </summary>
+        /// <returns></returns>
+        private async Task GetFirmwareInfoAsync()
         {
-            var firmwares = items.Select(i => i.ToProto()).ToList();
-            await UpgradeProxy.Instance.CanUpgrade(firmwares);
-        }
-
-        private async Task GetFirmwaresVersion(IEnumerable<FirmwareModel> items)
-        {
-            var firmwares = items.Select(i => i.ToProto()).ToList();
-            await UpgradeProxy.Instance.GetFirmwaresVersion(firmwares);
+            var firmwares = FirmwareList.Select(i => i.ToProto()).ToList();
+            var canUpgradeTask = UpgradeProxy.Instance.CanUpgrade(firmwares);
+            var getVersionTask = UpgradeProxy.Instance.GetFirmwaresVersion(firmwares);
+            await Task.WhenAll(canUpgradeTask, getVersionTask);
         }
 
         private void UpdateUpgradeCount()

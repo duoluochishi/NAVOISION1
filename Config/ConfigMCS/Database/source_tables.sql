@@ -337,6 +337,7 @@ DROP TABLE IF EXISTS `t_voices`;
 CREATE TABLE `t_voices` (
   `Id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `InternalId` smallint NOT NULL DEFAULT '0' COMMENT '语音ID（数值型）',
+  `PairId` smallint NOT NULL DEFAULT '0' COMMENT '配对的语音ID（数值型）',
   `Name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '语音名称',
   `Description` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '语音描述',
   `BodyPart` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '检查部位',

@@ -6,6 +6,7 @@ using NV.CT.CTS.Enums;
 using NV.CT.CTS.Helpers;
 using NV.CT.FacadeProxy.Common.Enums;
 using NV.CT.Language;
+using NV.CT.Protocol;
 using NV.CT.Protocol.Models;
 using NV.CT.ProtocolManagement.ApplicationService.Contract;
 using NV.CT.ProtocolManagement.ViewModels.Common.Const;
@@ -235,6 +236,13 @@ namespace NV.CT.ProtocolManagement.ViewModels
                     if (patientPosition is null) { continue; };
 
                     patientPosition.Value = SelectedPatientPosition.Value;
+                    foreach (var measurementModel in child.Children)
+                    {
+                        foreach (var item in measurementModel.Children)
+                        {                          
+                            ProtocolHelper.UpdateImageOrder(patientPosition.Value,item);
+                        }  
+                    }
                 } 
             }
 

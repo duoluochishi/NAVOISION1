@@ -4,6 +4,8 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using NV.CT.UI.Exam.View;
+
 namespace NV.CT.Recon.ViewModel;
 
 public class ScanDefaultViewModel : BaseViewModel
@@ -11,10 +13,22 @@ public class ScanDefaultViewModel : BaseViewModel
 	private readonly ISelectionManager _selectionManager;
 	private readonly ILayoutManager _layoutManager;
 	private ParameterDetailWindow? _parameterDetailWindow;
+	private TimeDensityWindow? _timeDensityWindow;
+
+	private bool _isTimeDensityShowEnable = false;
+	public bool IsTimeDensityShowEnable
+	{
+		get => _isTimeDensityShowEnable;
+		set
+		{
+			SetProperty(ref _isTimeDensityShowEnable, value);
+		}
+	}
+
 	public ScanDefaultViewModel(ISelectionManager selectionManager, ILayoutManager layoutManager)
 	{
 		Commands.Add("ShowParameterDetail", new DelegateCommand<object>(ShowParameterDetail, _ => true));
-
+		Commands.Add("ShowTimeDensityWindow", new DelegateCommand(ShowTimeDensityWindow, () => true));
 		_selectionManager = selectionManager;
 		_layoutManager = layoutManager;
 		_selectionManager.SelectionReconChanged += SelectionManager_SelectionReconChanged;
@@ -28,10 +42,29 @@ public class ScanDefaultViewModel : BaseViewModel
 		{
 			_layoutManager.SwitchToView(ScanTaskAvailableLayout.ScanDefault);
 		}
+
+		if (e is not null
+			&& e.Data is not null
+			&& (e.Data.ScanOption == FacadeProxy.Common.Enums.ScanOption.NVTestBolus
+			|| e.Data.ScanOption == FacadeProxy.Common.Enums.ScanOption.NVTestBolusBase
+			|| e.Data.ScanOption == FacadeProxy.Common.Enums.ScanOption.TestBolus
+			|| e.Data.ScanOption == FacadeProxy.Common.Enums.ScanOption.BolusTracking))
+		{
+			IsTimeDensityShowEnable = true;
+		}
+		else
+		{
+			IsTimeDensityShowEnable = false;
+		}
 	}
 
 	private void SelectionManager_SelectionReconChanged(object? sender, EventArgs<ReconModel> e)
 	{
+		if (e.Data is null || _selectionManager.IsSelectionScanChanged)
+		{
+			return;
+		}
+
 		IsShowScanPara = false;
 	}
 
@@ -132,6 +165,40 @@ public class ScanDefaultViewModel : BaseViewModel
 				{
 					_selectionManager.SelectRecon(currentRecon);
 				}
+			}
+		}
+	}
+
+	public void ShowTimeDensityWindow()
+	{
+		if (_timeDensityWindow is null)
+		{
+			_timeDensityWindow = CTS.Global.ServiceProvider?.GetRequiredService<TimeDensityWindow>();
+		}
+		var wih = new WindowInteropHelper(_timeDensityWindow);
+		if (ConsoleSystemHelper.WindowHwnd != IntPtr.Zero)
+		{
+			if (wih.Owner == IntPtr.Zero)
+				wih.Owner = ConsoleSystemHelper.WindowHwnd;
+
+			if (!_timeDensityWindow.IsVisible)
+			{
+				//隐藏底部状态栏
+				_timeDensityWindow.Topmost = true;
+				_timeDensityWindow.ShowDialog();
+			}
+		}
+		else
+		{
+			if (Application.Current.MainWindow is not null && wih.Owner == IntPtr.Zero)
+			{
+				wih.Owner = new WindowInteropHelper(Application.Current.MainWindow).Handle;
+			}
+
+			if (!_timeDensityWindow.IsVisible)
+			{
+				_timeDensityWindow.Show();
+				_timeDensityWindow.Activate();
 			}
 		}
 	}

@@ -23,17 +23,17 @@ public class SelfCheckService : ISelfCheckService
 		SelfCheckStatusChanged?.Invoke(this, e);
 	}
 
-	public void StartSelfChecking()
-	{
-		//_logger?.LogInformation($"self check service start");
-		foreach (var executor in _executors)
-		{
-			Task.Run(() =>
-			{
-				executor.StartSelfChecking();
-			});
-		}
-	}
+	//public void StartSelfChecking()
+	//{
+	//	//_logger?.LogInformation($"self check service start");
+	//	foreach (var executor in _executors)
+	//	{
+	//		Task.Run(() =>
+	//		{
+	//			executor.StartSelfChecking();
+	//		});
+	//	}
+	//}
 
 	public List<SelfCheckResult> GetSelfCheckResults()
 	{

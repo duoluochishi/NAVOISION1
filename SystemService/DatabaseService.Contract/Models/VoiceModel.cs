@@ -21,6 +21,8 @@ public class VoiceModel
 
     public ushort InternalId { get; set; }
 
+    public ushort PairId { get; set; }
+
     public string Name { get; set; } = string.Empty;
 
     public string Description { get; set; } = string.Empty;
@@ -32,6 +34,8 @@ public class VoiceModel
     public bool IsFront { get; set; }
 
     public ushort VoiceLength { get; set; }
+
+    public decimal RealVoiceLength { get; set; }
 
     public string Language { get; set; } = string.Empty;
 

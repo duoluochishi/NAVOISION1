@@ -126,14 +126,14 @@ public class GraduatedScale : FrameworkElement
     public static readonly DependencyProperty BackGroundProperty =
         DependencyProperty.Register("BackGround", typeof(Brush), typeof(GraduatedScale), new FrameworkPropertyMetadata(Brushes.Pink, FrameworkPropertyMetadataOptions.AffectsRender));
 
-    public int ConvertToScale
+    public double ConvertToScale
     {
-        get { return (int)GetValue(ConvertToScaleProperty); }
+        get { return (double)GetValue(ConvertToScaleProperty); }
         set { SetValue(ConvertToScaleProperty, value); }
     }
 
     public static readonly DependencyProperty ConvertToScaleProperty =
-        DependencyProperty.Register("ConvertToScale", typeof(int), typeof(GraduatedScale), new FrameworkPropertyMetadata(5, FrameworkPropertyMetadataOptions.AffectsRender), ValueIsNegativeNumber);
+        DependencyProperty.Register("ConvertToScale", typeof(double), typeof(GraduatedScale), new FrameworkPropertyMetadata(5.0, FrameworkPropertyMetadataOptions.AffectsRender), ValueIsNegativeNumber);
 
     public int RightOffset
     {

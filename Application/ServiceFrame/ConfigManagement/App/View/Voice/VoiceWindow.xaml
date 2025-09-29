@@ -6,8 +6,9 @@
     xmlns:md="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableTextBox;assembly=MaterialDesignThemes.Wpf"
     xmlns:comboBox="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableComboBox;assembly=MaterialDesignThemes.Wpf"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"    
-    Width="600" Height="550" Background="Transparent" AllowsTransparency="True" ResizeMode="NoResize" WindowStyle="None" mc:Ignorable="d">
+    xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"  
+    xmlns:enum="clr-namespace:NV.CT.CTS.Enums;assembly=NV.CT.CTS"
+    Width="600" Height="600" Background="Transparent" AllowsTransparency="True" ResizeMode="NoResize" WindowStyle="None" mc:Ignorable="d">
     <Window.Resources>
         <Style x:Key="BorderStyle" TargetType="{x:Type Border}">
             <Style.Triggers>
@@ -157,15 +158,15 @@
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="1"  VerticalAlignment="Center" Content="{x:Static res:LanguageResource.Content_Record}"/>
                     <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Left">
-                        <ToggleButton ToolTip="{x:Static res:LanguageResource.ToolTip_Recording}"
+                        <Button ToolTip="{x:Static res:LanguageResource.ToolTip_Recording}"
                                       Width="40" Height="40"
                                       Background="Transparent"
                                       HorizontalAlignment="Left"
                                       Command="{Binding Commands[RecordCommand]}"
                                       BorderBrush="Transparent"
                                       Cursor="Hand">
-                            <ToggleButton.Template>
-                                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                            <Button.Template>
+                                <ControlTemplate TargetType="{x:Type Button}">
                                     <Border>
                                         <Image x:Name="Image" Source="pack://application:,,,/NV.CT.UI.Controls;component/Images\voice.png">
                                             <Image.Style>
@@ -176,15 +177,13 @@
                                         </Image>
                                     </Border>
                                     <ControlTemplate.Triggers>
-                                        <Trigger Property="IsChecked" Value="True">
+                                        <DataTrigger Binding="{Binding RecordStatus}" Value="{x:Static enum:RecordingStatus.Recording}">
                                             <Setter TargetName="Image" Property="Source" Value="pack://application:,,,/NV.CT.UI.Controls;component/Images\voicewhite.png"/>
-                                        </Trigger>
+                                        </DataTrigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
-                            </ToggleButton.Template>
-                        </ToggleButton>
-                        <Label VerticalAlignment="Center" HorizontalAlignment="Left" IsEnabled="False" Margin="10,0,0,0" 
-                                 Content="{Binding CurrentRecordTime,Mode=TwoWay}" />
+                            </Button.Template>
+                        </Button>
                         <Button
                             Grid.Column="4"
                             VerticalAlignment="Center"
@@ -217,6 +216,17 @@
                         <RadioButton  Content="{x:Static res:LanguageResource.Content_PostVoice}" Margin="0,0,0,0" IsChecked="{Binding IsBackChecked,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" GroupName="apiType">
                         </RadioButton>
                     </StackPanel>
+                </Grid>
+                <Grid Margin="0 15 0 0" Height="42">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="90" />
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="80" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="1"  VerticalAlignment="Center" Content="Pair voice"/>
+                    <ComboBox Grid.Column="2" VerticalAlignment="Center" ItemsSource="{Binding AvailablePairVoices}" 
+                              SelectedItem="{Binding SelectedPairedVoice}" DisplayMemberPath="Name" Margin="0 0 5 0"/>
                 </Grid>
             </StackPanel>
             <StackPanel Grid.Row="2" Style="{StaticResource ProtocolStackPanelStyle}">

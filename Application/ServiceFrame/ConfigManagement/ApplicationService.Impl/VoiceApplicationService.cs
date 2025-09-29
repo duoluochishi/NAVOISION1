@@ -13,12 +13,15 @@
 // </key>
 //-----------------------------------------------------------------------
 
+using Microsoft.Extensions.Logging;
 using NV.CT.ConfigManagement.ApplicationService.Contract;
-using NV.CT.DatabaseService.Contract;
 using NV.CT.CTS;
 using NV.CT.CTS.Enums;
-using NV.CT.DatabaseService.Contract.Models;
 using NV.CT.CTS.Models;
+using NV.CT.DatabaseService.Contract;
+using NV.CT.DatabaseService.Contract.Models;
+using NV.CT.FacadeProxy.Common.Arguments;
+using NV.CT.FacadeProxy.Common.Enums.AudioFileEnums;
 using NV.CT.SystemInterface.MRSIntegration.Contract.Interfaces;
 using NV.MPS.Environment;
 
@@ -28,15 +31,18 @@ public class VoiceApplicationService : IVoiceApplicationService
 {
     private readonly IVoiceService _voiceService;
     private readonly IRealtimeVoiceService _realtimeVoiceService;
+    private readonly ILogger<VoiceApplicationService> _logger;
 
     public event EventHandler<EventArgs<(OperationType operation, VoiceModel voiceModel)>>? VoiceInfoChanged;
     public event EventHandler? VoiceListReload;
 
     public VoiceApplicationService(IVoiceService voiceService,
-        IRealtimeVoiceService realtimeVoiceService)
+        IRealtimeVoiceService realtimeVoiceService,
+        ILogger<VoiceApplicationService> logger)
     {
         _voiceService = voiceService;
         _realtimeVoiceService = realtimeVoiceService;
+        _logger = logger;
     }
 
     public void SetVoiceInfo(OperationType operation, VoiceModel voiceModel)
@@ -78,7 +84,7 @@ public class VoiceApplicationService : IVoiceApplicationService
         bool flag = false;
         try
         {
-            RealtimeCommandResult result = _realtimeVoiceService.Delete(voiceModel.InternalId);
+            RealtimeCommandResult result = _realtimeVoiceService.DeleteAudioFile(voiceModel.InternalId, AudioFileType.Api);
             if (result.Status != CommandExecutionStatus.Success)
             {
                 return false;
@@ -103,7 +109,15 @@ public class VoiceApplicationService : IVoiceApplicationService
 
     public VoiceModel GetVoiceInfoByID(string id)
     {
-        return _voiceService.GetVoiceInfo(id);
+        try
+        {
+            return _voiceService.GetVoiceInfo(id);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"GetVoiceInfoByID:{id} failed, Exception:{ex.ToString()}");
+            return null;
+        }
     }
 
     public ushort GetMaxInternalId()
@@ -117,14 +131,46 @@ public class VoiceApplicationService : IVoiceApplicationService
         return max;
     }
 
+    /// <summary>
+    /// 添加或者更新语音到Auxboard
+    /// </summary>
+    /// <param name="voiceModel"></param>
+    /// <returns>执行结果</returns>
     public bool AddOrUpdate(VoiceModel voiceModel)
     {
         bool flag = false;
         var filePath = Path.Combine(RuntimeConfig.Console.MCSVoices.Path, voiceModel.FilePath);
         if (File.Exists(filePath))
         {
-            flag = CommandExecutionStatus.Success == _realtimeVoiceService.AddOrUpdate(voiceModel.InternalId, filePath).Status;
+            flag = CommandExecutionStatus.Success == _realtimeVoiceService.AddOrUpdateAudioFile(voiceModel.InternalId, filePath, AudioFileType.Api).Status;
         }
         return flag;
+    }
+
+    /// <summary>
+    /// 获取Auxboard中的所有语音的Internalid
+    /// </summary>
+    /// <returns>语音的Internalid数组</returns>
+    public ushort[] GetAll()
+    {
+        ushort[] ids;
+        _realtimeVoiceService.GetAudioFiles(AudioFileType.Api, out ids);
+        return ids;
+    }
+
+    /// <summary>
+    /// 删除Auxboard中的语音
+    /// </summary>
+    /// <param name="internalId"></param>
+    /// <returns></returns>
+    public bool Delete(ushort internalId)
+    {
+        RealtimeCommandResult result = _realtimeVoiceService.DeleteAudioFile(internalId, AudioFileType.Api);
+        return result.Status == CommandExecutionStatus.Success;
+    }
+
+    public bool PlayAudioFile(ushort internalId, Action<AudioPlaybackEventArgs> callback)
+    {
+        return _realtimeVoiceService.PlayAudioFile(internalId, AudioFileType.Api, callback);
     }
 }

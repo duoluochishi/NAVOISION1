@@ -70,7 +70,7 @@ public class RealtimeReconProxyService : IRealtimeReconProxyService
 		{
 			var realtimeInfo = _mapper.Map<RealtimeReconInfo>(rawImageArgs);
 			realtimeInfo.ImagePath = rawImageArgs.Directory;
-			if (_currentRawData is null || _currentRawData.ScanId != realtimeInfo.ScanId)
+			if (rawImageArgs.IsFinished && (_currentRawData is null || _currentRawData.ScanId != realtimeInfo.ScanId))
 			{
 				_currentRawData = realtimeInfo;
 				RawDataSaved?.Invoke(this, new EventArgs<RealtimeReconInfo>(_currentRawData));

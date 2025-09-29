@@ -32,10 +32,15 @@ namespace NV.CT.Service.Common
             return realtimeStatus switch
             {
                 null or
+                RealtimeStatus.Validated => acqReconStatus switch
+                {
+                    null => ScanReconStatus.UnStarted,
+                    AcqReconStatus.Loaded => ScanReconStatus.Inprogress,
+                    _ => throw ThrowUnsupportedCombine(),
+                },
                 RealtimeStatus.None or 
                 RealtimeStatus.Init or 
-                RealtimeStatus.Standby or 
-                RealtimeStatus.Validated => acqReconStatus switch
+                RealtimeStatus.Standby => acqReconStatus switch
                 {
                     null => ScanReconStatus.UnStarted,
                     _ => throw ThrowUnsupportedCombine(),
@@ -63,20 +68,12 @@ namespace NV.CT.Service.Common
                 },
                 RealtimeStatus.ExposureSpoting or
                 RealtimeStatus.ExposureSpotingIdle or
-                RealtimeStatus.ExposureFinished => acqReconStatus switch
-                {
-                    null or
-                    AcqReconStatus.Loaded or
-                    AcqReconStatus.Reconning or 
-                    AcqReconStatus.Finished => ScanReconStatus.Inprogress,
-                    AcqReconStatus.Error => ScanReconStatus.Error,
-                    _ => throw ThrowUnsupportedCombine(),
-                },
+                RealtimeStatus.ExposureFinished or
                 RealtimeStatus.ScanStopping => acqReconStatus switch
                 {
                     null or
                     AcqReconStatus.Loaded or
-                    AcqReconStatus.Reconning or
+                    AcqReconStatus.Reconning or 
                     AcqReconStatus.Finished => ScanReconStatus.Inprogress,
                     AcqReconStatus.Error => ScanReconStatus.Error,
                     _ => throw ThrowUnsupportedCombine(),

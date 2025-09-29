@@ -6,6 +6,7 @@
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:local="clr-namespace:NV.CT.UI.Controls.Behavior;assembly=NV.CT.UI.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableTextBox;assembly=MaterialDesignThemes.Wpf"
     xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
     d:DesignHeight="950"
     d:DesignWidth="1470"
@@ -131,7 +132,13 @@
                                 DisplayMemberPath="Value"
                                 ItemsSource="{Binding ScanOptionList, Mode=TwoWay}"
                                 SelectedItem="{Binding SelectedScanOption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                SelectedValuePath="Key" />
+                                SelectedValuePath="Key">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction Command="{Binding Commands[SelectionChangedCommand]}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </ComboBox>
                             <Label
                                 Grid.Row="3"
                                 Grid.Column="1"
@@ -204,12 +211,22 @@
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
                                 Content="{x:Static res:LanguageResource.Content_Delay}" />
-                            <TextBox
+                            <md:MarkableTextBox
                                 Grid.Row="5"
                                 Grid.Column="6"
                                 Height="30"
                                 MaxLength="3"
-                                Text="{Binding ScanParameter.ExposureDelayTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                Maximum="600"
+                                Minimum="3"
+                                Style="{StaticResource WithValidationMarkableTextBox}"
+                                TextType="Decimal">
+                                <TextBox.Text>
+                                    <Binding
+                                        Path="ScanParameter.ExposureDelayTime"
+                                        UpdateSourceTrigger="PropertyChanged"
+                                        ValidatesOnDataErrors="True" />
+                                </TextBox.Text>
+                            </md:MarkableTextBox>
                             <Label
                                 Grid.Row="5"
                                 Grid.Column="6"
@@ -225,7 +242,7 @@
                             <ComboBox
                                 Grid.Row="6"
                                 Grid.Column="2"
-                                Width="180"
+                                Width="110"
                                 Height="30"
                                 Margin="0,0,0,0"
                                 HorizontalAlignment="Left"
@@ -243,7 +260,7 @@
                             <ComboBox
                                 Grid.Row="6"
                                 Grid.Column="2"
-                                Width="180"
+                                Width="110"
                                 Height="30"
                                 Margin="228,0,0,0"
                                 HorizontalAlignment="Left"
@@ -359,7 +376,7 @@
                                 Grid.Column="1"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
-                                Content="Table direction" />
+                                Content="Scan direction" />
                             <ComboBox
                                 Name="cbbTableDirection"
                                 Grid.Row="10"
@@ -729,6 +746,20 @@
                                 VerticalAlignment="Center"
                                 MaxLength="2"
                                 Text="{Binding ScanParameter.AllowErrorTubeCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                Grid.Row="22"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="PostVoice Id" />
+                            <ComboBox
+                                Grid.Row="22"
+                                Grid.Column="2"
+                                Height="30"
+                                DisplayMemberPath="Value"
+                                ItemsSource="{Binding PostVoiceist, Mode=TwoWay}"
+                                SelectedItem="{Binding SelectedPostVoice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedValuePath="Key" />
                             <Label
                                 x:Name="lable_ExposuserIntervalTime"
                                 Grid.Row="22"

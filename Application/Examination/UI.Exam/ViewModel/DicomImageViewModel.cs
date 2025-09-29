@@ -221,7 +221,6 @@ public class DicomImageViewModel : BaseViewModel, IDicomImageViewModel
 		{
 			return;
 		}
-
 		//_logger.LogInformation($"RealtimeReconInfo from RtdControlService_ReconDone:{JsonConvert.SerializeObject(e.Data)};Select TomoImageReconModel:{JsonConvert.SerializeObject(TomoImageReconModel)}");
 		if (TomoImageReconModel is not null && TomoImageReconModel.Descriptor.Id.Equals(e.Data.ReconId))
 		{
@@ -662,12 +661,13 @@ public class DicomImageViewModel : BaseViewModel, IDicomImageViewModel
 			var recon = model.Scan.Children.FirstOrDefault(t => t.Descriptor.Id == param.LocationSeriesUID);
 			if (recon is not null)
 			{
-				/*
 				//FOV发生变化后，有可能造成matrix重算。 
 				//当前策略最小像素0.1mm，若低于0.1需要找最近的。
+				//20280912测试版
 				var minFov = ReconFovMatrixHelper.GetMinFov();
 				var newFOV = param.FoVLengthHor > minFov ? param.FoVLengthHor : minFov;
-				var newMatrix = ReconFovMatrixHelper.GetSuitableMatrix(newFOV, recon.ImageMatrixHorizontal);
+				//var newMatrix = ReconFovMatrixHelper.GetSuitableMatrix(newFOV, recon.ImageMatrixHorizontal);
+				var newMatrix = ReconFovMatrixHelper.GetSuitableMatrix(newFOV, recon.ImageMatrixHorizontal, recon.IsHDRecon);
 
 				List<ParameterModel> parameterModels = new List<ParameterModel> {
 					new ParameterModel{Name = ProtocolParameterNames.RECON_FOV_DIRECTION_HORIZONTAL_X,Value= param.FOVDirectionHorX.ToString()},
@@ -686,33 +686,31 @@ public class DicomImageViewModel : BaseViewModel, IDicomImageViewModel
                     new ParameterModel{Name = ProtocolParameterNames.RECON_FOV_LENGTH_VERTICAL,Value =((int) newFOV).ToString()},      //配合算法这两个字段暂时不能联动修改
 					new ParameterModel{Name = ProtocolParameterNames.RECON_IMAGE_MATRIX_HORIZONTAL,Value = newMatrix.ToString()},      //配合算法这两个字段暂时不能联动修改
 					new ParameterModel{Name = ProtocolParameterNames.RECON_IMAGE_MATRIX_VERTICAL,Value = newMatrix.ToString()},      //配合算法这两个字段暂时不能联动修改
-
                 };
-				*/
 
 				//20250723 临时方案代码，fov固定337.92和506.88，center固定0，matrix调整增加4500,4。
-				var newFov = ReconFovMatrixHelper.GetSuitableFOVTemp(param.FoVLengthHor);
-				var newMatrix = ReconFovMatrixHelper.GetSuitableMatrix(newFov, recon.ImageMatrixHorizontal, recon.IsHDRecon);
+				//var newFov = ReconFovMatrixHelper.GetSuitableFOVTemp(param.FoVLengthHor);
+				//var newMatrix = ReconFovMatrixHelper.GetSuitableMatrix(newFov, recon.ImageMatrixHorizontal, recon.IsHDRecon);
 
-				List<ParameterModel> parameterModels = new List<ParameterModel> {
-					new ParameterModel{Name = ProtocolParameterNames.RECON_FOV_DIRECTION_HORIZONTAL_X,Value= param.FOVDirectionHorX.ToString()},
-					new ParameterModel{Name = ProtocolParameterNames.RECON_FOV_DIRECTION_HORIZONTAL_Y,Value = param.FOVDirectionHorY.ToString()},
-					new ParameterModel{Name = ProtocolParameterNames.RECON_FOV_DIRECTION_HORIZONTAL_Z,Value = param.FOVDirectionHorZ.ToString()},
-					new ParameterModel{Name = ProtocolParameterNames.RECON_FOV_DIRECTION_VERTICAL_X,Value = param.FOVDirectionVerX.ToString()},
-					new ParameterModel{Name = ProtocolParameterNames.RECON_FOV_DIRECTION_VERTICAL_Y,Value = param.FOVDirectionVerY.ToString()},
-					new ParameterModel{Name = ProtocolParameterNames.RECON_FOV_DIRECTION_VERTICAL_Z,Value = param.FOVDirectionVerZ.ToString()},
-					new ParameterModel{Name = ProtocolParameterNames.RECON_CENTER_FIRST_X,Value = 0.ToString()},
-					new ParameterModel{Name = ProtocolParameterNames.RECON_CENTER_FIRST_Y,Value = 0.ToString()},
-					new ParameterModel{Name = ProtocolParameterNames.RECON_CENTER_FIRST_Z,Value = ((int) param.CenterFirstZ).ToString()},
-					new ParameterModel{Name = ProtocolParameterNames.RECON_CENTER_LAST_X,Value =  0.ToString()},
-					new ParameterModel{Name = ProtocolParameterNames.RECON_CENTER_LAST_Y,Value = 0.ToString()},
-					new ParameterModel{Name = ProtocolParameterNames.RECON_CENTER_LAST_Z,Value = ((int) param.CenterLastZ).ToString()},
-					new ParameterModel{Name = ProtocolParameterNames.RECON_FOV_LENGTH_HORIZONTAL,Value =((int) newFov).ToString()},   //配合算法这两个字段暂时不能联动修改
-                    new ParameterModel{Name = ProtocolParameterNames.RECON_FOV_LENGTH_VERTICAL,Value =((int) newFov).ToString()},      //配合算法这两个字段暂时不能联动修改
-					new ParameterModel{Name = ProtocolParameterNames.RECON_IMAGE_MATRIX_HORIZONTAL,Value = newMatrix.ToString()},      //配合算法这两个字段暂时不能联动修改
-					new ParameterModel{Name = ProtocolParameterNames.RECON_IMAGE_MATRIX_VERTICAL,Value = newMatrix.ToString()},      //配合算法这两个字段暂时不能联动修改
+				//List<ParameterModel> parameterModels = new List<ParameterModel> {
+				//	new ParameterModel{Name = ProtocolParameterNames.RECON_FOV_DIRECTION_HORIZONTAL_X,Value= param.FOVDirectionHorX.ToString()},
+				//	new ParameterModel{Name = ProtocolParameterNames.RECON_FOV_DIRECTION_HORIZONTAL_Y,Value = param.FOVDirectionHorY.ToString()},
+				//	new ParameterModel{Name = ProtocolParameterNames.RECON_FOV_DIRECTION_HORIZONTAL_Z,Value = param.FOVDirectionHorZ.ToString()},
+				//	new ParameterModel{Name = ProtocolParameterNames.RECON_FOV_DIRECTION_VERTICAL_X,Value = param.FOVDirectionVerX.ToString()},
+				//	new ParameterModel{Name = ProtocolParameterNames.RECON_FOV_DIRECTION_VERTICAL_Y,Value = param.FOVDirectionVerY.ToString()},
+				//	new ParameterModel{Name = ProtocolParameterNames.RECON_FOV_DIRECTION_VERTICAL_Z,Value = param.FOVDirectionVerZ.ToString()},
+				//	new ParameterModel{Name = ProtocolParameterNames.RECON_CENTER_FIRST_X,Value = 0.ToString()},
+				//	new ParameterModel{Name = ProtocolParameterNames.RECON_CENTER_FIRST_Y,Value = 0.ToString()},
+				//	new ParameterModel{Name = ProtocolParameterNames.RECON_CENTER_FIRST_Z,Value = ((int) param.CenterFirstZ).ToString()},
+				//	new ParameterModel{Name = ProtocolParameterNames.RECON_CENTER_LAST_X,Value =  0.ToString()},
+				//	new ParameterModel{Name = ProtocolParameterNames.RECON_CENTER_LAST_Y,Value = 0.ToString()},
+				//	new ParameterModel{Name = ProtocolParameterNames.RECON_CENTER_LAST_Z,Value = ((int) param.CenterLastZ).ToString()},
+				//	new ParameterModel{Name = ProtocolParameterNames.RECON_FOV_LENGTH_HORIZONTAL,Value =((int) newFov).ToString()},   //配合算法这两个字段暂时不能联动修改
+    //                new ParameterModel{Name = ProtocolParameterNames.RECON_FOV_LENGTH_VERTICAL,Value =((int) newFov).ToString()},      //配合算法这两个字段暂时不能联动修改
+				//	new ParameterModel{Name = ProtocolParameterNames.RECON_IMAGE_MATRIX_HORIZONTAL,Value = newMatrix.ToString()},      //配合算法这两个字段暂时不能联动修改
+				//	new ParameterModel{Name = ProtocolParameterNames.RECON_IMAGE_MATRIX_VERTICAL,Value = newMatrix.ToString()},      //配合算法这两个字段暂时不能联动修改
 					
-                };
+    //            };
 				resultDic.Add(recon, parameterModels);
 			}
 		}
@@ -747,7 +745,7 @@ public class DicomImageViewModel : BaseViewModel, IDicomImageViewModel
 		{
 			return;
 		}
-		//_logger.LogInformation($"RealtimeReconInfo from ReconControlService_ReconImageReceived:{JsonConvert.SerializeObject(e.Data)},Select Topo: {JsonConvert.SerializeObject(TopoImageReconModel)}");
+		_logger.LogInformation($"RealtimeReconInfo from ReconControlService_ReconImageReceived:{JsonConvert.SerializeObject(e.Data)},Select Topo: {JsonConvert.SerializeObject(TopoImageReconModel)}");
 		var lastImage = e.Data.LastImage;
 		if (TopoImageReconModel is not null && TopoImageReconModel.Descriptor.Id.Equals(e.Data.ReconId) && TopoImageReconModel.IsRTD)
 		{
@@ -757,7 +755,7 @@ public class DicomImageViewModel : BaseViewModel, IDicomImageViewModel
 		{
 			DicomImageExtension.LoadTopoImage(RightTopoImageViewer, RightTopoImageReconModel, lastImage, true);
 		}
-		//_logger.LogInformation($"RealtimeReconInfo from ReconControlService_ReconImageReceived:{JsonConvert.SerializeObject(e.Data)},Select Tomo: {JsonConvert.SerializeObject(TomoImageReconModel)}");
+		_logger.LogInformation($"Time is {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff")}; RealtimeReconInfo from ReconControlService_ReconImageReceived:{JsonConvert.SerializeObject(e.Data)},Select Tomo: {JsonConvert.SerializeObject(TomoImageReconModel)}");
 		if (TomoImageReconModel is not null && TomoImageReconModel.Descriptor.Id.Equals(e.Data.ReconId))
 		{
 			TomoImageViewer.LoadImageWithFilePath(lastImage);
@@ -905,12 +903,12 @@ public class DicomImageViewModel : BaseViewModel, IDicomImageViewModel
 				if (_selectionManager.CurrentSelectionRecon is null)
 				{
 					TomoImageReconModel = null;
-					_logger.LogInformation("HandleImageContentDisplay 单定位像，选中当前断层重建图像,极可能是当前recon被删除的时候。");
+					_logger.LogInformation($"Time is {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff")};HandleImageContentDisplay 单定位像，选中当前断层重建图像,极可能是当前recon被删除的时候。");
 				}
 				else if (_selectionManager.CurrentSelectionRecon.Parent.ScanImageType is not ScanImageType.Topo)
 				{
 					TomoImageReconModel = _selectionManager.CurrentSelectionRecon;
-					_logger.LogInformation("HandleImageContentDisplay 单定位像，选中当前断层重建图像");
+					_logger.LogInformation($"Time is {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff")};HandleImageContentDisplay 单定位像，选中当前断层重建图像");
 				}
 				else
 				{
@@ -928,7 +926,7 @@ public class DicomImageViewModel : BaseViewModel, IDicomImageViewModel
 				RightTopoImageReconModel = IsSwitchTopo ? selectedTopo.Children[0] : selectedTopo.Children[1];
 			}
 			TomoImageReconModel = null;
-			_logger.LogInformation("HandleImageContentDisplay 双定位像，定位像未完成");
+			_logger.LogInformation($"Time is {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff")};HandleImageContentDisplay 双定位像，定位像未完成");
 		}
 		else
 		{
@@ -943,7 +941,7 @@ public class DicomImageViewModel : BaseViewModel, IDicomImageViewModel
 					RightTopoImageReconModel = IsSwitchTopo ? selectedTopo.Children[0] : selectedTopo.Children[1];
 				}
 				TomoImageReconModel = null;
-				_logger.LogInformation("HandleImageContentDisplay 双定位像，定位像已完成，无断层重建选中");
+				_logger.LogInformation($"Time is {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff")};HandleImageContentDisplay 双定位像，定位像已完成，无断层重建选中");
 			}
 			else if (selectedTomoScan.Status is PerformStatus.Unperform)
 			{
@@ -955,7 +953,7 @@ public class DicomImageViewModel : BaseViewModel, IDicomImageViewModel
 					RightTopoImageReconModel = IsSwitchTopo ? selectedTopo.Children[0] : selectedTopo.Children[1];
 				}
 				TomoImageReconModel = null;
-				_logger.LogInformation("HandleImageContentDisplay 双定位像，定位像已完成，断层计划阶段");
+				_logger.LogInformation($"Time is {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff")};HandleImageContentDisplay 双定位像，定位像已完成，断层计划阶段");
 			}
 			else if (selectedTomoScan.Status is PerformStatus.Performing)
 			{
@@ -971,21 +969,34 @@ public class DicomImageViewModel : BaseViewModel, IDicomImageViewModel
 			}
 			else if (selectedTomoScan.Status is PerformStatus.Performed)
 			{
-				//双定位，断层扫描结束
-				IsShowTomo = true;
-				if (selectedTopo is not null && selectedTopo.Children.Count > 1)
+				try
 				{
-					TopoImageReconModel = IsSwitchTopo ? selectedTopo.Children[1] : selectedTopo.Children[0];
+					//双定位，断层扫描结束
+					IsShowTomo = true;
+					if (selectedTopo is not null && selectedTopo.Children.Count > 1)
+					{
+						TopoImageReconModel = IsSwitchTopo ? selectedTopo.Children[1] : selectedTopo.Children[0];
+					}
+
+					RightTopoImageReconModel = null;
+					if (_selectionManager.CurrentSelectionRecon.Parent.ScanImageType is not ScanImageType.Topo)
+					{
+						TomoImageReconModel = _selectionManager.CurrentSelectionRecon;
+						_logger.LogInformation("HandleImageContentDisplay 双定位像，选中当前断层重建图像");
+					}
+					else
+					{
+						_logger.LogInformation("HandleImageContentDisplay 双定位像，维持选中的断层重建图像");
+					}
 				}
-				RightTopoImageReconModel = null;
-				if (_selectionManager.CurrentSelectionRecon.Parent.ScanImageType is not ScanImageType.Topo)
+				catch (Exception ex)
 				{
-					TomoImageReconModel = _selectionManager.CurrentSelectionRecon;
-					_logger.LogInformation("HandleImageContentDisplay 双定位像，选中当前断层重建图像");
-				}
-				else
-				{
-					_logger.LogInformation("HandleImageContentDisplay 双定位像，维持选中的断层重建图像");
+					var msg = "";
+					if (_selectionManager.CurrentSelectionRecon!=null)
+					{
+						msg = _selectionManager.CurrentSelectionRecon.ToJson();
+					}
+					_logger.LogError($"HandleImageContentDisplay with error : _selectionManager.CurrentSelectionRecon is {msg} , {ex.Message}-{ex.StackTrace}");
 				}
 			}
 		}

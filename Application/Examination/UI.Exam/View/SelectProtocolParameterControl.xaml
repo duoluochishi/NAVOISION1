@@ -840,13 +840,13 @@
                             <Label
                                 Grid.Column="0"
                                 VerticalAlignment="Center"
-                                Content="{x:Static res:LanguageResource.Content_Kernel}" />
+                                Content="{x:Static res:LanguageResource.Content_Filter}" />
                             <ComboBox
                                 Grid.Column="1"
                                 VerticalAlignment="Center"
                                 DisplayMemberPath="Value"
-                                ItemsSource="{Binding KernelList}"
-                                SelectedItem="{Binding Path=SelectKernel, Mode=TwoWay}"
+                                ItemsSource="{Binding FilterList}"
+                                SelectedItem="{Binding Path=SelectFilter, Mode=TwoWay}"
                                 SelectedValuePath="Key" />
                         </Grid>
                         <Grid Style="{StaticResource StackPanelGrid}">

@@ -1,5 +1,77 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CalibrationConfig>
-	<Calibration Type="DLT" IsRequired="true" Duration="1" />
-	<Calibration Type="WaterValue" IsRequired="true" Duration="1" />
+	<Calibration Type="AfterGlow" Duration="7" VerificationMode="Auto|Manual" Path="F:\SiteData\Calibrations\AfterGlow" NamePattern="defect.raw">
+		<Templates>
+			<Template Id="1" Name="SingleSpot_FrameTime3500us_ExpTime2500us" IsValid="true"/>
+			<Template Id="2" Name="SingleSpot_FrameTime4000us_ExpTime2500us" IsValid="true"/>
+			<Template Id="3" Name="SingleSpot_FrameTime4000us_ExpTime3000us" IsValid="true"/>
+			<Template Id="4" Name="SingleSpot_FrameTime5000us_ExpTime3000us" IsValid="true"/>
+			<Template Id="5" Name="SingleSpot_FrameTime10000us_ExpTime3000us" IsValid="true"/>
+			<Template Id="6" Name="TwoSpot_FrameTime3500us_ExpTime2500us" IsValid="true"/>
+			<Template Id="7" Name="ThreeSpot_FrameTime5000us_ExpTime2500us" IsValid="true"/>
+		</Templates>
+	</Calibration>
+	<Calibration Type="Harden" Duration="3" VerificationMode="Auto|Manual" Path="F:\SiteData\Calibrations" NamePattern="harden.raw">
+		<Templates>
+			<Template Id="1" Name="KV70" IsValid="true"/>
+			<Template Id="2" Name="KV100" IsValid="true"/>
+			<Template Id="3" Name="KV120" IsValid="true"/>
+			<Template Id="4" Name="KV140" IsValid="true"/>
+		</Templates>
+	</Calibration>
+	<Calibration Type="NonLinear" Duration="3" VerificationMode="Auto|Manual" Path="F:\SiteData\Calibrations" NamePattern="harden.raw">
+		<Templates>
+			<Template Id="1" Name="KV70" IsValid="true"/>
+			<Template Id="2" Name="KV100" IsValid="true"/>
+			<Template Id="3" Name="KV120" IsValid="true"/>
+		</Templates>
+	</Calibration>
+	<Calibration Type="Gain" Duration="3" VerificationMode="Auto|Manual" Path="F:\SiteData\Calibrations" NamePattern="harden.raw">
+		<Templates>
+			<Template Id="1" Name="KV70_Binning1x1_SingleSpot_Jump_XRayFocusSmall_GainDynamic_ExpTime2500US" IsValid="true"/>
+			<Template Id="2" Name="KV120_Binning1x1_SingleSpot_Jump_XRayFocusSmall_GainDynamic_ExpTime2500US" IsValid="true"/>
+			<Template Id="3" Name="KV120_Binning1x1_SingleSpot_Jump_XRayFocusSmall_GainDynamic_ExpTime3000US" IsValid="true"/>
+			<Template Id="4" Name="KV120_Binning1x1_SingleSpot_Jump_XRayFocusSmall_GainDynamic_ExpTime5000US" IsValid="true"/>
+		</Templates>
+	</Calibration>
+	<Calibration Type="DetectorOffset" Duration="3" VerificationMode="Auto|Manual" Path="F:\SiteData\Calibrations" NamePattern="harden.raw">
+		<Templates>
+			<Template Id="1" Name="Binning1x1_GainDynamic_ExpTime5MS_OFFSET_H" IsValid="true"/>
+			<Template Id="2" Name="Binning1x1_GainDynamic_ExpTime5MS_OFFSET_L" IsValid="true"/>
+			<Template Id="3" Name="Binning1x1_GainDynamic_ExpTime2500US_OFFSET_H" IsValid="true"/>
+			<Template Id="4" Name="Binning1x1_GainDynamic_ExpTime2500US_OFFSET_L" IsValid="true"/>
+			<Template Id="5" Name="Binning1x1_GainDynamic_ExpTime3000US_OFFSET_H" IsValid="true"/>
+			<Template Id="6" Name="Binning1x1_GainDynamic_ExpTime3000US_OFFSET_L" IsValid="true"/>
+			<Template Id="7" Name="Binning1x1_GainDynamic_ExpTime3500US_OFFSET_H" IsValid="true"/>
+			<Template Id="8" Name="Binning1x1_GainDynamic_ExpTime3500US_OFFSET_L" IsValid="true"/>
+			<Template Id="9" Name="Binning1x1_GainDynamic_ExpTime5000US_OFFSET_H" IsValid="true"/>
+			<Template Id="10" Name="Binning1x1_GainDynamic_ExpTime5000US_OFFSET_L" IsValid="true"/>
+			<Template Id="11" Name="Binning1x1_GainFix24PC_ExpTime2500US_OFFSET" IsValid="true"/>
+		</Templates>
+	</Calibration>
+	<Calibration Type="Air" Duration="3" VerificationMode="Auto|Manual" Path="F:\SiteData\Calibrations" NamePattern="harden.raw">
+		<Templates>
+			<Template Id="1" Name="KV70_Binning1x1_SingleSpot_Jump_XRayFocusSmall_CollimatorZ242_GainDynamic_ExpTime2500US" IsValid="true"/>
+			<Template Id="2" Name="KV70_Binning1x1_SingleSpot_Jump_XRayFocusSmall_CollimatorZ288_GainDynamic_ExpTime2500US" IsValid="true"/>
+			<Template Id="3" Name="KV100_Binning1x1_SingleSpot_Jump_XRayFocusSmall_CollimatorZ288_GainDynamic_ExpTime2500US" IsValid="true"/>
+			<Template Id="4" Name="KV120_Binning1x1_ExpMode1_Jump_XRayFocusBig_CollimatorZ288_GainDynamic_ExpTime3000US" IsValid="true"/>
+			<Template Id="5" Name="KV120_Binning1x1_SingleSpot_Jump_XRayFocusLarge_CollimatorZ242_GainDynamic_ExpTime2500US" IsValid="true"/>
+			<Template Id="6" Name="KV120_Binning1x1_SingleSpot_Jump_XRayFocusSmall_CollimatorZ242_GainDynamic_ExpTime2500US" IsValid="true"/>
+			<Template Id="7" Name="KV120_Binning1x1_SingleSpot_Jump_XRayFocusSmall_CollimatorZ242_GainDynamic_ExpTime3000US" IsValid="true"/>
+			<Template Id="8" Name="KV120_Binning1x1_SingleSpot_Jump_XRayFocusSmall_CollimatorZ242_GainDynamic_ExpTime5000US" IsValid="true"/>
+			<Template Id="9" Name="KV120_Binning1x1_SingleSpot_Jump_XRayFocusSmall_CollimatorZ288_GainDynamic_ExpTime2500US" IsValid="true"/>
+			<Template Id="10" Name="KV120_Binning1x1_SingleSpot_Jump_XRayFocusSmall_CollimatorZ288_GainDynamic_ExpTime3000US" IsValid="true"/>
+			<Template Id="11" Name="KV120_Binning1x1_SingleSpot_Jump_XRayFocusSmall_CollimatorZ288_GainDynamic_ExpTime5000US" IsValid="true"/>
+		</Templates>
+	</Calibration>
+	
+	<!--
+		Defect
+		AirBowtie
+		Collimator
+		SourceXZ
+		CenterOffset
+		DLT
+		WaterValue	
+	-->
 </CalibrationConfig>

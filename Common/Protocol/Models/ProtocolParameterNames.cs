@@ -8,7 +8,9 @@ public class ProtocolParameterNames
 
     public const string RECON_FILTER_TYPE = "FilterType";
 
-    public const string RECON_AIR_CORRECTION_MODE = "AirCorrectionMode";
+	public const string RECON_KERNEL = "Kernel";
+
+	public const string RECON_AIR_CORRECTION_MODE = "AirCorrectionMode";
 
     public const string RECON_BONE_ARITIFACT_ENABALE = "BoneAritifactEnable";
 
@@ -128,6 +130,8 @@ public class ProtocolParameterNames
 
     public const string POST_PROCESS_ARGUMENT_SHARP_LEVEL = "SharpLevel";
 
+    public const string POST_PROCESS_ARGUMENT_SHARP_ALGORITHM_TYPE = "SharpAlgType";
+
     public const string POST_PROCESS_ARGUMENT_MOTION_ARTIFACT_REDUCE_LEVEL = "MotionArtifactReduceLevel";
 
     public const string POST_PROCESS_ARGUMENT_PITCH_ARTIFACT_REDUCE_LEVEL = "PitchArtifactReduceLevel";
@@ -213,6 +217,10 @@ public class ProtocolParameterNames
     public const string SCAN_EXPOSURE_START_POSITION = "ExposureStartPosition";
 
     public const string SCAN_EXPOSURE_END_POSITION = "ExposureEndPosition";
+
+    public const string SCAN_ECG_START_POSITION = "EcgStartPosition";
+
+    public const string SCAN_ECG_END_POSITION = "EcgEndPosition";
 
     public const string SCAN_FOCAL_TYPE = "FocalType";
 

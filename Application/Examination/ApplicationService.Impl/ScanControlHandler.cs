@@ -64,14 +64,20 @@ public class ScanControlHandler : IHostedService
             return;
         }
 
-		var currentScan = _protocolHostService.Models.Where(s => s.Scan.Descriptor.Id == e.Data.ScanId).Select(m => m.Scan).FirstOrDefault();
-        if (currentScan is null)
-        {
-            _logger.LogWarning($"ScanStatusService.ScanCanceled: Scan ({e.Data.MeasurementId}, {e.Data.ScanId}) is not exist.");
-            return;
+		ScanModel currentScan = null;
+
+		if (!string.IsNullOrEmpty(e.Data.ScanId))
+		{
+            currentScan = _protocolHostService.Models.Where(s => s.Scan.Descriptor.Id == e.Data.ScanId).Select(m => m.Scan).FirstOrDefault();
+            if (currentScan is null)
+            {
+                _logger.LogWarning($"ScanStatusService.ScanCanceled: Scan ({e.Data.MeasurementId}, {e.Data.ScanId}) is not exist.");
+                return;
+            }
         }
 
-		if (currentMeasurement.Children.Count == 1)
+
+        if (currentMeasurement.Children.Count == 1)
 		{
             _protocolHostService.SetPerformStatus(currentScan, PerformStatus.Unperform);
             _measurementStatusService.RaiseMeasurementCancelled(currentMeasurement.Descriptor.Id);
@@ -80,7 +86,7 @@ public class ScanControlHandler : IHostedService
 		{
 			var firstScan = currentMeasurement.Children.FirstOrDefault();
 
-			if (firstScan.Descriptor.Id == currentScan.Descriptor.Id)
+			if (firstScan.Descriptor.Id == currentScan?.Descriptor.Id)
 			{
                 foreach (var childScan in currentMeasurement.Children)
 				{
@@ -99,10 +105,12 @@ public class ScanControlHandler : IHostedService
                 var reasonType = e.Data.IsUserCancelled ? FailureReasonType.UserCancellation : FailureReasonType.SystemCancellation;
                 foreach (var childScan in currentMeasurement.Children)
 				{
-					if (childScan.Status == PerformStatus.Performed) continue;
-					_protocolHostService.SetPerformStatus(childScan, PerformStatus.Performed, reasonType);
+					if (childScan.Status != PerformStatus.Performed)
+					{
+                        _protocolHostService.SetPerformStatus(childScan, PerformStatus.Performed, reasonType);
+                    }
 
-					var childRecons = childScan.Children.Where(r => r.IsRTD).ToList();
+                    var childRecons = childScan.Children.Where(r => r.IsRTD).ToList();
                     foreach (var childRecon in childRecons)
                     {
                         _protocolHostService.SetPerformStatus(childRecon, PerformStatus.Performed, reasonType);
@@ -178,11 +186,16 @@ public class ScanControlHandler : IHostedService
 		{
 			foreach(var childScan in item.Measurement.Children)
 			{
-				if (childScan.Status == PerformStatus.Performed) continue;
-				_protocolHostService.SetPerformStatus(childScan, PerformStatus.Performed, failureReason);
+                if (childScan.Status != PerformStatus.Performed)
+				{
+                    _protocolHostService.SetPerformStatus(childScan, PerformStatus.Performed, failureReason);
+                }
 
                 var childRecon = childScan.Children.FirstOrDefault(r => r.IsRTD);
-                _protocolHostService.SetPerformStatus(childRecon, PerformStatus.Performed, failureReason);
+                if ( childRecon.Status != PerformStatus.Performed)
+                {
+                    _protocolHostService.SetPerformStatus(childRecon, PerformStatus.Performed, failureReason);
+                }
             }
             _measurementStatusService.RasiseMeasurementAborted(item.Measurement.Descriptor.Id, true, item.Scan.Descriptor.Id, null, failureReason);
         }
@@ -260,11 +273,16 @@ public class ScanControlHandler : IHostedService
             {
                 foreach (var childScan in item.Measurement.Children)
                 {
-                    if (childScan.Status == PerformStatus.Performed) continue;
-                    _protocolHostService.SetPerformStatus(childScan, PerformStatus.Performed, FailureReasonType.UserCancellation);
+					if (childScan.Status != PerformStatus.Performed)
+					{
+                        _protocolHostService.SetPerformStatus(childScan, PerformStatus.Performed, FailureReasonType.UserCancellation);
+                    }
 
                     var childRecon = childScan.Children.FirstOrDefault(r => r.IsRTD);
-                    _protocolHostService.SetPerformStatus(childRecon, PerformStatus.Performed, FailureReasonType.UserCancellation);
+					if (childRecon.Status != PerformStatus.Performed)
+					{
+                        _protocolHostService.SetPerformStatus(childRecon, PerformStatus.Performed, FailureReasonType.UserCancellation);
+                    }
                 }
                 _measurementStatusService.RasiseMeasurementAborted(item.Measurement.Descriptor.Id, true, item.Scan.Descriptor.Id, null, FailureReasonType.UserCancellation);
             }

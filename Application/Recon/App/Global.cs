@@ -102,7 +102,8 @@ public class Global
 		
 		// 0ms
 		CTS.Global.ServiceProvider.GetRequiredService<ProtocolHostServiceExtension>();
-		
+
+		CTS.Global.ServiceProvider.GetRequiredService<TimeDensityViewModel>();
 		//CTS.Global.ServiceProvider.GetRequiredService<TimelineViewModel>();
 	}
 

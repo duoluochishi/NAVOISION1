@@ -128,10 +128,10 @@
             <!--  Recon Method  -->
             <Grid Style="{StaticResource StackPanelGrid}">
                 <local:ReconMethodShow />
-            </Grid>          
-            <!--  Kernel  -->
+            </Grid>
+            <!--  Filter  -->
             <Grid Style="{StaticResource StackPanelGrid}">
-                <local:Kernel />
+                <local:Filter />
             </Grid>
             <!--  Window  -->
             <Grid Style="{StaticResource StackPanelGrid}">
@@ -147,6 +147,10 @@
             <!--  HD recon  -->
             <Grid Style="{StaticResource StackPanelGrid}">
                 <local:IsHDRecon/>
+            </Grid>
+            <!--  Kernel  -->
+            <Grid Style="{StaticResource StackPanelGrid}">
+                <local:Kernel/>
             </Grid>
         </StackPanel>
 

@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ProtocolTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Descriptor>
-    <Id>ddfef7e7-7e7d-4749-abb4-7fada4632d27</Id>
+    <Id>43e1a698-1b18-4bad-91ec-eeef7726c6dc</Id>
     <Name>Water20cm</Name>
     <Type>ProtocolTemplate</Type>
   </Descriptor>
   <Parameters />
   <Protocol>
     <Descriptor>
-      <Id>06ca7df3-ebd1-44a7-b43a-e4a9019e7036</Id>
+      <Id>b64c35a4-959c-44cc-80d6-f5c9c34dd6bb</Id>
       <Name>Water20cm</Name>
       <Type>Protocol</Type>
     </Descriptor>
@@ -26,7 +26,7 @@
     <FrameOfReferences>
       <FrameOfReference>
         <Descriptor>
-          <Id>0f994f21-b4a0-408e-9c84-684d99fc2a02</Id>
+          <Id>ad079ba9-280a-41c9-bf57-a16168f1b93a</Id>
           <Name>FrameOfReference</Name>
           <Type>FrameOfReference</Type>
         </Descriptor>
@@ -36,7 +36,7 @@
         <Measurements>
           <Measurement>
             <Descriptor>
-              <Id>eec4fd87-619a-452e-b0ef-2ce399cbdea7</Id>
+              <Id>478b52a7-8f60-4f34-ad59-ecb0963bd9a5</Id>
               <Name>Measurement</Name>
               <Type>Measurement</Type>
             </Descriptor>
@@ -44,7 +44,7 @@
             <Scans>
               <Scan>
                 <Descriptor>
-                  <Id>c8224755-3095-4d4a-b2d4-addef9e63d8b</Id>
+                  <Id>003bb04c-0b6d-4d87-9720-7fff3630afc4</Id>
                   <Name>Topogram</Name>
                   <Type>Scan</Type>
                 </Descriptor>
@@ -145,7 +145,7 @@
                 <Recons>
                   <Recon>
                     <Descriptor>
-                      <Id>98f92412-9eee-41af-bb09-f51b87a1df94</Id>
+                      <Id>463588d7-3df2-4135-9f07-b2b172cdd5ad</Id>
                       <Name>Recon</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -210,7 +210,7 @@
           </Measurement>
           <Measurement>
             <Descriptor>
-              <Id>e678ea90-4600-4eeb-9857-7e63b8089598</Id>
+              <Id>66ba1f6b-5a16-4a38-94e0-f8436809fb01</Id>
               <Name>Measurement</Name>
               <Type>Measurement</Type>
             </Descriptor>
@@ -218,7 +218,7 @@
             <Scans>
               <Scan>
                 <Descriptor>
-                  <Id>5c844194-20c9-4b8e-89ec-e65e59e0dd39</Id>
+                  <Id>34a09b4d-a476-4af5-b550-20ae3bd03849</Id>
                   <Name>Water20cm</Name>
                   <Type>Scan</Type>
                 </Descriptor>
@@ -319,7 +319,7 @@
                 <Recons>
                   <Recon>
                     <Descriptor>
-                      <Id>50fd0259-8b01-402d-9f70-2174426381dd</Id>
+                      <Id>8178ed16-bbe7-4045-bb68-25e68c11a85c</Id>
                       <Name>Recon</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -380,7 +380,7 @@
                   </Recon>
                   <Recon>
                     <Descriptor>
-                      <Id>17e2489c-d08a-40a7-bf7f-1d7e67b145fc</Id>
+                      <Id>785957e8-5524-42a6-9bef-3f7a1601c33c</Id>
                       <Name>Water20cm3mmNone</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -441,7 +441,7 @@
                   </Recon>
                   <Recon>
                     <Descriptor>
-                      <Id>28b82c9e-ef87-4af2-bf0b-29ed7913ec76</Id>
+                      <Id>60058c86-0f3a-40d0-9784-7b60752875dc</Id>
                       <Name>Water20cm10mmNone</Name>
                       <Type>Recon</Type>
                     </Descriptor>

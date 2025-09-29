@@ -35,8 +35,8 @@
             VerticalContentAlignment="Center"
             IsEnabled="{Binding Path=PageEnable}"
             MarkStatus="{Binding Path=ExposureIntervalTimeMarkStatus}"
-            Maximum="600"
-            Minimum="0"
+            Maximum="300"
+            Minimum="8"
             Style="{StaticResource MarkableTextBox}"
             Text="{Binding Path=ExposureIntervalTime, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
             TextType="Decimal">
@@ -58,4 +58,4 @@
             VerticalAlignment="Center"
             Content="{x:Static res:LanguageResource.Content_TimeUnitSecond}" />
     </Grid>
-</UserControl>
+</UserControl>      

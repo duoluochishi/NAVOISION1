@@ -82,7 +82,7 @@ public partial class ScanMainControl
                 CTS.Global.ServiceProvider?.GetService<ISelectionManager>()?.SelectScan();
             }
             else if (studyModel is not null && !string.IsNullOrEmpty(studyModel.Protocol))
-            {     
+            {
                 //恢复检查
                 LayoutContainer.Content = CTS.Global.ServiceProvider?.GetRequiredService<ScanDefaultControl>();
                 //恢复检查
@@ -133,4 +133,13 @@ public partial class ScanMainControl
         //LayoutContainer.Content = viewControl;
     }
 
+    private void ScanMainControl_Unloaded(object sender, RoutedEventArgs e)
+    {
+
+        if (this.DataContext != null && this.DataContext is IDisposable disposableViewModel)
+        {
+            disposableViewModel.Dispose();
+        }
+
+    }
 }

@@ -12,7 +12,7 @@ public interface ISelfCheckingExecutor
 {
 	event EventHandler<SelfCheckResult>? SelfCheckStatusChanged;
 
-	BaseCommandResult StartSelfChecking();
+	//BaseCommandResult StartSelfChecking();
 
 	List<SelfCheckResult> GetSelfCheckResults();
 }

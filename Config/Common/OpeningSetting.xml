@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CollimatorOpenings>
-  <OpeningSetting Opening="288" TableFeed="200000" SliceWidth="47520" />
+  <OpeningSetting Opening="288" TableFeed="400000" SliceWidth="47520" />
   <OpeningSetting Opening="256" TableFeed="200000" SliceWidth="42240" />
   <OpeningSetting Opening="242" TableFeed="200000" SliceWidth="39930" />
   <OpeningSetting Opening="192" TableFeed="200000" SliceWidth="31680" />

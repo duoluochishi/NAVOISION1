@@ -99,7 +99,7 @@ public class DicomImageExtension
 
         List<LocationParam> lists = new List<LocationParam>();
         int i = 1;
-        foreach (var recon in tomoScanModel.Children)
+		foreach (var recon in tomoScanModel.Children)
         {
             LocationParam parm = new LocationParam();
             parm.ScanID = tomoScanModel.Descriptor.Id;

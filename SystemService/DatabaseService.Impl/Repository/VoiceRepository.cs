@@ -108,14 +108,15 @@ public class VoiceRepository
 
     public bool Insert(VoiceModel entity)
     {
-        string sql = "INSERT INTO t_voices (Id,InternalId,Name,Description,BodyPart,FilePath,IsFront,VoiceLength,Language,IsFactory,IsDefault,IsValid,Creator,CreateTime) " +
-            "VALUE(@Id,@InternalId,@Name,@Description,@BodyPart,@FilePath,@IsFront,@VoiceLength,@Language,@IsFactory,@IsDefault,@IsValid,@Creator,@CreateTime);";
+        string sql = "INSERT INTO t_voices (Id,InternalId,PairId,Name,Description,BodyPart,FilePath,IsFront,VoiceLength,RealVoiceLength,Language,IsFactory,IsDefault,IsValid,Creator,CreateTime) " +
+            "VALUE(@Id,@InternalId,@PairId,@Name,@Description,@BodyPart,@FilePath,@IsFront,@VoiceLength,@RealVoiceLength,@Language,@IsFactory,@IsDefault,@IsValid,@Creator,@CreateTime);";
         var result = _context.Connection.ContextExecute((connection) =>
         {
             return connection.Execute(sql, new
             {
                 Id = entity.Id,
                 InternalId = entity.InternalId,
+                PairId = entity.PairId,
                 Name = entity.Name,
                 Description = entity.Description,
                 BodyPart = entity.BodyPart,
@@ -123,6 +124,7 @@ public class VoiceRepository
                 IsFront = entity.IsFront,
                 VoiceLength = entity.VoiceLength,
                 Language = entity.Language,
+                RealVoiceLength = entity.RealVoiceLength,
                 IsFactory = entity.IsFactory,
                 IsDefault = entity.IsDefault,
                 IsValid = entity.IsValid,
@@ -135,18 +137,20 @@ public class VoiceRepository
 
     public bool Update(VoiceModel entity)
     {
-        string sql = "UPDATE t_voices p SET  p.InternalId=@InternalId,p.Name=@Name,p.Description=@Description,p.BodyPart=@BodyPart,p.FilePath=@FilePath,p.IsFront=@IsFront,p.VoiceLength=@VoiceLength,p.Language=@Language,p.IsFactory=@IsFactory,p.IsDefault=@IsDefault,p.IsValid=@IsValid WHERE p.Id=@Id";
+        string sql = "UPDATE t_voices p SET  p.InternalId=@InternalId,p.PairId=@PairId,p.Name=@Name,p.Description=@Description,p.BodyPart=@BodyPart,p.FilePath=@FilePath,p.IsFront=@IsFront,p.VoiceLength=@VoiceLength,p.RealVoiceLength=@RealVoiceLength,p.Language=@Language,p.IsFactory=@IsFactory,p.IsDefault=@IsDefault,p.IsValid=@IsValid WHERE p.Id=@Id";
         var result = _context.Connection.ContextExecute((connection) =>
         {
             return connection.Execute(sql, new
             {
                 InternalId = entity.InternalId,
+                PairId = entity.PairId,
                 Name = entity.Name,
                 Description = entity.Description,
                 BodyPart = entity.BodyPart,
                 FilePath = entity.FilePath,
                 IsFront = entity.IsFront,
                 VoiceLength = entity.VoiceLength,
+                RealVoiceLength = entity.RealVoiceLength,
                 Language = entity.Language,
                 IsFactory = entity.IsFactory,
                 IsDefault = entity.IsDefault,

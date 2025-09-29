@@ -46,6 +46,8 @@ public class MessageTooltipViewModel : BaseViewModel
 		set => SetProperty(ref _scanMessage, value);
 	}
 
+	DateTime _startTime = DateTime.MinValue;
+
 	public MessageTooltipViewModel(IUIRelatedStatusService uiRelatedStatusService,
 		 IScanControlService scanControlService,
 		 ISystemReadyService systemReadyService)
@@ -59,12 +61,27 @@ public class MessageTooltipViewModel : BaseViewModel
 		_uiRelatedStatusService.ErrorStopped += UIRelatedStatusService_ErrorStopped;
 		_systemReadyService.StatusChanged -= SystemReadyService_StatusChanged;
 		_systemReadyService.StatusChanged += SystemReadyService_StatusChanged;
+
+		_uiRelatedStatusService.DoorStatusChanged -= UIRelatedStatusService_DoorStatusChanged;
+		_uiRelatedStatusService.DoorStatusChanged += UIRelatedStatusService_DoorStatusChanged;
+
 		_timer = new DispatcherTimer();
 		_timer.Interval = TimeSpan.FromSeconds(1);
 		_timer.Tick += Timer_Tick;
 	}
 
-	[UIRoute]
+	private void UIRelatedStatusService_DoorStatusChanged(object? sender, bool e)
+	{
+		if (!_uiRelatedStatusService.IsDoorClosed)
+		{
+			ScanMessage = LanguageResource.Text_ExaminationDoorOpen;
+		}
+		else
+		{
+			ScanMessage = string.Empty;
+		}
+	}
+
 	private void SystemReadyService_StatusChanged(object? sender, EventArgs<(bool status, bool isSyatemStatus)> e)
 	{
 		if (e is not null && e.Data.isSyatemStatus)
@@ -98,19 +115,18 @@ public class MessageTooltipViewModel : BaseViewModel
 		IsScanning = false;
 		IsBeforeScan = false;
 		IsMoveTable = false;
-		_duration = 30;
 		_timer.Stop();
 		ScanMessage = message;
 	}
 
 	private void Timer_Tick(object? sender, EventArgs e)
 	{
-		if (_duration >= 0)
+		int waitTime = _duration - (int)(DateTime.Now - _startTime).TotalSeconds;
+		if (waitTime >= 0)
 		{
-			_duration--;
-			ScanMessage = $"{LanguageResource.Message_Info_ScanMessageExposureing}({_duration})";
+			ScanMessage = $"{LanguageResource.Message_Info_ScanMessageExposureing}({waitTime})";
 		}
-		if (_duration <= 0)
+		if (waitTime <= 0)
 		{
 			_scanControlService.CancelMeasurement();
 			_timer.Stop();
@@ -144,7 +160,7 @@ public class MessageTooltipViewModel : BaseViewModel
 				IsScanning = false;
 				IsMoveTable = false;
 				_working = true;
-				_duration = 30;
+				_startTime = DateTime.Now;
 				_timer.Start();
 				ScanMessage = $"{LanguageResource.Message_Info_ScanMessageExposureing}({_duration})";
 				break;

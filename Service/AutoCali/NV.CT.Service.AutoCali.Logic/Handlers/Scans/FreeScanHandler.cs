@@ -1,8 +1,11 @@
 ﻿using NV.CT.FacadeProxy.Common.Enums;
+using NV.CT.FacadeProxy.Common.Enums.ScanEnums;
 using NV.CT.FacadeProxy.Common.Models;
 using NV.CT.FacadeProxy.Models.DataAcquisition;
 using NV.CT.Service.Common.Interfaces;
 using NV.CT.Service.Universal.PrintMessage.Abstractions;
+using NV.MPS.Configuration;
+using System;
 
 namespace NV.CT.Service.AutoCali.Logic.Handlers.Scans
 {
@@ -15,6 +18,7 @@ namespace NV.CT.Service.AutoCali.Logic.Handlers.Scans
         {
             _logger = logger;
             _uiLogger = uiLogger;
+
         }
 
         public virtual FreeScanViewModel GetFreeScan(ScanReconParam scanReconParam)
@@ -81,6 +85,7 @@ namespace NV.CT.Service.AutoCali.Logic.Handlers.Scans
 
             detectorParams.CurrentGain = scanParam.Gain;
             detectorParams.CurrentScatteringGain = ScatteringDetectorGain_Default;
+
 
             var preOffsetFrames = scanParam.PreOffsetFrames;
             if (preOffsetFrames > 1)

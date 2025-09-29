@@ -289,6 +289,7 @@ namespace NV.CT.JobViewer.ViewModel
 
         private void RunReconTaskRemoved(string reconId)
         {
+            _logger.LogInformation($"[JobViewer]Remove Recon Task due to get removed notification with reconId: {reconId}");
             OfflineReconModel offlineReconModel = OfflineReconInfoModels.FirstOrDefault(o => o.ReconId == reconId);
 
             if (string.IsNullOrEmpty(reconId) || offlineReconModel is null)

@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ProtocolTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Descriptor>
-    <Id>166780df-b8ab-41bb-b493-cf218b3274ff</Id>
+    <Id>acd1b707-669f-4594-abde-0d2ff9c445d1</Id>
     <Name>LSpineHDHelicalAdult</Name>
     <Type>ProtocolTemplate</Type>
   </Descriptor>
   <Parameters />
   <Protocol>
     <Descriptor>
-      <Id>98270985-67be-4ad1-9f87-13c1fc5983ac</Id>
+      <Id>e24c9b6a-b8bf-467b-a482-522245d39a98</Id>
       <Name>LSpineHDHelicalAdult</Name>
       <Type>Protocol</Type>
     </Descriptor>
@@ -26,7 +26,7 @@
     <FrameOfReferences>
       <FrameOfReference>
         <Descriptor>
-          <Id>7bef22f8-b317-4720-b953-925bcc0f2df7</Id>
+          <Id>6bd5418a-e685-4322-a4a1-6170d6e6fe7a</Id>
           <Name>FrameOfReference</Name>
           <Type>FrameOfReference</Type>
         </Descriptor>
@@ -36,7 +36,7 @@
         <Measurements>
           <Measurement>
             <Descriptor>
-              <Id>adf76726-0851-4d0e-96e9-11adccff986b</Id>
+              <Id>6bd35ceb-2359-4d7d-a005-5b7bcd5c6e4a</Id>
               <Name>Measurement</Name>
               <Type>Measurement</Type>
             </Descriptor>
@@ -44,7 +44,7 @@
             <Scans>
               <Scan>
                 <Descriptor>
-                  <Id>1c74fea1-925b-43c6-9992-9dfb320ddc06</Id>
+                  <Id>bf270099-270e-4b9f-aec2-764986862a0c</Id>
                   <Name>DualScout</Name>
                   <Type>Scan</Type>
                 </Descriptor>
@@ -145,7 +145,7 @@
                 <Recons>
                   <Recon>
                     <Descriptor>
-                      <Id>a58365df-9a7f-4362-ba81-687b79531615</Id>
+                      <Id>c507a3ea-814b-41ac-bffc-13ad7e3f817f</Id>
                       <Name>Recon</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -206,7 +206,7 @@
                   </Recon>
                   <Recon>
                     <Descriptor>
-                      <Id>ba839e70-2123-4ca7-a4fd-1f6d2224cfc2</Id>
+                      <Id>f67e0c02-4a9f-407c-abd1-3ff8309c1054</Id>
                       <Name>Recon</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -271,7 +271,7 @@
           </Measurement>
           <Measurement>
             <Descriptor>
-              <Id>cef01d33-6536-4932-98e3-b2c0cb7b31f2</Id>
+              <Id>2758fabf-c2bd-43ec-92d5-3f77aef40d64</Id>
               <Name>Measurement</Name>
               <Type>Measurement</Type>
             </Descriptor>
@@ -279,7 +279,7 @@
             <Scans>
               <Scan>
                 <Descriptor>
-                  <Id>33081dbc-a7cc-435e-8718-9af6ffb5b947</Id>
+                  <Id>43c4493f-4e37-499b-9bec-6bd43e643797</Id>
                   <Name>Spine Helical</Name>
                   <Type>Scan</Type>
                 </Descriptor>
@@ -380,7 +380,7 @@
                 <Recons>
                   <Recon>
                     <Descriptor>
-                      <Id>c08b433b-f7f5-4c0a-b7bf-23aa3c0f40f6</Id>
+                      <Id>c7a9d46f-a144-40a6-957d-87e039a791cf</Id>
                       <Name>Recon</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -441,7 +441,7 @@
                   </Recon>
                   <Recon>
                     <Descriptor>
-                      <Id>2a8e6b6c-35a0-4c7e-80a3-962cec08b04c</Id>
+                      <Id>41d2c0d9-1477-4fd2-9606-ebe3f61ad970</Id>
                       <Name>LSpine0.33mmSharpPlusBoneHD</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -497,19 +497,14 @@
                       <Parameter Name="IsHDRecon" Value="True" />
                       <Parameter Name="WindmillArtifactEnable" Value="False" />
                       <Parameter Name="ConeAngleArtifactEnable" Value="False" />
+                      <Parameter Name="Kernel" Value="LS05" />
                     </Parameters>
-                    <PostProcesses>
-					   <PostProcess Index="0" Type="Sharp">
-                        <Parameters>
-                          <Parameter Name="SharpLevel" Value="2" />
-                        </Parameters>
-                      </PostProcess>
-					</PostProcesses>			
+                    <PostProcesses />
                   </Recon>
                   <Recon>
                     <Descriptor>
-                      <Id>f52e0d91-8602-4bec-8f8b-e89859f423e5</Id>
-                      <Name>LSpine0.165mmSharpPlusBone</Name>
+                      <Id>c645e8eb-e5af-4e2f-a941-d5beacdf5a1b</Id>
+                      <Name>LSpine0.33mmSharpPlusBoneHD</Name>
                       <Type>Recon</Type>
                     </Descriptor>
                     <Parameters>
@@ -517,7 +512,7 @@
                       <Parameter Name="FilterType" Value="SharpPlus" />
                       <Parameter Name="InterpType" Value="0" />
                       <Parameter Name="MetalAritifactEnable" Value="False" />
-                      <Parameter Name="SliceThickness" Value="165" />
+                      <Parameter Name="SliceThickness" Value="330" />
                       <Parameter Name="PreDenoiseType" Value="BM3D" />
                       <Parameter Name="PreDenoiseCoef" Value="0" />
                       <Parameter Name="PostDenoiseType" Value="BM3D" />
@@ -543,7 +538,7 @@
                       <Parameter Name="FoVLengthVert" Value="506880" />
                       <Parameter Name="ImageMatrixHor" Value="1536" />
                       <Parameter Name="ImageMatrixVert" Value="1536" />
-                      <Parameter Name="ImageIncrement" Value="165" />
+                      <Parameter Name="ImageIncrement" Value="330" />
                       <Parameter Name="IsRTD" Value="False" />
                       <Parameter Name="ImagePath" Value="" />
                       <Parameter Name="ImageOrder" Value="HeadFoot" />
@@ -559,11 +554,12 @@
                       <Parameter Name="MaxTablePosition" Value="0" />
                       <Parameter Name="IVRTVCoef" Value="0.02" />
                       <Parameter Name="RingCorrectCoef" Value="0" />
-                      <Parameter Name="PreBinning" Value="XY_1x1" />
+                      <Parameter Name="PreBinning" Value="XY_2x2" />
                       <Parameter Name="ReconBodyPart" Value="Spine" />
-                      <Parameter Name="IsHDRecon" Value="False" />
+                      <Parameter Name="IsHDRecon" Value="True" />
                       <Parameter Name="WindmillArtifactEnable" Value="False" />
                       <Parameter Name="ConeAngleArtifactEnable" Value="False" />
+                      <Parameter Name="Kernel" Value="LS05" />
                     </Parameters>
                     <PostProcesses />
                   </Recon>

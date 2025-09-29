@@ -3,7 +3,9 @@
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
 	xmlns:normal="clr-namespace:NV.CT.UI.Exam.DynamicParameters.Templates.Default;assembly=NV.CT.UI.Exam"
 	xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
 	xmlns:view="clr-namespace:NV.CT.UI.Exam.View;assembly=NV.CT.UI.Exam"
@@ -49,10 +51,44 @@
 			<Setter Property="HorizontalContentAlignment" Value="Stretch" />
 			<Setter Property="VerticalContentAlignment" Value="Stretch" />
 		</Style>
-	</UserControl.Resources>
+        <Style x:Key="DetailLabelStyle" BasedOn="{StaticResource NanoLabelStyle}"
+				TargetType="{x:Type Label}">
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Margin" Value="0 10 0 0" />
+        </Style>
+        <Style x:Key="TimeDensityStyle" BasedOn="{StaticResource NanoLabelStyle}" TargetType="{x:Type Label}">
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Margin" Value="0 20 0 0" />
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="DetailPathStyle" BasedOn="{StaticResource List01}" TargetType="{x:Type Path}">
+            <Setter Property="Width" Value="20" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Fill" Value="{StaticResource TextBoxBrush}" />
+            <Setter Property="Stretch" Value="Fill" />
+        </Style>
+        <Style x:Key="TimeDensityWindoStyle" TargetType="wpf:PackIcon">
+            <Setter Property="Width" Value="25" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Foreground" Value="{StaticResource TextBoxBrush}" />
+        </Style>
+    </UserControl.Resources>
 	<AdornerDecorator>
 		<Grid Background="#05050F">
-
 			<StackPanel
 				Margin="10,0,0,0"
 				Style="{StaticResource BaseRightStackPanel}">
@@ -110,10 +146,10 @@
 							</TabControl>
 
 
-							<StackPanel
+							<!--<StackPanel
 								Grid.Column="1"
-								Orientation="Horizontal">
-								<!--  显示详细参数的 按钮  -->
+								Orientation="Vertical">
+								--><!--  显示详细参数的 按钮  --><!--
 								<Button
 									VerticalAlignment="Top"
 									Command="{Binding Commands[ShowParameterDetail]}"
@@ -127,8 +163,30 @@
 										Stretch="Fill"
 										Style="{StaticResource List01}" />
 								</Button>
-							</StackPanel>
-							<Border
+							</StackPanel>-->
+                            <StackPanel Grid.Column="1" Orientation="Vertical">
+                                <!--  显示详细参数的 按钮  -->
+                                <Label ToolTip="{x:Static res:LanguageResource.ToolTip_ParameterDetail}" Style="{StaticResource DetailLabelStyle}">
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="MouseDown">
+                                            <b:InvokeCommandAction
+												Command="{Binding Commands[ShowParameterDetail]}"/>
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
+                                    <Path Style="{StaticResource DetailPathStyle}" />
+                                </Label>
+                                <Label ToolTip="{x:Static res:LanguageResource.ToolTip_TimeDensityDetail}" IsEnabled="{Binding IsTimeDensityShowEnable}" Style="{StaticResource TimeDensityStyle}">
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="MouseDown">
+                                            <b:InvokeCommandAction
+												Command="{Binding Commands[ShowTimeDensityWindow]}"/>
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
+                                    <wpf:PackIcon Kind="ChartBellCurve" Style="{StaticResource TimeDensityWindoStyle}"/>
+                                </Label>
+                            </StackPanel>
+
+                            <Border
 								Grid.Column="2"
 								Margin="15,15,0,15">
 								<!--  Recon操作面板  -->

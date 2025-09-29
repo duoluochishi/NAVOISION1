@@ -60,6 +60,40 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:NV.CT.FacadeProxy.Common.Arguments.AudioPlaybackEventArgs">
+            <summary>
+            语音播放事件参数
+            </summary>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Common.Arguments.AudioPlaybackEventArgs.#ctor(System.UInt32,NV.CT.FacadeProxy.Common.Enums.AudioFileEnums.AudioFileType,NV.CT.FacadeProxy.Common.Enums.AudioFileEnums.PlayCompletionReason,System.String)">
+            <summary>
+            ctor
+            </summary>
+            <param name="id"></param>
+            <param name="fileType"></param>
+            <param name="reason"></param>
+            <param name="errorCode"></param>
+        </member>
+        <member name="P:NV.CT.FacadeProxy.Common.Arguments.AudioPlaybackEventArgs.ID">
+            <summary>
+            语音文件ID
+            </summary>
+        </member>
+        <member name="P:NV.CT.FacadeProxy.Common.Arguments.AudioPlaybackEventArgs.FileType">
+            <summary>
+            文件类型
+            </summary>
+        </member>
+        <member name="P:NV.CT.FacadeProxy.Common.Arguments.AudioPlaybackEventArgs.Reason">
+            <summary>
+            播放完成原因
+            </summary>
+        </member>
+        <member name="P:NV.CT.FacadeProxy.Common.Arguments.AudioPlaybackEventArgs.ErrorCode">
+            <summary>
+            错误信息（失败时有效）
+            </summary>
+        </member>
         <member name="T:NV.CT.FacadeProxy.Common.Arguments.ConnectionStatusArgs">
             <summary>
             连接状态事件参数
@@ -143,6 +177,26 @@
             结束
             </summary>
         </member>
+        <member name="T:NV.CT.FacadeProxy.Common.Arguments.ECGDataReceivedArgs">
+            <summary>
+            ECG数据接收事件参数
+            </summary>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Common.Arguments.ECGDataReceivedArgs.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="P:NV.CT.FacadeProxy.Common.Arguments.ECGDataReceivedArgs.FirstFrameDatetime">
+            <summary>
+            第一帧时间戳
+            </summary>
+        </member>
+        <member name="P:NV.CT.FacadeProxy.Common.Arguments.ECGDataReceivedArgs.ECGDatas">
+            <summary>
+            ECG数据
+            </summary>
+        </member>
         <member name="T:NV.CT.FacadeProxy.Common.Arguments.ErrorInfoEventArgs">
             <summary>
             错误码事件参数
@@ -157,6 +211,27 @@
         <member name="P:NV.CT.FacadeProxy.Common.Arguments.ErrorInfoEventArgs.ErrorCodes">
             <summary>
             错误码
+            </summary>
+        </member>
+        <member name="T:NV.CT.FacadeProxy.Common.Arguments.HeartRateChangedArgs">
+            <summary>
+            心率改变事件参数
+            </summary>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Common.Arguments.HeartRateChangedArgs.#ctor(System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="heartRate">心率</param>
+        </member>
+        <member name="P:NV.CT.FacadeProxy.Common.Arguments.HeartRateChangedArgs.HeartRate">
+            <summary>
+            心率
+            </summary>
+        </member>
+        <member name="P:NV.CT.FacadeProxy.Common.Arguments.HeartRateChangedArgs.RRInterval">
+            <summary>
+            心动周期,单位us
             </summary>
         </member>
         <member name="T:NV.CT.FacadeProxy.Common.Arguments.ImageSavedEventArgs">
@@ -318,6 +393,16 @@
         <member name="P:NV.CT.FacadeProxy.Common.Arguments.RealtimeEventArgs.PostCount">
             <summary>
             PostCount
+            </summary>
+        </member>
+        <member name="P:NV.CT.FacadeProxy.Common.Arguments.RealtimeEventArgs.TimestampType">
+            <summary>
+            时间戳类型
+            </summary>
+        </member>
+        <member name="P:NV.CT.FacadeProxy.Common.Arguments.RealtimeEventArgs.Timestamp">
+            <summary>
+            时间戳
             </summary>
         </member>
         <member name="M:NV.CT.FacadeProxy.Common.Arguments.RealtimeEventArgs.GetErrorCodes">
@@ -602,6 +687,41 @@
         <member name="F:NV.CT.FacadeProxy.Common.Enums.AirCorrectionMode.ReferencePixel">
             <summary>
             参考像素
+            </summary>
+        </member>
+        <member name="T:NV.CT.FacadeProxy.Common.Enums.AudioFileEnums.AudioFileType">
+            <summary>
+            语音文件类型
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Common.Enums.AudioFileEnums.AudioFileType.Api">
+            <summary>
+            API语音
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Common.Enums.AudioFileEnums.AudioFileType.BreathTraining">
+            <summary>
+            呼吸训练语音
+            </summary>
+        </member>
+        <member name="T:NV.CT.FacadeProxy.Common.Enums.AudioFileEnums.PlayCompletionReason">
+            <summary>
+            语音播放完成原因枚举
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Common.Enums.AudioFileEnums.PlayCompletionReason.Completed">
+            <summary>
+            正常播放完成
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Common.Enums.AudioFileEnums.PlayCompletionReason.Timeout">
+            <summary>
+            播放超时
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Common.Enums.AudioFileEnums.PlayCompletionReason.Failed">
+            <summary>
+            播放失败
             </summary>
         </member>
         <member name="T:NV.CT.FacadeProxy.Common.Enums.BodyPart">
@@ -1819,6 +1939,26 @@
             去锥角伪影
             </summary>
         </member>
+        <member name="T:NV.CT.FacadeProxy.Common.Enums.PostProcessEnums.SharpAlgType">
+            <summary>
+            锐化算法类型
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Common.Enums.PostProcessEnums.SharpAlgType.Algo1">
+            <summary>
+            patch中和高清肺1536矩阵绑定的锐化算法
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Common.Enums.PostProcessEnums.SharpAlgType.Algo2">
+            <summary>
+            patch中和高清肺3072矩阵绑定的锐化算法
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Common.Enums.PostProcessEnums.SharpAlgType.Algo3">
+            <summary>
+            后续优化的修改像素动态范围的锐化算法
+            </summary>
+        </member>
         <member name="T:NV.CT.FacadeProxy.Common.Enums.PregnantStatus">
             <summary>
             患者怀孕状态
@@ -1996,6 +2136,36 @@
             用户扫描
             </summary>
         </member>
+        <member name="T:NV.CT.FacadeProxy.Common.Enums.RealtimeInfoEnums.TimestampType">
+            <summary>
+            时间戳类型
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Common.Enums.RealtimeInfoEnums.TimestampType.Default">
+            <summary>
+            默认，无需解析
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Common.Enums.RealtimeInfoEnums.TimestampType.ScanCommandExecuteStart">
+            <summary>
+            扫描指令开始执行
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Common.Enums.RealtimeInfoEnums.TimestampType.ExposureButtonPressed">
+            <summary>
+            曝光键按下
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Common.Enums.RealtimeInfoEnums.TimestampType.ExposureStart">
+            <summary>
+            曝光开始
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Common.Enums.RealtimeInfoEnums.TimestampType.ExposureStop">
+            <summary>
+            曝光结束
+            </summary>
+        </member>
         <member name="T:NV.CT.FacadeProxy.Common.Enums.RealtimeStatus">
             <summary>
             实时状态
@@ -2099,6 +2269,46 @@
         <member name="F:NV.CT.FacadeProxy.Common.Enums.RealtimeStatus.OnlineUpgrading">
             <summary>
             在线升级中
+            </summary>
+        </member>
+        <member name="T:NV.CT.FacadeProxy.Common.Enums.ReconEnums.Kernel">
+            <summary>
+            算法Kernel
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Common.Enums.ReconEnums.Kernel.None">
+            <summary>
+            None
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Common.Enums.ReconEnums.Kernel.Lung05">
+            <summary>
+            肺部
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Common.Enums.ReconEnums.Kernel.TS05">
+            <summary>
+            胸椎
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Common.Enums.ReconEnums.Kernel.LS05">
+            <summary>
+            腰椎
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Common.Enums.ReconEnums.Kernel.CS05">
+            <summary>
+            颈椎
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Common.Enums.ReconEnums.Kernel.UE05">
+            <summary>
+            上肢
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Common.Enums.ReconEnums.Kernel.LE05">
+            <summary>
+            下肢
             </summary>
         </member>
         <member name="T:NV.CT.FacadeProxy.Common.Enums.ReconEnums.PreBinning">
@@ -2236,6 +2446,26 @@
             成人
             </summary>
         </member>
+        <member name="T:NV.CT.FacadeProxy.Common.Enums.ScanEnums.DetectorEncodeMode">
+            <summary>
+            探测器编码模式
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Common.Enums.ScanEnums.DetectorEncodeMode.Origin">
+            <summary>
+            Origin
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Common.Enums.ScanEnums.DetectorEncodeMode.Flag">
+            <summary>
+            Flag
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Common.Enums.ScanEnums.DetectorEncodeMode.Log2">
+            <summary>
+            Log2
+            </summary>
+        </member>
         <member name="T:NV.CT.FacadeProxy.Common.Enums.ScanEnums.EnergySpectrumMode">
             <summary>
             能谱模式
@@ -2279,6 +2509,11 @@
         <member name="F:NV.CT.FacadeProxy.Common.Enums.ScanEnums.ExposureTriggerMode.TablePositionTrigger">
             <summary>
             床位置触发
+            </summary>
+        </member>
+        <member name="F:NV.CT.FacadeProxy.Common.Enums.ScanEnums.ExposureTriggerMode.ECGTrigger">
+            <summary>
+            心电门控触发
             </summary>
         </member>
         <member name="T:NV.CT.FacadeProxy.Common.Enums.ScanEnums.ProtocolType">
@@ -3554,6 +3789,21 @@
             温度,单位0.1°
             </summary>
         </member>
+        <member name="T:NV.CT.FacadeProxy.Common.Models.AudioFiles.AudioFile">
+            <summary>
+            语音文件
+            </summary>
+        </member>
+        <member name="P:NV.CT.FacadeProxy.Common.Models.AudioFiles.AudioFile.ID">
+            <summary>
+            id
+            </summary>
+        </member>
+        <member name="P:NV.CT.FacadeProxy.Common.Models.AudioFiles.AudioFile.FileType">
+            <summary>
+            文件类型
+            </summary>
+        </member>
         <member name="T:NV.CT.FacadeProxy.Common.Models.Collimator.CollimatorArrviedInfo">
             <summary>
             限束器到位信息
@@ -3669,11 +3919,90 @@
             会话Id，一次命令请求，可能
             </summary>
         </member>
+        <member name="P:NV.CT.FacadeProxy.Common.Models.CommandResult.IsSuccessful">
+            <summary>
+            是否成功
+            </summary>
+        </member>
         <member name="M:NV.CT.FacadeProxy.Common.Models.CommandResult.AddErrorCode(System.String)">
             <summary>
             添加错误码
             </summary>
             <param name="code"></param>
+        </member>
+        <member name="T:NV.CT.FacadeProxy.Common.Models.Common.CircularMillisecondQueue`1">
+            <summary>
+            环形时间队列
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Common.Models.Common.CircularMillisecondQueue`1.#ctor(System.Int32)">
+            <summary>
+            ctor
+            </summary>
+            <param name="capacity"></param>
+        </member>
+        <member name="P:NV.CT.FacadeProxy.Common.Models.Common.CircularMillisecondQueue`1.BufferData">
+            <summary>
+            数据缓冲区
+            </summary>
+        </member>
+        <member name="P:NV.CT.FacadeProxy.Common.Models.Common.CircularMillisecondQueue`1.Capacity">
+            <summary>
+            数据缓冲区大小
+            </summary>
+        </member>
+        <member name="P:NV.CT.FacadeProxy.Common.Models.Common.CircularMillisecondQueue`1.Count">
+            <summary>
+            Count
+            </summary>
+        </member>
+        <member name="P:NV.CT.FacadeProxy.Common.Models.Common.CircularMillisecondQueue`1.StructSize">
+            <summary>
+            结构体Size
+            </summary>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Common.Models.Common.CircularMillisecondQueue`1.EnqueueRange(System.DateTime,`0[])">
+            <summary>
+            入列
+            </summary>
+            <param name="timestamp"></param>
+            <param name="data"></param>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Common.Models.Common.CircularMillisecondQueue`1.EnqueueSingle(System.DateTime,`0)">
+            <summary>
+            入列单个
+            </summary>
+            <param name="timestamp"></param>
+            <param name="data"></param>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Common.Models.Common.CircularMillisecondQueue`1.EnqueueSingleCore(System.DateTime,`0)">
+            <summary>
+            入列单个Core
+            </summary>
+            <param name="timestamp"></param>
+            <param name="data"></param>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Common.Models.Common.CircularMillisecondQueue`1.GetDataInRange(System.DateTime,System.DateTime)">
+            <summary>
+            获取指定时间内的数据
+            </summary>
+            <param name="queryStartTime"></param>
+            <param name="queryEndTime"></param>
+            <returns></returns>
+            <exception cref="T:System.InvalidOperationException"></exception>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Common.Models.Common.CircularMillisecondQueue`1.Reset">
+            <summary>
+            重置
+            </summary>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Common.Models.Common.CircularMillisecondQueue`1.ToEnumerableString">
+            <summary>
+            获取缓冲区信息
+            </summary>
         </member>
         <member name="T:NV.CT.FacadeProxy.Common.Models.Common.CommonResponse`2">
             <summary>
@@ -4107,6 +4436,11 @@
             实时重建
             </summary>
         </member>
+        <member name="P:NV.CT.FacadeProxy.Common.Models.DeviceSystem.ECG">
+            <summary>
+            ECG
+            </summary>
+        </member>
         <member name="E:NV.CT.FacadeProxy.Common.Models.DeviceSystem.DoorClosedStatusChanged">
             <summary>
             门关闭状态改变事件
@@ -4198,54 +4532,69 @@
             RearBreathPanel
             </summary>
         </member>
-        <member name="T:NV.CT.FacadeProxy.Common.Models.ECGData">
+        <member name="T:NV.CT.FacadeProxy.Common.Models.ECGPart">
             <summary>
-            ECG数据
+            ECG
             </summary>
         </member>
-        <member name="P:NV.CT.FacadeProxy.Common.Models.ECGData.FocusID">
+        <member name="P:NV.CT.FacadeProxy.Common.Models.ECGPart.WorkStatus">
             <summary>
-            FocusID
+            心电状态
             </summary>
         </member>
-        <member name="P:NV.CT.FacadeProxy.Common.Models.ECGData.Gantry">
+        <member name="T:NV.CT.FacadeProxy.Common.Models.ECGWorkStatus">
             <summary>
-            Gantry
+            ECG工作状态
             </summary>
         </member>
-        <member name="P:NV.CT.FacadeProxy.Common.Models.ECGData.ImageNo">
+        <member name="F:NV.CT.FacadeProxy.Common.Models.ECGWorkStatus.Unmonitoring">
             <summary>
-            ImageNo
+            非监控
             </summary>
         </member>
-        <member name="P:NV.CT.FacadeProxy.Common.Models.ECGData.SlopeFocueID">
+        <member name="F:NV.CT.FacadeProxy.Common.Models.ECGWorkStatus.Monitoring">
             <summary>
-            SlopeFocueID
+            监控中
             </summary>
         </member>
-        <member name="P:NV.CT.FacadeProxy.Common.Models.ECGData.SlopeSrcID">
+        <member name="T:NV.CT.FacadeProxy.Common.Models.ECG.ECGInfo">
             <summary>
-            SlopeSrcID
+            ECG信息
             </summary>
         </member>
-        <member name="P:NV.CT.FacadeProxy.Common.Models.ECGData.SlopeK0">
+        <member name="P:NV.CT.FacadeProxy.Common.Models.ECG.ECGInfo.Value">
             <summary>
-            SlopeK0
+            ECG数值,0-1000
             </summary>
         </member>
-        <member name="P:NV.CT.FacadeProxy.Common.Models.ECGData.SlopeK1">
+        <member name="P:NV.CT.FacadeProxy.Common.Models.ECG.ECGInfo.IsRWave">
             <summary>
-            SlopeK1
+            ECG R波同步
             </summary>
         </member>
-        <member name="P:NV.CT.FacadeProxy.Common.Models.ECGData.SrcID">
+        <member name="P:NV.CT.FacadeProxy.Common.Models.ECG.ECGInfo.IsGated">
             <summary>
-            SrcID
+            ECG Gate
             </summary>
         </member>
-        <member name="P:NV.CT.FacadeProxy.Common.Models.ECGData.Table">
+        <member name="T:NV.CT.FacadeProxy.Common.Models.ECG.ECGInfoPackage">
             <summary>
-            Table
+            ECG信息包
+            </summary>
+        </member>
+        <member name="M:NV.CT.FacadeProxy.Common.Models.ECG.ECGInfoPackage.#ctor">
+            <summary>
+            ctor
+            </summary>
+        </member>
+        <member name="P:NV.CT.FacadeProxy.Common.Models.ECG.ECGInfoPackage.Timestamp">
+            <summary>
+            时间戳
+            </summary>
+        </member>
+        <member name="P:NV.CT.FacadeProxy.Common.Models.ECG.ECGInfoPackage.ECGInfos">
+            <summary>
+            ECG信息
             </summary>
         </member>
         <member name="T:NV.CT.FacadeProxy.Common.Models.ErrorCodes">
@@ -4318,21 +4667,6 @@
         <member name="P:NV.CT.FacadeProxy.Common.Models.Gantry.FrontRearCoverAllClosed">
             <summary>
             前后罩是否都关闭
-            </summary>
-        </member>
-        <member name="T:NV.CT.FacadeProxy.Common.Models.GateDataList">
-            <summary>
-            心电图数据列表
-            </summary>
-        </member>
-        <member name="M:NV.CT.FacadeProxy.Common.Models.GateDataList.#ctor">
-            <summary>
-            ctor
-            </summary>
-        </member>
-        <member name="P:NV.CT.FacadeProxy.Common.Models.GateDataList.ECGDataList">
-            <summary>
-            ECG DATA
             </summary>
         </member>
         <member name="T:NV.CT.FacadeProxy.Common.Models.Generic.WriteCommand">
@@ -4873,6 +5207,11 @@
             后处理类型
             </summary>
         </member>
+        <member name="P:NV.CT.FacadeProxy.Common.Models.PostProcess.SharpPostProcessInfo.SharpAlgType">
+            <summary>
+            锐化算法类型
+            </summary>
+        </member>
         <member name="P:NV.CT.FacadeProxy.Common.Models.PostProcess.SharpPostProcessInfo.SharpLevel">
             <summary>
             锐化级别
@@ -5102,6 +5441,11 @@
         <member name="P:NV.CT.FacadeProxy.Common.Models.ReconSeriesParam.FilterType">
             <summary>
             滤波类型
+            </summary>
+        </member>
+        <member name="P:NV.CT.FacadeProxy.Common.Models.ReconSeriesParam.Kernel">
+            <summary>
+            算法Kernel
             </summary>
         </member>
         <member name="P:NV.CT.FacadeProxy.Common.Models.ReconSeriesParam.BoneAritifactEnable">
@@ -5908,6 +6252,16 @@
             Computed Tomography Dose Index (CTDIvol)
             </summary>
         </member>
+        <member name="P:NV.CT.FacadeProxy.Common.Models.ScanParam.ECGStartPosition">
+            <summary>
+            ECG起始位置，单位us
+            </summary>
+        </member>
+        <member name="P:NV.CT.FacadeProxy.Common.Models.ScanParam.ECGStopPosition">
+            <summary>
+            ECG终止位置，单位us
+            </summary>
+        </member>
         <member name="P:NV.CT.FacadeProxy.Common.Models.ScanParam.FunctionMode">
             <summary>
             采集目的
@@ -5916,6 +6270,11 @@
         <member name="P:NV.CT.FacadeProxy.Common.Models.ScanParam.ProtocolType">
             <summary>
             协议类型，以区分正式协议或自由协议,默认为正式协议
+            </summary>
+        </member>
+        <member name="P:NV.CT.FacadeProxy.Common.Models.ScanParam.EncodeMode">
+            <summary>
+            探测器编码模式
             </summary>
         </member>
         <member name="P:NV.CT.FacadeProxy.Common.Models.ScanParam.ContrastBolusAgent">

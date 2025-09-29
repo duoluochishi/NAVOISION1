@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ProtocolTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Descriptor>
-    <Id>5e320a03-b6ae-47da-95cd-9b354d1152f6</Id>
+    <Id>eaa0fcd3-7050-4796-a89b-efd0a46913e4</Id>
     <Name>CTLinear</Name>
     <Type>ProtocolTemplate</Type>
   </Descriptor>
   <Parameters />
   <Protocol>
     <Descriptor>
-      <Id>4d4fc206-4756-490c-8f5b-f3635366460d</Id>
+      <Id>16f62203-b8b7-41d1-ac58-45a135c96b6d</Id>
       <Name>CTLinear</Name>
       <Type>Protocol</Type>
     </Descriptor>
@@ -26,7 +26,7 @@
     <FrameOfReferences>
       <FrameOfReference>
         <Descriptor>
-          <Id>d0b5e09b-04cf-4534-a3da-7ba902db81ab</Id>
+          <Id>7fa2898a-e928-4698-ad72-6d48866771e0</Id>
           <Name>FrameOfReference</Name>
           <Type>FrameOfReference</Type>
         </Descriptor>
@@ -36,7 +36,7 @@
         <Measurements>
           <Measurement>
             <Descriptor>
-              <Id>c9a6b2a2-19b8-441a-82e0-6481e5929527</Id>
+              <Id>3020e7c5-4d26-4734-9789-10d47bca56ae</Id>
               <Name>Measurement</Name>
               <Type>Measurement</Type>
             </Descriptor>
@@ -44,7 +44,7 @@
             <Scans>
               <Scan>
                 <Descriptor>
-                  <Id>420bb6c4-4600-4178-8ab4-830bd4d2fb84</Id>
+                  <Id>39f883f0-aea7-4910-80ae-c062e5ea7b5a</Id>
                   <Name>Topogram</Name>
                   <Type>Scan</Type>
                 </Descriptor>
@@ -145,7 +145,7 @@
                 <Recons>
                   <Recon>
                     <Descriptor>
-                      <Id>32d5380f-bbdb-41e7-81a9-f96b90150411</Id>
+                      <Id>841367b3-08b8-45b3-8261-dfff39571a0c</Id>
                       <Name>Recon</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -210,7 +210,7 @@
           </Measurement>
           <Measurement>
             <Descriptor>
-              <Id>f5a61188-4b84-4feb-b3a3-48588240152f</Id>
+              <Id>ea70cdd0-8e64-42fb-97c6-c34a9373801b</Id>
               <Name>Measurement</Name>
               <Type>Measurement</Type>
             </Descriptor>
@@ -218,7 +218,7 @@
             <Scans>
               <Scan>
                 <Descriptor>
-                  <Id>452eedf0-b9b2-4bb9-88e1-4c396644d551</Id>
+                  <Id>b8cfe55f-21ef-43f1-9573-d5eddfdbc39b</Id>
                   <Name>CT Linear</Name>
                   <Type>Scan</Type>
                 </Descriptor>
@@ -319,7 +319,7 @@
                 <Recons>
                   <Recon>
                     <Descriptor>
-                      <Id>f192b1d0-04c6-4f8e-81ed-373aa98bfec4</Id>
+                      <Id>5863d412-d47b-4e5d-be01-7aa2d9bc2ff0</Id>
                       <Name>Recon</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -380,7 +380,7 @@
                   </Recon>
                   <Recon>
                     <Descriptor>
-                      <Id>39e13556-df19-4855-8e67-a8908215b5f3</Id>
+                      <Id>5c66f509-264c-4282-9090-2f39e552d8b7</Id>
                       <Name>CTLinear1mmNone</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -441,7 +441,7 @@
                   </Recon>
                   <Recon>
                     <Descriptor>
-                      <Id>a434f72c-6fba-4728-a455-1271c4b70b5e</Id>
+                      <Id>1a3fd239-5bb0-4598-9175-f20c8def6c2c</Id>
                       <Name>MTF0.165mmNone</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -508,7 +508,7 @@
                   </Recon>
                   <Recon>
                     <Descriptor>
-                      <Id>f4113541-9d88-4bae-ab71-92878ae2184b</Id>
+                      <Id>eef9ab6c-928c-404d-97c2-8dfb5629d5c7</Id>
                       <Name>SliceThickness0.165mmNone</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -569,7 +569,7 @@
                   </Recon>
                   <Recon>
                     <Descriptor>
-                      <Id>27ce747f-4da6-4824-9622-ef3e0af38be1</Id>
+                      <Id>cf70c270-54d4-4b47-8746-89d06a6ab5fc</Id>
                       <Name>SliceThickness0.33mmNone</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -630,7 +630,7 @@
                   </Recon>
                   <Recon>
                     <Descriptor>
-                      <Id>2348f79f-0bdd-4406-8593-db1b88d1b0f8</Id>
+                      <Id>0998b954-fdae-463a-8b88-db614350f292</Id>
                       <Name>SliceThickness0.66mmNone</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -691,7 +691,7 @@
                   </Recon>
                   <Recon>
                     <Descriptor>
-                      <Id>dd457a8e-863a-4589-9b10-6581a6854ff4</Id>
+                      <Id>bc46c29a-4791-4553-8b51-dc34a7861a7d</Id>
                       <Name>SliceThickness1mmNone</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -752,7 +752,7 @@
                   </Recon>
                   <Recon>
                     <Descriptor>
-                      <Id>f1149a22-bebd-4195-911e-6fc152a47079</Id>
+                      <Id>f41623f1-b070-4fe8-a096-1189c7828c7b</Id>
                       <Name>SliceThickness2mmNone</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -813,7 +813,7 @@
                   </Recon>
                   <Recon>
                     <Descriptor>
-                      <Id>abf545c9-97fd-4bcc-a289-7eb992284725</Id>
+                      <Id>285f141e-e3e7-4fef-9c56-443c321e0743</Id>
                       <Name>SliceThickness3mmNone</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -874,7 +874,7 @@
                   </Recon>
                   <Recon>
                     <Descriptor>
-                      <Id>ac9df7e3-976c-4ee6-bdac-94d2b66d9b49</Id>
+                      <Id>205a8bc7-f40a-4523-b978-133048ecf1e7</Id>
                       <Name>SliceThickness4mmNone</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -935,7 +935,7 @@
                   </Recon>
                   <Recon>
                     <Descriptor>
-                      <Id>b40a4ea3-7b0e-4c92-9360-0bf2b4e6f430</Id>
+                      <Id>03c6dea7-0f28-4e74-80d8-803808f9324c</Id>
                       <Name>SliceThickness5mmNone</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -996,7 +996,7 @@
                   </Recon>
                   <Recon>
                     <Descriptor>
-                      <Id>75321716-9d96-4901-b82d-591e5c03f84e</Id>
+                      <Id>97d82060-87c7-49e1-bb25-94168c6f8cc3</Id>
                       <Name>SliceThickness10mmNone</Name>
                       <Type>Recon</Type>
                     </Descriptor>

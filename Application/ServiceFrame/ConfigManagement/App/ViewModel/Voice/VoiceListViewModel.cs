@@ -14,16 +14,15 @@
 //-----------------------------------------------------------------------
 
 using NAudio.Wave;
-using NV.MPS.UI.Dialog.Service;
-using NV.MPS.UI.Dialog.Enum;
-using NV.CT.ConfigManagement.ApplicationService.Contract;
-using NV.CT.ConfigManagement.Extensions;
-using NV.CT.ConfigManagement.View;
 using NV.CT.CommonAttributeUI.AOPAttribute;
+using NV.CT.ConfigManagement.ApplicationService.Contract;
+using NV.CT.ConfigManagement.View;
 using NV.CT.DatabaseService.Contract.Models;
-using NV.MPS.Environment;
 using NV.CT.UI.Controls;
-using NV.MPS.Configuration;
+using NV.MPS.Environment;
+using NV.MPS.UI.Dialog.Enum;
+using NV.MPS.UI.Dialog.Service;
+
 namespace NV.CT.ConfigManagement.ViewModel;
 
 public class VoiceListViewModel : BaseViewModel
@@ -33,6 +32,7 @@ public class VoiceListViewModel : BaseViewModel
     private ILogger<VoiceListViewModel> _logger;
     private VoiceWindow? _editWindow;
     private WaveOut _waveOutDevice;
+    private const int MAX_VOICE_COUNT = 50;
 
     private ObservableCollection<BaseVoiceViewModel> _voiceList = new ObservableCollection<BaseVoiceViewModel>();
 
@@ -42,7 +42,7 @@ public class VoiceListViewModel : BaseViewModel
         set => SetProperty(ref _voiceList, value);
     }
 
-    private BaseVoiceViewModel _selectedVoice = new BaseVoiceViewModel();
+    private BaseVoiceViewModel _selectedVoice;
     public BaseVoiceViewModel SelectedVoice
     {
         get => _selectedVoice;
@@ -114,13 +114,6 @@ public class VoiceListViewModel : BaseViewModel
         set => SetProperty(ref isFactory, value);
     }
 
-    private VoicePlayStatus currentPlayStatus = VoicePlayStatus.None;
-    public VoicePlayStatus CurrentPlayStatus
-    {
-        get => currentPlayStatus;
-        set => SetProperty(ref currentPlayStatus, value);
-    }
-
     private string _lastVoicePath = string.Empty;
     public string LastFilePath
     {
@@ -142,8 +135,6 @@ public class VoiceListViewModel : BaseViewModel
 
         Commands.Add("SetDefaultCommand", new DelegateCommand<BaseVoiceViewModel>(SetDefault));
         Commands.Add("ResumeCommand", new DelegateCommand<BaseVoiceViewModel>(ResumeCommand));
-        Commands.Add("PauseCommand", new DelegateCommand<BaseVoiceViewModel>(PauseCommand));
-        Commands.Add("StopCommand", new DelegateCommand<BaseVoiceViewModel>(StopCommand));
 
         SearchVoiceList(ApiType.All);
         _voiceApplicationService.VoiceListReload += VoiceApplicationService_VoiceListReload;
@@ -157,25 +148,9 @@ public class VoiceListViewModel : BaseViewModel
 
     public void SearchVoiceList(ApiType apiType)
     {
-        VoiceList.Clear();
-        string apiFront = string.Empty;
-        switch (apiType)
-        {
-            case ApiType.All:
-                apiFront = string.Empty;
-                break;
-            case ApiType.Front:
-                apiFront = true.ToString();
-                break;
-            case ApiType.Back:
-                apiFront = false.ToString();
-                break;
-            default:
-                apiFront = string.Empty;
-                break;
-        }
-
-        foreach (var voiceModel in _voiceApplicationService.GetVoiceInfo(apiFront))
+        var tempVoiceList = new ObservableCollection<BaseVoiceViewModel>();
+        var voiceModels = _voiceApplicationService.GetVoiceModels();
+        foreach (var voiceModel in voiceModels)
         {
             BaseVoiceViewModel voiceViewModel = new BaseVoiceViewModel()
             {
@@ -191,36 +166,51 @@ public class VoiceListViewModel : BaseViewModel
                 Language = voiceModel.Language,
                 Name = voiceModel.Name,
                 VoiceLength = voiceModel.VoiceLength,
+                RealVoiceLength = voiceModel.RealVoiceLength
             };
-            VoiceList.Add(voiceViewModel);
+
+            if (voiceModel.PairId > 0)
+            {
+                voiceViewModel.PairedVoiceName = voiceModels.FirstOrDefault(v => v.InternalId == voiceModel.PairId)?.Name;
+            }
+
+            if (apiType == ApiType.Front && !voiceModel.IsFront)
+                continue;
+            else if (apiType == ApiType.Back && voiceModel.IsFront)
+                continue;
+
+            tempVoiceList.Add(voiceViewModel);
         }
-        if (VoiceList.Count > 0)
-        {
-            SelectedVoice = VoiceList[0];
-        }
+        VoiceList = tempVoiceList;
     }
 
     private void AddCommand()
     {
+        if (!CanAddMoreVoices())
+        {
+            _dialogService.ShowDialog(false, MessageLeveles.Info, "Info", "Maximum number of voices reached!",
+                arg => { }, ConsoleSystemHelper.WindowHwnd);
+            return;
+        }
+
         var voiceModel = new VoiceModel();
         voiceModel.IsFactory = false;
         voiceModel.Id = Guid.NewGuid().ToString();
 
-        _voiceApplicationService.SetVoiceInfo(OperationType.Add, voiceModel);
-        ShowWindow();
+        ShowWindow(OperationType.Add, voiceModel);
     }
 
     private void EditCommand()
     {
         //出厂角色不可编辑
-        if (SelectedVoice is null || string.IsNullOrEmpty(SelectedVoice.ID))
+        if (SelectedVoice is null || string.IsNullOrEmpty(SelectedVoice.InternalId.ToString()))
         {
             _dialogService?.ShowDialog(false, MessageLeveles.Info, "Info"
                , "Please select a voice from the list! ", arg => { }, ConsoleSystemHelper.WindowHwnd);
             return;
         }
 
-        var voice = _voiceApplicationService.GetVoiceInfoByID(SelectedVoice.ID);
+        var voice = _voiceApplicationService.GetVoiceInfoByID(SelectedVoice.InternalId.ToString());
         if (voice is null)
         {
             _dialogService?.ShowDialog(false, MessageLeveles.Info, "Info"
@@ -228,18 +218,20 @@ public class VoiceListViewModel : BaseViewModel
             return;
         }
 
-        _voiceApplicationService.SetVoiceInfo(OperationType.Edit, voice);
-        ShowWindow();
+        ShowWindow(OperationType.Edit, voice);
     }
 
-    public void ShowWindow()
+    public void ShowWindow(OperationType operation, VoiceModel voice)
     {
         if (_editWindow is null)
         {
             _editWindow = CTS.Global.ServiceProvider?.GetRequiredService<VoiceWindow>();
         }
+
+        _voiceApplicationService.SetVoiceInfo(operation, voice);
+
         if (_editWindow is not null)
-        {            //_editWindow.ShowWindowDialog();
+        {
             _editWindow.ShowPopWindowDialog();
         }
     }
@@ -265,8 +257,10 @@ public class VoiceListViewModel : BaseViewModel
         voiceModel.Id = SelectedVoice.ID;
         voiceModel.Name = SelectedVoice.Name;
         voiceModel.InternalId = (ushort)SelectedVoice.InternalId;
+        voiceModel.PairId = (ushort)SelectedVoice.PairId;
         voiceModel.Description = SelectedVoice.Description;
         voiceModel.VoiceLength = (ushort)SelectedVoice.VoiceLength;
+        voiceModel.RealVoiceLength = SelectedVoice.RealVoiceLength;
         voiceModel.Language = SelectedVoice.Language;
         voiceModel.IsDefault = SelectedVoice.IsDefault;
         voiceModel.IsValid = SelectedVoice.IsValid;
@@ -283,6 +277,13 @@ public class VoiceListViewModel : BaseViewModel
                     try
                     {
                         flag = _voiceApplicationService.Delete(voiceModel);
+                        // 同时删除配对语音中的记录
+                        if (voiceModel.PairId > 0)
+                        {
+                            var pairedVoice = _voiceApplicationService.GetVoiceInfoByID(voiceModel.PairId.ToString());
+                            pairedVoice.PairId = 0;
+                            flag = _voiceApplicationService.Update(pairedVoice);
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -304,76 +305,106 @@ public class VoiceListViewModel : BaseViewModel
             }, ConsoleSystemHelper.WindowHwnd);
     }
 
+    /// <summary>
+    /// 设置默认语音，默认语音具有唯一性
+    /// </summary>
+    /// <param name="voiceModel"></param>
     private void SetDefault(BaseVoiceViewModel voiceModel)
     {
-        if (voiceModel is null || (voiceModel is not null && voiceModel.IsDefault))
+        if (voiceModel is null || voiceModel.IsDefault)
         {
             return;
         }
-        var voice = _voiceApplicationService.GetVoiceInfoByID(voiceModel.ID);
-        if (voice is not null)
+        var voices = _voiceApplicationService.GetVoiceModels();
+        foreach (var item in voices)
         {
-            voice.IsDefault = true;
-            _voiceApplicationService.SetDefault(voice);
-            SearchVoiceList(CurrentIsFront);
+            // 先清除所有的默认
+            if (item.IsDefault)
+            {
+                item.IsDefault = false;
+                _voiceApplicationService.Update(item);
+            }
+            // 再设置当前默认
+            if (item.InternalId == voiceModel.InternalId)
+            {
+                item.IsDefault = true;
+                _voiceApplicationService.SetDefault(item);
+            }
         }
+        SearchVoiceList(CurrentIsFront);
     }
 
     private void ResumeCommand(BaseVoiceViewModel voiceModel)
     {
         var voiceRoot = RuntimeConfig.Console.MCSVoices.Path;
         var filePath = Path.Combine(voiceRoot, voiceModel.FilePath);
-        if (!LastFilePath.Equals(filePath))
-        {
-            _waveOutDevice.Stop();
-        }
         LastFilePath = filePath;
         if (string.IsNullOrEmpty(voiceModel.FilePath) || !File.Exists(LastFilePath))
         {
             return;
         }
-        if (_waveOutDevice.PlaybackState == PlaybackState.Stopped)
+        if (voiceModel.PlayStatus != VoicePlayStatus.Playing)
         {
-            var inputStream = new AudioFileReader(LastFilePath);
-            var aggregator = new NAudioReader(inputStream);
-            _waveOutDevice.Init(aggregator);
-            _waveOutDevice.Volume = 1.0F;
-            _waveOutDevice.PlaybackStopped += WaveOutDevice_PlaybackStopped;
-            _waveOutDevice.Play();
-
-            CurrentPlayStatus = VoicePlayStatus.Playing;
-        }
-
-        if (_waveOutDevice.PlaybackState == PlaybackState.Paused)
-        {
-            _waveOutDevice.Resume();
-            CurrentPlayStatus = VoicePlayStatus.Playing;
+            if (!CheckVoiceFileConsistency(voiceModel))
+            {
+                return;
+            }
+            voiceModel.PlayStatus = VoicePlayStatus.Playing;
+            _voiceApplicationService.PlayAudioFile((ushort)voiceModel.InternalId, args =>
+            {
+                var currentVoice = voiceModel; //记得缓存，防止闭包影响
+                if (args.Reason != FacadeProxy.Common.Enums.AudioFileEnums.PlayCompletionReason.Completed)
+                {
+                    _dialogService?.ShowDialog(false, MessageLeveles.Info, "Info"
+                            , $"Play voice failed, Please try again! ", arg => { }, ConsoleSystemHelper.WindowHwnd);
+                }
+                currentVoice.PlayStatus = VoicePlayStatus.None;
+            });
+            voiceModel.PlayStatus = VoicePlayStatus.None; //ToDo:facadeproxy中PlayAudioFile callback有bug，暂时直接赋值为None
         }
     }
 
-    [UIRoute]
-    private void WaveOutDevice_PlaybackStopped(object? sender, StoppedEventArgs e)
+    private bool CanAddMoreVoices()
     {
-        CurrentPlayStatus = VoicePlayStatus.None;
+        var items = _voiceApplicationService.GetVoiceModels();
+        return items.Count < MAX_VOICE_COUNT;
     }
 
-    private void PauseCommand(BaseVoiceViewModel voiceModel)
+    /// <summary>
+    /// 以本地数据库为基准，检查与远程auxboard语音文件的一致性
+    /// 远程缺少，从本地补足
+    /// </summary>
+    /// <returns></returns>
+    private bool CheckVoiceFileConsistency(BaseVoiceViewModel voiceModel)
     {
-        if (_waveOutDevice.PlaybackState != PlaybackState.Playing)
-        {
-            return;
-        }
-        _waveOutDevice.Pause();
-        CurrentPlayStatus = VoicePlayStatus.Pause;
-    }
+        // 检查本地语音文件的InternalId是否都在远程列表中
+        var remoteVoices = _voiceApplicationService.GetAll();
 
-    private void StopCommand(BaseVoiceViewModel voiceModel)
-    {
-        if (_waveOutDevice.PlaybackState != PlaybackState.Playing)
+        if (remoteVoices is not null && !remoteVoices.Contains((ushort)voiceModel.InternalId))
         {
-            return;
+            var vm = new VoiceModel();
+            vm.InternalId = (ushort)voiceModel.InternalId;
+            vm.FilePath = voiceModel.FilePath;
+            try
+            {
+                if(_voiceApplicationService.AddOrUpdate(vm)) // ToDo: 需要注意AddOrUpdate可能会有更新成功，但是还没有往auxboard上传完成的情况
+                {
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "AddOrUpdate voice failed");
+            }
+
+            _dialogService?.ShowDialog(false, MessageLeveles.Info, "Info"
+                              , "The selected voice does not exist in the remote auxboard!", arg => { }, ConsoleSystemHelper.WindowHwnd);
+
+            _logger.LogError( $"AddOrUpdate voice failed. {voiceModel.InternalId} {voiceModel.FilePath}");
+
+            return false;
         }
-        _waveOutDevice.Stop();
-        CurrentPlayStatus = VoicePlayStatus.None;
+
+        return true;
     }
 }

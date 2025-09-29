@@ -15,7 +15,7 @@ namespace NV.CT.AppService.Contract;
 /// </summary>
 public interface ISelfCheckService
 {
-	void StartSelfChecking();
+	//void StartSelfChecking();
 
 	event EventHandler<SelfCheckResult>? SelfCheckStatusChanged;
 

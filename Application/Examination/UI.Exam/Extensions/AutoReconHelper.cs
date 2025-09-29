@@ -39,6 +39,10 @@ public class AutoReconHelper
 			return;
 		}
 		var rtdRecon = ProtocolHelper.GetRecon(_protocolHostService.Instance, scanID, reconID);
+
+		//if (! (rtdRecon.Parent.Children.Any(n =>!n.IsRTD && n.IsAutoRecon) ) )
+		//	return;
+
 		if (rtdRecon is null || rtdRecon.Parent is null || !rtdRecon.IsRTD || rtdRecon.Status != PerformStatus.Performed)
 		{
 			return;

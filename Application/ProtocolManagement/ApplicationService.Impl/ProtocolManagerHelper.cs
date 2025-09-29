@@ -13,6 +13,8 @@
 // </key>
 //-----------------------------------------------------------------------
 
+using NV.CT.FacadeProxy.Common.Enums;
+using NV.CT.Protocol;
 using NV.CT.Protocol.Models;
 
 namespace NV.CT.ProtocolManagement.ApplicationService.Impl;

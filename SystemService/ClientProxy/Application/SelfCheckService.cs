@@ -35,14 +35,14 @@ public class SelfCheckService : ISelfCheckService
 		return list;
 	}
 
-	public void StartSelfChecking()
-	{
-		_clientProxy.ExecuteCommand(new MPS.Communication.CommandRequest
-		{
-			Namespace = typeof(ISelfCheckService).Namespace,
-			SourceType = nameof(ISelfCheckService),
-			ActionName = nameof(ISelfCheckService.StartSelfChecking),
-			Data = string.Empty
-		});
-	}
+	//public void StartSelfChecking()
+	//{
+	//	_clientProxy.ExecuteCommand(new MPS.Communication.CommandRequest
+	//	{
+	//		Namespace = typeof(ISelfCheckService).Namespace,
+	//		SourceType = nameof(ISelfCheckService),
+	//		ActionName = nameof(ISelfCheckService.StartSelfChecking),
+	//		Data = string.Empty
+	//	});
+	//}
 }

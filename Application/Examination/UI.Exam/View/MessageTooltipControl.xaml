@@ -11,9 +11,13 @@
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="{StaticResource SExposuresIconFillBrush}" />
         </Style>
+        <DropShadowEffect x:Key="VeryHighContrastEffect" Color="Black" BlurRadius="5" ShadowDepth="0" Opacity="0.9"/>
         <Style
             x:Key="ImageStyle"
-            TargetType="Image">
+            TargetType="Image"
+            >
+            <Setter Property="Effect" Value="{StaticResource VeryHighContrastEffect}"/>
+            <Setter Property="Margin" Value="0 0 3 0"/>
             <Style.Triggers>
                 <Trigger Property="IsEnabled" Value="True">
                     <Setter Property="Visibility" Value="Visible" />
@@ -22,6 +26,7 @@
                     <Setter Property="Visibility" Value="Collapsed" />
                 </Trigger>
             </Style.Triggers>
+
         </Style>
         <Style x:Key="StackPanelStyle" TargetType="StackPanel">
             <Setter Property="Height" Value="46" />
@@ -32,8 +37,11 @@
         <Style x:Key="TextBlockStyle" BasedOn="{StaticResource NanoTextBlockStyle}" TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="15px"/>
+            <Setter Property="FontWeight" Value="ExtraBold"/>
             <Setter Property="Foreground" Value="{StaticResource SExposuresIconFillBrush}" />
         </Style>
+
     </UserControl.Resources>
     <StackPanel Style="{StaticResource StackPanelStyle}">
         <Image

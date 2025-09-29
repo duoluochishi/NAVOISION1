@@ -62,7 +62,7 @@
         "runtime": {
           "NV.MPS.DICOM.Toolkit.dll": {
             "assemblyVersion": "1.0.0",
-            "fileVersion": "2.0.3.11004"
+            "fileVersion": "2.0.4.11448"
           }
         }
       }

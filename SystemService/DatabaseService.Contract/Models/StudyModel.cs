@@ -86,7 +86,7 @@ public class StudyModel
         {
             //如果DICOM中没有Birthday的值
             if (Age == 0)
-            { 
+            {
                 return DateTime.MinValue;
             }
 

@@ -1,17 +1,9 @@
-﻿using NV.CT.FacadeProxy.Common.Helpers;
+﻿using NV.CT.FacadeProxy.Common.Enums.ScanEnums;
+using NV.CT.FacadeProxy.Common.Helpers;
 using System.Xml.Serialization;
 
 namespace NV.CT.Service.AutoCali.Model
 {
-    /// <summary>
-    /// 计算任务执行在那台机器上
-    /// </summary>
-    public enum ComputingMachineType
-    {
-        OfflineMachine,
-        MasterMachine
-    }
-
     public interface IName
     {
         string? Name { get; }
@@ -52,6 +44,12 @@ namespace NV.CT.Service.AutoCali.Model
         /// </summary>
         [XmlElement]
         public ComputingMachineType? ComputingMachineType { get; set; }
+
+        /// <summary>
+        /// 探测器的数据的编码模式，01Flag
+        /// </summary>
+        [XmlElement]
+        public DetectorEncodeMode? DetectorEncodeMode { get; set; }
 
         /// 校准协议，不同扫描参数组合确定一种校准协议，并以此命名校准表
         /// </summary>

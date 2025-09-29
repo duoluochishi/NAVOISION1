@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:md="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableTextBox;assembly=MaterialDesignThemes.Wpf"
+    xmlns:markableComboBox="clr-namespace:MaterialDesignThemes.Wpf.Controls.MarkableComboBox;assembly=MaterialDesignThemes.Wpf"
     xmlns:res="clr-namespace:NV.CT.Language;assembly=NV.CT.Language"
     xmlns:type="clr-namespace:NV.CT.FacadeProxy.Common.Enums.PostProcessEnums;assembly=NV.CT.FacadeProxy.Common"
     d:DesignHeight="450"
@@ -39,31 +40,63 @@
             Grid.Column="1"
             VerticalAlignment="Center"
             Content="{x:Static res:LanguageResource.Content_PostProcessSharp}" />
-        <!--<Label
-           Grid.Column="2"
-           VerticalAlignment="Center"
-           Content="{x:Static res:LanguageResource.Content_Level}" />-->
-        <md:MarkableTextBox
-            Grid.Column="2"
-            IsEnabled="True"
-            MarkStatus="{Binding Path=PostProcessMarkStatus}"
-            Style="{StaticResource MarkableTextBox}"
-            TextType="Decimal"
-            Minimum="1"
-            Maximum="5"
-            Text="{Binding Path=SharpLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-            <b:Interaction.Triggers>
-                <b:EventTrigger EventName="GotFocus">
-                    <b:InvokeCommandAction
-                        Command="{Binding Commands[MarkableTextBoxGotFocus]}"
-                        CommandParameter="SharpLevel" />
-                </b:EventTrigger>
-                <b:EventTrigger EventName="TextChanged">
-                    <b:InvokeCommandAction
-                        Command="{Binding Commands[MarkableTextBoxTextChanged]}"
-                        CommandParameter="SharpLevel" />
-                </b:EventTrigger>
-            </b:Interaction.Triggers>
-        </md:MarkableTextBox>
+        <Grid
+          Grid.Column="2"
+          HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="15*" />
+            </Grid.ColumnDefinitions>
+            <markableComboBox:MarkableComboBox
+                  Grid.Column="0"
+                  DisplayMemberPath="Value"
+                  IsEnabled="True"
+                  ItemsSource="{Binding SharpAlgTypeList,Mode=TwoWay}"
+                  MarkStatus="{Binding Path=PostProcessMarkStatus}"
+                  SelectedItem="{Binding Path=SelectSharpAlgType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedValuePath="Key"
+                  Style="{StaticResource MarkableComboBox}">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="GotFocus">
+                        <b:InvokeCommandAction
+                          Command="{Binding Commands[MarkableTextBoxGotFocus]}"
+                          CommandParameter="SelectSharpAlgType" />
+                    </b:EventTrigger>
+                    <b:EventTrigger EventName="SelectionChanged">
+                        <b:InvokeCommandAction
+                          Command="{Binding Commands[MarkableTextBoxTextChanged]}"
+                          CommandParameter="SelectSharpAlgType" />
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </markableComboBox:MarkableComboBox>
+            <Label
+                Grid.Column="1"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Center"
+                Content="{x:Static res:LanguageResource.Content_Level}" />
+            <md:MarkableTextBox
+                 Grid.Column="2"
+                 IsEnabled="True"
+                 MarkStatus="{Binding Path=PostProcessMarkStatus}"
+                 Style="{StaticResource MarkableTextBox}"
+                 TextType="Decimal"
+                 Minimum="1"
+                 Maximum="5"
+                 Text="{Binding Path=SharpLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="GotFocus">
+                        <b:InvokeCommandAction
+                     Command="{Binding Commands[MarkableTextBoxGotFocus]}"
+                     CommandParameter="SharpLevel" />
+                    </b:EventTrigger>
+                    <b:EventTrigger EventName="TextChanged">
+                        <b:InvokeCommandAction
+                     Command="{Binding Commands[MarkableTextBoxTextChanged]}"
+                     CommandParameter="SharpLevel" />
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </md:MarkableTextBox>
+        </Grid>
     </Grid>
 </UserControl>

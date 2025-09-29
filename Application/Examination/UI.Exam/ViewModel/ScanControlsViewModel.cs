@@ -260,6 +260,7 @@ public class ScanControlsViewModel : BaseViewModel, IDisposable
 		Global.IsGoing = false;
 	}
 
+	[UIRoute]
 	private void RealtimeStatusProxyService_ScanReconErrorOccurred(object? sender, EventArgs<List<string>> e)
 	{
 		if (e.Data is not null && e.Data.Count > 0)
@@ -283,6 +284,8 @@ public class ScanControlsViewModel : BaseViewModel, IDisposable
 	{
 		if (e is null || !e.Data)
 		{
+			IsScanning = false;
+			ValidateScanControl($"{nameof(GoService_ParameterLogicValidated)} - [default]");
 			return;
 		}
 		if (e.Data)
@@ -295,6 +298,8 @@ public class ScanControlsViewModel : BaseViewModel, IDisposable
 	{
 		if (e is null || !e.Data)
 		{
+			IsScanning = false;
+			ValidateScanControl($"{nameof(GoService_ParameterValidated)} - [default]");
 			return;
 		}
 		if (e.Data)
@@ -326,6 +331,8 @@ public class ScanControlsViewModel : BaseViewModel, IDisposable
 	{
 		if (e is null)
 		{
+			IsScanning = false;
+			ValidateScanControl($"{nameof(GoValidateRule_PopValidateMessageWindow)}");
 			return;
 		}
 		switch (e.Data)
@@ -343,6 +350,8 @@ public class ScanControlsViewModel : BaseViewModel, IDisposable
 				CommonWarningDialog();
 				break;
 		}
+		IsScanning = false;
+		ValidateScanControl($"{nameof(GoValidateRule_PopValidateMessageWindow)}");
 	}
 
 	private void GoService_Validated(object? sender, EventArgs<bool> e)
@@ -436,7 +445,7 @@ public class ScanControlsViewModel : BaseViewModel, IDisposable
 	[UIRoute]
 	private void SetDoorState(bool isDoorClosed, RealtimeStatus realtimeStatus)
 	{
-		_logger.LogDebug($"[SetDoorState] current door is closed : {isDoorClosed} , realtimestatus is {realtimeStatus}");
+		//_logger.LogDebug($"[SetDoorState] current door is closed : {isDoorClosed} , realtimestatus is {realtimeStatus}");
 
 		if (isDoorClosed == false && (RealtimeStatus == RealtimeStatus.MovingPartEnable || RealtimeStatus == RealtimeStatus.ExposureEnable))
 		{
@@ -593,7 +602,6 @@ public class ScanControlsViewModel : BaseViewModel, IDisposable
 		IsAuto = true;
 
 		ValidateScanControl(nameof(ProtocolStructureChanged));
-
 		SetMessageTip();
 	}
 
@@ -679,13 +687,15 @@ public class ScanControlsViewModel : BaseViewModel, IDisposable
 				break;
 			case RealtimeStatus.NormalScanStopped:
 				IsStandBy = false;
+				IsScanning = false;
 				ValidateScanControl($"{nameof(RealtimeStatusChanged)} - [NormalScanStopped]");
 				_logger.LogInformation($"RealtimeStatusChanged NormalScanStopped SetCancelState={IsCancelEnable}");
-				SetCancelState(false);
+				SetCancelState(false);				
 				break;
 			case RealtimeStatus.EmergencyScanStopped:
 			case RealtimeStatus.Error:
 				IsStandBy = false;
+				IsScanning = false;
 				ValidateScanControl($"{nameof(RealtimeStatusChanged)} - [EmergencyStopped,Error]");
 				_logger.LogInformation($"RealtimeStatusChanged Error SetCancelState");
 				SetCancelState(false);
@@ -801,10 +811,14 @@ public class ScanControlsViewModel : BaseViewModel, IDisposable
 
 	private void Go()
 	{
+		IsScanning = true;
+		ValidateScanControl($"{nameof(Go)} - [default]");
 		if (!CheckXRayFocusType())
 		{
+			IsScanning = false;
+			ValidateScanControl($"{nameof(Go)} - [default]");
 			return;
-		}
+		}		
 		//保证扫描参数的预计值的写入
 		var activeItem = _protocolHostService.Models.FirstOrDefault(item => item.Measurement.Status == PerformStatus.Unperform);
 		if (activeItem.Measurement is MeasurementModel measurement)
@@ -861,6 +875,8 @@ public class ScanControlsViewModel : BaseViewModel, IDisposable
 		if (!goContinue)
 		{
 			Global.IsGoing = false;
+			IsScanning = false;
+			ValidateScanControl($"{nameof(Go)} - [default]");
 			return;
 		}
 
@@ -869,6 +885,8 @@ public class ScanControlsViewModel : BaseViewModel, IDisposable
 		{
 			_dialogService.Show(false, MessageLeveles.Warning, LanguageResource.Message_Warning_GoWarningTitle, $"Detector temperature is abnormal.", null, ConsoleSystemHelper.WindowHwnd);
 			Global.IsGoing = false;
+			IsScanning = false;
+			ValidateScanControl($"{nameof(Go)} - [default]");
 			return;
 		}
 
@@ -877,6 +895,8 @@ public class ScanControlsViewModel : BaseViewModel, IDisposable
 		{
 			_dialogService.Show(false, MessageLeveles.Warning, LanguageResource.Message_Warning_GoWarningTitle, $"Realtime status is not ready,current status {RealtimeStatus}", null, ConsoleSystemHelper.WindowHwnd);
 			Global.IsGoing = false;
+			IsScanning = false;
+			ValidateScanControl($"{nameof(Go)} - [default]");
 			return;
 		}
 
@@ -884,6 +904,8 @@ public class ScanControlsViewModel : BaseViewModel, IDisposable
 		{
 			//_dialogService.Show(false, MessageLeveles.Warning, LanguageResource.Message_Warning_GoWarningTitle, _systemReadyService.LatestFailReason, null, ConsoleSystemHelper.WindowHwnd);
 			Global.IsGoing = false;
+			IsScanning = false;
+			ValidateScanControl($"{nameof(Go)} - [default]");
 			return;
 		}
 
@@ -940,6 +962,8 @@ public class ScanControlsViewModel : BaseViewModel, IDisposable
 					{
 						_dialogService.Show(false, MessageLeveles.Warning, LanguageResource.Message_Warning_GoWarningTitle, $"The ROIs of the TestBolus scan cannot be null.", null, ConsoleSystemHelper.WindowHwnd);
 						Global.IsGoing = false;
+						IsScanning = false;
+						ValidateScanControl($"{nameof(Go)} - [default]");
 						return;
 					}
 					//判断语音的ID是否设置正确，以及最小的扫描延迟时间是否满足要求
@@ -947,6 +971,8 @@ public class ScanControlsViewModel : BaseViewModel, IDisposable
 					{
 						_dialogService.ShowDialog(false, MessageLeveles.Info, LanguageResource.Message_Info_Title, $"Scanning delay time parameter  or exposure interval time parameter setting error!", arg => { }, ConsoleSystemHelper.WindowHwnd);
 						Global.IsGoing = false;
+						IsScanning = false;
+						ValidateScanControl($"{nameof(Go)} - [default]");
 						return;
 					}
 					//判断螺旋扫描、轴扫扫描长度是否满足最大最小扫描长度
@@ -955,6 +981,8 @@ public class ScanControlsViewModel : BaseViewModel, IDisposable
 						_dialogService.ShowDialog(false, MessageLeveles.Info, LanguageResource.Message_Info_Title, ScanLengthHelper.errorMessage, arg => { }, ConsoleSystemHelper.WindowHwnd);
 						ScanLengthHelper.errorMessage = string.Empty;
 						Global.IsGoing = false;
+						IsScanning = false;
+						ValidateScanControl($"{nameof(Go)} - [default]");
 						return;
 					}
 					SetMeasurementParams(activeItem.Measurement);
@@ -966,11 +994,15 @@ public class ScanControlsViewModel : BaseViewModel, IDisposable
 			catch (NanoException ex)
 			{
 				Global.IsGoing = false;
+				IsScanning = false;
+				ValidateScanControl($"{nameof(Go)} - [default]");
 				ShowErrorCode(ex);
 			}
 			catch (AggregateException aex)
 			{
 				Global.IsGoing = false;
+				IsScanning = false;
+				ValidateScanControl($"{nameof(Go)} - [default]");
 				_logger.LogError($"Go handler catch aggregated exception : {aex.Flatten().Message}");
 			}
 		}
@@ -998,6 +1030,7 @@ public class ScanControlsViewModel : BaseViewModel, IDisposable
 			try
 			{
 				IsScanning = true;
+				ValidateScanControl(nameof(ParamsLogicValidated));
 				var result = _scanControlService.StartMeasurement(_protocolHostService.CurrentMeasurementID);
 				if ((result is null || result.Status != CommandExecutionStatus.Success) &&
 					(result is not null && result.Details.Count > 0))
@@ -1007,16 +1040,19 @@ public class ScanControlsViewModel : BaseViewModel, IDisposable
 			}
 			catch (NanoException ex)
 			{
+				IsScanning = false;
+				ValidateScanControl(nameof(ParamsLogicValidated));
 				ShowErrorCode(ex);
 			}
 			catch (Exception ex)
 			{
+				IsScanning = false;
+				ValidateScanControl(nameof(ParamsLogicValidated));
 				_logger.LogError($"Go handler catch exception : {ex.Message}-{ex.StackTrace}");
 			}
 			finally
 			{
 				IsScanning = false;
-
 				ValidateScanControl(nameof(ParamsLogicValidated));
 			}
 		});
@@ -1217,7 +1253,7 @@ public class ScanControlsViewModel : BaseViewModel, IDisposable
 		_layoutManager.Back();
 	}
 
-	[UIRoute]
+	//[UIRoute]
 	public void SetMessageTip()
 	{
 		//TODO:临时
@@ -1524,4 +1560,4 @@ public class ScanControlsViewModel : BaseViewModel, IDisposable
 		}
 		return flag;
 	}
-}
+} 

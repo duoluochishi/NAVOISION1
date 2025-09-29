@@ -31,6 +31,7 @@ using NV.MPS.Environment;
 using LogLevel = NVCTImageViewerInterop.LogLevel;
 using System.Windows.Threading;
 using Microsoft.VisualBasic.Logging;
+using System.Threading;
 
 namespace NV.CT.DicomImageViewer;
 
@@ -63,6 +64,9 @@ public class TopoImageViewer
 	public event EventHandler<string>? OnLocalizerSelectionChanged;
 	public event EventHandler<(int handle, int readerID, int imageTotal)>? SerialLoaded;
 	public event EventHandler<int>? OnROICreateSucceedEvent;
+	Semaphore loadFileSemaphore = new Semaphore(1, 2);
+	Semaphore tableChangedSemaphore = new Semaphore(1, 2);
+	Semaphore scanLineSemaphore = new Semaphore(1, 2);
 	#endregion
 
 	#region 构造函数
@@ -423,9 +427,11 @@ public class TopoImageViewer
 
 	public void SetScanLinePosition(double pos)
 	{
-		this.WindowsFormsHost.Dispatcher.Invoke(DispatcherPriority.Background, () =>
+		scanLineSemaphore.WaitOne(TimeSpan.FromMilliseconds(80));
+		this.WindowsFormsHost.Dispatcher.Invoke(DispatcherPriority.Render, () =>
 		{
 			_cliWrapper.SetScanLinePosition(_viewHandle, (float)pos);
+			scanLineSemaphore.Release();
 			_logger.LogDebug($"TopoImageViewer action SetScanLinePosition:{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff") + ":" + pos}");
 		});
 	}
@@ -635,39 +641,35 @@ public class TopoImageViewer
 	/// </summary>    
 	public void Move()
 	{
-		//_logger.LogDebug($"TopoImageViewer action info:Start TopoImageViewer Move");
 		_cliWrapper.SetViewMouseAction(_viewHandle, MouseButton.LeftMouseButton, ViewMouseAction.BrowserMouseAction_Move, ROIType.ROI_None);
-		//_logger.LogDebug($"TopoImageViewer action info:End TopoImageViewer Move");
 	}
 
 	public void SetTablePosition(double tablePositionInPatient)
 	{
-		this.WindowsFormsHost.Dispatcher.Invoke(DispatcherPriority.Background, () =>
+		tableChangedSemaphore.WaitOne(TimeSpan.FromMilliseconds(80));
+		this.WindowsFormsHost.Dispatcher.Invoke(DispatcherPriority.Render, () =>
 		{
 			_cliWrapper.SetTablePosition(_viewHandle, (float)tablePositionInPatient);
+			tableChangedSemaphore.Release();
 			_logger.LogInformation($"TopoImageViewer action SetTablePosition:{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff") + ":" + tablePositionInPatient}");
 		});
 	}
 
 	public void SetTableShow(bool isShown)
 	{
-		//this.WindowsFormsHost.Dispatcher.Invoke(DispatcherPriority.Background, () =>
-		//{
-		//_logger.LogDebug($"TopoImageViewer action info:Start TopoImageViewer ShowTabled");
+		;
 		_cliWrapper.ShowTable(_viewHandle, isShown);
-		//_logger.LogDebug($"TopoImageViewer action info:End TopoImageViewer ShowTable");
-		//});
 	}
 
 	public void LoadImageWithFilePath(string imagePath)
 	{
 		if (!string.IsNullOrEmpty(imagePath) && File.Exists(imagePath))
 		{
-			this.WindowsFormsHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, () =>
+			loadFileSemaphore.WaitOne(TimeSpan.FromMilliseconds(200));
+			this.WindowsFormsHost.Dispatcher.Invoke(DispatcherPriority.Render, () =>
 			{
-				//_logger.LogDebug($"TopoImageViewer action info:Start TopoImageViewer SetViewDataFile:{imagePath}");
 				_cliWrapper.SetViewDataFile(_viewHandle, imagePath);
-				//_logger.LogDebug($"TopoImageViewer action info:End TopoImageViewer SetViewDataFile");
+				loadFileSemaphore.Release();
 			});
 		}
 		CurrentContentPath = imagePath;
@@ -683,11 +685,11 @@ public class TopoImageViewer
 	{
 		if (!string.IsNullOrEmpty(imagePath) && File.Exists(imagePath))
 		{
-			this.WindowsFormsHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, () =>
+			loadFileSemaphore.WaitOne(TimeSpan.FromMilliseconds(200));
+			this.WindowsFormsHost.Dispatcher.Invoke(DispatcherPriority.Render, () =>
 			{
-				//_logger.LogDebug($"TopoImageViewer action info:Start TopoImageViewer SetViewDataFile:{imagePath}");
 				_cliWrapper.SetViewDataFile(_viewHandle, imagePath, matrixHeight, direction);
-				//_logger.LogDebug($"TopoImageViewer action info:End TopoImageViewer SetViewDataFile");
+				loadFileSemaphore.Release();
 			});
 		}
 		CurrentContentPath = imagePath;
@@ -774,7 +776,7 @@ public class TopoImageViewer
 
 	public void SetFourCornersMessage(OverlayTextStyle overlayTextStyle, List<OverlayText> overlayTexts)
 	{
-		this.WindowsFormsHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, () =>
+		this.WindowsFormsHost.Dispatcher.Invoke(DispatcherPriority.Render, () =>
 		{
 			//_logger.LogDebug($"TopoImageViewer action info:Start TopoImageViewer InitOverlayText");
 			_cliWrapper.InitOverlayText(_viewHandle, overlayTextStyle, overlayTexts, 0);
@@ -789,9 +791,7 @@ public class TopoImageViewer
 	/// <param name="weight">高度的一半</param>
 	public void SetLocationScanMode(LOCATION_SCAN_MODE scanModel, int weight)
 	{
-		//_logger.LogDebug($"TopoImageViewer action info:Start TopoImageViewer SetLocationScanMode");
 		_cliWrapper.SetLocationScanMode(_viewHandle, scanModel, weight);
-		//_logger.LogDebug($"TopoImageViewer action info:End TopoImageViewer SetLocationScanMode");
 	}
 
 	public void SetLocalizerLocked(bool isLocaked = false)

@@ -381,6 +381,7 @@ public class ScanControlService : IScanControlService
             reconInfo.ProtocolName = _protocolHostService.Instance.Descriptor.Name;
             reconInfo.SeriesNumber = recon.SeriesNumber;
             reconInfo.IsHDRecon = recon.IsHDRecon;
+            reconInfo.Kernel = recon.Kernel;
 
             if (recon.CycleROIs.Any())
             {

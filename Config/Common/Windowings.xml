@@ -9,8 +9,8 @@
 		<Level Value="40" Default="40" />
 	</Windowing>
 		<Windowing Id="13912345680" BodyPart="Lung" Shortcut="F7" IsFactory="true" Description="Lung">
-		<Width Value="1200" Default="1200"/>
-		<Level Value="-600" Default="-600" />
+		<Width Value="1500" Default="1500"/>
+		<Level Value="-300" Default="-300" />
 	</Windowing>
 		<Windowing Id="13912345681" BodyPart="Pelvis" Shortcut="F8" IsFactory="true" Description="Pelvis">
 		<Width Value="350" Default="350"/>

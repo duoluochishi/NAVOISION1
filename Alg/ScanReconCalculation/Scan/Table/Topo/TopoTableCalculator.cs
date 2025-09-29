@@ -14,6 +14,7 @@
 //-----------------------------------------------------------------------
 
 
+using MathNet.Numerics.LinearAlgebra.Factorization;
 using NV.CT.Alg.ScanReconCalculation.Scan.Common;
 using NV.CT.FacadeProxy.Common.Enums;
 using NV.MPS.Configuration;
@@ -64,7 +65,16 @@ public class TopoTableCalculator : IScanTableCalculator
         var tableBeginPos = dataBeginPos + preOffsetT2D;
         var tableEndPos = dataEndPos + postOffsetT2D;
 
-        result.ReconVolumeBeginPos = input.ReconVolumeBeginPos;
+		TableInfo node = SystemConfig.TableConfig.Table;
+		if (node.MinZ.Value > tableEndPos)
+		{
+			tableEndPos = node.MinZ.Value;
+		}
+		if (node.MaxZ.Value < tableEndPos)
+		{
+			tableEndPos = node.MaxZ.Value;
+		}
+		result.ReconVolumeBeginPos = input.ReconVolumeBeginPos;
         result.ReconVolumeEndPos = input.ReconVolumeEndPos;
         result.DataBeginPos = dataBeginPos;
         result.DataEndPos = dataEndPos;

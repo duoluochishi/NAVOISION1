@@ -130,7 +130,7 @@
                   <Parameter Name="DoseNotificationOperator" Value="" />
                   <Parameter Name="DoseAlertMessage" Value="" />
                   <Parameter Name="DoseAlertOperator" Value="" />
-                  <Parameter Name="ScanLength" Value="200000" />
+                  <Parameter Name="ScanLength" Value="512000" />
                   <Parameter Name="CollimatorZ" Value="242" />
                   <Parameter Name="CollimatorSliceWidth" Value="39930" />
                   <Parameter Name="FuncMode" Value="Clinical" />
@@ -381,7 +381,7 @@
                   <Recon>
                     <Descriptor>
                       <Id>f159069b-fc2d-45c4-822a-f4450b334a50</Id>
-                      <Name>CSpine3mmSmoothSoft</Name>
+                      <Name>Neck3mmSmoothSoft</Name>
                       <Type>Recon</Type>
                     </Descriptor>
                     <Parameters>
@@ -451,7 +451,7 @@
                   <Recon>
                     <Descriptor>
                       <Id>3a847bb4-1c09-458a-9823-6b6dc7a179e1</Id>
-                      <Name>CSpine1mmSharpBone</Name>
+                      <Name>Neck1mmSharpBone</Name>
                       <Type>Recon</Type>
                     </Descriptor>
                     <Parameters>
@@ -515,6 +515,7 @@
                       </PostProcess>
                       <PostProcess Index="1" Type="Sharp">
                         <Parameters>
+						  <Parameter Name="SharpAlgType" Value="Algo1" />
                           <Parameter Name="SharpLevel" Value="3" />
                         </Parameters>
                       </PostProcess>

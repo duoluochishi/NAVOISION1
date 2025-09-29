@@ -15,11 +15,11 @@
 using AutoMapper;
 using Microsoft.Extensions.Logging;
 using NV.CT.CTS.Models;
-using NV.CT.FacadeProxy.Helpers;
 using NV.CT.FacadeProxy.Common.Enums;
 using NV.CT.SystemInterface.MRSIntegration.Contract.Interfaces;
 using NV.CT.SystemInterface.MRSIntegration.Contract.Models;
 using NV.CT.FacadeProxy.Essentials.ThirdPartyLibraryCallers.CTDICalculate;
+using NV.CT.FacadeProxy.Services.CTDISerivces;
 
 namespace NV.CT.SystemInterface.MRSIntegration.Impl;
 
@@ -27,14 +27,14 @@ public class DoseEstimateService : IDoseEstimateService
 {
     private IMapper _mapper;
     private ILogger<DoseEstimateService> _logger;
-    private readonly CTDICalculateHelper _helper;
+    private readonly CTDICalculateService _helper;
     private const int _timeUnit = 1000;
 
     public DoseEstimateService(ILogger<DoseEstimateService> logger, IMapper mapper)
     {
         _logger = logger;
         _mapper = mapper;
-        _helper = new CTDICalculateHelper();
+        _helper = new CTDICalculateService();
     }
 
     public EstimateDoseInfo GetEstimateDoseInfo(DoseEstimateParam param)

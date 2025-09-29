@@ -65,7 +65,7 @@
                   <Parameter Name="TriggerMode" Value="None" />
                   <Parameter Name="TriggerEnd" Value="10" />
                   <Parameter Name="ExposureMode" Value="Single" />
-                  <Parameter Name="TableDirection" Value="In" />
+                  <Parameter Name="TableDirection" Value="Out" />
                   <Parameter Name="BowtieEnable" Value="True" />
                   <Parameter Name="Gain" Value="Dynamic" />
                   <Parameter Name="TableHeight" Value="0" />
@@ -102,7 +102,7 @@
                   <Parameter Name="PreVoicePlayTime" Value="0" />
                   <Parameter Name="TubeNumbers" Value="[0,0]" />
                   <Parameter Name="FocalType" Value="Small" />
-                  <Parameter Name="ExposureDelayTime" Value="5000000" />
+                  <Parameter Name="ExposureDelayTime" Value="7000000" />
                   <Parameter Name="ExposureStartPosition" Value="0" />
                   <Parameter Name="ExposureEndPosition" Value="0" />
                   <Parameter Name="ReconVolumeStartPosition" Value="-300000" />
@@ -130,7 +130,7 @@
                   <Parameter Name="DoseNotificationOperator" Value="" />
                   <Parameter Name="DoseAlertMessage" Value="" />
                   <Parameter Name="DoseAlertOperator" Value="" />
-                  <Parameter Name="ScanLength" Value="300000" />
+                  <Parameter Name="ScanLength" Value="512000" />
                   <Parameter Name="CollimatorZ" Value="242" />
                   <Parameter Name="CollimatorSliceWidth" Value="39930" />
                   <Parameter Name="FuncMode" Value="Clinical" />
@@ -222,7 +222,7 @@
               <Scan>
                 <Descriptor>
                   <Id>55282b5e-f33b-44c5-b0d9-0a5ec3276142</Id>
-                  <Name>Abdomen Helical</Name>
+                  <Name>Abdomen Helical -C</Name>
                   <Type>Scan</Type>
                 </Descriptor>
                 <Parameters>
@@ -242,7 +242,7 @@
                   <Parameter Name="TriggerMode" Value="None" />
                   <Parameter Name="TriggerEnd" Value="10" />
                   <Parameter Name="ExposureMode" Value="Single" />
-                  <Parameter Name="TableDirection" Value="In" />
+                  <Parameter Name="TableDirection" Value="Out" />
                   <Parameter Name="BowtieEnable" Value="True" />
                   <Parameter Name="Gain" Value="Dynamic" />
                   <Parameter Name="TableHeight" Value="0" />
@@ -257,7 +257,7 @@
                   <Parameter Name="PostOffsetFrames" Value="20" />
                   <Parameter Name="Loops" Value="0" />
                   <Parameter Name="LoopTime" Value="0" />
-                  <Parameter Name="IsEnhanced" Value="1" />
+                  <Parameter Name="IsEnhanced" Value="0" />
                   <Parameter Name="DoseNotification_CTDI" Value="0" />
                   <Parameter Name="DoseNotification_DLP" Value="0" />
                   <Parameter Name="DoseEstimated_CTDI" Value="0" />
@@ -279,7 +279,7 @@
                   <Parameter Name="PreVoicePlayTime" Value="0" />
                   <Parameter Name="TubeNumbers" Value="[0,0]" />
                   <Parameter Name="FocalType" Value="Small" />
-                  <Parameter Name="ExposureDelayTime" Value="5000000" />
+                  <Parameter Name="ExposureDelayTime" Value="7000000" />
                   <Parameter Name="ExposureStartPosition" Value="0" />
                   <Parameter Name="ExposureEndPosition" Value="0" />
                   <Parameter Name="ReconVolumeStartPosition" Value="-300000" />
@@ -535,15 +535,15 @@
                   <Parameter Name="kV" Value="[120,0,0,0,0,0,0,0]" />
                   <Parameter Name="mA" Value="[200,0,0,0,0,0,0,0]" />
                   <Parameter Name="ExposureTime" Value="2500" />
-                  <Parameter Name="FrameTime" Value="4000" />
-                  <Parameter Name="FramesPerCycle" Value="540" />
+                  <Parameter Name="FrameTime" Value="3500" />
+                  <Parameter Name="FramesPerCycle" Value="240" />
                   <Parameter Name="ScanOption" Value="NVTestBolusBase" />
                   <Parameter Name="ScanMode" Value="JumpExposure" />
                   <Parameter Name="RawDataType" Value="DarkL" />
                   <Parameter Name="TriggerMode" Value="None" />
                   <Parameter Name="TriggerEnd" Value="10" />
                   <Parameter Name="ExposureMode" Value="Single" />
-                  <Parameter Name="TableDirection" Value="In" />
+                  <Parameter Name="TableDirection" Value="Out" />
                   <Parameter Name="BowtieEnable" Value="True" />
                   <Parameter Name="Gain" Value="Dynamic" />
                   <Parameter Name="TableHeight" Value="0" />
@@ -618,7 +618,7 @@
                   <Parameter Name="ObjectFOV" Value="300000" />
                   <Parameter Name="ExposureTrigger" Value="TimeTrigger" />
                   <Parameter Name="PostDeleteLength" Value="0" />
-                  <Parameter Name="AllowErrorTubeCount" Value="0" />
+                  <Parameter Name="AllowErrorTubeCount" Value="1" />
                   <Parameter Name="ExposureIntervalTime" Value="0" />
                   <Parameter Name="ActiveExposureSourceCount" Value="24" />
                 </Parameters>
@@ -712,7 +712,7 @@
                   <Parameter Name="kV" Value="[120,0,0,0,0,0,0,0]" />
                   <Parameter Name="mA" Value="[200,0,0,0,0,0,0,0]" />
                   <Parameter Name="ExposureTime" Value="2500" />
-                  <Parameter Name="FrameTime" Value="4000" />
+                  <Parameter Name="FrameTime" Value="3500" />
                   <Parameter Name="FramesPerCycle" Value="24" />
                   <Parameter Name="ScanOption" Value="NVTestBolus" />
                   <Parameter Name="ScanMode" Value="JumpExposure" />
@@ -720,7 +720,7 @@
                   <Parameter Name="TriggerMode" Value="None" />
                   <Parameter Name="TriggerEnd" Value="10" />
                   <Parameter Name="ExposureMode" Value="Single" />
-                  <Parameter Name="TableDirection" Value="In" />
+                  <Parameter Name="TableDirection" Value="Out" />
                   <Parameter Name="BowtieEnable" Value="True" />
                   <Parameter Name="Gain" Value="Dynamic" />
                   <Parameter Name="TableHeight" Value="0" />
@@ -795,8 +795,8 @@
                   <Parameter Name="ObjectFOV" Value="300000" />
                   <Parameter Name="ExposureTrigger" Value="TimeTrigger" />
                   <Parameter Name="PostDeleteLength" Value="0" />
-                  <Parameter Name="AllowErrorTubeCount" Value="0" />
-                  <Parameter Name="ExposureIntervalTime" Value="0" />
+                  <Parameter Name="AllowErrorTubeCount" Value="1" />
+                  <Parameter Name="ExposureIntervalTime" Value="1" />
                   <Parameter Name="ActiveExposureSourceCount" Value="24" />
                 </Parameters>
                 <Recons>
@@ -877,7 +877,7 @@
               <Scan>
                 <Descriptor>
                   <Id>e8ca6353-45ee-43f0-a3fe-0ea3f41a90a0</Id>
-                  <Name>Arterial phase</Name>
+                  <Name>Arterial phase +C</Name>
                   <Type>Scan</Type>
                 </Descriptor>
                 <Parameters>
@@ -897,7 +897,7 @@
                   <Parameter Name="TriggerMode" Value="None" />
                   <Parameter Name="TriggerEnd" Value="10" />
                   <Parameter Name="ExposureMode" Value="Single" />
-                  <Parameter Name="TableDirection" Value="In" />
+                  <Parameter Name="TableDirection" Value="Out" />
                   <Parameter Name="BowtieEnable" Value="True" />
                   <Parameter Name="Gain" Value="Dynamic" />
                   <Parameter Name="TableHeight" Value="0" />
@@ -934,7 +934,7 @@
                   <Parameter Name="PreVoicePlayTime" Value="0" />
                   <Parameter Name="TubeNumbers" Value="[0,0]" />
                   <Parameter Name="FocalType" Value="Small" />
-                  <Parameter Name="ExposureDelayTime" Value="5000000" />
+                  <Parameter Name="ExposureDelayTime" Value="7000000" />
                   <Parameter Name="ExposureStartPosition" Value="0" />
                   <Parameter Name="ExposureEndPosition" Value="0" />
                   <Parameter Name="ReconVolumeStartPosition" Value="-300000" />
@@ -972,9 +972,9 @@
                   <Parameter Name="ObjectFOV" Value="300000" />
                   <Parameter Name="ExposureTrigger" Value="TimeTrigger" />
                   <Parameter Name="PostDeleteLength" Value="0" />
-                  <Parameter Name="AllowErrorTubeCount" Value="0" />
+                  <Parameter Name="AllowErrorTubeCount" Value="1" />
                   <Parameter Name="ExposureIntervalTime" Value="12000000" />
-                  <Parameter Name="ActiveExposureSourceCount" Value="16" />
+                  <Parameter Name="ActiveExposureSourceCount" Value="24" />
                 </Parameters>
                 <Recons>
                   <Recon>
@@ -1168,7 +1168,7 @@
               <Scan>
                 <Descriptor>
                   <Id>b8e2a888-76f5-4d1f-8cdb-4153546bb61e</Id>
-                  <Name>Venous phase</Name>
+                  <Name>Venous phase +C</Name>
                   <Type>Scan</Type>
                 </Descriptor>
                 <Parameters>
@@ -1188,7 +1188,7 @@
                   <Parameter Name="TriggerMode" Value="None" />
                   <Parameter Name="TriggerEnd" Value="10" />
                   <Parameter Name="ExposureMode" Value="Single" />
-                  <Parameter Name="TableDirection" Value="In" />
+                  <Parameter Name="TableDirection" Value="Out" />
                   <Parameter Name="BowtieEnable" Value="True" />
                   <Parameter Name="Gain" Value="Dynamic" />
                   <Parameter Name="TableHeight" Value="0" />
@@ -1225,7 +1225,7 @@
                   <Parameter Name="PreVoicePlayTime" Value="0" />
                   <Parameter Name="TubeNumbers" Value="[0,0]" />
                   <Parameter Name="FocalType" Value="Small" />
-                  <Parameter Name="ExposureDelayTime" Value="25000000" />
+                  <Parameter Name="ExposureDelayTime" Value="27000000" />
                   <Parameter Name="ExposureStartPosition" Value="0" />
                   <Parameter Name="ExposureEndPosition" Value="0" />
                   <Parameter Name="ReconVolumeStartPosition" Value="-300000" />
@@ -1263,9 +1263,9 @@
                   <Parameter Name="ObjectFOV" Value="300000" />
                   <Parameter Name="ExposureTrigger" Value="TimeTrigger" />
                   <Parameter Name="PostDeleteLength" Value="0" />
-                  <Parameter Name="AllowErrorTubeCount" Value="0" />
+                  <Parameter Name="AllowErrorTubeCount" Value="1" />
                   <Parameter Name="ExposureIntervalTime" Value="12000000" />
-                  <Parameter Name="ActiveExposureSourceCount" Value="16" />
+                  <Parameter Name="ActiveExposureSourceCount" Value="24" />
                 </Parameters>
                 <Recons>
                   <Recon>
@@ -1459,7 +1459,7 @@
               <Scan>
                 <Descriptor>
                   <Id>dfd05f80-d12c-4b2a-842a-cc0bda46097b</Id>
-                  <Name>Delayed phase</Name>
+                  <Name>Delayed phase +C</Name>
                   <Type>Scan</Type>
                 </Descriptor>
                 <Parameters>
@@ -1479,7 +1479,7 @@
                   <Parameter Name="TriggerMode" Value="None" />
                   <Parameter Name="TriggerEnd" Value="10" />
                   <Parameter Name="ExposureMode" Value="Single" />
-                  <Parameter Name="TableDirection" Value="In" />
+                  <Parameter Name="TableDirection" Value="Out" />
                   <Parameter Name="BowtieEnable" Value="True" />
                   <Parameter Name="Gain" Value="Dynamic" />
                   <Parameter Name="TableHeight" Value="0" />
@@ -1516,7 +1516,7 @@
                   <Parameter Name="PreVoicePlayTime" Value="0" />
                   <Parameter Name="TubeNumbers" Value="[0,0]" />
                   <Parameter Name="FocalType" Value="Small" />
-                  <Parameter Name="ExposureDelayTime" Value="45000000" />
+                  <Parameter Name="ExposureDelayTime" Value="155000000" />
                   <Parameter Name="ExposureStartPosition" Value="0" />
                   <Parameter Name="ExposureEndPosition" Value="0" />
                   <Parameter Name="ReconVolumeStartPosition" Value="-300000" />
@@ -1554,9 +1554,9 @@
                   <Parameter Name="ObjectFOV" Value="300000" />
                   <Parameter Name="ExposureTrigger" Value="TimeTrigger" />
                   <Parameter Name="PostDeleteLength" Value="0" />
-                  <Parameter Name="AllowErrorTubeCount" Value="0" />
-                  <Parameter Name="ExposureIntervalTime" Value="12000000" />
-                  <Parameter Name="ActiveExposureSourceCount" Value="16" />
+                  <Parameter Name="AllowErrorTubeCount" Value="1" />
+                  <Parameter Name="ExposureIntervalTime" Value="120000000" />
+                  <Parameter Name="ActiveExposureSourceCount" Value="24" />
                 </Parameters>
                 <Recons>
                   <Recon>

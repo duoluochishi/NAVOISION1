@@ -7277,7 +7277,7 @@ namespace NV.CT.ErrorCodes {
         }
         
         /// <summary>
-        ///   查找类似 机架panel掉线 的本地化字符串。
+        ///   查找类似 呼吸导航板掉线 的本地化字符串。
         /// </summary>
         public static string AUX000000003_Description {
             get {
@@ -7304,7 +7304,7 @@ namespace NV.CT.ErrorCodes {
         }
         
         /// <summary>
-        ///   查找类似 机架panel掉线 的本地化字符串。
+        ///   查找类似 机架BNV板CAN通讯掉线 的本地化字符串。
         /// </summary>
         public static string AUX000000003_Reason {
             get {
@@ -7313,7 +7313,7 @@ namespace NV.CT.ErrorCodes {
         }
         
         /// <summary>
-        ///   查找类似 检查机架Panel状态 的本地化字符串。
+        ///   查找类似 检查机架呼吸导航板子状态 的本地化字符串。
         /// </summary>
         public static string AUX000000003_Solution {
             get {
@@ -82794,7 +82794,7 @@ namespace NV.CT.ErrorCodes {
         }
         
         /// <summary>
-        ///   查找类似 水平目标位置下参超上限 的本地化字符串。
+        ///   查找类似 水平运动触发软限位下限临界区 的本地化字符串。
         /// </summary>
         public static string PHS000000010_Description {
             get {
@@ -82803,7 +82803,7 @@ namespace NV.CT.ErrorCodes {
         }
         
         /// <summary>
-        ///   查找类似 提示下参出错，请重新检查后下参 的本地化字符串。
+        ///   查找类似 运动终止 的本地化字符串。
         /// </summary>
         public static string PHS000000010_Handling {
             get {
@@ -82812,7 +82812,7 @@ namespace NV.CT.ErrorCodes {
         }
         
         /// <summary>
-        ///   查找类似 Error 的本地化字符串。
+        ///   查找类似 Fatal 的本地化字符串。
         /// </summary>
         public static string PHS000000010_Level {
             get {
@@ -82821,7 +82821,7 @@ namespace NV.CT.ErrorCodes {
         }
         
         /// <summary>
-        ///   查找类似 下参超上限1960 的本地化字符串。
+        ///   查找类似 床高处于临界位置，需再升高&gt;1mm以上再扫 的本地化字符串。
         /// </summary>
         public static string PHS000000010_Reason {
             get {
@@ -82830,7 +82830,7 @@ namespace NV.CT.ErrorCodes {
         }
         
         /// <summary>
-        ///   查找类似 重新检查后再下参 的本地化字符串。
+        ///   查找类似 床垂直方向偏低，需再升高 的本地化字符串。
         /// </summary>
         public static string PHS000000010_Solution {
             get {
@@ -82848,7 +82848,7 @@ namespace NV.CT.ErrorCodes {
         }
         
         /// <summary>
-        ///   查找类似 水平目标速度下参超上限 的本地化字符串。
+        ///   查找类似 水平目标位置下参超上限 的本地化字符串。
         /// </summary>
         public static string PHS000000011_Description {
             get {
@@ -82875,7 +82875,7 @@ namespace NV.CT.ErrorCodes {
         }
         
         /// <summary>
-        ///   查找类似 下参超速度上限250mm/s 的本地化字符串。
+        ///   查找类似 下参超上限1960 的本地化字符串。
         /// </summary>
         public static string PHS000000011_Reason {
             get {
@@ -82902,7 +82902,7 @@ namespace NV.CT.ErrorCodes {
         }
         
         /// <summary>
-        ///   查找类似 水平目标速度下参低于下限 的本地化字符串。
+        ///   查找类似 水平目标速度下参超上限 的本地化字符串。
         /// </summary>
         public static string PHS000000012_Description {
             get {
@@ -82929,7 +82929,7 @@ namespace NV.CT.ErrorCodes {
         }
         
         /// <summary>
-        ///   查找类似 下参超速度低于下限1mm/s，范围[1~250] 的本地化字符串。
+        ///   查找类似 下参超速度上限250mm/s 的本地化字符串。
         /// </summary>
         public static string PHS000000012_Reason {
             get {
@@ -82956,7 +82956,7 @@ namespace NV.CT.ErrorCodes {
         }
         
         /// <summary>
-        ///   查找类似 垂直目标位置下参超上限 的本地化字符串。
+        ///   查找类似 水平目标速度下参低于下限 的本地化字符串。
         /// </summary>
         public static string PHS000000013_Description {
             get {
@@ -82983,7 +82983,7 @@ namespace NV.CT.ErrorCodes {
         }
         
         /// <summary>
-        ///   查找类似 下参超上限980 的本地化字符串。
+        ///   查找类似 下参超速度低于下限1mm/s，范围[1~250] 的本地化字符串。
         /// </summary>
         public static string PHS000000013_Reason {
             get {
@@ -83010,7 +83010,7 @@ namespace NV.CT.ErrorCodes {
         }
         
         /// <summary>
-        ///   查找类似 垂直目标位置下参低于下限 的本地化字符串。
+        ///   查找类似 垂直目标位置下参超上限 的本地化字符串。
         /// </summary>
         public static string PHS000000014_Description {
             get {
@@ -83037,7 +83037,7 @@ namespace NV.CT.ErrorCodes {
         }
         
         /// <summary>
-        ///   查找类似 下参低于下限480 的本地化字符串。
+        ///   查找类似 下参超上限980 的本地化字符串。
         /// </summary>
         public static string PHS000000014_Reason {
             get {
@@ -83064,7 +83064,7 @@ namespace NV.CT.ErrorCodes {
         }
         
         /// <summary>
-        ///   查找类似 垂直目标速度下参超上限 的本地化字符串。
+        ///   查找类似 垂直目标位置下参低于下限 的本地化字符串。
         /// </summary>
         public static string PHS000000015_Description {
             get {
@@ -83091,7 +83091,7 @@ namespace NV.CT.ErrorCodes {
         }
         
         /// <summary>
-        ///   查找类似 下参超速度上限100mm/s 的本地化字符串。
+        ///   查找类似 下参低于下限480 的本地化字符串。
         /// </summary>
         public static string PHS000000015_Reason {
             get {
@@ -83105,6 +83105,60 @@ namespace NV.CT.ErrorCodes {
         public static string PHS000000015_Solution {
             get {
                 return ResourceManager.GetString("PHS000000015_Solution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 PHS000000016 的本地化字符串。
+        /// </summary>
+        public static string PHS000000016_Code {
+            get {
+                return ResourceManager.GetString("PHS000000016_Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 垂直目标速度下参超上限 的本地化字符串。
+        /// </summary>
+        public static string PHS000000016_Description {
+            get {
+                return ResourceManager.GetString("PHS000000016_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 提示下参出错，请重新检查后下参 的本地化字符串。
+        /// </summary>
+        public static string PHS000000016_Handling {
+            get {
+                return ResourceManager.GetString("PHS000000016_Handling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Error 的本地化字符串。
+        /// </summary>
+        public static string PHS000000016_Level {
+            get {
+                return ResourceManager.GetString("PHS000000016_Level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 下参超速度上限100mm/s 的本地化字符串。
+        /// </summary>
+        public static string PHS000000016_Reason {
+            get {
+                return ResourceManager.GetString("PHS000000016_Reason", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 重新检查后再下参 的本地化字符串。
+        /// </summary>
+        public static string PHS000000016_Solution {
+            get {
+                return ResourceManager.GetString("PHS000000016_Solution", resourceCulture);
             }
         }
         

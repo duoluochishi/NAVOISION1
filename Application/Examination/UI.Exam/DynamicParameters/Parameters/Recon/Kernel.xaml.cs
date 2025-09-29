@@ -1,13 +1,12 @@
-﻿namespace NV.CT.UI.Exam.DynamicParameters.Parameters.Recon
+﻿namespace NV.CT.UI.Exam.DynamicParameters.Parameters.Recon;
+
+/// <summary>
+/// Kernel.xaml 的交互逻辑
+/// </summary>
+public partial class Kernel : UserControl
 {
-    /// <summary>
-    /// Kernel.xaml 的交互逻辑
-    /// </summary>
-    public partial class Kernel : UserControl
+    public Kernel()
     {
-        public Kernel()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

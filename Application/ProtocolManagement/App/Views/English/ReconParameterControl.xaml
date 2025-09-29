@@ -67,6 +67,7 @@
                                 <RowDefinition Height="60" />
                                 <RowDefinition Height="60" />
                                 <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
                             <Grid.BindingGroup>
@@ -318,17 +319,17 @@
                                 Grid.Column="1"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
-                                Content="{x:Static res:LanguageResource.Content_Kernel}" />
+                                Content="{x:Static res:LanguageResource.Content_Filter}" />
                             <ComboBox
-                                Name="cbbKernel"
+                                Name="cbbFilter"
                                 Grid.Row="7"
                                 Grid.Column="2"
                                 Height="30"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Center"
                                 DisplayMemberPath="Value"
-                                ItemsSource="{Binding KernelList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                SelectedItem="{Binding Path=SelectKernel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                ItemsSource="{Binding FilterList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedItem="{Binding Path=SelectFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 SelectedValuePath="Key" />
                             <Label
                                 Grid.Row="7"
@@ -625,6 +626,24 @@
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
                                 IsChecked="{Binding ReconParameter.IsAutoRecon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label
+                                Grid.Row="17"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="{x:Static res:LanguageResource.Content_Kernel}" />
+                            <ComboBox
+                                Name="cbbKernel"
+                                Grid.Row="17"
+                                Grid.Column="2"
+                                Height="30"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center"
+                                DisplayMemberPath="Value"
+                                IsEnabled="{Binding ReconParameter.IsHDRecon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                ItemsSource="{Binding KernelList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedItem="{Binding Path=SelectKernel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedValuePath="Key" />
                             <Button
                                 x:Name="btn_Save"
                                 Grid.Row="17"

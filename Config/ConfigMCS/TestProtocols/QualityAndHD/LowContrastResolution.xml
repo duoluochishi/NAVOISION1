@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ProtocolTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Descriptor>
-    <Id>bd345cd1-675c-4cd3-bbbc-594be2534296</Id>
+    <Id>11041083-8d28-4548-93ef-85dc860f3a21</Id>
     <Name>LowContrastResolution</Name>
     <Type>ProtocolTemplate</Type>
   </Descriptor>
   <Parameters />
   <Protocol>
     <Descriptor>
-      <Id>aba79994-239e-4a30-b4cf-3df6795d207f</Id>
+      <Id>2ea46c7c-69ab-4f83-bc0b-5281b1c023c5</Id>
       <Name>LowContrastResolution</Name>
       <Type>Protocol</Type>
     </Descriptor>
@@ -26,7 +26,7 @@
     <FrameOfReferences>
       <FrameOfReference>
         <Descriptor>
-          <Id>78827500-e610-48b1-b992-493f469c5311</Id>
+          <Id>435ccd5e-7d08-4c33-92cd-c73a921b04ed</Id>
           <Name>FrameOfReference</Name>
           <Type>FrameOfReference</Type>
         </Descriptor>
@@ -36,7 +36,7 @@
         <Measurements>
           <Measurement>
             <Descriptor>
-              <Id>f0df2bd4-4aeb-48c9-9eb6-8db9591eb5e3</Id>
+              <Id>cd4bb626-29ad-43c9-8639-ac78e4c3d0e8</Id>
               <Name>Measurement</Name>
               <Type>Measurement</Type>
             </Descriptor>
@@ -44,7 +44,7 @@
             <Scans>
               <Scan>
                 <Descriptor>
-                  <Id>65bc6413-f29c-425f-8c3c-dea462f12112</Id>
+                  <Id>072447f8-7bd0-4d26-9601-4091ad8fcc82</Id>
                   <Name>Topogram</Name>
                   <Type>Scan</Type>
                 </Descriptor>
@@ -145,7 +145,7 @@
                 <Recons>
                   <Recon>
                     <Descriptor>
-                      <Id>b4171d81-f498-4dcf-a1b8-a835237cb92f</Id>
+                      <Id>37cc959d-00d8-4e38-b58a-e2f170e63443</Id>
                       <Name>Recon</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -210,7 +210,7 @@
           </Measurement>
           <Measurement>
             <Descriptor>
-              <Id>286049b7-1588-41c2-af93-ce4dd8bf6738</Id>
+              <Id>7582ef2c-a3e3-478d-b445-4ded8461b414</Id>
               <Name>Measurement</Name>
               <Type>Measurement</Type>
             </Descriptor>
@@ -218,7 +218,7 @@
             <Scans>
               <Scan>
                 <Descriptor>
-                  <Id>bc31d1d4-0ac8-4180-a326-9f379a103609</Id>
+                  <Id>aae3b250-8e5e-4ae4-b2b7-7ea96791ae04</Id>
                   <Name>Low Contrast Resolution</Name>
                   <Type>Scan</Type>
                 </Descriptor>
@@ -319,7 +319,7 @@
                 <Recons>
                   <Recon>
                     <Descriptor>
-                      <Id>ef601715-0c4d-457e-8530-4a2e73af4570</Id>
+                      <Id>88d7086a-fe5a-4b42-a32b-88ab9084192e</Id>
                       <Name>Recon</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -380,7 +380,7 @@
                   </Recon>
                   <Recon>
                     <Descriptor>
-                      <Id>de9b275a-ccf5-4c17-9e82-0d5e6fb58be1</Id>
+                      <Id>d48dfe88-107b-4612-98c7-f9070c2f5e31</Id>
                       <Name>LowContrastResolution10mmNone</Name>
                       <Type>Recon</Type>
                     </Descriptor>

@@ -21,6 +21,7 @@ using LogLevel = NVCTImageViewerInterop.LogLevel;
 using Newtonsoft.Json;
 using System.Windows.Threading;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace NV.CT.DicomImageViewer;
 
@@ -55,6 +56,8 @@ public class TomoImageViewer
 	public event EventHandler<string>? InterventionAddNeedleEvent;
 	public event EventHandler<string>? InterventionDelectNeedleEvent;
 	public event EventHandler<int>? OnROICreateSucceedEvent;
+
+	Semaphore loadFileSemaphore = new Semaphore(1, 2);
 
 	public WindowsFormsHost WindowsFormsHost
 	{
@@ -610,16 +613,15 @@ public class TomoImageViewer
 
 	public void LoadImageWithFilePath(string imageFile, bool isShowRuler = true)
 	{
-		//_logger.LogDebug($"LoadImageWithFilePath:{imageFile}");
 		if (!string.IsNullOrEmpty(imageFile) && File.Exists(imageFile))
 		{
+			loadFileSemaphore.WaitOne(TimeSpan.FromMilliseconds(200));
 			this.WindowsFormsHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, () =>
 			{
-				//_logger.LogDebug($"TomoImageViewer action info:Start TomoImageViewer SetViewDataFile:{imageFile}");
 				_cliWrapper.ShowRuler(_viewHandle, isShowRuler);
 				ShowOverlay(false);
 				_cliWrapper.SetViewDataFile(_viewHandle, imageFile);
-				//_logger.LogDebug($"TomoImageViewer action info:End TomoImageViewer SetViewDataFile");
+				loadFileSemaphore.Release();
 			});
 			CurrentContentPath = "";//不处理单幅图像
 		}
@@ -629,13 +631,13 @@ public class TomoImageViewer
 	{
 		if (!string.IsNullOrEmpty(imagePath) && Directory.Exists(imagePath))
 		{
+			loadFileSemaphore.WaitOne(TimeSpan.FromMilliseconds(200));
 			this.WindowsFormsHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, () =>
 			{
-				//_logger.LogDebug($"TomoImageViewer action info:Start TomoImageViewer SetViewDataFolder:{imagePath}");
 				_cliWrapper.ShowRuler(_viewHandle, isShowRuler);
 				_cliWrapper.SetViewDataFloder(_viewHandle, imagePath);
 				ShowOverlay(true);
-				//_logger.LogDebug($"TomoImageViewer action info:End TomoImageViewer SetViewDataFolder");
+				loadFileSemaphore.Release();
 			});
 			CurrentContentPath = imagePath;
 		}
@@ -645,12 +647,12 @@ public class TomoImageViewer
 	{
 		if (!string.IsNullOrEmpty(imagePath) && Directory.Exists(imagePath))
 		{
+			loadFileSemaphore.WaitOne(TimeSpan.FromMilliseconds(200));
 			this.WindowsFormsHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, () =>
 			{
-				//_logger?.LogDebug($"TomoImageViewer action info:Start TomoImageViewer SetViewDataFolder3D:{imagePath}");
 				_cliWrapper.SetViewDataFloder3D(_viewHandle, imagePath);
 				ShowOverlay(true);
-				//_logger?.LogDebug($"TomoImageViewer action info:End TomoImageViewer SetViewDataFolder3D");
+				loadFileSemaphore.Release();
 			});
 			CurrentContentPath = imagePath;
 		}
@@ -668,10 +670,8 @@ public class TomoImageViewer
 		{
 			this.WindowsFormsHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, () =>
 			{
-				//_logger.LogDebug($"TomoImageViewer action info:Start TomoImageViewer SetViewDataFloder:{imagePath}");
 				_cliWrapper.SetViewDataFloder(_viewHandle, imagePath, matrixHeight, direction);
 				ShowOverlay(true);
-				//_logger.LogDebug($"TomoImageViewer action info:End TomoImageViewer SetViewDataFloder");
 			});
 		}
 	}
@@ -682,9 +682,7 @@ public class TomoImageViewer
 		{
 			this.WindowsFormsHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, () =>
 			{
-				//_logger?.LogDebug($"TomoImageViewer action info:Start TomoImageViewer InitOverlayText");
 				_cliWrapper.InitOverlayText(_viewHandle, overlayTextStyle, overlayTexts, 0);
-				//_logger?.LogDebug($"TomoImageViewer action info:End TomoImageViewer InitOverlayText");
 			});
 		}
 	}
@@ -882,9 +880,9 @@ public class TomoImageViewer
 			foreach (TimeDensityInfo info in timeDensityInfos)
 			{
 				list.Add(info.RoiParam);
-			}			
+			}
 			this.WindowsFormsHost.Dispatcher.BeginInvoke(DispatcherPriority.Background, () =>
-			{				
+			{
 				_cliWrapper.SetTimeDensityROI(this._viewHandle, list);
 			});
 		}

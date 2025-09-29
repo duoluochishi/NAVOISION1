@@ -320,6 +320,8 @@ public class WorkListViewModel : UI.ViewModel.BaseViewModel
                 InstitutionName = r.studyModel.InstitutionName,
                 InstitutionAddress = r.studyModel.InstitutionAddress,
                 PatientType = r.studyModel.PatientType,
+                Birthday=r.patientModel.PatientBirthDate,
+                PatientBirthDate = r.patientModel.PatientBirthDate,
                 StudyDescription = r.studyModel.StudyDescription,
             };
         }).ToList();

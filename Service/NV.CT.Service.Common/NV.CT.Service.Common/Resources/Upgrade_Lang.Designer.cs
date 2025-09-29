@@ -106,6 +106,15 @@ namespace NV.CT.Service.Common.Resources {
         }
         
         /// <summary>
+        ///   查找类似 Refresh 的本地化字符串。
+        /// </summary>
+        public static string Upgrade_Info_Refresh {
+            get {
+                return ResourceManager.GetString("Upgrade_Info_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Superior Name 的本地化字符串。
         /// </summary>
         public static string Upgrade_Info_SuperiorName {

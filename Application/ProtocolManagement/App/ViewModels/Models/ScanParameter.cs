@@ -2,13 +2,17 @@
 using NV.CT.ProtocolManagement.ViewModels.Common;
 using NV.CT.ProtocolManagement.ViewModels.Enums;
 using NV.CT.UI.ViewModel;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using EnumConverter = NV.CT.ProtocolManagement.ViewModels.Common.EnumConverter;
 
 namespace NV.CT.ProtocolManagement.ViewModels.Models
 {
-    public class ScanParameter : BaseViewModel
+    public class ScanParameter : BaseViewModel, INotifyDataErrorInfo
     {
         private Dictionary<string, EnumViewModel<KilovoltValue>> _kvs = new();
         private Dictionary<string, EnumViewModel<ScanOption>> _scanTaskOption;
@@ -163,9 +167,19 @@ namespace NV.CT.ProtocolManagement.ViewModels.Models
         public string ExposureDelayTime
         {
             get => _exposureDelayTime;
-            set => SetProperty(ref _exposureDelayTime, value);
+            set 
+            {
+                if (_exposureDelayTime !=value)
+                {
+                    _exposureDelayTime = value;
+                    ValidateExposureDelayTime();
+                }
+            } 
         }
-
+        private void ValidateExposureDelayTime()
+        {
+            Validate(func_validateDelayTime, nameof(ExposureDelayTime));
+        }
         public string PreVoiceDelayTime
         {
             get => _preVoiceDelayTime;
@@ -176,7 +190,7 @@ namespace NV.CT.ProtocolManagement.ViewModels.Models
 
         public bool IsVoiceSupported
         {
-            get => _isvoicesupported; 
+            get => _isvoicesupported;
             set => SetProperty(ref _isvoicesupported, value);
         }
 
@@ -325,12 +339,12 @@ namespace NV.CT.ProtocolManagement.ViewModels.Models
             get => _loopTime;
             set => SetProperty(ref _loopTime, value);
         }
-        private string _objectFov=string.Empty;
+        private string _objectFov = string.Empty;
 
         public string ObjectFov
         {
             get => _objectFov;
-            set => SetProperty(ref _objectFov, value); 
+            set => SetProperty(ref _objectFov, value);
         }
         private string _postDeleteLength = string.Empty;
 
@@ -383,9 +397,61 @@ namespace NV.CT.ProtocolManagement.ViewModels.Models
             get => _collimatorOpenMode;
             set => SetProperty(ref _collimatorOpenMode, value);
         }
+        readonly Func<string> func_validateDelayTime;
         public ScanParameter()
         {
             ScanTaskOption = EnumConverter.ToDic<ScanOption>();
+            func_validateDelayTime = () =>
+            {
+                var exposureDelayTime = !string.IsNullOrEmpty(ExposureDelayTime) ? (int.Parse(ExposureDelayTime)) : 0;
+                if (exposureDelayTime < 3)
+                {
+                    return "Minimum Exposure Delay Time: 3";
+                }
+                return string.Empty;
+            };
         }
+        public string Validate(Func<string> valid, [CallerMemberName] string prop = "")
+        {
+            string error = valid();
+            if (string.IsNullOrEmpty(error))
+                ClearError(prop);
+            else
+                SetError(new[] { error }, prop);
+            RaisePropertyChanged(prop);
+            return error;
+        }
+        #region  ImplementNotifyInterface  
+        
+        public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
+        private readonly IDictionary<string, IList<string>> m_errors = new Dictionary<string, IList<string>>();
+        public bool HasErrors { get => m_errors.Count != 0; }
+        public void SetError(IList<string> errors, string prop)
+        {
+            m_errors.Remove(prop);
+            m_errors.Add(prop, errors);
+
+        }
+        public void ClearError(string prop)
+        {
+            m_errors.Remove(prop);
+
+        }
+        public IEnumerable GetErrors(string? propertyName)
+        {
+            if (string.IsNullOrEmpty(propertyName))
+            {
+                return "";
+            }
+            if (m_errors.ContainsKey(propertyName))
+            {
+                return m_errors[propertyName];
+            }
+            else
+            {
+                return "";
+            }
+        }
+        #endregion
     }
 }

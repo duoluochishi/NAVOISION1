@@ -23,6 +23,7 @@ using NV.CT.ProtocolService.Contract;
 using Newtonsoft.Json;
 using NV.CT.ConfigService.Contract;
 using NV.CT.AppService.Contract;
+using System.Diagnostics.Metrics;
 
 namespace NV.CT.ProtocolManagement.ApplicationService.Impl;
 
@@ -254,8 +255,41 @@ public class ProtocolApplicationService : IProtocolApplicationService
         var cloneScan = current.Scan.Clone();
         cloneScan.Descriptor.Name = newScanName;
         ProtocolManagerHelper.ResetId(cloneScan);
-        current.Measurement.Children.Add(cloneScan);
+        //current.Measurement.Children.Add(cloneScan);
+        //Save(protocolTemplate);
 
+        //var measurementModel= RepeatMeasurementTask(templateId, current.Measurement.Descriptor.Id);
+        //ScanModel cloneScan = measurementModel.Children.First();
+        //var updateProtocolTemplate = GetProtocolTemplate(templateId);
+        //var updatemodels = ProtocolHelper.Expand(updateProtocolTemplate.Protocol);
+        //var updatecurrent = updatemodels.FirstOrDefault(m => m.Scan.Descriptor.Id == cloneScan.Descriptor.Id);
+        //updatecurrent.Scan.Descriptor.Name = newScanName;
+        //Save(updateProtocolTemplate);
+        var repeatMeasurement = new MeasurementModel
+        {
+            Descriptor = new DescriptorModel
+            {
+                Id = IdGenerator.Next(3),
+                Type = typeof(MeasurementModel).Name,
+                Name = "Measurement"
+            },
+            Children = new List<ScanModel>
+            {
+                cloneScan
+            }
+        };
+        bool isCompleteRepeat = false;
+        protocolTemplate.Protocol.Children.Find(FOR =>
+        { 
+            return FOR.Children.Find(measurement =>
+            {
+                if (measurement.Descriptor.Id == current.Measurement.Descriptor.Id)
+                {
+                    FOR.Children.Add(repeatMeasurement);
+                }
+                return isCompleteRepeat;
+            }) is not null;
+        });
         Save(protocolTemplate);
         return cloneScan.Descriptor.Id;
     }

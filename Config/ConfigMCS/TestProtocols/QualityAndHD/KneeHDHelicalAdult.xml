@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ProtocolTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Descriptor>
-    <Id>f6b361f9-23b1-45a0-9895-c86db96a25cd</Id>
+    <Id>c663893d-3164-434d-9205-d2bb3ed220a8</Id>
     <Name>KneeHDHelicalAdult</Name>
     <Type>ProtocolTemplate</Type>
   </Descriptor>
   <Parameters />
   <Protocol>
     <Descriptor>
-      <Id>3a7e547c-99d0-41f8-afd2-9698a9145462</Id>
+      <Id>48d2e1ce-c3e9-43ad-a5f2-b2a44f8d4bfd</Id>
       <Name>KneeHDHelicalAdult</Name>
       <Type>Protocol</Type>
     </Descriptor>
@@ -26,7 +26,7 @@
     <FrameOfReferences>
       <FrameOfReference>
         <Descriptor>
-          <Id>1fbb1593-8a0d-43f5-a1f1-880cd95b6892</Id>
+          <Id>8a46c316-bd8d-4ab5-93f9-31d3393840e0</Id>
           <Name>FrameOfReference</Name>
           <Type>FrameOfReference</Type>
         </Descriptor>
@@ -36,7 +36,7 @@
         <Measurements>
           <Measurement>
             <Descriptor>
-              <Id>a38a6d7c-1708-49d2-9e77-95d3b4e97d0f</Id>
+              <Id>008dac4e-0e2c-4bb5-8f9e-b9d3329bb36b</Id>
               <Name>Measurement</Name>
               <Type>Measurement</Type>
             </Descriptor>
@@ -44,7 +44,7 @@
             <Scans>
               <Scan>
                 <Descriptor>
-                  <Id>3e744909-664e-4b24-8163-a59656a1c904</Id>
+                  <Id>b9906c86-5ccc-4222-a78e-1dacf3287af7</Id>
                   <Name>Topogram</Name>
                   <Type>Scan</Type>
                 </Descriptor>
@@ -145,7 +145,7 @@
                 <Recons>
                   <Recon>
                     <Descriptor>
-                      <Id>1f7cc8a1-bfcc-49bf-82c8-8536984fce27</Id>
+                      <Id>d9a2e7b6-1435-4fa5-90f4-a849fe03c353</Id>
                       <Name>Recon</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -210,7 +210,7 @@
           </Measurement>
           <Measurement>
             <Descriptor>
-              <Id>7c68536e-92fe-4d8c-b8f3-967fa924fe6d</Id>
+              <Id>8c234bb5-08b2-44a4-9706-3cc104b6b510</Id>
               <Name>Measurement</Name>
               <Type>Measurement</Type>
             </Descriptor>
@@ -218,7 +218,7 @@
             <Scans>
               <Scan>
                 <Descriptor>
-                  <Id>32a52f15-9eb0-43f1-8f88-4fa602ed9399</Id>
+                  <Id>68c43879-d5ee-4f7b-8feb-e7af555bed27</Id>
                   <Name>Leg Helical</Name>
                   <Type>Scan</Type>
                 </Descriptor>
@@ -319,7 +319,7 @@
                 <Recons>
                   <Recon>
                     <Descriptor>
-                      <Id>51128a13-dc9a-46de-b885-0abd16568a8b</Id>
+                      <Id>e9f4f084-ac13-4fca-bff3-5b58d13fa16a</Id>
                       <Name>Recon</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -380,7 +380,7 @@
                   </Recon>
                   <Recon>
                     <Descriptor>
-                      <Id>d61b95c0-a6e7-4396-96ec-7d35c30accbc</Id>
+                      <Id>27964a60-3852-472a-8b4a-e19772ace970</Id>
                       <Name>Knee0.33mmSharpPlusBoneHD</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -436,10 +436,12 @@
                       <Parameter Name="IsHDRecon" Value="True" />
                       <Parameter Name="WindmillArtifactEnable" Value="False" />
                       <Parameter Name="ConeAngleArtifactEnable" Value="False" />
+                      <Parameter Name="Kernel" Value="Lung05" />
                     </Parameters>
                     <PostProcesses>
                       <PostProcess Index="0" Type="Sharp">
                         <Parameters>
+                          <Parameter Name="SharpAlgType" Value="Algo2" />
                           <Parameter Name="SharpLevel" Value="3" />
                         </Parameters>
                       </PostProcess>
@@ -447,7 +449,7 @@
                   </Recon>
                   <Recon>
                     <Descriptor>
-                      <Id>81978556-0a60-427b-a743-06efb25a74cf</Id>
+                      <Id>247d883e-8269-4320-bd8f-e54d67020fae</Id>
                       <Name>Knee0.33mmSharpPlusBoneHD</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -503,75 +505,16 @@
                       <Parameter Name="IsHDRecon" Value="True" />
                       <Parameter Name="WindmillArtifactEnable" Value="False" />
                       <Parameter Name="ConeAngleArtifactEnable" Value="False" />
+                      <Parameter Name="Kernel" Value="Lung05" />
                     </Parameters>
                     <PostProcesses>
                       <PostProcess Index="0" Type="Sharp">
                         <Parameters>
+                          <Parameter Name="SharpAlgType" Value="Algo1" />
                           <Parameter Name="SharpLevel" Value="4" />
                         </Parameters>
                       </PostProcess>
                     </PostProcesses>
-                  </Recon>
-                  <Recon>
-                    <Descriptor>
-                      <Id>70e659cf-f733-430d-adb3-30aea2e93d33</Id>
-                      <Name>Knee0.33mmSharpPlusBone</Name>
-                      <Type>Recon</Type>
-                    </Descriptor>
-                    <Parameters>
-                      <Parameter Name="ReconType" Value="IVR_TV" />
-                      <Parameter Name="FilterType" Value="SharpPlus" />
-                      <Parameter Name="InterpType" Value="0" />
-                      <Parameter Name="MetalAritifactEnable" Value="False" />
-                      <Parameter Name="SliceThickness" Value="330" />
-                      <Parameter Name="PreDenoiseType" Value="BM3D" />
-                      <Parameter Name="PreDenoiseCoef" Value="0" />
-                      <Parameter Name="PostDenoiseType" Value="BM3D" />
-                      <Parameter Name="PostDenoiseCoef" Value="0" />
-                      <Parameter Name="WindowType" Value="Bone" />
-                      <Parameter Name="WindowCenter" Value="[300]" />
-                      <Parameter Name="WindowWidth" Value="[1200]" />
-                      <Parameter Name="ViewWindowCenter" Value="0" />
-                      <Parameter Name="ViewWindowWidth" Value="-1" />
-                      <Parameter Name="CenterFirstX" Value="0" />
-                      <Parameter Name="CenterFirstY" Value="0" />
-                      <Parameter Name="CenterFirstZ" Value="-300000" />
-                      <Parameter Name="CenterLastX" Value="0" />
-                      <Parameter Name="CenterLastY" Value="0" />
-                      <Parameter Name="CenterLastZ" Value="-556000" />
-                      <Parameter Name="FoVDirectionHorX" Value="1" />
-                      <Parameter Name="FoVDirectionHorY" Value="0" />
-                      <Parameter Name="FoVDirectionHorZ" Value="0" />
-                      <Parameter Name="FoVDirectionVertX" Value="0" />
-                      <Parameter Name="FoVDirectionVertY" Value="1" />
-                      <Parameter Name="FoVDirectionVertZ" Value="0" />
-                      <Parameter Name="FoVLengthHor" Value="337920" />
-                      <Parameter Name="FoVLengthVert" Value="337920" />
-                      <Parameter Name="ImageMatrixHor" Value="1536" />
-                      <Parameter Name="ImageMatrixVert" Value="1536" />
-                      <Parameter Name="ImageIncrement" Value="330" />
-                      <Parameter Name="IsRTD" Value="False" />
-                      <Parameter Name="ImagePath" Value="" />
-                      <Parameter Name="ImageOrder" Value="HeadFoot" />
-                      <Parameter Name="SeriesDescription" Value="" />
-                      <Parameter Name="SeriesNumber" Value="0" />
-                      <Parameter Name="AirCorrectionMode" Value="DoseFeedback" />
-                      <Parameter Name="BoneAritifactEnable" Value="False" />
-                      <Parameter Name="ScatterAlgorithm" Value="SD" />
-                      <Parameter Name="RingAritifactEnable" Value="False" />
-                      <Parameter Name="SmoothZEnable" Value="True" />
-                      <Parameter Name="TwoPassEnable" Value="False" />
-                      <Parameter Name="MinTablePosition" Value="0" />
-                      <Parameter Name="MaxTablePosition" Value="0" />
-                      <Parameter Name="IVRTVCoef" Value="0.02" />
-                      <Parameter Name="RingCorrectCoef" Value="0" />
-                      <Parameter Name="PreBinning" Value="XY_1x1" />
-                      <Parameter Name="ReconBodyPart" Value="Leg" />
-                      <Parameter Name="IsHDRecon" Value="False" />
-                      <Parameter Name="WindmillArtifactEnable" Value="False" />
-                      <Parameter Name="ConeAngleArtifactEnable" Value="False" />
-                    </Parameters>
-                    <PostProcesses />
                   </Recon>
                 </Recons>
               </Scan>

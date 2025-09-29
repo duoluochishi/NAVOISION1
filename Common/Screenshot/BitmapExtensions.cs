@@ -12,13 +12,12 @@ public static class BitmapExtensions
         {
             using var stream = new MemoryStream();
             bitmap.Save(stream, ImageFormat.Png);
-            var bitmapImage = new BitmapImage();
-            bitmapImage.BeginInit();
-            bitmapImage.StreamSource = new MemoryStream(stream.ToArray());
-            bitmapImage.EndInit();
-            bitmapImage.Freeze();
-
-            return bitmapImage;
+            stream.Position = 0;
+            var bitmapFrame = BitmapFrame.Create(stream,
+            BitmapCreateOptions.PreservePixelFormat | BitmapCreateOptions.IgnoreColorProfile,
+            BitmapCacheOption.OnLoad);
+            bitmapFrame.Freeze();
+            return bitmapFrame;
         }
         catch (Exception)
         {

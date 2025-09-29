@@ -102,7 +102,7 @@
                   <Parameter Name="PreVoicePlayTime" Value="0" />
                   <Parameter Name="TubeNumbers" Value="[0,0]" />
                   <Parameter Name="FocalType" Value="Small" />
-                  <Parameter Name="ExposureDelayTime" Value="5000000" />
+                  <Parameter Name="ExposureDelayTime" Value="7000000" />
                   <Parameter Name="ExposureStartPosition" Value="" />
                   <Parameter Name="ExposureEndPosition" Value="" />
                   <Parameter Name="ReconVolumeStartPosition" Value="-300000" />
@@ -130,7 +130,7 @@
                   <Parameter Name="DoseNotificationOperator" Value="" />
                   <Parameter Name="DoseAlertMessage" Value="" />
                   <Parameter Name="DoseAlertOperator" Value="" />
-                  <Parameter Name="ScanLength" Value="600000" />
+                  <Parameter Name="ScanLength" Value="512000" />
                   <Parameter Name="CollimatorZ" Value="242" />
                   <Parameter Name="CollimatorSliceWidth" Value="39930" />
                   <Parameter Name="FuncMode" Value="Clinical" />
@@ -276,7 +276,7 @@
                   <Parameter Name="PreVoicePlayTime" Value="0" />
                   <Parameter Name="TubeNumbers" Value="[0,0]" />
                   <Parameter Name="FocalType" Value="Small" />
-                  <Parameter Name="ExposureDelayTime" Value="4000000" />
+                  <Parameter Name="ExposureDelayTime" Value="7000000" />
                   <Parameter Name="ExposureStartPosition" Value="0" />
                   <Parameter Name="ExposureEndPosition" Value="0" />
                   <Parameter Name="ReconVolumeStartPosition" Value="-300000" />
@@ -512,6 +512,7 @@
                       </PostProcess>
                       <PostProcess Index="1" Type="Sharp">
                         <Parameters>
+						  <Parameter Name="SharpAlgType" Value="Algo1" />
                           <Parameter Name="SharpLevel" Value="5" />
                         </Parameters>
                       </PostProcess>

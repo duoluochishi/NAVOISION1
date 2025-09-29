@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ProtocolTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Descriptor>
-    <Id>73f48288-eec5-4da7-833a-fa80b8ae2e76</Id>
+    <Id>a9d15513-a26b-4155-ab89-02ecd02c7d3f</Id>
     <Name>HeadHDHelicalAdult</Name>
     <Type>ProtocolTemplate</Type>
   </Descriptor>
   <Parameters />
   <Protocol>
     <Descriptor>
-      <Id>dbcecd72-5dcd-4b2e-a60e-e80e90e92807</Id>
+      <Id>01b45aa6-7e41-48e0-ac15-9136b8516ed3</Id>
       <Name>HeadHDHelicalAdult</Name>
       <Type>Protocol</Type>
     </Descriptor>
@@ -26,7 +26,7 @@
     <FrameOfReferences>
       <FrameOfReference>
         <Descriptor>
-          <Id>fc3a1457-e83c-4ea7-90a7-2304a49a839f</Id>
+          <Id>5c1ff9ab-2bdd-4250-81f0-eccd0e2b416f</Id>
           <Name>FrameOfReference</Name>
           <Type>FrameOfReference</Type>
         </Descriptor>
@@ -36,7 +36,7 @@
         <Measurements>
           <Measurement>
             <Descriptor>
-              <Id>e905f5e9-ff78-494b-a66f-4d8ad4b7c5cc</Id>
+              <Id>6474b0fd-134b-43f0-ba12-0b8154a88292</Id>
               <Name>Measurement</Name>
               <Type>Measurement</Type>
             </Descriptor>
@@ -44,7 +44,7 @@
             <Scans>
               <Scan>
                 <Descriptor>
-                  <Id>6959b54c-0968-421c-addd-c6ebd1b8f60b</Id>
+                  <Id>c3534d9d-0f99-4e4d-a159-67be61a1a9d7</Id>
                   <Name>Topogram</Name>
                   <Type>Scan</Type>
                 </Descriptor>
@@ -145,7 +145,7 @@
                 <Recons>
                   <Recon>
                     <Descriptor>
-                      <Id>d3e9788a-0eb8-44a6-8ba6-73d2fcc5a034</Id>
+                      <Id>3d2f157a-99f5-40a3-b4cd-b8213965d5d0</Id>
                       <Name>Recon</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -210,7 +210,7 @@
           </Measurement>
           <Measurement>
             <Descriptor>
-              <Id>c2aaee99-2a87-4056-84c1-ebabdf45367b</Id>
+              <Id>c93bf618-89cf-4063-837a-31571785bbae</Id>
               <Name>Measurement</Name>
               <Type>Measurement</Type>
             </Descriptor>
@@ -218,7 +218,7 @@
             <Scans>
               <Scan>
                 <Descriptor>
-                  <Id>52a65707-d00c-4175-8b1d-39a8c1c6e724</Id>
+                  <Id>dfe4d129-d9a6-4e53-a384-7e9d4e0e58b5</Id>
                   <Name>Head Helical</Name>
                   <Type>Scan</Type>
                 </Descriptor>
@@ -319,7 +319,7 @@
                 <Recons>
                   <Recon>
                     <Descriptor>
-                      <Id>627e7970-3edf-4904-bac4-9b6d6385ce2b</Id>
+                      <Id>013237fb-8879-439e-b763-69c1f07e354a</Id>
                       <Name>Recon</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -380,7 +380,7 @@
                   </Recon>
                   <Recon>
                     <Descriptor>
-                      <Id>416804f6-1606-47ad-a6ce-6968454b19ec</Id>
+                      <Id>c8e7d1b8-c55a-4488-a24d-5e3985947b96</Id>
                       <Name>Head0.165mmSharpPlusBone</Name>
                       <Type>Recon</Type>
                     </Descriptor>
@@ -438,12 +438,12 @@
                       <Parameter Name="ConeAngleArtifactEnable" Value="False" />
                     </Parameters>
                     <PostProcesses>
-					   <PostProcess Index="0" Type="Sharp">
+                      <PostProcess Index="0" Type="Sharp">
                         <Parameters>
                           <Parameter Name="SharpLevel" Value="1" />
                         </Parameters>
                       </PostProcess>
-					</PostProcesses>
+                    </PostProcesses>
                   </Recon>
                 </Recons>
               </Scan>

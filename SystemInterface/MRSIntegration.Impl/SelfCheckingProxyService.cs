@@ -42,31 +42,31 @@ public class SelfCheckingProxyService : ISelfCheckingProxyService
 		SelfCheckProxy.Instance.SelfCheckStatusChanged += SelfCheckProxy_SelfCheckStatusChanged;
 	}
 
-	public BaseCommandResult StartSelfChecking(SelfCheckPartType partType)
-	{
-		try
-		{
-			var result = SelfCheckProxy.Instance.RunSelfCheck(partType);
+	//public BaseCommandResult StartSelfChecking(SelfCheckPartType partType)
+	//{
+	//	try
+	//	{
+	//		var result = SelfCheckProxy.Instance.RunSelfCheck(partType);
 
-			if (result is null || result.Status != CommandStatus.Success)
-			{
-				_logger.LogDebug(
-					$"StartSelfChecking({partType.ToString()}) failed: {result?.Status.ToString()}, {JsonConvert.SerializeObject(result?.ErrorCodes.Codes)}");
-			}
+	//		if (result is null || result.Status != CommandStatus.Success)
+	//		{
+	//			_logger.LogDebug(
+	//				$"StartSelfChecking({partType.ToString()}) failed: {result?.Status.ToString()}, {JsonConvert.SerializeObject(result?.ErrorCodes.Codes)}");
+	//		}
 
-			return new BaseCommandResult
-			{
-				Status = _mapper.Map<CommandExecutionStatus>(result?.Status)
-				,
-				Details = result.ErrorCodes.Codes.Select(code => (code, string.Empty)).ToList()
-			};
-		}
-		catch (Exception ex)
-		{
-			_logger.LogError($"proxy self check error {ex.Message}-{ex.StackTrace}");
-			return new BaseCommandResult();
-		}
-	}
+	//		return new BaseCommandResult
+	//		{
+	//			Status = _mapper.Map<CommandExecutionStatus>(result?.Status)
+	//			,
+	//			Details = result.ErrorCodes.Codes.Select(code => (code, string.Empty)).ToList()
+	//		};
+	//	}
+	//	catch (Exception ex)
+	//	{
+	//		_logger.LogError($"proxy self check error {ex.Message}-{ex.StackTrace}");
+	//		return new BaseCommandResult();
+	//	}
+	//}
 
 	public List<SelfCheckInfo> GetResults()
 	{

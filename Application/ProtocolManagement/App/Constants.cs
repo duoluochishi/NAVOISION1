@@ -12,6 +12,7 @@ namespace NV.CT.ProtocolManagement
         public const string COMMAND_SWITCH_PROTOCOL_FILTER = "SwitchProtocolFilterCommand";
         public const string COMMAND_SWITCH_EMERGENCY_PROTOCOL_FILTER = "SwitchEmergencyProtocolFilterCommand";
         public const string COMMAND_CHECKED = "CheckedCommand";
+        public const string COMMAND_SELECTIONCHANGED = "SelectionChangedCommand";
 
         public const string PRECISION_FORMAT_2 = "0.##";
         public const string PRECISION_FORMAT_3 = "0.###";

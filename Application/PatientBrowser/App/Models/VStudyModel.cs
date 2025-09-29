@@ -167,6 +167,7 @@ public partial class VStudyModel : BaseViewModel, INotifyDataErrorInfo
     readonly Func<string> func_validateAge;
     readonly Func<string> func_validateHeight;
     readonly Func<string> func_validateWeight;
+    private DateTime? _patientBirthDate;
 
     //病人表的主键
     public string Pid
@@ -237,6 +238,12 @@ public partial class VStudyModel : BaseViewModel, INotifyDataErrorInfo
     private void ValidatePatientID()
     {
         Validate(func_validatePatientID, nameof(PatientId));
+    }
+
+    public DateTime? PatientBirthDate
+    {
+        get => _patientBirthDate;
+        set => SetProperty(ref _patientBirthDate, value);
     }
 
     /// <summary>

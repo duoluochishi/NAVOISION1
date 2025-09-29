@@ -134,29 +134,16 @@ public class ScanModel : BaseModel<MeasurementModel, ReconModel>
     public ExposureTriggerMode ExposureTrigger => GetParameterValue<ExposureTriggerMode>(ProtocolParameterNames.SCAN_EXPOSURE_TRIGGER);
 
     /// <summary>
-    /// ECG心电图字段 范围：门控标识：0=None；1=ECG前瞻；2=ECG回顾；3=呼吸;4=时间;5=介入扫描
+    /// ECG开始位置（床位）
     /// </summary>
-    [Obsolete]
     [XmlIgnore, JsonIgnore]
-    public TriggerMode TriggerMode => GetParameterValue<TriggerMode>(ProtocolParameterNames.SCAN_TRIGGER_MODE);
+    public uint EcgStartPosition => GetParameterValue<uint>(ProtocolParameterNames.SCAN_ECG_START_POSITION, true);
 
     /// <summary>
-    /// 门控期相起始位置
-    /// TriggerMode为前瞻时使用
-    /// 备注：硬件根据该值确定曝光开始位置 范围：开始门控期相(0~100)
+    /// ECG结束位置（床位）
     /// </summary>
-    [Obsolete]
     [XmlIgnore, JsonIgnore]
-    public ushort TriggerStart => GetParameterValue<ushort>(ProtocolParameterNames.SCAN_TRIGGER_START);
-
-    /// <summary>
-    /// 门控期相结束位置
-    /// TriggerMode为前瞻时使用
-    /// 备注：硬件根据该值确定曝光结束位置 范围：结束门控期相(0~100)
-    /// </summary>
-    [Obsolete]
-    [XmlIgnore, JsonIgnore]
-    public ushort TriggerEnd => GetParameterValue<ushort>(ProtocolParameterNames.SCAN_TRIGGER_END);
+    public uint EcgEndPosition => GetParameterValue<uint>(ProtocolParameterNames.SCAN_ECG_END_POSITION, true);
 
     /// <summary>
     /// 曝光模式(球管数量)。

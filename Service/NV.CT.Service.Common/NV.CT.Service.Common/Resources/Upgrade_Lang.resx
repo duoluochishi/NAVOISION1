@@ -137,6 +137,10 @@
     <value>Progress</value>
     <comment>进度</comment>
   </data>
+  <data name="Upgrade_Info_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+    <comment>刷新</comment>
+  </data>
   <data name="Upgrade_Info_SuperiorName" xml:space="preserve">
     <value>Superior Name</value>
     <comment>上级名称</comment>

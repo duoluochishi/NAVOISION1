@@ -1,6 +1,8 @@
 ﻿using NV.CT.DicomUtility.Graphic;
 using NV.CT.FacadeProxy.Common.Enums;
+using NV.MPS.Configuration;
 using NV.MPS.Environment;
+using System.Text;
 
 namespace NV.CT.Examination.ApplicationService.Impl.ProtocolExtensions.ModificationRule
 {
@@ -54,9 +56,20 @@ namespace NV.CT.Examination.ApplicationService.Impl.ProtocolExtensions.Modificat
                     length = (int)scanModel.ScanLength;
                 }
                 end = table_direction == TableDirection.In ? start - length : start + length;
+                //考虑床的最大最小值
+				TableInfo node = SystemConfig.TableConfig.Table;
+				if (node.MinZ.Value > end)
+				{
+					end= node.MinZ.Value;
+				}
+				if (node.MaxZ.Value < end)
+				{
+                    end = node.MaxZ.Value;
+				}
+                length = Math.Abs(end - start);
 
-                //扫描参数变化
-                List<ParameterModel> scanParamList = new List<ParameterModel>
+				//扫描参数变化
+				List<ParameterModel> scanParamList = new List<ParameterModel>
                 {
                     new ParameterModel { Name = ProtocolParameterNames.SCAN_LENGTH, Value = length.ToString() },
                     new ParameterModel { Name = ProtocolParameterNames.SCAN_RECON_VOLUME_END_POSITION, Value = end.ToString() }
@@ -153,7 +166,6 @@ namespace NV.CT.Examination.ApplicationService.Impl.ProtocolExtensions.Modificat
             //根据当前参数判断是否同步调整
             var isSyncFirstZ = Math.Abs(recon.CenterFirstZ - UnitConvert.Millimeter2Micron(oldRange.FirstZ)) < 1;
             var isSyncLastZ = Math.Abs(recon.CenterLastZ - UnitConvert.Millimeter2Micron(oldRange.LastZ)) < 1;
-
 
             double newFirst = UnitConvert.Micron2Millimeter((double)recon.CenterFirstZ);
             double newLast = UnitConvert.Micron2Millimeter((double)recon.CenterLastZ);

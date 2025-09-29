@@ -5263,7 +5263,7 @@ namespace NV.CT.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Operate.
+        ///   Looks up a localized string similar to Play.
         /// </summary>
         public static string Header_Operate {
             get {
@@ -5286,6 +5286,15 @@ namespace NV.CT.Language {
         public static string Header_OutputPath {
             get {
                 return ResourceManager.GetString("Header_OutputPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paired voice name.
+        /// </summary>
+        public static string Header_PairedVoice {
+            get {
+                return ResourceManager.GetString("Header_PairedVoice", resourceCulture);
             }
         }
         

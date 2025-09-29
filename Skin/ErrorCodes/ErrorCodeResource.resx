@@ -461,13 +461,13 @@
     <value>Error</value>
   </data>
   <data name="AUX000000003_Description" xml:space="preserve">
-    <value>机架panel掉线</value>
+    <value>呼吸导航板掉线</value>
   </data>
   <data name="AUX000000003_Reason" xml:space="preserve">
-    <value>机架panel掉线</value>
+    <value>机架BNV板CAN通讯掉线</value>
   </data>
   <data name="AUX000000003_Solution" xml:space="preserve">
-    <value>检查机架Panel状态</value>
+    <value>检查机架呼吸导航板子状态</value>
   </data>
   <data name="AUX000000003_Handling" xml:space="preserve">
     <value />
@@ -651,120 +651,6 @@
   </data>
   <data name="AUX000000013_Handling" xml:space="preserve">
     <value />
-  </data>
-  <data name="ALG_DefectCal_DefectTooMany_Code" xml:space="preserve">
-    <value>ALG001000001</value>
-  </data>
-  <data name="ALG_DefectCal_DefectTooMany_Level" xml:space="preserve">
-    <value>Error</value>
-  </data>
-  <data name="ALG_DefectCal_DefectTooMany_Description" xml:space="preserve">
-    <value>坏点太多</value>
-  </data>
-  <data name="ALG_DefectCal_DefectTooMany_Reason" xml:space="preserve">
-    <value>探测器坏点多</value>
-  </data>
-  <data name="ALG_DefectCal_DefectTooMany_Solution" xml:space="preserve">
-    <value>查看RawData，确定是否更换探测器</value>
-  </data>
-  <data name="ALG_DefectCal_DefectTooMany_Handling" xml:space="preserve">
-    <value>停止当前校准的相关动作
-，给上层抛出错误返回值</value>
-  </data>
-  <data name="ALG_DefectCal_Defect3x3Exist_Code" xml:space="preserve">
-    <value>ALG001000002</value>
-  </data>
-  <data name="ALG_DefectCal_Defect3x3Exist_Level" xml:space="preserve">
-    <value>Error</value>
-  </data>
-  <data name="ALG_DefectCal_Defect3x3Exist_Description" xml:space="preserve">
-    <value>存在3x3坏点</value>
-  </data>
-  <data name="ALG_DefectCal_Defect3x3Exist_Reason" xml:space="preserve">
-    <value>探测器坏点多</value>
-  </data>
-  <data name="ALG_DefectCal_Defect3x3Exist_Solution" xml:space="preserve">
-    <value>查看RawData，确定是否更换探测器</value>
-  </data>
-  <data name="ALG_DefectCal_Defect3x3Exist_Handling" xml:space="preserve">
-    <value>停止当前校准的相关动作
-，给上层抛出错误返回值</value>
-  </data>
-  <data name="ALG_DefectCal_Defect20HorzExist_Code" xml:space="preserve">
-    <value>ALG001000003</value>
-  </data>
-  <data name="ALG_DefectCal_Defect20HorzExist_Level" xml:space="preserve">
-    <value>Error</value>
-  </data>
-  <data name="ALG_DefectCal_Defect20HorzExist_Description" xml:space="preserve">
-    <value>X方向存在连续20个坏点</value>
-  </data>
-  <data name="ALG_DefectCal_Defect20HorzExist_Reason" xml:space="preserve">
-    <value>探测器坏点多</value>
-  </data>
-  <data name="ALG_DefectCal_Defect20HorzExist_Solution" xml:space="preserve">
-    <value>查看RawData，确定是否更换探测器</value>
-  </data>
-  <data name="ALG_DefectCal_Defect20HorzExist_Handling" xml:space="preserve">
-    <value>停止当前校准的相关动作
-，给上层抛出错误返回值</value>
-  </data>
-  <data name="ALG_DefectCal_Defect20VertExist_Code" xml:space="preserve">
-    <value>ALG001000004</value>
-  </data>
-  <data name="ALG_DefectCal_Defect20VertExist_Level" xml:space="preserve">
-    <value>Error</value>
-  </data>
-  <data name="ALG_DefectCal_Defect20VertExist_Description" xml:space="preserve">
-    <value>Y方向存在连续20个坏点</value>
-  </data>
-  <data name="ALG_DefectCal_Defect20VertExist_Reason" xml:space="preserve">
-    <value>探测器坏点多</value>
-  </data>
-  <data name="ALG_DefectCal_Defect20VertExist_Solution" xml:space="preserve">
-    <value>查看RawData，确定是否更换探测器</value>
-  </data>
-  <data name="ALG_DefectCal_Defect20VertExist_Handling" xml:space="preserve">
-    <value>停止当前校准的相关动作
-，给上层抛出错误返回值</value>
-  </data>
-  <data name="MRS_ALG_GainCorrect_Config_Unfound_Code" xml:space="preserve">
-    <value>ALG013000001</value>
-  </data>
-  <data name="MRS_ALG_GainCorrect_Config_Unfound_Level" xml:space="preserve">
-    <value>Error</value>
-  </data>
-  <data name="MRS_ALG_GainCorrect_Config_Unfound_Description" xml:space="preserve">
-    <value>未找到Gain校正配置文件</value>
-  </data>
-  <data name="MRS_ALG_GainCorrect_Config_Unfound_Reason" xml:space="preserve">
-    <value>未找到Gain校正配置文件</value>
-  </data>
-  <data name="MRS_ALG_GainCorrect_Config_Unfound_Solution" xml:space="preserve">
-    <value>检查correct_pipeline.xml配置文件</value>
-  </data>
-  <data name="MRS_ALG_GainCorrect_Config_Unfound_Handling" xml:space="preserve">
-    <value>停止当前算法重建的相关动作
-，给上层抛出错误返回值</value>
-  </data>
-  <data name="MRS_ALG_GainCorrect_module_Unfound_Code" xml:space="preserve">
-    <value>ALG013000002</value>
-  </data>
-  <data name="MRS_ALG_GainCorrect_module_Unfound_Level" xml:space="preserve">
-    <value>Error</value>
-  </data>
-  <data name="MRS_ALG_GainCorrect_module_Unfound_Description" xml:space="preserve">
-    <value>未找到Gain校准表</value>
-  </data>
-  <data name="MRS_ALG_GainCorrect_module_Unfound_Reason" xml:space="preserve">
-    <value>未找到Gain校准表</value>
-  </data>
-  <data name="MRS_ALG_GainCorrect_module_Unfound_Solution" xml:space="preserve">
-    <value>检查gain校准表是否存在</value>
-  </data>
-  <data name="MRS_ALG_GainCorrect_module_Unfound_Handling" xml:space="preserve">
-    <value>停止当前算法重建的相关动作
-，给上层抛出错误返回值</value>
   </data>
   <data name="MRS_ALG_GPU_NOT_EXIST_Code" xml:space="preserve">
     <value>REC000000001</value>
@@ -10513,6 +10399,120 @@
   <data name="MCS_FUW_MD5ValidateFail_Handling" xml:space="preserve">
     <value />
   </data>
+  <data name="ALG_DefectCal_DefectTooMany_Code" xml:space="preserve">
+    <value>ALG001000001</value>
+  </data>
+  <data name="ALG_DefectCal_DefectTooMany_Level" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ALG_DefectCal_DefectTooMany_Description" xml:space="preserve">
+    <value>坏点太多</value>
+  </data>
+  <data name="ALG_DefectCal_DefectTooMany_Reason" xml:space="preserve">
+    <value>探测器坏点多</value>
+  </data>
+  <data name="ALG_DefectCal_DefectTooMany_Solution" xml:space="preserve">
+    <value>查看RawData，确定是否更换探测器</value>
+  </data>
+  <data name="ALG_DefectCal_DefectTooMany_Handling" xml:space="preserve">
+    <value>停止当前校准的相关动作
+，给上层抛出错误返回值</value>
+  </data>
+  <data name="ALG_DefectCal_Defect3x3Exist_Code" xml:space="preserve">
+    <value>ALG001000002</value>
+  </data>
+  <data name="ALG_DefectCal_Defect3x3Exist_Level" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ALG_DefectCal_Defect3x3Exist_Description" xml:space="preserve">
+    <value>存在3x3坏点</value>
+  </data>
+  <data name="ALG_DefectCal_Defect3x3Exist_Reason" xml:space="preserve">
+    <value>探测器坏点多</value>
+  </data>
+  <data name="ALG_DefectCal_Defect3x3Exist_Solution" xml:space="preserve">
+    <value>查看RawData，确定是否更换探测器</value>
+  </data>
+  <data name="ALG_DefectCal_Defect3x3Exist_Handling" xml:space="preserve">
+    <value>停止当前校准的相关动作
+，给上层抛出错误返回值</value>
+  </data>
+  <data name="ALG_DefectCal_Defect20HorzExist_Code" xml:space="preserve">
+    <value>ALG001000003</value>
+  </data>
+  <data name="ALG_DefectCal_Defect20HorzExist_Level" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ALG_DefectCal_Defect20HorzExist_Description" xml:space="preserve">
+    <value>X方向存在连续20个坏点</value>
+  </data>
+  <data name="ALG_DefectCal_Defect20HorzExist_Reason" xml:space="preserve">
+    <value>探测器坏点多</value>
+  </data>
+  <data name="ALG_DefectCal_Defect20HorzExist_Solution" xml:space="preserve">
+    <value>查看RawData，确定是否更换探测器</value>
+  </data>
+  <data name="ALG_DefectCal_Defect20HorzExist_Handling" xml:space="preserve">
+    <value>停止当前校准的相关动作
+，给上层抛出错误返回值</value>
+  </data>
+  <data name="ALG_DefectCal_Defect20VertExist_Code" xml:space="preserve">
+    <value>ALG001000004</value>
+  </data>
+  <data name="ALG_DefectCal_Defect20VertExist_Level" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ALG_DefectCal_Defect20VertExist_Description" xml:space="preserve">
+    <value>Y方向存在连续20个坏点</value>
+  </data>
+  <data name="ALG_DefectCal_Defect20VertExist_Reason" xml:space="preserve">
+    <value>探测器坏点多</value>
+  </data>
+  <data name="ALG_DefectCal_Defect20VertExist_Solution" xml:space="preserve">
+    <value>查看RawData，确定是否更换探测器</value>
+  </data>
+  <data name="ALG_DefectCal_Defect20VertExist_Handling" xml:space="preserve">
+    <value>停止当前校准的相关动作
+，给上层抛出错误返回值</value>
+  </data>
+  <data name="MRS_ALG_GainCorrect_Config_Unfound_Code" xml:space="preserve">
+    <value>ALG013000001</value>
+  </data>
+  <data name="MRS_ALG_GainCorrect_Config_Unfound_Level" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="MRS_ALG_GainCorrect_Config_Unfound_Description" xml:space="preserve">
+    <value>未找到Gain校正配置文件</value>
+  </data>
+  <data name="MRS_ALG_GainCorrect_Config_Unfound_Reason" xml:space="preserve">
+    <value>未找到Gain校正配置文件</value>
+  </data>
+  <data name="MRS_ALG_GainCorrect_Config_Unfound_Solution" xml:space="preserve">
+    <value>检查correct_pipeline.xml配置文件</value>
+  </data>
+  <data name="MRS_ALG_GainCorrect_Config_Unfound_Handling" xml:space="preserve">
+    <value>停止当前算法重建的相关动作
+，给上层抛出错误返回值</value>
+  </data>
+  <data name="MRS_ALG_GainCorrect_module_Unfound_Code" xml:space="preserve">
+    <value>ALG013000002</value>
+  </data>
+  <data name="MRS_ALG_GainCorrect_module_Unfound_Level" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="MRS_ALG_GainCorrect_module_Unfound_Description" xml:space="preserve">
+    <value>未找到Gain校准表</value>
+  </data>
+  <data name="MRS_ALG_GainCorrect_module_Unfound_Reason" xml:space="preserve">
+    <value>未找到Gain校准表</value>
+  </data>
+  <data name="MRS_ALG_GainCorrect_module_Unfound_Solution" xml:space="preserve">
+    <value>检查gain校准表是否存在</value>
+  </data>
+  <data name="MRS_ALG_GainCorrect_module_Unfound_Handling" xml:space="preserve">
+    <value>停止当前算法重建的相关动作
+，给上层抛出错误返回值</value>
+  </data>
   <data name="ACC_SDKInitFailed_Code" xml:space="preserve">
     <value>ACC000000001</value>
   </data>
@@ -13239,19 +13239,19 @@
     <value>PHS000000010</value>
   </data>
   <data name="PHS000000010_Level" xml:space="preserve">
-    <value>Error</value>
+    <value>Fatal</value>
   </data>
   <data name="PHS000000010_Description" xml:space="preserve">
-    <value>水平目标位置下参超上限</value>
+    <value>水平运动触发软限位下限临界区</value>
   </data>
   <data name="PHS000000010_Reason" xml:space="preserve">
-    <value>下参超上限1960</value>
+    <value>床高处于临界位置，需再升高&gt;1mm以上再扫</value>
   </data>
   <data name="PHS000000010_Solution" xml:space="preserve">
-    <value>重新检查后再下参</value>
+    <value>床垂直方向偏低，需再升高</value>
   </data>
   <data name="PHS000000010_Handling" xml:space="preserve">
-    <value>提示下参出错，请重新检查后下参</value>
+    <value>运动终止</value>
   </data>
   <data name="PHS000000011_Code" xml:space="preserve">
     <value>PHS000000011</value>
@@ -13260,10 +13260,10 @@
     <value>Error</value>
   </data>
   <data name="PHS000000011_Description" xml:space="preserve">
-    <value>水平目标速度下参超上限</value>
+    <value>水平目标位置下参超上限</value>
   </data>
   <data name="PHS000000011_Reason" xml:space="preserve">
-    <value>下参超速度上限250mm/s</value>
+    <value>下参超上限1960</value>
   </data>
   <data name="PHS000000011_Solution" xml:space="preserve">
     <value>重新检查后再下参</value>
@@ -13278,10 +13278,10 @@
     <value>Error</value>
   </data>
   <data name="PHS000000012_Description" xml:space="preserve">
-    <value>水平目标速度下参低于下限</value>
+    <value>水平目标速度下参超上限</value>
   </data>
   <data name="PHS000000012_Reason" xml:space="preserve">
-    <value>下参超速度低于下限1mm/s，范围[1~250]</value>
+    <value>下参超速度上限250mm/s</value>
   </data>
   <data name="PHS000000012_Solution" xml:space="preserve">
     <value>重新检查后再下参</value>
@@ -13296,10 +13296,10 @@
     <value>Error</value>
   </data>
   <data name="PHS000000013_Description" xml:space="preserve">
-    <value>垂直目标位置下参超上限</value>
+    <value>水平目标速度下参低于下限</value>
   </data>
   <data name="PHS000000013_Reason" xml:space="preserve">
-    <value>下参超上限980</value>
+    <value>下参超速度低于下限1mm/s，范围[1~250]</value>
   </data>
   <data name="PHS000000013_Solution" xml:space="preserve">
     <value>重新检查后再下参</value>
@@ -13314,10 +13314,10 @@
     <value>Error</value>
   </data>
   <data name="PHS000000014_Description" xml:space="preserve">
-    <value>垂直目标位置下参低于下限</value>
+    <value>垂直目标位置下参超上限</value>
   </data>
   <data name="PHS000000014_Reason" xml:space="preserve">
-    <value>下参低于下限480</value>
+    <value>下参超上限980</value>
   </data>
   <data name="PHS000000014_Solution" xml:space="preserve">
     <value>重新检查后再下参</value>
@@ -13332,15 +13332,33 @@
     <value>Error</value>
   </data>
   <data name="PHS000000015_Description" xml:space="preserve">
-    <value>垂直目标速度下参超上限</value>
+    <value>垂直目标位置下参低于下限</value>
   </data>
   <data name="PHS000000015_Reason" xml:space="preserve">
-    <value>下参超速度上限100mm/s</value>
+    <value>下参低于下限480</value>
   </data>
   <data name="PHS000000015_Solution" xml:space="preserve">
     <value>重新检查后再下参</value>
   </data>
   <data name="PHS000000015_Handling" xml:space="preserve">
+    <value>提示下参出错，请重新检查后下参</value>
+  </data>
+  <data name="PHS000000016_Code" xml:space="preserve">
+    <value>PHS000000016</value>
+  </data>
+  <data name="PHS000000016_Level" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="PHS000000016_Description" xml:space="preserve">
+    <value>垂直目标速度下参超上限</value>
+  </data>
+  <data name="PHS000000016_Reason" xml:space="preserve">
+    <value>下参超速度上限100mm/s</value>
+  </data>
+  <data name="PHS000000016_Solution" xml:space="preserve">
+    <value>重新检查后再下参</value>
+  </data>
+  <data name="PHS000000016_Handling" xml:space="preserve">
     <value>提示下参出错，请重新检查后下参</value>
   </data>
   <data name="PHS000000017_Code" xml:space="preserve">

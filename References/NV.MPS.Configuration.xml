@@ -44,6 +44,16 @@
             前语音播报完成后默认延迟时间（单位：微秒）
             </summary>
         </member>
+        <member name="P:NV.MPS.Configuration.AcquisitionInfo.ECGDataSampleFrequency">
+            <summary>
+            采样频率 默认1000000，使用时需要除以其换算单位1000，
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.AcquisitionInfo.MRSECGDataBufferInterval">
+            <summary>
+            ECG缓冲中间隔 单位 秒 默认600
+            </summary>
+        </member>
         <member name="P:NV.MPS.Configuration.ArchiveInfo.Id">
             <summary>
             唯一标识
@@ -122,6 +132,56 @@
         <member name="P:NV.MPS.Configuration.BaseField.Remark">
             <summary>
             配置项描述
+            </summary>
+        </member>
+        <member name="T:NV.MPS.Configuration.CalibrationParameter">
+            <summary>
+            校正参数
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.CalibrationParameter.KV">
+            <summary>
+            kV
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.CalibrationParameter.Binning">
+            <summary>
+            扫描Binning
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.CalibrationParameter.SourceXZ">
+            <summary>
+            同时曝光源数量
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.CalibrationParameter.ExposureMode">
+            <summary>
+            曝光模式
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.CalibrationParameter.FocalType">
+            <summary>
+            焦点类型
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.CalibrationParameter.CollimatorZ">
+            <summary>
+            限速器开口
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.CalibrationParameter.GainDynamic">
+            <summary>
+            动态增益
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.CalibrationParameter.ExposureTime">
+            <summary>
+            曝光时间
+            </summary>
+        </member>
+        <member name="P:NV.MPS.Configuration.CalibrationParameter.FrameTime">
+            <summary>
+            帧时间
             </summary>
         </member>
         <member name="P:NV.MPS.Configuration.OpeningSettingInfo.Opening">
@@ -207,70 +267,6 @@
         <member name="P:NV.MPS.Configuration.DetectorInfo.Resolution">
             <summary>
             分辨率（单位：微米）
-            </summary>
-        </member>
-        <member name="P:NV.MPS.Configuration.DetectorInfo.EncodeMode">
-            <summary>
-            图像编码模式  0 原始模式, 1 Flag模式 , 2 Log2模式
-            </summary>
-        </member>
-        <member name="P:NV.MPS.Configuration.DetectorInfo.PreOffsetStartVaildFrame">
-            <summary>
-            探测器PreOffset开始有效帧数
-            </summary>
-        </member>
-        <member name="P:NV.MPS.Configuration.DetectorInfo.TargetTemperature">
-            <summary>
-            目标温度，单位0.1° , 260代表26°,值用int表示
-            </summary>
-        </member>
-        <member name="P:NV.MPS.Configuration.DetectorInfo.Shutter">
-            <summary>
-            快门模式，0代表Global，1代表Rolling
-            </summary>
-        </member>
-        <member name="P:NV.MPS.Configuration.DetectorInfo.ScateringPlateGain">
-            <summary>
-            散射板增益设置
-            </summary>
-        </member>
-        <member name="P:NV.MPS.Configuration.DetectorInfo.PrintfEnable">
-            <summary>
-            Print使能
-            </summary>
-        </member>
-        <member name="P:NV.MPS.Configuration.DetectorInfo.HeartBeatTimeInterval">
-            <summary>
-            心跳间隔
-            </summary>
-        </member>
-        <member name="P:NV.MPS.Configuration.DetectorInfo.ImageMode">
-            <summary>
-            ImageMode
-            	0代表SelfTest
-            	1代表NormalDataAcquisition
-            	2代表NormalImageAcquisition
-            	3代表ADCTest
-            	4代表FPGADigitalTest
-            	5代表PDRegisterReadWriteMode
-            	6代表PowerSavingMode
-            </summary>
-        </member>
-        <member name="P:NV.MPS.Configuration.DetectorInfo.AcqMode">
-            <summary>
-            AcqMode
-            	0代表FreeMode
-            	1代表FallingEdgeTriggering
-            	2代表RisingEdgeTriggering
-            	3代表LowLevelTriggering
-            	4代表HighLevelTriggering
-            </summary>
-        </member>
-        <member name="P:NV.MPS.Configuration.DetectorInfo.DoubleRead">
-            <summary>
-            DoubleRead
-            	0代表FastRead
-            	1代表DoubleRead
             </summary>
         </member>
         <member name="P:NV.MPS.Configuration.DetectorParam.DoubleRead">
@@ -798,11 +794,15 @@
             油温上限
             </summary>
         </member>
-        <member name="M:NV.MPS.Configuration.SystemConfig.SaveCollimatorConfig">
+        <member name="P:NV.MPS.Configuration.SystemConfig.IsCalibrationValid">
             <summary>
-            保存限束器开口设置
+            校准表是否有效
             </summary>
-            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.SaveCalibrationConfig">
+            <summary>
+            保存校准配置
+            </summary>
         </member>
         <member name="M:NV.MPS.Configuration.SystemConfig.SaveTableConfig">
             <summary>
@@ -873,6 +873,12 @@
         <member name="M:NV.MPS.Configuration.SystemConfig.SaveVoltageCurrentCoefficientConfig">
             <summary>
             全量保存电压电流系数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.SaveCollimatorConfig">
+            <summary>
+            保存限束器参数设置
             </summary>
             <returns></returns>
         </member>
@@ -1001,6 +1007,53 @@
             保存腔体温湿度
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.UpdateCalibrationStatus(System.String,System.Boolean)">
+            <summary>
+            更新当前TypeName对应的Calibration的IsValid
+            </summary>
+            <param name="typeName">校准类型</param>
+            <param name="isValid">是否有效</param>
+            <returns>是否更新成功</returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.UpdateCalibrationStatus(System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            批量更新 校准模板TypeName 对应的校准状态 
+            </summary>
+            <param name="typeNames">校准类型列表</param>
+            <param name="isValid">是否有效</param>
+            <returns>批量更新校准状态是否成功</returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.GetInvalidCalibrations">
+            <summary>
+            获取失效的校准表列表
+            </summary>
+            <returns>失效的校准表列表</returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.AppendCalibrationHistory(NV.MPS.Configuration.CalibrationHistory)">
+            <summary>
+            校准校正历史记录保存
+            </summary>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.AppendCalibrationHistory(System.Collections.Generic.IEnumerable{NV.MPS.Configuration.CalibrationHistory})">
+            <summary>
+            批量追加校准校正历史记录
+            </summary>
+            <param name="calibrationHistories">校正列表</param>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.GetCalibrationHistory">
+            <summary>
+            获取校准校正的历史记录
+            </summary>
+        </member>
+        <member name="M:NV.MPS.Configuration.SystemConfig.UpdateCalibrationStatus(System.String,NV.MPS.Configuration.CalibrationParameter,System.Boolean)">
+            <summary>
+            更新校准校正模板状态
+            </summary>
+            <param name="calibrationType">校准校正类型</param>
+            <param name="caliParam">对应参数</param>
+            <param name="isValid">是否有效</param>
+            <returns>是否更新成功</returns>
         </member>
         <member name="P:NV.MPS.Configuration.TableInfo.MaxX">
             <summary>
@@ -1141,6 +1194,12 @@
         <member name="M:NV.MPS.Configuration.UserConfig.SaveVoices">
             <summary>
             API语音保存
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NV.MPS.Configuration.UserConfig.SaveBreatheVoices">
+            <summary>
+            呼吸测试语音保存
             </summary>
             <returns></returns>
         </member>

@@ -77,7 +77,7 @@ public class DicomFileService : IDicomFileService
         //if it is neither a file nor a diretory, then return.
         if (!isFile && !isDirectory)
         {
-            _logger.LogWarning($"Invalid parameter of pathName:{pathName}");
+            _logger.LogWarning($"No such file or directory:{pathName}");
             return new LoadImageInstanceCommandResult { Status = CommandExecutionStatus.Failure };
         }
 
